@@ -31,12 +31,13 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         if (canPause && currentState != GameState.Paused)
         {
             prePauseState = currentState;
+            Time.timeScale = 0;
             SetState(GameState.Paused);
         }
     }
     public void UnPause()
     {
-
+        Time.timeScale = 1;
         SetState(prePauseState);
 
     }

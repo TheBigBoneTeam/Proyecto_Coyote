@@ -8,6 +8,8 @@ namespace Services
 
         public void Bootstrap()
         {
+            ServiceLocator.Instance.Register<IGameStateManager>(FindFirstObjectByType<GameStateManager>());
+            ServiceLocator.Instance.Register<IHitStop>(FindFirstObjectByType<HitStopManager>());
 
 
         }

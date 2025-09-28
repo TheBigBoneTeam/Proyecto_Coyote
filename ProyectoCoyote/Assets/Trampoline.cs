@@ -18,6 +18,11 @@ public class Trampoline : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        hitstop.GeneralScreenFreeze(durationFreeze);
+        AHitstopBase hitStopComp = collision.gameObject.GetComponent<AHitstopBase>();
+        if (hitStopComp != null)
+        {
+            print("collision");
+            hitStopComp.HitStop(durationFreeze);
+        }
     }
 }

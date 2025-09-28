@@ -16,7 +16,7 @@ public class fakeStunEffect : StunEffect
     public override void End()
     {
         Debug.Log("EndFakeStun");
-        character.gameObject.GetComponent<Renderer>().material.color = Color.white;
+        character.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
     }
 }

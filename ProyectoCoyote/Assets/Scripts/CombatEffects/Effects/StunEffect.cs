@@ -16,7 +16,7 @@ public class StunEffect: TimedEffect
     {
         Debug.Log("EndStun");
 
-        character.gameObject.GetComponent<Renderer>().material.color = Color.white;
+        character.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
     }
 }

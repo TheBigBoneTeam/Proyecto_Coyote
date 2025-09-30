@@ -1,4 +1,7 @@
-﻿public interface IService
+﻿namespace Services
 {
-    public void Instantiate();
+    public interface IService
+    {
+        public void Instantiate();
+    }
 }

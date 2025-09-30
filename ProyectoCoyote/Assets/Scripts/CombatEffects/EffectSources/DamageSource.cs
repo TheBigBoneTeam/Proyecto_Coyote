@@ -1,10 +1,14 @@
 using UnityEngine;
 
-public class DamageSource : TouchCombatEffectSource
+namespace CombatEffect
 {
-    [SerializeField] private int _damage;
-    protected override void addEffectTo(AGameCharacter character)
+    public class DamageSource : ATouchCombatEffectSource
     {
-        character.checkEffect(new DamageEffect(_damage));
+        [SerializeField] private int _damage;
+
+        protected override ACombatEffect createEffect(AGameCharacter character)
+        {
+            return new DamageEffect(this,_damage);
+        }
     }
 }

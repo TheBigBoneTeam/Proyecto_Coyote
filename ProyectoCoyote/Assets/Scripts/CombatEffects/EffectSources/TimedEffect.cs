@@ -1,9 +1,12 @@
-public abstract class TimedEffect : ACombatEffect
+namespace CombatEffect
 {
-    public TimedEffect(float duration)
+    public abstract class TimedEffect : ACombatEffect
     {
-        Instant = false;
-        this.Duration = duration;
-        _currentDuration = duration;
+        public TimedEffect(ACombatEffectSource source,float duration):base(source)
+        {
+            Instant = false;
+            this.Duration = duration;
+            _currentDuration = duration;
+        }
     }
 }

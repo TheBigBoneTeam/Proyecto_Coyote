@@ -1,11 +1,14 @@
 using UnityEngine;
-
-public class StunEffectSource : TouchCombatEffectSource
+namespace CombatEffect
 {
-    [SerializeField] private float _duration;
-    protected override void addEffectTo(AGameCharacter character)
+    public class StunEffectSource : ATouchCombatEffectSource
     {
-        character.checkEffect(new StunEffect(_duration));
-    }
+        [SerializeField] private float _duration;
+      
 
+        protected override ACombatEffect createEffect(AGameCharacter character)
+        {
+            return new StunEffect(this,_duration);
+        }
+    }
 }

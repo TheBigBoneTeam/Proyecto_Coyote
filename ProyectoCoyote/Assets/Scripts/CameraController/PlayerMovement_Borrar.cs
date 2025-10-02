@@ -2,9 +2,13 @@ using UnityEngine;
 // Movimiento provisional para probar la cámara
 public class PlayerMovement_Borrar : MonoBehaviour
 {
+    public Transform Camara;
     public float speed = 5f;       
 
     private CharacterController controller;
+    
+    public float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
 
     void Start()
     {
@@ -15,8 +19,26 @@ public class PlayerMovement_Borrar : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal"); 
         float z = Input.GetAxis("Vertical");   
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        Vector3 direction = new Vector3(x, 0, z);
+
+        if (direction.magnitude >= 0.1f) 
+        {
+            // Añadir camara
+            float targetAngle = Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg + Camara.eulerAngles.y;
+            //
+
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+            // Añadir al movimiento
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            //
+
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
+
+        
 
     }
 }

@@ -2,7 +2,9 @@ using UnityEngine;
 // Movimiento provisional para probar la cámara
 public class PlayerMovement_Borrar : MonoBehaviour
 {
+    // 1. Añadir cámara
     public Transform Camara;
+    //
     public float speed = 5f;       
 
     private CharacterController controller;
@@ -23,13 +25,13 @@ public class PlayerMovement_Borrar : MonoBehaviour
 
         if (direction.magnitude >= 0.1f) 
         {
-            // Añadir camara
+            // 2. Añadir camara al angulo de giro
             float targetAngle = Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg + Camara.eulerAngles.y;
             //
 
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            // Añadir al movimiento
+            // 3. Añadir al movimiento la direccion del angulo al que esté mirando
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             //
 

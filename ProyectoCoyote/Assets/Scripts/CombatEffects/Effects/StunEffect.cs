@@ -2,14 +2,21 @@ using UnityEngine;
 namespace CombatEffect
 {
     [System.Serializable]
-    public class StunEffect : TimedEffect
+    public class StunEffect : ATimedEffect
     {
+        public float stunDuration;
         public StunEffect(ACombatEffectSource source,float duration) : base(source,duration)
         {
+            
+        }
+     public StunEffect(float duration)
+        {
+            stunDuration = duration;
         }
         public override void Activate(AGameCharacter character)
         {
-            Debug.Log($"StartStun with duration of {Duration}");
+            base.Activate(character);
+            Debug.Log($"StartStun with duration of {stunDuration}");
             this.objCharacter = character;
             character.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         }
@@ -21,5 +28,7 @@ namespace CombatEffect
             objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
         }
+
+        public override float getDuration() => stunDuration;
     }
 }

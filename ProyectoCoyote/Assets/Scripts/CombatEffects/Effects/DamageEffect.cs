@@ -9,7 +9,6 @@ namespace CombatEffect
 
         public DamageEffect(ACombatEffectSource source,int damage):base(source)
         {
-            Instant = true;
             this._damage = damage;
         }
         public override void Activate(AGameCharacter character)
@@ -21,6 +20,10 @@ namespace CombatEffect
         public override void End()
         {
             throw new System.NotImplementedException();
+        }
+        public DamageEffect()
+        {
+
         }
     }
 }

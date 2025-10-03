@@ -7,13 +7,13 @@ using CombatEffect;
 using System;
 public abstract class AGameCharacter :MonoBehaviour
 {
-    List<ACombatEffect> activeEffects;
+    List<ATimedEffect> activeEffects;
    [field:SerializeField] public int HealthPoint { get; private set; }
    [SerializeField] private int _maxHealthPoint;
     [SerializeField] bool inmuneStun;
     private void Awake()
     {
-        activeEffects = new List<ACombatEffect>();
+        activeEffects = new List<ATimedEffect>();
     }
     private void Start()
     {
@@ -32,7 +32,7 @@ public abstract class AGameCharacter :MonoBehaviour
     public abstract void Die();
     private void Update()
     {
-        
+        print("update");
         foreach (var effect in activeEffects.ToArray())
         {
             if (effect.Update()){
@@ -44,9 +44,12 @@ public abstract class AGameCharacter :MonoBehaviour
     protected virtual void addEffect(ACombatEffect effect)
     {
         effect.Activate(this);
-        if (!effect.Instant)
+        print("addefect" + effect.GetType().Name);
+        if (!effect.Instant())
         {
-            activeEffects.Add(effect);
+            print("addefecttolist" + effect.GetType().Name);
+
+            activeEffects.Add((ATimedEffect)effect);
         }
     }
 
@@ -67,5 +70,8 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
-   
+    internal void DodgeAttack()
+    {
+        checkEffect(new Dodge(2));
+    }
 }

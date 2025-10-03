@@ -10,7 +10,7 @@ namespace CombatEffect
             if (character)
             {
 
-                addEffectsToObj(character);
+                addEffectsToChar(character);
                
             }
         }

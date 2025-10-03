@@ -10,11 +10,8 @@ namespace CombatEffect
             if (character)
             {
 
-                addEffect(createEffect(character));
-                if (oneUse)
-                {
-                    destroySource();
-                }
+                addEffectsToObj(character);
+               
             }
         }
 

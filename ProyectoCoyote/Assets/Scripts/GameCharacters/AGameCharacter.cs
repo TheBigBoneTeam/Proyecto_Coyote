@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using CombatEffect;
+using System;
 public abstract class AGameCharacter :MonoBehaviour
 {
     List<ACombatEffect> activeEffects;
@@ -66,4 +67,5 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
+   
 }

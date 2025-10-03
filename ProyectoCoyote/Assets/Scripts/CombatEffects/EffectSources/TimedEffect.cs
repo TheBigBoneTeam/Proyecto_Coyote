@@ -1,5 +1,6 @@
 namespace CombatEffect
 {
+    [System.Serializable]
     public abstract class TimedEffect : ACombatEffect
     {
         public TimedEffect(ACombatEffectSource source,float duration):base(source)

@@ -1,9 +1,11 @@
+using System;
+
 namespace CombatEffect
 {
+    [System.Serializable]
     public class DamageEffect : ACombatEffect
     {
-        private int _damage;
-
+    public int _damage;
 
         public DamageEffect(ACombatEffectSource source,int damage):base(source)
         {

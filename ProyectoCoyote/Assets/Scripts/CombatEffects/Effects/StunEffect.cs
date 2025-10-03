@@ -1,6 +1,7 @@
 using UnityEngine;
 namespace CombatEffect
 {
+    [System.Serializable]
     public class StunEffect : TimedEffect
     {
         public StunEffect(ACombatEffectSource source,float duration) : base(source,duration)

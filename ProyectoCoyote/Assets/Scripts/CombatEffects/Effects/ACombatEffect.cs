@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace CombatEffect
 {
+    [System.Serializable]
     public abstract class ACombatEffect
     {
         protected AGameCharacter objCharacter;
@@ -33,11 +34,12 @@ namespace CombatEffect
         }
         public AGameCharacter getOwner()
         {
-            if(source.GetType() != typeof(AOwnerableEffectSource))
-            {
-                return null;
-            }
-            return source.GetComponent<AOwnerableEffectSource>().owner;
+            //if(source.GetType() != typeof(AOwnerableEffectSource))
+            //{
+            //    return null;
+            //}
+            //return source.GetComponent<AOwnerableEffectSource>().owner;
+            return owner;
         }
     }
 }

@@ -1,9 +1,11 @@
 using CombatEffect;
+using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
 
 public class Attack : ATouchCombatEffectSource
 {
+    [SerializeField] AttackData _attackData;
     [field:SerializeField]public AGameCharacter owner { get; private set; }
     [field: SerializeField] public bool Parreable { get;private set; }
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
@@ -21,6 +23,13 @@ public class Attack : ATouchCombatEffectSource
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
             }
 
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            LoadData(_attackData);
         }
     }
     protected void Start()
@@ -49,6 +58,19 @@ public class Attack : ATouchCombatEffectSource
                 HitCheck = new OnlyOtherTeamHittable(owner);
                 break;
         }
+    }
+
+    public void LoadData(AttackData data)
+    {
+        setHitCheck(data.HitCheckType);
+        data.HitDirections.CopyTo(HitDirections,0);
+        effects.Clear();
+        foreach (var effect in data.effects)
+        {
+            effect.setSource(this);
+            effects.Add(effect);
+        }
+        owner.PlayAnimation(data.clip);
     }
 
 }

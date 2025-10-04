@@ -5,15 +5,21 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using CombatEffect;
 using System;
+using System.Collections;
+using UnityEngine.Playables;
 public abstract class AGameCharacter :MonoBehaviour
 {
     List<ATimedEffect> activeEffects;
    [field:SerializeField] public int HealthPoint { get; private set; }
    [SerializeField] private int _maxHealthPoint;
     [SerializeField] bool inmuneStun;
+    [SerializeField] float invTimeAfterHit = 1;
+  [SerializeField]  bool invincible;
+    Animator anim;
     private void Awake()
     {
         activeEffects = new List<ATimedEffect>();
+        anim = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
@@ -23,11 +29,34 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         HealthPoint -= damage;
         print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
+        
         if(HealthPoint <= 0)
         {
             Die();
+            return;
+        }
+        if (invTimeAfterHit > 0)
+        {
+            invincible = true;
+            StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
     }
+    IEnumerator ResetInvincible(float time)
+    {
+        float timepass = 0;
+        MeshRenderer filter = GetComponent<MeshRenderer>();
+        while ((timepass<time))
+        {
+            yield return new WaitForSeconds(0.1f);
+            filter.enabled = !filter.enabled;
+            timepass+=0.1f;
+
+        }
+        filter.enabled = true;
+
+        invincible = false;
+    }
+
 
     public abstract void Die();
     private void Update()
@@ -61,10 +90,14 @@ public abstract class AGameCharacter :MonoBehaviour
             addEffect(new fakeStunEffect((StunEffect)effect));
             return false;
         }
+        if(invincible && effect.GetType() == typeof(DamageEffect))
+        {
+
+            return false;
+        }
         addEffect(effect);
         return true;
     }
-
     public virtual bool isOtherTeam(AGameCharacter character)
     {
         return false;
@@ -73,5 +106,11 @@ public abstract class AGameCharacter :MonoBehaviour
     internal void DodgeAttack()
     {
         checkEffect(new Dodge(2));
+    }
+
+    internal void PlayAnimation(AnimationClip clip)
+    {
+        AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
+        graph.Play();
     }
 }

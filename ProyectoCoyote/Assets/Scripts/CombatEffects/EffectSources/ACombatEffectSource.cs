@@ -6,7 +6,7 @@ namespace CombatEffect
 {
     public abstract class ACombatEffectSource : MonoBehaviour
     {
-    [SerializeField]  [SerializeReference]   List<ACombatEffect> effects;
+    [SerializeField]  [SerializeReference]  protected List<ACombatEffect> effects;
         //[SerializeField] public  DamageEffect effes;
         [ContextMenu("Add Stun")]
         public void AddStun()

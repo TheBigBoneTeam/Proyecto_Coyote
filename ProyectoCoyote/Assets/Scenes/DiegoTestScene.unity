@@ -195,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &459853969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -274,6 +274,8 @@ MonoBehaviour:
   effects:
   - rid: 5634289085497213184
   - rid: 5634289085497213185
+  - rid: 5634289092681007178
+  _attackData: {fileID: 0}
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
@@ -286,6 +288,10 @@ MonoBehaviour:
       data:
         _damage: 10
     - rid: 5634289085497213185
+      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        stunDuration: 0
+    - rid: 5634289092681007178
       type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
         stunDuration: 0
@@ -691,8 +697,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <HealthPoint>k__BackingField: 0
-  _maxHealthPoint: 4
+  _maxHealthPoint: 10
   inmuneStun: 0
+  invTimeAfterHit: 3
+  invincible: 0
 --- !u!136 &1223408617
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -909,6 +917,7 @@ GameObject:
   - component: {fileID: 1568128649}
   - component: {fileID: 1568128652}
   - component: {fileID: 1568128650}
+  - component: {fileID: 1568128657}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Untagged
@@ -931,6 +940,8 @@ MonoBehaviour:
   <HealthPoint>k__BackingField: 0
   _maxHealthPoint: 4
   inmuneStun: 0
+  invTimeAfterHit: 1
+  invincible: 0
 --- !u!114 &1568128650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,9 +1071,32 @@ Transform:
   m_LocalPosition: {x: -7.69, y: -1.65, z: -3.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1734570011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1568128657
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568128648}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e032fda3d04bc84682b9afdd2b8b764, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1734570009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1111,6 @@ GameObject:
   - component: {fileID: 1734570014}
   - component: {fileID: 1734570017}
   - component: {fileID: 1734570016}
-  - component: {fileID: 1734570015}
   m_Layer: 0
   m_Name: StunEffectSource
   m_TagString: Untagged
@@ -1093,12 +1126,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734570009}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.81, y: -2.26, z: -3.28}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.8800001, y: -0.61, z: 0.05999994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1568128656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1734570012
 BoxCollider:
@@ -1161,31 +1194,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effects:
-  - rid: 5634289092681007105
+  - rid: 5634289092681007177
+  _attackData: {fileID: 11400000, guid: 7e60f6f77ba7f94428f3525bb4111dcb, type: 2}
   <owner>k__BackingField: {fileID: 1568128649}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
-  <HitDirections>k__BackingField: 01000000
+  <HitDirections>k__BackingField: 00000000
   references:
     version: 2
     RefIds:
-    - rid: 5634289092681007105
-      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+    - rid: 5634289092681007177
+      type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
-        stunDuration: 2
---- !u!114 &1734570015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734570009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100746588afaf3f48b5af5ecdaaa813e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.08
+        _damage: 1
 --- !u!33 &1734570016
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1397,7 +1418,6 @@ SceneRoots:
   - {fileID: 888385264}
   - {fileID: 1223408620}
   - {fileID: 1568128656}
-  - {fileID: 1734570011}
   - {fileID: 485859023}
   - {fileID: 459853971}
   - {fileID: 1918388285}

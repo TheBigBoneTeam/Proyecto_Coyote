@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TestInput : MonoBehaviour
 {
+    
     DamageReceiver receiver;
     private void Start()
     {

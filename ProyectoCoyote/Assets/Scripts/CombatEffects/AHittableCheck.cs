@@ -35,7 +35,8 @@ public class OnlyOtherTeamHittable : AHittableCheck
 }
 public enum HittableTypes
 {
-    allCharacters,
+   
     allCharactersNoMe,
+    allCharacters,
     onlyOtherTeam,
 }

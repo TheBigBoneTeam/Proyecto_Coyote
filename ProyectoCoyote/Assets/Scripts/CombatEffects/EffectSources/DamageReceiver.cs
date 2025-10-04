@@ -7,9 +7,10 @@ public class DamageReceiver:MonoBehaviour
     AGameCharacter character;
  [SerializeField]   HitDirections direction;
  [SerializeField]   bool dodging;
+
    public void checkEffectSource(Attack Attack)
     {
-        if (!dodging || Attack.HitDirections.Contains(direction))
+        if (!dodging || !Attack.HitDirections.Contains(direction))
         {
             Attack.addEffectsToChar(character);
             //aOwnerableEffectSource.addEffectsToObj(character);

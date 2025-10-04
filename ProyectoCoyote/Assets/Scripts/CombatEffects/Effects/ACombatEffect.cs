@@ -28,5 +28,9 @@ namespace CombatEffect
         {
             
         }
+        public void setSource(ACombatEffectSource source)
+        {
+            this.source = source;
+        }
     }
 }

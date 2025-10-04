@@ -1,22 +1,34 @@
 using UnityEngine;
-
-public class StunEffect: TimedEffect
+namespace CombatEffect
 {
-    public StunEffect(float duration): base(duration)
+    [System.Serializable]
+    public class StunEffect : ATimedEffect
     {
-    }
-    public override void Activate(AGameCharacter character)
-    {
-        Debug.Log($"StartStun with duration of {Duration}");
-        this.character = character;
-        character.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-    }
+        public float stunDuration;
+        public StunEffect(ACombatEffectSource source,float duration) : base(source,duration)
+        {
+            
+        }
+     public StunEffect(float duration)
+        {
+            stunDuration = duration;
+        }
+        public override void Activate(AGameCharacter character)
+        {
+            base.Activate(character);
+            Debug.Log($"StartStun with duration of {stunDuration}");
+            this.objCharacter = character;
+            character.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+        }
 
-    public override void End()
-    {
-        Debug.Log("EndStun");
+        public override void End()
+        {
+            Debug.Log("EndStun");
 
-        character.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+            objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
+        }
+
+        public override float getDuration() => stunDuration;
     }
 }

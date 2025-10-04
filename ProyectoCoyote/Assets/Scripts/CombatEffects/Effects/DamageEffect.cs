@@ -1,21 +1,29 @@
-public class DamageEffect : ACombatEffect
+using System;
+
+namespace CombatEffect
 {
-    private int _damage;
-
-
-    public  DamageEffect(int damage)
+    [System.Serializable]
+    public class DamageEffect : ACombatEffect
     {
-        Instant = true;
-        this._damage = damage;
-    }
-    public override void Activate(AGameCharacter character)
-    {
-        this.character = character;
-        character.getHit(_damage);
-    }
+    public int _damage;
 
-    public override void End()
-    {
-        throw new System.NotImplementedException();
+        public DamageEffect(ACombatEffectSource source,int damage):base(source)
+        {
+            this._damage = damage;
+        }
+        public override void Activate(AGameCharacter character)
+        {
+            this.objCharacter = character;
+            character.getHit(_damage);
+        }
+
+        public override void End()
+        {
+            throw new System.NotImplementedException();
+        }
+        public DamageEffect()
+        {
+
+        }
     }
 }

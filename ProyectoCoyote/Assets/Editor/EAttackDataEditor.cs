@@ -18,4 +18,4 @@ public class EAttackDataEditor : Editor
             data.AddStun();
         }
     }
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                     

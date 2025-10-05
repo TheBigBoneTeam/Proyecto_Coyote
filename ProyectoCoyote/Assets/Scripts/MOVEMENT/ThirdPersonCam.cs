@@ -3,9 +3,7 @@ using UnityEngine;
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
-    public Transform orientation;
-    public Transform player;
-    public Transform playerObj;
+    public Transform orientation, player, playerObj;
     public Rigidbody rb;
 
     public float rotationSpeed;

@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
+    Vector2 inputVector = new Vector2();
+    float inputMagnitude;
+    Animator animator;
 
     Rigidbody rb;
 
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -45,10 +49,11 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
 
         // Manipulacion del deslizamiento
-        if(grounded)
+        if (grounded)
         {
             rb.linearDamping = groundDrag;
-        } else
+        }
+        else
         {
             rb.linearDamping = 0;
         }
@@ -63,6 +68,11 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        inputVector.x = horizontalInput;
+        inputVector.y = verticalInput;
+        inputMagnitude = inputVector.magnitude;
+        animator.speed = Mathf.Clamp(inputMagnitude, 1f, 1f);
+        animator.SetFloat("Input", inputMagnitude);
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
@@ -80,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        } else if (!grounded)
+        }
+        else if (!grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }

@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
+    float moveX, moveY;
 
     public enum MovementState
     {
@@ -113,7 +114,12 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input", inputMagnitude);
         animator.SetBool("isRunning", isRunning);
-
+        float targetX = horizontalInput;
+        moveX = Mathf.Lerp(moveX, targetX, Time.deltaTime * 5f);
+        float targetY = verticalInput;
+        moveY = Mathf.Lerp(moveY, targetY, Time.deltaTime * 5f);
+        animator.SetFloat("Horizontal", moveX);
+        animator.SetFloat("Vertical", moveY);
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {

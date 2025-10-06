@@ -268,8 +268,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217511669}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13739428, y: 0, z: 0, w: 0.9905165}
-  m_LocalPosition: {x: 0, y: 1.7, z: -6}
+  m_LocalRotation: {x: -0.68611306, y: 0, z: 0, w: 0.72749496}
+  m_LocalPosition: {x: 0.67237914, y: -1.0710282, z: -0.49260858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -698,9 +698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ee67940ffc334e9c58605099fa8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 25
-  moveSpeed: 2
-  rotateSpeed: 8
+  gravity: 9.8
+  moveSpeed: 7
+  rotateSpeed: 14
   lockMovement: 0
 --- !u!1 &1092001815
 GameObject:
@@ -1154,11 +1154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 708168400}
-  offset: {x: 0, y: 1.7, z: 0}
+  offset: {x: 0, y: 1, z: 0}
   clampAxis: {x: -30, y: 30}
-  follow_smoothing: 8
-  rotate_smoothing: 8
-  sensitivity: 80
+  follow_smoothing: 3
+  rotate_smoothing: 3
+  sensitivity: 200
   lockedTarget: 0
 --- !u!4 &1866930057
 Transform:
@@ -1169,7 +1169,7 @@ Transform:
   m_GameObject: {fileID: 1866930055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67237914, y: 0.66832834, z: 0.4790111}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1343,8 +1343,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992462961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13739428, y: 0, z: 0, w: 0.9905165}
-  m_LocalPosition: {x: 0, y: 1.7, z: -6}
+  m_LocalRotation: {x: -0.68611306, y: 0, z: 0, w: 0.72749496}
+  m_LocalPosition: {x: 0.67237914, y: -1.0710282, z: -0.49260858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1363,9 +1363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 1.7, z: 0}
+  ShoulderOffset: {x: 0, y: 4, z: 0}
   VerticalArmLength: 0
-  CameraSide: 0.5
+  CameraSide: 1
   CameraDistance: 6
   AvoidObstacles:
     Enabled: 1

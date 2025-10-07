@@ -135,28 +135,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
-
-        bool isMoving = animator.GetBool("isMoving");
-        if (isMoving)
-        {
-            if(movement < .1f)
-            {
-                animator.SetBool("isMoving", false);
-            }
-        }
-        else
-        {
-            if (movement < .2f)
-                animator.SetBool("isMoving", true);
-        }
-
-        float targetX = horizontalInput; // targetX aumenta y disminuye lentamente para suavizar las transiciones del blendtree
-        moveX = Mathf.Lerp(moveX, targetX, Time.deltaTime * 4f);
-        float targetY = verticalInput; // targetY aumenta y disminuye lentamente para suavizar las transiciones del blendtree
-        moveY = Mathf.Lerp(moveY, targetY, Time.deltaTime * 4f); 
-        
-        animator.SetFloat("Horizontal", moveX); 
-        animator.SetFloat("Vertical", moveY); 
+        animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
+        animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
     }
     private void StateHandler()

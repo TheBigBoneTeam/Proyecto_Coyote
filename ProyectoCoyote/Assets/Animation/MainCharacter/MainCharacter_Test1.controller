@@ -37,11 +37,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Input
+    m_ConditionEvent: Movement
     m_EventTreshold: 0.05
-  - m_ConditionMode: 4
-    m_ConditionEvent: Horizontal
-    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6318928705699617850}
   m_Solo: 0
@@ -49,7 +46,7 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
-  m_TransitionOffset: 2.89
+  m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
   m_HasFixedDuration: 1
@@ -129,7 +126,7 @@ BlendTree:
     m_DirectBlendParameter: Input
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: e6b6504a396d9bd4585fa37a46008acd, type: 2}
+    m_Motion: {fileID: 7400000, guid: a2d0d2ba4cc634749a7b6d1c99df6559, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1.5
@@ -192,6 +189,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Movement
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -214,8 +217,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Input
-    m_EventTreshold: 0
+    m_ConditionEvent: Movement
+    m_EventTreshold: 0.05
   - m_ConditionMode: 1
     m_ConditionEvent: isRunning
     m_EventTreshold: 0
@@ -294,7 +297,7 @@ BlendTree:
     m_DirectBlendParameter: Input
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 0220e09cf150ed84ba0384048d48527c, type: 2}
+    m_Motion: {fileID: 7400000, guid: abafe29a04aa0864b85b18d0ce8af155, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -370,8 +373,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Input
-    m_EventTreshold: 0
+    m_ConditionEvent: Movement
+    m_EventTreshold: 0.05
   - m_ConditionMode: 2
     m_ConditionEvent: isRunning
     m_EventTreshold: 0
@@ -398,15 +401,15 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Input
-    m_EventTreshold: 0.5
+    m_ConditionEvent: Movement
+    m_EventTreshold: 0.05
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6318928705699617850}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.75
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.76
   m_HasExitTime: 0

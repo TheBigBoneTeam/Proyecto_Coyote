@@ -107,19 +107,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        inputDirection.x = horizontalInput;
-        inputDirection.y = verticalInput;
-        inputMagnitude = inputDirection.magnitude;
-
-
-        animator.SetFloat("Input", inputMagnitude);
-        animator.SetBool("isRunning", isRunning);
-        float targetX = horizontalInput;
-        moveX = Mathf.Lerp(moveX, targetX, Time.deltaTime * 5f);
-        float targetY = verticalInput;
-        moveY = Mathf.Lerp(moveY, targetY, Time.deltaTime * 5f);
-        animator.SetFloat("Horizontal", moveX);
-        animator.SetFloat("Vertical", moveY);
+        computeAnimator();
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
@@ -134,6 +122,43 @@ public class PlayerMovement : MonoBehaviour
     private MovementState lastState;
     private bool keepMomentum;
 
+    private void computeAnimator()
+    {
+        inputDirection.x = horizontalInput;
+        inputDirection.y = verticalInput;
+        inputMagnitude = inputDirection.magnitude;
+
+
+        animator.SetFloat("Input", inputMagnitude);
+        animator.SetBool("isRunning", isRunning);
+
+
+
+        float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
+
+        bool isMoving = animator.GetBool("isMoving");
+        if (isMoving)
+        {
+            if(movement < .1f)
+            {
+                animator.SetBool("isMoving", false);
+            }
+        }
+        else
+        {
+            if (movement < .2f)
+                animator.SetBool("isMoving", true);
+        }
+
+        float targetX = horizontalInput; // targetX aumenta y disminuye lentamente para suavizar las transiciones del blendtree
+        moveX = Mathf.Lerp(moveX, targetX, Time.deltaTime * 4f);
+        float targetY = verticalInput; // targetY aumenta y disminuye lentamente para suavizar las transiciones del blendtree
+        moveY = Mathf.Lerp(moveY, targetY, Time.deltaTime * 4f); 
+        
+        animator.SetFloat("Horizontal", moveX); 
+        animator.SetFloat("Vertical", moveY); 
+        animator.SetFloat("Movement", movement);
+    }
     private void StateHandler()
     {
         // Modo dash

@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyLockOn : MonoBehaviour
 {
     Transform currentTarget;
-    Animator anim;
+    // Animator anim;
 
     [SerializeField] LayerMask targetLayers;
     [SerializeField] Transform enemyTarget_Locator;
@@ -30,7 +30,7 @@ public class EnemyLockOn : MonoBehaviour
     void Start()
     {
         movement = GetComponent<PlayerMovement_Borrar>();
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false);
 
@@ -41,7 +41,7 @@ public class EnemyLockOn : MonoBehaviour
     {
         camFollow.lockedTarget = enemyLocked;
         movement.lockMovement = enemyLocked;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (currentTarget)
             {
@@ -62,7 +62,7 @@ public class EnemyLockOn : MonoBehaviour
     void FoundTarget()
     {
         lockOnCanvas.gameObject.SetActive(true);
-        anim.SetLayerWeight(1, 1);
+        // anim.SetLayerWeight(1, 1);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
     }
@@ -72,7 +72,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         currentTarget = null;
         enemyLocked = false;
-        anim.SetLayerWeight(1, 0);
+        // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
     }
 
@@ -133,7 +133,7 @@ public class EnemyLockOn : MonoBehaviour
             ResetTarget();
             return;
         }
-        pos = currentTarget.position + new Vector3(0, currentYOffset, 0);
+        pos = currentTarget.position + new Vector3(0, currentYOffset , 0);
         lockOnCanvas.position = pos;
         lockOnCanvas.localScale = Vector3.one * ((cam.position - pos).magnitude * crossHair_Scale);
 

@@ -1,22 +1,36 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class ACombatEffect
+namespace CombatEffect
 {
-    protected AGameCharacter character;
-
-    public bool Instant;
-    public float Duration;
-    protected float _currentDuration;
-    public abstract void Activate(AGameCharacter character);
-    public virtual bool Update()
+    [System.Serializable]
+    public abstract class ACombatEffect
     {
-        _currentDuration -= Time.deltaTime;
-        if(_currentDuration<= 0)
+        protected AGameCharacter objCharacter;
+        public ACombatEffectSource source { get; private set; }
+
+        public virtual bool Instant()
         {
             return true;
         }
-        return false;
-    }
+        protected float _currentDuration;
+        public abstract void Activate(AGameCharacter character);
+      
 
-    public abstract void End();
+        public abstract void End();
+        public AGameCharacter getCharacter() => objCharacter;
+
+        public ACombatEffect(ACombatEffectSource source)
+        {
+            this.source = source;
+        }
+        public ACombatEffect()
+        {
+            
+        }
+        public void setSource(ACombatEffectSource source)
+        {
+            this.source = source;
+        }
+    }
 }

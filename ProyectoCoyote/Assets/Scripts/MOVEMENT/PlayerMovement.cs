@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Chequeo de suelo")]
     public float playerHeight;
     public LayerMask groundLayer;
-    bool grounded;
+    public bool grounded;
 
-    [Header("Manejo de caÃ­da")]
+    [Header("Manejo de caída")]
     /*
     0: normal
     1: gravedad estandar
@@ -52,6 +52,13 @@ public class PlayerMovement : MonoBehaviour
 
     public MovementState state;
 
+    [Header("Animator")]
+    public Animator animator;
+    Vector2 inputDirection = new Vector2();
+    bool isRunning;
+    float inputMagnitude;
+    float moveX, moveY;
+
     public enum MovementState
     {
         walking,
@@ -67,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -79,10 +87,11 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
 
         // Manipulacion del deslizamiento
-        if(state == MovementState.walking || state == MovementState.sprinting)
+        if (state == MovementState.walking || state == MovementState.sprinting)
         {
             rb.linearDamping = groundDrag;
-        } else
+        }
+        else
         {
             rb.linearDamping = 0;
             rb.AddForce(Vector3.down * gravity, ForceMode.Force);
@@ -98,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        computeAnimator();
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
@@ -112,7 +122,24 @@ public class PlayerMovement : MonoBehaviour
     private MovementState lastState;
     private bool keepMomentum;
 
-   private void StateHandler()
+    private void computeAnimator()
+    {
+        inputDirection.x = horizontalInput;
+        inputDirection.y = verticalInput;
+        inputMagnitude = inputDirection.magnitude;
+
+
+        animator.SetFloat("Input", inputMagnitude);
+        animator.SetBool("isRunning", isRunning);
+
+
+
+        float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
+        animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
+        animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
+        animator.SetFloat("Movement", movement);
+    }
+    private void StateHandler()
     {
         // Modo dash
         if (dashing)
@@ -126,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
+            isRunning = true;
         }
 
         // Modo andar
@@ -133,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+            isRunning = false;
         }
 
         // Modo aereo
@@ -140,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.air;
 
-            if(desiredMoveSpeed < sprintSpeed)
+            if (desiredMoveSpeed < sprintSpeed)
             {
                 desiredMoveSpeed = walkSpeed;
             }
@@ -151,11 +180,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
-        if(lastState == MovementState.dashing) keepMomentum = true;
+        if (lastState == MovementState.dashing) keepMomentum = true;
 
-        if(desiredMoveSpeedHasChanged)
+        if (desiredMoveSpeedHasChanged)
         {
-            if(keepMomentum)
+            if (keepMomentum)
             {
                 StopAllCoroutines();
                 StartCoroutine(SmoothlyLerpMoveSpeed());
@@ -177,12 +206,12 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SmoothlyLerpMoveSpeed()
     {
         float time = 0;
-        float difference= Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
         float startValue = moveSpeed;
 
         float boostFactor = speedChangeFactor;
 
-        while(time < difference)
+        while (time < difference)
         {
             moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
             time += Time.deltaTime * boostFactor;
@@ -200,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas
-        if(OnSlope() && !exitingSlope)
+        if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
@@ -214,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
-        
+
         else if (!grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airSensitity, ForceMode.Force);
@@ -226,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         // Control de velocidad en rampa
         if (OnSlope() && !exitingSlope)
         {
-            if(rb.linearVelocity.magnitude > moveSpeed)
+            if (rb.linearVelocity.magnitude > moveSpeed)
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * moveSpeed;
             }
@@ -261,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -278,7 +307,7 @@ public class PlayerMovement : MonoBehaviour
     /* MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA */
     private void OnGUI()
     {
-        GUI.skin.label.fontSize = 30;   // TamaÃ±o de la letra
+        GUI.skin.label.fontSize = 30;   // Tamaño de la letra
 
         // Velocidad horizontal (solo plano XZ)
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);

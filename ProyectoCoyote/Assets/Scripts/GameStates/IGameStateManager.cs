@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using Services;
 public interface IGameStateManager : IService
 {
     public GameState getState();

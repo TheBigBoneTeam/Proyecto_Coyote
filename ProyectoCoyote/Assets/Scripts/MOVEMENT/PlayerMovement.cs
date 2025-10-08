@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Variables de movimiento basico
     [Header("Movimiento")]
     private float moveSpeed;
     public float walkSpeed;
@@ -13,22 +14,24 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeedChangeFactor;
 
     public float groundDrag;    // Deslizamiento
+    /*
+     cuanto mas valor tenga, menos desliza
+     */
 
-    // Para controlar el deslizamiento y movimiento (EN EL SUELO!)
     [Header("Chequeo de suelo")]
     public float playerHeight;
     public LayerMask groundLayer;
     public bool grounded;
 
     [Header("Manejo de caída")]
+    public float gravity;
     /*
     0: normal
+    0.5: caida lenta
     1: gravedad estandar
     2: caida rapida
-    0.5: caida lenta
     5: caida intensa
-     */
-    public float gravity;
+    */
 
     [Header("Manejo de rampas")]
     public float maxSlopeAngle;
@@ -39,7 +42,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airSensitity;
     bool readyToJump;
+    #endregion
 
+    #region Variables para el dash
     [Header("Dashing")]
     public float dashForce;
     public float dashUpwardForce;
@@ -51,12 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 delayedForceToApply;
 
-    /*
-    [Header("Controles")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    */
+    public bool dashing;
+    #endregion
 
+    #region Variables de control
     public Transform orientation;
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
@@ -66,14 +69,20 @@ public class PlayerMovement : MonoBehaviour
     // Hola GameInput
     [SerializeField] private GameInput gameInput;
 
-    public MovementState state;
+
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
+    private MovementState lastState;
+    private bool keepMomentum;
 
     [Header("Animator")]
     public Animator animator;
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
-    float moveX, moveY;
+    // float moveX, moveY;
+
+    public MovementState state;
 
     public enum MovementState
     {
@@ -82,9 +91,9 @@ public class PlayerMovement : MonoBehaviour
         dashing,
         air
     }
+    #endregion
 
-    public bool dashing;
-
+    #region Metodos de Unity
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -101,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("GameInput encontrado correctamente: " + gameInput.name);
         }
-
     }
 
     void Update()
@@ -130,7 +138,9 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
     }
+    #endregion
 
+    #region Input
     private void MyInput()
     {
         if (gameInput == null) return;
@@ -146,26 +156,11 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-
-        /*
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-        computeAnimator();
-
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-        */
     }
+    #endregion
 
-    private float desiredMoveSpeed;
-    private float lastDesiredMoveSpeed;
-    private MovementState lastState;
-    private bool keepMomentum;
 
+    #region Animaciones y movimiento
     private void computeAnimator()
     {
         inputDirection.x = horizontalInput;
@@ -408,5 +403,5 @@ public class PlayerMovement : MonoBehaviour
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
     }
-    /**/
+    #endregion
 }

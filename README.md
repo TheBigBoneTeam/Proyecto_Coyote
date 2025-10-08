@@ -42,6 +42,9 @@ Cuando se creó el universo surgieron con él unos huevos primigenios capaces de
 
 Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna.
 
+<img width="417" height="279" alt="image" src="https://github.com/user-attachments/assets/873e29c1-90d9-44a8-bec7-8e12dae73b4c" />
+
+
 A medida que fueron pasando el tiempo estos cactus los habitantes de Pricklytown y alrededores empezaron a presentar un malestar profundo debido al consumo del higo chumbo. Entre los síntomas se encuentran: deshidratación general, cansancio, fiebre, enrojecimientos de la piel y/o protuberancias con forma de espinas, y en muy pocos casos diarrea. 
 
 Debido a lo ocurrido se mandó una expedición formada por matasanos, voluntarios y miembros de la iglesia. A medida que se iban acercando a la zona cero cuando el sol ya se había ocultado, algunos expedicionistas afirmaron haber visto algunos de estos cactus moverse. 
@@ -56,20 +59,36 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 
 * __Nivel 1__: El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio. 
 
- 
+ <img width="246" height="391" alt="image" src="https://github.com/user-attachments/assets/d2a9f91a-893d-4c34-916c-ec9977562d5f" />
+
 
 * __Nivel 2__: En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea. 
 
- 
+ <img width="242" height="394" alt="image" src="https://github.com/user-attachments/assets/aae5f9c2-160b-4126-947b-b84f26d3673a" />
+
 
 * __Nivel 3__: Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos. 
 
- 
+ <img width="264" height="402" alt="image" src="https://github.com/user-attachments/assets/5aa2724d-2355-41d1-856f-9e53fcbc2abe" />
 
-* __Nivel 4__: A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo. 
+
+* __Nivel 4__: A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo.
+
+<img width="275" height="431" alt="image" src="https://github.com/user-attachments/assets/07d1aaa9-4982-4796-b09b-5931698683d4" />
+  
 ## Personajes principales 
 * __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 ## Enemigos 
+
+<img width="871" height="691" alt="image" src="https://github.com/user-attachments/assets/c7b63fce-c37d-4096-b62b-e18cf8854357" />
+
+<img width="872" height="613" alt="image" src="https://github.com/user-attachments/assets/62b81571-38bb-44fd-8ca1-003e1a9872d1" />
+
+<img width="672" height="752" alt="image" src="https://github.com/user-attachments/assets/0b5b8439-bf2f-4101-9250-07ecd2df53c7" />
+
+<img width="691" height="1325" alt="image" src="https://github.com/user-attachments/assets/09b51db3-65fd-4a25-9281-c8b1dbf5d8ec" />
+
+<img width="885" height="1263" alt="image" src="https://github.com/user-attachments/assets/e3a5a38e-1684-48e6-bdf0-bfe61dcf653c" />
 
 # JUGABILIDAD 
 ## Controles e interacción 
@@ -117,6 +136,9 @@ Si el jugador esquiva en el momento preciso y en la dirección adecuada, podrá 
 
 De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
 
+<img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
+
+
 * Esquive. 
 
   * Izquierda: A + botón esquive 
@@ -143,7 +165,9 @@ Puedes reaccionar a estos ataques si (se barajan tres opciones):
 
 2. No hay esquive neutral. Este esquive trasero te permite defenderte de ataques traseros. S + botón de esquive bloquea ataques traseros. No existe SOLO el botón de esquive. 
 
-3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN. 
+3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN.
+
+<img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
 
 ### Controles 
 
@@ -211,12 +235,26 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 ## Personajes 
 ### Referencias Estéticas 
 ### Vestuario 
+
+<img width="939" height="852" alt="image" src="https://github.com/user-attachments/assets/1dc97aac-65d3-469c-bdbb-3731f10bf09b" />
+
 ### Personajes finales 
 ### NPCs 
 #### LA CHAVALA CHUNGA ESTA 
+
+<img width="804" height="1139" alt="image" src="https://github.com/user-attachments/assets/60daa989-b4ee-4317-9fc6-8c782a0d29e4" />
+
 ### Referencias de Modelado 
+
+<img width="413" height="639" alt="image" src="https://github.com/user-attachments/assets/0478aa0f-850e-4a80-a306-0cf0169e6203" />
+
 ### Props de Escenario 
 ### Referencias Estéticas 
+
+<img width="419" height="816" alt="image" src="https://github.com/user-attachments/assets/74ea81f8-885b-4bd1-9259-01367784275c" />
+<img width="444" height="814" alt="image" src="https://github.com/user-attachments/assets/e94ba325-2ade-4cf7-bcbe-35b7751d7581" />
+<img width="743" height="468" alt="image" src="https://github.com/user-attachments/assets/0c1254e6-dd65-4a8c-b9ea-cc8be24084c7" />
+
 # Game Design 
 ## Diseño de enemigos 
 “Proyecto Coyote” consta de tres tipos de enemigos: melee, distancia y mixtos (combinación entre melee y distancia). 

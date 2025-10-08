@@ -1,1 +1,193 @@
-# Proyecto_Coyote
+# Proyecto_Coyote GAME DESIGN DOCUMENT
+## Integrantes del grupo
+Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candel Jiménez Gonzáles • Andrea Luengo Zazo 
+
+# INTRODUCCIÓN 
+Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyote”, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final. 
+
+“Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
+## Concepto del juego 
+"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrado sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. A lo largo de su viaje descubrirá la verdad de la misteriosa enfermedad que concierne a los alrededores, provocando mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
+## Plataformas 
+“Proyecto Coyote” es un videojuego diseñado para lanzarse en web en la página de Itch.io, por lo que se podrá jugar tanto en un ordenador de sobremesa o portátil y dispositivos móviles. 
+## Características principales 
+Dinámicas de juego
+## Género 
+"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
+## Propósito y público objetivo 
+"Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western combinado con fantasía oscura. 
+
+El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
+## Monetización 
+Tipo de monetización y tabla de productos y precios
+## Planificación y coste ??
+## Jugabilidad 
+“Proyecto Coyote” se podrá tanto en dispositivos móviles como en ordenador usando un sistema simple de controles. El juego se divide en dos modos de juego: libre y duelo.
+El modo “libre” se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este modo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
+
+El modo “duelo” se produce cuando tienes un enemigo enfocado. En este modo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este modo cuando derrote al enemigo o lo desenfoque a propósito.
+## Estilo visual 
+“Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
+
+Con esta estética se ha obtenido un resultado bla bla bla 
+# HISTORIA 
+## Ambientación 
+"Proyecto Coyote” se desarrolla en el viejo oeste, pero con la incorporación de elementos de fantasía oscura. En este mundo es normal la existencia de magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
+
+La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
+
+El síntoma más vistoso de la enfermedad es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Estos además se comportan como si formaran parte de una mente colmena. 
+## Back story 
+Cuando se creó el universo surgieron con él unos huevos primigenios capaces de engendrar vida y alterar el entorno de su alrededor creando planetas llenos de vida. 
+
+Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna.
+
+A medida que fueron pasando el tiempo estos cactus los habitantes de Pricklytown y alrededores empezaron a presentar un malestar profundo debido al consumo del higo chumbo. Entre los síntomas se encuentran: deshidratación general, cansancio, fiebre, enrojecimientos de la piel y/o protuberancias con forma de espinas, y en muy pocos casos diarrea. 
+
+Debido a lo ocurrido se mandó una expedición formada por matasanos, voluntarios y miembros de la iglesia. A medida que se iban acercando a la zona cero cuando el sol ya se había ocultado, algunos expedicionistas afirmaron haber visto algunos de estos cactus moverse. 
+
+Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados con bolsas llenas de aquellos higos. Cuando las familias y habitantes de Pricklytown y otros pueblos cercanos pidieron explicaciones de los que había ocurrido solo dijeron que ellos eran los elegidos por los dioses. Habían visto el maravilloso poder de los higos que, según ellos, era un milagro capaz de hacer inmortales a aquellos que los consumían permitiendo una mayor conexión el mundo espiritual, llegando a formar parte de él. 
+
+Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
+
+Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista. 
+## Fases de contagio 
+Los estados de transformación por el “milagro chungo” se pueden dividir en 4 niveles dependiendo del tiempo que lleva el individuo enfermo. 
+
+* __Nivel 1__: El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio. 
+
+ 
+
+* __Nivel 2__: En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea. 
+
+ 
+
+* __Nivel 3__: Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos. 
+
+ 
+
+* __Nivel 4__: A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo. 
+## Personajes principales 
+* __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
+## Enemigos 
+
+# JUGABILIDAD 
+## Controles e interacción 
+Poner tabla de controles tanto pc como móvil 
+
+El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
+### Acciones básicas de desplazamiento y combate 
+#### Desplazamiento horizontal 
+El jugador puede desplazarse en cualquier dirección horizontalmente. 
+#### Desplazamiento vertical 
+##### Gancho 
+El personaje tiene un gancho que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas (como en Sekiro) para moverse por el mapa, el jugador puede usar el gancho para atraer enemigos hacia él y para acercarse a enemigos. Se barajan dos opciones: 
+
+1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
+
+2. Si vas tú o viene el enemigo depende del peso del enemigo. Los enemigos grandes no pueden ser atraídos y los pequeños se atraen. 
+
+Para el cooldown del gancho (se barajan 3 opciones): 
+
+1. Cooldown normal (recarga lenta). 
+
+2. Se recarga cada vez que hagas un parry (recompensa). 
+
+3. Recarga con una tecla spammeandola (como dándole cuerda -> animación). 
+#### Ataque 
+El jugador puede desplazarse en cualquier dirección horizontal. 
+#### Esquive / Bloqueo 
+El jugador puede desplazarse en cualquier dirección horizontal. 
+#### Dash 
+El jugador puede desplazarse en cualquier dirección horizontal. 
+### Acciones de jugabilidad 
+#### Lock - in 
+El jugador centra a un enemigo. Puede esquivar los ataques de los enemigos (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto (SFX o animación), el jugador realiza un parry (bloquea el ataque y stunnea al enemigo). 
+
+Un enemigo puede atacarte desde atrás (disparo, lanzamiento...). Si realizas un parry / esquive normal, el jugador mantiene fijado al enemigo inicial. ¿Si te da el ataque, sales del modo fijado? 
+
+Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango (y no tiene visión directa del jugador), no le ataca, pero se pone en guardia. Si tiene visión directa, sí ataca. ¿Fuego amigo? 
+## Mecánicas específicas de combate y movimiento 
+### Ataques principales: Los realizados por enemigos centrados 
+Un enemigo debe ser centrado para que el jugador lleve a cabo un combate efectivo contra él. En esta posición, el enemigo puede realizar ataques en distintas direcciones. 
+
+El combate del juego una vez cerrados los duelos es similar a Punch Out, donde existen varias direcciones (neutro, izq, der) en las que pueden ir dirigidos los ataques. Los ataques en una dirección se pueden evitar esquivando en esa misma dirección en una franja de tiempo determinada.  
+#### Parry 
+Si el jugador esquiva en el momento preciso y en la dirección adecuada, podrá realizar un parry con una recompensa por determinar (stun al enemigo, ventana extra para golpear, doble de daño, etc, pistola, etc.) 
+
+De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
+
+* Esquive. 
+
+  * Izquierda: A + botón esquive 
+
+  * Derecha: D + botón esquive 
+
+  * Neutro: botón de esquive 
+
+* Ataques: 
+
+  * Izquierda 
+
+  * Centro 
+
+  * Derecha 
+
+  * Atrás: te permite otro mov. (?) 
+### Ataques laterales o traseros. (secundarios) 
+Cuando tienes un enemigo fijado, otros enemigos pueden atacarte por la espalda o dispararte. 
+
+Puedes reaccionar a estos ataques si (se barajan tres opciones): 
+
+1. Con un mismo botón de esquive en el momento correcto, no recibes el golpe. 
+
+2. No hay esquive neutral. Este esquive trasero te permite defenderte de ataques traseros. S + botón de esquive bloquea ataques traseros. No existe SOLO el botón de esquive. 
+
+3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN. 
+
+### Controles 
+
+MECÁNICA | TECLADO
+-- | --
+MOVIMIENTO | W,A,S,D 
+ESQUIVE/DASH | ESPACIO 
+GANCHO | E 
+MOVIMIENTO DE CÁMARA | RATÓN 
+GOLPEAR | CLICK IZQ. 
+CORRER | SHIFT 
+# Interfaces 
+## Diagramas de flujo 
+### Menú inicio
+(poner debajo rollo 1.Iniciar: hace tal) 
+### In game 
+## Diseño de interfaces 
+## Menú inicio
+## In game 
+## Fin de juego 
+# ARTE 3D 
+## Personajes 
+### Referencias Estéticas 
+### Vestuario 
+### Personajes finales 
+### NPCs 
+#### LA CHAVALA CHUNGA ESTA 
+### Referencias de Modelado 
+### Props de Escenario 
+### Referencias Estéticas 
+# Game Design 
+## Diseño de enemigos 
+“Proyecto Coyote” consta de tres tipos de enemigos: melee, distancia y mixtos (combinación entre melee y distancia). 
+### Enemigos melee 
+Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. 
+### Enemigos a distancia 
+Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca. 
+### Enemigos mixtos 
+Los enemigos mixtos son una combinación entre los enemigos a melee y a distancia, teniendo resistencia a los golpes y capaces de usar armas de media distancia. 
+## Diseño de niveles 
+“Proyecto Coyote” se divide en diferentes niveles con una ambientación única usando transiciones cinematográficas entre ellos para conectarlos. 
+### Primer nivel 
+#### Cinemática 
+#### Diseño del nivel 
+# Sonidos y música 
+## Banda sonora 
+## Efectos sonoros (SFX) 

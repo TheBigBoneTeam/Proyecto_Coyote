@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 552990954}
   - component: {fileID: 552990953}
   m_Layer: 10
-  m_Name: Caja3
+  m_Name: Caja grande
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1505,12 +1505,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
+      propertyPath: m_Name
+      value: Pared recta
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7029948723529949830, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
+      propertyPath: m_Name
+      value: Suelo
+      objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
+      propertyPath: m_Name
+      value: Pared curva
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Layer
@@ -1529,12 +1541,16 @@ PrefabInstance:
       value: 57378.254
       objectReference: {fileID: 0}
     - target: {fileID: -516098083770646512, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
+      propertyPath: m_Name
+      value: Rampa
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Name
-      value: TestZonefbx
+      value: Zona de pruebas
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bb252dd14022fb94aaf4d156c37be654, type: 3}
       propertyPath: m_Layer
@@ -1613,11 +1629,11 @@ MonoBehaviour:
   dashUpwardForce: 0
   dashDuration: 0.25
   dashCd: 1.5
+  dashing: 0
   orientation: {fileID: 1703158317}
   gameInput: {fileID: 591051590}
-  state: 0
   animator: {fileID: 0}
-  dashing: 0
+  state: 0
 --- !u!54 &1472595018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1691,7 +1707,7 @@ GameObject:
   - component: {fileID: 1497753531}
   - component: {fileID: 1497753530}
   m_Layer: 10
-  m_Name: Caja1
+  m_Name: "Caja peque\xF1a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,21 +2,25 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
+    #region Variables de entrada
     [Header("Controles")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode dashKey = KeyCode.LeftControl;
+    #endregion
 
+    #region Propiedades publicas
     // Ejes de movimiento
     public float Horizontal { get; private set; }
     public float Vertical { get; private set; }
-    
+
     // Acciones
     public bool JumpPressed { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
+    #endregion
 
-
+    #region Metodos
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
@@ -31,4 +35,5 @@ public class GameInput : MonoBehaviour
     {
         return new Vector2 (Horizontal, Vertical);
     }
+    #endregion
 }

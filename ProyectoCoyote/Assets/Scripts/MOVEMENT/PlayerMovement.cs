@@ -40,15 +40,31 @@ public class PlayerMovement : MonoBehaviour
     public float airSensitity;
     bool readyToJump;
 
+    [Header("Dashing")]
+    public float dashForce;
+    public float dashUpwardForce;
+    public float dashDuration;
+
+    [Header("Cooldown")]
+    public float dashCd;
+    private float dashCdTimer;
+
+    private Vector3 delayedForceToApply;
+
+    /*
     [Header("Controles")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
+    */
 
     public Transform orientation;
     float horizontalInput, verticalInput;
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    // Hola GameInput
+    [SerializeField] private GameInput gameInput;
 
     public MovementState state;
 
@@ -75,6 +91,17 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         animator = GetComponentInChildren<Animator>();
+
+        gameInput = GetComponentInParent<GameInput>();
+        if (gameInput == null)
+        {
+            Debug.LogError("No se encontró el GameInput.");
+        }
+        else
+        {
+            Debug.Log("GameInput encontrado correctamente: " + gameInput.name);
+        }
+
     }
 
     void Update()
@@ -85,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        HandleDashInput();
 
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
@@ -105,6 +133,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void MyInput()
     {
+        if (gameInput == null) return;
+
+        horizontalInput = gameInput.Horizontal;
+        verticalInput = gameInput.Vertical;
+
+        computeAnimator();
+
+        if(gameInput.JumpPressed && readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        /*
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         computeAnimator();
@@ -115,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+        */
     }
 
     private float desiredMoveSpeed;
@@ -149,7 +193,15 @@ public class PlayerMovement : MonoBehaviour
             speedChangeFactor = dashSpeedChangeFactor;
         }
         // Modo correr
+        /*
         else if (grounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            desiredMoveSpeed = sprintSpeed;
+            isRunning = true;
+        }
+        */
+        else if (grounded && gameInput.SprintHeld)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
@@ -273,8 +325,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    /**/
     private void Jump()
     {
         exitingSlope = true;
@@ -302,6 +352,45 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;   // Se normaliza la normal (ya que es una direccion)
+    }
+
+    // Manejo del dash
+    private void HandleDashInput()
+    {
+        if (gameInput == null) return;
+
+        dashCdTimer -= Time.deltaTime;
+
+        if (gameInput.DashPressed && dashCdTimer <= 0f)
+        {
+            Dash();
+        }
+    }
+
+
+    private void Dash()
+    {
+        if (dashCdTimer > 0) return;
+        else dashCdTimer = dashCd;
+
+        dashing = true;
+
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+        delayedForceToApply = forceToApply;
+        Invoke(nameof(DelayedDashForce), 0.025f);
+        Invoke(nameof(ResetDash), dashDuration);
+    }
+
+    private void DelayedDashForce()
+    {
+        rb.AddForce(delayedForceToApply, ForceMode.Impulse);
+    }
+
+    private void ResetDash()
+    {
+        dashing = false;
     }
 
     /* MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA */

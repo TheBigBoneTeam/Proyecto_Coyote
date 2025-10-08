@@ -157,11 +157,54 @@ GOLPEAR | CLICK IZQ.
 CORRER | SHIFT 
 # Interfaces 
 ## Diagramas de flujo 
+
 ### Menú inicio
-(poner debajo rollo 1.Iniciar: hace tal) 
-### In game 
+<img width="1050" height="562" alt="DiagramaflujoMenuPrincipal drawio" src="https://github.com/user-attachments/assets/b133867e-11f8-44f8-8a3e-f341eae1f700" />
+
+### Menú opciones
+<img width="611" height="301" alt="DiagramaflujoMenuOpciones drawio" src="https://github.com/user-attachments/assets/f8e94939-37c0-43d9-bf1f-1a1998928cb2" />
+
+### In game
+<img width="716" height="862" alt="DiagramaflujoInGame drawio" src="https://github.com/user-attachments/assets/551992dc-3eae-4f19-a586-60a36025282a" />
+
+### Requisitos funcionales
+__Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador cuando inicia el juego. En este menú se pueden observar los siguientes botones:
+ 
+ * __Nueva partida:__ El jugador comienza el juego desde 0.
+ 
+ * __Continuar:__ El jugador continua la partida desde el punto donde lo había dejado en caso de tener una partida guardada, si no la tiene no pasará nada.
+ 
+ * __Controles:__ El jugador podrá ver los controles tanto en ordenador como dispositivos móviles.
+ 
+ * __Opciones:__ El jugador accederá al menú de opciones donde podrá ajustar los niveles de audio general, música y efectos sonoros.
+ 
+ * __Créditos:__ El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
+ 
+ * __Contenido descargable:__ Al pulsar este botón se desplegará una pantalla donde se podrá observar el contenido descargable de pago que contiene le juego.
+ 
+ * __Salir:__ Con este botón el jugador saldrá del juego.
+
+__In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc" en ordenador o el respectivo botón en dispositivos móviles.
+
+ * __Menú pausa:__ En este menú se presentan tres opciones al jugador:
+   
+    1. __Salir:__ permite al jugador volver al menú inicial.
+       
+    3. __Reintentar:__ resetea el nivel volviendo a iniciar desde la cinemática.
+       
+    5. __Reanudar:__ vuelve al nivel en el momento que lo pausó.
+
+ * __Muere:__ Cuando el personaje muere se presenta ante él una pantalla de Game Over con dos opciones:
+   
+    1. __Reintentar:__ vuelve al último Check point.
+       
+    3. __Salir:__ vuelve al menú inicial.
+       
+ * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
+
 ## Diseño de interfaces 
 ## Menú inicio
+
 ## In game 
 ## Fin de juego 
 # ARTE 3D 

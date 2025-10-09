@@ -82,9 +82,9 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 
 <img width="871" height="691" alt="image" src="https://github.com/user-attachments/assets/c7b63fce-c37d-4096-b62b-e18cf8854357" />
 
-<img width="872" height="613" alt="image" src="https://github.com/user-attachments/assets/62b81571-38bb-44fd-8ca1-003e1a9872d1" />
+<img width="2621" height="1707" alt="imagen-20251009-133305-3fdcea6e" src="https://github.com/user-attachments/assets/cfbb5484-0890-493e-9924-703ff2bf30e5" />
 
-<img width="672" height="752" alt="image" src="https://github.com/user-attachments/assets/0b5b8439-bf2f-4101-9250-07ecd2df53c7" />
+<img width="1311" height="2163" alt="imagen-20251009-133239-0ea03b4d" src="https://github.com/user-attachments/assets/0242cd16-7927-4192-9915-e0a18ad5a4cb" />
 
 <img width="691" height="1325" alt="image" src="https://github.com/user-attachments/assets/09b51db3-65fd-4a25-9281-c8b1dbf5d8ec" />
 

@@ -80,11 +80,11 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 * __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 ## Enemigos 
 
-<img width="871" height="691" alt="image" src="https://github.com/user-attachments/assets/c7b63fce-c37d-4096-b62b-e18cf8854357" />
+<img src="./Imagenes_README/SiluetasCactusZombies.png" alt="CactusZombieSiluetas" width="100%"/>
 
-<img width="2621" height="1707" alt="imagen-20251009-133305-3fdcea6e" src="https://github.com/user-attachments/assets/cfbb5484-0890-493e-9924-703ff2bf30e5" />
+<img src="./Imagenes_README/CactusZombie02.png" alt="CactusZombie02" width="50%"/>
 
-![CactusZombie01](./Imagenes_README/CactusZombie01.png)
+<img src="./Imagenes_README/CactusZombie01.png" alt="CactusZombie01" width="50%"/>
 
 <img width="1311" height="2163" alt="imagen-20251009-133239-0ea03b4d" src="https://github.com/user-attachments/assets/0242cd16-7927-4192-9915-e0a18ad5a4cb" />
 

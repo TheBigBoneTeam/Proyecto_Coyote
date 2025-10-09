@@ -57,32 +57,37 @@ Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestr
 ## Fases de contagio 
 Los estados de transformación por el “milagro chungo” se pueden dividir en 4 niveles dependiendo del tiempo que lleva el individuo enfermo. 
 
-* __Nivel 1__: El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio. 
-
- <img width="246" height="391" alt="image" src="https://github.com/user-attachments/assets/d2a9f91a-893d-4c34-916c-ec9977562d5f" />
 
 
-* __Nivel 2__: En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea. 
-
- <img width="242" height="394" alt="image" src="https://github.com/user-attachments/assets/aae5f9c2-160b-4126-947b-b84f26d3673a" />
 
 
-* __Nivel 3__: Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos. 
-
- <img width="264" height="402" alt="image" src="https://github.com/user-attachments/assets/5aa2724d-2355-41d1-856f-9e53fcbc2abe" />
-
-
-* __Nivel 4__: A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo.
-
-<img width="275" height="431" alt="image" src="https://github.com/user-attachments/assets/07d1aaa9-4982-4796-b09b-5931698683d4" />
-
-
-Fase | Síntomas | Aspecto
--- | -- | --
-Nivel 1 | El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio.  | ![Nivel 1](./Imagenes_README/Nivel1.png)  
-Nivel 2 | En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea. | ![Nivel 1](./Imagenes_README/Nivel2.png) 
-Nivel 3 | Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos. | ![Nivel 1](./Imagenes_README/Nivel3.png) 
-Nivel 4 | A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo. | ![Nivel 1](./Imagenes_README/Nivel4.png) 
+<table>
+  <tr>
+    <th style="width: 10%;">Fase</th>
+    <th style="width: 60%;">Síntomas</th>
+    <th style="width: 25%;">Aspecto</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio.</td>
+    <td><img src="./Imagenes_README/Nivel1.png" alt="Nivel 1" width="500"/></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea.</td>
+    <td><img src="./Imagenes_README/Nivel2.png" alt="Nivel 2" width="500"/></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos.</td>
+    <td><img src="./Imagenes_README/Nivel3.png" alt="Nivel 3" width="500"/></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo.</td>
+    <td><img src="./Imagenes_README/Nivel4.png" alt="Nivel 4" width="500"/></td>
+  </tr>
+</table>
 
   
 ## Personajes principales 

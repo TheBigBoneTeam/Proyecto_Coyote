@@ -83,7 +83,7 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 <img src="./Imagenes_README/SiluetasCactus.png" alt="CactusZombieSiluetas" width="100%"/>
 
 <p align = "center">
- <img src="./Imagenes_README/CactusZombie02.png" alt="CactusZombie02" width="25%"/>
+ <img src="./Imagenes_README/CactusZombie02.png" alt="CactusZombie02" width="50%"/>
  <img src="./Imagenes_README/CactusZombie01.png" alt="CactusZombie01" width="50%"/>
 </p>
 

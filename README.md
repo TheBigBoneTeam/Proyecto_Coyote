@@ -1,5 +1,6 @@
-# Proyecto_Coyote GAME DESIGN DOCUMENT
-## Integrantes del grupo
+# Proyecto_Coyote 
+GAME DESIGN DOCUMENT
+
 Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candel Jiménez Gonzáles • Andrea Luengo Zazo 
 
 # INTRODUCCIÓN 
@@ -7,42 +8,64 @@ Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyot
 
 “Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
 ## Concepto del juego 
-"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrado sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. A lo largo de su viaje descubrirá la verdad de la misteriosa enfermedad que concierne a los alrededores, provocando mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
+"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
+
 ## Plataformas 
 “Proyecto Coyote” es un videojuego diseñado para lanzarse en web en la página de Itch.io, por lo que se podrá jugar tanto en un ordenador de sobremesa o portátil y dispositivos móviles. 
+
 ## Características principales 
 Dinámicas de juego
+
 ## Género 
 "Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
+
 ## Propósito y público objetivo 
 "Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western combinado con fantasía oscura. 
 
 El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
+
 ## Monetización 
 Tipo de monetización y tabla de productos y precios
-## Planificación y coste ??
-## Jugabilidad 
-“Proyecto Coyote” se podrá tanto en dispositivos móviles como en ordenador usando un sistema simple de controles. El juego se divide en dos modos de juego: libre y duelo.
-El modo “libre” se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este modo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
 
-El modo “duelo” se produce cuando tienes un enemigo enfocado. En este modo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este modo cuando derrote al enemigo o lo desenfoque a propósito.
+## Planificación y coste ??
+
+## Jugabilidad 
+El juego se divide en dos modos de juego: libre y duelo.
+El modo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este modo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
+
+El modo **duelo** se produce cuando el jugador centra a un enemigo. En este modo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este modo cuando derrote al enemigo o lo desenfoque a propósito.
+
 ## Estilo visual 
 “Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
 
 Con esta estética se ha obtenido un resultado bla bla bla 
+
 # HISTORIA 
 ## Ambientación 
-"Proyecto Coyote” se desarrolla en el viejo oeste, pero con la incorporación de elementos de fantasía oscura. En este mundo es normal la existencia de magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
+"Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
 
-El síntoma más vistoso de la enfermedad es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Estos además se comportan como si formaran parte de una mente colmena. 
+### Zonas de Proyecto Coyote
+  #### Pricklytown
+  PROTA llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
+  #### El Cañón
+  PROTA se ve obligado a viajar hacia el oasis del sur, accesible desde Picklytown únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
+  #### El Oasis
+  El Oasis es una pequeña zona misteriosa y excesivamente frondosa. Los habitantes de Pricklytown afirman que, a pesar de contener agua, en el pasado prácticamente ninguna planta crecía en la zona, y que solo se conocía como oasis por tradición. Ahora es una exhuberante y densa jungla de todo tipo de cactus y plantas desérticas. En el oasis además hay una edificación puntiaguda que se asemeja a una iglesia.
+
+  
+ 
+
 ## Back story 
-Cuando se creó el universo surgieron con él unos huevos primigenios capaces de engendrar vida y alterar el entorno de su alrededor creando planetas llenos de vida. 
+Cuando se creó el universo surgieron con él unos huevos primigenios capaces de engendrar vida y alterar el entorno de su alrededor, habitando planetas completamente. La existencia de estos huevos es desconocida. 
 
-Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna.
+En el periodo histórico actual, los habitantes de Pricklytown, un pequeño poblado en el desierto, excavaron un canal subterráneo para facilitar la llegada de agua desde un pequeño oasis cercano. Esta excavación interfirió con uno de los huevos que había quedado enterrado hace millones de años. La hidratación de este huevo, causada por la llegada de agua desde el oasis, causó el crecimiento rápido de vegetación desértica que absorbió gran parte del agua del canal. Estos cactus y plantas además producían unos frutos jugosos similares a higos chumbos.
+Estos frutos resultaron irresistibles para los vecinos de Prickytown. La abundancia de higos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna.
 
-<img width="417" height="279" alt="image" src="https://github.com/user-attachments/assets/873e29c1-90d9-44a8-bec7-8e12dae73b4c" />
+/Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna./
+
+<img src="./Imagenes_README/HigoChumboÑam.png" alt="Higo" width="30%"/>
 
 
 A medida que fueron pasando el tiempo estos cactus los habitantes de Pricklytown y alrededores empezaron a presentar un malestar profundo debido al consumo del higo chumbo. Entre los síntomas se encuentran: deshidratación general, cansancio, fiebre, enrojecimientos de la piel y/o protuberancias con forma de espinas, y en muy pocos casos diarrea. 
@@ -54,12 +77,12 @@ Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados
 Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
 
 Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista. 
-## Fases de contagio 
+
+### La infección
+El síntoma más vistoso de la enfermedad es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Estos además se comportan como si formaran parte de una mente colmena.
 Los estados de transformación por el “milagro chungo” se pueden dividir en 4 niveles dependiendo del tiempo que lleva el individuo enfermo. 
 
-
-
-
+#### Fases de contagio
 
 <table>
   <tr>

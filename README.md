@@ -1,23 +1,27 @@
-# Proyecto_Coyote 
-GAME DESIGN DOCUMENT
+# PROYECTO COYOTE
+**GAME DESIGN DOCUMENT**
 
-Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candel Jiménez Gonzáles • Andrea Luengo Zazo 
+Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo 
 
-# INTRODUCCIÓN 
-Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyote”, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final. 
+# 1. Introducción
+**Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyote”, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final.**
 
 “Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
-## Concepto del juego 
+
+# 2. Concepto del juego 
 "Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
 
+
+## Género 
+"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
+
 ## Plataformas 
-“Proyecto Coyote” es un videojuego diseñado para lanzarse en web en la página de Itch.io, por lo que se podrá jugar tanto en un ordenador de sobremesa o portátil y dispositivos móviles. 
+“Proyecto Coyote” es un videojuego diseñado para su lanzamiento en web en Itch.io y estará disponible para ordenadores de sobremesa, portátiles y dispositivos móviles. 
 
 ## Características principales 
 Dinámicas de juego
 
-## Género 
-"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
+
 
 ## Propósito y público objetivo 
 "Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western combinado con fantasía oscura. 
@@ -40,30 +44,53 @@ El modo **duelo** se produce cuando el jugador centra a un enemigo. En este modo
 
 Con esta estética se ha obtenido un resultado bla bla bla 
 
-# HISTORIA 
-## Ambientación 
+# 3. Historia
+## 3.1. Ambientación 
 "Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
 
+
 ### Zonas de Proyecto Coyote
-  #### Pricklytown
+
+  ####  Pricklytown
   PROTA llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
-  #### El Cañón
+  ####  El Cañón
   PROTA se ve obligado a viajar hacia el oasis del sur, accesible desde Picklytown únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
-  #### El Oasis
+  ####  El Oasis
   El Oasis es una pequeña zona misteriosa y excesivamente frondosa. Los habitantes de Pricklytown afirman que, a pesar de contener agua, en el pasado prácticamente ninguna planta crecía en la zona, y que solo se conocía como oasis por tradición. Ahora es una exhuberante y densa jungla de todo tipo de cactus y plantas desérticas. En el oasis además hay una edificación puntiaguda que se asemeja a una iglesia.
+
+  *Estos lugares, en cuestiones de gameplay, se traducen directamente como niveles o zonas de progreso que el jugador deberá atravesar*
 
   
  
 
-## Back story 
-Cuando se creó el universo surgieron con él unos huevos primigenios capaces de engendrar vida y alterar el entorno de su alrededor, habitando planetas completamente. La existencia de estos huevos es desconocida. 
+## 3.2. Trasfondo
+*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
 
-En el periodo histórico actual, los habitantes de Pricklytown, un pequeño poblado en el desierto, excavaron un canal subterráneo para facilitar la llegada de agua desde un pequeño oasis cercano. Esta excavación interfirió con uno de los huevos que había quedado enterrado hace millones de años. La hidratación de este huevo, causada por la llegada de agua desde el oasis, causó el crecimiento rápido de vegetación desértica que absorbió gran parte del agua del canal. Estos cactus y plantas además producían unos frutos jugosos similares a higos chumbos.
-Estos frutos resultaron irresistibles para los vecinos de Prickytown. La abundancia de higos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna.
+### La sequía
 
-/Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna./
+En el periodo histórico actual, los habitantes de Pricklytown, un pequeño poblado en el desierto, excavaron un canal subterráneo para facilitar la llegada de agua desde un pequeño oasis cercano. Esta excavación interfirió con un artefacto extraño, de aspecto alienígena y orgánico que los mineros fueron incapaces de retirar y acabaron ignorando. 
+
+Una vez inaugurado el canal, Pricklytown disfrutó de un corto periodo de abundancia gracias al nuevo acceso al manantial. Esta exhuberancia fue breve, pronto el agua escaseó, y tras una expedición, los vecinos del poblado descubrieron un bloqueo de vegetación en el oasis. 
+
+Antes triste y prácticamente árido, el oasis se había transformado ahora en una jungla frondosa de vegetación desértica, con cactus y plantas que bloqueaban el aceso al agua. Este descubrimiento tenía un lado positivo para los vecinos, que pasaban por un periodo de hambruna, ya que este rápido crecimiento también había causado la fructificación de unos jugosos higos en los cactus a los que los habitantes de Pricklytown no pudieron resistirse.
+
+
+Con el paso del tiempo las criaturas de la zona comenzaron a presentar malestar, aparentemente, debido al consumo del higo chumbo. Aquel que se alimentaba de los higos presentaba síntomas como deshidratación severa, cansancio y fiebre. Con el paso del tiempo, bultos y quistes verdosos brotaban en la piel y pronto se convertían en protuberancias vegetales y carnosas. 
+
+### La expedición
+El pueblo acordó organizar una expedición formada por matasanos, voluntarios y miembros de la iglesia para investigar el cambiado oasis. Semanas después de su partida, menos de la mitad regresaron. Los expedicionarios parecían haber enloquecido y afirmaban que el consumo de el higo permitía a cualquier criatura alcanzar la inmortalidad.
+
+La misión fue considerada fallida y se atribuyó la insanidad de los supervivientes a la deshidratación.
+
+### La llamada
+Con el grave periodo de escasez al que se enfrentaba Pricklytown y la incomprensibilidad general de los efectos de los higos, resultó imposible evitar que los vecinos se alimentaron de ellos.
+Quienes los consumían empeoraban con rapidez, y junto con los desagradables síntomas aparecían actitudes agresivas y destructivas. Los "infectados", como fueron etiquetados, eran trasladados recurrentemente al oasis por los pocos que resistían.
+
+El acceso a la jungla de cactus era cada vez más complicado. Según reportes de algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.
+
+<!--/Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna./
 
 <img src="./Imagenes_README/HigoChumboÑam.png" alt="Higo" width="30%"/>
 
@@ -76,13 +103,13 @@ Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados
 
 Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
 
-Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista. 
+Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
 
 ### La infección
 El síntoma más vistoso de la enfermedad es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Estos además se comportan como si formaran parte de una mente colmena.
 Los estados de transformación por el “milagro chungo” se pueden dividir en 4 niveles dependiendo del tiempo que lleva el individuo enfermo. 
 
-#### Fases de contagio
+**Fases de contagio**
 
 <table>
   <tr>
@@ -92,17 +119,17 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
   </tr>
   <tr>
     <td>1</td>
-    <td>El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio.</td>
+    <td>Primeros cinco días tras el consumo del higo. En este punto, los individuos no representan anomalías corporales, únicamente fiebre. El consumidor deja de tener hambre y sed y se siente saciado.</td>
     <td><img src="./Imagenes_README/Nivel1.png" alt="Nivel 1" width="500"/></td>
   </tr>
   <tr>
     <td>2</td>
-    <td>En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea.</td>
+    <td>En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en la piel, ahora áspera en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de fiebre, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea.</td>
     <td><img src="./Imagenes_README/Nivel2.png" alt="Nivel 2" width="500"/></td>
   </tr>
   <tr>
     <td>3</td>
-    <td>Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos.</td>
+    <td>Tras las dos semanas del consumo del higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos.</td>
     <td><img src="./Imagenes_README/Nivel3.png" alt="Nivel 3" width="500"/></td>
   </tr>
   <tr>
@@ -113,7 +140,7 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 </table>
 
   
-## Personajes principales 
+## 3.3. Personajes principales 
 * __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 ## Enemigos 
 
@@ -124,17 +151,12 @@ Planteamiento de siluetas
   <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" style="width: 49%"/>
 </div>
 
-<p align = "center">
- 
-</p>
 
-Desarrollo de las siluetas
 <p align = "center">
  <img src="./Imagenes_README/CactusZombie02.png" alt="CactusZombie02" width="60%"/>
  <img src="./Imagenes_README/CactusZombie01.png" alt="CactusZombie01" width="30%"/>
 </p>
 
-<img width="885" height="1263" alt="image" src="https://github.com/user-attachments/assets/e3a5a38e-1684-48e6-bdf0-bfe61dcf653c" />
 
 # JUGABILIDAD 
 ## Controles e interacción 

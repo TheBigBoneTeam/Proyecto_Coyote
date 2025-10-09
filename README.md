@@ -75,6 +75,15 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 * __Nivel 4__: A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo.
 
 <img width="275" height="431" alt="image" src="https://github.com/user-attachments/assets/07d1aaa9-4982-4796-b09b-5931698683d4" />
+
+
+Fase | Síntomas | Aspecto
+-- | -- | --
+Nivel 1 | El primer nivel va desde que ha consumido el higo hasta cinco días después. En este punto, los individuos no representan anomalías corporales, solo fiebre y cansancio.  | ![Nivel 1](./Imagenes_README/Nivel1.png)  
+Nivel 2 | En esta fase, a partir del quinto día hasta la segunda semana, el individuo empieza a presentar protuberancias en su piel rígida en la mitad superior del cuerpo, donde los pelos adoptan una postura rígida como si fueran espinas. Además de los síntomas anteriormente mencionados, los sujetos presentan síntomas de deshidratación, provocando en algunos casos diarrea. | ![Nivel 1](./Imagenes_README/Nivel2.png) 
+Nivel 3 | Cuando ya han pasado dos semanas desde que se consumió el higo las protuberancias del nivel anterior crecen de forma significativa y obteniendo forma de cactus, el individuo presenta un nivel de deshidratación extremo provocando la desaparición de sus ojos. Su piel ha perdido su color natural y los síntomas del primer nivel han desaparecido. Los sujetos pierden el sentido del habla y tienen movimientos toscos. | ![Nivel 1](./Imagenes_README/Nivel3.png) 
+Nivel 4 | A este punto los individuos ya se vuelven irreconocibles. Su cuerpo presenta deformaciones extremas con forma de cactus, tienen un comportamiento agresivo y cuando están en grupo parecen seguir ordenes de algún modo. | ![Nivel 1](./Imagenes_README/Nivel4.png) 
+
   
 ## Personajes principales 
 * __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
@@ -82,10 +91,13 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 
 Planteamiento de siluetas
 
-<img src="./Imagenes_README/SiluetasCactus.png" alt="CactusZombieSiluetas" width="50%"/>
+<div style="display: flex; justify-content: center; gap= 0px">
+  <img src="./Imagenes_README/SiluetasCactus1.png" alt="CactusZombieSiluetas" style="width: 49%"/>
+  <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" style="width: 49%"/>
+</div>
+
 <p align = "center">
- <img src="./Imagenes_README/SiluetasCactus1.png" alt="CactusZombieSiluetas" width="50%"/>
- <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" width="50%"/>
+ 
 </p>
 
 Desarrollo de las siluetas

@@ -55,8 +55,10 @@ La zona donde se desarrolla el videojuego es un área poblada en el desierto que
 
   ####  Pricklytown
   PROTA llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
+
   ####  El Cañón
   PROTA se ve obligado a viajar hacia el oasis del sur, accesible desde Picklytown únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
+
   ####  El Oasis
   El Oasis es una pequeña zona misteriosa y excesivamente frondosa. Los habitantes de Pricklytown afirman que, a pesar de contener agua, en el pasado prácticamente ninguna planta crecía en la zona, y que solo se conocía como oasis por tradición. Ahora es una exhuberante y densa jungla de todo tipo de cactus y plantas desérticas. En el oasis además hay una edificación puntiaguda que se asemeja a una iglesia.
 
@@ -66,7 +68,7 @@ La zona donde se desarrolla el videojuego es un área poblada en el desierto que
  
 
 ## 3.2. Trasfondo
-*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
+>*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
 
 ### La sequía
 
@@ -106,16 +108,17 @@ Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o
 Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
 
 ### La infección
-El síntoma más vistoso de la enfermedad es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Estos además se comportan como si formaran parte de una mente colmena.
-Los estados de transformación por el “milagro chungo” se pueden dividir en 4 niveles dependiendo del tiempo que lleva el individuo enfermo. 
+Los pocos doctores cuerdos que han sobrevivido a la infección han observado que su síntoma más vistoso es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Los infectados no parecen ser conscietes de sus acciones y aparentan obedecer a una fuerza extraña.
+
+Los estados de transformación por el “milagro chungo” se han categorizado en 4 niveles según el tiempo que lleva el individuo enfermo. 
 
 **Fases de contagio**
 
 <table>
   <tr>
     <th style="width: 10%;">Fase</th>
-    <th style="width: 60%;">Síntomas</th>
-    <th style="width: 25%;">Aspecto</th>
+    <th style="width: 70%;">Síntomas</th>
+    <th style="width: 20%; text-align: center;">Aspecto</th>
   </tr>
   <tr>
     <td>1</td>
@@ -141,8 +144,20 @@ Los estados de transformación por el “milagro chungo” se pueden dividir en 
 
   
 ## 3.3. Personajes principales 
-* __(PROTA)__: Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
-## Enemigos 
+
+### Protagonisto
+Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
+
+### Personajes no jugables (NPCs)
+
+#### El tabernero tabernoso
+Pues es un tío muy majo que te sirve cervecita de polvo
+
+#### El tabernero tabernoso
+Pues es un tío muy majo que te sirve cervecita de polvo
+
+
+### Enemigos 
 
 Planteamiento de siluetas
 
@@ -158,17 +173,16 @@ Planteamiento de siluetas
 </p>
 
 
-# JUGABILIDAD 
-## Controles e interacción 
-Poner tabla de controles tanto pc como móvil 
+# 4. Jugabilidad 
 
+
+## 4.1. Mecánicas de interacción y movimiento
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
-### Acciones básicas de desplazamiento y combate 
-#### Desplazamiento horizontal 
-El jugador puede desplazarse en cualquier dirección horizontalmente. 
-#### Desplazamiento vertical 
-##### Gancho 
-El personaje tiene un gancho que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas (como en Sekiro) para moverse por el mapa, el jugador puede usar el gancho para atraer enemigos hacia él y para acercarse a enemigos. Se barajan dos opciones: 
+
+#### **Desplazamiento horizontal**
+El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada.
+#### **Desplazamiento vertical** 
+El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas (como en Sekiro) para moverse por el mapa, el jugador puede usar el gancho para atraer enemigos hacia él y para acercarse a enemigos. Se barajan dos opciones: 
 
 1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
 
@@ -181,31 +195,47 @@ Para el cooldown del gancho (se barajan 3 opciones):
 2. Se recarga cada vez que hagas un parry (recompensa). 
 
 3. Recarga con una tecla spammeandola (como dándole cuerda -> animación). 
-#### Ataque 
-El jugador puede desplazarse en cualquier dirección horizontal. 
-#### Esquive / Bloqueo 
-El jugador puede desplazarse en cualquier dirección horizontal. 
-#### Dash 
-El jugador puede desplazarse en cualquier dirección horizontal. 
-### Acciones de jugabilidad 
-#### Lock - in 
+
+
+#### **Lock - in** 
 El jugador centra a un enemigo. Puede esquivar los ataques de los enemigos (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto (SFX o animación), el jugador realiza un parry (bloquea el ataque y stunnea al enemigo). 
 
 Un enemigo puede atacarte desde atrás (disparo, lanzamiento...). Si realizas un parry / esquive normal, el jugador mantiene fijado al enemigo inicial. ¿Si te da el ataque, sales del modo fijado? 
 
 Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango (y no tiene visión directa del jugador), no le ataca, pero se pone en guardia. Si tiene visión directa, sí ataca. ¿Fuego amigo? 
-## Mecánicas específicas de combate y movimiento 
-### Ataques principales: Los realizados por enemigos centrados 
-Un enemigo debe ser centrado para que el jugador lleve a cabo un combate efectivo contra él. En esta posición, el enemigo puede realizar ataques en distintas direcciones. 
 
-El combate del juego una vez cerrados los duelos es similar a Punch Out, donde existen varias direcciones (neutro, izq, der) en las que pueden ir dirigidos los ataques. Los ataques en una dirección se pueden evitar esquivando en esa misma dirección en una franja de tiempo determinada.  
-#### Parry 
-Si el jugador esquiva en el momento preciso y en la dirección adecuada, podrá realizar un parry con una recompensa por determinar (stun al enemigo, ventana extra para golpear, doble de daño, etc, pistola, etc.) 
+#### **Ataque** 
+El jugador puede atacar en varias direcciones.
 
-De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
+  * Izquierda 
 
-<img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
+  * Centro 
 
+  * Derecha 
+
+  * Atrás: te permite otro mov. (?) 
+
+#### **Esquives**
+El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demasiado daño. Estos ataques se categorizan en dos tipos:
+- **Ataques de frente. (primarios)** Son los recibidos por el enemigo fijado. Pueden venir de derecha, izquierda o frente. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
+  - Esquive / Bloqueo 
+  - Dash
+
+  CORREGIR:!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  Un enemigo debe ser centrado para que el jugador lleve a cabo un combate efectivo contra él. En esta posición, el enemigo puede realizar ataques en distintas direcciones. 
+
+  El combate del juego una vez cerrados los duelos es similar a Punch Out, donde existen varias direcciones (neutro, izq, der) en las que pueden ir dirigidos los ataques. Los ataques en una dirección se pueden evitar esquivando en esa misma dirección en una franja de tiempo determinada.  
+
+- **Ataques laterales o traseros. (secundarios)** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda y dispararte. Estos ataques pueden ser contrarrestados (se barajan tres opciones): 
+
+  1. Con un mismo botón de esquive en el momento correcto, no recibes el golpe. 
+
+  2. No hay esquive neutral. Este esquive trasero te permite defenderte de ataques traseros. S + botón de esquive bloquea ataques traseros. No existe SOLO el botón de esquive. 
+
+  3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN.
+
+<img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
 
 * Esquive. 
 
@@ -215,38 +245,32 @@ De esta forma se recompensa por realizar esquives y bloqueos correctos , fomenta
 
   * Neutro: botón de esquive 
 
-* Ataques: 
 
-  * Izquierda 
+#### **Parry** 
+Si el jugador esquiva en el momento preciso y en la dirección adecuada, podrá realizar un parry con una recompensa por determinar (stun al enemigo, ventana extra para golpear, doble de daño, etc, pistola, etc.) 
 
-  * Centro 
+De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
 
-  * Derecha 
+<img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
 
-  * Atrás: te permite otro mov. (?) 
-### Ataques laterales o traseros. (secundarios) 
-Cuando tienes un enemigo fijado, otros enemigos pueden atacarte por la espalda o dispararte. 
 
-Puedes reaccionar a estos ataques si (se barajan tres opciones): 
 
-1. Con un mismo botón de esquive en el momento correcto, no recibes el golpe. 
 
-2. No hay esquive neutral. Este esquive trasero te permite defenderte de ataques traseros. S + botón de esquive bloquea ataques traseros. No existe SOLO el botón de esquive. 
 
-3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN.
+## 4.2. Controles 
 
-<img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
+MECÁNICA              | TECLADO     | Dispositivos táctiles
+--                    | --          | --
+MOVIMIENTO DE CÁMARA  | RATÓN       |
+MOVIMIENTO            | W,A,S,D     |
+CORRER                | SHIFT       |
+GANCHO                | E           |
+ATAQUE PRINCIPAL      | CLICK IZQ.  |
+ESQUIVE/DASH          | ESPACIO     |
+PARRY                 | ?           |
 
-### Controles 
 
-MECÁNICA | TECLADO
--- | --
-MOVIMIENTO | W,A,S,D 
-ESQUIVE/DASH | ESPACIO 
-GANCHO | E 
-MOVIMIENTO DE CÁMARA | RATÓN 
-GOLPEAR | CLICK IZQ. 
-CORRER | SHIFT 
+
 # Interfaces 
 ## Diagramas de flujo 
 

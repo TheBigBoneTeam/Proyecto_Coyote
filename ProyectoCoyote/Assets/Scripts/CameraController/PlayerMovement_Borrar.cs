@@ -2,45 +2,72 @@ using UnityEngine;
 // Movimiento provisional para probar la cámara
 public class PlayerMovement_Borrar : MonoBehaviour
 {
-    // 1. Añadir cámara
-    public Transform Camara;
-    //
-    public float speed = 5f;       
+    CharacterController controller;
+    //Animator anim;
+    Transform cam;
 
-    private CharacterController controller;
-    
-    public float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    float speedSmoothVelocity;
+    float speedSmoothTime;
+    float currentSpeed;
+    float velocityY;
+    Vector3 moveInput;
+    Vector3 dir;
+
+    [Header("Settings")]
+    [SerializeField] float gravity = 25f;
+    [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float rotateSpeed = 3f;
+
+    public bool lockMovement;
+
 
     void Start()
     {
+        //anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        cam = Camera.main.transform;
     }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal"); 
-        float z = Input.GetAxis("Vertical");   
-        Vector3 direction = new Vector3(x, 0, z);
+        GetInput();
+        PlayerMovement();
+        if (!lockMovement) PlayerRotation();
+    }
 
-        if (direction.magnitude >= 0.1f) 
-        {
-            // 2. Añadir camara al angulo de giro
-            float targetAngle = Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg + Camara.eulerAngles.y;
-            //
+    private void GetInput()
+    {
+        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
 
-            // 3. Añadir al movimiento la direccion del angulo al que esté mirando
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            //
+        dir = (forward * moveInput.y + right * moveInput.x).normalized;
+    }
 
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    private void PlayerMovement()
+    {
 
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
-        }
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref speedSmoothVelocity, speedSmoothTime * Time.deltaTime);
 
-        
+        if (velocityY > -10) velocityY -= Time.deltaTime * gravity;
+        Vector3 velocity = (dir * currentSpeed) + Vector3.up * velocityY;
 
+        controller.Move(velocity * Time.deltaTime);
+
+       // anim.SetFloat("Movement", dir.magnitude, 0.1f, Time.deltaTime);
+      //  anim.SetFloat("Horizontal", moveInput.x, 0.1f, Time.deltaTime);
+       // anim.SetFloat("Vertical", moveInput.y, 0.1f, Time.deltaTime);
+    }
+
+    private void PlayerRotation()
+    {
+        if (dir.magnitude == 0) return;
+        Vector3 rotDir = new Vector3(dir.x, dir.y, dir.z);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rotDir), Time.deltaTime * rotateSpeed);
     }
 }

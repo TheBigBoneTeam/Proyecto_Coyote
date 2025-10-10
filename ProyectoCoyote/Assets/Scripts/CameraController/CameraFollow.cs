@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+// Clase define cómo se comporta la cámara con respecto al objetivo (el jugador)
+// La cámara va a seguir al jugador en todo momento, pero en función de si está
+// lockeada o no rotará libremente o al rededor del enemigo
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target;
@@ -12,25 +15,30 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float sensitivity = 60;
 
     float rotx, roty;
-    bool cursorLocked = false;
+    bool cursorLocked = false; //// Input System
     Transform cam;
 
     public bool lockedTarget;
 
     void Start()
     {
+        //// Input System
         Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Locked;
+        ////
         cam = Camera.main.transform;
     }
 
     void Update()
     {
+        // Definir posición del objetivo y transformar su posición en función de éste
         Vector3 target_P = target.position + offset;
         transform.position = Vector3.Lerp(transform.position, target_P, follow_smoothing*Time.deltaTime);
 
+        // Condición de si está lockeado o no
         if (!lockedTarget) CameraTargetRotation(); else LookAtTarget();
 
+        //// Input System
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             if (cursorLocked)
@@ -44,13 +52,22 @@ public class CameraFollow : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
+        ////
     }
-
+    
+    ////Input System
+    Vector2 InputCamera()
+    {
+        Vector2 axis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        return axis;
+    }
+    ////
+    
     void CameraTargetRotation()
     {
-        Vector2 mouseAxis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        rotx += (mouseAxis.x * sensitivity) * Time.deltaTime;
-        roty += (mouseAxis.y * sensitivity) * Time.deltaTime;
+        Vector2 axis = InputCamera();
+        rotx += (axis.x * sensitivity) * Time.deltaTime;
+        roty += (axis.y * sensitivity) * Time.deltaTime;
 
         roty = Mathf.Clamp(roty, clampAxis.x, clampAxis.y);
 
@@ -58,6 +75,7 @@ public class CameraFollow : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, Time.deltaTime * rotate_smoothing);
 
     }
+    
     void LookAtTarget()
     {
         transform.rotation = cam.rotation;

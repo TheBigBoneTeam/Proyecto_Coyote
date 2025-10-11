@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Clase define cómo se comporta la cámara con respecto al objetivo (el jugador)
 // La cámara va a seguir al jugador en todo momento, pero en función de si está
-// lockeada o no rotará libremente o al rededor del enemigo
+// lockeada o no rotará libremente o alrededor del enemigo
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target;

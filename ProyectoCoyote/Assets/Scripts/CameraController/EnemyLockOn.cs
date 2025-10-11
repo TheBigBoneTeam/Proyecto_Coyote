@@ -19,7 +19,7 @@ public class EnemyLockOn : MonoBehaviour
     [SerializeField] float noticeZone = 10;
     [SerializeField] float lookAtSmoothing = 2;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 60;
-    [SerializeField] float crossHair_Scale = 0.1f;
+    [SerializeField] float UI_Locked_Scale = 0.1f;
 
     Transform cam;
     public bool enemyLocked;
@@ -55,6 +55,9 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyLocked)
         {
             if (!TargetOnRange()) ResetTarget();
+            // Volver a modo sin lockear si hay un obstáculo
+            if (Blocked(GetTargetCenter(currentTarget))) ResetTarget(); 
+            //
             LookAtTarget();
         }
     }
@@ -149,7 +152,7 @@ public class EnemyLockOn : MonoBehaviour
         Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
 
 
-        // Si no hay objetivos cerca, se sale.
+        // Si hay algun elemento de la escena bloqueando la visión del jugador, se sale.
         if (Blocked(tarPos))
         {
             Console.WriteLine("No se han encontrado enemigos cerca!");
@@ -160,6 +163,16 @@ public class EnemyLockOn : MonoBehaviour
         return closestTarget;
     }
 
+    // Detectar el centro actual de la target
+    Vector3 GetTargetCenter(Transform target)
+    {
+        CapsuleCollider col = target.GetComponent<CapsuleCollider>();
+        if (col == null) return target.position;
+
+        float h = col.height * target.localScale.y;
+        float half_h = (h / 2) / 2;
+        return target.position + new Vector3(0, h - half_h, 0);
+    }
 
     // Detectar si hay un objeto bloqueando las escena
     bool Blocked(Vector3 t)
@@ -198,7 +211,7 @@ public class EnemyLockOn : MonoBehaviour
         // Actualiza la posición del canvas lockOn en función de la cámara
         pos = currentTarget.position + new Vector3(0, 0 , 0);
         lockOnCanvas.position = pos;
-        lockOnCanvas.localScale = Vector3.one * ((cam.position - pos).magnitude * crossHair_Scale);
+        lockOnCanvas.localScale = Vector3.one * ((cam.position - pos).magnitude * UI_Locked_Scale);
 
         // Actaliza la posición del localizador del enemigo
         enemyTarget_Locator.position = pos;

@@ -82,6 +82,16 @@ public class PlayerMovement : MonoBehaviour
     float inputMagnitude;
     // float moveX, moveY;
 
+    // Añadido Andrea
+    [Header("Lock Movement")]
+    
+    Transform cam;
+    [SerializeField] float moveLockedSpeed = 1f;
+    [SerializeField] float rotateSpeed = 3f;
+
+    public bool lockMovement;
+    
+    //
     public MovementState state;
 
     public enum MovementState
@@ -96,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
     #region Metodos de Unity
     private void Start()
     {
+        cam = Camera.main.transform;
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
@@ -121,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
         HandleDashInput();
+        // El personaje solo podrá rotar si no esta lockeado
+        if (!lockMovement) PlayerRotation();
 
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
@@ -148,6 +162,18 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
+        //  Añadido Andrea
+        // tener en cuenta cámara
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+        //
+
         computeAnimator();
 
         if(gameInput.JumpPressed && readyToJump && grounded)
@@ -157,6 +183,8 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
+
+
     #endregion
 
 
@@ -272,7 +300,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas
@@ -297,6 +325,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Añadido Andrea
+    private void PlayerRotation()
+    {
+        if (moveDirection.magnitude == 0) return;
+        Vector3 rotDir = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rotDir), Time.deltaTime * rotateSpeed);
+    }
+    // 
     private void SpeedControl()
     {
         // Control de velocidad en rampa
@@ -313,12 +349,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-            if (flatVel.magnitude > moveSpeed)
+            
+
+            if (flatVel.magnitude > moveSpeed && !lockMovement)
             {
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
+            else if(flatVel.magnitude > moveLockedSpeed && lockMovement)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveLockedSpeed;
+                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            }
+
+
         }
+
     }
     private void Jump()
     {

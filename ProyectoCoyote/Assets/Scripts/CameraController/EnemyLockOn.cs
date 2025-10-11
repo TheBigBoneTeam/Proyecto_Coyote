@@ -6,7 +6,6 @@ using static UnityEditor.PlayerSettings;
 public class EnemyLockOn : MonoBehaviour
 {
     Transform currentTarget;
-    // Animator anim;
 
     [SerializeField] LayerMask targetLayers;
     [SerializeField] Transform enemyTarget_Locator;
@@ -28,12 +27,12 @@ public class EnemyLockOn : MonoBehaviour
 
     [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
-    PlayerMovement_Borrar movement; // Editar con movimiento definitivo
+    PlayerMovement movement; 
 
     void Start()
     {
-        movement = GetComponent<PlayerMovement_Borrar>(); // Modificar
-        // anim = GetComponent<Animator>();
+        movement = GetComponent<PlayerMovement>();
+        
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
 
@@ -45,6 +44,7 @@ public class EnemyLockOn : MonoBehaviour
         // Indicar al resto de scripts cuándo está el enemigo lockeado
         camFollow.lockedTarget = enemyLocked; 
         movement.lockMovement = enemyLocked;
+
         //// Input System
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -55,10 +55,13 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyLocked)
         {
             if (!TargetOnRange()) ResetTarget();
-            // Volver a modo sin lockear si hay un obstáculo
-            if (Blocked(GetTargetCenter(currentTarget))) ResetTarget(); 
-            //
+
             LookAtTarget();
+            // Volver a modo sin lockear si hay un obstáculo
+            if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
+            //
+           
+            
         }
     }
 
@@ -79,7 +82,6 @@ public class EnemyLockOn : MonoBehaviour
     void FoundTarget()
     {
         lockOnCanvas.gameObject.SetActive(true);
-        // anim.SetLayerWeight(1, 1);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
         Console.WriteLine("Enemigo encontrado");
@@ -204,7 +206,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si desaparece el enemigo al que estamos mirando, reasignar enemigo
         if (currentTarget == null)
         {
-            if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
+            ActivateLockMode();
             return;
         }
 

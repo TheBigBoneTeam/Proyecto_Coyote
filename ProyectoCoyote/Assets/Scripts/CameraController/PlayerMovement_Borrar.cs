@@ -16,6 +16,7 @@ public class PlayerMovement_Borrar : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float gravity = 25f;
     [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float moveLockedSpeed = 1f;
     [SerializeField] float rotateSpeed = 3f;
 
     public bool lockMovement;
@@ -32,6 +33,7 @@ public class PlayerMovement_Borrar : MonoBehaviour
     {
         GetInput();
         PlayerMovement();
+        // El personaje solo podrá rotar si no esta lockeado
         if (!lockMovement) PlayerRotation();
     }
 
@@ -39,6 +41,7 @@ public class PlayerMovement_Borrar : MonoBehaviour
     {
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        // tener en cuenta cámara
         Vector3 forward = cam.forward;
         Vector3 right = cam.right;
         forward.y = 0;
@@ -51,9 +54,15 @@ public class PlayerMovement_Borrar : MonoBehaviour
 
     private void PlayerMovement()
     {
-
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref speedSmoothVelocity, speedSmoothTime * Time.deltaTime);
-
+        // TEner en cuenta modo lockeado
+        if (lockMovement)
+        {
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, moveLockedSpeed, ref speedSmoothVelocity, speedSmoothTime * Time.deltaTime);
+        }
+        else 
+        {
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref speedSmoothVelocity, speedSmoothTime * Time.deltaTime);
+        }
         if (velocityY > -10) velocityY -= Time.deltaTime * gravity;
         Vector3 velocity = (dir * currentSpeed) + Vector3.up * velocityY;
 

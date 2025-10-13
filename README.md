@@ -3,12 +3,12 @@
 
 Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo 
 
-# 1. Introducción
+# 0. Introducción
 **Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyote”, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final.**
 
 “Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
 
-# 2. Concepto del juego 
+# 1. Concepto del juego 
 "Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
 
 
@@ -28,10 +28,6 @@ Dinámicas de juego
 
 El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
 
-## Monetización 
-Tipo de monetización y tabla de productos y precios
-
-## Planificación y coste ??
 
 ## Jugabilidad 
 El juego se divide en dos modos de juego: libre y duelo.
@@ -44,8 +40,8 @@ El modo **duelo** se produce cuando el jugador centra a un enemigo. En este modo
 
 Con esta estética se ha obtenido un resultado bla bla bla 
 
-# 3. Historia
-## 3.1. Ambientación 
+# 2. Historia
+## 2.1. Ambientación 
 "Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
@@ -67,7 +63,7 @@ La zona donde se desarrolla el videojuego es un área poblada en el desierto que
   
  
 
-## 3.2. Trasfondo
+## 2.2. Trasfondo
 >*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
 
 ### La sequía
@@ -82,15 +78,15 @@ Antes triste y prácticamente árido, el oasis se había transformado ahora en u
 Con el paso del tiempo las criaturas de la zona comenzaron a presentar malestar, aparentemente, debido al consumo del higo chumbo. Aquel que se alimentaba de los higos presentaba síntomas como deshidratación severa, cansancio y fiebre. Con el paso del tiempo, bultos y quistes verdosos brotaban en la piel y pronto se convertían en protuberancias vegetales y carnosas. 
 
 ### La expedición
-El pueblo acordó organizar una expedición formada por matasanos, voluntarios y miembros de la iglesia para investigar el cambiado oasis. Semanas después de su partida, menos de la mitad regresaron. Los expedicionarios parecían haber enloquecido y afirmaban que el consumo de el higo permitía a cualquier criatura alcanzar la inmortalidad.
+El pueblo organizó una expedición formada por matasanos, voluntarios y miembros de la iglesia para investigar el cambiado oasis. Semanas después de su partida, menos de la mitad regresaron. Los expedicionarios parecían haber enloquecido y afirmaban que el consumo de el higo permitía a cualquier criatura alcanzar la inmortalidad.
 
-La misión fue considerada fallida y se atribuyó la insanidad de los supervivientes a la deshidratación.
+Finalmente la misión fue considerada fallida y se atribuyeron los delirios de los supervivientes a la deshidratación.
 
 ### La llamada
-Con el grave periodo de escasez al que se enfrentaba Pricklytown y la incomprensibilidad general de los efectos de los higos, resultó imposible evitar que los vecinos se alimentaron de ellos.
+Con el grave periodo de escasez al que se enfrentaba Pricklytown y la incomprensibilidad general de los efectos de los higos, resultó imposible evitar que los vecinos se alimentaran de ellos.
 Quienes los consumían empeoraban con rapidez, y junto con los desagradables síntomas aparecían actitudes agresivas y destructivas. Los "infectados", como fueron etiquetados, eran trasladados recurrentemente al oasis por los pocos que resistían.
 
-El acceso a la jungla de cactus era cada vez más complicado. Según reportes de algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.
+El acceso a la jungla de cactus era cada vez más complicado. Según algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.
 
 <!--/Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna./
 
@@ -106,6 +102,32 @@ Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados
 Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
 
 Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
+
+
+
+  
+## 2.3. Personajes principales 
+
+### Protagonisto
+Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
+
+### Personajes no jugables (NPCs)
+
+#### El tabernero tabernoso
+Pues es un tío muy majo que te sirve cervecita de polvo
+
+#### El tabernero tabernoso
+Pues es un tío muy majo que te sirve cervecita de polvo
+
+
+### Enemigos 
+
+Planteamiento de siluetas
+
+<div style="display: flex; justify-content: center; gap= 0px">
+  <img src="./Imagenes_README/SiluetasCactus1.png" alt="CactusZombieSiluetas" style="width: 49%"/>
+  <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" style="width: 49%"/>
+</div>
 
 ### La infección
 Los pocos doctores cuerdos que han sobrevivido a la infección han observado que su síntoma más vistoso es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Los infectados no parecen ser conscietes de sus acciones y aparentan obedecer a una fuerza extraña.
@@ -142,30 +164,6 @@ Los estados de transformación por el “milagro chungo” se han categorizado e
   </tr>
 </table>
 
-  
-## 3.3. Personajes principales 
-
-### Protagonisto
-Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
-
-### Personajes no jugables (NPCs)
-
-#### El tabernero tabernoso
-Pues es un tío muy majo que te sirve cervecita de polvo
-
-#### El tabernero tabernoso
-Pues es un tío muy majo que te sirve cervecita de polvo
-
-
-### Enemigos 
-
-Planteamiento de siluetas
-
-<div style="display: flex; justify-content: center; gap= 0px">
-  <img src="./Imagenes_README/SiluetasCactus1.png" alt="CactusZombieSiluetas" style="width: 49%"/>
-  <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" style="width: 49%"/>
-</div>
-
 
 <p align = "center">
  <img src="./Imagenes_README/CactusZombie02.png" alt="CactusZombie02" width="60%"/>
@@ -173,10 +171,10 @@ Planteamiento de siluetas
 </p>
 
 
-# 4. Jugabilidad 
+# 3. Jugabilidad 
 
 
-## 4.1. Mecánicas de interacción y movimiento
+## 3.1. Mecánicas de interacción y movimiento
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
 
 #### **Desplazamiento horizontal**
@@ -257,7 +255,7 @@ De esta forma se recompensa por realizar esquives y bloqueos correctos , fomenta
 
 
 
-## 4.2. Controles 
+## 3.2. Controles 
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
@@ -270,6 +268,10 @@ ESQUIVE/DASH          | ESPACIO     |
 PARRY                 | ?           |
 
 
+# 5. Sonido y música 
+## 5.1. Estilo Sonoro y musical
+## 5.2. Banda sonora 
+## 5.3. Efectos sonoros (SFX) 
 
 # Interfaces 
 ## Diagramas de flujo 
@@ -318,34 +320,8 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
        
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
 
-## Diseño de interfaces 
-## Menú inicio
 
-## In game 
-## Fin de juego 
-# ARTE 3D 
-## Personajes 
-### Referencias Estéticas 
-### Vestuario 
 
-<img width="939" height="852" alt="image" src="https://github.com/user-attachments/assets/1dc97aac-65d3-469c-bdbb-3731f10bf09b" />
-
-### Personajes finales 
-### NPCs 
-#### LA CHAVALA CHUNGA ESTA 
-
-<img width="804" height="1139" alt="image" src="https://github.com/user-attachments/assets/60daa989-b4ee-4317-9fc6-8c782a0d29e4" />
-
-### Referencias de Modelado 
-
-<img width="413" height="639" alt="image" src="https://github.com/user-attachments/assets/0478aa0f-850e-4a80-a306-0cf0169e6203" />
-
-### Props de Escenario 
-### Referencias Estéticas 
-
-<img width="419" height="816" alt="image" src="https://github.com/user-attachments/assets/74ea81f8-885b-4bd1-9259-01367784275c" />
-<img width="444" height="814" alt="image" src="https://github.com/user-attachments/assets/e94ba325-2ade-4cf7-bcbe-35b7751d7581" />
-<img width="743" height="468" alt="image" src="https://github.com/user-attachments/assets/0c1254e6-dd65-4a8c-b9ea-cc8be24084c7" />
 
 # Game Design 
 ## Diseño de enemigos 
@@ -361,9 +337,7 @@ Los enemigos mixtos son una combinación entre los enemigos a melee y a distanci
 ### Primer nivel 
 #### Cinemática 
 #### Diseño del nivel 
-# Sonidos y música 
-## Banda sonora 
-## Efectos sonoros (SFX) 
+
 # 10. Hoja técnica
 
 

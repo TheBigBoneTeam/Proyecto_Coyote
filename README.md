@@ -205,47 +205,36 @@ Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango 
 #### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
-  * Izquierda 
+  * Izquierda: input de dirección izquierda (A/joystick) + golpear
 
-  * Centro 
+  * Centro: sin input de dirección + golpear
 
-  * Derecha 
+  * Derecha: input de dirección derecha (D/joystick) + golpear
 
-  * Atrás: te permite otro mov. (?) 
+Las acciones realizables con Adelante y Atrás + golpear están por determinar, pero probablemente se utilicen para otras habilidades de combate, reduciendo la necesidad de utilizar más botones.
 
 #### **Esquives**
 El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demasiado daño. Estos ataques se categorizan en dos tipos:
 - **Ataques de frente. (primarios)** Son los recibidos por el enemigo fijado. Pueden venir de derecha, izquierda o frente. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
-  - Esquive / Bloqueo 
-  - Dash
+  - Esquive: dentro de una ventana de frames, el jugador puede esquivar en la dirección correcta para no sufrir daño por los ataques enemigos y encontrar ventanas para atacar
+    
+   * Izquierda: input de dirección izquierda (A/joystick) + esquivar
 
-  CORREGIR:!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  * Centro: sin input de dirección + esquivar
 
-  Un enemigo debe ser centrado para que el jugador lleve a cabo un combate efectivo contra él. En esta posición, el enemigo puede realizar ataques en distintas direcciones. 
+  * Derecha: input de dirección derecha (D/joystick) + esquivar
 
-  El combate del juego una vez cerrados los duelos es similar a Punch Out, donde existen varias direcciones (neutro, izq, der) en las que pueden ir dirigidos los ataques. Los ataques en una dirección se pueden evitar esquivando en esa misma dirección en una franja de tiempo determinada.  
+Para esquivar un ataque el jugador debe introducir el input de dirección adecuada, similar a la saga de videojuegos *Punch Out*. Un ataque por la izquierda solo puede esquivarse por la izquierda y viceversa. La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. Así mismo, los enemigos también esquivaran los ataques del jugador bajo las mismas normas.
 
-- **Ataques laterales o traseros. (secundarios)** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda y dispararte. Estos ataques pueden ser contrarrestados (se barajan tres opciones): 
+  -Bloqueo: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente. Los bloqueos pueden realizarse en las mismas direcciones que los esquives.
 
-  1. Con un mismo botón de esquive en el momento correcto, no recibes el golpe. 
-
-  2. No hay esquive neutral. Este esquive trasero te permite defenderte de ataques traseros. S + botón de esquive bloquea ataques traseros. No existe SOLO el botón de esquive. 
-
-  3. El esquive neutral solo se realiza sin pulsar ninguna tecla: botón de esquive. S + botón de esquive bloquea ataques traseros. CUATRO TIPOS DE ESQUIVES (derecha, izquierda, neutro y bloqueo trasero). POSIBLE OPCIÓN.
+- **Ataques laterales o traseros. (secundarios)** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
+  
+  * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques/disparos gracias a los frames de invulnerabilidad que otorga el dash. Un dash en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
+  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador recibe un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un bloqueo especial que le protegerá de recibir daño de ataques por la espalda.
 
 <img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
 
-* Esquive. 
-
-  * Izquierda: A + botón esquive 
-
-  * Derecha: D + botón esquive 
-
-  * Neutro: botón de esquive 
-
-
-#### **Parry** 
-Si el jugador esquiva en el momento preciso y en la dirección adecuada, podrá realizar un parry con una recompensa por determinar (stun al enemigo, ventana extra para golpear, doble de daño, etc, pistola, etc.) 
 
 De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
 
@@ -259,17 +248,22 @@ De esta forma se recompensa por realizar esquives y bloqueos correctos , fomenta
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
-MOVIMIENTO DE CÁMARA  | RATÓN       |
-MOVIMIENTO            | W,A,S,D     |
-CORRER                | SHIFT       |
+MOVIMIENTO DE CÁMARA  | RATÓN       | Joystick tactil der.
+MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.
+CORRER                | SHIFT       | 
 GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
 ESQUIVE/DASH          | ESPACIO     |
-PARRY                 | ?           |
+
 
 # 5. Arte 
+
+A continuación se hará un resumen del apartado artístico general de Proyecto Coyote, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
+
 ## 5.1. Estilo artístico general
-Descripción del low poly y las texturas y elementos artísticos 2d. 
+
+Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
+
 ## 5.2. Personajes
 (Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
 ## 5.3. Escenarios

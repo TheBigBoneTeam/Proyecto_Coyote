@@ -267,13 +267,28 @@ ATAQUE PRINCIPAL      | CLICK IZQ.  |
 ESQUIVE/DASH          | ESPACIO     |
 PARRY                 | ?           |
 
+# 5. Arte 
+## 5.1. Estilo artístico general
+Descripción del low poly y las texturas y elementos artísticos 2d. 
+## 5.2. Personajes
+(Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
+## 5.3. Escenarios
+(Lo mismo, aquí ponemos mapas, diseño de niveles, etc)
+
+### Pueblo
+### Cañón
+### Oasis
+
+## 5.4. Arte 2D
+
+
 
 # 5. Sonido y música 
 ## 5.1. Estilo Sonoro y musical
 ## 5.2. Banda sonora 
 ## 5.3. Efectos sonoros (SFX) 
 
-# Interfaces 
+# 6. Muenús e Interfaces 
 ## Diagramas de flujo 
 
 ### Menú inicio
@@ -319,6 +334,21 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
     3. __Salir:__ vuelve al menú inicial.
        
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
+
+
+
+# 6. Modelo de Negocio y Monetización
+
+# 7. Marketing y Redes Sociales
+
+# 8. Post Mortem - Alfa
+
+## 8.1. Post Mortem - Alfa
+## 8.2. Post Mortem - Beta
+## 8.3. Post Mortem - Gold
+
+
+
 
 
 

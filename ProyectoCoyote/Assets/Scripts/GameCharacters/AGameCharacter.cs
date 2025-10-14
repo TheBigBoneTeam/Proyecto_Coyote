@@ -110,7 +110,8 @@ public abstract class AGameCharacter :MonoBehaviour
 
     internal void PlayAnimation(AnimationClip clip)
     {
-        AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
+            AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
+
         graph.Play();
     }
 }

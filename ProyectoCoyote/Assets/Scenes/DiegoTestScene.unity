@@ -918,6 +918,7 @@ GameObject:
   - component: {fileID: 1568128652}
   - component: {fileID: 1568128650}
   - component: {fileID: 1568128657}
+  - component: {fileID: 1568128658}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Untagged
@@ -1097,6 +1098,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1568128658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568128648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7033c32493b38240a6a2c47736ac9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 0
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: d056ee60-fa15-45b8-89e0-c5552fbb400b
+      graph:
+        rid: 5634289315237855324
+      nodes:
+      - name: 
+        id: 9ea55a89-2467-4cee-94a9-971917c322d3
+        position: {x: 528.8, y: 151.20001}
+        node:
+          rid: 5634289315237855325
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289337247203425
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds: []
+        childIds: []
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5634289315237855324
+      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289315237855325
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289337247203425
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: {fileID: 11400000, guid: 7e60f6f77ba7f94428f3525bb4111dcb, type: 2}
 --- !u!1 &1734570009
 GameObject:
   m_ObjectHideFlags: 0

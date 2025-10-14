@@ -332,6 +332,9 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
 
 # 6. Modelo de Negocio y Monetización
+Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
+
+Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** y **contenido adicoinal** en función del éxito que tenga el juego.
 
 # 7. Marketing y Redes Sociales
 
@@ -362,63 +365,3 @@ Los enemigos mixtos son una combinación entre los enemigos a melee y a distanci
 #### Cinemática 
 #### Diseño del nivel 
 
-# 10. Hoja técnica
-
-
-## Camera controller 
-"Proyecto Coyote" es un juego 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. Para conseguir este objetivo, es necesario un sistema de cámaras que gestione dos modos:
-
-- **Un modo libre:** en el que el jugador tiene total libertad de movimiento y control sobre la cámara.
-- **Un modo Lock:** en el que el objetivo de la cámara esté fijado en el enemigo. En este modo, la cámara girará en torno al enemigo, siguiendo a su vez al jugador y el encuadre será más cerrado.
-
-En este contexto la principal referencia que se ha usado han sido las cámaras de los juegos de género Souls Like, en concreto la del *“Elden Ring”* que cumple con la mayoría de lo que necesitamos para el proyecto.
-
-Nuestro *CameraController* consta de dos cámaras *cinemachine*, que se intercambian según corresponda con un *State-Driven Camera.* Este componente de *cinemachine* se encarga de activar la cámara que corresponda en cada momento de una forma más optimizada, puesto que no se van a tener que renderizar las dos cámaras a la vez. También gestiona la transición de una cámara a otra con un animator, al que se llamará para hacer los cambios de cámara.
-
-<p align="center">
- <img src="./Imagenes_README/camera_controller1.png" alt="50%" width="50%"/>
-</p>
-
-Las dos cámaras que gestiona el *State-Driven Camera* son:
-
-- ***FollowCamera:*** Cámara al hombro que sigue al jugador en tercera persona.
-- ***TargetLocking_Camera:*** Cámara al hombro que sigue al jugador en tercera persona, pero mirando siempre al enemigo más cercano.
-
-Para poder identificar cuál es el jugador y cuál es el enemigo más cercano, se han creado dos *GameObjects* vacíos.
-<p align="center">
-<img src="./Imagenes_README/camera_controller2.png" alt="50%" width="50%"/>
-</p>
-
-- ***EnemyTarget_Locator:*** es el localizador del enemigo. Se utilizará en el script EnemyLockOn para guardar la posición del enemigo calculado como más cercano. Será el LookAt de la *TargetLocking_Camera.*
-- ***CameraTarget:*** tiene asociado un script llamado ***CameraFollow*** que se encarga de gestionar la cámara en tercera persona. La clase define cómo se comporta la cámara con respecto al objetivo (el jugador). La cámara va a seguir al jugador en todo momento, pero en función de si está lockeada o no rotará libremente o alrededor del enemigo.  Desde este *GameObject* se podrán ajustar algunos parámetros en función de lo que se necesite.
-  
-<p align="center">
-<img src="./Imagenes_README/camera_controller3.png" alt="50%" width="50%"/>
-</p>
-
-Finalmente el ***LockOnCanvas*** es un canvas que indica de forma visual cuál es el enemigo en el que se está fijando la cámara. Tiene un script llamado ***SimpleLockOn*** que se utiliza para colocar el indicador de enemigo lockeado de la UI siempre delante de la cámara.
-
-<p align="center">
-<img src="./Imagenes_README/camera_controller4.png" alt="50%" width="50%"/>
-</p>
-
-El script que se encargará de calcular y gestionar el lockeo de los enemigos será ***EnemyLockOn***, asignado al jugador:
-
-- **enemyLocked:** booleano que se encarga de guardar el estado del juego (lockeado o no lockeado).
-Si se pulsa la tecla de activar modo lockeado:
-
-- Si ya se está en modo lockeado, se vuelve al modo sin lockear.
-- En caso contrario:
-  <ol type="1">
-  <li>Se busca en un perímetro definido por NoticeZone objetos con la layer/s definida en Target Layers. </li>
-  <li>Si no hay objetivos cerca, se vuelve al modo sin lockear.</li>
-  <li>Si hay, recorre todos los objetivos detectados y calcula su dirección y ángulo desde la cámara para calcular cuál es el más cercano.</li>
-  <li>Calcula la altura del objetivo para ajustar la mirada al centro del enemigo.</li>
-  <li>Si hay algún elemento de la escena bloqueando la visión del jugador, se sale.</li>
-  </ol>
-- Si el enemigo deja de estar en el rango definido por NoticeZone o si hay algo entre medias del jugador y el enemigo, se vuelve al modo sin lockear.
-- Si el enemigo es eliminado, se pasará el objetivo al enemigo más cercano.
-  
-<p align="center">
-<img src="./Imagenes_README/camera_controller5.png" alt="50%" width="50%"/>
-</p>  

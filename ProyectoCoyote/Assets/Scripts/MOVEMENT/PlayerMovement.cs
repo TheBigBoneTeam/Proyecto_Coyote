@@ -80,15 +80,15 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
-    bool hit = false; //test animacion
-
+    public bool hit = false; //test animacion
+    public bool isLocked = false;
 
 
     // float moveX, moveY;
 
     // Añadido Andrea
     [Header("Lock Movement")]
-    
+
     Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
     [SerializeField] float rotateSpeed = 3f;
@@ -151,8 +151,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-   
-        MovePlayer();
+        if (!hit) //test animaciones golpeo
+            MovePlayer();
     }
     #endregion
 
@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        
+
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
 
@@ -182,25 +182,25 @@ public class PlayerMovement : MonoBehaviour
 
 
         //TEST ANIAMCIONES COMBATE (Edu)
-        
-        if(Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(1))
         {
             switch (horizontalInput)
             {
                 case 1:
-                    animator.CrossFade("Hit_R", 1f);
+                    animator.CrossFade("Hit_L", .1f);
                     break;
                 case -1:
-                    animator.CrossFade("Hit_L", 1f);
+                    animator.CrossFade("Hit_R", .1f);
                     break;
             }
         }
 
 
- 
+
         computeAnimator();
 
-        if(gameInput.JumpPressed && readyToJump && grounded)
+        if (gameInput.JumpPressed && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input", inputMagnitude);
         animator.SetBool("isRunning", isRunning);
-
+        animator.SetBool("isLocked", isLocked);
 
 
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
@@ -370,7 +370,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
-            else if(flatVel.magnitude > moveLockedSpeed && lockMovement)
+            else if (flatVel.magnitude > moveLockedSpeed && lockMovement)
             {
                 Vector3 limitedVel = flatVel.normalized * moveLockedSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);

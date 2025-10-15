@@ -84,12 +84,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Añadido Andrea
     [Header("Lock Movement")]
-    
-    Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
-    [SerializeField] float rotateSpeed = 3f;
-
     public bool lockMovement;
+    [SerializeField] EnemyLockOn lockOnSystem;
+    Transform enemyTarget => lockOnSystem != null ? lockOnSystem.CurrentTarget : null;
+
     //
     public MovementState state;
 
@@ -105,12 +104,12 @@ public class PlayerMovement : MonoBehaviour
     #region Metodos de Unity
     private void Start()
     {
-        cam = Camera.main.transform;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
         animator = GetComponentInChildren<Animator>();
+        lockOnSystem = GetComponent<EnemyLockOn>();
 
         gameInput = GetComponentInParent<GameInput>();
         if (gameInput == null)
@@ -133,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
         HandleDashInput();
 
+
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
         {
@@ -143,12 +143,26 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0;
             rb.AddForce(Vector3.down * gravity, ForceMode.Force);
         }
+        
     }
 
     private void FixedUpdate()
     {
+        if (lockMovement && enemyTarget != null)
+        {
+            Vector3 lookDir = enemyTarget.position - transform.position;
+            lookDir.y = 0;
+
+            if (lookDir.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(lookDir);
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 10f));
+                orientation.rotation = Quaternion.Slerp(orientation.rotation, targetRotation, Time.fixedDeltaTime * 10f);
+            }
+        }
         MovePlayer();
     }
+
     #endregion
 
     #region Input
@@ -158,18 +172,6 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
-
-        //  Añadido Andrea
-        // tener en cuenta cámara
-        Vector3 forward = cam.forward;
-        Vector3 right = cam.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
-        //
 
         computeAnimator();
 
@@ -297,7 +299,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        // Añadido Andrea
+        if (lockMovement && enemyTarget != null)
+        {
+            Vector3 toEnemy = (enemyTarget.position - transform.position).normalized;
+            Vector3 rightOfEnemy = Vector3.Cross(Vector3.up, toEnemy).normalized;
+
+            moveDirection = toEnemy * verticalInput + rightOfEnemy * horizontalInput;
+        }
+        else
+        {
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        }
+
         rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas

@@ -7,6 +7,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] Transform enemyTarget;
     [SerializeField] Vector3 offset;
     [SerializeField] Vector2 clampAxis = new Vector2 (60, 60);
 
@@ -74,25 +75,22 @@ public class CameraFollow : MonoBehaviour
         Quaternion camRotation = Quaternion.Euler(roty, rotx, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, camRotation, Time.deltaTime * rotate_smoothing);
 
-        // Hacer que el jugador mire hacia donde apunta la cámara 
-        if (!lockedTarget && target != null)
-        {
-            Vector3 lookDir = transform.forward;
-            lookDir.y = 0;
-            if (lookDir != Vector3.zero)
-            {
-                Quaternion playerRot = Quaternion.LookRotation(lookDir);
-                target.rotation = Quaternion.Slerp(target.rotation, playerRot, Time.deltaTime * rotate_smoothing);
-            }
-        }
+        
 
     }
 
     void LookAtTarget()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(target.forward, Vector3.up);
+        if (enemyTarget == null) return;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotate_smoothing * Time.deltaTime);
+        Vector3 dir = enemyTarget.position - transform.position;
+        dir.y = 0;
+
+        if (dir.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotate_smoothing * Time.deltaTime);
+        }
 
         Vector3 euler = transform.eulerAngles;
         rotx = euler.y;

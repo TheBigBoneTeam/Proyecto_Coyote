@@ -69,6 +69,7 @@ public class CameraFollow : MonoBehaviour
         rotx += (axis.x * sensitivity) * Time.deltaTime;
         roty += (axis.y * sensitivity) * Time.deltaTime;
 
+        // Limitar la rotación
         roty = Mathf.Clamp(roty, clampAxis.x, clampAxis.y);
 
         Quaternion localRotation = Quaternion.Euler(roty, rotx, 0);

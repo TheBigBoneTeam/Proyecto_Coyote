@@ -30,10 +30,10 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 
 
 ## Jugabilidad 
-El juego se divide en dos modos de juego: libre y duelo.
-El modo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este modo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
+El juego se divide en dos estilos de juego: libre y duelo.
+El estilo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este estilo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
 
-El modo **duelo** se produce cuando el jugador centra a un enemigo. En este modo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este modo cuando derrote al enemigo o lo desenfoque a propósito.
+El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este estilo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este estilo cuando derrote al enemigo o lo desenfoque a propósito.
 
 ## Estilo visual 
 “Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
@@ -180,67 +180,71 @@ El jugador se desplaza en tres dimensiones en el escenario de juego y puede real
 #### **Desplazamiento horizontal**
 El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada.
 #### **Desplazamiento vertical** 
-El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas (como en Sekiro) para moverse por el mapa, el jugador puede usar el gancho para atraer enemigos hacia él y para acercarse a enemigos. Se barajan dos opciones: 
+El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del peso del enemigo, por lo que, si un enemigo es ligero, al engancharlo el gancho arraerá en enemigo al jugador, mientras que si es pesado será el jugador quien será atraido hacia el enemigo.
 
-1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
+<!-- 1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
 
-2. Si vas tú o viene el enemigo depende del peso del enemigo. Los enemigos grandes no pueden ser atraídos y los pequeños se atraen. 
+2. Si vas tú o viene el enemigo depende del peso del enemigo. Los enemigos grandes no pueden ser atraídos y los pequeños se atraen. -->
 
-Para el cooldown del gancho (se barajan 3 opciones): 
+Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá usar hasta que se haya cargado de nuevo. Para hacer más rápida esta carga el jugador tendrá la posibilidad de recargar la mitad del gancho si realiza un parry a un enemigo.
 
-1. Cooldown normal (recarga lenta). 
-
-2. Se recarga cada vez que hagas un parry (recompensa). 
-
-3. Recarga con una tecla spammeandola (como dándole cuerda -> animación). 
+El gancho cuenta con una logitud máxima de 5 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios a 1,5 metros pues no se considera necesario su utilidad a esas distancias.
 
 
-#### **Lock - in** 
-El jugador centra a un enemigo. Puede esquivar los ataques de los enemigos (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto (SFX o animación), el jugador realiza un parry (bloquea el ataque y stunnea al enemigo). 
+#### **Estilo duelo** 
+El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto (SFX o animación), el jugador realiza un parry bloqueando el ataque y stunneando al enemigo al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
 
-Un enemigo puede atacarte desde atrás (disparo, lanzamiento...). Si realizas un parry / esquive normal, el jugador mantiene fijado al enemigo inicial. ¿Si te da el ataque, sales del modo fijado? 
-
-Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango (y no tiene visión directa del jugador), no le ataca, pero se pone en guardia. Si tiene visión directa, sí ataca. ¿Fuego amigo? 
+Los enemigos puede realizar ataques desde atrás (disparo, lanzamiento...). Si el jugador realiza un parry o esquive normal, se mantiene fijado al enemigo inicial. En el caso contrario, el jugador recibe el ataque, el enemigo fijado se desfijará.
 
 #### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
-  * Izquierda: input de dirección izquierda (A/joystick) + golpear
+  * Izquierda: input de dirección izquierda (A/joystick) + golpear.
 
-  * Centro: sin input de dirección + golpear
+  * Centro: sin input de dirección + golpear.
 
-  * Derecha: input de dirección derecha (D/joystick) + golpear
+  * Derecha: input de dirección derecha (D/joystick) + golpear.
 
-Las acciones realizables con Adelante y Atrás + golpear están por determinar, pero probablemente se utilicen para otras habilidades de combate, reduciendo la necesidad de utilizar más botones.
+En el caso que el jugador utilice el input de dirección adelante o atrás junto al botón de ataque se interpretará como un ataque al centro.
+<!--Las acciones realizables con Adelante y Atrás + golpear están por determinar, pero probablemente se utilicen para otras habilidades de combate, reduciendo la necesidad de utilizar más botones.-->
 
 #### **Esquives**
 El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demasiado daño. Estos ataques se categorizan en dos tipos:
-- **Ataques de frente. (primarios)** Son los recibidos por el enemigo fijado. Pueden venir de derecha, izquierda o frente. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
-  - Esquive: dentro de una ventana de frames, el jugador puede esquivar en la dirección correcta para no sufrir daño por los ataques enemigos y encontrar ventanas para atacar
+- **Ataques primarios** Son los recibidos por el enemigo fijado. Pueden venir de derecha, izquierda o frente. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
+  - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la dirección correcta para no sufrir daño por los ataques enemigos obteniendo 3 posibilidades:
     
-   * Izquierda: input de dirección izquierda (A/joystick) + esquivar
+    * Izquierda: input de dirección izquierda (A/joystick) + esquivar.
 
-  * Centro: sin input de dirección + esquivar
+    * Centro: sin input de dirección + esquivar.
 
-  * Derecha: input de dirección derecha (D/joystick) + esquivar
+    * Derecha: input de dirección derecha (D/joystick) + esquivar.
 
-Para esquivar un ataque el jugador debe introducir el input de dirección adecuada, similar a la saga de videojuegos *Punch Out*. Un ataque por la izquierda solo puede esquivarse por la izquierda y viceversa. La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. Así mismo, los enemigos también esquivaran los ataques del jugador bajo las mismas normas.
+    La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo.En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también esquivaran los ataques del jugador bajo las mismas normas.
 
-  -Bloqueo: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente. Los bloqueos pueden realizarse en las mismas direcciones que los esquives.
+  - **Bloqueo**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente. Los bloqueos se realizan en las mismas direcciones que los esquives.
 
-- **Ataques laterales o traseros. (secundarios)** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
+- **Ataques secundarios** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
   
-  * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques/disparos gracias a los frames de invulnerabilidad que otorga el dash. Un dash en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
-  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador recibe un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un bloqueo especial que le protegerá de recibir daño de ataques por la espalda.
+  * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques o disparos gracias a los frames de invulnerabilidad que otorga el esquive. Un esquive en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
+
+  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un bloqueo especial que le protegerá de recibir daño de ataques por la espalda.
 
 <img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
 
 
-De esta forma se recompensa por realizar esquives y bloqueos correctos , fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote. 
+De esta forma se recompensa por realizar esquives y bloqueos correctos, fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote.
 
 <img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
 
+#### **Vida**
+El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos formas:
+  1. **Botiquines**: En los niveles el jugador podrá encontrar botiquines en zonas de transición entre combates. Estos botiquines restauran 2 puntos de vida.
 
+  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan "robados" correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones "robados", esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
+
+#### **Comportamiento enemigos**
+
+Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango (y no tiene visión directa del jugador), no le ataca, pero se pone en guardia. Si tiene visión directa, sí ataca. ¿Fuego amigo? 
 
 
 

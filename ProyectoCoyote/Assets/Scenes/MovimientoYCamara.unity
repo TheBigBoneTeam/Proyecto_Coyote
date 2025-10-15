@@ -1221,7 +1221,7 @@ MonoBehaviour:
   target: {fileID: 1472595019}
   offset: {x: 0, y: 2, z: 0}
   clampAxis: {x: 0, y: 30}
-  follow_smoothing: 3
+  follow_smoothing: 10
   rotate_smoothing: 6
   sensitivity: 100
   lockedTarget: 0
@@ -1301,8 +1301,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982685424}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.40857112, y: -0.5905981, z: -0.47126928, w: 0.51202434}
-  m_LocalPosition: {x: -2.80472, y: -0.44447422, z: -9.284363}
+  m_LocalRotation: {x: -0.40855664, y: -0.59059966, z: -0.47110993, w: 0.5121806}
+  m_LocalPosition: {x: -2.804571, y: -0.4444418, z: -9.284391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1331,7 +1331,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -2631,6 +2631,7 @@ MonoBehaviour:
   dashCd: 1.5
   dashing: 0
   orientation: {fileID: 1703158317}
+  moveDirection: {x: 0, y: 0, z: 0}
   gameInput: {fileID: 591051590}
   animator: {fileID: 0}
   moveLockedSpeed: 1.5

@@ -71,16 +71,31 @@ public class CameraFollow : MonoBehaviour
 
         roty = Mathf.Clamp(roty, clampAxis.x, clampAxis.y);
 
-        Quaternion localRotation = Quaternion.Euler(roty, rotx, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, Time.deltaTime * rotate_smoothing);
+        Quaternion camRotation = Quaternion.Euler(roty, rotx, 0);
+        transform.rotation = Quaternion.Slerp(transform.rotation, camRotation, Time.deltaTime * rotate_smoothing);
+
+        // Hacer que el jugador mire hacia donde apunta la cámara 
+        if (!lockedTarget && target != null)
+        {
+            Vector3 lookDir = transform.forward;
+            lookDir.y = 0;
+            if (lookDir != Vector3.zero)
+            {
+                Quaternion playerRot = Quaternion.LookRotation(lookDir);
+                target.rotation = Quaternion.Slerp(target.rotation, playerRot, Time.deltaTime * rotate_smoothing);
+            }
+        }
 
     }
-    
+
     void LookAtTarget()
     {
-        transform.rotation = cam.rotation;
-        Vector3 r = cam.eulerAngles;
-        rotx = r.y;
-        roty = 1.8f;
+        Quaternion targetRotation = Quaternion.LookRotation(target.forward, Vector3.up);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotate_smoothing * Time.deltaTime);
+
+        Vector3 euler = transform.eulerAngles;
+        rotx = euler.y;
+        roty = euler.x;
     }
 }

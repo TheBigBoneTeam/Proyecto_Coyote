@@ -1007,8 +1007,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568314407}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2894165, y: -0.000000029802319, z: 0.00000001117587, w: 0.95720327}
-  m_LocalPosition: {x: -4.2347703, y: 8.855476, z: -15.410427}
+  m_LocalRotation: {x: 0.073014155, y: 0, z: 0, w: 0.9973309}
+  m_LocalPosition: {x: -4.2347703, y: 4.255476, z: -13.340427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtOffset: {x: 0, y: 0, z: 0}
+  LookAtOffset: {x: 0, y: -1.18, z: 0}
 --- !u!114 &568314410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,10 +1040,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 4, z: 0}
+  ShoulderOffset: {x: 0, y: -0.6, z: 0}
   VerticalArmLength: 0
   CameraSide: 1
-  CameraDistance: 6
+  CameraDistance: 3.93
   AvoidObstacles:
     Enabled: 1
     CollisionFilter:
@@ -1220,8 +1220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1472595019}
   offset: {x: 0, y: 2, z: 0}
-  clampAxis: {x: -30, y: 30}
-  follow_smoothing: 6
+  clampAxis: {x: 0, y: 30}
+  follow_smoothing: 10
   rotate_smoothing: 6
   sensitivity: 100
   lockedTarget: 0
@@ -1301,8 +1301,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982685424}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22991726, y: 0.77000654, z: 0.42697787, w: -0.4146299}
-  m_LocalPosition: {x: -2.4659848, y: 1.4626265, z: -8.244251}
+  m_LocalRotation: {x: -0.40855664, y: -0.59059966, z: -0.47110993, w: 0.5121806}
+  m_LocalPosition: {x: -2.804571, y: -0.4444418, z: -9.284391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Composition:
-    ScreenPosition: {x: 0.15, y: 0}
+    ScreenPosition: {x: 0.15, y: 0.1}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -1331,7 +1331,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -1361,7 +1361,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 0
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0.55, y: -1.4, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
@@ -2326,8 +2326,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363633232}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2894165, y: 0, z: 0, w: 0.9572033}
-  m_LocalPosition: {x: 0.67237914, y: 3.3316717, z: -6.479011}
+  m_LocalRotation: {x: 0.073014155, y: 0, z: 0, w: 0.9973309}
+  m_LocalPosition: {x: 0.672379, y: -1.2683284, z: -4.4090114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2631,6 +2631,7 @@ MonoBehaviour:
   dashCd: 1.5
   dashing: 0
   orientation: {fileID: 1703158317}
+  moveDirection: {x: 0, y: 0, z: 0}
   gameInput: {fileID: 591051590}
   animator: {fileID: 0}
   moveLockedSpeed: 1.5
@@ -2716,7 +2717,7 @@ MonoBehaviour:
   cinemachineAnimator: {fileID: 95951782}
   zeroVert_Look: 0
   noticeZone: 20
-  lookAtSmoothing: 2
+  lookAtSmoothing: 1
   maxNoticeAngle: 60
   UI_Locked_Scale: 0.1
   enemyLocked: 0

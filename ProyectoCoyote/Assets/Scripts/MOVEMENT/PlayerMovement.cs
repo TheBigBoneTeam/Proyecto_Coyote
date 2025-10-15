@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     #region Variables de control
     public Transform orientation;
     float horizontalInput, verticalInput;
-    Vector3 moveDirection;
+    [HideInInspector] public Vector3 moveDirection;
 
     Rigidbody rb;
 
@@ -90,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotateSpeed = 3f;
 
     public bool lockMovement;
-    
     //
     public MovementState state;
 
@@ -133,8 +132,6 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
         HandleDashInput();
-        // El personaje solo podrá rotar si no esta lockeado
-        if (!lockMovement) PlayerRotation();
 
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
@@ -325,14 +322,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Añadido Andrea
-    private void PlayerRotation()
-    {
-        if (moveDirection.magnitude == 0) return;
-        Vector3 rotDir = new Vector3(moveDirection.x, moveDirection.y, moveDirection.z);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rotDir), Time.deltaTime * rotateSpeed);
-    }
-    // 
     private void SpeedControl()
     {
         // Control de velocidad en rampa
@@ -348,8 +337,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-            
 
             if (flatVel.magnitude > moveSpeed && !lockMovement)
             {

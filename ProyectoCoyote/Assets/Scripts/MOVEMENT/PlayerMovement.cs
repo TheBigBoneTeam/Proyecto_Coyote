@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
     Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
+    float rotationSpeed = 3f;
     public bool lockMovement;
     [SerializeField] EnemyLockOn lockOnSystem;
     Transform enemyTarget => lockOnSystem != null ? lockOnSystem.CurrentTarget : null;
@@ -159,12 +160,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lookDir = enemyTarget.position - transform.position;
             lookDir.y = 0;
 
-            if (lookDir.sqrMagnitude > 0.01f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(lookDir);
-                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 10f));
-                orientation.rotation = Quaternion.Slerp(orientation.rotation, targetRotation, Time.fixedDeltaTime * 10f);
-            }
+            Quaternion lookRotation = Quaternion.LookRotation(lookDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
         }
         if (!hit) //test animaciones golpeo
             MovePlayer();
@@ -180,22 +178,6 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
-
-        //  A�adido Andrea
-        // tener en cuenta c�mara
-        Vector3 forward = cam.forward;
-        Vector3 right = cam.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-
-        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
-        //
-
-
-
 
         //TEST ANIAMCIONES COMBATE (Edu)
 

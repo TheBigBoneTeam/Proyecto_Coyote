@@ -80,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
+    bool hit = false; //test animacion
+
+
+
     // float moveX, moveY;
 
     // Añadido Andrea
@@ -147,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+   
         MovePlayer();
     }
     #endregion
@@ -154,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
     #region Input
     private void MyInput()
     {
+
         if (gameInput == null) return;
 
         horizontalInput = gameInput.Horizontal;
@@ -168,9 +174,30 @@ public class PlayerMovement : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
+        
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
 
+
+
+
+        //TEST ANIAMCIONES COMBATE (Edu)
+        
+        if(Input.GetMouseButtonDown(1))
+        {
+            switch (horizontalInput)
+            {
+                case 1:
+                    animator.CrossFade("Hit_R", 1f);
+                    break;
+                case -1:
+                    animator.CrossFade("Hit_L", 1f);
+                    break;
+            }
+        }
+
+
+ 
         computeAnimator();
 
         if(gameInput.JumpPressed && readyToJump && grounded)

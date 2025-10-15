@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
 
-    [Header("Manejo de caída")]
+    [Header("Manejo de caï¿½da")]
     public float gravity;
     /*
     0: normal
@@ -80,10 +80,16 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
+    public bool hit = false; //test animacion
+    public bool isLocked = false;
+
+
     // float moveX, moveY;
 
-    // Añadido Andrea
+    // Aï¿½adido Andrea
     [Header("Lock Movement")]
+
+    Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
     public bool lockMovement;
     [SerializeField] EnemyLockOn lockOnSystem;
@@ -114,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         gameInput = GetComponentInParent<GameInput>();
         if (gameInput == null)
         {
-            Debug.LogError("No se encontró el GameInput.");
+            Debug.LogError("No se encontrï¿½ el GameInput.");
         }
         else
         {
@@ -160,7 +166,8 @@ public class PlayerMovement : MonoBehaviour
                 orientation.rotation = Quaternion.Slerp(orientation.rotation, targetRotation, Time.fixedDeltaTime * 10f);
             }
         }
-        MovePlayer();
+        if (!hit) //test animaciones golpeo
+            MovePlayer();
     }
 
     #endregion
@@ -168,14 +175,48 @@ public class PlayerMovement : MonoBehaviour
     #region Input
     private void MyInput()
     {
+
         if (gameInput == null) return;
 
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
+        //  Aï¿½adido Andrea
+        // tener en cuenta cï¿½mara
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+
+        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+        //
+
+
+
+
+        //TEST ANIAMCIONES COMBATE (Edu)
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            switch (horizontalInput)
+            {
+                case 1:
+                    animator.CrossFade("Hit_L", .1f);
+                    break;
+                case -1:
+                    animator.CrossFade("Hit_R", .1f);
+                    break;
+            }
+        }
+
+
+
         computeAnimator();
 
-        if(gameInput.JumpPressed && readyToJump && grounded)
+        if (gameInput.JumpPressed && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -197,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input", inputMagnitude);
         animator.SetBool("isRunning", isRunning);
-
+        animator.SetBool("isLocked", isLocked);
 
 
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
@@ -299,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // Añadido Andrea
+        // Aï¿½adido Andrea
         if (lockMovement && enemyTarget != null)
         {
             Vector3 toEnemy = (enemyTarget.position - transform.position).normalized;
@@ -357,7 +398,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
-            else if(flatVel.magnitude > moveLockedSpeed && lockMovement)
+            else if (flatVel.magnitude > moveLockedSpeed && lockMovement)
             {
                 Vector3 limitedVel = flatVel.normalized * moveLockedSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
@@ -438,7 +479,7 @@ public class PlayerMovement : MonoBehaviour
     /* MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA */
     private void OnGUI()
     {
-        GUI.skin.label.fontSize = 30;   // Tamaño de la letra
+        GUI.skin.label.fontSize = 30;   // Tamaï¿½o de la letra
 
         // Velocidad horizontal (solo plano XZ)
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);

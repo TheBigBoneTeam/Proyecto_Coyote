@@ -86,6 +86,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
+        gameObject.GetComponent<PlayerMovement>().isLocked = true;
         Console.WriteLine("Enemigo encontrado");
     }
 
@@ -98,6 +99,7 @@ public class EnemyLockOn : MonoBehaviour
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
+        gameObject.GetComponent<PlayerMovement>().isLocked = false;
         Console.WriteLine("Vover a modo SIN lockear");
     }
 

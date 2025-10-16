@@ -919,10 +919,10 @@ GameObject:
   - component: {fileID: 1568128650}
   - component: {fileID: 1568128657}
   - component: {fileID: 1568128659}
-  - component: {fileID: 1568128660}
   - component: {fileID: 1568128661}
+  - component: {fileID: 1568128662}
   m_Layer: 0
-  m_Name: Capsule (3)
+  m_Name: Enemigo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559f2e8293f37334dbe07b44f985a5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directions: 
+  directions: 0000000001000000
   dodging: 0
 --- !u!54 &1568128652
 Rigidbody:
@@ -1113,25 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endAction: 0
-  Locked: 0
---- !u!114 &1568128660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568128648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f21e425e8c89a4439e29b8e41098414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeOnLoop: 1
-  interruptOptions: 0
-  _eventHandler:
-    debugStatusChanges: 1
-    identifier: 
-  System: {fileID: 11400000, guid: f3264b3d7d602484d962e18e776cae89, type: 2}
+  Locked: 1
 --- !u!114 &1568128661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,6 +1129,24 @@ MonoBehaviour:
   attack: {fileID: 0}
   enemyAI: {fileID: 0}
   damageReceiver: {fileID: 0}
+--- !u!114 &1568128662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568128648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f21e425e8c89a4439e29b8e41098414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 0
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
+  System: {fileID: 11400000, guid: f3264b3d7d602484d962e18e776cae89, type: 2}
 --- !u!1 &1734570009
 GameObject:
   m_ObjectHideFlags: 0

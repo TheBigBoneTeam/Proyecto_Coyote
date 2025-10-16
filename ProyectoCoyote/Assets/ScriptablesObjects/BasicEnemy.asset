@@ -132,16 +132,16 @@ MonoBehaviour:
         - 0c87ccc8-af40-4e16-944a-ea081b271210
         childIds:
         - 6cf0585b-8764-4d80-b88b-c9f05953ce74
-        - 760a4f03-27c0-47d2-b16e-311bcf330189
-      - name: wait
-        id: 760a4f03-27c0-47d2-b16e-311bcf330189
-        position: {x: 300, y: 400}
+        - 93c60b42-c859-4ab3-a3fa-1dcfcff86db3
+      - name: Idle
+        id: 93c60b42-c859-4ab3-a3fa-1dcfcff86db3
+        position: {x: 288.8, y: 416}
         node:
-          rid: 5634289368871469204
+          rid: 5634289381811945559
         references:
         - fieldName: Action
           value:
-            rid: 5634289368871469205
+            rid: 5634289381811945560
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -164,7 +164,8 @@ MonoBehaviour:
     - rid: 5634289356226429026
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        attack: 0
+        action: 0
+        idle: 0
     - rid: 5634289356226429027
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -178,11 +179,13 @@ MonoBehaviour:
     - rid: 5634289356226429030
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        attack: 2
+        action: 0
+        idle: 0
     - rid: 5634289356226429032
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        attack: 1
+        action: 0
+        idle: 0
     - rid: 5634289365077983345
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -220,10 +223,11 @@ MonoBehaviour:
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 5634289368871469204
+    - rid: 5634289381811945559
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289368871469205
-      type: {class: DelayAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+    - rid: 5634289381811945560
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        delayTime: 1
+        action: 6
+        idle: 0

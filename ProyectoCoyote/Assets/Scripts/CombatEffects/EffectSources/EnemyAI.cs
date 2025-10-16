@@ -1,7 +1,7 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
-using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,18 +28,20 @@ public class EnemyAI : MonoBehaviour
     }
     public bool isLocked() => Locked;
 
-    public enum BasicAttacks
+    public enum BasicActions
     {
         AttackA,
         AttackB,
         AttackC,
         StanceA,
         StanceB,
+        StanceC,
+        Idle
     }
-    public void LoadBasicAction(EnemyAI.BasicAttacks attack)
+    public void LoadBasicAction(EnemyAI.BasicActions action)
     {
         endAction = false;
-        character.PlayAnimation(attack.ToString());
+        character.PlayAnimation(action.ToString());
 
     }
     private void Start()

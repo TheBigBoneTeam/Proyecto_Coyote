@@ -5,7 +5,7 @@ public class HitStopComponent : AHitstopBase
 {
     private Rigidbody _rigidbody;
     Vector3 _storedVelocity,_storedAngVelocity;
-
+    
     public override void Start()
     {
         base.Start();

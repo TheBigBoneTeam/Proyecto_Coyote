@@ -27,7 +27,9 @@ public class EnemyLockOn : MonoBehaviour
 
     [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
-    PlayerMovement movement; 
+    PlayerMovement movement;
+    public Transform CurrentTarget => currentTarget;
+
 
     void Start()
     {
@@ -84,6 +86,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
+        gameObject.GetComponent<PlayerMovement>().isLocked = true;
         Console.WriteLine("Enemigo encontrado");
     }
 
@@ -96,6 +99,7 @@ public class EnemyLockOn : MonoBehaviour
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
+        gameObject.GetComponent<PlayerMovement>().isLocked = false;
         Console.WriteLine("Vover a modo SIN lockear");
     }
 
@@ -219,10 +223,13 @@ public class EnemyLockOn : MonoBehaviour
         enemyTarget_Locator.position = pos;
 
         // Gira al personaje hacia el enemigo
-        Vector3 dir = currentTarget.position - transform.position;
+        Vector3 dir = GetTargetCenter(currentTarget) - transform.position;
         dir.y = 0;
-        Quaternion rot = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        if (dir != Vector3.zero)
+        {
+            Quaternion rot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        }
     }
 
     // Esfera al rededor del personaje

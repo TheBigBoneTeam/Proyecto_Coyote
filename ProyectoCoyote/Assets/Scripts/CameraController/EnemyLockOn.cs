@@ -25,7 +25,7 @@ public class EnemyLockOn : MonoBehaviour
     float currentYOffset;
     Vector3 pos;
 
-    [SerializeField] CameraFollow camFollowTargeted;
+    [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
     PlayerMovement movement;
     public Transform CurrentTarget => currentTarget;
@@ -44,7 +44,7 @@ public class EnemyLockOn : MonoBehaviour
     void Update()
     {
         // Indicar al resto de scripts cuándo está el enemigo lockeado
-        camFollowTargeted.lockedTarget = enemyLocked; 
+        camFollow.lockedTarget = enemyLocked; 
         movement.lockMovement = enemyLocked;
 
         //// Input System

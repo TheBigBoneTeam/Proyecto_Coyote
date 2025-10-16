@@ -61,7 +61,6 @@ public abstract class AGameCharacter :MonoBehaviour
     public abstract void Die();
     private void Update()
     {
-        print("update");
         foreach (var effect in activeEffects.ToArray())
         {
             if (effect.Update()){
@@ -103,15 +102,19 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
-    internal void DodgeAttack()
+    public void DodgeAttack()
     {
         checkEffect(new Dodge(2));
     }
 
-    internal void PlayAnimation(AnimationClip clip)
+    public void PlayAnimation(AnimationClip clip)
     {
             AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
 
         graph.Play();
+    }
+    public void PlayAnimation(string stateName)
+    {
+     anim.Play(stateName,0,0);
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace BehaviourAPI.BehaviourTrees
 {
     using Core;
-
+    using System.Diagnostics;
     /// <summary>
     /// Composite node that executes its children sequencially.
     /// </summary>
@@ -67,7 +67,7 @@
             BTNode currentChild = GetCurrentChild();
             currentChild.OnUpdated();
             var status = currentChild.Status;
-
+            UnityEngine.Debug.Log("Hola" + GetType());
             if (KeepExecutingNextChild(status) && currentChildIdx < m_children.Count - 1)
             {
                 currentChild.OnStopped();

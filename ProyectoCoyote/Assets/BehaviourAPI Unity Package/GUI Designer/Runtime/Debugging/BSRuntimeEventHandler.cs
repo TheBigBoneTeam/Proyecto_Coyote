@@ -38,6 +38,7 @@ Frame: {4} | Graph : {5}";
 
             var colorTag = $"#{ColorUtility.ToHtmlStringRGB(status.ToColor())}";
             string id = string.IsNullOrEmpty(identifier) ? "DEBUGGER" : identifier;
+            Debug.Log("s");
             Debug.LogFormat(Context, k_LogTemplate, id, name, colorTag, status, Time.frameCount, graphName);
         }
     }

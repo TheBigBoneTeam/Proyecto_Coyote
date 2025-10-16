@@ -6,5 +6,6 @@ public class StanceData : ScriptableObject
     [field: SerializeField] public AnimationClip clip { get; private set; }
 
     [field: SerializeField] public HitDirections[] DefenseDirections { get; private set; }
+    
 
 }

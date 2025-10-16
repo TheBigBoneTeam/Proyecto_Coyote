@@ -25,7 +25,10 @@ namespace BehaviourAPI.Core.Actions
         /// <summary>
         /// Pauses the action. 
         /// </summary>
-        public virtual void Pause() { }
+        public virtual void Pause() { 
+        
+        
+        }
 
         /// <summary>
         /// Unpauses the action. 
@@ -46,5 +49,6 @@ namespace BehaviourAPI.Core.Actions
         {
             return MemberwiseClone();
         }
+
     }
 }

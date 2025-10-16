@@ -2,6 +2,7 @@ using CombatEffect;
 using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Attack : ATouchCombatEffectSource
 {
@@ -11,7 +12,7 @@ public class Attack : ATouchCombatEffectSource
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
     AHittableCheck HitCheck;
 
-    [field: SerializeField] public HitDirections[] HitDirections { get; private set; }
+    [field: SerializeField] public List<HitDirections> HitDirections { get; private set; }
     protected override void OnTriggerEnter(Collider other)
     {
         AGameCharacter character = other.GetComponent<AGameCharacter>();
@@ -35,6 +36,7 @@ public class Attack : ATouchCombatEffectSource
     protected void Start()
     {
         setHitCheck(HitCheckType);
+        HitDirections = new List<HitDirections>();
     }
     public void setParry(bool parry)
     {
@@ -59,18 +61,33 @@ public class Attack : ATouchCombatEffectSource
                 break;
         }
     }
+    public void setHitDirections(HitDirections[] directions)
+    {
+        HitDirections.Clear();
+        HitDirections.AddRange(directions);
+    }
+    public void addHitDirection(HitDirections direction)
+    {
+        if(!HitDirections.Contains(direction))
+        HitDirections.Add(direction);
 
+    }
+    public void setHitDirection(HitDirections direction)
+    {
+        HitDirections.Clear();
+        HitDirections.Add(direction);
+    }
     public void LoadData(AttackData data)
     {
         setHitCheck(data.HitCheckType);
-        data.HitDirections.CopyTo(HitDirections,0);
+        setParry(false);
+        HitDirections.Clear();
+        HitDirections.AddRange(data.HitDirections);
         effects.Clear();
         foreach (var effect in data.effects)
         {
             effect.setSource(this);
             effects.Add(effect);
         }
-        owner.PlayAnimation(data.clip);
     }
-
 }

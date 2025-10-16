@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
 
-    [Header("Manejo de caída")]
+    [Header("Manejo de caï¿½da")]
     public float gravity;
     /*
     0: normal
@@ -86,14 +86,15 @@ public class PlayerMovement : MonoBehaviour
 
     // float moveX, moveY;
 
-    // Añadido Andrea
+    // Aï¿½adido Andrea
     [Header("Lock Movement")]
 
     Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
-    [SerializeField] float rotateSpeed = 3f;
-
     public bool lockMovement;
+    [SerializeField] EnemyLockOn lockOnSystem;
+    Transform enemyTarget => lockOnSystem != null ? lockOnSystem.CurrentTarget : null;
+
     //
     public MovementState state;
 
@@ -109,17 +110,17 @@ public class PlayerMovement : MonoBehaviour
     #region Metodos de Unity
     private void Start()
     {
-        cam = Camera.main.transform;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
         animator = GetComponentInChildren<Animator>();
+        lockOnSystem = GetComponent<EnemyLockOn>();
 
         gameInput = GetComponentInParent<GameInput>();
         if (gameInput == null)
         {
-            Debug.LogError("No se encontró el GameInput.");
+            Debug.LogError("No se encontrï¿½ el GameInput.");
         }
         else
         {
@@ -137,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
         HandleDashInput();
 
+
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
         {
@@ -147,13 +149,27 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0;
             rb.AddForce(Vector3.down * gravity, ForceMode.Force);
         }
+        
     }
 
     private void FixedUpdate()
     {
+        if (lockMovement && enemyTarget != null)
+        {
+            Vector3 lookDir = enemyTarget.position - transform.position;
+            lookDir.y = 0;
+
+            if (lookDir.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(lookDir);
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * 10f));
+                orientation.rotation = Quaternion.Slerp(orientation.rotation, targetRotation, Time.fixedDeltaTime * 10f);
+            }
+        }
         if (!hit) //test animaciones golpeo
             MovePlayer();
     }
+
     #endregion
 
     #region Input
@@ -165,17 +181,17 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
-        //  Añadido Andrea
-        // tener en cuenta cámara
-        Vector3 forward = cam.forward;
-        Vector3 right = cam.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
+        ////  Aï¿½adido Andrea
+        //// tener en cuenta cï¿½mara
+        //Vector3 forward = cam.forward;
+        //Vector3 right = cam.right;
+        //forward.y = 0;
+        //right.y = 0;
+        //forward.Normalize();
+        //right.Normalize();
 
 
-        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+        //moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
 
 
@@ -324,7 +340,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        // Aï¿½adido Andrea
+        if (lockMovement && enemyTarget != null)
+        {
+            Vector3 toEnemy = (enemyTarget.position - transform.position).normalized;
+            Vector3 rightOfEnemy = Vector3.Cross(Vector3.up, toEnemy).normalized;
+
+            moveDirection = toEnemy * verticalInput + rightOfEnemy * horizontalInput;
+        }
+        else
+        {
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        }
+
         rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas
@@ -451,7 +479,7 @@ public class PlayerMovement : MonoBehaviour
     /* MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA */
     private void OnGUI()
     {
-        GUI.skin.label.fontSize = 30;   // Tamaño de la letra
+        GUI.skin.label.fontSize = 30;   // Tamaï¿½o de la letra
 
         // Velocidad horizontal (solo plano XZ)
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);

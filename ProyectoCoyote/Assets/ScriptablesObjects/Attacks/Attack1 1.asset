@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Attack1 1
   m_EditorClassIdentifier: 
   <clip>k__BackingField: {fileID: 7400000, guid: bb5ed35e30bdbf246a45c239d45ea2e7, type: 2}
-  <HitCheckType>k__BackingField: 1
+  <HitCheckType>k__BackingField: 0
   <HitDirections>k__BackingField: 00000000
   effects:
   - rid: 5634289105885724744
+  - rid: 5634289337247203424
   references:
     version: 2
     RefIds:
@@ -24,3 +25,7 @@ MonoBehaviour:
       type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
         _damage: 2
+    - rid: 5634289337247203424
+      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        stunDuration: 1

@@ -113,7 +113,7 @@ namespace BehaviourAPI.BehaviourTrees
                             else if (InterruptOptions == ExecutionInterruptOptions.Pause) m_childNode.OnPaused();
                         }
                         _childExecutedLastFrame = false;
-                        return Status.Running;
+                        return Status.Failure;
                     }
                 }
                 throw new MissingChildException(this, "This decorator has no child");

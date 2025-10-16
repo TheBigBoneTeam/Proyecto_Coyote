@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public bool endAction;
     Attack attackObj;
     AGameCharacter character;
-    public bool isLocked;
+    public bool Locked;
     //public AnimatorOverrideController animatorOverrideController;
   //  [NamedArrayAttribute()] //Codigo para mostrar Palabras especificas en la lista de Stats
   ////  public AttackData[] ActionList = new AttackData[System.Enum.GetNames(typeof(BasicAttacks)).Length];
@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
         print("endActionD");
         endAction = true;
     }
+    public bool isLocked() => Locked;
 
     public enum BasicAttacks
     {

@@ -179,6 +179,22 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
+        ////  A�adido Andrea
+        //// tener en cuenta c�mara
+        //Vector3 forward = cam.forward;
+        //Vector3 right = cam.right;
+        //forward.y = 0;
+        //right.y = 0;
+        //forward.Normalize();
+        //right.Normalize();
+
+
+        //moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+        //
+
+
+
+
         //TEST ANIAMCIONES COMBATE (Edu)
 
         if (Input.GetMouseButtonDown(1))

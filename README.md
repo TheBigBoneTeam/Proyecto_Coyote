@@ -196,6 +196,8 @@ El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esq
 
 Los enemigos puede realizar ataques desde atrás (disparo, lanzamiento...). Si el jugador realiza un parry o esquive normal, se mantiene fijado al enemigo inicial. En el caso contrario, el jugador recibe el ataque, el enemigo fijado se desfijará.
 
+Si el jugador consigue derrotar al enemigo fijado, se enfocará automaticamente al enemigo de al lado si es que existe. 
+
 #### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
@@ -240,12 +242,17 @@ De esta forma se recompensa por realizar esquives y bloqueos correctos, fomentan
 El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos formas:
   1. **Botiquines**: En los niveles el jugador podrá encontrar botiquines en zonas de transición entre combates. Estos botiquines restauran 2 puntos de vida.
 
-  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan "robados" correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones "robados", esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
+  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
+
+  ![alt text](<Diagrama vida.png>)
 
 #### **Comportamiento enemigos**
 
-Si el jugador no está a rango del enemigo, este no ataca. Si entra en su rango (y no tiene visión directa del jugador), no le ataca, pero se pone en guardia. Si tiene visión directa, sí ataca. ¿Fuego amigo? 
+El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
 
+  * **Estado ilde**: Cuando los enemigos no detectan al jugador al estar fuera de su rango de visión u oculto, estarán en estado ilde dando vueltas o quedandose quietos realizando una animación predefinida. A este estado también volverán los enemigos cuando el jugador se aleje lo suficiente de estos tras ser detectado probocando que lo dejen de perseguir.
+
+  * **Estado combate**: Si el jugador es detectado por un enemigo este le atacará a distancia o se acercará para pegarle. Si otros enemigos ven a uno de ellos ponerse en este modo buscarán al jugador para atacarle también.
 
 
 ## 3.2. Controles 
@@ -257,7 +264,32 @@ MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.
 CORRER                | SHIFT       | 
 GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
-ESQUIVE/DASH          | ESPACIO     |
+ESQUIVE/PARRY         | ESPACIO     |
+
+## 3.3. Tipos de enemigos 
+
+### Enemigos melee 
+Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
+
+#### Enemigo base melee
+
+Este enemigo es el primero que se le presenta al jugador como tutorial y por lo tanto el más sencillo de combatir.
+
+#### Enemigo suicida
+Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro se lanza hacia el jugador provocando una explosión que acaba con su vida yproduce 2 de daño al jugador si este no lo esquiva. Este enemigo es ligero por lo que si el jugador usa el gancho contra él, el enemigo será atraido hacia el jugador provocando su explosión.
+
+Para poderse librar de este enemigo existen varias opciones:
+
+  * Cuando el jugador se encientra en el estilo libre si realiza una esquivación en el momento justo no recibirá ningún daño.
+
+  * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que hará detonar al enemigo saliendo ileso. Si el jugador ataca primero al enemigo este se preparará para detonar, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
+
+### Enemigos a distancia 
+Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca. 
+### Enemigos mixtos 
+Los enemigos mixtos son una combinación entre los enemigos a melee y a distancia, teniendo resistencia a los golpes y capaces de usar armas de media distancia.
+
+#### Enemigo base mixto
 
 
 # 5. Arte 
@@ -286,7 +318,7 @@ Como ya se ha mencionado el juego estará completamente implementado en 3D, tant
 ## 5.2. Banda sonora 
 ## 5.3. Efectos sonoros (SFX) 
 
-# 6. Muenús e Interfaces 
+# 6. Menús e Interfaces 
 ## Diagramas de flujo 
 
 ### Menú inicio
@@ -342,30 +374,8 @@ Pese a ser de pago único, se pondrá a la venta un **early access** para los ju
 
 # 7. Marketing y Redes Sociales
 
-# 8. Post Mortem - Alfa
+# 8. Post Mortem
 
 ## 8.1. Post Mortem - Alfa
 ## 8.2. Post Mortem - Beta
 ## 8.3. Post Mortem - Gold
-
-
-
-
-
-
-
-# Game Design 
-## Diseño de enemigos 
-“Proyecto Coyote” consta de tres tipos de enemigos: melee, distancia y mixtos (combinación entre melee y distancia). 
-### Enemigos melee 
-Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. 
-### Enemigos a distancia 
-Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca. 
-### Enemigos mixtos 
-Los enemigos mixtos son una combinación entre los enemigos a melee y a distancia, teniendo resistencia a los golpes y capaces de usar armas de media distancia. 
-## Diseño de niveles 
-“Proyecto Coyote” se divide en diferentes niveles con una ambientación única usando transiciones cinematográficas entre ellos para conectarlos. 
-### Primer nivel 
-#### Cinemática 
-#### Diseño del nivel 
-

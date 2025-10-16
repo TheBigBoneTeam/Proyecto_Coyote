@@ -6,7 +6,6 @@ namespace CombatEffect
     public abstract class ATimedEffect : ACombatEffect
     {
         public  abstract float getDuration();
-
         public ATimedEffect(ACombatEffectSource source,float duration):base(source)
         {
             

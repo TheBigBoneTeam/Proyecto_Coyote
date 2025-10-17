@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class AttacksAnimationEvent : MonoBehaviour
 {
-  [SerializeField]  Attack attack;
-    [SerializeField] EnemyAI enemyAI;
-    [SerializeField] DamageReceiver damageReceiver;
+    Attack attack;
+    EnemyAI enemyAI;
+     DamageReceiver damageReceiver;
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);

@@ -50,10 +50,12 @@ public class PlayerMovement : MonoBehaviour
     public float dashUpwardForce;
     public float dashDuration;
 
-    [Header("Cooldown")]
+    [Header("Dash Cooldown")]
     public float dashCd;
     private float dashCdTimer;
-
+    [Header("Dodge Cooldown")]
+    public float dodgeCd;
+    private float dodgeCdTimer;
     private Vector3 delayedForceToApply;
 
     public bool dashing;
@@ -209,7 +211,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isRunning", isRunning);
 
 
-
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
@@ -325,8 +326,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
+        //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas
         if (OnSlope() && !exitingSlope)
@@ -416,11 +417,23 @@ public class PlayerMovement : MonoBehaviour
         if (gameInput == null) return;
 
         dashCdTimer -= Time.deltaTime;
+        dodgeCdTimer -= Time.deltaTime;
 
-        if (gameInput.DashPressed && dashCdTimer <= 0f)
+        if (lockMovement)
         {
-            Dash();
+            if (gameInput.DashPressed && dodgeCdTimer <= 0f)
+            {
+                Dodge();
+            }
         }
+        else
+        {
+            if (gameInput.DashPressed && dashCdTimer <= 0f)
+            {
+                Dash();
+            }
+        }
+
     }
 
 
@@ -438,7 +451,27 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(DelayedDashForce), 0.025f);
         Invoke(nameof(ResetDash), dashDuration);
     }
+    private void Dodge()
+    {
+        if (dodgeCdTimer > 0) return;
+        else dodgeCdTimer = dodgeCd;
 
+        dashing = true;
+            if (horizontalInput == 0)
+            {
+                animator.CrossFade("Dodge_M", .1f);
+            }
+            if (horizontalInput > 0)
+            {
+                animator.CrossFade("Dodge_R", .1f);
+            }
+            if (horizontalInput < 0)
+            {
+                animator.CrossFade("Dodge_L", .1f);
+            }
+        
+        Invoke(nameof(ResetDash), dashDuration);
+    }
     private void DelayedDashForce()
     {
         rb.AddForce(delayedForceToApply, ForceMode.Impulse);

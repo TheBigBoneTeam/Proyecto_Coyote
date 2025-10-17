@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
 {
-    Transform currentTarget;
+  public Transform currentTarget { get; private set; }
 
     [SerializeField] LayerMask targetLayers;
     [SerializeField] Transform enemyTarget_Locator;
@@ -27,9 +26,7 @@ public class EnemyLockOn : MonoBehaviour
 
     [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
-    PlayerMovement movement;
-    public Transform CurrentTarget => currentTarget;
-
+    PlayerMovement movement; 
 
     void Start()
     {
@@ -86,7 +83,6 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
-        gameObject.GetComponent<PlayerMovement>().isLocked = true;
         Console.WriteLine("Enemigo encontrado");
     }
 
@@ -99,7 +95,6 @@ public class EnemyLockOn : MonoBehaviour
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
-        gameObject.GetComponent<PlayerMovement>().isLocked = false;
         Console.WriteLine("Vover a modo SIN lockear");
     }
 
@@ -223,13 +218,10 @@ public class EnemyLockOn : MonoBehaviour
         enemyTarget_Locator.position = pos;
 
         // Gira al personaje hacia el enemigo
-        Vector3 dir = GetTargetCenter(currentTarget) - transform.position;
+        Vector3 dir = currentTarget.position - transform.position;
         dir.y = 0;
-        if (dir != Vector3.zero)
-        {
-            Quaternion rot = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
-        }
+        Quaternion rot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
     }
 
     // Esfera al rededor del personaje

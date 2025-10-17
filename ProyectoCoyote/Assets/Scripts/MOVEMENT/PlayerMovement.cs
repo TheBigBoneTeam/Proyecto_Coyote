@@ -80,22 +80,20 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDirection = new Vector2();
     bool isRunning;
     float inputMagnitude;
-    public bool hit = false; //test animacion
-    public bool isLocked = false;
-
-
     // float moveX, moveY;
 
     // A�adido Andrea
     [Header("Lock Movement")]
-
+    
     Transform cam;
     [SerializeField] float moveLockedSpeed = 1f;
     float rotationSpeed = 3f;
     public bool lockMovement;
     [SerializeField] EnemyLockOn lockOnSystem;
     Transform enemyTarget => lockOnSystem != null ? lockOnSystem.CurrentTarget : null;
+    [SerializeField] float rotateSpeed = 3f;
 
+    public bool lockMovement;
     //
     public MovementState state;
 
@@ -111,12 +109,12 @@ public class PlayerMovement : MonoBehaviour
     #region Metodos de Unity
     private void Start()
     {
+        cam = Camera.main.transform;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
         animator = GetComponentInChildren<Animator>();
-        lockOnSystem = GetComponent<EnemyLockOn>();
 
         gameInput = GetComponentInParent<GameInput>();
         if (gameInput == null)
@@ -139,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
         HandleDashInput();
 
-
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
         {
@@ -150,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0;
             rb.AddForce(Vector3.down * gravity, ForceMode.Force);
         }
-        
     }
 
     private void FixedUpdate()
@@ -167,54 +163,31 @@ public class PlayerMovement : MonoBehaviour
         if (!hit) //test animaciones golpeo
             MovePlayer();
     }
-
     #endregion
 
     #region Input
     private void MyInput()
     {
-
         if (gameInput == null) return;
 
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
-        ////  A�adido Andrea
-        //// tener en cuenta c�mara
-        //Vector3 forward = cam.forward;
-        //Vector3 right = cam.right;
-        //forward.y = 0;
-        //right.y = 0;
-        //forward.Normalize();
-        //right.Normalize();
+        //  A�adido Andrea
+        // tener en cuenta c�mara
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
 
-
-        //moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+        moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
-
-
-
-
-        //TEST ANIAMCIONES COMBATE (Edu)
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            switch (horizontalInput)
-            {
-                case 1:
-                    animator.CrossFade("Hit_L", .1f);
-                    break;
-                case -1:
-                    animator.CrossFade("Hit_R", .1f);
-                    break;
-            }
-        }
-
-
 
         computeAnimator();
 
-        if (gameInput.JumpPressed && readyToJump && grounded)
+        if(gameInput.JumpPressed && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -236,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input", inputMagnitude);
         animator.SetBool("isRunning", isRunning);
-        animator.SetBool("isLocked", isLocked);
+
 
 
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
@@ -338,19 +311,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // A�adido Andrea
-        if (lockMovement && enemyTarget != null)
-        {
-            Vector3 toEnemy = (enemyTarget.position - transform.position).normalized;
-            Vector3 rightOfEnemy = Vector3.Cross(Vector3.up, toEnemy).normalized;
-
-            moveDirection = toEnemy * verticalInput + rightOfEnemy * horizontalInput;
-        }
-        else
-        {
-            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        }
-
+        // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
 
         // Para rampas
@@ -396,7 +357,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
-            else if (flatVel.magnitude > moveLockedSpeed && lockMovement)
+            else if(flatVel.magnitude > moveLockedSpeed && lockMovement)
             {
                 Vector3 limitedVel = flatVel.normalized * moveLockedSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);

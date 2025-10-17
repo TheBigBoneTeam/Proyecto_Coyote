@@ -40,6 +40,8 @@ namespace BehaviourAPI.UnityToolkit
          
         public void SetTarget(Vector3 targetPos)
         {
+            Vector3 lookTarget = new Vector3 (targetPos.x, transform.position.y, targetPos.z);
+            transform.LookAt(lookTarget);
             target = targetPos;
             isMoving = true;
         }
@@ -49,7 +51,8 @@ namespace BehaviourAPI.UnityToolkit
         {
             if(isMoving)
             {
-                transform.LookAt(target);
+                Vector3 lookTarget = new Vector3(target.x, transform.position.y, target.z);
+                transform.LookAt(lookTarget);
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }

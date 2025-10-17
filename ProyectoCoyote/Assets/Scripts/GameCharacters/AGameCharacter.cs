@@ -44,7 +44,7 @@ public abstract class AGameCharacter :MonoBehaviour
     IEnumerator ResetInvincible(float time)
     {
         float timepass = 0;
-        MeshRenderer filter = GetComponent<MeshRenderer>();
+        SkinnedMeshRenderer filter = GetComponentInChildren<SkinnedMeshRenderer>();
         while ((timepass<time))
         {
             yield return new WaitForSeconds(0.1f);
@@ -113,8 +113,15 @@ public abstract class AGameCharacter :MonoBehaviour
 
         graph.Play();
     }
-    public void PlayAnimation(string stateName)
+    public void PlayAnimation(string stateName, bool idle = false)
     {
-     anim.Play(stateName,0,0);
+        if (idle)
+        {
+            anim.Play(stateName);
+        }
+        else
+        {
+            anim.Play(stateName, 0, 0);
+        }
     }
 }

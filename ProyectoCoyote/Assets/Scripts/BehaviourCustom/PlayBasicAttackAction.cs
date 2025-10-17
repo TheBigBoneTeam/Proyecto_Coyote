@@ -3,12 +3,16 @@ using BehaviourAPI.UnityToolkit;
 
 public class PlayBasicAttackAction : UnityAction
 {
-    public EnemyAI.BasicAttacks attack;
+    public EnemyAI.BasicActions action;
+    public bool idle;
     EnemyAI enemyAI;
-
     public override Status Update()
     {
-        if (enemyAI.endAction)
+        if (idle)
+        {
+            return Status.Success;
+        }
+        if (!idle && enemyAI.endAction)
         {
             return Status.Success;
         }
@@ -17,6 +21,6 @@ public class PlayBasicAttackAction : UnityAction
     public override void Start()
     {
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
-        enemyAI.LoadBasicAction(attack);
+        enemyAI.LoadBasicAction(action,idle);
     }
 }

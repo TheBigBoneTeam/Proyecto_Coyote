@@ -18,9 +18,11 @@ public class Attack : ATouchCombatEffectSource
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
+            print("triggerCharacetr");
             //Comprueba si el personaje golpeado es golpeable
             if (HitCheck.isHittable(character))
             {
+                print("checkeffect");
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
             }
 
@@ -48,6 +50,7 @@ public class Attack : ATouchCombatEffectSource
     }
     public void setHitCheck(HittableTypes type)
     {
+        HitCheckType = type;
         switch (type)
         {
             case HittableTypes.allCharacters:

@@ -18,7 +18,7 @@ public class HitStopComponent : AHitstopBase
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
         _rigidbody.isKinematic = true;
-        gameObject.GetComponent<Renderer>().material.color = new Color(138f/255, 43f / 255, 226f / 255, 1);
+       // gameObject.GetComponent<Renderer>().material.color = new Color(138f/255, 43f / 255, 226f / 255, 1);
 
         print("stop");
 
@@ -28,7 +28,7 @@ public class HitStopComponent : AHitstopBase
         _rigidbody.isKinematic = false;
         _rigidbody.angularVelocity = _storedAngVelocity;
         _rigidbody.linearVelocity= _storedVelocity;
-        gameObject.GetComponent<Renderer>().material.color = Color.gray;
+       // gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
     }
 }

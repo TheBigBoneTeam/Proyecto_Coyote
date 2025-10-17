@@ -32,7 +32,10 @@ public class EnemyAI : MonoBehaviour
         //print("checkLock"); 
         return player.GetComponent<EnemyLockOn>().currentTarget == this.transform;
     }
-
+    //public bool seePlayer()
+    //{
+    //    if(Vector3.Distance())
+    //}
     public enum BasicActions
     {
         AttackA,

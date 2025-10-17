@@ -90,10 +90,8 @@ public class PlayerMovement : MonoBehaviour
     float rotationSpeed = 3f;
     public bool lockMovement;
     [SerializeField] EnemyLockOn lockOnSystem;
-    Transform enemyTarget => lockOnSystem != null ? lockOnSystem.CurrentTarget : null;
+    Transform enemyTarget => lockOnSystem != null ? lockOnSystem.currentTarget : null;
     [SerializeField] float rotateSpeed = 3f;
-
-    public bool lockMovement;
     //
     public MovementState state;
 
@@ -160,7 +158,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
 
         }
-        if (!hit) //test animaciones golpeo
             MovePlayer();
     }
     #endregion
@@ -193,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+       
     }
 
 
@@ -216,6 +214,22 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
+        if (gameInput.attackPressed)
+        {
+            if (horizontalInput == 0)
+            {
+                animator.CrossFade("Hit_M_L",.1f);
+            }
+            if (horizontalInput > 0)
+            {
+                animator.CrossFade("Hit_R", .1f);
+            }
+            if (horizontalInput < 0)
+            {
+                animator.CrossFade("Hit_L", .1f);
+            }
+        }
+
     }
     private void StateHandler()
     {

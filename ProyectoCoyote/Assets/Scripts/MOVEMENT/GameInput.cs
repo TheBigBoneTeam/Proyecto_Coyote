@@ -18,6 +18,8 @@ public class GameInput : MonoBehaviour
     public bool JumpPressed { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
+
+    public bool attackPressed { get; private set; }
     #endregion
 
     #region Metodos
@@ -29,6 +31,8 @@ public class GameInput : MonoBehaviour
         JumpPressed = Input.GetKeyDown(jumpKey);
         SprintHeld = Input.GetKey(sprintKey);
         DashPressed = Input.GetKeyDown(dashKey);
+
+        attackPressed = Input.GetMouseButtonDown(0);
     }
 
     public Vector2 GetMovementPlayer()

@@ -105,6 +105,7 @@ MonoBehaviour:
         parentIds:
         - 6cf0585b-8764-4d80-b88b-c9f05953ce74
         childIds:
+        - a0e233ef-b556-4140-932f-9bed26f5ae1b
         - 54c4bca0-f67b-4488-bee4-2c0dffbca16d
         - 4416613e-eacb-4600-9809-873056a04543
       - name: 
@@ -147,7 +148,23 @@ MonoBehaviour:
         parentIds:
         - 7336a40c-5d0c-4ef6-8974-8d46125bddb5
         childIds: []
-    pushPerceptions: []
+      - name: 
+        id: a0e233ef-b556-4140-932f-9bed26f5ae1b
+        position: {x: -580.8, y: 816}
+        node:
+          rid: 5634289401212960768
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289401212960865
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - e63eceb4-d0b0-4df9-ac2b-0659fb391fdb
+        childIds: []
+    pushPerceptions:
+    - name: newpushPerception
+      targetNodeIds: []
   references:
     version: 2
     RefIds:
@@ -164,7 +181,7 @@ MonoBehaviour:
     - rid: 5634289356226429026
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        action: 0
+        action: 2
         idle: 0
     - rid: 5634289356226429027
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
@@ -179,12 +196,12 @@ MonoBehaviour:
     - rid: 5634289356226429030
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        action: 0
+        action: 2
         idle: 0
     - rid: 5634289356226429032
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        action: 0
+        action: 2
         idle: 0
     - rid: 5634289365077983345
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
@@ -230,4 +247,14 @@ MonoBehaviour:
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
         action: 6
-        idle: 0
+        idle: 1
+    - rid: 5634289401212960768
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289401212960865
+      type: {class: ChasePlayerAction, ns: , asm: Assembly-CSharp}
+      data:
+        speed: 2
+        target: {fileID: 0}
+        maxDistance: 3
+        maxTime: 10

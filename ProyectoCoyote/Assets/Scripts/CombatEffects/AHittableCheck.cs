@@ -1,3 +1,7 @@
+using System.Diagnostics;
+using System.Security.Cryptography;
+using Unity.VisualScripting.FullSerializer;
+
 public abstract class AHittableCheck
 {
    protected AGameCharacter owner;
@@ -30,6 +34,7 @@ public class OnlyOtherTeamHittable : AHittableCheck
     public OnlyOtherTeamHittable(AGameCharacter owner) : base(owner) { }
     public override bool isHittable(AGameCharacter obj)
     {
+        UnityEngine.Debug.Log("ishiitable");
         return owner.isOtherTeam(obj);
     }
 }

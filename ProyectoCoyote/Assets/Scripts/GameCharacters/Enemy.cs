@@ -8,6 +8,8 @@ public class Enemy : AGameCharacter
     }
     public override bool isOtherTeam(AGameCharacter character)
     {
+        print(character.name);
+        print(character.GetComponent<Enemy>() == null);
         return character.GetComponent<Enemy>() == null;
     }
 }

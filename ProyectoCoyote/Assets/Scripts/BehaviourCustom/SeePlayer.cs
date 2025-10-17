@@ -10,9 +10,7 @@ using BehaviourAPI.UnityToolkit;
 // Use this attribute to include this perception in a group: 
 // [SelectionGroup("groupName")]
 public class SeePlayer : UnityPerception
-{
-   public PlayerMovement player;
-   
+{   
     // Override this method to get references to unity components before the execution
     // using the "context" property.
     protected override void OnSetContext()

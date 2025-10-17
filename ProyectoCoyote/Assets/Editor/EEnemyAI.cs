@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(EnemyAI))]
 public class EEnemyAI : Editor
@@ -20,6 +21,8 @@ public class EEnemyAI : Editor
     }
     public override void OnInspectorGUI()
     {
+        using (new EditorGUI.DisabledScope(true))
+            EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((EnemyAI)target), GetType(), false);
         //Hace falta actualizar los serialez objects
         serializedObject.Update();
         

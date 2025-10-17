@@ -19,9 +19,8 @@ public class ActionBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(lastAnimInAction)
-        animator.gameObject.GetComponent<EnemyAI>().endCurrentAction();
+        animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
     }
-
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

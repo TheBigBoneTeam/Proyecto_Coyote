@@ -18,13 +18,13 @@ namespace CombatEffect
             base.Activate(character);
             Debug.Log("StartFakeStun");
             this.objCharacter = character;
-            character.gameObject.GetComponent<Renderer>().material.color = Color.red;
+            //character.gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
 
         public override void End()
         {
             Debug.Log("EndFakeStun");
-            objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+          //  objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
         }
     }
@@ -45,7 +45,7 @@ namespace CombatEffect
         {
             base.Activate(character);
             this.objCharacter = character;
-            character.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+          //  character.gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
 
         public override void End()

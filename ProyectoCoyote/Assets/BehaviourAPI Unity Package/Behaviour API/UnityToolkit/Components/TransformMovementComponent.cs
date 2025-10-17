@@ -40,6 +40,7 @@ namespace BehaviourAPI.UnityToolkit
          
         public void SetTarget(Vector3 targetPos)
         {
+            transform.LookAt(targetPos);
             target = targetPos;
             isMoving = true;
         }

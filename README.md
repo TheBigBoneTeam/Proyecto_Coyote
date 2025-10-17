@@ -181,7 +181,7 @@ El jugador se desplaza en tres dimensiones en el escenario de juego y puede real
 #### **Desplazamiento horizontal**
 El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada.
 #### **Desplazamiento vertical** 
-El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del peso del enemigo, por lo que, si un enemigo es ligero, al engancharlo el gancho arraerá en enemigo al jugador, mientras que si es pesado será el jugador quien será atraido hacia el enemigo.
+El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del botón que pulse el jugador, es decir, si usa el gancho y se mueve hacia delante irá donde esté el gancho, mientras que si se mueve para atrás lo que tenga el gancho será atraido hacia el jugador.
 
 <!-- 1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
 
@@ -209,6 +209,8 @@ El jugador puede atacar en varias direcciones.
   * Derecha: input de dirección derecha (D/joystick) + golpear.
 
 En el caso que el jugador utilice el input de dirección adelante o atrás junto al botón de ataque se interpretará como un ataque al centro.
+
+Si un jugador ataca en la misma diracción en la que un enemigo está bloqueando, esté realizará un contratrataque al jugador.
 <!--Las acciones realizables con Adelante y Atrás + golpear están por determinar, pero probablemente se utilicen para otras habilidades de combate, reduciendo la necesidad de utilizar más botones.-->
 
 #### **Esquives**
@@ -224,7 +226,7 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
 
     La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo.En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también esquivaran los ataques del jugador bajo las mismas normas.
 
-  - **Bloqueo**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente. Los bloqueos se realizan en las mismas direcciones que los esquives.
+  - **Bloqueo**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente y pudiendo contraatacar como restupesta. Los bloqueos se realizan en las mismas direcciones que los esquives.
 
 - **Ataques secundarios** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
   
@@ -274,10 +276,13 @@ Los enemigos a meele como su nombre indica atacan a corta distancia. Son resiste
 
 #### Enemigo base melee
 
-Este enemigo es el primero que se le presenta al jugador como tutorial y por lo tanto el más sencillo de combatir.
+Este enemigo es el primero que se le presenta al jugador como tutorial y por lo tanto el más sencillo de combatir. Este enemigo tiene un rango de detección de 7 metros, pega con sus puchos y hacen 1 de daño al jugador con cada golpe. Este enemigo consta de 5 puntos de vida y 3 patrones de combate:
+  1. Dos ataques izquierdos y uno ataque central.
+  2. Ataque derecho, bloqueo derecho y bloqueo izquierdo.
+  3. Defensa central, ataque central, defensa izquierda y ataque izquierda.
 
 #### Enemigo suicida
-Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro se lanza hacia el jugador provocando una explosión que acaba con su vida yproduce 2 de daño al jugador si este no lo esquiva. Este enemigo es ligero por lo que si el jugador usa el gancho contra él, el enemigo será atraido hacia el jugador provocando su explosión.
+Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro se lanza hacia el jugador provocando una explosión que acaba con su vida y produce 3 de daño al jugador si este no lo esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
 
 Para poderse librar de este enemigo existen varias opciones:
 
@@ -286,12 +291,24 @@ Para poderse librar de este enemigo existen varias opciones:
   * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que hará detonar al enemigo saliendo ileso. Si el jugador ataca primero al enemigo este se preparará para detonar, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
 
 ### Enemigos a distancia 
-Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca. 
+Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca.
+
+#### Francotirador
+Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 dorazones y tranda unos 5 segundo en poder volver a disparar. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva y si ataca realiza 1 de daño. Tiene los siguientes 3 patrones:
+
+  1. Defensa izquierda, defensa derecha y defensa central.
+  2. Defensa central, defensa derecha y defensa central.
+  3. Defensa derecha, ataque izquierdo y defensa izquierda.
+
 ### Enemigos mixtos 
 Los enemigos mixtos son una combinación entre los enemigos a melee y a distancia, teniendo resistencia a los golpes y capaces de usar armas de media distancia.
 
 #### Enemigo base mixto
+Este enemigo cuenta con unos brazos que son escudos y pistolas a la vez. Su rango de disparo y deteción es de 9 metros e intenta mantener algo de distancia con el jugador. Realiza dos disparos segudos con un tiempo de recarga de 1 segundo antes de volver a disparar 2 veces. Este enemigo cuenta con 4 puntos de vida y los siguientes patrones de combate cuando entra en estilo duelo (cada ataque quita 1 corazón):
 
+  1. Defensa tanto por la izquierda y derecha a la vez, y luego un ataque central.
+  2. Dos ataques centrales segudos.
+  3. Ataque derecho, defenza izquierda, ataque izquierdo y defensa central.
 
 # 5. Arte 
 

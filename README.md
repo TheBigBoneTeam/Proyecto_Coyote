@@ -1,7 +1,9 @@
 # PROYECTO COYOTE
 **GAME DESIGN DOCUMENT**
 
-Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo 
+Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo
+
+Version 1.0
 
 
 # 0. Introducción
@@ -13,36 +15,53 @@ Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríq
 "Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
 
 
-## Género 
+## 1.1. Género 
 "Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
 
-## Plataformas 
+## 1.2. Plataformas 
 “Proyecto Coyote” es un videojuego diseñado para su lanzamiento en web en Itch.io y estará disponible para ordenadores de sobremesa, portátiles y dispositivos móviles. 
 
-## Características principales 
+## 1.3. Características principales 
 Dinámicas de juego
 
+## 1.4. Modelo de Negocio y Monetización
+Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
+
+Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** y **contenido adicoinal** en función del éxito que tenga el juego.
 
 
-## Propósito y público objetivo 
+
+## 1.5 Propósito y público objetivo 
 "Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western combinado con fantasía oscura. 
 
 El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
 
 
-## Jugabilidad 
+## 1.6. Jugabilidad 
 El juego se divide en dos estilos de juego: libre y duelo.
 El estilo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este estilo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
 
 El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este estilo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este estilo cuando derrote al enemigo o lo desenfoque a propósito.
 
-## Estilo visual 
+## 1.7. Estilo visual 
 “Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
 
-Con esta estética se ha obtenido un resultado bla bla bla 
+<!--Con esta estética se ha obtenido un resultado bla bla bla -->
 
-# 2. Historia
-## 2.1. Ambientación 
+# 2. Planificación y Costes
+## 2.1 El equipo humano
+  * __Antonio__:	Diseñador de sonido y programador.
+  * __Diego__:	Programador.
+  * __Candela__:	Artista 2D, artista 3D y animadora 3D.
+  * __Edu__:		Artista 2D, artista 3D y animador 3D.
+  * __Andrea__:	Programadora.
+  * __David__:	Game designer y guionista.
+
+## 2.2 Estimación temporal del desarrollo
+## 2.3 Costes adicionales
+
+# 3. Historia
+## 3.1. Ambientación 
 "Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
@@ -64,7 +83,7 @@ La zona donde se desarrolla el videojuego es un área poblada en el desierto que
   
  
 
-## 2.2. Trasfondo
+## 3.2. Trasfondo
 >*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
 
 ### La sequía
@@ -107,7 +126,7 @@ Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestr
 
 
   
-## 2.3. Personajes principales 
+## 3.3. Personajes principales 
 
 ### Protagonisto
 Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
@@ -172,10 +191,10 @@ Los estados de transformación por el “milagro chungo” se han categorizado e
 </p>
 
 
-# 3. Jugabilidad 
+# 4. Jugabilidad 
 
 
-## 3.1. Mecánicas de interacción y movimiento
+## 4.1. Mecánicas de interacción y movimiento
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
 
 #### **Desplazamiento horizontal**
@@ -258,7 +277,7 @@ El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
   * **Estado combate**: Si el jugador es detectado por un enemigo este le atacará a distancia o se acercará para pegarle. Si otros enemigos ven a uno de ellos ponerse en este modo buscarán al jugador para atacarle también.
 
 
-## 3.2. Controles 
+## 4.2. Controles 
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
@@ -269,7 +288,7 @@ GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
 ESQUIVE/PARRY         | ESPACIO     |
 
-## 3.3. Tipos de enemigos 
+## 4.3. Tipos de enemigos 
 
 ### Enemigos melee 
 Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
@@ -331,12 +350,16 @@ Como ya se ha mencionado el juego estará completamente implementado en 3D, tant
 
 
 
-# 5. Sonido y música 
-## 5.1. Estilo Sonoro y musical
-## 5.2. Banda sonora 
-## 5.3. Efectos sonoros (SFX) 
+# 6. Sonido y música 
+## 6.1. Estilo Sonoro y musical
+La música será ambientada en bandas sonoras del oeste para el menú de introducción, y temas de acción y aventura para el gameplay. Se usará el software “Musescore” para la composición de las canciones. Algunos instrumentos empleados serán el banjo o la trompeta entre otros.
 
-# 6. Menús e Interfaces 
+Por otra parte, los sonidos y efectos especiales (SFX) tendrán una temática 8 bits, para acompañar la estética visual del juego. Se emplearán páginas como SFXR o BFXR.
+
+<!--## 6.2. Banda sonora 
+## 6.3. Efectos sonoros (SFX) -->
+
+# 7. Menús e Interfaces 
 ## Diagramas de flujo 
 
 ### Menú inicio
@@ -383,17 +406,10 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
        
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
 
+# 8. Marketing y Redes Sociales
 
+# 9. Post Mortem
 
-# 6. Modelo de Negocio y Monetización
-Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
-
-Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** y **contenido adicoinal** en función del éxito que tenga el juego.
-
-# 7. Marketing y Redes Sociales
-
-# 8. Post Mortem
-
-## 8.1. Post Mortem - Alfa
-## 8.2. Post Mortem - Beta
-## 8.3. Post Mortem - Gold
+## 9.1. Post Mortem - Alfa
+## 9.2. Post Mortem - Beta
+## 9.3. Post Mortem - Gold

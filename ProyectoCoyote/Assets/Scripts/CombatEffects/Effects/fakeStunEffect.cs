@@ -15,7 +15,7 @@ namespace CombatEffect
 
         public override void Activate(AGameCharacter character)
         {
-            base.Activate(character);
+           // base.Activate(character);
             Debug.Log("StartFakeStun");
             this.objCharacter = character;
             //character.gameObject.GetComponent<Renderer>().material.color = Color.red;
@@ -43,7 +43,7 @@ namespace CombatEffect
 
         public override void Activate(AGameCharacter character)
         {
-            base.Activate(character);
+         // base.Activate(character);
             this.objCharacter = character;
           //  character.gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }

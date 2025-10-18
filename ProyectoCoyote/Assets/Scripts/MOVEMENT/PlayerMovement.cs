@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -104,11 +105,15 @@ public class PlayerMovement : MonoBehaviour
         dashing,
         air
     }
+
+    //Bools para bloquear acciones mediante animator
+    bool canAttack,canMove = false;
     #endregion
 
     #region Metodos de Unity
     private void Start()
     {
+        canMove = canAttack = true;
         cam = Camera.main.transform;
 
         rb = GetComponent<Rigidbody>();
@@ -215,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-        if (gameInput.attackPressed)
+        if (gameInput.attackPressed && canAttack)
         {
             if (horizontalInput == 0)
             {
@@ -328,26 +333,28 @@ public class PlayerMovement : MonoBehaviour
     {
         //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
-
-        // Para rampas
-        if (OnSlope() && !exitingSlope)
+        if (canMove)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
-
-            if (rb.linearVelocity.y > 0)
+            // Para rampas
+            if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+
+                if (rb.linearVelocity.y > 0)
+                {
+                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                }
             }
-        }
 
-        else if (grounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
+            else if (grounded)
+            {
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            }
 
-        else if (!grounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airSensitity, ForceMode.Force);
+            else if (!grounded)
+            {
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airSensitity, ForceMode.Force);
+            }
         }
     }
 
@@ -496,6 +503,16 @@ public class PlayerMovement : MonoBehaviour
 
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
+    }
+
+    internal void setCanAttack(bool v)
+    {
+        canAttack = v;
+    }
+
+    internal void setCanMove(bool v)
+    {
+        canMove = v;
     }
     #endregion
 }

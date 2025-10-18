@@ -10,7 +10,6 @@ public class CameraFollow : MonoBehaviour
     Transform orientation;
     Transform player;
     Transform playerObj;
-    [SerializeField] Vector2 clampAxis = new Vector2(0, 60);
     public bool LockedCamera = false;
     EnemyLockOn enemyLockOn;
 
@@ -43,7 +42,6 @@ public class CameraFollow : MonoBehaviour
         // Rotar personaje
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        verticalInput = Mathf.Clamp(verticalInput, clampAxis.x, clampAxis.y);
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (inputDir != Vector3.zero)
@@ -57,13 +55,8 @@ public class CameraFollow : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
-        // Rotar personaje
-        Vector3 inputDir = orientation.forward + orientation.right ;
-
-        if (inputDir != Vector3.zero)
-        {
-            playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
-        }
+        playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
+        
     }
 
     //[SerializeField] Transform target;

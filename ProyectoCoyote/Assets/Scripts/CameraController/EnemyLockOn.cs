@@ -6,7 +6,7 @@ public class EnemyLockOn : MonoBehaviour
 {
     [SerializeField] LayerMask targetLayers;
     Transform enemyTarget_Locator;
-    public Transform currentTarget;
+    public Transform currentTarget = null;
 
     [Tooltip("Cambiar entre Cámaras")]
     Animator cinemachineAnimator;
@@ -28,7 +28,6 @@ public class EnemyLockOn : MonoBehaviour
 
     void Start()
     {
-        currentTarget = GameObject.Find("Player").transform;
         cinemachineAnimator = GameObject.FindAnyObjectByType<Animator>();
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
@@ -59,9 +58,7 @@ public class EnemyLockOn : MonoBehaviour
 
             LookAtTarget();
             // Volver a modo sin lockear si hay un obstáculo
-                if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
-            
-           
+            if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
             
         }
     }
@@ -69,13 +66,14 @@ public class EnemyLockOn : MonoBehaviour
     // Activar modo lockeado
     void ActivateLockMode() 
     {
-        if (currentTarget) // Si ya hay un enemigo, resetear
+        if (enemyLocked) // Si ya hay un enemigo, resetear
         {
             ResetTarget();
             return;
         }
 
         if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
+        Debug.Log("Modo Lock");
     }
 
 
@@ -85,7 +83,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
         cinemachineAnimator.Play("TargetCamera");
         enemyLocked = true;
-        Console.WriteLine("Enemigo encontrado");
+        Debug.Log("Enemigo encontrado");
     }
 
 
@@ -97,7 +95,7 @@ public class EnemyLockOn : MonoBehaviour
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
-        Console.WriteLine("Vover a modo SIN lockear");
+        Debug.Log("Volviendo a modo SIN lockear");
     }
 
 

@@ -331,6 +331,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        
         //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
         if (canMove)

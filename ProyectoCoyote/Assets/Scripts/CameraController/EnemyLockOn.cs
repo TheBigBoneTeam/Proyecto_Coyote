@@ -24,7 +24,6 @@ public class EnemyLockOn : MonoBehaviour
     float currentYOffset;
     Vector3 pos;
 
-    [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
     PlayerMovement movement; 
 
@@ -34,14 +33,14 @@ public class EnemyLockOn : MonoBehaviour
         
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         // Indicar al resto de scripts cuándo está el enemigo lockeado
-        camFollow.lockedTarget = enemyLocked; 
+       
         movement.lockMovement = enemyLocked;
 
         //// Input System

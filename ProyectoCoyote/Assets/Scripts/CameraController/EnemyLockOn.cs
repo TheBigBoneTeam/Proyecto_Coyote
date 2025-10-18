@@ -4,13 +4,12 @@ using UnityEngine;
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
 {
+    [SerializeField] LayerMask targetLayers;
+    Transform enemyTarget_Locator;
     public Transform currentTarget;
 
-    [SerializeField] LayerMask targetLayers;
-    [SerializeField] Transform enemyTarget_Locator;
-
     [Tooltip("Cambiar entre Cámaras")]
-    [SerializeField] Animator cinemachineAnimator;
+    Animator cinemachineAnimator;
 
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
@@ -24,11 +23,15 @@ public class EnemyLockOn : MonoBehaviour
     float currentYOffset;
     Vector3 pos;
 
-    [SerializeField] Transform lockOnCanvas;
+    Transform lockOnCanvas;
     PlayerMovement movement; 
 
     void Start()
     {
+        currentTarget = GameObject.Find("Player").transform;
+        cinemachineAnimator = GameObject.FindAnyObjectByType<Animator>();
+        lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
+        enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
         
         cam = Camera.main.transform;
@@ -56,8 +59,8 @@ public class EnemyLockOn : MonoBehaviour
 
             LookAtTarget();
             // Volver a modo sin lockear si hay un obstáculo
-            if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
-            //
+                if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
+            
            
             
         }
@@ -113,7 +116,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (nearbyTargets.Length <= 0) 
         {
-            Console.WriteLine("No se han encontrado enemigos cerca!");
+            Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
 
@@ -136,7 +139,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (!closestTarget)
         {
-            Console.WriteLine("No se han encontrado enemigos cerca!");
+            Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
 
@@ -155,7 +158,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si hay algun elemento de la escena bloqueando la visión del jugador, se sale.
         if (Blocked(tarPos))
         {
-            Console.WriteLine("No se han encontrado enemigos cerca!");
+            Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
 
@@ -180,9 +183,9 @@ public class EnemyLockOn : MonoBehaviour
         RaycastHit hit;
         if (Physics.Linecast(transform.position + Vector3.up * 0.5f, t, out hit))
         {
-            if (!hit.transform.CompareTag("Enemy"))
+            if (!hit.transform.Equals(currentTarget))
             {
-                Console.WriteLine("Hay algo bloqueando al enemigo");
+                Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;
             }
         }

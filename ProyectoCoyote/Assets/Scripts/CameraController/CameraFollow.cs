@@ -30,8 +30,8 @@ public class CameraFollow : MonoBehaviour
     {
         LockedCamera = enemyLockOn.enemyLocked;
 
-        RotatePlayer();
-        // if (LockedCamera ) 
+        
+       if (LockedCamera ) RotatePlayer(); else RotatePlayer();
 
     }
     public void RotatePlayer() 
@@ -45,6 +45,20 @@ public class CameraFollow : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         verticalInput = Mathf.Clamp(verticalInput, clampAxis.x, clampAxis.y);
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (inputDir != Vector3.zero)
+        {
+            playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
+        }
+    }
+    public void RotateLockedPlayer()
+    {
+        // Rotar orientacion
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        orientation.forward = viewDir.normalized;
+
+        // Rotar personaje
+        Vector3 inputDir = orientation.forward + orientation.right ;
 
         if (inputDir != Vector3.zero)
         {

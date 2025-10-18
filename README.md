@@ -12,38 +12,36 @@ Version 1.0
 “Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
 
 # 1. Concepto del juego 
-"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere realizar la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
+"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere cumplir la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
 
 
 ## 1.1. Género 
-"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y atrás.
+"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate cuerpo a cuerpo, mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y centro.
 
 ## 1.2. Plataformas 
-“Proyecto Coyote” es un videojuego diseñado para su lanzamiento en web en Itch.io y estará disponible para ordenadores de sobremesa, portátiles y dispositivos móviles. 
+“Proyecto Coyote” es un videojuego diseñado para su lanzamiento en web en Itch.io y estará disponible para ordenadores de sobremesa, portátiles y móviles. 
 
-## 1.3. Características principales 
-Dinámicas de juego
-
-## 1.4. Modelo de Negocio y Monetización
+## 1.3. Modelo de Negocio y Monetización
 Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
 
-Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** y **contenido adicoinal** en función del éxito que tenga el juego.
+Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego.
 
 
 
-## 1.5 Propósito y público objetivo 
-"Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western combinado con fantasía oscura. 
+## 1.4. Propósito y público objetivo 
+"Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western con fantasía oscura. 
 
 El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
 
 
-## 1.6. Jugabilidad 
+## 1.5. Jugabilidad 
 El juego se divide en dos estilos de juego: libre y duelo.
-El estilo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este estilo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos u objetos. 
 
-El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este estilo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por la derecha, izquierda y atrás/centro. El jugador podrá salir de este estilo cuando derrote al enemigo o lo desenfoque a propósito.
+El estilo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este estilo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos o puntos de interes. 
 
-## 1.7. Estilo visual 
+El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este estilo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por las direcciones permitidas. El jugador podrá salir de este estilo cuando derrote al enemigo o lo desenfoque a propósito.
+
+## 1.6. Estilo visual 
 “Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
 
 <!--Con esta estética se ha obtenido un resultado bla bla bla -->
@@ -66,22 +64,19 @@ El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este es
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
 
-
-### Zonas de Proyecto Coyote
+### Zonas de "Proyecto Coyote"
 
   ####  Pricklytown
-  PROTA llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
+  El protagonista llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
 
   ####  El Cañón
-  PROTA se ve obligado a viajar hacia el oasis del sur, accesible desde Picklytown únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
+  Tras su visita por Pricklytown el protagonista se ve obligado a viajar hacia el oasis del sur, accesible únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
 
   ####  El Oasis
   El Oasis es una pequeña zona misteriosa y excesivamente frondosa. Los habitantes de Pricklytown afirman que, a pesar de contener agua, en el pasado prácticamente ninguna planta crecía en la zona, y que solo se conocía como oasis por tradición. Ahora es una exhuberante y densa jungla de todo tipo de cactus y plantas desérticas. En el oasis además hay una edificación puntiaguda que se asemeja a una iglesia.
 
   *Estos lugares, en cuestiones de gameplay, se traducen directamente como niveles o zonas de progreso que el jugador deberá atravesar*
 
-  
- 
 
 ## 3.2. Trasfondo
 >*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
@@ -122,23 +117,13 @@ Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados
 Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
 
 Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
-
-
-
-  
+ 
 ## 3.3. Personajes principales 
 
 ### Protagonisto
-Protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
+El protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 
-### Personajes no jugables (NPCs)
-
-#### El tabernero tabernoso
-Pues es un tío muy majo que te sirve cervecita de polvo
-
-#### El tabernero tabernoso
-Pues es un tío muy majo que te sirve cervecita de polvo
-
+<!--### Personajes no jugables (NPCs)-->
 
 ### Enemigos 
 
@@ -190,35 +175,27 @@ Los estados de transformación por el “milagro chungo” se han categorizado e
  <img src="./Imagenes_README/CactusZombie01.png" alt="CactusZombie01" width="30%"/>
 </p>
 
-
 # 4. Jugabilidad 
-
 
 ## 4.1. Mecánicas de interacción y movimiento
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
 
-#### **Desplazamiento horizontal**
+### **Desplazamiento horizontal**
 El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada.
-#### **Desplazamiento vertical** 
+### **Desplazamiento vertical** 
 El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del botón que pulse el jugador, es decir, si usa el gancho y se mueve hacia delante irá donde esté el gancho, mientras que si se mueve para atrás lo que tenga el gancho será atraido hacia el jugador.
-
-<!-- 1. El gancho te da 2 opciones: ir o traer. Al enganchar a un enemigo, el jugador se queda “enganchado” y puede pulsar W para ir hacia el enemigo o pulsar S para atraerlo. También hay enemigos especiales que no te permiten una de las dos opciones o incluso te las castigan. 
-
-2. Si vas tú o viene el enemigo depende del peso del enemigo. Los enemigos grandes no pueden ser atraídos y los pequeños se atraen. -->
 
 Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá usar hasta que se haya cargado de nuevo. Para hacer más rápida esta carga el jugador tendrá la posibilidad de recargar la mitad del gancho si realiza un parry a un enemigo.
 
-El gancho cuenta con una logitud máxima de 5 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios a 1,5 metros pues no se considera necesario su utilidad a esas distancias.
+El gancho cuenta con una logitud máxima de 6 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios a 1,5 metros pues no se considera necesario su utilidad a esas distancias.
 
-
-#### **Estilo duelo** 
-El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto (SFX o animación), el jugador realiza un parry bloqueando el ataque y stunneando al enemigo al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
-
-Los enemigos puede realizar ataques desde atrás (disparo, lanzamiento...). Si el jugador realiza un parry o esquive normal, se mantiene fijado al enemigo inicial. En el caso contrario, el jugador recibe el ataque, el enemigo fijado se desfijará.
+## 4.2. Sistema de combate y vida
+### **Estilo duelo** 
+El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto, el jugador realiza un parry bloqueando el ataque y stunneando al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
 
 Si el jugador consigue derrotar al enemigo fijado, se enfocará automaticamente al enemigo de al lado si es que existe. 
 
-#### **Ataque** 
+### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
   * Izquierda: input de dirección izquierda (A/joystick) + golpear.
@@ -229,13 +206,14 @@ El jugador puede atacar en varias direcciones.
 
 En el caso que el jugador utilice el input de dirección adelante o atrás junto al botón de ataque se interpretará como un ataque al centro.
 
-Si un jugador ataca en la misma diracción en la que un enemigo está bloqueando, esté realizará un contratrataque al jugador.
-<!--Las acciones realizables con Adelante y Atrás + golpear están por determinar, pero probablemente se utilicen para otras habilidades de combate, reduciendo la necesidad de utilizar más botones.-->
+Si un jugador ataca en la misma dirección en la que un enemigo está bloqueando, esté realizará un contratrataque al jugador poniendolo en un aprieto.
 
-#### **Esquives**
+### **Esquives**
 El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demasiado daño. Estos ataques se categorizan en dos tipos:
-- **Ataques primarios** Son los recibidos por el enemigo fijado. Pueden venir de derecha, izquierda o frente. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
-  - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la dirección correcta para no sufrir daño por los ataques enemigos obteniendo 3 posibilidades:
+
+- **Ataques primarios** Son los recibidos por el enemigo fijado. Pueden venir por la derecha, izquierda o centro. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
+
+  - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la misma dirección que el ataquea para no sufrir daño observando 3 posibles direcciones:
     
     * Izquierda: input de dirección izquierda (A/joystick) + esquivar.
 
@@ -243,32 +221,33 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
 
     * Derecha: input de dirección derecha (D/joystick) + esquivar.
 
-    La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo.En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también esquivaran los ataques del jugador bajo las mismas normas.
+    La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también bloquearán los ataques del jugador bajo las mismas normas.
 
-  - **Bloqueo**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente y pudiendo contraatacar como restupesta. Los bloqueos se realizan en las mismas direcciones que los esquives.
+  - **Esquive perfecto**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente y pudiendo contraatacar como respuesta. Los bloqueos se realizan en las mismas direcciones que los esquives.
 
 - **Ataques secundarios** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
   
   * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques o disparos gracias a los frames de invulnerabilidad que otorga el esquive. Un esquive en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
 
-  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un bloqueo especial que le protegerá de recibir daño de ataques por la espalda.
+  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un esquive que le protegerá de recibir daño.
 
 <img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
 
 
-De esta forma se recompensa por realizar esquives y bloqueos correctos, fomentando esto como mecánica principal de la jugabilidad de Proyecto Coyote.
+De esta forma se recompensa por realizar esquives y bloqueos correctos, fomentando esto como mecánica principal de la jugabilidad de "Proyecto Coyote".
 
 <img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
 
-#### **Vida**
+### **Vida**
 El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos formas:
+
   1. **Botiquines**: En los niveles el jugador podrá encontrar botiquines en zonas de transición entre combates. Estos botiquines restauran 2 puntos de vida.
 
   2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
   ![alt text](<Diagrama vida.png>)
 
-#### **Comportamiento enemigos**
+### **Comportamiento enemigos**
 
 El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
 
@@ -277,7 +256,7 @@ El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
   * **Estado combate**: Si el jugador es detectado por un enemigo este le atacará a distancia o se acercará para pegarle. Si otros enemigos ven a uno de ellos ponerse en este modo buscarán al jugador para atacarle también.
 
 
-## 4.2. Controles 
+## 4.3. Controles 
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
@@ -288,7 +267,7 @@ GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
 ESQUIVE/PARRY         | ESPACIO     |
 
-## 4.3. Tipos de enemigos 
+## 4.4. Tipos de enemigos 
 
 ### Enemigos melee 
 Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
@@ -340,11 +319,11 @@ Como ya se ha mencionado el juego estará completamente implementado en 3D, tant
 ## 5.2. Personajes
 (Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
 ## 5.3. Escenarios
-(Lo mismo, aquí ponemos mapas, diseño de niveles, etc)
+Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
-### Pueblo
+<!--### Pueblo
 ### Cañón
-### Oasis
+### Oasis-->
 
 ## 5.4. Arte 2D
 
@@ -407,9 +386,42 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
 
 # 8. Marketing y Redes Sociales
+Para publicitar el juego se han creado distintas redes sociales como Instagram, Youtube, X, ... El uso de estas redes sociales serán para presentar los distintos integrantes del equipo y los pequeños avances que se hagan conforme avanza el tiempo.
 
 # 9. Post Mortem
 
 ## 9.1. Post Mortem - Alfa
-## 9.2. Post Mortem - Beta
-## 9.3. Post Mortem - Gold
+
+### Eduardo Almarza Blasco
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Antonio Bernal de Celis
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### David del Castillo Enríquez
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Diego Fernández Manso
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Candela Jiménez González
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Andrea Luengo Zazo
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+
+<!--## 9.2. Post Mortem - Beta
+## 9.3. Post Mortem - Gold-->

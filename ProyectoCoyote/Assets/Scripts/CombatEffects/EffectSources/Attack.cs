@@ -37,6 +37,7 @@ public class Attack : ATouchCombatEffectSource
     }
     protected void Start()
     {
+        owner = GetComponentInParent<AGameCharacter>();
         setHitCheck(HitCheckType);
         HitDirections = new List<HitDirections>();
     }

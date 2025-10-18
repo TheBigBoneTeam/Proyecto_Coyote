@@ -50,7 +50,7 @@ namespace CombatEffect
 
         public override void End()
         {
-            objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+            //objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
 
         }
     }

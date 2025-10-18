@@ -25,15 +25,16 @@ public class EnemyLockOn : MonoBehaviour
     Vector3 pos;
 
     [SerializeField] Transform lockOnCanvas;
-    PlayerMovement movement; 
+    PlayerMovement movement;
+    [SerializeField] DefenseAttackUIIndicator defenseAttackUIIndicator;
 
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
-        
+        defenseAttackUIIndicator = GetComponentInChildren<DefenseAttackUIIndicator>();
+
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
-        
     }
 
     // Update is called once per frame
@@ -90,6 +91,7 @@ public class EnemyLockOn : MonoBehaviour
     void ResetTarget()
     {
         lockOnCanvas.gameObject.SetActive(false);
+        defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
@@ -158,7 +160,8 @@ public class EnemyLockOn : MonoBehaviour
             Console.WriteLine("No se han encontrado enemigos cerca!");
             return null;
         }
-
+        defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
+        defenseAttackUIIndicator.setEnable(true);
         // Devuelve el enemigo válido
         return closestTarget;
     }

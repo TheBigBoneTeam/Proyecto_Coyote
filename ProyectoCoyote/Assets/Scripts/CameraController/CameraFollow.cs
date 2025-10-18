@@ -6,96 +6,142 @@ using UnityEngine;
 // lockeada o no rotará libremente o alrededor del enemigo
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] Transform target;
-    [SerializeField] Vector3 offset;
-    [SerializeField] Vector2 clampAxis = new Vector2 (60, 60);
+    [Header("References")]
+    Transform orientation;
+    Transform player;
+    Transform playerObj;
+    [SerializeField] Vector2 clampAxis = new Vector2(0, 60);
+    public bool LockedCamera = false;
+    EnemyLockOn enemyLockOn;
 
-    [SerializeField] float follow_smoothing = 5.0f;
-    [SerializeField] float rotate_smoothing = 5.0f;
-    [SerializeField] float sensitivity = 60;
+    public float rotationSpeed;
 
-    float rotx, roty;
-    bool cursorLocked = false; //// Input System
-    Transform cam;
-
-    public bool lockedTarget;
-
-    void Start()
+    private void Start()
     {
-        //// Input System
-        Cursor.visible = false; 
+        player = GameObject.Find("Player").transform;
+        orientation = GameObject.Find("Player/Orientation").transform;
+        playerObj = GameObject.Find("Player/Player_01").transform;
+        enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>(); 
         Cursor.lockState = CursorLockMode.Locked;
-        ////
-        cam = Camera.main.transform;
+        Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        // Definir posición del objetivo y transformar su posición en función de éste
-        Vector3 target_P = target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, target_P, follow_smoothing*Time.deltaTime);
+        LockedCamera = enemyLockOn.enemyLocked;
 
-        // Condición de si está lockeado o no
-        if (!lockedTarget) CameraTargetRotation(); else LookAtTarget();
+        RotatePlayer();
+        // if (LockedCamera ) 
 
-        //// Input System
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+    }
+    public void RotatePlayer() 
+    {
+        // Rotar orientacion
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        orientation.forward = viewDir.normalized;
+
+        // Rotar personaje
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        verticalInput = Mathf.Clamp(verticalInput, clampAxis.x, clampAxis.y);
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (inputDir != Vector3.zero)
         {
-            if (cursorLocked)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else 
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
         }
-        ////
-    }
-    
-    ////Input System
-    Vector2 InputCamera()
-    {
-        Vector2 axis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        return axis;
-    }
-    ////
-    
-    void CameraTargetRotation()
-    {
-        Vector2 axis = InputCamera();
-        rotx += (axis.x * sensitivity) * Time.deltaTime;
-        roty += (axis.y * sensitivity) * Time.deltaTime;
-
-        roty = Mathf.Clamp(roty, clampAxis.x, clampAxis.y);
-
-        Quaternion camRotation = Quaternion.Euler(roty, rotx, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, camRotation, Time.deltaTime * rotate_smoothing);
-
-        // Hacer que el jugador mire hacia donde apunta la cámara 
-        if (!lockedTarget && target != null)
-        {
-            Vector3 lookDir = transform.forward;
-            lookDir.y = 0;
-            if (lookDir != Vector3.zero)
-            {
-                Quaternion playerRot = Quaternion.LookRotation(lookDir);
-                target.rotation = Quaternion.Slerp(target.rotation, playerRot, Time.deltaTime * rotate_smoothing);
-            }
-        }
-
     }
 
-    void LookAtTarget()
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(target.forward, Vector3.up);
+    //[SerializeField] Transform target;
+    //[SerializeField] Vector3 offset;
+    //[SerializeField] Vector2 clampAxis = new Vector2 (60, 60);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotate_smoothing * Time.deltaTime);
+    //[SerializeField] float follow_smoothing = 5.0f;
+    //[SerializeField] float rotate_smoothing = 5.0f;
+    //[SerializeField] float sensitivity = 60;
 
-        Vector3 euler = transform.eulerAngles;
-        rotx = euler.y;
-        roty = euler.x;
-    }
+    //float rotx, roty;
+    //bool cursorLocked = false; //// Input System
+    //Transform cam;
+
+    //public bool lockedTarget;
+
+    //void Start()
+    //{
+    //    //// Input System
+    //    Cursor.visible = false; 
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    ////
+    //    cam = Camera.main.transform;
+    //}
+
+    //void Update()
+    //{
+    //    // Definir posición del objetivo y transformar su posición en función de éste
+    //    Vector3 target_P = target.position + offset;
+    //    transform.position = Vector3.Lerp(transform.position, target_P, follow_smoothing*Time.deltaTime);
+
+    //    // Condición de si está lockeado o no
+    //    if (!lockedTarget) CameraTargetRotation(); else LookAtTarget();
+
+    //    //// Input System
+    //    if (Input.GetKeyDown(KeyCode.Escape)) 
+    //    {
+    //        if (cursorLocked)
+    //        {
+    //            Cursor.visible = true;
+    //            Cursor.lockState = CursorLockMode.None;
+    //        }
+    //        else 
+    //        {
+    //            Cursor.visible = false;
+    //            Cursor.lockState = CursorLockMode.Locked;
+    //        }
+    //    }
+    //    ////
+    //}
+
+    //////Input System
+    //Vector2 InputCamera()
+    //{
+    //    Vector2 axis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+    //    return axis;
+    //}
+    //////
+
+    //void CameraTargetRotation()
+    //{
+    //    Vector2 axis = InputCamera();
+    //    rotx += (axis.x * sensitivity) * Time.deltaTime;
+    //    roty += (axis.y * sensitivity) * Time.deltaTime;
+
+    //    roty = Mathf.Clamp(roty, clampAxis.x, clampAxis.y);
+
+    //    Quaternion camRotation = Quaternion.Euler(roty, rotx, 0);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, camRotation, Time.deltaTime * rotate_smoothing);
+
+    //    // Hacer que el jugador mire hacia donde apunta la cámara 
+    //    if (!lockedTarget && target != null)
+    //    {
+    //        Vector3 lookDir = transform.forward;
+    //        lookDir.y = 0;
+    //        if (lookDir != Vector3.zero)
+    //        {
+    //            Quaternion playerRot = Quaternion.LookRotation(lookDir);
+    //            target.rotation = Quaternion.Slerp(target.rotation, playerRot, Time.deltaTime * rotate_smoothing);
+    //        }
+    //    }
+
+    //}
+
+    //void LookAtTarget()
+    //{
+    //    Quaternion targetRotation = Quaternion.LookRotation(target.forward, Vector3.up);
+
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotate_smoothing * Time.deltaTime);
+
+    //    Vector3 euler = transform.eulerAngles;
+    //    rotx = euler.y;
+    //    roty = euler.x;
+    //}
 }

@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (horizontalInput == 0)
             {
-                animator.CrossFade("Hit_M_L",.1f);
+                animator.CrossFade("Hit_M_R", .1f);
             }
             if (horizontalInput > 0)
             {

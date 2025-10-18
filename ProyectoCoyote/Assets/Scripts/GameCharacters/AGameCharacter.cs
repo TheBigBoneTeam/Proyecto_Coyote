@@ -37,6 +37,7 @@ public abstract class AGameCharacter :MonoBehaviour
         }
         if (invTimeAfterHit > 0)
         {
+            anim.CrossFade("GetHit", .1f,0,0);
             invincible = true;
             StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
@@ -44,7 +45,8 @@ public abstract class AGameCharacter :MonoBehaviour
     IEnumerator ResetInvincible(float time)
     {
         float timepass = 0;
-        SkinnedMeshRenderer filter = GetComponentInChildren<SkinnedMeshRenderer>();
+        Renderer filter = GetComponentInChildren<Renderer>();
+
         while ((timepass<time))
         {
             yield return new WaitForSeconds(0.1f);

@@ -18,14 +18,14 @@ namespace CombatEffect
             base.Activate(character);
             Debug.Log($"StartStun with duration of {stunDuration}");
             this.objCharacter = character;
-            //character.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            character.gameObject.GetComponent<SkinnedMeshRenderer>().material.color = Color.yellow;
         }
 
         public override void End()
         {
             Debug.Log("EndStun");
 
-           // objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+            objCharacter.gameObject.GetComponent<SkinnedMeshRenderer>().material.color = Color.gray;
 
         }
 

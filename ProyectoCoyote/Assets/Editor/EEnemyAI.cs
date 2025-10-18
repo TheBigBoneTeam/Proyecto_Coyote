@@ -8,6 +8,8 @@ public class EEnemyAI : Editor
 
     SerializedProperty endAction;
     SerializedProperty Locked;
+    SerializedProperty seeDistance;
+    SerializedProperty attackDistance;
 
     //Se van guardado los ataques para que no se pierdan al borrar algo sin querer
     private AttackData[] backUpStats;
@@ -17,7 +19,8 @@ public class EEnemyAI : Editor
 
         endAction = serializedObject.FindProperty("endAction");
         Locked = serializedObject.FindProperty("Locked");
-
+        seeDistance = serializedObject.FindProperty("seeDistance");
+        attackDistance = serializedObject.FindProperty("attackDistance");
     }
     public override void OnInspectorGUI()
     {
@@ -30,6 +33,8 @@ public class EEnemyAI : Editor
                 //EditorGUILayout.PropertyField(ActionList);
         EditorGUILayout.PropertyField(endAction);
         EditorGUILayout.PropertyField(Locked);
+        EditorGUILayout.PropertyField(seeDistance);
+        EditorGUILayout.PropertyField(attackDistance);
 
         //if (enemyAI.ActionList == null || enemyAI.ActionList.Length != System.Enum.GetNames(typeof(EnemyAI.BasicAttacks)).Length)
         //{

@@ -1,76 +1,71 @@
-using System;
 using UnityEngine;
 
-// Clase define cómo se comporta la cámara con respecto al objetivo (el jugador)
-// La cámara va a seguir al jugador en todo momento, pero en función de si está
-// lockeada o no rotará libremente o alrededor del enemigo
 public class CameraFollow : MonoBehaviour
 {
     [Header("References")]
-    Transform orientation;
+    public Transform cameraTarget; 
     Transform player;
     Transform playerObj;
-    public bool LockedCamera = false;
- [SerializeField]   EnemyLockOn enemyLockOn;
+    EnemyLockOn enemyLockOn;
 
-    public float rotationSpeed;
+    [Header("Settings")]
+    public float rotationSpeed = 5f;
+
+    private bool lockedCamera;
 
     private void Start()
     {
-        player = GameObject.Find("Player").transform;
-        orientation = GameObject.Find("Player/Orientation").transform;
-        playerObj = GameObject.Find("Player/Player_02").transform;
-        enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>(); 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (!player) player = GameObject.Find("Player").transform;
+        if (!playerObj) playerObj = GameObject.Find("Player/Player_02").transform;
+        if (!enemyLockOn) enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        LockedCamera = enemyLockOn.enemyLocked;
+        lockedCamera = enemyLockOn != null && enemyLockOn.enemyLocked;
 
-        
-       if (!LockedCamera ) RotatePlayer(); else RotateLockedPlayer();
-
+        if (lockedCamera) RotateLockedPlayer();
+        else RotateFreePlayer();
     }
-    public void RotatePlayer() 
-    {
-        // Rotar orientacion
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
 
-        // Rotar personaje
+    private void RotateFreePlayer()
+    {
+        // Dirección desde cámara hacia jugador
+        Vector3 viewDir = player.position - new Vector3(Camera.main.transform.position.x, player.position.y, Camera.main.transform.position.z);
+        Vector3 forward = viewDir.normalized;
+
+        // Input del jugador
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 inputDir = forward * verticalInput + Camera.main.transform.right * horizontalInput;
 
+        // Rotar el jugador si hay input
         if (inputDir != Vector3.zero)
         {
-            playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
+            playerObj.forward = Vector3.Slerp(playerObj.forward, forward, Time.deltaTime * rotationSpeed);
         }
+
+        // Actualizar posición del target de cámara
+        cameraTarget.position = player.position + Vector3.up * 2f;
     }
-    public void RotateLockedPlayer()
+
+    private void RotateLockedPlayer()
     {
         if (enemyLockOn.currentTarget == null) return;
 
         Vector3 enemyPos = enemyLockOn.currentTarget.position;
 
-        // Posición fija detrás del jugador
-        float distance = 4f; // distancia detrás del jugador
-        float height = 2f;   // altura de la cámara
-
-        // Dirección hacia atrás del jugador
+        // Posición detrás jugador
         Vector3 backDir = -player.forward;
-        Vector3 desiredPosition = player.position + backDir * distance + Vector3.up * height;
+        Vector3 desiredPosition = player.position + backDir  + Vector3.up;
 
-        // Mover la cámara detrás del jugador
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * rotationSpeed);
+        // Mover el target de cámara
+        cameraTarget.position = Vector3.Lerp(cameraTarget.position, desiredPosition, Time.deltaTime * rotationSpeed);
 
-        // Mirar al enemigo
-        Vector3 lookTarget = enemyPos + Vector3.up * 1.5f;
-        Vector3 lookDir = lookTarget - transform.position;
+        // Rotar el target hacia el enemigo
+        Vector3 lookDir = (enemyPos + Vector3.up * 1.5f) - cameraTarget.position;
         Quaternion lookRotation = Quaternion.LookRotation(lookDir);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        cameraTarget.rotation = Quaternion.Slerp(cameraTarget.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
         // Rotar el jugador hacia el enemigo
         Vector3 viewDir = enemyPos - player.position;
@@ -80,5 +75,4 @@ public class CameraFollow : MonoBehaviour
             playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }
-
 }

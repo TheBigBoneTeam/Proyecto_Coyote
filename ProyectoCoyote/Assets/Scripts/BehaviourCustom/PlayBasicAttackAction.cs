@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using UnityEngine;
 
 public class PlayBasicAttackAction : UnityAction
 {
@@ -10,10 +11,13 @@ public class PlayBasicAttackAction : UnityAction
     {
         if (idle)
         {
+            enemyAI.endActionNode();
+
             return Status.Success;
         }
         if (!idle && enemyAI.endAction)
         {
+            enemyAI.endActionNode();
             return Status.Success;
         }
         return Status.Running;
@@ -21,6 +25,10 @@ public class PlayBasicAttackAction : UnityAction
     public override void Start()
     {
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        if (enemyAI.endAction)
+        {
+            Debug.Log("cagada");
+        }
         enemyAI.LoadBasicAction(action,idle);
     }
 }

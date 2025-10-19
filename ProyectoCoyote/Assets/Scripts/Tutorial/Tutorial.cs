@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 
 namespace tutorial
 {
@@ -101,7 +102,7 @@ namespace tutorial
         public override void OnEnter()
         {
        
-         tutorial.TutorialText.text = "Muevete con WASD. Con click izq puedes golpear en diferentes direcciones.";
+         tutorial.TutorialText.text = "Muevete con WASD. Con click izq puedes golpear en diferentes direcciones (click | click + A | click + D).";
             tutorial.changeTutWait = false;
             tutorial.waitTime(8);
                 
@@ -154,15 +155,14 @@ namespace tutorial
     {
         public congratulationState(Tutorial _tut)
         {
-
+            tutorial = _tut;
         }
         public override void OnEnter()
         {
-            
+            Debug.Log("entercongrartulation");
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.TutorialText.text = "Enhorabuena ya puedes enfrentarte a un enemigo de verdad";
             tutorial.waitTime(4);
-
         }
     }
 

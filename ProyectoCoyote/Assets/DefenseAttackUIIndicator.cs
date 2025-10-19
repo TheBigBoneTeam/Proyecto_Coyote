@@ -42,6 +42,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     }
     public void DodgeStateChange(DamageReceiver.ReceiverState state)
     {
+        print("dodge state change");
         if (state.isDodge)
         {
             for (int i = 0; i < dodgeUISignalers.Length; i++)
@@ -101,7 +102,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     }
     public void setAttackObject(GameObject obj, bool on)
     {
-        obj.GetComponent<Image>().color = new Color(on ? 1 : 0, 0,0,1);
+        obj.GetComponent<Image>().color = new Color(on ? 0 : 1, 0,0,1);
 
     }
 }

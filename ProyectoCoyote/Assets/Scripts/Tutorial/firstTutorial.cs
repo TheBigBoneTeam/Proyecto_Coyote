@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using System.Collections;
+using UnityEngine;
 
 namespace tutorial
 {
@@ -25,12 +27,23 @@ namespace tutorial
             machine.AddTransition(controles, lockear, new FuncPredicate(()=>changeTutWait == true));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
             machine.AddTransition(esquivar, trueesquivar, new FuncPredicate(() => currentEsquives == 2));
-            machine.AddTransition(esquivar, congratulationState, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
+            machine.AddTransition(trueesquivar, congratulationState, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
 
             machine.AddTransition(congratulationState, end, new FuncPredicate(() => changeTutWait == true));
 
 
 
+
+        }
+
+   public     void startWaitEnemy()
+        {
+            StartCoroutine(waitEnemyTurnOn());
+        }
+        IEnumerator waitEnemyTurnOn()
+        {
+            yield return new WaitForSeconds(2);
+           enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
 
         }
     }
@@ -44,22 +57,26 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar).";
+            tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio + WASD. Los circulos marcaran la direccion donde te estan atacando";
+            tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = false;
+            tutorial.startWaitEnemy();
             tutorial.player.subscribeToDodgeAttack(esquive);
 
 
         }
+       
         public void esquive()
         {
             Debug.Log("Esquive");
             tutorial.currentEsquives++;
-            tutorial.player.unSubscribeToDodgeAttack(esquive);
 
-            tutorial.TutorialText.text = $"Cuando tengas a alguien marcado puedes esquivar con el spacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar). ";
+            tutorial.TutorialText.text = $"Cuando tengas a alguien marcado puedes esquivar con el spacio. Los circulos marcaran por donde te estan atacando";
 
         }
         public override void OnExit()
         {
+            tutorial.player.unSubscribeToDodgeAttack(esquive);
+
         }
     }
     public class TrueEsquivarTutorial: BaseTutorialState
@@ -79,10 +96,14 @@ namespace tutorial
         }
         public void esquive()
         {
-            tutorial.player.unSubscribeToDodgeAttack(esquive);
 
             tutorial.currentEsquives++;
             tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques para ganar.";
+
+        }
+        public override void OnExit()
+        {
+            tutorial.player.unSubscribeToDodgeAttack(esquive);
 
         }
     }

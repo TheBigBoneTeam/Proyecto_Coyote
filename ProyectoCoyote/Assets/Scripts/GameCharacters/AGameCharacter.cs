@@ -114,6 +114,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void DodgeAttack()
     {
+        if(dodgeAttackEvent != null)
         dodgeAttackEvent.Invoke();
         checkEffect(new Dodge(2));
     }

@@ -161,6 +161,7 @@ namespace tutorial
         {
             Debug.Log("entercongrartulation");
             tutorial.enemy.gameObject.SetActive(false);
+            tutorial.changeTutWait = false;
             tutorial.TutorialText.text = "Enhorabuena ya puedes enfrentarte a un enemigo de verdad";
             tutorial.waitTime(4);
         }

@@ -42,5 +42,9 @@ namespace Services {
                 Destroy(this);
             }
         }
-
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }  }

@@ -77,6 +77,7 @@ Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestr
 ## 2.3. Personajes principales 
 
 ### Protagonisto
+
 El protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 
 <!--### Personajes no jugables (NPCs)-->
@@ -273,7 +274,25 @@ A continuación se hará un resumen del apartado artístico general de Proyecto 
 Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
 
 ## 4.2. Personajes
-(Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
+
+### 4.3. Personaje principal
+
+<img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
+
+Primer concept art del protagonista. Proyecto de ficha de personaje
+
+<img src="./Imagenes_README/MainChar2.jpg" alt="Prota2" style="width: 70%"/>
+
+Concept art a color. Diseño no final.
+
+<img src="./Imagenes_README/MainChar3.jpg" alt="Prota3" style="width: 70%"/>
+
+Concept art con el diseño final del personaje
+
+<img src="./Imagenes_README/MainChar4.jpg" alt="Prota3" style="width: 70%"/>
+
+Modelo 3D finalizado del personaje principal
+
 ## 4.3. Escenarios
 Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
@@ -440,9 +459,28 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 ## 9.1. Post Mortem - Alfa
 
 ### Eduardo Almarza Blasco
+
 #### Lecciones aprendidas
+
+La necesidad de estructurar las tareas del proyecto desde el minuto uno, evitando dependencias y esperas y, sobre todo, asumiendo fechas que permitan una cierta holgura en caso de que las cosas se retrasen. Necesitamos reducir el scope ligeramente, pero sobre todo crear un "roadmap" concreto donde nos establezcamos en qué fechas deben estar hechas cada una de las tareas. Comunicarnos para estar todos en una misma página antes de empezar a trabajar es crucial para no hacer trabajo innecesario o duplicado.
+
+Por ejemplo, cuando los artistas del proyecto empezamos a desarrollar concept art, personalmente salté demasiado pronto al diseño del protagonista. Esto complicó adaptarlo a las siguientes iteraciones de la idea y del trabajo, cosa que hubiese sido más sencilla si me hubiera esperado a tener la idea del juego más madura.
+
 #### Trabajo individual realizado
+
+Por mi parte, mi principal tarea ha sido realizar el diseño, arte conceptual, modelo 3D, texturizado rigging y animación del personaje principal, tanto en Blender como en la integración al motor, habiendo programado el animator controller del mismo.
+
+También he realizado trabajos menores en el apartado visual del Alpha, como el Shader del personaje (que se utilizará después para todos los personajes), la UI, la integración de las animaciones en el motor y ligeros efectos de fedback.
+
+Finalmente, y ya fuera de lo que es el juego, he realizado el logo del grupo y he comenzado a definir lo que será la estética de nuestras redes sociales (fuentes, estilos, paletas de color...).
+
 #### Trabajo colectivo realizado
+
+He trabajado de manera continua con Candela en el planteamiento y desarrollo de todo el apartado artístico. Desde las primeras reuniones de proyecto, hemos decidido entre los dos el estilo visual, los detalles de la ambientación y las especificaciones concretas de los modelos. Además nos hemos encargado de definir un *workflow* común para trabajar los personajes y su importación desde Blender.
+
+También me he mantenido en contacto con los programadores para comprender sus sistemas y poder modificarlos si fuese necesario en mi labor de artista técnico. Como ya he mencionado me he encargado de modificar su código para, por ejemplo, añadir efectos de animación o componer los animator controllers.
+
+Además he tenido un papel significativo en la toma de decisiones sobre diseño, ambientación y, en general, sobre la idea del juego en las primeras reuiniones
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas

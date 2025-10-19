@@ -4,6 +4,7 @@ using UnityEngine.Rendering.Universal;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using Unity.VisualScripting;
 
 namespace tutorial
 {
@@ -102,7 +103,7 @@ namespace tutorial
        
          tutorial.TutorialText.text = "Muevete con WASD. Con click izq puedes golpear en diferentes direcciones.";
             tutorial.changeTutWait = false;
-            tutorial.waitTime(5);
+            tutorial.waitTime(8);
                 
             
      
@@ -114,13 +115,15 @@ namespace tutorial
     }
     public class LockearTutorial : BaseTutorialState
     {
-        public LockearTutorial(Tutorial _tut)
+        new firstTutorial tutorial;
+        public LockearTutorial(firstTutorial _tut)
         {
             tutorial = _tut;
         }
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
+            tutorial.box.gameObject.SetActive(false);
             tutorial.TutorialText.text = "Solo podrás esquivar si tienes marcado a algun enemigo. Pulsa Q para marcar al enemigo";
 
 
@@ -141,7 +144,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-
+            Debug.Log("endstate");
             tutorial.endTutorial();
 
 
@@ -155,6 +158,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
+            
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.TutorialText.text = "Enhorabuena ya puedes enfrentarte a un enemigo de verdad";
             tutorial.waitTime(4);

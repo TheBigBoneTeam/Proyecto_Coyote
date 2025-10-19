@@ -67,6 +67,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if(DamageReceiver != null)
        DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
 
     }
@@ -87,8 +88,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     {
         if(attack != null)
         attack.unSubscribeToStateChange(AttackStateChange);
-        attack = character.GetComponentInChildren<Attack>();
-        attack.subscribeToStateChange(AttackStateChange);
+        if (character != null)
+        {
+            attack = character.GetComponentInChildren<Attack>();
+            if (attack != null)
+            attack.subscribeToStateChange(AttackStateChange);
+        }
     }
     public void setDodgeObject(GameObject obj, bool on)
     {

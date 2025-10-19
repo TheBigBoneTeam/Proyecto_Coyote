@@ -8,6 +8,7 @@ namespace tutorial
         EnemyLockOn lockon;
       public  int currentEsquives;
         [SerializeField] public int objectiveEsquives;
+        [SerializeField] public GameObject box;
         protected override void Start()
         {
             lockon = FindAnyObjectByType<EnemyLockOn>();
@@ -23,7 +24,7 @@ namespace tutorial
             machine.AddTransition(controles, lockear, new FuncPredicate(()=>changeTutWait == true));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
             machine.AddTransition(esquivar, congratulationState, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
-            machine.AddTransition(esquivar, end, new FuncPredicate(() => changeTutWait == true));
+            machine.AddTransition(congratulationState, end, new FuncPredicate(() => changeTutWait == true));
 
 
 
@@ -40,7 +41,7 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = $"Cuando tengas a alguien marcado puedes esquivar con el spacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar). Esquiva {tutorial.objectiveEsquives} ataques para ganar.";
+            tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar).";
             tutorial.player.subscribeToDodgeAttack(esquive);
 
 
@@ -53,6 +54,28 @@ namespace tutorial
         }
         public override void OnExit()
         {
+        }
+    }
+    public class TrueEsquivarTutorial: BaseTutorialState
+    {
+        new firstTutorial tutorial;
+        public TrueEsquivarTutorial(firstTutorial _tut)
+        {
+            tutorial = _tut;
+        }
+        public override void OnEnter()
+        {
+
+            tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques para ganar.";
+            tutorial.player.subscribeToDodgeAttack(esquive);
+
+
+        }
+        public void esquive()
+        {
+            tutorial.currentEsquives++;
+            tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques para ganar.";
+
         }
     }
 }

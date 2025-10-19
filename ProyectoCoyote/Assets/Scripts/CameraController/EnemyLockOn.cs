@@ -1,4 +1,6 @@
 using System;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Clase que se encarga de lockear al enemigo
@@ -29,14 +31,17 @@ public class EnemyLockOn : MonoBehaviour
 
     void Start()
     {
-        cinemachineAnimator = GameObject.FindAnyObjectByType<Animator>();
+        
+        cinemachineAnimator = GameObject.Find("State-Driven Camera").GetComponent<Animator>();
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
         defenseAttackUIIndicator = GetComponentInChildren<DefenseAttackUIIndicator>();
-
+        
         cam = Camera.main.transform;
+       
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
+        cinemachineAnimator.Play("FollowCamera");
     }
 
     // Update is called once per frame
@@ -82,7 +87,7 @@ public class EnemyLockOn : MonoBehaviour
     void FoundTarget()
     {
         lockOnCanvas.gameObject.SetActive(true);
-        cinemachineAnimator.Play("TargetCamera");
+        cinemachineAnimator.Play("TargetLooking_Camera");
         enemyLocked = true;
         Debug.Log("Enemigo encontrado");
     }
@@ -95,7 +100,6 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
-        // anim.SetLayerWeight(1, 0);
         cinemachineAnimator.Play("FollowCamera");
         Debug.Log("Volviendo a modo SIN lockear");
     }
@@ -170,6 +174,7 @@ public class EnemyLockOn : MonoBehaviour
     // Detectar el centro actual de la target
     Vector3 GetTargetCenter(Transform target)
     {
+        if (target == null) { return Vector3.zero; }
         CapsuleCollider col = target.GetComponent<CapsuleCollider>();
         if (col == null) return target.position;
 
@@ -220,11 +225,12 @@ public class EnemyLockOn : MonoBehaviour
         // Actaliza la posici�n del localizador del enemigo
         enemyTarget_Locator.position = pos;
 
-        // Gira al personaje hacia el enemigo
-        Vector3 dir = currentTarget.position - transform.position;
-        dir.y = 0;
-        Quaternion rot = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        //// Gira al personaje hacia el enemigo
+        //Vector3 dir = currentTarget.position - transform.position;
+        //dir.y = 0;
+        //Quaternion rot = Quaternion.LookRotation(dir);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+    
     }
 
     // Esfera al rededor del personaje

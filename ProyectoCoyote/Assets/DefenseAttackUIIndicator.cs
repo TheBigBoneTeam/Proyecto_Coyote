@@ -121,6 +121,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public void setDodgeObject(GameObject obj, bool on)
     {
         obj.GetComponent<Image>().enabled = on;
+        obj.GetComponent<Image>().color = Color.white;
     }
     public void setAttackObject(GameObject obj, bool on)
     {

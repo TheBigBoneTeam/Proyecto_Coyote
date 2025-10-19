@@ -14,105 +14,8 @@ Version 1.0
 # 1. Concepto del juego 
 "Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere cumplir la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
 
-
-## 1.1. Género 
-"Proyecto Coyote” es un videojuego de acción en tercera persona con combates frenéticos donde hay que enfocar a los monstruos para entrar en combate cuerpo a cuerpo, mientras esquivas y atacas al enemigo en tres direcciones: derecha, izquierda y centro.
-
-## 1.2. Plataformas 
-“Proyecto Coyote” es un videojuego diseñado para su lanzamiento en web en Itch.io y estará disponible para ordenadores de sobremesa, portátiles y móviles. 
-
-## 1.3. Modelo de Negocio y Monetización
-Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
-
-Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego.
-
-PRODUCTO              |  PRECIO
---                    |  --     
-Juego base  |   20 €
-DLC: libro de arte |   7.5 €
-
-## 1.4. Propósito y público objetivo 
-"Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western con fantasía oscura. 
-
-El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana. 
-
-
-## 1.5. Jugabilidad 
-El juego se divide en dos estilos de juego: libre y duelo.
-
-El estilo **libre** se refiere a cuando el jugador no está enfocando a ningún enemigo en concreto. Durante este estilo el jugador podrá moverse libremente por el escenario pudiendo esquivar las balas y/o ataques, interactuar con los npcs y usar el gancho para atraer o moverse hacia enemigos o puntos de interes. 
-
-El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este estilo de juego te puedes mover alrededor del enemigo y esquivar o atacarle por las direcciones permitidas. El jugador podrá salir de este estilo cuando derrote al enemigo o lo desenfoque a propósito.
-
-## 1.6. Estilo visual 
-“Proyecto coyote” es un videojuego en 3D de estilo low poly. Los modelos, tanto de los personajes como de los escenarios, están texturizados siguiendo una estética pixel art con colores vivos.  
-
-<!--Con esta estética se ha obtenido un resultado bla bla bla -->
-
-# 2. Planificación y Costes
-## 2.1 El equipo humano
-  * __Antonio__:	Diseñador de sonido y programador.
-  * __Diego__:	Programador.
-  * __Candela__:	Artista 2D, artista 3D y animadora 3D.
-  * __Edu__:		Artista 2D, artista 3D y animador 3D.
-  * __Andrea__:	Programadora.
-  * __David__:	Game designer y guionista.
-
-## 2.2 Estimación temporal del desarrollo
-
-La realización del proyecto tendrá un tiempo límite de 13 semanas teniendo en cuenta una subdivisión en distintas etapas:
-  *	Versión Alpha (semana 5): Para esta versión del juego se tendrá programada una versión simple del combate, donde habrá un jugador y un enemigo que entra en combate. Esta versión contará con un tutorial para que se entienda bien las mecánicas principales.
-
-  * Versión Beta (semana 9): Para esta versión se tendrán montados los niveles, enemigos y programado y mejorado mecánicas como el gancho, el combate o la cámara. Se intentará tener texturizado la gran mayoría de los elementos del juego, igual que un sistema de interfaces y menús funcionales e intuitivos.
-
-  * Versión Release (semana 13): Esta es la versión final del juego. Aquí se mostrará el juego terminado habiendo pasado por un testeo, corrección de errores y terminado de añadir detalles menores del mismo.
-
-Durante estas versiones cada semana se pondrán metas a alcanzar para el final de esta.
-
-## 2.3 Costes adicionales
-
-### Costes del personal
-Estos serían los costes directos de la empresa, The Big Bone Team, asumiendo que el proyecto va a durar 13 semanas:
-
-MIEMBRO DEL EQUIPO  |  ROL | COSTE POR HORA (€) | COSTE MENSUAL (€) | COSTE TOTAL (€)
---  |  -- |  -- |  --  |  --  
-Andrea |   Programadora | 20 | 2400 | 7800
-Antonio | Diseñador de sonido y programador | 25 | 3000 | 10050
-Candela | Artista 2D, artista 3D y animadora 3D | 15 | 1800 | 5850
-Diego | Programador | 25 | 3000 | 10050
-David | Game designer y guionista | 15 | 1800 | 5850
-Edu | Artista 2D, artista 3D y animador 3D | 15 | 1800 | 5850
-__Total__ | - | 85 | 10200 | 45450
-
-### Licencias y software
-CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
--- | -- | --
-Internet | 60 | 195
-Unity: Licencia Pro | 925 | 3006.25
-Procreate | (coste único) | 14.99
-Clip Studio | (coste único) | 49
-Github | Licencia gratuita | 0
-Aseprite | Licencia gratuita| 0
-Miro | Licencia gratuita | 0
-Jira | Licencia gratuita| 0
-Mocrosoft Teams | Licencia gratuita| 0
-Blender | Licencia gratuita | 0
-MuseScore | Licencia gratuita | 0
-Google Docs | Licencia gratuita | 195
-__Total__ | 985 | 3265.34
-
-### Otros gastos
-CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
--- | -- | --
-Alquiler oficina | 800 | 2600
-Internet | 60 | 195
-Equipos | (coste único) | 5000
-Servicios externos (testers) | 500 | 3000
-__Total__ | 2285 | 10795
-
-
-# 3. Historia
-## 3.1. Ambientación 
+# 2. Historia
+## 2.1. Ambientación 
 "Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
@@ -131,7 +34,7 @@ La zona donde se desarrolla el videojuego es un área poblada en el desierto que
   *Estos lugares, en cuestiones de gameplay, se traducen directamente como niveles o zonas de progreso que el jugador deberá atravesar*
 
 
-## 3.2. Trasfondo
+## 2.2. Trasfondo
 >*Existen manuscritos de eras ancestrales que teorizan sobre la existencia de unas cápsulas o huevos que surgieron con la creación del universo. En estas escrituras se les atribuye a estos huevos la capacidad de engendrar vida y alterar el entorno de su alrededor, consiguiendo habitar planetas yermos por completo.* 
 
 ### La sequía
@@ -171,7 +74,7 @@ Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o
 
 Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
  
-## 3.3. Personajes principales 
+## 2.3. Personajes principales 
 
 ### Protagonisto
 El protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
@@ -228,9 +131,10 @@ Los estados de transformación por el “milagro chungo” se han categorizado e
  <img src="./Imagenes_README/CactusZombie01.png" alt="CactusZombie01" width="30%"/>
 </p>
 
-# 4. Jugabilidad 
+# 3. Jugabilidad 
+Al tratarse de un videojuego en 3D y tener un combate frenético donde te enfrentas a distintos enemigos, hay que tener en cuenta como se va a mover el jugador y como se va a enfrentar a estos enemigos. 
 
-## 4.1. Mecánicas de interacción y movimiento
+## 3.1. Mecánicas de interacción y movimiento
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
 
 ### **Desplazamiento horizontal**
@@ -242,7 +146,7 @@ Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá 
 
 El gancho cuenta con una logitud máxima de 6 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios a 1,5 metros pues no se considera necesario su utilidad a esas distancias.
 
-## 4.2. Sistema de combate y vida
+## 3.2. Sistema de combate y vida
 ### **Estilo duelo** 
 El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto, el jugador realiza un parry bloqueando el ataque y stunneando al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
 
@@ -296,7 +200,7 @@ El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos fo
 
   1. **Botiquines**: En los niveles el jugador podrá encontrar botiquines en zonas de transición entre combates. Estos botiquines restauran 2 puntos de vida.
 
-  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
+  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o no, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
   <img src="./Imagenes_README/DiagramaVida.png" alt="DiagramaVida" style="width: 70%"/>
 
@@ -308,8 +212,7 @@ El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
 
   * **Estado combate**: Si el jugador es detectado por un enemigo este le atacará a distancia o se acercará para pegarle. Si otros enemigos ven a uno de ellos ponerse en este modo buscarán al jugador para atacarle también.
 
-
-## 4.3. Controles 
+## 3.3. Controles 
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
@@ -318,12 +221,12 @@ MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.
 CORRER                | SHIFT       | 
 GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
-ESQUIVE/PARRY         | ESPACIO     |
+ESQUIVE/BLOQUEO         | ESPACIO     |
 
-## 4.4. Tipos de enemigos 
+## 3.4. Tipos de enemigos 
 
 ### Enemigos melee 
-Los enemigos a meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
+Los enemigos meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
 
 #### Enemigo base melee
 
@@ -333,11 +236,11 @@ Este enemigo es el primero que se le presenta al jugador como tutorial y por lo 
   3. Defensa central, ataque central, defensa izquierda y ataque izquierda.
 
 #### Enemigo suicida
-Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro se lanza hacia el jugador provocando una explosión que acaba con su vida y produce 3 de daño al jugador si este no lo esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
+Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
 
 Para poderse librar de este enemigo existen varias opciones:
 
-  * Cuando el jugador se encientra en el estilo libre si realiza una esquivación en el momento justo no recibirá ningún daño.
+  * Cuando el jugador se mueve por el escenario, si realiza un esquive en el momento justo no recibirá ningún daño.
 
   * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que hará detonar al enemigo saliendo ileso. Si el jugador ataca primero al enemigo este se preparará para detonar, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
 
@@ -361,29 +264,29 @@ Este enemigo cuenta con unos brazos que son escudos y pistolas a la vez. Su rang
   2. Dos ataques centrales segudos.
   3. Ataque derecho, defenza izquierda, ataque izquierdo y defensa central.
 
-# 5. Arte 
+# 4. Arte 
 
 A continuación se hará un resumen del apartado artístico general de Proyecto Coyote, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
 
-## 5.1. Estilo artístico general
+## 4.1. Estilo artístico general
 
 Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
 
-## 5.2. Personajes
+## 4.2. Personajes
 (Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
-## 5.3. Escenarios
+## 4.3. Escenarios
 Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
 <!--### Pueblo
 ### Cañón
 ### Oasis-->
 
-## 5.4. Arte 2D
+## 4.4. Arte 2D
 
 
 
-# 6. Sonido y música 
-## 6.1. Estilo Sonoro y musical
+# 5. Sonido y música 
+## 5.1. Estilo Sonoro y musical
 La música será ambientada en bandas sonoras del oeste para el menú de introducción, y temas de acción y aventura para el gameplay. Se usará el software “Musescore” para la composición de las canciones. Algunos instrumentos empleados serán el banjo o la trompeta entre otros.
 
 Por otra parte, los sonidos y efectos especiales (SFX) tendrán una temática 8 bits, para acompañar la estética visual del juego. Se emplearán páginas como SFXR o BFXR.
@@ -391,8 +294,8 @@ Por otra parte, los sonidos y efectos especiales (SFX) tendrán una temática 8 
 <!--## 6.2. Banda sonora 
 ## 6.3. Efectos sonoros (SFX) -->
 
-# 7. Menús e Interfaces 
-## Diagramas de flujo 
+# 6. Menús e Interfaces 
+## 6.1. Diagramas de flujo 
 
 ### Menú inicio
 <img width="1050" height="562" alt="DiagramaflujoMenuPrincipal drawio" src="https://github.com/user-attachments/assets/b133867e-11f8-44f8-8a3e-f341eae1f700" />
@@ -438,7 +341,7 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
        
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
 
- ## Diseño de interfaces
+ ## 6.2. Diseño de interfaces
  ###  Menú principal
 
 <img src="./Imagenes_README/BocetoMenuPrincipal.png" alt="BocetoMenuPincipal" style="width: 70%"/>
@@ -451,9 +354,86 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
 4. El protagonista está de espaldas a la cámara mirando hacia el pueblo mientras se le mueve el poncho.
 
+# 7. Modelo de Negocio y Monetización
+
+## 7.1. Monetización
+
+Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
+
+Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego.
+
+PRODUCTO              |  PRECIO
+--                    |  --     
+Juego base  |   20 €
+DLC: libro de arte |   7.5 €
+
+## 7.2. Planificación y Costes
+### El equipo humano
+  * __Antonio__:	Diseñador de sonido y programador.
+  * __Diego__:	Programador.
+  * __Candela__:	Artista 2D, artista 3D y animadora 3D.
+  * __Edu__:		Artista 2D, artista 3D y animador 3D.
+  * __Andrea__:	Programadora.
+  * __David__:	Game designer y guionista.
+
+### Estimación temporal del desarrollo
+
+La realización del proyecto tendrá un tiempo límite de 13 semanas teniendo en cuenta una subdivisión en distintas etapas:
+
+  *	Versión Alpha (semana 5): Para esta versión del juego se tendrá programada una versión simple del combate, donde habrá un jugador y un enemigo que entra en combate. Esta versión contará con un tutorial para que se entienda bien las mecánicas principales.
+
+  * Versión Beta (semana 9): Para esta versión se tendrán montados los niveles, enemigos y programado y mejorado mecánicas como el gancho, el combate o la cámara. Se intentará tener texturizado la gran mayoría de los elementos del juego, igual que un sistema de interfaces y menús funcionales e intuitivos.
+
+  * Versión Release (semana 13): Esta es la versión final del juego. Aquí se mostrará el juego terminado habiendo pasado por un testeo, corrección de errores y terminado de añadir detalles menores del mismo.
+
+Durante estas versiones cada semana se pondrán metas a alcanzar para el final de esta.
+
+### Costes adicionales
+
+#### Costes del personal
+Estos serían los costes directos de la empresa, The Big Bone Team, asumiendo que el proyecto va a durar 13 semanas:
+
+MIEMBRO DEL EQUIPO  |  ROL | COSTE POR HORA (€) | COSTE MENSUAL (€) | COSTE TOTAL (€)
+--  |  -- |  -- |  --  |  --  
+Andrea |   Programadora | 20 | 2400 | 7800
+Antonio | Diseñador de sonido y programador | 25 | 3000 | 10050
+Candela | Artista 2D, artista 3D y animadora 3D | 15 | 1800 | 5850
+Diego | Programador | 25 | 3000 | 10050
+David | Game designer y guionista | 15 | 1800 | 5850
+Edu | Artista 2D, artista 3D y animador 3D | 15 | 1800 | 5850
+__Total__ | - | 85 | 10200 | 45450
+
+#### Licencias y software
+CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
+-- | -- | --
+Internet | 60 | 195
+Unity: Licencia Pro | 925 | 3006.25
+Procreate | (coste único) | 14.99
+Clip Studio | (coste único) | 49
+Github | Licencia gratuita | 0
+Aseprite | Licencia gratuita| 0
+Miro | Licencia gratuita | 0
+Jira | Licencia gratuita| 0
+Mocrosoft Teams | Licencia gratuita| 0
+Blender | Licencia gratuita | 0
+MuseScore | Licencia gratuita | 0
+Google Docs | Licencia gratuita | 195
+__Total__ | 985 | 3265.34
+
+#### Otros gastos
+CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
+-- | -- | --
+Alquiler oficina | 800 | 2600
+Internet | 60 | 195
+Equipos | (coste único) | 5000
+Servicios externos (testers) | 500 | 3000
+__Total__ | 2285 | 10795
 
 # 8. Marketing y Redes Sociales
+
 Para publicitar el juego se han creado distintas redes sociales como Instagram, Youtube, X, ... El uso de estas redes sociales serán para presentar los distintos integrantes del equipo y los pequeños avances que se hagan conforme avanza el tiempo.
+
+El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana, por lo que habrá que enfocar el marketing hacia dicho público.
 
 # 9. Post Mortem
 

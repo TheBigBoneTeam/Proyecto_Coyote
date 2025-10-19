@@ -171,7 +171,7 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
 
 - **Ataques primarios** Son los recibidos por el enemigo fijado. Pueden venir por la derecha, izquierda o centro. Para contrarrestarlos el jugador puede realizar las siguientes acciones:
 
-  - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la misma dirección que el ataquea para no sufrir daño observando 3 posibles direcciones:
+  - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la dirección indicada por la interfaz para no sufrir daño observando 3 posibles direcciones:
     
     * Izquierda: input de dirección izquierda (A/joystick) + esquivar.
 
@@ -275,7 +275,7 @@ Como ya se ha mencionado el juego estará completamente implementado en 3D, tant
 
 ## 4.2. Personajes
 
-### 4.3. Personaje principal
+###  Personaje principal
 
 <img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
 
@@ -300,6 +300,18 @@ Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas pri
 <!--### Pueblo
 ### Cañón
 ### Oasis-->
+
+###  Enemigos
+<img src="./Imagenes_README/ConceptZombie.jpg" alt="zombi1" style="width: 36%"/>
+<img src="./Imagenes_README/ConceptEsqueleto.jpg" alt="zombi1" style="width: 59%"/>
+
+Arte conceptual inicial de algunos enemigos
+
+<img src="./Imagenes_README/ZombieNopalAttackFront.jpg" alt="zombi1" style="width: 30%"/>
+<img src="./Imagenes_README/ZombieNopalIdle.jpg" alt="zombi2" style="width: 31%"/>
+<img src="./Imagenes_README/ZombieNopalWalk.jpg" alt="zombi3" style="width: 24%"/>
+
+Modelado de el Zombi Nopal
 
 ## 4.4. Arte 2D
 
@@ -483,10 +495,26 @@ También me he mantenido en contacto con los programadores para comprender sus s
 
 Además he tenido un papel significativo en la toma de decisiones sobre diseño, ambientación y, en general, sobre la idea del juego en las primeras reuiniones
 
+---
+
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
+
+La importancia de trabajar en equipo, de tener unos propósitos marcados claramente desde el primer momento y fijar unas fechas para cumplir estos objetivos. También he aprendido la importancia de no tener miedo de recurrir a compañeros por ayuda.
+
 #### Trabajo individual realizado
+
+Mi trabajo individual ha sido la creación de un sistema de movimiento para el personaje controlable. En este sistema, el personaje es capaz de andar, correr y realizar un dash como movimientos básicos. También se le ha aplicado gravedad al personaje y se ha empezado el sistema de gancho para poder atraer/acercarse a enemigos.
+
+He implementado el input system para que controlar las entradas del jugador y configurar los controles en función del dispositivo con el que se esté jugando (teclado, móvil o mando). Se ha empezado a configurar los controles del mando.
+
 #### Trabajo colectivo realizado
+
+He mantenido contacto sobre todo con el equipo de programación (Andrea, Diego y yo). Nos hemos comunicado las actualizaciones de cada uno. Mientras yo programaba el movimiento, Andrea hacía la cámara y estábamos en constante contacto.
+
+Además, todo el trabajo de programación ha pasado por la supervisión de Diego y también he estado en contacto con él como asesor.
+
+---
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
@@ -510,16 +538,33 @@ En general yo planteaba los conceptos o ideas en el GDD con un desarrollo y ella
 
 También cabe resaltar que la idea de que el prota tenga que enterrar las cenizas de su marido fue una idea general del grupo al igual que la ambientación. 
 
-
+---
 ### Diego Fernández Manso
 #### Lecciones aprendidas
 #### Trabajo individual realizado
 #### Trabajo colectivo realizado
 
+---
+
 ### Candela Jiménez González
 #### Lecciones aprendidas
+  La entrega de la versión alfa ha sido clave para considerar de forma más realista el scope del proyecto completo. Ver hasta dónde hemos llegado como equipo en esta primera entrega nos ha permitido entender que el primer planteamiento del proyecto se nos iba un poco de las manos y que iba a ser necesario el uso de herramientas de gestión y la división de tareas en subtareas con fechas de realización. Ha habido varios objetivos que planteamos al principio a los que no se han podido llegar por esta falta deorganización. 
+
 #### Trabajo individual realizado
+  Mi trabajo principal en esta entrega ha consistido en el diseño, modelado y animación del enemigo base, creando sus animaciones de ataque, de bloqueo y de caminar. 
+
+  Además, me he encargado de realizar concept art (tandto de enemigos como de personajes no jugables) a partir del trasfondo del juego que hemos ido construyendo. He participado mucho también precisamente en el desarrollo de esta historia y en el worlbuilding general. 
+
+  También he sido la encargada de la estructuración y la escritura de gran parte del Readme, así como de la creación de algunos de los recursos visuales de este.
+
+  Finalmente, también he empezado con el diseño y planteamiento inicial de la página web.
+  
 #### Trabajo colectivo realizado
+  He trabajado en todo el desarrollo de esta entrega con Edu, sobre todo cuadrando el estilo visual general y tomando decisiones las de diseño que más nos cuadrasen conjuntamente para el proyecto. Nos hemos encargado de precisar el concepto de personajes y escenarios para que, ya que ambos vamos a trabajar en arte, partamos de un punto común y tener clara la estética y la sensación que queremos darle al juego. Esto ha sido fácil gracias a la creación de un documento de estilo y gracias a nuestra continua comunicación durante el desarrollo de assets.
+  
+  También he colaborado conjuntamente con Diego y Edu a la hora de integrar las animaciones en el motor de desarrollo e incluirlas en el controlador. 
+
+  ---
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas

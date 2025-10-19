@@ -294,6 +294,7 @@ Concept art con el diseño final del personaje
 Modelo 3D finalizado del personaje principal
 
 ## 4.3. Escenarios
+
 Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
 <!--### Pueblo
@@ -391,7 +392,7 @@ DLC: libro de arte |   7.5 €
   * __Antonio__:	Diseñador de sonido y programador.
   * __Diego__:	Programador.
   * __Candela__:	Artista 2D, artista 3D y animadora 3D.
-  * __Edu__:		Artista 2D, artista 3D y animador 3D.
+  * __Edu__:		Artista 2D, artista 3D, animador 3D y artista técnico.
   * __Andrea__:	Programadora.
   * __David__:	Game designer y guionista.
 

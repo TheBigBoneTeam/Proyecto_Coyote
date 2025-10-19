@@ -466,9 +466,11 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
+  En el ámbito teórico se ha aprendido sobre monetización y gestión de proyectos. Por otro lado, en el desarrollo del proyecto se ha ampliado en gran cantidad el conocimiento relacionado con *cinemachine* y cámaras virtuales, en concreto de *state-driven camera* para cambiar de una cámara a otra a través de un *Animator*. También se ha aprendido a localizar enemigos en un rango concreto y se ha aumentado la comprensión del espacio 3D en Unity.
 #### Trabajo individual realizado
+  El trabajo individual realizado a lo largo de la primera fase del proyecto se ha centrado sobre todo en el desarrollo del sistema de cámaras, la transición entre los diferentes modos(Lock y libre) y la detección de los enemigos en un rango concreto.
 #### Trabajo colectivo realizado
-
+  Gestión y reparto de tareas.
 
 <!--## 9.2. Post Mortem - Beta
 ## 9.3. Post Mortem - Gold-->

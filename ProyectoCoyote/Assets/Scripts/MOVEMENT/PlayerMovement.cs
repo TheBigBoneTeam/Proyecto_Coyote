@@ -199,10 +199,7 @@ public class PlayerMovement : MonoBehaviour
         }
        
     }
-
-
     #endregion
-
 
     #region Animaciones y movimiento
     private void computeAnimator()
@@ -444,7 +441,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
     private void Dash()
     {
         if (dashCdTimer > 0) return;
@@ -490,7 +486,8 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
     }
 
-    /* MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA */
+    /*
+    // MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA
     private void OnGUI()
     {
         GUI.skin.label.fontSize = 30;   // Tama�o de la letra
@@ -505,6 +502,7 @@ public class PlayerMovement : MonoBehaviour
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
     }
+    */
 
     internal void setCanAttack(bool v)
     {

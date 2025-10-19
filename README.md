@@ -540,9 +540,20 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ---
 ### Diego Fernández Manso
+
 #### Lecciones aprendidas
+  Principalmente se ha aprendido sobre división de trabajo de cara a programación. Eramos un grupo de tres centrados en programación y hemos tenido que dividir un proyecto relativamente grande.
+  En relacion al propio desarrollo, se ha aprendido mucho sobre inteligencia artifiical y comprotmaiento de personajes ya que se ha utilizado el API de arboles de comportamiento de personajes.
+
 #### Trabajo individual realizado
+  El trabajo individual se ha centrado en mayor parte con el sistema de combate y el comportamiento de los enemigos.
+  El mayor pro es que al ser una parte relativamente aislada del resto del proyecto se ha podido trabajar sin muchos conflictos con el trabajo del resto del equipo. Con la excepción de sistemas como los controles que por suerte estaban pensados desde el principio para una buena integración con el sistema de combate.
+  En lo negativo, al ser muchos sistemas entrelazados (IA, combate, vida, llamadas a animators) ha habido muchos días donde el trabajo daba pocos o ningun resultado. 
+  Ademas se han tenido que rehacer varias veces los sistemas ya que se habían diseñado sin tener en cuenta todas las necesidades de diseño.
+
 #### Trabajo colectivo realizado
+  El mayor problema colectivo a nivel de programación es que algunas tareas no se han dividido muy bien, lo que ha llevado a cierta solapación en los sistemas a realizar, lo que ha significado trabajo perdido.
+  En el lado positivo, una vez se corrigieron estos problemas iniciales hemos podido sincronizarnos bien y, debido a que tenemos experiencia previa con github, hemos podido evitar conflictos de archivos y branches.
 
 ---
 

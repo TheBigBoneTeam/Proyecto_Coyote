@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DefenseAttackUIIndicator : MonoBehaviour
 {
-  [SerializeField]  DamageReceiver DamageReceiver;
+  [SerializeField] protected DamageReceiver DamageReceiver;
     [SerializeField] Attack attack;
 
 
@@ -63,7 +64,15 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         print(attack);
         for (int i = 0; i < dodgeUISignalers.Length; i++)
         {
-            setAttackObject(attackUISignalers[i], state.hitDirections.Contains((HitDirections)i));
+            if (state.hitDirections.Length == 0)
+            {
+                setAttackObject(attackUISignalers[i], true);
+
+            }
+            else
+            {
+                setAttackObject(attackUISignalers[i], state.hitDirections.Contains((HitDirections)i));
+            }
         }
     }
     private void OnDestroy()
@@ -77,11 +86,13 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         CanvasGroup.alpha = enable ? 1:0;
     }
 
-    public void setCharacter(AGameCharacter character)
+    public virtual void setCharacter(AGameCharacter character)
     {
         if(DamageReceiver != null)
         DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
         DamageReceiver = character.GetComponent<DamageReceiver>();
+        this.transform.parent = character.transform;
+        this.transform.localPosition = Vector3.zero;
         DamageReceiver.subscribeToStateChange(DodgeStateChange);
 
     }

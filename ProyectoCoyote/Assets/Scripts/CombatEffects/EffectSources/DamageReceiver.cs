@@ -23,7 +23,7 @@ public class DamageReceiver:MonoBehaviour
         else
         {
             Debug.Log("Dodge");
-            character.DodgeAttack();
+            character.DodgeAttack(directions[0]);
             if (Attack.Parreable)
             {
                 Debug.Log("PARRY");

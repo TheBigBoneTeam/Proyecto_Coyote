@@ -30,6 +30,10 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         {
             attack.subscribeToStateChange(AttackStateChange);
         }
+        else
+        {
+            setEnable(false);
+        }
     }
     // Update is called once per frame
     void Update()

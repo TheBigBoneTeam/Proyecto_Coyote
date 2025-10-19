@@ -19,6 +19,8 @@ public abstract class AGameCharacter :MonoBehaviour
     Animator anim;
 
     UnityEvent<int> lifeUpdate;
+
+    Action dodgeAttackEvent;
     private void Awake()
     {
         lifeUpdate = new UnityEvent<int>();
@@ -112,6 +114,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void DodgeAttack()
     {
+        dodgeAttackEvent.Invoke();
         checkEffect(new Dodge(2));
     }
 
@@ -143,5 +146,14 @@ public abstract class AGameCharacter :MonoBehaviour
     public void unSubscribeToLifeChange(UnityAction<int> response)
     {
         lifeUpdate.AddListener(response);
+    }
+
+    public void subscribeToDodgeAttack(Action response)
+    {
+        dodgeAttackEvent += response;
+    }
+    public void unSubscribeToDodgeAttack(Action response)
+    {
+        dodgeAttackEvent -= response;
     }
 }

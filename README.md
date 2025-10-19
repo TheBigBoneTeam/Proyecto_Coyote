@@ -26,7 +26,10 @@ Al tratarse de un videojuego de acción frenética en tercera persona, el tipo d
 
 Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego.
 
-
+PRODUCTO              |  PRECIO
+--                    |  --     
+Juego base  |   20 €
+DLC: libro de arte |   7.5 €
 
 ## 1.4. Propósito y público objetivo 
 "Proyecto Coyote” surgió con la intención de dar a conocer una combinación de géneros poco conocida: western con fantasía oscura. 
@@ -56,7 +59,57 @@ El estilo **duelo** se produce cuando el jugador centra a un enemigo. En este es
   * __David__:	Game designer y guionista.
 
 ## 2.2 Estimación temporal del desarrollo
+
+La realización del proyecto tendrá un tiempo límite de 13 semanas teniendo en cuenta una subdivisión en distintas etapas:
+  *	Versión Alpha (semana 5): Para esta versión del juego se tendrá programada una versión simple del combate, donde habrá un jugador y un enemigo que entra en combate. Esta versión contará con un tutorial para que se entienda bien las mecánicas principales.
+
+  * Versión Beta (semana 9): Para esta versión se tendrán montados los niveles, enemigos y programado y mejorado mecánicas como el gancho, el combate o la cámara. Se intentará tener texturizado la gran mayoría de los elementos del juego, igual que un sistema de interfaces y menús funcionales e intuitivos.
+
+  * Versión Release (semana 13): Esta es la versión final del juego. Aquí se mostrará el juego terminado habiendo pasado por un testeo, corrección de errores y terminado de añadir detalles menores del mismo.
+
+Durante estas versiones cada semana se pondrán metas a alcanzar para el final de esta.
+
 ## 2.3 Costes adicionales
+
+### Costes del personal
+Estos serían los costes directos de la empresa, The Big Bone Team, asumiendo que el proyecto va a durar 13 semanas:
+
+MIEMBRO DEL EQUIPO  |  ROL | COSTE POR HORA (€) | COSTE MENSUAL (€) | COSTE TOTAL (€)
+--  |  -- |  -- |  --  |  --  
+Andrea |   Programadora | 20 | 2400 | 7800
+Antonio | Diseñador de sonido y programador | 25 | 3000 | 10050
+Candela | Artista 2D, artista 3D y animadora 3D | 15 | 1800 | 5850
+Diego | Programador | 25 | 3000 | 10050
+David | Game designer y guionista | 15 | 1800 | 5850
+Edu | Artista 2D, artista 3D y animador 3D | 15 | 1800 | 5850
+__Total__ | - | 85 | 10200 | 45450
+
+### Licencias y software
+CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
+-- | -- | --
+Internet | 60 | 195
+Unity: Licencia Pro | 925 | 3006.25
+Procreate | (coste único) | 14.99
+Clip Studio | (coste único) | 49
+Github | Licencia gratuita | 0
+Aseprite | Licencia gratuita| 0
+Miro | Licencia gratuita | 0
+Jira | Licencia gratuita| 0
+Mocrosoft Teams | Licencia gratuita| 0
+Blender | Licencia gratuita | 0
+MuseScore | Licencia gratuita | 0
+Google Docs | Licencia gratuita | 195
+__Total__ | 985 | 3265.34
+
+### Otros gastos
+CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
+-- | -- | --
+Alquiler oficina | 800 | 2600
+Internet | 60 | 195
+Equipos | (coste único) | 5000
+Servicios externos (testers) | 500 | 3000
+__Total__ | 2285 | 10795
+
 
 # 3. Historia
 ## 3.1. Ambientación 
@@ -245,7 +298,7 @@ El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos fo
 
   2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o libre, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
-  ![alt text](<Diagrama vida.png>)
+  <img src="./Imagenes_README/DiagramaVida.png" alt="DiagramaVida" style="width: 70%"/>
 
 ### **Comportamiento enemigos**
 
@@ -384,6 +437,20 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
     3. __Salir:__ vuelve al menú inicial.
        
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
+
+ ## Diseño de interfaces
+ ###  Menú principal
+
+<img src="./Imagenes_README/BocetoMenuPrincipal.png" alt="BocetoMenuPincipal" style="width: 70%"/>
+
+1.	Título del juego.
+
+2.	Botones con las distintas opciones siguiendo el estilo del título.
+
+3.	De fondo se ve el pueblo de Prinklytown.
+
+4. El protagonista está de espaldas a la cámara mirando hacia el pueblo mientras se le mueve el poncho.
+
 
 # 8. Marketing y Redes Sociales
 Para publicitar el juego se han creado distintas redes sociales como Instagram, Youtube, X, ... El uso de estas redes sociales serán para presentar los distintos integrantes del equipo y los pequeños avances que se hagan conforme avanza el tiempo.

@@ -77,6 +77,7 @@ Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestr
 ## 2.3. Personajes principales 
 
 ### Protagonisto
+
 El protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 
 <!--### Personajes no jugables (NPCs)-->
@@ -273,7 +274,25 @@ A continuación se hará un resumen del apartado artístico general de Proyecto 
 Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
 
 ## 4.2. Personajes
-(Aquí metemos el modelado de los personajes más en detalle, turnarounds y demás, en Personajes (2.3) ponemos beauty/ concept y tirando)
+
+### 4.3. Personaje principal
+
+<img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
+
+Primer concept art del protagonista. Proyecto de ficha de personaje
+
+<img src="./Imagenes_README/MainChar2.jpg" alt="Prota2" style="width: 70%"/>
+
+Concept art a color. Diseño no final.
+
+<img src="./Imagenes_README/MainChar3.jpg" alt="Prota3" style="width: 70%"/>
+
+Concept art con el diseño final del personaje
+
+<img src="./Imagenes_README/MainChar4.jpg" alt="Prota3" style="width: 70%"/>
+
+Modelo 3D finalizado del personaje principal
+
 ## 4.3. Escenarios
 Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
@@ -440,9 +459,28 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 ## 9.1. Post Mortem - Alfa
 
 ### Eduardo Almarza Blasco
+
 #### Lecciones aprendidas
+
+La necesidad de estructurar las tareas del proyecto desde el minuto uno, evitando dependencias y esperas y, sobre todo, asumiendo fechas que permitan una cierta holgura en caso de que las cosas se retrasen. Necesitamos reducir el scope ligeramente, pero sobre todo crear un "roadmap" concreto donde nos establezcamos en qué fechas deben estar hechas cada una de las tareas. Comunicarnos para estar todos en una misma página antes de empezar a trabajar es crucial para no hacer trabajo innecesario o duplicado.
+
+Por ejemplo, cuando los artistas del proyecto empezamos a desarrollar concept art, personalmente salté demasiado pronto al diseño del protagonista. Esto complicó adaptarlo a las siguientes iteraciones de la idea y del trabajo, cosa que hubiese sido más sencilla si me hubiera esperado a tener la idea del juego más madura.
+
 #### Trabajo individual realizado
+
+Por mi parte, mi principal tarea ha sido realizar el diseño, arte conceptual, modelo 3D, texturizado rigging y animación del personaje principal, tanto en Blender como en la integración al motor, habiendo programado el animator controller del mismo.
+
+También he realizado trabajos menores en el apartado visual del Alpha, como el Shader del personaje (que se utilizará después para todos los personajes), la UI, la integración de las animaciones en el motor y ligeros efectos de fedback.
+
+Finalmente, y ya fuera de lo que es el juego, he realizado el logo del grupo y he comenzado a definir lo que será la estética de nuestras redes sociales (fuentes, estilos, paletas de color...).
+
 #### Trabajo colectivo realizado
+
+He trabajado de manera continua con Candela en el planteamiento y desarrollo de todo el apartado artístico. Desde las primeras reuniones de proyecto, hemos decidido entre los dos el estilo visual, los detalles de la ambientación y las especificaciones concretas de los modelos. Además nos hemos encargado de definir un *workflow* común para trabajar los personajes y su importación desde Blender.
+
+También me he mantenido en contacto con los programadores para comprender sus sistemas y poder modificarlos si fuese necesario en mi labor de artista técnico. Como ya he mencionado me he encargado de modificar su código para, por ejemplo, añadir efectos de animación o componer los animator controllers.
+
+Además he tenido un papel significativo en la toma de decisiones sobre diseño, ambientación y, en general, sobre la idea del juego en las primeras reuiniones
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
@@ -451,8 +489,26 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
+
+En cuanto a las lecciones aprendidas me he dado cuenta de que es muy importante tener una visión clara del proyecto desde el principio, pues en distintos momentos de esta versión nos hemos dado cuenta de que teníamos visiones algo distintas tanto en el planteamiento de ciertos aspectos del gameplay como identidad del juego
+
 #### Trabajo individual realizado
+
+Mi trabajo individual realizado ha sido principalmente crear el linktree y la mayoría de las redes sociales, pensar en los escenarios que tendrá el juego, los distintos enemigos y comportamientos de estos, aclarar y rellenar apartados de la jugabilidad dentro del GDD para que todos los miembros estén de acuerdo, los diagramas de flujo junto a su explicación, la implementación de un boceto de idea del menú principal y la creación básica del menú de juego.
+
+En este trabajo la verdad que he sentido libertad a lo que respecta a mi apartado como game designer obviamente planteando de antemano ciertas ideas y conceptos a mis compañeros para saber su opinión.
+
+Es verdad que tengo la sensación de que podría haber avanzado más o planteado cosas más pronto en cuanto a mi trabajo dentro del grupo. 
+
 #### Trabajo colectivo realizado
+
+Mi trabajo colectivo con otros miembros del equipo ha sido con Candela a la hora de plantear la historia y rellenar lo esencial para el GDD.
+La comunicación con mi compañera a la hora de plantear los puntos principales de la historia y el Wordbuilding ha sido muy buena.
+
+En general yo planteaba los conceptos o ideas en el GDD con un desarrollo y ella los revisaba y corregía reescribiéndolo para darme cuenta de la visión general y no alejarme de ella, además de darle un toque más narrativo.
+
+También cabe resaltar que la idea de que el prota tenga que enterrar las cenizas de su marido fue una idea general del grupo al igual que la ambientación. 
+
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
@@ -466,9 +522,11 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
+  En el ámbito teórico se ha aprendido sobre monetización y gestión de proyectos. Por otro lado, en el desarrollo del proyecto se ha ampliado en gran cantidad el conocimiento relacionado con *cinemachine* y cámaras virtuales, en concreto de *state-driven camera* para cambiar de una cámara a otra a través de un *Animator*. También se ha aprendido a localizar enemigos en un rango concreto y se ha aumentado la comprensión del espacio 3D en Unity.
 #### Trabajo individual realizado
+  El trabajo individual realizado a lo largo de la primera fase del proyecto se ha centrado sobre todo en el desarrollo del sistema de cámaras, la transición entre los diferentes modos(Lock y libre) y la detección de los enemigos en un rango concreto.
 #### Trabajo colectivo realizado
-
+  Gestión y reparto de tareas.
 
 <!--## 9.2. Post Mortem - Beta
 ## 9.3. Post Mortem - Gold-->

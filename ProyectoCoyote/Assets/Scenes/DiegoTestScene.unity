@@ -3014,7 +3014,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -3038,9 +3038,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.76000005
-  m_Height: 4.350283
+  m_Height: 4.202857
   m_Direction: 1
-  m_Center: {x: 0, y: 0.49972534, z: 0}
+  m_Center: {x: 0, y: 0.5734386, z: 0}
 --- !u!4 &1568128656
 Transform:
   m_ObjectHideFlags: 0
@@ -4014,6 +4014,10 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 1992009085}
+    - target: {fileID: 4037878208120886704, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
+      propertyPath: moveLockedSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4108976831168801469, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -10.231424

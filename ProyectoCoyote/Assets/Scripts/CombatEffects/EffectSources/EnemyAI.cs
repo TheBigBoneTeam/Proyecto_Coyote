@@ -75,7 +75,8 @@ public class EnemyAI : MonoBehaviour
         StanceA,
         StanceB,
         StanceC,
-        Idle
+        Idle,
+        Walk
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {

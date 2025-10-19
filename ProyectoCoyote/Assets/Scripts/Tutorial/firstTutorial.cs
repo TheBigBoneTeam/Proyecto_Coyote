@@ -65,7 +65,7 @@ namespace tutorial
 
         }
        
-        public void esquive()
+        public void esquive(HitDirections d)
         {
             Debug.Log("Esquive");
             tutorial.currentEsquives++;
@@ -94,7 +94,7 @@ namespace tutorial
 
 
         }
-        public void esquive()
+        public void esquive(HitDirections d)
         {
 
             tutorial.currentEsquives++;

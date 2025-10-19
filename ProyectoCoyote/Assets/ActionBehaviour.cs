@@ -18,8 +18,11 @@ public class ActionBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(lastAnimInAction)
-        animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+        if (lastAnimInAction)
+        {
+            animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+            animator.gameObject.GetComponentInChildren<Attack>().LoadData(null);
+        }
     }
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

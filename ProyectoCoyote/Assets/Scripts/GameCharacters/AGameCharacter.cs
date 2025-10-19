@@ -19,13 +19,15 @@ public abstract class AGameCharacter :MonoBehaviour
     Animator anim;
 
     UnityEvent<int> lifeUpdate;
+   protected Action dieEvent;
+    UnityEvent<HitDirections> dodgeAttackEvent;
 
-    Action dodgeAttackEvent;
     private void Awake()
     {
         lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
         anim = GetComponentInChildren<Animator>();
+        dodgeAttackEvent = new UnityEvent<HitDirections>();
     }
     private void Start()
     {
@@ -112,10 +114,10 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
-    public void DodgeAttack()
+    public void DodgeAttack(HitDirections direction)
     {
         if(dodgeAttackEvent != null)
-        dodgeAttackEvent.Invoke();
+        dodgeAttackEvent.Invoke(direction);
         checkEffect(new Dodge(2));
     }
 
@@ -130,11 +132,11 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         if (idle)
         {
-            anim.Play(stateName);
+            anim.CrossFade(stateName,.1f);
         }
         else
         {
-            anim.Play(stateName, 0, 0);
+            anim.CrossFade(stateName,.1f, 0, 0);
         }
     }
     public void subscribeToLifeChange(UnityAction<int> response)
@@ -149,12 +151,21 @@ public abstract class AGameCharacter :MonoBehaviour
         lifeUpdate.AddListener(response);
     }
 
-    public void subscribeToDodgeAttack(Action response)
+    public void subscribeToDodgeAttack(UnityAction<HitDirections> response)
     {
-        dodgeAttackEvent += response;
+        dodgeAttackEvent.AddListener(response);
     }
-    public void unSubscribeToDodgeAttack(Action response)
+    public void unSubscribeToDodgeAttack(UnityAction<HitDirections> response)
     {
-        dodgeAttackEvent -= response;
+        dodgeAttackEvent.RemoveListener(response);
+    }
+
+    public void subscribeToDie(Action response)
+    {
+        dieEvent += response;
+    }
+    public void unSubscribeToDie(Action response)
+    {
+        dieEvent -= response;
     }
 }

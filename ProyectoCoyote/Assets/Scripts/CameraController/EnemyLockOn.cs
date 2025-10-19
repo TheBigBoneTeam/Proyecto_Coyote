@@ -28,6 +28,8 @@ public class EnemyLockOn : MonoBehaviour
     [SerializeField] Transform lockOnCanvas;
     PlayerMovement movement;
     [SerializeField] DefenseAttackUIIndicator defenseAttackUIIndicator;
+    [SerializeField] EnemyDefenseAttackUIIndicator enemyDefenseAttackUIIndicator;
+
 
     void Start()
     {
@@ -37,7 +39,8 @@ public class EnemyLockOn : MonoBehaviour
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
         defenseAttackUIIndicator = GetComponentInChildren<DefenseAttackUIIndicator>();
-        
+        enemyDefenseAttackUIIndicator = FindAnyObjectByType<EnemyDefenseAttackUIIndicator>();
+
         cam = Camera.main.transform;
        
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
@@ -167,6 +170,10 @@ public class EnemyLockOn : MonoBehaviour
         }
         defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
         defenseAttackUIIndicator.setEnable(true);
+        if (enemyDefenseAttackUIIndicator != null)
+        {
+            enemyDefenseAttackUIIndicator.setCharacter(closestTarget.GetComponent<AGameCharacter>());
+        }
         // Devuelve el enemigo v�lido
         return closestTarget;
     }

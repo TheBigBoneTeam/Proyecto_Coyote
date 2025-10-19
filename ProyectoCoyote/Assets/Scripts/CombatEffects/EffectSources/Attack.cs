@@ -113,15 +113,24 @@ public class Attack : ATouchCombatEffectSource
     }
     public void LoadData(AttackData data)
     {
-        setHitCheck(data.HitCheckType);
-        setParry(false);
-        HitDirections.Clear();
-        HitDirections.AddRange(data.HitDirections);
-        effects.Clear();
-        foreach (var effect in data.effects)
+        print("getData");
+        if (data == null)
         {
-            effect.setSource(this);
-            effects.Add(effect);
+            HitDirections.Clear();
+            effects.Clear();
+        }
+        else
+        {
+            setHitCheck(data.HitCheckType);
+            setParry(false);
+            HitDirections.Clear();
+            HitDirections.AddRange(data.HitDirections);
+            effects.Clear();
+            foreach (var effect in data.effects)
+            {
+                effect.setSource(this);
+                effects.Add(effect);
+            }
         }
         sendState();
     }

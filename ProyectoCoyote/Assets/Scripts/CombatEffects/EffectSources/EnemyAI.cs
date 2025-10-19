@@ -31,7 +31,8 @@ public class EnemyAI : MonoBehaviour
 
     public void endCurrentAction()
     {
-        print("endActionD");
+        print("end action: on");
+
         endAction = true;
     }
 
@@ -80,7 +81,11 @@ public class EnemyAI : MonoBehaviour
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {
-        endAction = false;
+        print("end action: off");
+        if (!idle)
+        {
+            endAction = false;
+        }
         character.PlayAnimation(action.ToString(),idle);
 
     }
@@ -89,6 +94,8 @@ public class EnemyAI : MonoBehaviour
         attackObj = GetComponentInChildren<Attack>();
         character = GetComponent<AGameCharacter>();
         player = FindAnyObjectByType<PlayerMovement>().gameObject;
+        print("end action: off");
+
         endAction = false;
     }
 
@@ -106,6 +113,13 @@ public class EnemyAI : MonoBehaviour
         // Draw wire sphere outline.
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, seeDistance);
+    }
+
+    public void endActionNode()
+    {
+        print("end action: off");
+
+        endAction = false;
     }
     #endregion
 }

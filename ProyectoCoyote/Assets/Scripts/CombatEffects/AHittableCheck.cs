@@ -34,7 +34,7 @@ public class OnlyOtherTeamHittable : AHittableCheck
     public OnlyOtherTeamHittable(AGameCharacter owner) : base(owner) { }
     public override bool isHittable(AGameCharacter obj)
     {
-        UnityEngine.Debug.Log("ishiitable");
+        UnityEngine.Debug.Log("ishiitable" +owner.name);
         return owner.isOtherTeam(obj);
     }
 }

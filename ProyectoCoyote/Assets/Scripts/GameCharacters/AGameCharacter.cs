@@ -7,6 +7,7 @@ using CombatEffect;
 using System;
 using System.Collections;
 using UnityEngine.Playables;
+using UnityEngine.Events;
 public abstract class AGameCharacter :MonoBehaviour
 {
     List<ATimedEffect> activeEffects;
@@ -16,27 +17,33 @@ public abstract class AGameCharacter :MonoBehaviour
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  bool invincible;
     Animator anim;
+
+    UnityEvent<int> lifeUpdate;
     private void Awake()
     {
+        lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
         anim = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
         HealthPoint = _maxHealthPoint;
+        lifeUpdate.Invoke(HealthPoint);
     }
     public virtual void getHit(int damage)
     {
         HealthPoint -= damage;
         print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
-        
-        if(HealthPoint <= 0)
+        lifeUpdate.Invoke(HealthPoint);
+
+        if (HealthPoint <= 0)
         {
             Die();
             return;
         }
         if (invTimeAfterHit > 0)
         {
+            anim.CrossFade("GetHit", .1f,0,0);
             invincible = true;
             StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
@@ -44,7 +51,8 @@ public abstract class AGameCharacter :MonoBehaviour
     IEnumerator ResetInvincible(float time)
     {
         float timepass = 0;
-        SkinnedMeshRenderer filter = GetComponentInChildren<SkinnedMeshRenderer>();
+        Renderer filter = GetComponentInChildren<Renderer>();
+
         while ((timepass<time))
         {
             yield return new WaitForSeconds(0.1f);
@@ -107,6 +115,7 @@ public abstract class AGameCharacter :MonoBehaviour
         checkEffect(new Dodge(2));
     }
 
+
     public void PlayAnimation(AnimationClip clip)
     {
             AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
@@ -123,5 +132,16 @@ public abstract class AGameCharacter :MonoBehaviour
         {
             anim.Play(stateName, 0, 0);
         }
+    }
+    public void subscribeToLifeChange(UnityAction<int> response)
+    {
+        lifeUpdate.AddListener(response);
+        response(HealthPoint);
+
+    }
+
+    public void unSubscribeToLifeChange(UnityAction<int> response)
+    {
+        lifeUpdate.AddListener(response);
     }
 }

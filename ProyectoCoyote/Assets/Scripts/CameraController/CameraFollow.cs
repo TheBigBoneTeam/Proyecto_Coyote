@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     Transform player;
     Transform playerObj;
     public bool LockedCamera = false;
-    EnemyLockOn enemyLockOn;
+ [SerializeField]   EnemyLockOn enemyLockOn;
 
     public float rotationSpeed;
 
@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         orientation = GameObject.Find("Player/Orientation").transform;
-        playerObj = GameObject.Find("Player/Player_01").transform;
+        playerObj = GameObject.Find("Player/Player_02").transform;
         enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>(); 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

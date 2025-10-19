@@ -12,6 +12,13 @@ public class EnemyAI : MonoBehaviour
     AGameCharacter character;
     public bool Locked;
     GameObject player;
+    public float seeDistance;
+
+    public float attackDistance;
+
+    #region Calculo Distancia Jugador
+
+    #endregion
     //public AnimatorOverrideController animatorOverrideController;
     //  [NamedArrayAttribute()] //Codigo para mostrar Palabras especificas en la lista de Stats
     ////  public AttackData[] ActionList = new AttackData[System.Enum.GetNames(typeof(BasicAttacks)).Length];
@@ -27,15 +34,40 @@ public class EnemyAI : MonoBehaviour
         print("endActionD");
         endAction = true;
     }
+
+    #region checksForAI
     public bool isLocked()
     {
         //print("checkLock"); 
         return player.GetComponent<EnemyLockOn>().currentTarget == this.transform;
     }
-    //public bool seePlayer()
-    //{
-    //    if(Vector3.Distance())
-    //}
+
+
+    public bool seePlayer()
+    {
+        print("seeplayer");
+        if (DistanceWithPlayer() <= seeDistance)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public float DistanceWithPlayer()
+    {
+        return Vector3.Distance(player.transform.position, this.transform.position);
+    }
+    public bool onAttackDistance()
+    {
+        float dist = DistanceWithPlayer();
+        print($"{dist} : {attackDistance}");
+        if (dist <= attackDistance)
+        {
+            return true;
+        }
+        return false;
+    }
+    #endregion
     public enum BasicActions
     {
         AttackA,
@@ -59,4 +91,21 @@ public class EnemyAI : MonoBehaviour
         player = FindAnyObjectByType<PlayerMovement>().gameObject;
         endAction = false;
     }
+
+
+
+    #region Gizmos
+    private void OnDrawGizmos()
+    {
+        //// Set the color with custom alpha.
+        //Gizmos.color = new Color(1f, 0f, 0f, 1f); // Red with custom alpha
+
+        //// Draw the sphere.
+        //Gizmos.DrawSphere(transform.position, seeDistance);
+
+        // Draw wire sphere outline.
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, seeDistance);
+    }
+    #endregion
 }

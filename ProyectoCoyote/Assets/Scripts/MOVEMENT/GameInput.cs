@@ -11,11 +11,11 @@ public class GameInput : MonoBehaviour
 
     #region Propiedades publicas
     // Ejes de movimiento
-    public float Horizontal { get; private set; }
-    public float Vertical { get; private set; }
+    [field: SerializeField] public float Horizontal { get; private set; }
+    [field: SerializeField] public float Vertical { get; private set; }
 
     // Acciones
-    public bool JumpPressed { get; private set; }
+   [field:SerializeField] public bool JumpPressed { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
 

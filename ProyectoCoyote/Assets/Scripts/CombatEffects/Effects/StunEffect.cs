@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 namespace CombatEffect
 {
     [System.Serializable]
@@ -18,14 +19,18 @@ namespace CombatEffect
             base.Activate(character);
             Debug.Log($"StartStun with duration of {stunDuration}");
             this.objCharacter = character;
-            //character.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);
+            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(false);
         }
 
         public override void End()
         {
             Debug.Log("EndStun");
 
-           // objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+            objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.gray;
+            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(true);
+            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(true);
 
         }
 

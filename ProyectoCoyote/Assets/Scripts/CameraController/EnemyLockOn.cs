@@ -8,7 +8,7 @@ public class EnemyLockOn : MonoBehaviour
     Transform enemyTarget_Locator;
     public Transform currentTarget = null;
 
-    [Tooltip("Cambiar entre Cámaras")]
+    [Tooltip("Cambiar entre Cï¿½maras")]
     Animator cinemachineAnimator;
 
     [Header("Settings")]
@@ -23,8 +23,9 @@ public class EnemyLockOn : MonoBehaviour
     float currentYOffset;
     Vector3 pos;
 
-    Transform lockOnCanvas;
-    PlayerMovement movement; 
+    [SerializeField] Transform lockOnCanvas;
+    PlayerMovement movement;
+    [SerializeField] DefenseAttackUIIndicator defenseAttackUIIndicator;
 
     void Start()
     {
@@ -32,16 +33,16 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
-        
+        defenseAttackUIIndicator = GetComponentInChildren<DefenseAttackUIIndicator>();
+
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Indicar al resto de scripts cuándo está el enemigo lockeado
+        // Indicar al resto de scripts cuï¿½ndo estï¿½ el enemigo lockeado
        
         movement.lockMovement = enemyLocked;
 
@@ -57,7 +58,7 @@ public class EnemyLockOn : MonoBehaviour
             if (!TargetOnRange()) ResetTarget();
 
             LookAtTarget();
-            // Volver a modo sin lockear si hay un obstáculo
+            // Volver a modo sin lockear si hay un obstï¿½culo
             if (Blocked(GetTargetCenter(currentTarget))) ResetTarget();
             
         }
@@ -77,7 +78,7 @@ public class EnemyLockOn : MonoBehaviour
     }
 
 
-    // Esta función indica si se ha encontrado un enemigo
+    // Esta funciï¿½n indica si se ha encontrado un enemigo
     void FoundTarget()
     {
         lockOnCanvas.gameObject.SetActive(true);
@@ -87,10 +88,11 @@ public class EnemyLockOn : MonoBehaviour
     }
 
 
-    // Esta función vuelve al modo sin lockear reseteando todos los elementos del script
+    // Esta funciï¿½n vuelve al modo sin lockear reseteando todos los elementos del script
     void ResetTarget()
     {
         lockOnCanvas.gameObject.SetActive(false);
+        defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
         // anim.SetLayerWeight(1, 0);
@@ -107,7 +109,7 @@ public class EnemyLockOn : MonoBehaviour
         // definida en targetLayers.
         Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
 
-        // Inicializa las variables para encontrar el objetivo más cercano.
+        // Inicializa las variables para encontrar el objetivo mï¿½s cercano.
         float closestAngle = maxNoticeAngle;
         Transform closestTarget = null;
 
@@ -119,8 +121,8 @@ public class EnemyLockOn : MonoBehaviour
         }
 
 
-        // Recorre todos los objetivos detectados y calcula su dirección y 
-        // ángulo desde la cámara, detecta al más cercano.
+        // Recorre todos los objetivos detectados y calcula su direcciï¿½n y 
+        // ï¿½ngulo desde la cï¿½mara, detecta al mï¿½s cercano.
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
             Vector3 dir = nearbyTargets[i].transform.position - cam.position;
@@ -149,18 +151,19 @@ public class EnemyLockOn : MonoBehaviour
         float half_h = (h / 2) / 2;
         currentYOffset = h - half_h;
 
-        // Calcula la posición final del objetivo
+        // Calcula la posiciï¿½n final del objetivo
         Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
 
 
-        // Si hay algun elemento de la escena bloqueando la visión del jugador, se sale.
+        // Si hay algun elemento de la escena bloqueando la visiï¿½n del jugador, se sale.
         if (Blocked(tarPos))
         {
             Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
-
-        // Devuelve el enemigo válido
+        defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
+        defenseAttackUIIndicator.setEnable(true);
+        // Devuelve el enemigo vï¿½lido
         return closestTarget;
     }
 
@@ -191,7 +194,7 @@ public class EnemyLockOn : MonoBehaviour
     }
 
 
-    // Calcula si el enemigo está en rango
+    // Calcula si el enemigo estï¿½ en rango
     bool TargetOnRange()
     {
         float dis = (transform.position - pos).magnitude;
@@ -209,12 +212,12 @@ public class EnemyLockOn : MonoBehaviour
             return;
         }
 
-        // Actualiza la posición del canvas lockOn en función de la cámara
+        // Actualiza la posiciï¿½n del canvas lockOn en funciï¿½n de la cï¿½mara
         pos = currentTarget.position + new Vector3(0, 0 , 0);
         lockOnCanvas.position = pos;
         lockOnCanvas.localScale = Vector3.one * ((cam.position - pos).magnitude * UI_Locked_Scale);
 
-        // Actaliza la posición del localizador del enemigo
+        // Actaliza la posiciï¿½n del localizador del enemigo
         enemyTarget_Locator.position = pos;
 
         // Gira al personaje hacia el enemigo

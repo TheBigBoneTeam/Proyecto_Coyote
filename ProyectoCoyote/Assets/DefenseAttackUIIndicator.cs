@@ -12,6 +12,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public GameObject[] attackUISignalers;
     public GameObject[] dodgeUISignalers;
 
+    [SerializeField] Vector3 paddingPosition;
+
     CanvasGroup CanvasGroup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -91,9 +93,18 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         if(DamageReceiver != null)
         DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
         DamageReceiver = character.GetComponent<DamageReceiver>();
-        this.transform.parent = character.transform;
-        this.transform.localPosition = Vector3.zero;
-        DamageReceiver.subscribeToStateChange(DodgeStateChange);
+        if (DamageReceiver != null)
+        {
+
+            setEnable(true);
+            this.transform.parent = character.transform;
+            this.transform.localPosition = Vector3.zero + paddingPosition;
+            DamageReceiver.subscribeToStateChange(DodgeStateChange);
+        }
+        else
+        {
+            setEnable(false);
+        }
 
     }
     public void setEnemy(AGameCharacter character)

@@ -19,7 +19,7 @@ public abstract class AGameCharacter :MonoBehaviour
     Animator anim;
 
     UnityEvent<int> lifeUpdate;
-    Action dieEvent;
+   protected Action dieEvent;
     UnityEvent<HitDirections> dodgeAttackEvent;
 
     private void Awake()
@@ -27,6 +27,7 @@ public abstract class AGameCharacter :MonoBehaviour
         lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
         anim = GetComponentInChildren<Animator>();
+        dodgeAttackEvent = new UnityEvent<HitDirections>();
     }
     private void Start()
     {

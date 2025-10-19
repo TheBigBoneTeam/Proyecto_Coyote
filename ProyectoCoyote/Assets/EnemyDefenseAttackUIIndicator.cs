@@ -9,6 +9,7 @@ public class EnemyDefenseAttackUIIndicator:DefenseAttackUIIndicator
         if (DamageReceiver != null)
             DamageReceiver.GetComponent<AGameCharacter>().unSubscribeToDodgeAttack(Dodge);
         base.setCharacter(character);
+        if(DamageReceiver != null)
         DamageReceiver.GetComponent<AGameCharacter>().subscribeToDodgeAttack(Dodge);
 
     }

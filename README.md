@@ -302,14 +302,14 @@ Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas pri
 ### Oasis-->
 
 ###  Enemigos
-<img src="./Imagenes_README/ConceptZombie.jpg" alt="zombi1" style="width: 36%"/>
+<img src="./Imagenes_README/ConceptZombie.JPG" alt="zombi1" style="width: 36%"/>
 <img src="./Imagenes_README/ConceptEsqueleto.jpg" alt="zombi1" style="width: 59%"/>
 
 Arte conceptual inicial de algunos enemigos
 
-<img src="./Imagenes_README/ZombieNopalAttackFront.jpg" alt="zombi1" style="width: 30%"/>
-<img src="./Imagenes_README/ZombieNopalIdle.jpg" alt="zombi2" style="width: 31%"/>
-<img src="./Imagenes_README/ZombieNopalWalk.jpg" alt="zombi3" style="width: 24%"/>
+<img src="./Imagenes_README/ZombieNopalAttackFront.JPG" alt="zombi1" style="width: 30%"/>
+<img src="./Imagenes_README/ZombieNopalIdle.JPG" alt="zombi2" style="width: 31%"/>
+<img src="./Imagenes_README/ZombieNopalWalk.JPG" alt="zombi3" style="width: 24%"/>
 
 Modelado de el Zombi Nopal
 

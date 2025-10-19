@@ -331,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        
+        float modeSpeed = lockMovement ? moveLockedSpeed : moveSpeed;
         //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
         if (canMove)
@@ -339,7 +339,7 @@ public class PlayerMovement : MonoBehaviour
             // Para rampas
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+                rb.AddForce(GetSlopeMoveDirection() * modeSpeed * 20f, ForceMode.Force);
 
                 if (rb.linearVelocity.y > 0)
                 {
@@ -349,12 +349,12 @@ public class PlayerMovement : MonoBehaviour
 
             else if (grounded)
             {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * modeSpeed * 10f, ForceMode.Force);
             }
 
             else if (!grounded)
             {
-                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airSensitity, ForceMode.Force);
+                rb.AddForce(moveDirection.normalized * modeSpeed * 10f * airSensitity, ForceMode.Force);
             }
         }
     }

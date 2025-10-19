@@ -46,7 +46,6 @@ public class EnemyAI : MonoBehaviour
 
     public bool seePlayer()
     {
-        print("seeplayer");
         if (DistanceWithPlayer() <= seeDistance)
         {
             return true;

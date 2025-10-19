@@ -19,11 +19,14 @@ namespace tutorial
             LockearTutorial lockear = new LockearTutorial(this);
             EsquivarTutorial esquivar = new EsquivarTutorial(this);
             endTutorialState end = new endTutorialState(this);
+            TrueEsquivarTutorial trueesquivar = new TrueEsquivarTutorial(this);
             congratulationState congratulationState = new congratulationState(this);
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
             machine.AddTransition(controles, lockear, new FuncPredicate(()=>changeTutWait == true));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
+            machine.AddTransition(esquivar, trueesquivar, new FuncPredicate(() => currentEsquives == 2));
             machine.AddTransition(esquivar, congratulationState, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
+
             machine.AddTransition(congratulationState, end, new FuncPredicate(() => changeTutWait == true));
 
 
@@ -48,8 +51,11 @@ namespace tutorial
         }
         public void esquive()
         {
+            Debug.Log("Esquive");
             tutorial.currentEsquives++;
-            tutorial.TutorialText.text = $"Cuando tengas a alguien marcado puedes esquivar con el spacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar). Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques para ganar.";
+            tutorial.player.unSubscribeToDodgeAttack(esquive);
+
+            tutorial.TutorialText.text = $"Cuando tengas a alguien marcado puedes esquivar con el spacio. Los circulos marcaran por donde te estan atacando (y por donde tendrás que esquivar). ";
 
         }
         public override void OnExit()
@@ -73,6 +79,8 @@ namespace tutorial
         }
         public void esquive()
         {
+            tutorial.player.unSubscribeToDodgeAttack(esquive);
+
             tutorial.currentEsquives++;
             tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques para ganar.";
 

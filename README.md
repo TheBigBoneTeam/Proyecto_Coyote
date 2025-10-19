@@ -451,8 +451,26 @@ El público objetivo de este proyecto son personas adolescentes mayores de 16 a�
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
+
+En cuanto a las lecciones aprendidas me he dado cuenta de que es muy importante tener una visión clara del proyecto desde el principio, pues en distintos momentos de esta versión nos hemos dado cuenta de que teníamos visiones algo distintas tanto en el planteamiento de ciertos aspectos del gameplay como identidad del juego
+
 #### Trabajo individual realizado
+
+Mi trabajo individual realizado ha sido principalmente crear el linktree y la mayoría de las redes sociales, pensar en los escenarios que tendrá el juego, los distintos enemigos y comportamientos de estos, aclarar y rellenar apartados de la jugabilidad dentro del GDD para que todos los miembros estén de acuerdo, los diagramas de flujo junto a su explicación, la implementación de un boceto de idea del menú principal y la creación básica del menú de juego.
+
+En este trabajo la verdad que he sentido libertad a lo que respecta a mi apartado como game designer obviamente planteando de antemano ciertas ideas y conceptos a mis compañeros para saber su opinión.
+
+Es verdad que tengo la sensación de que podría haber avanzado más o planteado cosas más pronto en cuanto a mi trabajo dentro del grupo. 
+
 #### Trabajo colectivo realizado
+
+Mi trabajo colectivo con otros miembros del equipo ha sido con Candela a la hora de plantear la historia y rellenar lo esencial para el GDD.
+La comunicación con mi compañera a la hora de plantear los puntos principales de la historia y el Wordbuilding ha sido muy buena.
+
+En general yo planteaba los conceptos o ideas en el GDD con un desarrollo y ella los revisaba y corregía reescribiéndolo para darme cuenta de la visión general y no alejarme de ella, además de darle un toque más narrativo.
+
+También cabe resaltar que la idea de que el prota tenga que enterrar las cenizas de su marido fue una idea general del grupo al igual que la ambientación. 
+
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas

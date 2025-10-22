@@ -1,5 +1,6 @@
 using CombatEffect;
 using NUnit.Framework;
+using Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class DamageReceiver:MonoBehaviour
  [SerializeField]  List<HitDirections> directions;
  [SerializeField]   bool dodging;
     UnityEvent<ReceiverState> receiverStateEvent;
+    IPerfectDodgeManager perfectDodgeManager;
    public void checkEffectSource(Attack Attack)
     {
         if (!dodging || !checkListIntersect(Attack.HitDirections, directions))
@@ -27,7 +29,8 @@ public class DamageReceiver:MonoBehaviour
             if (Attack.Parreable)
             {
                 Debug.Log("PARRY");
-                Attack.owner.checkEffect(new StunEffect(2));
+                if(!perfectDodgeManager.isSlowDown()) 
+                perfectDodgeManager.StartSlowdown();
             }
         }
     }
@@ -51,6 +54,7 @@ public class DamageReceiver:MonoBehaviour
     }
     private void Start()
     {
+        perfectDodgeManager = ServiceLocator.Instance.Get<PerfectDodgeManager>();
         character = GetComponent<AGameCharacter>();
     }
     public void setDirection(HitDirections direction)

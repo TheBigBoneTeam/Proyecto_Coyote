@@ -1,3 +1,4 @@
+using Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,13 +110,16 @@ public class PlayerMovement : MonoBehaviour
     //Bools para bloquear acciones mediante animator
     bool canAttack,canMove = false;
     #endregion
-
+    #region Managers
+    IGameStateManager gameStateManager;
+    #endregion
     #region Metodos de Unity
+
     private void Start()
     {
         canMove = canAttack = true;
         cam = Camera.main.transform;
-
+        
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
@@ -130,6 +134,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("GameInput encontrado correctamente: " + gameInput.name);
         }
+
+        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
     }
 
     void Update()
@@ -219,18 +225,26 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Movement", movement);
         if (gameInput.attackPressed && canAttack)
         {
+            string attackName = "";
             if (horizontalInput == 0)
             {
-                animator.CrossFade("Hit_M_R", .1f);
+                attackName += "Hit_L";
+            
             }
             if (horizontalInput > 0)
             {
-                animator.CrossFade("Hit_R", .1f);
+                attackName += "Hit_R";
             }
             if (horizontalInput < 0)
             {
-                animator.CrossFade("Hit_L", .1f);
+                attackName += "Hit_M_R";
             }
+            if(gameStateManager.getState() == GameState.SlowDown)
+            {
+                attackName += "_CRIT";
+            }
+            animator.CrossFade(attackName, .1f);
+
         }
 
     }

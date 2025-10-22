@@ -10,6 +10,8 @@ namespace Services
         {
             ServiceLocator.Instance.Register<IGameStateManager>(FindFirstObjectByType<GameStateManager>());
             ServiceLocator.Instance.Register<IHitStop>(FindFirstObjectByType<HitStopManager>());
+            ServiceLocator.Instance.Register<IPerfectDodgeManager>(FindFirstObjectByType<PerfectDodgeManager>());
+
         }
     }
 }

@@ -1,3 +1,4 @@
+using Services;
 using System;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 
     //Si se puede pausar o no (por ahora no se usa pero quien sabe)
     private bool canPause;
+
+    IPerfectDodgeManager perfectDodgeManager;
     public void Instantiate()
     {
     }
@@ -25,6 +28,10 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         onStateChange.Invoke(this, stData);
         currentState = state;
 
+    }
+    private void Start()
+    {
+        perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>(); 
     }
     public void Pause()
     {
@@ -37,7 +44,14 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     }
     public void UnPause()
     {
-        Time.timeScale = 1;
+        if (prePauseState == GameState.SlowDown)
+        {
+            Time.timeScale = perfectDodgeManager.slowDownFactor();
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
         SetState(prePauseState);
 
     }
@@ -49,5 +63,10 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     public void unSubscribeToStateChange(EventHandler<stateData> response)
     {
         onStateChange -= response;
+    }
+
+    public void slowDown()
+    {
+        SetState(GameState.SlowDown);
     }
 }

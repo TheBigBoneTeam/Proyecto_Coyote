@@ -7,6 +7,8 @@ public interface IGameStateManager : IService
     public void Pause();
     public void UnPause();
     public void slowDown();
+    public void slowDownOff();
+
     public void subscribeToStateChange(EventHandler<stateData> response);
     public void unSubscribeToStateChange(EventHandler<stateData> response);
 }

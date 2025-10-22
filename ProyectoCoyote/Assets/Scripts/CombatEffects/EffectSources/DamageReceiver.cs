@@ -13,8 +13,11 @@ public class DamageReceiver:MonoBehaviour
     AGameCharacter character;
  [SerializeField]  List<HitDirections> directions;
  [SerializeField]   bool dodging;
+    [SerializeField] bool parrying;
+
     UnityEvent<ReceiverState> receiverStateEvent;
     IPerfectDodgeManager perfectDodgeManager;
+
    public void checkEffectSource(Attack Attack)
     {
         if (!dodging || !checkListIntersect(Attack.HitDirections, directions))
@@ -26,11 +29,13 @@ public class DamageReceiver:MonoBehaviour
         {
             Debug.Log("Dodge");
             character.DodgeAttack(directions[0]);
-            if (Attack.Parreable)
+            if (parrying)
             {
                 Debug.Log("PARRY");
-                if(!perfectDodgeManager.isSlowDown()) 
-                perfectDodgeManager.StartSlowdown();
+                if (!perfectDodgeManager.isSlowDown())
+                {
+                    perfectDodgeManager.StartSlowdown();
+                }
             }
         }
     }
@@ -54,27 +59,32 @@ public class DamageReceiver:MonoBehaviour
     }
     private void Start()
     {
-        perfectDodgeManager = ServiceLocator.Instance.Get<PerfectDodgeManager>();
+        perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         character = GetComponent<AGameCharacter>();
     }
     public void setDirection(HitDirections direction)
     {
         directions.Clear();
         directions.Add(direction);
-        sendEvent();
+        sendDodgeEvent();
     }
     public void addDirection(HitDirections direction)
     {
         directions.Add(direction);
-        sendEvent();
+        sendDodgeEvent();
 
     }
     public void setDodge(bool dodge)
     {
         dodging = dodge;
-        sendEvent();
+        sendDodgeEvent();
     }
-    void sendEvent()
+    public void setParry(bool parry)
+    {
+        parrying = parry;
+        sendDodgeEvent();
+    }
+    void sendDodgeEvent()
     {
         receiverStateEvent.Invoke(new ReceiverState(directions.ToArray(),dodging));
 

@@ -9,6 +9,8 @@ public class getHitBehaviour : StateMachineBehaviour
         animator.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);
         animator.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(false);
         animator.gameObject.GetComponentInParent<DamageReceiver>().setDodge(false);
+        animator.gameObject.GetComponentInParent<DamageReceiver>().setParry(false);
+
 
 
     }

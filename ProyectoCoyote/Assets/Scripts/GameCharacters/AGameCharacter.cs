@@ -29,12 +29,12 @@ public abstract class AGameCharacter :MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         dodgeAttackEvent = new UnityEvent<HitDirections>();
     }
-    private void Start()
+    protected virtual void Start()
     {
         HealthPoint = _maxHealthPoint;
         lifeUpdate.Invoke(HealthPoint);
     }
-    public virtual void getHit(int damage)
+    public virtual void getHit(int damage,bool crit = false)
     {
         HealthPoint -= damage;
         print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
@@ -45,12 +45,25 @@ public abstract class AGameCharacter :MonoBehaviour
             Die();
             return;
         }
+        if (crit)
+        {
+            anim.CrossFade("GetHit", .1f, 0, 0);
+            //anim.CrossFade("GetHit_CRIT", .1f, 0, 0);
+        }
+        else
+        {
+            anim.CrossFade("GetHit", .1f, 0, 0);
+            }
         if (invTimeAfterHit > 0)
         {
-            anim.CrossFade("GetHit", .1f,0,0);
             invincible = true;
             StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
+    }
+    public virtual void getHealed(int points)
+    {
+        HealthPoint += points;
+        lifeUpdate.Invoke(HealthPoint);
     }
     IEnumerator ResetInvincible(float time)
     {

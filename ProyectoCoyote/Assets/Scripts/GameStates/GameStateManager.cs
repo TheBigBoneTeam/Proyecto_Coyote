@@ -12,7 +12,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     public GameState getState() => currentState;
 
     //Estado actual (privado)
-    private GameState currentState;
+  [SerializeField]  private GameState currentState;
 
     //Si se puede pausar o no (por ahora no se usa pero quien sabe)
     private bool canPause;
@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     private void SetState(GameState state)
     {
         stateData stData = new stateData(currentState, state);
-        onStateChange.Invoke(this, stData);
+        onStateChange?.Invoke(this, stData);
         currentState = state;
 
     }
@@ -67,6 +67,20 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 
     public void slowDown()
     {
-        SetState(GameState.SlowDown);
+        if (currentState == GameState.Playing)
+        {
+            SetState(GameState.SlowDown);
+        }
+    }
+
+    public void slowDownOff()
+    {
+        print("slowdownoff");
+        if (currentState == GameState.SlowDown)
+        {
+            print("slowdownoffconfirmed");
+
+            SetState(GameState.Playing);
+        }
     }
 }

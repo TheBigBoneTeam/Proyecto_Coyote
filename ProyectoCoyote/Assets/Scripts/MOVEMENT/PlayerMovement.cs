@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
     #region Managers
     IGameStateManager gameStateManager;
+    IPerfectDodgeManager perfectDodgeManager;
     #endregion
     #region Metodos de Unity
 
@@ -136,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+        perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
     }
 
     void Update()
@@ -228,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
             string attackName = "";
             if (horizontalInput == 0)
             {
-                attackName += "Hit_L";
+                attackName += "Hit_M_R";
             
             }
             if (horizontalInput > 0)
@@ -237,11 +239,13 @@ public class PlayerMovement : MonoBehaviour
             }
             if (horizontalInput < 0)
             {
-                attackName += "Hit_M_R";
+                attackName += "Hit_L";
+                    
             }
             if(gameStateManager.getState() == GameState.SlowDown)
             {
-                attackName += "_CRIT";
+               // attackName += "_CRIT";
+               perfectDodgeManager.StopSlowdown();
             }
             animator.CrossFade(attackName, .1f);
 

@@ -26,11 +26,11 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         if (parry == 0)
         {
-            attack.setParry(false);
+            damageReceiver.setParry(false);
         }
         else
         {
-            attack.setParry(true);
+            damageReceiver.setParry(true);
         }
     }
     public void setDodge(int dodge)

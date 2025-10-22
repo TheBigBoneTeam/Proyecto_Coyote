@@ -16,12 +16,16 @@ public class AttackData : ScriptableObject
     [ContextMenu("Add Stun")]
     public void AddStun()
     {
-        effects.Add(new StunEffect(null, 10));
+        effects.Add(new StunEffect(null, 3));
     }
     [ContextMenu("Add Damage")]
     public void AddDamage()
     {
-        effects.Add(new DamageEffect(null, 10));
+        effects.Add(new DamageEffect(null, 1));
     }
-
+    [ContextMenu("Add Crit Damage")]
+    public void AddCritDamage()
+    {
+        effects.Add(new CritDamageEffect(null, 3));
+    }
 }

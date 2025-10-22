@@ -7,7 +7,7 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
   [SerializeField]  float slowdownFactor = 0.6f;
   [SerializeField]  float slowdownDuration = 0.6f;
 
-    private bool slowOn;
+    [SerializeField] private bool slowOn;
 
     IGameStateManager gameStateManager;
 
@@ -21,35 +21,50 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
     public void Start()
     {
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+        gameStateManager.subscribeToStateChange(StateChange);
     }
-    public void StopSlowdown()
+    public void StateChange(object sender, stateData stateData)
     {
-        if (slowOn)
+        if(stateData.currentState == GameState.SlowDown)
+        {
+            slowOn = true;
+            Time.timeScale = slowdownFactor;
+            StartCoroutine(restartTime(slowdownDuration));
+        }
+        if (stateData.oldState == GameState.SlowDown)
         {
             Time.timeScale = 1;
             slowOn = false;
+        }
+    }
+    public void StopSlowdown()
+    {
+        print("stop");
+        if (slowOn)
+        {
+            gameStateManager.slowDownOff();
+
         }
     }
     public void StartSlowdown()
     {
         if (!slowOn)
         {
-            Time.timeScale = slowdownFactor;
-            StartCoroutine(restartTime(slowdownDuration));
+            
             gameStateManager.slowDown();
-            slowOn = true;
         }
     }
 
     IEnumerator restartTime(float SlowDuration)
     {
+        float usedDuration = SlowDuration;
         for (int i = 0; i < 10; i++)
         {
             if (!slowOn)
             {
                 break;
             }
-            yield return new WaitForSeconds(SlowDuration / 10);
+            yield return new WaitForSeconds(usedDuration / 10);
         }
         StopSlowdown();
     }

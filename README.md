@@ -227,43 +227,47 @@ ESQUIVE/BLOQUEO         | ESPACIO     |
 ## 3.4. Tipos de enemigos 
 
 ### Enemigos melee 
-Los enemigos meele como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar.
-
-#### Enemigo base melee
-
-Este enemigo es el primero que se le presenta al jugador como tutorial y por lo tanto el más sencillo de combatir. Este enemigo tiene un rango de detección de 7 metros, pega con sus puchos y hacen 1 de daño al jugador con cada golpe. Este enemigo consta de 5 puntos de vida y 3 patrones de combate:
-  1. Dos ataques izquierdos y uno ataque central.
+Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo tiene un rango de detección de 7 metros y pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma.
+#### Melee Pricklytown
+Este enemigo se encuentra por el pueblo de Pricklytown. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida. Sus patrones de ataque son:
+  1. Dos ataques izquierdos y uno ataque derecho.
   2. Ataque derecho, bloqueo derecho y bloqueo izquierdo.
-  3. Defensa central, ataque central, defensa izquierda y ataque izquierda.
+  3. Bloqueo central, ataque central y bloqueo central.
 
-#### Enemigo suicida
+#### Melee Cañón
+Este enemigo se encuentra en la zona del cañón. Sus ataques hacen 1 de daño y cuenta con 5 puntos de vida. Posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
+  1. Bloqueo izquierdo, “ataque abrazo” y ataque central.
+  2. Ataque derecho (haciendo antes un amago de “ataque abrazo”), bloqueo central y bloqueo derecho.
+  3. Bloqueo derecho, bloqueo izquierdo y ataque central.
+  4. “Ataque abrazo”, ataque izquierdo y bloqueo central.
+
+#### Melee Oasis
+
+<!--#### Enemigo base mixto
+  2. Dos ataques centrales segudos.
+  3. Ataque derecho, defenza izquierda, ataque izquierdo y defensa central.-->
+
+### Enemigo suicida
 Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
 
 Para poderse librar de este enemigo existen varias opciones:
 
   * Cuando el jugador se mueve por el escenario, si realiza un esquive en el momento justo no recibirá ningún daño.
 
-  * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que hará detonar al enemigo saliendo ileso. Si el jugador ataca primero al enemigo este se preparará para detonar, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
+  * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que lanzará al enemigo hacia delante haciendo que explote. Si el jugador ataca primero al enemigo este se preparará para detonar teniendo una cuenta atrás de 5 segundos, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
 
-### Enemigos a distancia 
-Los enemigos a distancia son unos grandes pistoleros, pero son muy débiles a los golpes por lo que intentarás zafarse del jugador cuando está cerca.
+### Enemigo robusto
+El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará objetos hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
+  1.	Ataque izquierdo (con amague de central), ataque derecho y defensa central.
+  2.	Ataque central, ataque central y defensa derecha.
+  3.	Defensa izquierda, defensa derecha y ataque derecha.
 
-#### Francotirador
-Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 dorazones y tranda unos 5 segundo en poder volver a disparar. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva y si ataca realiza 1 de daño. Tiene los siguientes 3 patrones:
+### Francotirador
+Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 3 posibles posiciones de defensa:
+  1. Defensa izquierda y derecha.
+  2. Defensa central e izquierda.
+  3.	Defensa central e izquierda.
 
-  1. Defensa izquierda, defensa derecha y defensa central.
-  2. Defensa central, defensa derecha y defensa central.
-  3. Defensa derecha, ataque izquierdo y defensa izquierda.
-
-### Enemigos mixtos 
-Los enemigos mixtos son una combinación entre los enemigos a melee y a distancia, teniendo resistencia a los golpes y capaces de usar armas de media distancia.
-
-#### Enemigo base mixto
-Este enemigo cuenta con unos brazos que son escudos y pistolas a la vez. Su rango de disparo y deteción es de 9 metros e intenta mantener algo de distancia con el jugador. Realiza dos disparos segudos con un tiempo de recarga de 1 segundo antes de volver a disparar 2 veces. Este enemigo cuenta con 4 puntos de vida y los siguientes patrones de combate cuando entra en estilo duelo (cada ataque quita 1 corazón):
-
-  1. Defensa tanto por la izquierda y derecha a la vez, y luego un ataque central.
-  2. Dos ataques centrales segudos.
-  3. Ataque derecho, defenza izquierda, ataque izquierdo y defensa central.
 
 # 4. Arte 
 

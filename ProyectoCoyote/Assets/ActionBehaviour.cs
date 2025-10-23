@@ -1,8 +1,9 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class ActionBehaviour : StateMachineBehaviour
 {
-   public bool lastAnimInAction = true;
+  // public bool lastAnimInAction = true;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -18,8 +19,10 @@ public class ActionBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (lastAnimInAction)
+        
+        if (!animator.gameObject.GetComponentInParent<EnemyAI>().currentActionIsIdle)
         {
+            Debug.Log("EndAction"+name);
             animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
             animator.gameObject.GetComponentInChildren<Attack>().LoadData(null);
         }

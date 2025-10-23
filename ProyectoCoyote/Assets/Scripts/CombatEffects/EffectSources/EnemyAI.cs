@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ public class EnemyAI : MonoBehaviour
 
     public float attackDistance;
 
+    IEnemyManager enemyManager;
+
+    public bool currentActionIsIdle;
     #region Calculo Distancia Jugador
 
     #endregion
@@ -31,7 +35,6 @@ public class EnemyAI : MonoBehaviour
 
     public void endCurrentAction()
     {
-
         endAction = true;
     }
 
@@ -55,6 +58,15 @@ public class EnemyAI : MonoBehaviour
     public float DistanceWithPlayer()
     {
         return Vector3.Distance(player.transform.position, this.transform.position);
+    }
+    public bool TryGetAttackPriority()
+    {
+        return enemyManager.attackingEnemy().getPermission(this);
+    }
+    public bool ReturnAttackPriority()
+    {
+        return enemyManager.attackingEnemy().returnPermission(this);
+
     }
     public bool onAttackDistance()
     {
@@ -80,6 +92,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {
+        currentActionIsIdle = idle;
         if (!idle)
         {
             endAction = false;
@@ -89,10 +102,11 @@ public class EnemyAI : MonoBehaviour
     }
     private void Start()
     {
+        currentActionIsIdle = false;
         attackObj = GetComponentInChildren<Attack>();
         character = GetComponent<AGameCharacter>();
         player = FindAnyObjectByType<PlayerMovement>().gameObject;
-
+        enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
     }
 

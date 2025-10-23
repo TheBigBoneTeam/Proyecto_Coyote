@@ -48,4 +48,5 @@ public enum HitDirections
     Left,
     Rigth,
     Back,
+    Outside
 }

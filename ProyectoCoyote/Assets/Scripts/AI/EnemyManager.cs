@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyManager: IEnemyManager
 {
-   ClassMutex<EnemyAI> enemyClassMutex;
+    ClassMutex<EnemyAI> enemyClassMutex;
     ClassMutex<EnemyAI> attackingEnemy;
 
     public void Instantiate()
@@ -36,11 +36,11 @@ public class ClassMutex<T> where T : Object
         {
 
             Owner = offerer;
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     public bool returnPermission(T returner)

@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
 
     IEnemyManager enemyManager;
 
-    public bool currentActionIsIdle;
+    public bool currentActionIsIdle { get; private set; }
     #region Calculo Distancia Jugador
 
     #endregion
@@ -61,6 +61,7 @@ public class EnemyAI : MonoBehaviour
     }
     public bool TryGetAttackPriority()
     {
+        print("TryGetAttackPriority");
         return enemyManager.attackingEnemy().getPermission(this);
     }
     public bool ReturnAttackPriority()
@@ -87,8 +88,9 @@ public class EnemyAI : MonoBehaviour
         StanceA,
         StanceB,
         StanceC,
-        Idle,
-        Walk
+        IdleAction,
+        Walk,
+        OutsideAttack
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {

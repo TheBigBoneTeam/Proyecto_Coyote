@@ -244,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(gameStateManager.getState() == GameState.SlowDown)
             {
-               // attackName += "_CRIT";
+               attackName += "_CRIT";
                perfectDodgeManager.StopSlowdown();
             }
             animator.CrossFade(attackName, .1f);

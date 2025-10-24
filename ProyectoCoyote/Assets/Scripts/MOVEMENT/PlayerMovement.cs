@@ -63,6 +63,21 @@ public class PlayerMovement : MonoBehaviour
     public bool dashing;
     #endregion
 
+    #region Sonidos
+    [Header("Configuracion de pisadas")]
+    [SerializeField] private string walkSoundName = "PERSONAJE - pisadas ANDAR";
+    [SerializeField] private string runSoundName = "PERSONAJE - pisadas CORRER";
+
+    [SerializeField] private float stepIntervalWalk = 0.6f;
+    [SerializeField] private float stepIntervalRun = 0.35f;
+
+    private float stepTimer;
+    private PlayerMovement playerMovement;
+
+    private bool isFootstepPlaying = false;
+    #endregion
+
+
     #region Variables de control
     public Transform orientation;
     float horizontalInput, verticalInput;
@@ -149,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
         HandleDashInput();
+        HandleFootsteps();
 
         // Manipulacion del deslizamiento
         if (state == MovementState.walking || state == MovementState.sprinting)
@@ -531,5 +547,34 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = v;
     }
+    #endregion
+
+    #region Metodos de sonidos
+    private void HandleFootsteps()
+    {
+        bool isMoving = moveDirection.magnitude > 0.1f && grounded && !dashing;
+
+        if (isMoving)
+        {
+            float stepInterval = (state == MovementState.sprinting) ? stepIntervalRun : stepIntervalWalk;
+            stepTimer += Time.deltaTime;
+
+            if (stepTimer >= stepInterval)
+            {
+                string soundName = (state == MovementState.sprinting) ? runSoundName : walkSoundName;
+                AudioManager.Instance.Play3DSound(soundName, false, transform.position, true, false); // false para reproducir solo 1 vez
+                stepTimer = 0f;
+            }
+        }
+        else
+        {
+            stepTimer = 0f;
+            isFootstepPlaying = false;
+            // Detener sonidos si quieres que desaparezcan inmediatamente
+            AudioManager.Instance.StopAllSoundsWithTag(walkSoundName);
+            AudioManager.Instance.StopAllSoundsWithTag(runSoundName);
+        }
+    }
+
     #endregion
 }

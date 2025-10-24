@@ -22,6 +22,8 @@ public class AudioProducer : MonoBehaviour
     {
         
     }
+
+    // Asigna el clip y lo configura
     public void SetAudioProducer(string tag, Sound _sound){
         if(audioSource==null)
         audioSource = this.gameObject.AddComponent<AudioSource>();
@@ -33,6 +35,8 @@ public class AudioProducer : MonoBehaviour
         
         sound=_sound;
     }
+
+    // Prepara el audio con volumen, tono y bucle (true o false)
     public void StartAudio(bool loop, bool onlyOne, Vector2 pos, float pitch=-1){
         audioSource.maxDistance=sound.maxSoundDistance;
         audioSource.transform.position=pos;
@@ -46,9 +50,11 @@ public class AudioProducer : MonoBehaviour
         audioSource.loop = loop;
     }
 
+#region Reproduccion
     public void Play(){
         audioSource.Play();
     }
+
     public void Pause(bool b){
         paused=b;
         if(paused)
@@ -56,22 +62,19 @@ public class AudioProducer : MonoBehaviour
         else
         audioSource.UnPause();
     }
+
     public void Stop(){
         AudioManager.Instance.RemoveAudioProducer(this);
         audioSource.Stop();
         Destroy(audioSource);
         Destroy(this);
     }
-    void Update()
-    {
-        if(!audioSource.isPlaying && !audioSource.loop && !paused){
-            Stop();
-        }
-    }
 
-    public virtual void FadeOut(float fadeOutDuration, bool destroy=false){
+    public virtual void FadeOut(float fadeOutDuration, bool destroy = false)
+    {
         StartCoroutine(IEFadeOut(fadeOutDuration, destroy));
     }
+
     protected virtual IEnumerator IEFadeOut(float fadeOutDuration, bool destroy)
     {
         float startVolume = audioSource.volume;
@@ -79,7 +82,7 @@ public class AudioProducer : MonoBehaviour
 
         while (Time.time < startTime + fadeOutDuration)
         {
-            if(audioSource==null){yield break;}
+            if (audioSource == null) { yield break; }
             float elapsedTime = Time.time - startTime;
             float normalizedTime = elapsedTime / fadeOutDuration;
             float newVolume = Mathf.Lerp(startVolume, 0f, normalizedTime);
@@ -87,14 +90,19 @@ public class AudioProducer : MonoBehaviour
             audioSource.volume = newVolume;
             yield return null;
         }
+
         Debug.LogWarning(destroy);
-        if(destroy){
+
+        if (destroy)
+        {
             Stop();
         }
     }
 
-    public virtual void FadeIn(float fadeInDuration, float desiredVolume){
-        StartCoroutine(IEFadeIn(fadeInDuration,desiredVolume));
+    // TRANSICIONES
+    public virtual void FadeIn(float fadeInDuration, float desiredVolume)
+    {
+        StartCoroutine(IEFadeIn(fadeInDuration, desiredVolume));
     }
 
     protected virtual IEnumerator IEFadeIn(float fadeInDuration, float desiredVolume)
@@ -105,7 +113,7 @@ public class AudioProducer : MonoBehaviour
 
         while (Time.time < startTime + fadeInDuration)
         {
-            if(audioSource==null){yield break;}
+            if (audioSource == null) { yield break; }
             float elapsedTime = Time.time - startTime;
             float normalizedTime = elapsedTime / fadeInDuration;
             float newVolume = Mathf.Lerp(startVolume, desiredVolume, normalizedTime);
@@ -113,6 +121,16 @@ public class AudioProducer : MonoBehaviour
             audioSource.volume = newVolume;
             yield return null;
         }
+
         audioSource.volume = desiredVolume;
+    }
+    #endregion
+
+    void Update()
+    {
+        if (!audioSource.isPlaying && !audioSource.loop && !paused)
+        {
+            Stop();
+        }
     }
 }

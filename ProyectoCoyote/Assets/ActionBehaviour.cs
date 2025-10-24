@@ -46,3 +46,14 @@ public class ActionBehaviour : StateMachineBehaviour
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
 }
+
+public class EnemyDodgeBehaviour : ActionBehaviour
+{
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        base.OnStateExit(animator, stateInfo, layerIndex);
+        animator.gameObject.GetComponentInParent<DamageReceiver>().setDodge(false);
+
+    }
+}

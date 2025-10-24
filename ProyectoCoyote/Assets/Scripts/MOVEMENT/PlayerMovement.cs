@@ -241,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-        if (gameInput.attackPressed && canAttack)
+        if (gameInput.attackPressed && canAttack && lockMovement)
         {
             string attackName = "";
             if (horizontalInput == 0)
@@ -495,19 +495,24 @@ public class PlayerMovement : MonoBehaviour
         else dodgeCdTimer = dodgeCd;
 
         dashing = true;
-            if (horizontalInput == 0)
-            {
-                animator.CrossFade("Dodge_M", .1f);
-            }
-            if (horizontalInput > 0)
-            {
-                animator.CrossFade("Dodge_R", .1f);
-            }
-            if (horizontalInput < 0)
-            {
-                animator.CrossFade("Dodge_L", .1f);
-            }
-        
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+            //Añadir esquive neutral
+            animator.CrossFade("Dodge_M", .1f);
+        }
+        else if (horizontalInput > 0)
+        {
+            animator.CrossFade("Dodge_R", .1f);
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.CrossFade("Dodge_L", .1f);
+        } 
+        else if (verticalInput < 0)
+        {
+            animator.CrossFade("Dodge_M", .1f);
+        }
+
         Invoke(nameof(ResetDash), dashDuration);
     }
     private void DelayedDashForce()

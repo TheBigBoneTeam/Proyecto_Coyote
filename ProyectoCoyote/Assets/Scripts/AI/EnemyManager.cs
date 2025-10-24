@@ -40,6 +40,7 @@ public class ClassMutex<T> where T : Object
         }
         else
         {
+            Debug.Log($"Permiso de ataque no concedido, el permiso lo tiene {Owner}");
             return false;
         }
     }

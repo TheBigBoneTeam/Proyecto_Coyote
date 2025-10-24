@@ -557,6 +557,7 @@ public class PlayerMovement : MonoBehaviour
     #region Metodos de sonidos
     private void HandleFootsteps()
     {
+        /*
         bool isMoving = moveDirection.magnitude > 0.1f && grounded && !dashing;
 
         if (isMoving)
@@ -579,6 +580,7 @@ public class PlayerMovement : MonoBehaviour
             AudioManager.Instance.StopAllSoundsWithTag(walkSoundName);
             AudioManager.Instance.StopAllSoundsWithTag(runSoundName);
         }
+        */
     }
 
     #endregion

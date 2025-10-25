@@ -9,9 +9,8 @@ public class EnemyLockOn : MonoBehaviour
     [SerializeField] LayerMask targetLayers;
     Transform enemyTarget_Locator;
     public Transform currentTarget = null;
-
-    [Tooltip("Cambiar entre C�maras")]
-    Animator cinemachineAnimator;
+    
+    CameraController CamControl;
 
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
@@ -33,8 +32,7 @@ public class EnemyLockOn : MonoBehaviour
 
     void Start()
     {
-        
-        cinemachineAnimator = GameObject.Find("State-Driven Camera").GetComponent<Animator>();
+        CamControl = FindAnyObjectByType<CameraController>();
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
@@ -44,7 +42,6 @@ public class EnemyLockOn : MonoBehaviour
         cam = Camera.main.transform;
        
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
-        cinemachineAnimator.Play("FollowCamera");
     }
 
     // Update is called once per frame
@@ -90,7 +87,7 @@ public class EnemyLockOn : MonoBehaviour
     void FoundTarget()
     {
         lockOnCanvas.gameObject.SetActive(true);
-        cinemachineAnimator.Play("TargetLooking_Camera");
+        CamControl.ActiveTargetLookingCamera();
         enemyLocked = true;
         Debug.Log("Enemigo encontrado");
     }
@@ -103,7 +100,7 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
-        cinemachineAnimator.Play("FollowCamera");
+        CamControl.ActiveFollowCamera();
         Debug.Log("Volviendo a modo SIN lockear");
     }
 

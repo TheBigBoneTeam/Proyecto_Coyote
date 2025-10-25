@@ -3,7 +3,8 @@
 namespace BehaviourAPI.BehaviourTrees
 {
     using Core.Actions;
-    
+    using System.Diagnostics;
+
 
     /// <summary>
     /// BTNode type that has no children and executes an <see cref="Core.Actions.Action"/>.
@@ -49,7 +50,6 @@ namespace BehaviourAPI.BehaviourTrees
             base.OnStarted();
             if (Action == null)
                 throw new MissingActionException(this, "Leaf nodes need an action to work.");
-
             Action.Start();
             _isActionRunning = true;
         }

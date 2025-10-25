@@ -13,8 +13,5 @@ public class AnimationEventsSender : MonoBehaviour
     {
         
     }
-    public void endEnemyAction()
-    {
-        GetComponentInParent<EnemyAI>().endCurrentAction();
-    }
+
 }

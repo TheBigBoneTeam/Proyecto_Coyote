@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayBasicAttackAction : UnityAction
@@ -17,6 +18,7 @@ public class PlayBasicAttackAction : UnityAction
         }
         if (!idle && enemyAI.endAction)
         {
+            Debug.Log("success");
             enemyAI.endActionNode();
             return Status.Success;
         }

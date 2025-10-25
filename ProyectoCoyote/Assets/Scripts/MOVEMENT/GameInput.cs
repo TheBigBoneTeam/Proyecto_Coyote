@@ -30,7 +30,7 @@ public class GameInput : MonoBehaviour
 
         JumpPressed = Input.GetKeyDown(jumpKey);
         SprintHeld = Input.GetKey(sprintKey);
-        DashPressed = Input.GetKeyDown(dashKey);
+        DashPressed = Input.GetKeyDown(dashKey) || Input.GetMouseButtonDown(1);
 
         attackPressed = Input.GetMouseButtonDown(0);
     }

@@ -1,13 +1,21 @@
+using NUnit.Framework;
+using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class ActionBehaviour : StateMachineBehaviour
 {
-   public bool lastAnimInAction = true;
+    public string DebugName;
+    bool isIdle;
+    
+    // public bool lastAnimInAction = true;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        isIdle = animator.gameObject.GetComponentInParent<EnemyAI>().currentActionIsIdle;
+        Debug.Log("StartAction"+isIdle + DebugName);
+
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,8 +26,10 @@ public class ActionBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (lastAnimInAction)
+        
+        if (!isIdle)
         {
+            Debug.Log("EndAction"+DebugName);
             animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
             animator.gameObject.GetComponentInChildren<Attack>().LoadData(null);
         }
@@ -35,4 +45,15 @@ public class ActionBehaviour : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+}
+
+public class EnemyDodgeBehaviour : ActionBehaviour
+{
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        base.OnStateExit(animator, stateInfo, layerIndex);
+        animator.gameObject.GetComponentInParent<DamageReceiver>().setDodge(false);
+
+    }
 }

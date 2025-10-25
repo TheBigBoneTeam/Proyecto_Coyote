@@ -4,7 +4,7 @@ public class Enemy : AGameCharacter
 {
     public override void Die()
     {
-        dieEvent.Invoke();
+        dieEvent?.Invoke();
         Destroy(gameObject);
     }
     public override bool isOtherTeam(AGameCharacter character)

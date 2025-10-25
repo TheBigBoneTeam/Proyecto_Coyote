@@ -93,48 +93,7 @@ namespace tutorial
 
         }
     }
-    public class ControlesTutorial : BaseTutorialState
-    {
-        public ControlesTutorial(Tutorial _tut)
-        {
-            tutorial = _tut;
-        }
-        public override void OnEnter()
-        {
-       
-         tutorial.TutorialText.text = "Muevete con WASD. Con click izq puedes golpear en diferentes direcciones (click | click + A | click + D).";
-            tutorial.changeTutWait = false;
-            tutorial.waitTime(8);
-                
-            
-     
-        }
-        public override void OnExit()
-        {
-           
-        }
-    }
-    public class LockearTutorial : BaseTutorialState
-    {
-        new firstTutorial tutorial;
-        public LockearTutorial(firstTutorial _tut)
-        {
-            tutorial = _tut;
-        }
-        public override void OnEnter()
-        {
-            tutorial.enemy.gameObject.SetActive(true);
-            tutorial.box.gameObject.SetActive(false);
-            tutorial.TutorialText.text = "Solo podrás esquivar si tienes marcado a algun enemigo. Pulsa Q para marcar al enemigo";
-
-
-
-        }
-        public override void OnExit()
-        {
-            tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
-        }
-    }
+    
 
     
     public class endTutorialState : BaseTutorialState

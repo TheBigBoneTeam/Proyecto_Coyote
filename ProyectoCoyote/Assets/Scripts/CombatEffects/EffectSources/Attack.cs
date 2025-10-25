@@ -122,7 +122,7 @@ public class Attack : ATouchCombatEffectSource
         else
         {
             setHitCheck(data.HitCheckType);
-            setParry(false);
+            setParry(data.isParreable);
             HitDirections.Clear();
             HitDirections.AddRange(data.HitDirections);
             effects.Clear();

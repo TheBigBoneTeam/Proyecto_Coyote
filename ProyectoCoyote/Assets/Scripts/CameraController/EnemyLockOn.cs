@@ -103,6 +103,8 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
+        defenseAttackUIIndicator.setEnemy(null);
+        enemyDefenseAttackUIIndicator.setCharacter(null);
         cinemachineAnimator.Play("FollowCamera");
         Debug.Log("Volviendo a modo SIN lockear");
     }
@@ -169,7 +171,6 @@ public class EnemyLockOn : MonoBehaviour
             return null;
         }
         defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
-        defenseAttackUIIndicator.setEnable(true);
         if (enemyDefenseAttackUIIndicator != null)
         {
             enemyDefenseAttackUIIndicator.setCharacter(closestTarget.GetComponent<AGameCharacter>());

@@ -18,18 +18,18 @@ public class DamageReceiver:MonoBehaviour
     UnityEvent<ReceiverState> receiverStateEvent;
     IPerfectDodgeManager perfectDodgeManager;
 
-   public void checkEffectSource(Attack Attack)
+   public void checkEffectSource(Attack attack)
     {
-        if (!dodging || !checkListIntersect(Attack.HitDirections, directions))
+        if (!dodging || !checkListIntersect(attack.HitDirections, directions))
         {
-            Attack.addEffectsToChar(character);
+            attack.addEffectsToChar(character);
             //aOwnerableEffectSource.addEffectsToObj(character);
         }
         else
         {
             Debug.Log("Dodge");
             character.DodgeAttack(directions[0]);
-            if (parrying)
+            if (parrying && attack.Parreable)
             {
                 Debug.Log("PARRY");
                 if (!perfectDodgeManager.isSlowDown())

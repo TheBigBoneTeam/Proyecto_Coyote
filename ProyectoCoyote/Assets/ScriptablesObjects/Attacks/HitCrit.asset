@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: HitCrit
   m_EditorClassIdentifier: 
   <clip>k__BackingField: {fileID: 0}
+  <isParreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 2
   <HitDirections>k__BackingField: 
   effects:
-  - rid: 108327563945312339
+  - rid: 5634289559051436127
   references:
     version: 2
     RefIds:
-    - rid: 108327563945312339
-      type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
+    - rid: 5634289559051436127
+      type: {class: CritDamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
-        _damage: 1
+        _critdamage: 3

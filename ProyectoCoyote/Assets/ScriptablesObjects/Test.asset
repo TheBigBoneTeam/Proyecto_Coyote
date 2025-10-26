@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
-  m_Name: BasicEnemy
+  m_Name: Test
   m_EditorClassIdentifier: 
   data:
     graphs:
@@ -30,7 +30,7 @@ MonoBehaviour:
         - 7336a40c-5d0c-4ef6-8974-8d46125bddb5
       - name: AttackA
         id: 8cc4b342-4349-469c-a8f4-d37bcc974007
-        position: {x: -150, y: 2400}
+        position: {x: -200, y: 1664.8}
         node:
           rid: 5634289356226429025
         references:
@@ -44,7 +44,7 @@ MonoBehaviour:
         childIds: []
       - name: AttackB
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-        position: {x: 150, y: 2400}
+        position: {x: 100, y: 1664.8}
         node:
           rid: 5634289356226429027
         references:
@@ -58,7 +58,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4416613e-eacb-4600-9809-873056a04543
-        position: {x: 150, y: 2200}
+        position: {x: 100, y: 1464.8}
         node:
           rid: 5634289356226429028
         references: []
@@ -70,7 +70,7 @@ MonoBehaviour:
         - 0ca1cc7f-7196-4236-b68e-b5c34ed5b700
       - name: AttackC
         id: 0ca1cc7f-7196-4236-b68e-b5c34ed5b700
-        position: {x: 450, y: 2400}
+        position: {x: 400, y: 1664.8}
         node:
           rid: 5634289356226429029
         references:
@@ -146,10 +146,10 @@ MonoBehaviour:
         - 6cf0585b-8764-4d80-b88b-c9f05953ce74
         childIds:
         - a0e233ef-b556-4140-932f-9bed26f5ae1b
-        - aa488712-4164-447b-9cc6-6ea884f6b9e2
+        - 5ec7d1bd-2de9-474c-8f65-33970647821e
       - name: 
         id: 5ec7d1bd-2de9-474c-8f65-33970647821e
-        position: {x: 975, y: 1000}
+        position: {x: 648, y: 770.4}
         node:
           rid: 5634289422980350086
         references:
@@ -159,37 +159,12 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         parentIds:
-        - aa488712-4164-447b-9cc6-6ea884f6b9e2
-        childIds:
-        - d21d7469-a224-4f63-89c2-a74c5f8d9965
-      - name: 
-        id: aa488712-4164-447b-9cc6-6ea884f6b9e2
-        position: {x: 1125, y: 800}
-        node:
-          rid: 5634289451439489347
-        references: []
-        parentIds:
         - a5abf4b8-8b36-4c5c-8668-3c3a0e4e72ae
         childIds:
-        - 5ec7d1bd-2de9-474c-8f65-33970647821e
-        - 1af90e87-d4cc-48cb-bae0-b31c64b5f0a0
-      - name: walk
-        id: 1af90e87-d4cc-48cb-bae0-b31c64b5f0a0
-        position: {x: 1275, y: 1000}
-        node:
-          rid: 5634289451439489348
-        references:
-        - fieldName: Action
-          value:
-            rid: 5634289451439489349
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - aa488712-4164-447b-9cc6-6ea884f6b9e2
-        childIds: []
+        - 79061932-755c-4921-a0f5-52ce3929df0d
       - name: HasMutex
         id: 0c525003-1308-4130-96b1-d813967e58c5
-        position: {x: 691.2, y: 1416}
+        position: {x: -21.6, y: 956}
         node:
           rid: 5634289537243152384
         references:
@@ -199,35 +174,28 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         parentIds:
-        - d21d7469-a224-4f63-89c2-a74c5f8d9965
-        childIds:
         - 79061932-755c-4921-a0f5-52ce3929df0d
+        childIds:
+        - e17af590-7b99-4a7a-a966-e2e0374970a6
       - name: 
         id: d21d7469-a224-4f63-89c2-a74c5f8d9965
-        position: {x: 975, y: 1200}
+        position: {x: 894.4, y: 1145.6}
         node:
           rid: 5634289537243152472
         references: []
-        parentIds:
-        - 5ec7d1bd-2de9-474c-8f65-33970647821e
-        childIds:
-        - 0c525003-1308-4130-96b1-d813967e58c5
-        - 8df33544-f00c-4803-bde3-f1416f7fbb6a
+        parentIds: []
+        childIds: []
       - name: 
         id: 8df33544-f00c-4803-bde3-f1416f7fbb6a
         position: {x: 1275, y: 1400}
         node:
           rid: 5634289564154593280
         references: []
-        parentIds:
-        - d21d7469-a224-4f63-89c2-a74c5f8d9965
-        childIds:
-        - 8493d51c-cd68-4807-a7df-bec4561c1ff5
-        - db0aca21-b9fa-4c26-bcfb-9cd6389cff2f
-        - 75e90047-4c9e-487c-9500-174d51d406e2
+        parentIds: []
+        childIds: []
       - name: 
         id: 8493d51c-cd68-4807-a7df-bec4561c1ff5
-        position: {x: 975, y: 1600}
+        position: {x: 993.6, y: 1616}
         node:
           rid: 5634289564154593281
         references:
@@ -236,8 +204,7 @@ MonoBehaviour:
             rid: 5634289564154593282
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 8df33544-f00c-4803-bde3-f1416f7fbb6a
+        parentIds: []
         childIds: []
       - name: 
         id: db0aca21-b9fa-4c26-bcfb-9cd6389cff2f
@@ -250,12 +217,11 @@ MonoBehaviour:
             rid: 5634289564154593284
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 8df33544-f00c-4803-bde3-f1416f7fbb6a
+        parentIds: []
         childIds: []
       - name: 
         id: 75e90047-4c9e-487c-9500-174d51d406e2
-        position: {x: 1575, y: 1600}
+        position: {x: 1593.6, y: 1632}
         node:
           rid: 5634289564154593285
         references:
@@ -264,23 +230,22 @@ MonoBehaviour:
             rid: 5634289564154593286
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 8df33544-f00c-4803-bde3-f1416f7fbb6a
+        parentIds: []
         childIds: []
       - name: 
         id: e17af590-7b99-4a7a-a966-e2e0374970a6
-        position: {x: 300, y: 1800}
+        position: {x: 272.8, y: 1082.4}
         node:
           rid: 5634289564154593287
         references: []
         parentIds:
-        - 79061932-755c-4921-a0f5-52ce3929df0d
+        - 0c525003-1308-4130-96b1-d813967e58c5
         childIds:
         - 7d66ccd3-ba12-450c-b7f5-2cc610d69996
         - c6754b3b-9110-43dd-93e9-b4e935245bea
       - name: 
         id: 7d66ccd3-ba12-450c-b7f5-2cc610d69996
-        position: {x: 150, y: 2000}
+        position: {x: 100, y: 1264.8}
         node:
           rid: 5634289564154593291
         references:
@@ -295,7 +260,7 @@ MonoBehaviour:
         - 4416613e-eacb-4600-9809-873056a04543
       - name: 
         id: c6754b3b-9110-43dd-93e9-b4e935245bea
-        position: {x: 450, y: 2000}
+        position: {x: 400, y: 1264.8}
         node:
           rid: 5634289564154593378
         references:
@@ -309,30 +274,28 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 79061932-755c-4921-a0f5-52ce3929df0d
-        position: {x: 675, y: 1600}
+        position: {x: 317.6, y: 876}
         node:
           rid: 5634289564154593389
         references: []
         parentIds:
-        - 0c525003-1308-4130-96b1-d813967e58c5
+        - 5ec7d1bd-2de9-474c-8f65-33970647821e
         childIds:
-        - e17af590-7b99-4a7a-a966-e2e0374970a6
-        - 038a603b-ad61-4181-9cc6-08a5c58af0c2
+        - 0c525003-1308-4130-96b1-d813967e58c5
       - name: 
         id: 038a603b-ad61-4181-9cc6-08a5c58af0c2
-        position: {x: 1050, y: 1800}
+        position: {x: 1066.4, y: 1816}
         node:
           rid: 5634289564154593390
         references: []
-        parentIds:
-        - 79061932-755c-4921-a0f5-52ce3929df0d
+        parentIds: []
         childIds:
         - 00c1b9a9-5927-47f6-bedc-ffbb82cfb1da
         - 9ff40b7d-abc0-41fa-ac49-8e3366c60bc4
         - 46adc75b-30e6-417a-9567-dd896a544bd3
       - name: 
         id: 00c1b9a9-5927-47f6-bedc-ffbb82cfb1da
-        position: {x: 766.4, y: 2016.0001}
+        position: {x: 790.4, y: 2027.2001}
         node:
           rid: 5634289564154593391
         references:
@@ -484,18 +447,6 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 5634289451439489347
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 5634289451439489348
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 5634289451439489349
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 7
-        idle: 1
     - rid: 5634289537243152384
       type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

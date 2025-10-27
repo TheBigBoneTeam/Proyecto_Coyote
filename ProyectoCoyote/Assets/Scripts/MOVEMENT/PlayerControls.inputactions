@@ -23,7 +23,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mando",
                     "action": "Andar",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -45,7 +45,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "Andar",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -56,7 +56,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "Andar",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -67,7 +67,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "Andar",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -78,10 +78,21 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "Andar",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fed74fae-9973-494f-bc1d-28dcfcf0d425",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Móvil",
+                    "action": "Andar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -106,7 +117,7 @@
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "Correr",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -115,9 +126,20 @@
                     "name": "",
                     "id": "138edb83-3ad1-49d3-a779-ae8301402f0f",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mando",
+                    "action": "Correr",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83e9b63a-4ba0-46ad-98ef-362a6a23d6b4",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": ";Móvil",
                     "action": "Correr",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -145,7 +167,7 @@
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Teclado",
                     "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -156,7 +178,18 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mando",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b0ad07f-fed0-4f91-a35f-9396de288242",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": ";Móvil",
                     "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -164,5 +197,21 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Teclado",
+            "bindingGroup": "Teclado",
+            "devices": []
+        },
+        {
+            "name": "Mando",
+            "bindingGroup": "Mando",
+            "devices": []
+        },
+        {
+            "name": "Móvil",
+            "bindingGroup": "Móvil",
+            "devices": []
+        }
+    ]
 }

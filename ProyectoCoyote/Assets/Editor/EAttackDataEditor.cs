@@ -18,5 +18,9 @@ public class EAttackDataEditor : Editor
         {
             data.AddStun();
         }
+        if (GUILayout.Button("Add Crit Damage"))
+        {
+            data.AddCritDamage();
+        }
     }
 }

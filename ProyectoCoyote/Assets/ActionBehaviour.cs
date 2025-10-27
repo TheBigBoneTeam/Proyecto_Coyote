@@ -7,7 +7,7 @@ public class ActionBehaviour : StateMachineBehaviour
 {
     public string DebugName;
     bool isIdle;
-    
+    public bool lastAttackInAction = true;
     // public bool lastAnimInAction = true;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -30,7 +30,10 @@ public class ActionBehaviour : StateMachineBehaviour
         if (!isIdle)
         {
             Debug.Log("EndAction"+DebugName);
-            animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+            if (lastAttackInAction)
+            {
+                animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+            }
             animator.gameObject.GetComponentInChildren<Attack>().LoadData(null);
         }
     }
@@ -45,4 +48,15 @@ public class ActionBehaviour : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+}
+
+public class EnemyDodgeBehaviour : ActionBehaviour
+{
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        base.OnStateExit(animator, stateInfo, layerIndex);
+        animator.gameObject.GetComponentInParent<DamageReceiver>().setDodge(false);
+
+    }
 }

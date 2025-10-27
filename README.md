@@ -254,19 +254,23 @@ Para poderse librar de este enemigo existen varias opciones:
 
   * Cuando el jugador se mueve por el escenario, si realiza un esquive en el momento justo no recibirá ningún daño.
 
-  * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Si se esquiva en la dirección correcta no se recibirá daño y si realiza un esquive perfecto realizará un contraataque que lanzará al enemigo hacia delante haciendo que explote. Si el jugador ataca primero al enemigo este se preparará para detonar teniendo una cuenta atrás de 5 segundos, en este caso el jugador tendrá que desfijar al enemigo y alejarse para salir ileso.
+  * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Como este ataque no es esquivable el jugador tendrá que atacar al enemigo antes de que le ataque para lanzarlo y que explote.
+
+  * Si el jugador usa el gancho contra el enemigo cuando se acerta tiene una pequeña ventana para atacarlo y lanzarlo provocando su explosión.
 
 ### Enemigo robusto
-El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará objetos hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
+El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará piedras hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva.En ocasiones podrá lanzar a los enemigos suicidas. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
   1.	Ataque izquierdo (con amague de central), ataque derecho y defensa central.
   2.	Ataque central, ataque central y defensa derecha.
   3.	Defensa izquierda, defensa derecha y ataque derecha.
 
 ### Francotirador
-Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 3 posibles posiciones de defensa:
+Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 3 posibles posiciones de defensa:
   1. Defensa izquierda y derecha.
   2. Defensa central e izquierda.
   3.	Defensa central e izquierda.
+
+Si el jugador golpea en la dirección donde defiende, este le hará un contrataque y huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
 
 
 # 4. Arte 

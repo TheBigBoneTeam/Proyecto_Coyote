@@ -15,7 +15,6 @@ namespace tutorial
         [SerializeField] public int objectiveEsquives;
         [SerializeField] public int objectiveHits;
 
-        [SerializeField] public GameObject box;
         protected override void Start()
         {
             lockon = FindAnyObjectByType<EnemyLockOn>();
@@ -72,6 +71,8 @@ namespace tutorial
 
             tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio + WASD. La interfaz marca la direccion donde te estan atacando";
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = false;
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
+
             tutorial.startWaitEnemy();
            tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -202,7 +203,6 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
-            tutorial.box.gameObject.SetActive(false);
             tutorial.TutorialText.text = "Solo podrás esquivar y atacar si tienes marcado a algun enemigo. Pulsa Q para marcar al enemigo";
 
 
@@ -225,6 +225,7 @@ namespace tutorial
 
             tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques.";
             tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
 
 
         }

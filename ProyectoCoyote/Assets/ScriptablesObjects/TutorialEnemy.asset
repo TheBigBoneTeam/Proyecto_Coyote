@@ -67,6 +67,7 @@ MonoBehaviour:
         childIds:
         - 8cc4b342-4349-469c-a8f4-d37bcc974007
         - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
+        - a01324e1-8651-4d20-affc-4094b509dac3
       - name: 
         id: 61bdc9e2-3d4f-43d1-b802-ca727904a05b
         position: {x: 0, y: 400}
@@ -228,6 +229,20 @@ MonoBehaviour:
         childIds:
         - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
         - 74715d2b-6936-465d-bcb9-c97cd360c96f
+      - name: 
+        id: a01324e1-8651-4d20-affc-4094b509dac3
+        position: {x: -261.65125, y: 1813.3696}
+        node:
+          rid: 5634289679145893986
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289679145893987
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 4416613e-eacb-4600-9809-873056a04543
+        childIds: []
     pushPerceptions:
     - name: newpushPerception
       targetNodeIds: []
@@ -367,3 +382,11 @@ MonoBehaviour:
         IsRandomized: 0
         finishOnSuccess: 0
         finishOnFailure: 0
+    - rid: 5634289679145893986
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289679145893987
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 5
+        idle: 0

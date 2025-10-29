@@ -236,10 +236,13 @@ Este enemigo se encuentra por el pueblo de Pricklytown. Sus ataques hacen 1 de d
 
 #### Melee Cañón
 Este enemigo se encuentra en la zona del cañón. Sus ataques hacen 1 de daño y cuenta con 5 puntos de vida. Posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
-  1. Bloqueo izquierdo, “ataque abrazo” y ataque central.
+
+  1. Bloqueo izquierdo, “ataque abrazo” y ataque central(como si fuera un gancho que viene desde abajo).
   2. Ataque derecho (haciendo antes un amago de “ataque abrazo”), bloqueo central y bloqueo derecho.
-  3. Bloqueo derecho, bloqueo izquierdo y ataque central.
+  3. Ataque derecho, bloqueo izquierdo y ataque central(como si fuera un gancho que viene desde abajo).
   4. “Ataque abrazo”, ataque izquierdo y bloqueo central.
+
+  * Los ataques izquierdos y derechos de este enemigo, en vez de ser manotazos son como puñetados que "carga".
 
 #### Melee Oasis
 

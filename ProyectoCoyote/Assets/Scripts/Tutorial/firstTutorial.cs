@@ -15,24 +15,31 @@ namespace tutorial
         [SerializeField] public int objectiveEsquives;
         [SerializeField] public int objectiveHits;
 
-        [SerializeField] public GameObject box;
         protected override void Start()
         {
             lockon = FindAnyObjectByType<EnemyLockOn>();
             print("setTUT");
             machine = new StateMachine();
             startTutorialState start = new startTutorialState(this);
+            CamaraTutorial camara = new CamaraTutorial(this);
             ControlesTutorial controles = new ControlesTutorial(this);
             LockearTutorial lockear = new LockearTutorial(this);
             EsquivarTutorial esquivar = new EsquivarTutorial(this);
             endTutorialState end = new endTutorialState(this);
             TrueEsquivarTutorial trueesquivar = new TrueEsquivarTutorial(this);
             congratulationState congratulationState = new congratulationState(this);
-            machine.AddTransition(start, controles, new FuncPredicate(() => true));
-            machine.AddTransition(controles, lockear, new FuncPredicate(()=>changeTutWait == true));
+            PegarTutorial pegar = new PegarTutorial(this);
+            TruePegarTutorial truePegarTutorial = new TruePegarTutorial(this);
+            machine.AddTransition(start, camara, new FuncPredicate(() => true));
+            machine.AddTransition(camara, controles, new FuncPredicate(() => camara.checkMovement()));
+
+            machine.AddTransition(controles, lockear, new FuncPredicate(() => controles.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
             machine.AddTransition(esquivar, trueesquivar, new FuncPredicate(() => currentEsquives == 1));
-            machine.AddTransition(trueesquivar, congratulationState, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
+
+            machine.AddTransition(trueesquivar, pegar, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
+            machine.AddTransition(pegar, truePegarTutorial, new FuncPredicate(() => currentHits == 1));
+            machine.AddTransition(truePegarTutorial, congratulationState, new FuncPredicate(() =>currentHits >= objectiveHits));
 
             machine.AddTransition(congratulationState, end, new FuncPredicate(() => changeTutWait == true));
 
@@ -64,6 +71,8 @@ namespace tutorial
 
             tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio + WASD. La interfaz marca la direccion donde te estan atacando";
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = false;
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
+
             tutorial.startWaitEnemy();
            tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -194,7 +203,6 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
-            tutorial.box.gameObject.SetActive(false);
             tutorial.TutorialText.text = "Solo podrás esquivar y atacar si tienes marcado a algun enemigo. Pulsa Q para marcar al enemigo";
 
 
@@ -217,6 +225,7 @@ namespace tutorial
 
             tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques.";
             tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
 
 
         }

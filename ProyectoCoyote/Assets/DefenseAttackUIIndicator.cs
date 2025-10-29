@@ -96,14 +96,17 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     {
         if(DamageReceiver != null)
         DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
-        DamageReceiver = character.GetComponent<DamageReceiver>();
-        if (DamageReceiver != null)
+        if (character != null)
         {
+            DamageReceiver = character.GetComponent<DamageReceiver>();
+            if (DamageReceiver != null)
+            {
 
-            setEnable(true);
-            this.transform.parent = character.transform;
-            this.transform.localPosition = Vector3.zero + paddingPosition;
-            DamageReceiver.subscribeToStateChange(DodgeStateChange);
+                setEnable(true);
+                this.transform.parent = character.transform;
+                this.transform.localPosition = Vector3.zero + paddingPosition;
+                DamageReceiver.subscribeToStateChange(DodgeStateChange);
+            }
         }
         else
         {

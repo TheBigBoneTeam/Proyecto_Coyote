@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
-  m_Name: BasicEnemy
+  m_Name: EnemigoPollo
   m_EditorClassIdentifier: 
   data:
     graphs:
@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
-        position: {x: 578.4, y: 2.4000015}
+        position: {x: 578.4, y: 27.200005}
         node:
           rid: 5634289356226429019
         references: []
@@ -84,7 +84,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 6cf0585b-8764-4d80-b88b-c9f05953ce74
-        position: {x: 427.2, y: 421.6}
+        position: {x: 412.5, y: 400}
         node:
           rid: 5634289368871469187
         references:
@@ -110,7 +110,7 @@ MonoBehaviour:
         - 93c60b42-c859-4ab3-a3fa-1dcfcff86db3
       - name: Idle
         id: 93c60b42-c859-4ab3-a3fa-1dcfcff86db3
-        position: {x: 743.2, y: 440}
+        position: {x: 728.8, y: 416}
         node:
           rid: 5634289381811945559
         references:
@@ -124,7 +124,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: a0e233ef-b556-4140-932f-9bed26f5ae1b
-        position: {x: -52, y: 784}
+        position: {x: -300, y: 800}
         node:
           rid: 5634289401212960768
         references:
@@ -138,7 +138,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: a5abf4b8-8b36-4c5c-8668-3c3a0e4e72ae
-        position: {x: 430.4, y: 628.80005}
+        position: {x: 412.5, y: 600}
         node:
           rid: 5634289404971319387
         references: []
@@ -164,7 +164,7 @@ MonoBehaviour:
         - d21d7469-a224-4f63-89c2-a74c5f8d9965
       - name: 
         id: aa488712-4164-447b-9cc6-6ea884f6b9e2
-        position: {x: 1160, y: 738.4}
+        position: {x: 1125, y: 800}
         node:
           rid: 5634289451439489347
         references: []
@@ -189,7 +189,7 @@ MonoBehaviour:
         childIds: []
       - name: HasMutex
         id: 0c525003-1308-4130-96b1-d813967e58c5
-        position: {x: 683.2, y: 1399.2001}
+        position: {x: 675, y: 1400}
         node:
           rid: 5634289537243152384
         references:
@@ -204,7 +204,7 @@ MonoBehaviour:
         - 79061932-755c-4921-a0f5-52ce3929df0d
       - name: 
         id: d21d7469-a224-4f63-89c2-a74c5f8d9965
-        position: {x: 991.2, y: 1216}
+        position: {x: 975, y: 1200}
         node:
           rid: 5634289537243152472
         references: []
@@ -295,7 +295,7 @@ MonoBehaviour:
         - 4416613e-eacb-4600-9809-873056a04543
       - name: 
         id: c6754b3b-9110-43dd-93e9-b4e935245bea
-        position: {x: 466.4, y: 2016.0001}
+        position: {x: 450, y: 2000}
         node:
           rid: 5634289564154593378
         references:
@@ -309,7 +309,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 79061932-755c-4921-a0f5-52ce3929df0d
-        position: {x: 683.2, y: 1631.2001}
+        position: {x: 691.2, y: 1616}
         node:
           rid: 5634289564154593389
         references: []
@@ -320,7 +320,7 @@ MonoBehaviour:
         - 038a603b-ad61-4181-9cc6-08a5c58af0c2
       - name: 
         id: 038a603b-ad61-4181-9cc6-08a5c58af0c2
-        position: {x: 1066.4, y: 1816}
+        position: {x: 1050, y: 1800}
         node:
           rid: 5634289564154593390
         references: []
@@ -332,7 +332,7 @@ MonoBehaviour:
         - 46adc75b-30e6-417a-9567-dd896a544bd3
       - name: 
         id: 00c1b9a9-5927-47f6-bedc-ffbb82cfb1da
-        position: {x: 764, y: 2016.0001}
+        position: {x: 750, y: 2000}
         node:
           rid: 5634289564154593391
         references:
@@ -346,7 +346,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 9ff40b7d-abc0-41fa-ac49-8e3366c60bc4
-        position: {x: 1068.8, y: 2055.2}
+        position: {x: 1050, y: 2000}
         node:
           rid: 5634289564154593393
         references:
@@ -372,12 +372,146 @@ MonoBehaviour:
         parentIds:
         - 038a603b-ad61-4181-9cc6-08a5c58af0c2
         childIds: []
+    - name: estadosPollo
+      id: 63c06591-7aa0-4086-8733-10d9b668ed0d
+      graph:
+        rid: 5634289629948018688
+      nodes:
+      - name: Huir
+        id: 59220bbe-6e00-4399-9505-e491473b3f74
+        position: {x: 426.4, y: 15.200005}
+        node:
+          rid: 5634289629948018689
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 00f18807-3dca-469e-bb5f-4746551c2b35
+        childIds:
+        - af5aada4-3185-4ec7-85a2-f54ed221bd5a
+        - c06b7c0e-1f55-46a2-b967-79274ef89531
+      - name: Disparar
+        id: 865afc59-7f89-4849-8989-cb1d6e3f6546
+        position: {x: 696.8, y: 413.6}
+        node:
+          rid: 5634289629948018690
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - c06b7c0e-1f55-46a2-b967-79274ef89531
+        childIds:
+        - 5abf7bcb-1cee-444a-86c7-a8549442df33
+      - name: Combate
+        id: d9fb1821-70e9-42c9-bb68-9a7618be5522
+        position: {x: 1125.6, y: 34.4}
+        node:
+          rid: 5634289629948018692
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289629948018701
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - af5aada4-3185-4ec7-85a2-f54ed221bd5a
+        - 5abf7bcb-1cee-444a-86c7-a8549442df33
+        childIds:
+        - 00f18807-3dca-469e-bb5f-4746551c2b35
+      - name: isLocked = false
+        id: 00f18807-3dca-469e-bb5f-4746551c2b35
+        position: {x: 763.2, y: 84.799995}
+        node:
+          rid: 5634289629948018693
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - d9fb1821-70e9-42c9-bb68-9a7618be5522
+        childIds:
+        - 59220bbe-6e00-4399-9505-e491473b3f74
+      - name: isLocked = true
+        id: af5aada4-3185-4ec7-85a2-f54ed221bd5a
+        position: {x: 755.2, y: -92}
+        node:
+          rid: 5634289629948018696
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 59220bbe-6e00-4399-9505-e491473b3f74
+        childIds:
+        - d9fb1821-70e9-42c9-bb68-9a7618be5522
+      - name: isInCover
+        id: c06b7c0e-1f55-46a2-b967-79274ef89531
+        position: {x: 278.4, y: 261.6}
+        node:
+          rid: 5634289629948018699
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 59220bbe-6e00-4399-9505-e491473b3f74
+        childIds:
+        - 865afc59-7f89-4849-8989-cb1d6e3f6546
+      - name: isLocked = true
+        id: 5abf7bcb-1cee-444a-86c7-a8549442df33
+        position: {x: 1025.6, y: 290.4}
+        node:
+          rid: 5634289629948018700
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 865afc59-7f89-4849-8989-cb1d6e3f6546
+        childIds:
+        - d9fb1821-70e9-42c9-bb68-9a7618be5522
     pushPerceptions:
     - name: newpushPerception
       targetNodeIds: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -614,3 +748,37 @@ MonoBehaviour:
       data:
         action: 5
         idle: 0
+    - rid: 5634289629948018688
+      type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 5634289629948018689
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 5634289629948018690
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 5634289629948018692
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 5634289629948018693
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 5634289629948018696
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 5634289629948018699
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 5634289629948018700
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 5634289629948018701
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 0
+        InterruptOptions: 2
+        subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8

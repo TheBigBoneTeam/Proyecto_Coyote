@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -15,7 +16,6 @@ public class Gancho : MonoBehaviour
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 60;
 
     Collider[] nearbyTargets;
-    int CurrentTargetIndex = -1;
 
     PlayerMovement movement;
     CameraController CamControl;
@@ -37,12 +37,12 @@ public class Gancho : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)) ActivateTargetHook();
         if (Input.GetKeyDown(KeyCode.X)) 
-        { 
-            currentTarget = NextRightTarget();
+        {
+            currentTarget = FindDirectionalTarget(true);
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            currentTarget = NextLeftTarget();
+            currentTarget = FindDirectionalTarget(false);
         }
 
         if (currentTarget) 
@@ -78,28 +78,56 @@ public class Gancho : MonoBehaviour
         CamControl.ActiveFollowCamera();
         Debug.Log("Volviendo a modo libre");
     }
-    private Transform NextRightTarget() 
+ 
+    /*
+     * Calcular el objetivo más cercano al objeto fijado en función de si está a la derecha(toRight = true) o a la izquierda(toRight = false)
+     */
+
+    private Transform FindDirectionalTarget(bool toRight)
     {
-        if (nearbyTargets.Length >= CurrentTargetIndex && CurrentTargetIndex >= 0)
+        // Escanear objetivos cercanos
+        Collider[] candidates = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        Transform bestTarget = null;
+        float bestAngle = 180f;
+
+        // Si ya hay un objetivo (currentTarget), usa la dirección
+        // desde el jugador hacia ese objetivo.
+        //Si no hay ninguno, usa la dirección de la cámara.
+                Vector3 referenceDir = currentTarget != null
+            ? currentTarget.position - transform.position
+            : cam.forward;
+
+        referenceDir.y = 0;
+        referenceDir.Normalize();
+
+        // Recorre todos los candidatos
+        foreach (var col in candidates)
         {
-            // Se que esto esta mal diego no me pegues
-            CurrentTargetIndex++;
-            Debug.Log($"-------DERECHA----idx: {CurrentTargetIndex}");
-            return nearbyTargets[CurrentTargetIndex].transform;
+            if (col.transform == currentTarget) continue;
+
+            Vector3 dirToTarget = col.transform.position - transform.position;
+            dirToTarget.y = 0;
+            dirToTarget.Normalize();
+
+            // Calcula si el objeto está a la derecha o a la izquierda
+            float angle = Vector3.SignedAngle(referenceDir, dirToTarget, Vector3.up);
+
+            // Filtra por dirección y elige el más cercano
+            if (toRight && angle > 5 && angle < bestAngle)
+            {
+                bestAngle = angle;
+                bestTarget = col.transform;
+            }
+            else if (!toRight && angle < -5 && Mathf.Abs(angle) < bestAngle)
+            {
+                bestAngle = Mathf.Abs(angle);
+                bestTarget = col.transform;
+            }
         }
-        return null;
+
+        return bestTarget;
     }
-    private Transform NextLeftTarget()
-    {
-        if (nearbyTargets.Length >= CurrentTargetIndex && CurrentTargetIndex > 0)
-        {
-            CurrentTargetIndex--;
-            Debug.Log($"-------IZQUIERDA----idx: {CurrentTargetIndex}");
-            // Se que esto esta mal diego no me pegues
-            return nearbyTargets[CurrentTargetIndex].transform;
-        }
-        return null;
-    }
+
     private Transform ScanNearBy()
     {
         // Crea una esfera al rededor del personaje con radio en noticeZone.
@@ -131,7 +159,7 @@ public class Gancho : MonoBehaviour
             if (_angle < closestAngle)
             {
                 closestTarget = nearbyTargets[i].transform;
-                CurrentTargetIndex = i;
+               
                 closestAngle = _angle;
             }
         }
@@ -166,6 +194,7 @@ public class Gancho : MonoBehaviour
         }
 
         // Actaliza la posici�n del localizador del enemigo
+        
         HookableObjectLocator.position = currentTarget.position;
 
        

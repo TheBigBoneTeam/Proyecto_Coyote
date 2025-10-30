@@ -7,7 +7,7 @@ public class ActionBehaviour : StateMachineBehaviour
 {
     public string DebugName;
     bool isIdle;
-    
+    public bool lastAttackInAction = true;
     // public bool lastAnimInAction = true;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -30,7 +30,10 @@ public class ActionBehaviour : StateMachineBehaviour
         if (!isIdle)
         {
             Debug.Log("EndAction"+DebugName);
-            animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+            if (lastAttackInAction)
+            {
+                animator.gameObject.GetComponentInParent<EnemyAI>().endCurrentAction();
+            }
             animator.gameObject.GetComponentInChildren<Attack>().LoadData(null);
         }
     }

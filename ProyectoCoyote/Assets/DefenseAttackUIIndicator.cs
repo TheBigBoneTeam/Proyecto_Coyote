@@ -77,6 +77,10 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             }
         }
     }
+    public void OutsideAttackChange(Attack.AttackState state)
+    {
+        AttackStateChange(state);
+    }
     private void OnDestroy()
     {
         if(DamageReceiver != null)
@@ -92,14 +96,17 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     {
         if(DamageReceiver != null)
         DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
-        DamageReceiver = character.GetComponent<DamageReceiver>();
-        if (DamageReceiver != null)
+        if (character != null)
         {
+            DamageReceiver = character.GetComponent<DamageReceiver>();
+            if (DamageReceiver != null)
+            {
 
-            setEnable(true);
-            this.transform.parent = character.transform;
-            this.transform.localPosition = Vector3.zero + paddingPosition;
-            DamageReceiver.subscribeToStateChange(DodgeStateChange);
+                setEnable(true);
+                this.transform.parent = character.transform;
+                this.transform.localPosition = Vector3.zero + paddingPosition;
+                DamageReceiver.subscribeToStateChange(DodgeStateChange);
+            }
         }
         else
         {
@@ -109,13 +116,38 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     }
     public void setEnemy(AGameCharacter character)
     {
-        if(attack != null)
+        if(attack != null) 
         attack.unSubscribeToStateChange(AttackStateChange);
         if (character != null)
         {
             attack = character.GetComponentInChildren<Attack>();
             if (attack != null)
-            attack.subscribeToStateChange(AttackStateChange);
+            {
+                attack.subscribeToStateChange(AttackStateChange);
+                setEnable(true);
+            }
+            else
+            {
+                setEnable(false);
+
+            }
+        }
+        else
+        {
+            print("setenabe");
+            setEnable(false);
+        }
+    }
+    public void unSetEnemy(AGameCharacter previousEnemy)
+    {
+        if(attack != previousEnemy.GetComponentInChildren<Attack>())
+        {
+            return;
+        }
+        if (attack != null)
+        {
+            attack.unSubscribeToStateChange(AttackStateChange);
+            attack = null;
         }
     }
     public void setDodgeObject(GameObject obj, bool on)

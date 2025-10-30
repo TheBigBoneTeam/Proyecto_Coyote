@@ -8,6 +8,9 @@ using UnityEngine.Playables;
 public class AttackData : ScriptableObject
 {
     [field: SerializeField] public AnimationClip clip { get; private set; }
+
+    [field: SerializeField] public bool isParreable { get; private set; }
+
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
 
     [field: SerializeField] public HitDirections[] HitDirections { get; private set; }

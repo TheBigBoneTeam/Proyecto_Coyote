@@ -21,16 +21,16 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
-        position: {x: 0, y: 0}
+        position: {x: 150, y: 0}
         node:
           rid: 5634289356226429019
         references: []
         parentIds: []
         childIds:
-        - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
+        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
       - name: AttackA
         id: 8cc4b342-4349-469c-a8f4-d37bcc974007
-        position: {x: -450, y: 1000}
+        position: {x: -914.4, y: 1636.8}
         node:
           rid: 5634289356226429025
         references:
@@ -44,7 +44,7 @@ MonoBehaviour:
         childIds: []
       - name: AttackB
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-        position: {x: -150, y: 1000}
+        position: {x: -616.8, y: 1644.8}
         node:
           rid: 5634289356226429027
         references:
@@ -58,69 +58,30 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4416613e-eacb-4600-9809-873056a04543
-        position: {x: -300, y: 800}
+        position: {x: -600, y: 1400}
         node:
           rid: 5634289356226429028
         references: []
         parentIds:
-        - e63eceb4-d0b0-4df9-ac2b-0659fb391fdb
+        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         childIds:
         - 8cc4b342-4349-469c-a8f4-d37bcc974007
         - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-      - name: 
-        id: e63eceb4-d0b0-4df9-ac2b-0659fb391fdb
-        position: {x: -150, y: 600}
-        node:
-          rid: 5634289365077983347
-        references: []
-        parentIds:
-        - 4d1743ab-50a1-495e-a4ff-0838a33d38ba
-        childIds:
-        - 4416613e-eacb-4600-9809-873056a04543
-        - e88c75ab-b183-424b-b5de-e3044b000f7f
-      - name: 
-        id: e88c75ab-b183-424b-b5de-e3044b000f7f
-        position: {x: 0, y: 800}
-        node:
-          rid: 5634289422980350090
-        references:
-        - fieldName: Action
-          value:
-            rid: 5634289422980350091
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - e63eceb4-d0b0-4df9-ac2b-0659fb391fdb
-        childIds: []
-      - name: 
-        id: 4d1743ab-50a1-495e-a4ff-0838a33d38ba
-        position: {x: -150, y: 400}
-        node:
-          rid: 5634289437457514591
-        references:
-        - fieldName: Perception
-          value:
-            rid: 5634289437457514592
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
-        childIds:
-        - e63eceb4-d0b0-4df9-ac2b-0659fb391fdb
+        - a01324e1-8651-4d20-affc-4094b509dac3
       - name: 
         id: 61bdc9e2-3d4f-43d1-b802-ca727904a05b
-        position: {x: 0, y: 200}
+        position: {x: 0, y: 400}
         node:
           rid: 5634289451439489124
         references: []
         parentIds:
-        - 0c87ccc8-af40-4e16-944a-ea081b271210
+        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
         childIds:
-        - 4d1743ab-50a1-495e-a4ff-0838a33d38ba
+        - c53c25b2-4124-46a7-8582-d159a873827d
         - 6c0eed00-c065-44c7-b932-3c387ba9b995
       - name: 
         id: 6c0eed00-c065-44c7-b932-3c387ba9b995
-        position: {x: 150, y: 400}
+        position: {x: 150, y: 600}
         node:
           rid: 5634289451439489125
         references:
@@ -131,6 +92,156 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
+        childIds: []
+      - name: 
+        id: c53c25b2-4124-46a7-8582-d159a873827d
+        position: {x: -150, y: 600}
+        node:
+          rid: 5634289591621779547
+        references:
+        - fieldName: Perception
+          value:
+            rid: 5634289591621779548
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
+        childIds:
+        - 972897bf-c258-42ca-b90d-79770affc8f4
+      - name: 
+        id: fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
+        position: {x: -300, y: 1200}
+        node:
+          rid: 5634289591621779550
+        references:
+        - fieldName: nodeIndexFunction
+          value:
+            rid: 5634289591621779551
+          fieldType: System.Func`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - 3af17fdf-20ee-443f-832d-a7acdcea34fb
+        childIds:
+        - 4416613e-eacb-4600-9809-873056a04543
+        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+      - name: 
+        id: b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+        position: {x: 0, y: 1400}
+        node:
+          rid: 5634289591621779552
+        references: []
+        parentIds:
+        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
+        childIds:
+        - cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
+        - 1392e30e-ed66-4334-ad28-f08284a534fa
+      - name: 
+        id: cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
+        position: {x: -150, y: 1600}
+        node:
+          rid: 5634289591621779553
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289591621779554
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+        childIds: []
+      - name: 
+        id: 1392e30e-ed66-4334-ad28-f08284a534fa
+        position: {x: 150, y: 1600}
+        node:
+          rid: 5634289591621779555
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289591621779556
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+        childIds: []
+      - name: 
+        id: 972897bf-c258-42ca-b90d-79770affc8f4
+        position: {x: -150, y: 800}
+        node:
+          rid: 5634289591621779567
+        references:
+        - fieldName: Perception
+          value:
+            rid: 5634289591621779568
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - c53c25b2-4124-46a7-8582-d159a873827d
+        childIds:
+        - 3af17fdf-20ee-443f-832d-a7acdcea34fb
+      - name: 
+        id: 3af17fdf-20ee-443f-832d-a7acdcea34fb
+        position: {x: -150, y: 1000}
+        node:
+          rid: 5634289591621779580
+        references: []
+        parentIds:
+        - 972897bf-c258-42ca-b90d-79770affc8f4
+        childIds:
+        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
+        - a7a8418c-fc40-412a-a292-b8e2e79d326b
+      - name: 
+        id: a7a8418c-fc40-412a-a292-b8e2e79d326b
+        position: {x: 16, y: 1208}
+        node:
+          rid: 5634289591621779581
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289591621779582
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 3af17fdf-20ee-443f-832d-a7acdcea34fb
+        childIds: []
+      - name: 
+        id: 74715d2b-6936-465d-bcb9-c97cd360c96f
+        position: {x: 300, y: 400}
+        node:
+          rid: 5634289591621779584
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289591621779585
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
+        childIds: []
+      - name: 
+        id: 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
+        position: {x: 150, y: 200}
+        node:
+          rid: 5634289591621779594
+        references: []
+        parentIds:
+        - 0c87ccc8-af40-4e16-944a-ea081b271210
+        childIds:
+        - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
+        - 74715d2b-6936-465d-bcb9-c97cd360c96f
+      - name: 
+        id: a01324e1-8651-4d20-affc-4094b509dac3
+        position: {x: -261.65125, y: 1813.3696}
+        node:
+          rid: 5634289679145893986
+        references:
+        - fieldName: Action
+          value:
+            rid: 5634289679145893987
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 4416613e-eacb-4600-9809-873056a04543
         childIds: []
     pushPerceptions:
     - name: newpushPerception
@@ -165,22 +276,22 @@ MonoBehaviour:
       data:
         action: 1
         idle: 0
-    - rid: 5634289365077983347
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+    - rid: 5634289451439489124
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 5634289422980350090
+    - rid: 5634289451439489125
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289422980350091
-      type: {class: DelayAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+    - rid: 5634289451439489126
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        delayTime: 0.5
-    - rid: 5634289437457514591
-      type: {class: ReactiveConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        InterruptOptions: 2
-    - rid: 5634289437457514592
+        action: 6
+        idle: 1
+    - rid: 5634289591621779547
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289591621779548
       type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
         init:
@@ -198,15 +309,84 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 5634289451439489124
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+    - rid: 5634289591621779550
+      type: {class: FunctionBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 5634289451439489125
+    - rid: 5634289591621779551
+      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        componentName: enemigoTutorial
+        methodName: checkTutorialMode
+    - rid: 5634289591621779552
+      type: {class: RandomBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 5634289591621779553
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289451439489126
+    - rid: 5634289591621779554
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        action: 6
-        idle: 1
+        action: 3
+        idle: 0
+    - rid: 5634289591621779555
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289591621779556
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 4
+        idle: 0
+    - rid: 5634289591621779567
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289591621779568
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: onAttackDistance
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5634289591621779580
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 5634289591621779581
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289591621779582
+      type: {class: DelayAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        delayTime: 1
+    - rid: 5634289591621779584
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289591621779585
+      type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 5634289591621779594
+      type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+        finishOnSuccess: 0
+        finishOnFailure: 0
+    - rid: 5634289679145893986
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5634289679145893987
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 5
+        idle: 0

@@ -100,7 +100,8 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
-        CamControl.ActiveFollowCamera();
+        defenseAttackUIIndicator.setEnemy(null);
+        enemyDefenseAttackUIIndicator.setCharacter(null);
         Debug.Log("Volviendo a modo SIN lockear");
     }
 
@@ -166,7 +167,6 @@ public class EnemyLockOn : MonoBehaviour
             return null;
         }
         defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
-        defenseAttackUIIndicator.setEnable(true);
         if (enemyDefenseAttackUIIndicator != null)
         {
             enemyDefenseAttackUIIndicator.setCharacter(closestTarget.GetComponent<AGameCharacter>());

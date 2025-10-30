@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
 
+    public float hookingSpeed = 0f;
+    public bool hooking;
+
     public float dashSpeed;
     public float dashSpeedChangeFactor;
 
@@ -119,7 +122,8 @@ public class PlayerMovement : MonoBehaviour
         walking,
         sprinting,
         dashing,
-        air
+        air,
+        hooking
     }
 
     //Bools para bloquear acciones mediante animator
@@ -277,20 +281,35 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
         }
+
         // Modo correr
-        /*
-        else if (grounded && Input.GetKey(sprintKey))
-        {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-            isRunning = true;
-        }
-        */
         else if (grounded && gameInput.SprintHeld)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
             isRunning = true;
+        }
+
+        // Modo gancho
+        else if (gameInput.HookPressed)
+        {
+            state = MovementState.hooking;
+            desiredMoveSpeed = 0f;
+            moveSpeed = 0f;
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+
+            canMove = false;
+        }
+        else if (!gameInput.HookPressed && state == MovementState.hooking)
+        {
+            // Si se levanta la tecla, se vuelve al modo caminar
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            canMove = true;
+            state = MovementState.walking;
+            desiredMoveSpeed = walkSpeed;
         }
 
         // Modo andar
@@ -362,6 +381,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        // Si está en modo gancho, el personaje NO se mueve
+        if (state == MovementState.hooking)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            return;
+        }
+
         float modeSpeed = lockMovement ? moveLockedSpeed : moveSpeed;
         //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
@@ -392,6 +419,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
+        // Si está en modo gancho, el personaje NO se mueve
+        if (state == MovementState.hooking)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
         // Control de velocidad en rampa
         if (OnSlope() && !exitingSlope)
         {
@@ -416,10 +450,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveLockedSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
-
-
         }
-
     }
     private void Jump()
     {
@@ -472,7 +503,6 @@ public class PlayerMovement : MonoBehaviour
                 Dash();
             }
         }
-
     }
 
     private void Dash()
@@ -525,7 +555,7 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
     }
 
-    /*
+    
     // MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA
     private void OnGUI()
     {
@@ -541,7 +571,7 @@ public class PlayerMovement : MonoBehaviour
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
     }
-    */
+    
 
     internal void setCanAttack(bool v)
     {

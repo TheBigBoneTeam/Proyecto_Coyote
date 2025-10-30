@@ -5,17 +5,17 @@ using static UnityEditor.PlayerSettings;
 
 public class Gancho : MonoBehaviour
 {
+    private GameInput gameInput;
     [SerializeField] LayerMask targetLayers;
     Transform HookableObjectLocator;
     Transform cam;
     public Transform currentTarget = null;
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
-    [SerializeField] float noticeZone = 10;
-    [SerializeField] float lookAtSmoothing = 2;
+    [SerializeField] float noticeZone;
+    [SerializeField] float lookAtSmoothing;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 60;
-
-    Collider[] nearbyTargets;
+    HookableObject targetObject;
 
     PlayerMovement movement;
     CameraController CamControl;
@@ -23,6 +23,7 @@ public class Gancho : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();
@@ -35,14 +36,17 @@ public class Gancho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) ActivateTargetHook();
-        if (Input.GetKeyDown(KeyCode.X)) 
+        if (gameInput.HookPressed) ActivateTargetHook();
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            currentTarget = FindDirectionalTarget(true);
+                currentTarget = FindDirectionalTarget(true, false);
+            
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            currentTarget = FindDirectionalTarget(false);
+                currentTarget = FindDirectionalTarget(false, false);
+            
         }
 
         if (currentTarget) 
@@ -54,7 +58,7 @@ public class Gancho : MonoBehaviour
 
     public void ActivateTargetHook()
     {
-        if (currentTarget) // Si ya hay un objeto enganchable, resetear
+        if (currentTarget != null) // Si ya hay un objeto enganchable, resetear
         {
             ResetTarget();
             return;
@@ -63,7 +67,7 @@ public class Gancho : MonoBehaviour
         currentTarget = ScanNearBy();
         if (currentTarget != null) 
         {
-            // Parar movimiento
+            // Llamar a parar movimiento
             HookCanvas.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
             Debug.Log("----------Cámara gancho Activada");
@@ -76,17 +80,17 @@ public class Gancho : MonoBehaviour
         HookCanvas.gameObject.SetActive(false);
         currentTarget = null;
         CamControl.ActiveFollowCamera();
-        Debug.Log("Volviendo a modo libre");
+        Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
     }
  
     /*
      * Calcular el objetivo más cercano al objeto fijado en función de si está a la derecha(toRight = true) o a la izquierda(toRight = false)
      */
 
-    private Transform FindDirectionalTarget(bool toRight)
+    private Transform FindDirectionalTarget(bool toRight, bool toUp)
     {
         // Escanear objetivos cercanos
-        Collider[] candidates = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        Collider[] candidates = Physics.OverlapSphere(transform.position, noticeZone*2, targetLayers);
         Transform bestTarget = null;
         float bestAngle = 180f;
 
@@ -97,7 +101,7 @@ public class Gancho : MonoBehaviour
             ? currentTarget.position - transform.position
             : cam.forward;
 
-        referenceDir.y = 0;
+        // referenceDir.y = 0;
         referenceDir.Normalize();
 
         // Recorre todos los candidatos
@@ -106,7 +110,7 @@ public class Gancho : MonoBehaviour
             if (col.transform == currentTarget) continue;
 
             Vector3 dirToTarget = col.transform.position - transform.position;
-            dirToTarget.y = 0;
+           //  dirToTarget.y = 0;
             dirToTarget.Normalize();
 
             // Calcula si el objeto está a la derecha o a la izquierda
@@ -133,7 +137,7 @@ public class Gancho : MonoBehaviour
         // Crea una esfera al rededor del personaje con radio en noticeZone.
         // Guarda en un array todos los objetos que coincidan con la target
         // definida en targetLayers.
-        nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
 
         // Inicializa las variables para encontrar el objetivo m�s cercano.
         float closestAngle = maxNoticeAngle;
@@ -146,12 +150,11 @@ public class Gancho : MonoBehaviour
             return null;
         }
 
-        Debug.Log("Objetos enganchables detectados: ");
+
         // Recorre todos los objetivos detectados y calcula su direcci�n y 
         // �ngulo desde la c�mara, detecta al m�s cercano.
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
-            Debug.Log($"Objeto {i}: {nearbyTargets[i]}");
             Vector3 dir = nearbyTargets[i].transform.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
@@ -159,29 +162,37 @@ public class Gancho : MonoBehaviour
             if (_angle < closestAngle)
             {
                 closestTarget = nearbyTargets[i].transform;
-               
                 closestAngle = _angle;
             }
         }
-        
+
         // Si no hay objetivos cerca, se sale.
-        if (nearbyTargets.Length == 0)
+        if (!closestTarget)
         {
             Debug.Log("No se han encontrado objetos enganchables cerca!");
             return null;
         }
 
-
-        Debug.Log($"Objeto más cercano: {closestTarget}");
-
         
+
+        // Calcula la posici�n final del objetivo
+        Vector3 tarPos = closestTarget.position ;
+
+
+        // Si hay algun elemento de la escena bloqueando la visi�n del jugador, se sale.
+        //if (Blocked(tarPos))
+        //{
+        //    Debug.Log("No se han encontrado enemigos cerca!");
+        //    return null;
+        //}
+     
         // Devuelve el enemigo v�lido
         return closestTarget;
     }
-   
-    
 
-   
+
+
+
 
 
     // Mirar al objeto
@@ -199,4 +210,6 @@ public class Gancho : MonoBehaviour
 
        
     }
+
+    
 }

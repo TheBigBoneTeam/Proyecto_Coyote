@@ -12,7 +12,7 @@ namespace BehaviourAPI.BehaviourTrees
     /// </summary>
     public abstract class BranchNode : CompositeNode
     {
-        BTNode m_SelectedNode;
+     protected   BTNode m_SelectedNode;
 
         /// <summary>
         /// <inheritdoc/>
@@ -77,5 +77,31 @@ namespace BehaviourAPI.BehaviourTrees
         /// </summary>
         /// <returns><inheritdoc/></returns>
         protected abstract int SelectBranchIndex();
+    }
+
+    public abstract class ReactiveBranchNode : BranchNode
+    {
+        int currentNode = -1;
+         public override void OnStarted()
+        {
+            
+            int branchIndex = SelectBranchIndex();
+            if (branchIndex < 0) branchIndex = 0;
+            if (branchIndex >= ChildCount) branchIndex = ChildCount - 1;
+            m_SelectedNode = GetBTChildAt(branchIndex);
+            currentNode = branchIndex;
+            m_SelectedNode?.OnStarted();
+        }
+        protected override Status UpdateStatus()
+        {
+            int branchIndex = SelectBranchIndex();
+            if (currentNode != branchIndex)
+            {
+                if (branchIndex < 0) branchIndex = 0;
+                if (branchIndex >= ChildCount) branchIndex = ChildCount - 1;
+                m_SelectedNode = GetBTChildAt(branchIndex);
+            }
+            return Status.Running;  
+        }
     }
 }

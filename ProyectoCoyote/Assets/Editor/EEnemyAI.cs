@@ -1,5 +1,4 @@
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(EnemyAI))]
 public class EEnemyAI : Editor
@@ -8,6 +7,11 @@ public class EEnemyAI : Editor
 
     SerializedProperty endAction;
     SerializedProperty Locked;
+    SerializedProperty reactionOn;
+    SerializedProperty counterOn;
+    SerializedProperty Reaction;
+    SerializedProperty Counter;
+
     SerializedProperty seeDistance;
     SerializedProperty attackDistance;
 
@@ -21,6 +25,11 @@ public class EEnemyAI : Editor
         Locked = serializedObject.FindProperty("Locked");
         seeDistance = serializedObject.FindProperty("seeDistance");
         attackDistance = serializedObject.FindProperty("attackDistance");
+        reactionOn = serializedObject.FindProperty("reactionOn");
+        counterOn = serializedObject.FindProperty("counterOn");
+        Reaction = serializedObject.FindProperty("reactionObj");
+        Counter = serializedObject.FindProperty("counterObj");
+
     }
     public override void OnInspectorGUI()
     {
@@ -35,6 +44,10 @@ public class EEnemyAI : Editor
         EditorGUILayout.PropertyField(Locked);
         EditorGUILayout.PropertyField(seeDistance);
         EditorGUILayout.PropertyField(attackDistance);
+        EditorGUILayout.PropertyField(reactionOn);
+        EditorGUILayout.PropertyField(counterOn);
+        EditorGUILayout.PropertyField(Counter);
+        EditorGUILayout.PropertyField(Reaction);
 
         //if (enemyAI.ActionList == null || enemyAI.ActionList.Length != System.Enum.GetNames(typeof(EnemyAI.BasicAttacks)).Length)
         //{

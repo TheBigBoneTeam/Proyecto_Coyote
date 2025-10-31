@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using CombatEffect;
 using Services;
 using System;
 using System.Collections;
@@ -8,8 +9,13 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public bool endAction;
+
+    public bool endAction,cancelled;
+    public bool counterOn, reactionOn;
     Attack attackObj;
+   [SerializeField] public Reaction reactionObj;
+    [SerializeField] Reaction counterObj;
+
     AGameCharacter character;
     public bool Locked;
     GameObject player;
@@ -35,7 +41,15 @@ public class EnemyAI : MonoBehaviour
 
     public void endCurrentAction()
     {
-        endAction = true;
+        if (!cancelled)
+        {
+            endAction = true;
+
+        }
+        else
+        {
+            cancelled = false;
+        }
     }
 
     #region checksForAI
@@ -90,7 +104,9 @@ public class EnemyAI : MonoBehaviour
         StanceC,
         IdleAction,
         Walk,
-        OutsideAttack
+        OutsideAttack,
+        Idle,
+        CombatIdle
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {
@@ -100,6 +116,16 @@ public class EnemyAI : MonoBehaviour
             endAction = false;
         }
         character.PlayAnimation(action.ToString(),idle);
+
+    }
+    public void LoadAction(string action, bool idle = false)
+    {
+        currentActionIsIdle = idle;
+        if (!idle)
+        {
+            endAction = false;
+        }
+        character.PlayAnimation(action, idle);
 
     }
     private void Start()
@@ -112,7 +138,21 @@ public class EnemyAI : MonoBehaviour
         endAction = false;
     }
 
+    public void startReaction()
+    {
+        cancelled = true;
+        endAction = false;
+        reactionObj.startReaction();
+    }
+    public void startCounter()
+    {
+        cancelled = true;
+        endAction = false;
+        counterObj.startReaction();
+    }
 
+    public bool isCounterOn() => counterOn;
+    public bool isReactionOn() => reactionOn;
 
     #region Gizmos
     private void OnDrawGizmos()

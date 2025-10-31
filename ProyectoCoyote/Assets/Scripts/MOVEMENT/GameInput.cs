@@ -35,7 +35,7 @@ public class GameInput : MonoBehaviour
 
         attackPressed = Input.GetMouseButtonDown(0);
 
-        HookPressed = Input.GetKey(hookKey) || Input.GetMouseButtonDown(2);
+        HookPressed = Input.GetKeyDown(hookKey) || Input.GetMouseButtonDown(2);
     }
 
     public Vector2 GetMovementPlayer()

@@ -290,27 +290,27 @@ public class PlayerMovement : MonoBehaviour
             isRunning = true;
         }
 
-        // Modo gancho
-        else if (gameInput.HookPressed)
-        {
-            state = MovementState.hooking;
-            desiredMoveSpeed = 0f;
-            moveSpeed = 0f;
+        //// Modo gancho
+        //else if (gameInput.HookPressed)
+        //{
+        //    state = MovementState.hooking;
+        //    desiredMoveSpeed = 0f;
+        //    moveSpeed = 0f;
 
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        //    rb.linearVelocity = Vector3.zero;
+        //    rb.angularVelocity = Vector3.zero;
+        //    rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
 
-            canMove = false;
-        }
-        else if (!gameInput.HookPressed && state == MovementState.hooking)
-        {
-            // Si se levanta la tecla, se vuelve al modo caminar
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            canMove = true;
-            state = MovementState.walking;
-            desiredMoveSpeed = walkSpeed;
-        }
+        //    canMove = false;
+        //}
+        //else if (gameInput.HookPressed && state == MovementState.hooking)
+        //{
+        //    // Si se levanta la tecla, se vuelve al modo caminar
+        //    rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //    canMove = true;
+        //    state = MovementState.walking;
+        //    desiredMoveSpeed = walkSpeed;
+        //}
 
         // Modo andar
         else if (grounded)
@@ -355,7 +355,28 @@ public class PlayerMovement : MonoBehaviour
         lastDesiredMoveSpeed = desiredMoveSpeed;
         lastState = state;
     }
+    public void startHookMode() 
+    {
+        state = MovementState.hooking;
+        desiredMoveSpeed = 0f;
+        moveSpeed = 0f;
 
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+
+        canMove = false;
+    }
+    public void stopHookMode() 
+    {
+        // Si se levanta la tecla, se vuelve al modo caminar
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        canMove = true;
+        state = MovementState.walking;
+        desiredMoveSpeed = walkSpeed;
+        moveSpeed = desiredMoveSpeed;
+        Debug.Log("Desactivando el gancho...");
+    }
     // Codigo para mantener el momentum despues del dash
     private float speedChangeFactor;
 

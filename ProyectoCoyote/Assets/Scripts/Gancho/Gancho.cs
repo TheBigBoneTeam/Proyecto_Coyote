@@ -27,7 +27,8 @@ public class Gancho : MonoBehaviour
 
     HookableObject hookableObject;
     EnemyLockOn lockOn;
-    PlayerMovement player;
+    PlayerMovement movement;
+    GameObject player;
     CameraController CamControl;
     Transform HookCanvas;
     
@@ -40,9 +41,10 @@ public class Gancho : MonoBehaviour
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
-        player = FindAnyObjectByType<PlayerMovement>();
+        movement = FindAnyObjectByType<PlayerMovement>();
         HookCanvas = GameObject.Find("HookCanvas").transform;
         lockOn = FindAnyObjectByType<EnemyLockOn>();
+        player = GameObject.Find("Player");
         HookCanvas.gameObject.SetActive(false);
         if (Camera.main != null)
         {
@@ -78,6 +80,7 @@ public class Gancho : MonoBehaviour
     }
     public void HookLogic()
     {
+        
         // Navegación por los objetos enganchables
         if (selectingHook) { 
         
@@ -105,6 +108,7 @@ public class Gancho : MonoBehaviour
 
     public void ActivateTargetHook()
     {
+        if (lockOn.enemyLocked) return;
         if (currentTarget != null) // Si ya hay un objeto enganchable, resetear
         {
             ResetTarget();
@@ -116,7 +120,7 @@ public class Gancho : MonoBehaviour
         currentTarget = ScanNearBy();
         if (currentTarget != null) 
         {
-            player.startHookMode();
+            movement.startHookMode();
             HookCanvas.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
             selectingHook = true;
@@ -127,7 +131,7 @@ public class Gancho : MonoBehaviour
     }
     void ResetTarget()
     {
-        player.stopHookMode();
+        movement.stopHookMode();
         HookCanvas.gameObject.SetActive(false);
         currentTarget = null;
         selectingHook = false;
@@ -305,17 +309,25 @@ public class Gancho : MonoBehaviour
     private void GoToTarget()
     {
         if (currentTarget == null) return;
-        Vector3 frontPos = currentTarget.position + currentTarget.forward * MovingTargetFinalDistanceInFront + offsetDistanceWhenSelected;
+        // Dirección desde el objeto hacia la cámara
+        Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
+        // POSICIÓN FINAL
+        Vector3 targetPosition = currentTarget.position + directionToCamera * MovingTargetFinalDistanceInFront; 
 
-        frontPos.y = player.transform.position.y;
+       
 
-        Debug.Log($"Player Pos antes{player.gameObject.transform.position}");
+        // Mover el Rigidbody del jugador
+        var rb = player.GetComponent<Rigidbody>();
+        rb.MovePosition(targetPosition);
 
-        player.gameObject.transform.position = frontPos;
-        Debug.Log($"Player Pos después{player.gameObject.transform.position}");
+        // Activar modo enemigo si aplica
+        if (currentTarget.gameObject.GetComponent<Enemy>())
+        {
+            Debug.Log("Es enemigo");
+            lockOn.ActivateLockMode();
+        }
 
-        
-        // ResetTarget();
+        ResetTarget();
 
     }
 
@@ -324,17 +336,23 @@ public class Gancho : MonoBehaviour
         
         if (hookableObject.canBeHooked)
         {
-            Vector3 targetPosition = cam.transform.position + cam.transform.forward * MovingTargetFinalDistanceInFront + offsetDistanceWhenSelected;
+            Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
+            Vector3 targetPosition = cam.transform.position + directionToCamera * -MovingTargetFinalDistanceInFront;
             currentTarget.position = targetPosition;
-            
+
+            if (currentTarget.gameObject.GetComponent<Enemy>())
+            {
+                Debug.Log("Es enemigo");
+                lockOn.ActivateLockMode();
+            }
+        }
+        else 
+        {
+            CamControl.StartShake();
         }
 
        
-        if (currentTarget.gameObject.GetComponent<Enemy>())
-        {
-            Debug.Log("Es enemigo");
-            lockOn.ActivateLockMode();
-        }
+        
         ResetTarget();
     }
 

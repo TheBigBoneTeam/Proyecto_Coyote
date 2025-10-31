@@ -1,6 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 
 public class Gancho : MonoBehaviour
@@ -9,45 +13,62 @@ public class Gancho : MonoBehaviour
     [SerializeField] LayerMask targetLayers;
     Transform HookableObjectLocator;
     Transform cam;
-    public Transform currentTarget = null;
+    public Transform currentTarget;
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
-    [SerializeField] float noticeZone;
+    [SerializeField] float maxNoticeZone= 20;
+    [SerializeField] float minNoticeZone = 5;
     [SerializeField] float lookAtSmoothing;
-    [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 60;
-    HookableObject targetObject;
+    [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
 
-    PlayerMovement movement;
+    [Header("When selected")]
+    [SerializeField]  float MovingTargetFinalDistanceInFront = 4;
+    [SerializeField]  Vector3 offsetDistanceWhenSelected = new Vector3(0, 0, 0);
+
+    HookableObject hookableObject;
+    EnemyLockOn lockOn;
+    PlayerMovement player;
     CameraController CamControl;
     Transform HookCanvas;
+    
+    public bool selectingHook;
+    public bool isHooked;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
-        movement = FindAnyObjectByType<PlayerMovement>();
+        player = FindAnyObjectByType<PlayerMovement>();
         HookCanvas = GameObject.Find("HookCanvas").transform;
-
+        lockOn = FindAnyObjectByType<EnemyLockOn>();
         HookCanvas.gameObject.SetActive(false);
-        cam = Camera.main.transform;
+        if (Camera.main != null)
+        {
+            cam = Camera.main.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Camera.main is null at Start. Delaying cam assignment.");
+            StartCoroutine(AssignCameraLater());
+        }
+        currentTarget = null;
+        selectingHook = false;
+        isHooked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameInput.HookPressed) ActivateTargetHook();
+        if (gameInput.HookPressed) 
+        {
+            Debug.Log("Activando el gancho...");
+            ActivateTargetHook(); 
+        }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-                currentTarget = FindDirectionalTarget(true, false);
-            
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-                currentTarget = FindDirectionalTarget(false, false);
-            
-        }
+            HookLogic();
+
 
         if (currentTarget) 
         { 
@@ -55,81 +76,120 @@ public class Gancho : MonoBehaviour
         }
         
     }
+    public void HookLogic()
+    {
+        // Navegación por los objetos enganchables
+        if (selectingHook) { 
+        
+            if (Input.GetKeyDown(KeyCode.W))
+                currentTarget = FindDirectionalTarget(false, true);
+            else if (Input.GetKeyDown(KeyCode.S))
+                currentTarget = FindDirectionalTarget(false, false);
+            else if (Input.GetKeyDown(KeyCode.D))
+                currentTarget = FindDirectionalTarget(true, false);
+            else if (Input.GetKeyDown(KeyCode.A))
+                currentTarget = FindDirectionalTarget(false, false);
+        }
+        // Selecionar objeto
+        if (Input.GetMouseButtonDown(0)) SelectTarget();
+        if (isHooked) 
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+                AtractTarget();
+            else if (Input.GetKeyDown(KeyCode.W))
+                GoToTarget();
+        }
+    }
+
+    
 
     public void ActivateTargetHook()
     {
         if (currentTarget != null) // Si ya hay un objeto enganchable, resetear
         {
             ResetTarget();
+            CamControl.ActiveFollowCamera();
+
             return;
         }
 
         currentTarget = ScanNearBy();
         if (currentTarget != null) 
         {
-            // Llamar a parar movimiento
+            player.startHookMode();
             HookCanvas.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
+            selectingHook = true;
+            lockOn.enemyLocked = false;
             Debug.Log("----------Cámara gancho Activada");
-        } else ResetTarget();
+        } 
            
     }
     void ResetTarget()
     {
-        // Restaurar movimiento
+        player.stopHookMode();
         HookCanvas.gameObject.SetActive(false);
         currentTarget = null;
-        CamControl.ActiveFollowCamera();
+        selectingHook = false;
+        isHooked = false;
+        Image img = HookCanvas.GetComponentInChildren<Image>();
+        img.color = Color.white;
+        if(!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
     }
- 
+
+    #region Calcular Objetos Enganchables
     /*
      * Calcular el objetivo más cercano al objeto fijado en función de si está a la derecha(toRight = true) o a la izquierda(toRight = false)
      */
 
     private Transform FindDirectionalTarget(bool toRight, bool toUp)
     {
-        // Escanear objetivos cercanos
-        Collider[] candidates = Physics.OverlapSphere(transform.position, noticeZone*2, targetLayers);
+        if (currentTarget == null) return null;
+
+        Collider[] candidates = Physics.OverlapSphere(currentTarget.position, maxNoticeZone, targetLayers);
         Transform bestTarget = null;
-        float bestAngle = 180f;
+        float closestDistance = Mathf.Infinity;
 
-        // Si ya hay un objetivo (currentTarget), usa la dirección
-        // desde el jugador hacia ese objetivo.
-        //Si no hay ninguno, usa la dirección de la cámara.
-                Vector3 referenceDir = currentTarget != null
-            ? currentTarget.position - transform.position
-            : cam.forward;
-
-        // referenceDir.y = 0;
-        referenceDir.Normalize();
-
-        // Recorre todos los candidatos
-        foreach (var col in candidates)
+        foreach (var c in candidates)
         {
-            if (col.transform == currentTarget) continue;
+            Transform candidate = c.transform;
+            if (candidate == currentTarget) continue;
 
-            Vector3 dirToTarget = col.transform.position - transform.position;
-           //  dirToTarget.y = 0;
-            dirToTarget.Normalize();
+            Vector3 offset = candidate.position - currentTarget.position;
+            float distance = offset.magnitude;
 
-            // Calcula si el objeto está a la derecha o a la izquierda
-            float angle = Vector3.SignedAngle(referenceDir, dirToTarget, Vector3.up);
+            // Dirección horizontal relativa a la cámara
+            Vector3 rightDir = cam.right;
+            float dotRight = Vector3.Dot(offset.normalized, rightDir);
 
-            // Filtra por dirección y elige el más cercano
-            if (toRight && angle > 5 && angle < bestAngle)
+            // Dirección vertical global
+            float verticalOffset = offset.y;
+
+            bool isValid = false;
+
+            if (toRight || !toRight) // se ha pulsado A o D
             {
-                bestAngle = angle;
-                bestTarget = col.transform;
+                if (toRight && dotRight > 0.5f) isValid = true;
+                if (!toRight && dotRight < -0.5f) isValid = true;
             }
-            else if (!toRight && angle < -5 && Mathf.Abs(angle) < bestAngle)
+
+            if (toUp || !toUp) // se ha pulsado W o S
             {
-                bestAngle = Mathf.Abs(angle);
-                bestTarget = col.transform;
+                if (toUp && verticalOffset > 0.5f) isValid = true;
+                if (!toUp && verticalOffset < -0.5f) isValid = true;
+            }
+
+            if (!isValid) continue;
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                bestTarget = candidate;
             }
         }
 
-        return bestTarget;
+        return bestTarget != null ? bestTarget : currentTarget;
     }
 
     private Transform ScanNearBy()
@@ -137,7 +197,7 @@ public class Gancho : MonoBehaviour
         // Crea una esfera al rededor del personaje con radio en noticeZone.
         // Guarda en un array todos los objetos que coincidan con la target
         // definida en targetLayers.
-        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, maxNoticeZone, targetLayers);
 
         // Inicializa las variables para encontrar el objetivo m�s cercano.
         float closestAngle = maxNoticeAngle;
@@ -146,7 +206,7 @@ public class Gancho : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (nearbyTargets.Length <= 0)
         {
-            Debug.Log("No se han encontrado objetos enganchables cerca!");
+            Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
 
@@ -155,6 +215,12 @@ public class Gancho : MonoBehaviour
         // �ngulo desde la c�mara, detecta al m�s cercano.
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
+            float distance = Vector3.Distance(transform.position, nearbyTargets[i].transform.position);
+
+            // Ignora si está demasiado cerca
+            if (distance < minNoticeZone)
+                continue;
+
             Vector3 dir = nearbyTargets[i].transform.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
@@ -169,30 +235,14 @@ public class Gancho : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (!closestTarget)
         {
-            Debug.Log("No se han encontrado objetos enganchables cerca!");
+            Debug.Log("No se han encontrado enemigos cerca!");
             return null;
         }
 
         
-
-        // Calcula la posici�n final del objetivo
-        Vector3 tarPos = closestTarget.position ;
-
-
-        // Si hay algun elemento de la escena bloqueando la visi�n del jugador, se sale.
-        //if (Blocked(tarPos))
-        //{
-        //    Debug.Log("No se han encontrado enemigos cerca!");
-        //    return null;
-        //}
-     
         // Devuelve el enemigo v�lido
         return closestTarget;
     }
-
-
-
-
 
 
     // Mirar al objeto
@@ -210,6 +260,83 @@ public class Gancho : MonoBehaviour
 
        
     }
+    IEnumerator AssignCameraLater()
+    {
+        yield return new WaitForSeconds(0.1f); // espera breve
+        cam = Camera.main?.transform;
+        if (cam == null)
+        {
+            Debug.LogError("Camera.main still null after delay.");
+        }
+    }
+    #endregion
 
-    
+    #region Seleccionar objeto
+    public HookableObject GetHookableObject()
+    {
+        HookableObject targetObject = null;
+        if (currentTarget != null)
+        {
+            targetObject = currentTarget.GetComponent<HookableObject>();
+            if (targetObject != null)
+            {
+                // Ya tienes acceso al objeto HookableObject
+                Debug.Log("HookableObject encontrado: " + targetObject.name);
+            }
+            else
+            {
+                Debug.LogWarning("El objeto actual no tiene componente HookableObject.");
+            }
+        }
+        return targetObject;
+        
+    }
+    private void SelectTarget()
+    {
+        hookableObject = GetHookableObject();
+        if (hookableObject) 
+        { 
+            isHooked = true;
+            selectingHook = false;
+            Image img = HookCanvas.GetComponentInChildren<Image>();
+            img.color = Color.red;
+        }
+    }
+    private void GoToTarget()
+    {
+        if (currentTarget == null) return;
+        Vector3 frontPos = currentTarget.position + currentTarget.forward * MovingTargetFinalDistanceInFront + offsetDistanceWhenSelected;
+
+        frontPos.y = player.transform.position.y;
+
+        Debug.Log($"Player Pos antes{player.gameObject.transform.position}");
+
+        player.gameObject.transform.position = frontPos;
+        Debug.Log($"Player Pos después{player.gameObject.transform.position}");
+
+        
+        // ResetTarget();
+
+    }
+
+    private void AtractTarget()
+    {
+        
+        if (hookableObject.canBeHooked)
+        {
+            Vector3 targetPosition = cam.transform.position + cam.transform.forward * MovingTargetFinalDistanceInFront + offsetDistanceWhenSelected;
+            currentTarget.position = targetPosition;
+            
+        }
+
+       
+        if (currentTarget.gameObject.GetComponent<Enemy>())
+        {
+            Debug.Log("Es enemigo");
+            lockOn.ActivateLockMode();
+        }
+        ResetTarget();
+    }
+
+    #endregion
 }

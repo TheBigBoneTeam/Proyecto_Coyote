@@ -28,11 +28,13 @@ public class EnemyLockOn : MonoBehaviour
     PlayerMovement movement;
     [SerializeField] DefenseAttackUIIndicator defenseAttackUIIndicator;
     [SerializeField] EnemyDefenseAttackUIIndicator enemyDefenseAttackUIIndicator;
-
+    Gancho hook;
 
     void Start()
     {
         CamControl = FindAnyObjectByType<CameraController>();
+        hook = FindAnyObjectByType<Gancho>();
+
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();
@@ -51,8 +53,9 @@ public class EnemyLockOn : MonoBehaviour
        
         movement.lockMovement = enemyLocked;
 
+        bool modoGancho = hook.isHooked || hook.selectingHook;
         //// Input System
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !modoGancho)
         {
             ActivateLockMode();
         }
@@ -70,13 +73,15 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     // Activar modo lockeado
-    void ActivateLockMode() 
+    public void ActivateLockMode() 
     {
+        
         if (enemyLocked) // Si ya hay un enemigo, resetear
         {
             ResetTarget();
             return;
         }
+        
 
         if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
         Debug.Log("Modo Lock");
@@ -100,8 +105,11 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
+        CamControl.ActiveFollowCamera();
         defenseAttackUIIndicator.setEnemy(null);
         enemyDefenseAttackUIIndicator.setCharacter(null);
+        
+
         Debug.Log("Volviendo a modo SIN lockear");
     }
 

@@ -187,6 +187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endAction: 0
+  cancelled: 0
+  counterOn: 0
+  reactionOn: 0
+  reactionObj: {fileID: 0}
+  counterObj: {fileID: 0}
   Locked: 1
   seeDistance: 31.7
   attackDistance: 3
@@ -2221,6 +2226,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499384011}
   m_CullTransparentMesh: 1
+--- !u!1 &635336948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635336950}
+  - component: {fileID: 635336949}
+  m_Layer: 0
+  m_Name: ReactionHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &635336949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635336948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0977266493cf343ba34084171f560f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: []
+  animName: 
+  effects: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!4 &635336950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635336948}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.874998, y: 3.5162413, z: -0.05075216}
+  m_LocalScale: {x: 0.83333325, y: 0.83333325, z: 0.83333325}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1568128656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &785699231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3781,6 +3836,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1794611167}
+  - {fileID: 635336950}
+  - {fileID: 1731642776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1568128659
@@ -3796,6 +3853,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endAction: 0
+  cancelled: 0
+  counterOn: 0
+  reactionOn: 0
+  reactionObj: {fileID: 635336949}
+  counterObj: {fileID: 1731642775}
   Locked: 1
   seeDistance: 31.7
   attackDistance: 3
@@ -3919,6 +3981,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600396611}
   m_CullTransparentMesh: 1
+--- !u!1 &1731642774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731642776}
+  - component: {fileID: 1731642775}
+  m_Layer: 0
+  m_Name: CounterHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1731642775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731642774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0977266493cf343ba34084171f560f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: []
+  animName: 
+  effects: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!4 &1731642776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731642774}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.874998, y: 3.5162413, z: -0.05075216}
+  m_LocalScale: {x: 0.83333325, y: 0.83333325, z: 0.83333325}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1568128656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1763870697
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,6 +4526,7 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   dashKey: 101
+  hookKey: 101
   <Horizontal>k__BackingField: 0
   <Vertical>k__BackingField: 0
   <JumpPressed>k__BackingField: 0

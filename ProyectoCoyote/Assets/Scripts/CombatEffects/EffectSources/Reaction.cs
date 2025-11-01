@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Reaction
+public class Reaction:ACombatEffectSource
 {
     public string animName;
     EnemyAI enemyAI;
@@ -12,13 +12,13 @@ public class Reaction
 
     private void Start()
     {
-      //  enemyAI = GetComponent<EnemyAI>();
+        enemyAI = GetComponent<EnemyAI>();
     }
 
     public void startReaction()
     {
-        //enemyAI.LoadAction(animName);
-        //addEffectsToChar(FindAnyObjectByType<Player>());
+        enemyAI.LoadAction(animName);
+        addEffectsToChar(FindAnyObjectByType<Player>());
 
     }
 }

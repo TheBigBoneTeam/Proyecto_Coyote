@@ -379,7 +379,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 565.6, y: 228}
+        position: {x: 465.6, y: 251.19998}
         node:
           rid: 5634289709124943963
         references:
@@ -389,10 +389,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds: []
-        childIds: []
+        childIds:
+        - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
       - name: Counter
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
-        position: {x: 926.2737, y: 277.04257}
+        position: {x: 1124, y: 243.19998}
         node:
           rid: 5634289709124943965
         references:
@@ -401,11 +402,12 @@ MonoBehaviour:
             rid: 5634289709124943966
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds: []
+        parentIds:
+        - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         childIds: []
       - name: 
         id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 811.2, y: 36}
+        position: {x: 762.4, y: 149.6}
         node:
           rid: 5634289709124943967
         references:
@@ -419,8 +421,10 @@ MonoBehaviour:
             rid: -2
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds: []
-        childIds: []
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds:
+        - bef6d524-a7cc-43ac-93e1-9026c3e180af
     pushPerceptions:
     - name: newpushPerception
       targetNodeIds: []

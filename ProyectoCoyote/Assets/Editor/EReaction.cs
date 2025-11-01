@@ -1,13 +1,14 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Reaction))]
+[CustomPropertyDrawer(typeof(Reaction))]
 public class EReaction : Editor
 {
     Reaction reaction;
     private void OnEnable()
     {
-      Reaction  reaction = (Reaction)target;
+
+        Reaction reaction = (Reaction)target;
     }
     public override void OnInspectorGUI()
     {
@@ -15,14 +16,15 @@ public class EReaction : Editor
 
         if (GUILayout.Button("Add Damage"))
         {
-reaction.a        }
+            reaction.AddDamage();
+        }
         if (GUILayout.Button("Add Stun"))
         {
-            data.AddStun();
+            reaction.AddStun();
         }
         if (GUILayout.Button("Add Crit Damage"))
         {
-            data.AddCritDamage();
+            reaction.AddCritDamage();
         }
     }
 }

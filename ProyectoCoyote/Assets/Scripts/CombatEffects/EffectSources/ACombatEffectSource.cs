@@ -11,12 +11,18 @@ namespace CombatEffect
         [ContextMenu("Add Stun")]
         public void AddStun()
         {
-            effects.Add(new StunEffect(this, 10));
+            effects.Add(new StunEffect(this, 1));
         }
         [ContextMenu("Add Damage")]
         public void AddDamage()
         {
-            effects.Add(new DamageEffect(this, 10));
+            effects.Add(new DamageEffect(this, 3));
+        }
+        [ContextMenu("Add Crit Damage")]
+
+        public void AddCritDamage()
+        {
+            effects.Add(new CritDamageEffect(this, 3));
         }
         protected void Awake()
         {

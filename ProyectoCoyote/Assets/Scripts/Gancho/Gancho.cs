@@ -40,7 +40,7 @@ public class Gancho : MonoBehaviour
     {
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
-        HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
+      //  HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();
         HookCanvas = GameObject.Find("HookCanvas").transform;
         lockOn = FindAnyObjectByType<EnemyLockOn>();

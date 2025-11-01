@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using Services;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager: IEnemyManager
@@ -21,15 +23,16 @@ public interface IEnemyManager:IService
     ClassMutex<EnemyAI> enemyClassMutex();
     ClassMutex<EnemyAI> attackingEnemy();
 }
-public class ClassMutex<T> where T : Object
+public class ClassMutex<T> where T : Object, IMutex
 {
     T Owner;
-
+    List<T> queue;
   public  ClassMutex()
     {
         Owner = null;
+        queue = new List<T> { };
     }
-    public bool getPermission(T offerer)
+    public bool getPermission(T offerer,bool priority)
     {
         
         if (Owner == null || Owner.Equals(offerer))
@@ -40,6 +43,17 @@ public class ClassMutex<T> where T : Object
         }
         else
         {
+            if (!queue.Contains(offerer)){
+                if(priority)
+                {
+                    queue.Insert(0, offerer);
+                }
+                else
+                {
+                    queue.Add(offerer);
+                }
+            }
+
             Debug.Log($"Permiso de ataque no concedido, el permiso lo tiene {Owner}");
             return false;
         }
@@ -55,9 +69,18 @@ public class ClassMutex<T> where T : Object
         }
         else
         {
-            Owner = default;
-
+            if (queue.Count > 0)
+            {
+                T newowner = queue[0];
+                queue.RemoveAt(0);
+                Owner = newowner;
+                Owner.givePriority();
+            }
             return true;
         }
     }
+}
+public interface IMutex
+{
+    public void givePriority();
 }

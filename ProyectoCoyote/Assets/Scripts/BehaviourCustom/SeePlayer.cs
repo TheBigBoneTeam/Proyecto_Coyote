@@ -5,6 +5,7 @@ using UnityEngine;
 
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using Unity.VisualScripting.FullSerializer;
 
 
 // Use this attribute to include this perception in a group: 
@@ -26,18 +27,19 @@ public class SeePlayer : UnityPerception
     // Called at the start of the execution. Use it to initialize the perception.
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+
     }
 
     // Called every execution frame.
     public override bool Check()
     {
-        throw new System.NotImplementedException();
+        UnityEngine.Debug.Log("SeePlayerSHit");
+       return false;
     }
 
     // Called at the end of the execution. Use it to reset the perception.
     public override void Reset()
     {
-        throw new System.NotImplementedException();
+
     }
 }

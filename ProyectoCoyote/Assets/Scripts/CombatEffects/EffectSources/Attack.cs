@@ -1,4 +1,5 @@
 using CombatEffect;
+using System;
 using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
@@ -34,10 +35,7 @@ public class Attack : ATouchCombatEffectSource
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            LoadData(_attackData);
-        }
+      
     }
     protected void Awake()
     {
@@ -134,6 +132,9 @@ public class Attack : ATouchCombatEffectSource
         }
         sendState();
     }
+
+ 
+
     public struct AttackState
     {
        public HitDirections[] hitDirections;

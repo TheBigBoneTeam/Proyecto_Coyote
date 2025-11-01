@@ -2,23 +2,46 @@ using CombatEffect;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Reaction:ACombatEffectSource
 {
     public string animName;
     EnemyAI enemyAI;
-    [SerializeField][SerializeReference] protected List<ACombatEffect> effects;
 
 
     private void Start()
     {
-        enemyAI = GetComponent<EnemyAI>();
+        enemyAI = GetComponentInParent<EnemyAI>();
     }
 
     public void startReaction()
     {
+        print("reaction" +animName);
         enemyAI.LoadAction(animName);
+        if(effects != null && effects.Count > 0) 
         addEffectsToChar(FindAnyObjectByType<Player>());
 
+    }
+    public void setAnim(string animName)
+    {
+        this.animName = animName;
+    }
+
+    public void LoadData(ReactionData data)
+    {
+        print("getData");
+        if (data == null)
+        {
+            effects.Clear();
+        }
+        else
+        {
+            animName = data.animState;
+            effects.Clear();
+            foreach (var effect in data.effects)
+            {
+                effect.setSource(this);
+                effects.Add(effect);
+            }
+        }
     }
 }

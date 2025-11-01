@@ -17,9 +17,13 @@ public class DamageReceiver:MonoBehaviour
 
     UnityEvent<ReceiverState> receiverStateEvent;
     IPerfectDodgeManager perfectDodgeManager;
+    EnemyAI enemyAI;
 
    public void checkEffectSource(Attack attack)
     {
+        if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>()) {
+            return;
+        }
         if (!dodging || !checkListIntersect(attack.HitDirections, directions))
         {
             attack.addEffectsToChar(character);
@@ -56,11 +60,13 @@ public class DamageReceiver:MonoBehaviour
     {
         receiverStateEvent = new UnityEvent<ReceiverState>();
 
+
     }
     private void Start()
     {
         perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         character = GetComponent<AGameCharacter>();
+        enemyAI = GetComponent<EnemyAI>();
     }
     public void setDirection(HitDirections direction)
     {

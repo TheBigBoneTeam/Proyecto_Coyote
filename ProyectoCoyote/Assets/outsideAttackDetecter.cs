@@ -43,7 +43,7 @@ public class outsideAttackDetecter : MonoBehaviour
     {
         if (currentOutsideAttack == null)
         {
-            if (state.hitDirections.Length != 0 && !state.hitDirections.Contains(HitDirections.Outside))
+            if (state.hitDirections.Length == 0 && !state.hitDirections.Contains(HitDirections.Outside))
             {
                 return;
             }

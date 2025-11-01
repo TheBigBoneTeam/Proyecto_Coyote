@@ -2,7 +2,7 @@ using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
 using UnityEngine;
 
-public class DoReaction : UnityAction
+public class DoReactionAction : UnityAction
 {
     EnemyAI enemyAI;
 
@@ -15,8 +15,8 @@ public class DoReaction : UnityAction
     {
         if (enemyAI.endAction)
         {
-            Debug.Log("success");
-            enemyAI.endActionNode();
+            Debug.Log("successreaction");
+            enemyAI.endReactionCounter();
             return Status.Success;
         }
         return Status.Running;

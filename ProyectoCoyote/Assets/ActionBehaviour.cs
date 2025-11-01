@@ -12,6 +12,7 @@ public class ActionBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.gameObject.GetComponentInParent<EnemyAI>().setReaction(false);
         isIdle = animator.gameObject.GetComponentInParent<EnemyAI>().currentActionIsIdle;
         Debug.Log("StartAction"+isIdle + DebugName);
 
@@ -29,6 +30,7 @@ public class ActionBehaviour : StateMachineBehaviour
         
         if (!isIdle)
         {
+            animator.gameObject.GetComponentInParent<EnemyAI>().setReaction(false);
             Debug.Log("EndAction"+DebugName);
             if (lastAttackInAction)
             {

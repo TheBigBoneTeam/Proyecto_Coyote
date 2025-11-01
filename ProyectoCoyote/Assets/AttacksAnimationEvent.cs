@@ -6,6 +6,8 @@ public class AttacksAnimationEvent : MonoBehaviour
     Attack attack;
     EnemyAI enemyAI;
      DamageReceiver damageReceiver;
+    Reaction Reaction;
+    Reaction Counter;
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);
@@ -43,6 +45,44 @@ public class AttacksAnimationEvent : MonoBehaviour
         {
             damageReceiver.setDodge(true);
         }
+    }
+    public void setCounter(int dodge)
+    {
+        if (dodge == 0)
+        {
+            enemyAI.setCounter(false);
+        }
+        else
+        {
+            enemyAI.setCounter(true);
+        }
+    }
+    public void setReaction(int dodge)
+    {
+        if (dodge == 0)
+        {
+            enemyAI.setReaction(false);
+        }
+        else
+        {
+            enemyAI.setReaction(true);
+        }
+    }
+    public void setCounterAnim(string anim)
+    {
+        Counter.setAnim(anim);
+    }
+    public void setReactionAnim(string anim)
+    {
+        Reaction.setAnim(anim);
+    }
+    public void setCounterData(ReactionData data)
+    {
+        Counter.LoadData(data);
+    }
+    public void setReactionData(ReactionData data)
+    {
+        Reaction.LoadData(data);
     }
     public void setDodgeDirection(HitDirections direction)
     {

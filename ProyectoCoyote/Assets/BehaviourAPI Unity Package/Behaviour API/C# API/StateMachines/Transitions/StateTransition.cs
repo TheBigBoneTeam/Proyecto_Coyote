@@ -4,6 +4,8 @@ using System.Collections.Generic;
 namespace BehaviourAPI.StateMachines
 {
     using Core;
+    using System.Diagnostics;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Transition between two states.
@@ -53,6 +55,7 @@ namespace BehaviourAPI.StateMachines
         /// <exception cref="MissingChildException">If target state is null</exception>
         public override bool Perform()
         {
+            UnityEngine.Debug.Log("PerformTransition");
             bool canBePerformed = base.Perform();
             if (canBePerformed)
             {

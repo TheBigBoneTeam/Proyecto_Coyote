@@ -563,7 +563,10 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.CrossFade("Dodge_M", .1f);
         }
-
+        if (gameStateManager.getState() == GameState.SlowDown)
+        {
+            perfectDodgeManager.StopSlowdown();
+        }
         Invoke(nameof(ResetDash), dashDuration);
     }
     private void DelayedDashForce()

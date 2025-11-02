@@ -8,7 +8,7 @@ public class PlayAttackAction : UnityAction
     /// <summary>
     /// El Scriptable Object del ataque
     /// </summary>
-    [SerializeField] AttackData attack;
+    [SerializeField] string attack;
 
     public override Status Update()
     {
@@ -18,7 +18,7 @@ public class PlayAttackAction : UnityAction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    public override void Start()
     {
-        context.GameObject.GetComponent<Attack>().LoadData(attack);
+        context.GameObject.GetComponent<EnemyAI>().LoadAction(attack);
     }
 
 

@@ -6,6 +6,7 @@ using UnityEngine;
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
 using Unity.VisualScripting.FullSerializer;
+using BehaviourAPI.Core.Perceptions;
 
 
 // Use this attribute to include this perception in a group: 

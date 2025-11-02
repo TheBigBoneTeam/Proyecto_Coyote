@@ -271,6 +271,7 @@ namespace BehaviourAPI.UnityToolkit.GUIDesigner.Editor
         {
             PerceptionHierarchy = new EditorHierarchyNode("Perceptions", typeof(Perception));
             PerceptionHierarchy.Childs.Add(new EditorHierarchyNode(typeof(CustomPerception)));
+            PerceptionHierarchy.Childs.Add(new EditorHierarchyNode(typeof(OppositePerception)));
 
             EditorHierarchyNode compoundPerceptionHierarchyNode = new EditorHierarchyNode("Compound perceptions", null);
             compoundPerceptionHierarchyNode.Childs = compoundPerceptionTypes.FindAll(typeof(CompoundPerception).IsAssignableFrom)

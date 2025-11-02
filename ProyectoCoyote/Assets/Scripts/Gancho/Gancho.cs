@@ -355,7 +355,8 @@ public class Gancho : MonoBehaviour
         if (currentTarget.gameObject.GetComponent<Enemy>())
         {
             Debug.Log("Es enemigo");
-            lockOn.ActivateLockMode();
+            lockOn.currentTarget = currentTarget;
+            lockOn.FoundTarget();
         }
 
         ResetTarget();
@@ -374,7 +375,8 @@ public class Gancho : MonoBehaviour
             if (currentTarget.gameObject.GetComponent<Enemy>())
             {
                 Debug.Log("Es enemigo");
-                lockOn.ActivateLockMode();
+                lockOn.currentTarget = currentTarget;
+                lockOn.FoundTarget();
             }
         }
         else 

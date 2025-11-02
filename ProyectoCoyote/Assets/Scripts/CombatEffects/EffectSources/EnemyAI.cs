@@ -49,6 +49,8 @@ public class EnemyAI : MonoBehaviour,IMutex
         if (!cancelled || doingReactCounter)
         {
             endAction = true;
+            setReaction(false);
+            counterOn = false;
 
         }
         cancelled = false;
@@ -61,7 +63,11 @@ public class EnemyAI : MonoBehaviour,IMutex
         //print("checkLock"); 
         return player.GetComponent<EnemyLockOn>().currentTarget == this.transform;
     }
-
+    public bool isNotLocked()
+    {
+        //print("checkLock"); 
+        return player.GetComponent<EnemyLockOn>().currentTarget != this.transform;
+    }
 
     public bool seePlayer()
     {
@@ -102,7 +108,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void endReactionCounter()
     {
         counterOn = false;
-        reactionOn = false;
+        setReaction(false);
         enemyManager.attackingEnemy().returnPermission(this);
         doingReactCounter = false;
         endAction = false;
@@ -191,7 +197,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         currentActionIsIdle = false;
         cancelled = true;
         endAction = false;
-        reactionOn = false;
+        setReaction(false);
         doingReactCounter = true;
 
         reactionObj.startReaction();
@@ -214,7 +220,8 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public void setReaction(bool reaction)
     {
-        reactionOn = reaction;
+        print("setraction:"+reaction);
+       reactionOn = reaction;
     }
 
     #region Gizmos

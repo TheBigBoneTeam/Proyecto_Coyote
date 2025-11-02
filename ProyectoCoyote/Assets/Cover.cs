@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Cover : MonoBehaviour
 {
-    Transform[] HidePoints;
+ [SerializeField]   Transform[] HidePoints;
     bool[] occupiedPoints;
     LayerMask layer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

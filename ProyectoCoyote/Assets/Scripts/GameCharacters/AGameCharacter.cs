@@ -145,7 +145,7 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         if (idle)
         {
-            anim.CrossFade(stateName,.1f);
+            anim.CrossFade(stateName,.1f,0,0);
         }
         else
         {

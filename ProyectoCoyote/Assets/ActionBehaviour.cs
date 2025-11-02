@@ -30,7 +30,6 @@ public class ActionBehaviour : StateMachineBehaviour
         
         if (!isIdle)
         {
-            animator.gameObject.GetComponentInParent<EnemyAI>().setReaction(false);
             Debug.Log("EndAction"+DebugName);
             if (lastAttackInAction)
             {

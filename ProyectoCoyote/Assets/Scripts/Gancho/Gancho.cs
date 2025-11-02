@@ -40,7 +40,7 @@ public class Gancho : MonoBehaviour
     {
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
-      //  HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
+        HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();
         HookCanvas = GameObject.Find("HookCanvas").transform;
         lockOn = FindAnyObjectByType<EnemyLockOn>();
@@ -239,15 +239,46 @@ public class Gancho : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (!closestTarget)
         {
-            Debug.Log("No se han encontrado enemigos cerca!");
+            Debug.Log("No se han encontrado objetos válidos!");
             return null;
         }
 
-        
+        // Si hay algun elemento de la escena bloqueando la visi�n del jugador, se sale.
+        if (Blocked(closestTarget.position))
+        {
+            Debug.Log("Hay algo bloqueando el objeto");
+            return null;
+        }
+
         // Devuelve el enemigo v�lido
         return closestTarget;
     }
 
+    // Detectar si hay un objeto bloqueando las escena
+    bool Blocked(Vector3 targetPosition)
+    {
+        Vector3 origin = transform.position + Vector3.up * 1.5f; // desde el pecho del jugador
+        Vector3 direction = targetPosition - origin;
+        float distance = direction.magnitude;
+
+        RaycastHit[] hits = Physics.RaycastAll(origin, direction.normalized, distance);
+
+        foreach (RaycastHit hit in hits)
+        {
+            // Ignora el jugador y el objetivo
+            if (hit.transform == currentTarget || hit.transform == transform)
+                continue;
+
+            // Ignora objetos sin collider físico o con capas ignoradas
+            if (((1 << hit.transform.gameObject.layer) & targetLayers) == 0)
+            {
+                Debug.Log($"Bloqueado por: {hit.transform.name}");
+                return true;
+            }
+        }
+
+    return false;
+}
 
     // Mirar al objeto
     private void LookAtTarget()

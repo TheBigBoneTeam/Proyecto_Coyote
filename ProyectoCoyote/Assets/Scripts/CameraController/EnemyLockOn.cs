@@ -2,6 +2,7 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -138,9 +139,12 @@ public class EnemyLockOn : MonoBehaviour
         // �ngulo desde la c�mara, detecta al m�s cercano.
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
+
             Vector3 dir = nearbyTargets[i].transform.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
+
+            Debug.Log($"Distancia al objeto {nearbyTargets[i]}: {_angle}");
 
             if (_angle < closestAngle)
             {
@@ -171,7 +175,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si hay algun elemento de la escena bloqueando la visi�n del jugador, se sale.
         if (Blocked(tarPos))
         {
-            Debug.Log("No se han encontrado enemigos cerca!");
+            Debug.Log("Hay algo bloqueando el enemigo");
             return null;
         }
         defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
@@ -199,7 +203,8 @@ public class EnemyLockOn : MonoBehaviour
     bool Blocked(Vector3 t)
     {
         RaycastHit hit;
-        if (Physics.Linecast(transform.position + Vector3.up * 0.5f, t, out hit))
+        Vector3 origin = cam.position;
+        if (Physics.Linecast(origin, t, out hit))
         {
             if (!hit.transform.Equals(currentTarget))
             {

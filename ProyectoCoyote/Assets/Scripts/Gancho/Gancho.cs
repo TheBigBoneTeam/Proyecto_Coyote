@@ -16,8 +16,8 @@ public class Gancho : MonoBehaviour
     public Transform currentTarget;
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
-    [SerializeField] float maxNoticeZone= 20;
-    [SerializeField] float minNoticeZone = 5;
+    [SerializeField] float maxNoticeZone= 100;
+    [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
 

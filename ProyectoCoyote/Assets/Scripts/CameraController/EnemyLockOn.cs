@@ -64,7 +64,7 @@ public class EnemyLockOn : MonoBehaviour
 
         if (enemyLocked)
         {
-            if (!TargetOnRange()) ResetTarget();
+            // if (!TargetOnRange()) ResetTarget();
 
             LookAtTarget();
             // Volver a modo sin lockear si hay un obst�culo
@@ -76,9 +76,10 @@ public class EnemyLockOn : MonoBehaviour
     // Activar modo lockeado
     public void ActivateLockMode() 
     {
-        
+        Debug.Log("Activando modo Lock....");
         if (enemyLocked) // Si ya hay un enemigo, resetear
         {
+            Debug.Log("YA HAY IN ENEMIGO, Reseteando...");
             ResetTarget();
             return;
         }
@@ -90,11 +91,27 @@ public class EnemyLockOn : MonoBehaviour
 
 
     // Esta funci�n indica si se ha encontrado un enemigo
-    void FoundTarget()
+    public void FoundTarget()
     {
+        if (!currentTarget) 
+        {
+            Debug.Log("Enemigo no válido");
+            return; 
+        }
+
         lockOnCanvas.gameObject.SetActive(true);
+        
+        
+        defenseAttackUIIndicator.setEnemy(currentTarget.GetComponent<AGameCharacter>());
+        if (enemyDefenseAttackUIIndicator != null)
+        {
+            enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
+        }
+
         CamControl.ActiveTargetLookingCamera();
+
         enemyLocked = true;
+
         Debug.Log("Enemigo encontrado");
     }
 
@@ -118,6 +135,7 @@ public class EnemyLockOn : MonoBehaviour
     // Escanear alrededores en busca de un enemigo:
     private Transform ScanNearBy()
     {
+        Debug.Log("Buscando enemigos...");
         // Crea una esfera al rededor del personaje con radio en noticeZone.
         // Guarda en un array todos los objetos que coincidan con la target
         // definida en targetLayers.
@@ -156,7 +174,7 @@ public class EnemyLockOn : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (!closestTarget)
         {
-            Debug.Log("No se han encontrado enemigos cerca!");
+            Debug.Log("No se han encontrado enemigos válidos!");
             return null;
         }
 
@@ -178,11 +196,7 @@ public class EnemyLockOn : MonoBehaviour
             Debug.Log("Hay algo bloqueando el enemigo");
             return null;
         }
-        defenseAttackUIIndicator.setEnemy(closestTarget.GetComponent<AGameCharacter>());
-        if (enemyDefenseAttackUIIndicator != null)
-        {
-            enemyDefenseAttackUIIndicator.setCharacter(closestTarget.GetComponent<AGameCharacter>());
-        }
+        
         // Devuelve el enemigo v�lido
         return closestTarget;
     }

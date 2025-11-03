@@ -228,27 +228,31 @@ ESQUIVE/BLOQUEO         | ESPACIO     |
 
 ### Enemigos melee 
 Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo tiene un rango de detección de 7 metros y pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma.
+
+#### Melee Básico
+Este enimgo sirbe de seudotutorial al ser un enemigo sin ningún tipo de combos. Su aparición será principalmente en el primer nivel y cuenta con ataques y bloqueos básicos.
+
 #### Melee Pricklytown
-Este enemigo se encuentra por el pueblo de Pricklytown. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida. Sus patrones de ataque son:
-  1. Dos ataques izquierdos y uno ataque derecho.
-  2. Ataque derecho, bloqueo derecho y bloqueo izquierdo.
-  3. Bloqueo central, ataque central y bloqueo central.
+Este enemigo se encuentra por el pueblo de Pricklytown. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida.  Posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
+  1. Bloque izquierdo y central, ataque central.
+  2. Bloque izquierdo y central, ataque central y ataque izquierdo.
+  3. Bloqueo total y "ataque abrazo".
+  4. Ataque derecho, bloqueo derecho y ataque central
 
 #### Melee Cañón
-Este enemigo se encuentra en la zona del cañón. Sus ataques hacen 1 de daño y cuenta con 5 puntos de vida. Posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
+Este enemigo se encuentra en la zona del cañón. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida. Al igual que la variante anterior posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
 
-  1. Bloqueo izquierdo, “ataque abrazo” y ataque central(como si fuera un gancho que viene desde abajo).
-  2. Ataque derecho (haciendo antes un amago de “ataque abrazo”), bloqueo central y bloqueo derecho.
-  3. Ataque derecho, bloqueo izquierdo y ataque central(como si fuera un gancho que viene desde abajo).
-  4. “Ataque abrazo”, ataque izquierdo y bloqueo central.
-
-  * Los ataques izquierdos y derechos de este enemigo, en vez de ser manotazos son como puñetados que "carga".
+  1. Bloqueo total y "ataque abrazo".
+  2. Ataque derecho, ataque derecho y ataque izquierdo.
+  3. Ataque derecho, ataque derecho, bloqueo derecho y ataque izquierdo.
 
 #### Melee Oasis
 
-<!--#### Enemigo base mixto
-  2. Dos ataques centrales segudos.
-  3. Ataque derecho, defenza izquierda, ataque izquierdo y defensa central.-->
+ste enemigo se encuentra en la zona del oasis. Sus ataques hacen 1 de daño y cuenta con 5 puntos de vida.Sus patrones de ataque son:
+
+  1. Ataque derecho, ataque derecho y ataque izquierdo.
+  2. Ataque central, bloqueo central y ataque derecho.
+  3. Bloqueo izquierdo, ataque derecho y bloqueo derecho.
 
 ### Enemigo suicida
 Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
@@ -269,12 +273,14 @@ El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, con
   3.	Ataque izquierdo (con amague de central), ataque derecho y defensa derecha.
 
 ### Francotirador
-Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 3 posibles posiciones de defensa:
-  1. Defensa izquierda y derecha.
-  2. Defensa central e izquierda.
-  3.	Defensa central e izquierda.
+Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 5 patrones de defensa:
+  1. Defensa izquierda.
+  2. Defensa izquierda y defensa central.
+  3. Defensa central e izquierda a la vez.
+  4. Defensa derecha.
+  5. efensa central e izquierda a la vez y defensa derecha.
 
-Si el jugador golpea en la dirección donde defiende, este le hará un contrataque y huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
+Si el jugador golpea en la dirección donde defiende, este huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
 
 
 # 4. Arte 

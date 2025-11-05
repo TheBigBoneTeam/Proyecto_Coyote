@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameInput : MonoBehaviour
@@ -8,6 +9,13 @@ public class GameInput : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode dashKey = KeyCode.LeftControl;
     public KeyCode hookKey = KeyCode.E;
+    public KeyCode hookSelectKey = KeyCode.Mouse0;
+    public KeyCode lockKey = KeyCode.Q;
+
+    public KeyCode UpKey = KeyCode.W;
+    public KeyCode DownKey = KeyCode.S;
+    public KeyCode LeftKey = KeyCode.A;
+    public KeyCode RightKey = KeyCode.D;
     #endregion
 
     #region Propiedades publicas
@@ -21,6 +29,13 @@ public class GameInput : MonoBehaviour
     public bool DashPressed { get; private set; }
     public bool attackPressed { get; private set; }
     public bool HookPressed { get; private set; }
+    public bool HookSelectPressed { get; private set; }
+    public bool LockPressed { get; private set; }
+
+    public bool UpPressed { get; private set; }
+    public bool DownPressed { get; private set; }
+    public bool LeftPressed { get; private set; }
+    public bool RightPressed { get; private set; }
     #endregion
 
     #region Metodos
@@ -36,6 +51,13 @@ public class GameInput : MonoBehaviour
         attackPressed = Input.GetMouseButtonDown(0);
 
         HookPressed = Input.GetKeyDown(hookKey) || Input.GetMouseButtonDown(2);
+        HookSelectPressed = Input.GetKeyDown(hookSelectKey);
+        LockPressed = Input.GetKeyDown(lockKey);
+
+        UpPressed = Input.GetKeyDown(UpKey);
+        DownPressed = Input.GetKeyDown(DownKey);
+        LeftPressed = Input.GetKeyDown(LeftKey);
+        RightPressed = Input.GetKeyDown(RightKey);
     }
 
     public Vector2 GetMovementPlayer()

@@ -84,22 +84,22 @@ public class Gancho : MonoBehaviour
         // Navegación por los objetos enganchables
         if (selectingHook) { 
         
-            if (Input.GetKeyDown(KeyCode.W))
+            if (gameInput.UpPressed)
                 currentTarget = FindDirectionalTarget(false, true);
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (gameInput.DownPressed)
                 currentTarget = FindDirectionalTarget(false, false);
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (gameInput.RightPressed)
                 currentTarget = FindDirectionalTarget(true, false);
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (gameInput.LeftPressed)
                 currentTarget = FindDirectionalTarget(false, false);
         }
         // Selecionar objeto
         if (Input.GetMouseButtonDown(0)) SelectTarget();
         if (isHooked) 
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (gameInput.DownPressed)
                 AtractTarget();
-            else if (Input.GetKeyDown(KeyCode.W))
+            else if (gameInput.UpPressed)
                 GoToTarget();
         }
     }

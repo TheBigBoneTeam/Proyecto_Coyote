@@ -315,9 +315,21 @@ Modelo 3D finalizado del personaje principal
 
 Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
-<!--### Pueblo
+### Pueblo
+
+![alt text](<Nivel1Con elementos del nivel.png>)
+
+Este es el mapa del primer nivel del juego que se desarrolla en el pueblo de Pricklytown. El nivel esta dividido en 5 subáreas de combate donde también podrá encontrarse con distintos Npcs que le pondrá en contexto sobre que son esos seres con forma de cactus.
 ### Cañón
-### Oasis-->
+
+![alt text](<Nivel2Con elementos del nivel.png>)
+
+El segundo nivel se sitúa en un oásis. En el mapa se puede observar que es un nivel alargado y dividido en 4 subáreas de combate.
+### Oasis
+
+![alt text](<Nivel3Con elementos del nivel.png>)
+
+El último nivel se desarrolla en el oasis donde se encuentra tanto el huevo cosmico como la iglesia de la secta. Este nivel es más corto de los demás dividiendolo en 3 áreas de combate. Las 2 primeras son áreas que se dividen en 2 oleadas y la última zona es donde se desarrolla la batalla contra el jefe final.
 
 ###  Enemigos
 <img src="./Imagenes_README/ConceptZombie.JPG" alt="zombi1" style="width: 36%"/>

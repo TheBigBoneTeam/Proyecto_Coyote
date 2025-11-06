@@ -36,21 +36,45 @@ public class AudioManager : MonoBehaviour
     }
 
     // Musica por escena
-    protected virtual void CheckScene(){
-        Scene _scene=SceneManager.GetActiveScene();
+    protected virtual void CheckScene()
+    {
+        Scene _scene = SceneManager.GetActiveScene();
         
         switch(_scene.name)
         {
-            case "1": Debug.LogWarning(_scene.name); break;
-            case "2": break;
-            default: break;
-            //case: "Otras que ya veremos"
+            case "MainMenu":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Menu", true, Vector2.zero, true, true);
+                break;
+
+            case "EnemyTest":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Dummy", true, Vector2.zero, true, true);
+                Debug.LogWarning("Musica reproducida exitosamente");
+                break;
+
+            case "Nivel1":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Pueblo - Base", true, Vector2.zero, true, true);
+                break;
+
+            case "Nivel2":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
+                break;
+
+            case "Nivel3":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
+                break;
+
+            default:
+                break;
         }
     }
 
+    // CAMBIAR DINAMICAMENTE CANCION (transicion de 2s)
+    // AudioManager.Instance.ChangeMusicAt(0, "BattleTheme", 2f, 2f);
+
     #region Sonido 2D
     // POR NOMBRE
-    public virtual void PlaySimpleSound(string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1){
+    public virtual void PlaySimpleSound(string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1)
+    {
         if(onlyOne && SearchSource(soundName))
         {
             return;

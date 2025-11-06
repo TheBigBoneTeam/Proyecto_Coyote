@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
 
-    [Header("Manejo de ca�da")]
+    [Header("Manejo de caida")]
     public float gravity;
     /*
     0: normal
@@ -402,7 +402,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // Si está en modo gancho, el personaje NO se mueve
+        // Si está en modo gancho, no se mueve
         if (state == MovementState.hooking)
         {
             rb.linearVelocity = Vector3.zero;
@@ -411,26 +411,29 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float modeSpeed = lockMovement ? moveLockedSpeed : moveSpeed;
-        //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
+
         if (canMove)
         {
-            // Para rampas
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * modeSpeed * 20f, ForceMode.Force);
+                // Calcular el ángulo de la pendiente
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
 
+                // Escalar la fuerza según el ángulo (más empinada = menos fuerza hacia arriba)
+                // Pendientes suaves ≈ 1, empinadas ≈ 0.3
+                float slopeMultiplier = Mathf.Lerp(1f, 0.3f, slopeAngle / maxSlopeAngle);
+
+                // Aplica fuerza ajustada por pendiente
+                rb.AddForce(GetSlopeMoveDirection() * modeSpeed * 10f * slopeMultiplier, ForceMode.Force);
+
+                // Evita que el jugador "salte" al bajar rampas
                 if (rb.linearVelocity.y > 0)
-                {
-                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
-                }
+                    rb.AddForce(Vector3.down * 30f, ForceMode.Force);
             }
-
             else if (grounded)
             {
                 rb.AddForce(moveDirection.normalized * modeSpeed * 10f, ForceMode.Force);
             }
-
             else if (!grounded)
             {
                 rb.AddForce(moveDirection.normalized * modeSpeed * 10f * airSensitity, ForceMode.Force);
@@ -499,7 +502,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 GetSlopeMoveDirection()
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;   // Se normaliza la normal (ya que es una direccion)
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     // Manejo del dash

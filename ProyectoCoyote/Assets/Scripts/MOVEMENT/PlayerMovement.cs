@@ -581,7 +581,7 @@ public class PlayerMovement : MonoBehaviour
 
     
     // MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = 30;   // Tama�o de la letra
 
@@ -594,7 +594,7 @@ public class PlayerMovement : MonoBehaviour
 
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
-    }
+    }*/
     
 
     internal void setCanAttack(bool v)

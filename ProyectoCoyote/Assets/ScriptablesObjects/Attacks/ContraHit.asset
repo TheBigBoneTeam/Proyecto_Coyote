@@ -15,9 +15,10 @@ MonoBehaviour:
   <clip>k__BackingField: {fileID: 0}
   <isParreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 2
-  <HitDirections>k__BackingField: 01000000000000000200000003000000
+  <HitDirections>k__BackingField: 
   effects:
   - rid: 108327563945312339
+  - rid: 8725330780973170820
   references:
     version: 2
     RefIds:
@@ -25,3 +26,7 @@ MonoBehaviour:
       type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
         _damage: 1
+    - rid: 8725330780973170820
+      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        stunDuration: 1

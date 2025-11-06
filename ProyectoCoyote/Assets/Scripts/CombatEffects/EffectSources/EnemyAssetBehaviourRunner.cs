@@ -33,3 +33,13 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
         EndAttackQueue.Fire(Status.Success);
     }
 }
+public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
+{
+    public PushPerception ChosenAsAmmo { get; private set; }
+
+    protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
+    {
+    base.ModifyGraphs(graphMap, pushPerceptionMap);
+        ChosenAsAmmo = pushPerceptionMap["ChosenAsAmmo"];
+    }
+}

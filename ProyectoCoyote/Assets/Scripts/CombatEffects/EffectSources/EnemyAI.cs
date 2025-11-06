@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public bool endAction,cancelled;
     public bool counterOn, reactionOn;
+  public int currentAction { get; private set; }
   [SerializeField]  private bool doingReactCounter;
     Attack attackObj;
    [SerializeField] public Reaction reactionObj;
@@ -43,11 +44,12 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     //  }
 
-    public void endCurrentAction()
+    public void endCurrentAction(int currentAction)
     {
-        print("endcurrentacytioncancelled: " + cancelled);  
-        if (!cancelled || doingReactCounter)
+        print("endcurrentacytion cancelled: " + cancelled +"doingreactcounter:"+ doingReactCounter);  
+        if (this.currentAction == currentAction)
         {
+            GetComponentInChildren<Attack>().LoadData(null);
             endAction = true;
             setReaction(false);
             counterOn = false;
@@ -84,7 +86,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public bool TryGetAttackPriority()
     {
-        print("TryGetAttackPriority");
+      //  print("TryGetAttackPriority");
         return enemyManager.attackingEnemy().getPermission(this,isLocked());
     }
     public bool ReturnAttackPriority()
@@ -102,7 +104,6 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public bool notDuringReactCounter()
     {
-        print(!doingReactCounter);
      return   !doingReactCounter;
     }
     public void endReactionCounter()
@@ -140,16 +141,21 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
     {
-        currentActionIsIdle = idle;
-        if (!idle)
-        {
-            endAction = false;
-        }
-        character.PlayAnimation(action.ToString(),idle);
+        //currentActionIsIdle = idle;
+        //if (!idle)
+        //{
+        //    endAction = false;
+        //}
+        //print(action.ToString());
+        //print(character == null);
+
+        //character.PlayAnimation(action.ToString(),idle);
+        LoadAction(action.ToString(), idle);
 
     }
     public void LoadAction(string action, bool idle = false)
     {
+        currentAction =  (action+Time.frameCount%60).GetHashCode();
         currentActionIsIdle = idle;
         if (!idle)
         {
@@ -160,18 +166,20 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     private void Start()
     {
-        _enemyAssetBehaviourRunner = GetComponent<EnemyAssetBehaviourRunner>();
         FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
         GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
         currentActionIsIdle = false;
-        attackObj = GetComponentInChildren<Attack>();
-        character = GetComponent<AGameCharacter>();
-        player = FindAnyObjectByType<PlayerMovement>().gameObject;
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
     }
+    private void Awake()
+    {
+        _enemyAssetBehaviourRunner = GetComponent<EnemyAssetBehaviourRunner>();
+        attackObj = GetComponentInChildren<Attack>();
+        character = GetComponent<AGameCharacter>();
+        player = FindAnyObjectByType<PlayerMovement>().gameObject;
+    }
 
-  
 
     private void PlayerAttackEvent(Attack.AttackState arg0)
     {
@@ -205,22 +213,23 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void startCounter()
     {
         currentActionIsIdle = false;
-        counterOn = false;
         cancelled = true;
         endAction = false;
+        setCounter(false);
         doingReactCounter = true;
         counterObj.startReaction();
     }
     
     public bool isCounterOn() => counterOn;
     public bool isReactionOn() => reactionOn;
+
+    public bool isDoingReactionCounter() => doingReactCounter;
     public void setCounter(bool counter)
     {
         counterOn = counter;
     }
     public void setReaction(bool reaction)
     {
-        print("setraction:"+reaction);
        reactionOn = reaction;
     }
 
@@ -248,5 +257,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     {
         _enemyAssetBehaviourRunner.endQueue();
     }
+
+ 
     #endregion
 }

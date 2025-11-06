@@ -4466,12 +4466,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
+  m_fontSize: 35
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
-  m_fontSizeMax: 45
+  m_fontSizeMin: 22
+  m_fontSizeMax: 35
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -5101,16 +5101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7733f0805446cb649b25fd269c6d9192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialText: {fileID: 1510712511}
-  enemy: {fileID: 1568128649}
-  player: {fileID: 5885558478740715661}
-  NextScene: DiegoTestScene
-  changeTutWait: 0
-  lockon: {fileID: 0}
-  currentEsquives: 0
-  currentHits: 0
-  objectiveEsquives: 5
-  objectiveHits: 3
 --- !u!4 &1780361612
 Transform:
   m_ObjectHideFlags: 0
@@ -5145,8 +5135,12 @@ MonoBehaviour:
   changeTutWait: 0
   currentEsquives: 0
   currentHits: 0
+  currentEsqPerf: 0
+  currentGanchos: 0
   objectiveEsquives: 5
   objectiveHits: 5
+  objectiveEsqPerf: 3
+  objectiveGancho: 4
 --- !u!1 &1794611166 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da27e20f8c4f0854e878206863686e07, type: 3}
@@ -6158,7 +6152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5865926729740929438, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: _maxHealthPoint
-      value: 10
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 5865926729740929438, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: <HealthPoint>k__BackingField

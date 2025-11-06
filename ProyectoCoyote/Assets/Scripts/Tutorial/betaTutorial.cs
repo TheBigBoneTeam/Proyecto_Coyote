@@ -32,7 +32,7 @@ namespace tutorial
             endTutorialState end = new endTutorialState(this);
             TrueEsquivarTutorial trueesquivar = new TrueEsquivarTutorial(this);
             congratulationState congratulationState = new congratulationState(this);
-            PegarTutorial pegar = new PegarTutorial(this);
+            //PegarTutorial pegar = new PegarTutorial(this);
             TruePegarTutorial truePegarTutorial = new TruePegarTutorial(this);
 
             EsquiveTrasero esquiveTrasero = new EsquiveTrasero (this);
@@ -121,7 +121,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(15);
+            tutorial.waitTime(5);
             tutorial.changeTutWait = false;
 
             
@@ -141,10 +141,47 @@ namespace tutorial
         {
             tutorial.TutorialText.text = $"Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione “click derecho” o “BOTON ATAQUE”. " +
                 $"En caso de que quieras hacer un ataque hacia la izquierda o derecha muévase en esa dirección a la vez que atacas.";
+            tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
 
+
+        }
+
+        private void enemyHit(int currentLife)
+        {
+            tutorial.currentHits++;
+        }
+
+
+        public override void OnExit()
+        {
+            tutorial.enemy.unSubscribeToLifeChange(enemyHit);
+        }
+    }
+    public class TruePegarTutorial : BaseTutorialState
+    {
+        new betaTutorial tutorial;
+        public TruePegarTutorial(betaTutorial _tut)
+        {
+            tutorial = _tut;
+        }
+        public override void OnEnter()
+        {
+
+            tutorial.TutorialText.text = $"Realiza {tutorial.objectiveHits - tutorial.currentHits} ataques.";
+            tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
+
+
+        }
+
+        private void enemyHit(int currentLife)
+        {
+            tutorial.currentHits++;
         }
         public override void OnExit()
         {
+            tutorial.enemy.unSubscribeToLifeChange(enemyHit);
         }
     }
     public class AtaqueP2 : BaseTutorialState
@@ -342,7 +379,7 @@ namespace tutorial
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
         }
     }
-    public class PegarTutorial : BaseTutorialState
+    /*public class PegarTutorial : BaseTutorialState
     {
         new betaTutorial tutorial;
         public PegarTutorial(betaTutorial _tut)
@@ -369,34 +406,6 @@ namespace tutorial
         {
             tutorial.enemy.unSubscribeToLifeChange(enemyHit);
         }
-    }
-    public class TruePegarTutorial : BaseTutorialState
-    {
-        new betaTutorial tutorial;
-        public TruePegarTutorial(betaTutorial _tut)
-        {
-            tutorial = _tut;
-        }
-        public override void OnEnter()
-        {
-
-            tutorial.TutorialText.text = $"Golpea {tutorial.objectiveHits - tutorial.currentHits} veces al enemigo.";
-            tutorial.enemy.subscribeToLifeChange(enemyHit);
-
-
-        }
-
-        private void enemyHit(int currentLife)
-        {
-            tutorial.currentHits++;
-            tutorial.TutorialText.text = $"Golpea {tutorial.objectiveHits - tutorial.currentHits} veces al enemigo.";
-        }
-
-     
-        
-        public override void OnExit()
-        {
-            tutorial.enemy.unSubscribeToLifeChange(enemyHit);
-        }
-    }
+    }*/
+    
 }

@@ -19,9 +19,13 @@ namespace CombatEffect
             base.Activate(character);
             Debug.Log($"StartStun with duration of {stunDuration}");
             this.objCharacter = character;
-            objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
-            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);
-            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(false);
+            if (this.objCharacter.GetComponent<Player>() != null)
+            {
+                objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+                objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);
+                objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(false);
+                objCharacter.gameObject.GetComponentInParent<EnemyLockOn>().ResetTarget();
+            }
         }
 
         public override void End()

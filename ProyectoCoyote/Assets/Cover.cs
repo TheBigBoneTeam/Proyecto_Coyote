@@ -4,9 +4,9 @@ public class Cover : MonoBehaviour
 {
  [SerializeField]   Transform[] HidePoints;
     bool[] occupiedPoints;
-    LayerMask layer;
+  [SerializeField]   LayerMask layer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         occupiedPoints = new bool[HidePoints.Length];
     }
@@ -35,14 +35,26 @@ public class Cover : MonoBehaviour
             }
             objPosition = HidePoints[i];
             RaycastHit hit;
-            if(Physics.Raycast(objPosition.position, Vector3.Normalize(playerPos.position - objPosition.position), out hit, 5f, layer))
+            Vector3 dir = playerPos.position - objPosition.position;
+
+            if (Physics.Raycast(objPosition.position,dir.normalized, out hit, dir.magnitude, layer))
             {
-                if(hit.transform.gameObject == this)
+                print(hit.transform.name);
+                if(hit.transform.gameObject == gameObject)
                 {
+                    print("found");
                     return i;
                 }
+                else
+                {
+                    print("Hit another thing");
+                }
             }
-           
+            else
+            {
+                print("Not Safe Spot");
+            }
+
         }
         objPosition = null;
         return -1;

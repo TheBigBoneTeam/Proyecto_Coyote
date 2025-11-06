@@ -638,4 +638,26 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    #region Manejo de paredes
+    [SerializeField] private float wallCheckDistance = 0.6f;
+    [SerializeField] private LayerMask wallLayer;
+    private bool isTouchingWall;
+    private Vector3 wallNormal;
+
+    private bool CheckForWall()
+    {
+        // Raycast desde el centro del jugador hacia la dirección del movimiento
+        if (Physics.Raycast(transform.position, moveDirection, out RaycastHit hit, wallCheckDistance, wallLayer))
+        {
+            // Guardamos la normal de la pared para posibles ajustes
+            wallNormal = hit.normal;
+            isTouchingWall = true;
+            return true;
+        }
+
+        isTouchingWall = false;
+        return false;
+    }
+    #endregion
 }

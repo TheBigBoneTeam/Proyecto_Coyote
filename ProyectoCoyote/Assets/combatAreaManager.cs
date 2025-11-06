@@ -6,7 +6,7 @@ public class combatAreaManager : MonoBehaviour
  [SerializeField]   Cover[] allCover;
     Player _player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         _player = FindAnyObjectByType<Player>();
     }
@@ -24,7 +24,7 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(out Vector3 hidePosition)
     {
         Transform objPos;
-        Cover[] orderedCovers = allCover.OrderBy((c) => (c.transform.position - _player.transform.position).sqrMagnitude).ToArray();
+        Cover[] orderedCovers = allCover.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
@@ -33,6 +33,7 @@ public class combatAreaManager : MonoBehaviour
 
                 hidePosition = objPos.position;
                 return cover;
+                
 
             }
         }

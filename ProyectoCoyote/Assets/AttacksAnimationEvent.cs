@@ -8,6 +8,7 @@ public class AttacksAnimationEvent : MonoBehaviour
      DamageReceiver damageReceiver;
     Reaction Reaction;
     Reaction Counter;
+    Gun gun;
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);
@@ -92,10 +93,16 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         damageReceiver.addDirection(direction);
     }
-    public void endAttack()
+    //public void endAttack()
+    //{
+    //    print("endAttack");
+    //    enemyAI.endCurrentAction();
+    //}
+    public void ShootPlayer()
     {
-        print("endAttack");
-        enemyAI.endCurrentAction();
+        Vector3 pos = FindFirstObjectByType<Player>().transform.position;
+        print(pos);
+        gun.Shoot(pos);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -103,6 +110,7 @@ public class AttacksAnimationEvent : MonoBehaviour
         attack = GetComponentInChildren<Attack>();
         enemyAI = GetComponentInParent<EnemyAI>();
         damageReceiver = GetComponentInParent<DamageReceiver>();
+        gun = GetComponentInParent<Gun>();  
     }
 
     // Update is called once per frame

@@ -117,7 +117,7 @@ public class EnemyLockOn : MonoBehaviour
 
 
     // Esta funci�n vuelve al modo sin lockear reseteando todos los elementos del script
-    void ResetTarget()
+    public void ResetTarget()
     {
         lockOnCanvas.gameObject.SetActive(false);
         defenseAttackUIIndicator.setEnable(false);

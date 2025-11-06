@@ -175,9 +175,12 @@ namespace tutorial
 
         }
 
-        private void enemyHit(int currentLife)
+        public void enemyHit(int currentLife)
         {
+
             tutorial.currentHits++;
+            tutorial.TutorialText.text = $"Realiza {tutorial.objectiveHits - tutorial.currentHits} ataques.";
+
         }
         public override void OnExit()
         {
@@ -325,9 +328,10 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(10);
-            tutorial.TutorialText.text = "Genial parece que sabes cómo caminar, ahora usa el ratón o el joystick derecho puedes rotar la cámara para ver lo que hay a tu alrededor.";
+            tutorial.waitTime(3);
             tutorial.changeTutWait = false;
+            tutorial.TutorialText.text = "Genial parece que sabes cómo caminar, ahora usa el ratón o el joystick derecho puedes rotar la cámara para ver lo que hay a tu alrededor.";
+            
         }
         public override void OnExit()
         {

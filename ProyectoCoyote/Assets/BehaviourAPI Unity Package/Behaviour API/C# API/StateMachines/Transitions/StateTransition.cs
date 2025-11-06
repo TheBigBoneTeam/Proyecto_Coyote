@@ -55,7 +55,6 @@ namespace BehaviourAPI.StateMachines
         /// <exception cref="MissingChildException">If target state is null</exception>
         public override bool Perform()
         {
-            UnityEngine.Debug.Log("PerformTransition");
             bool canBePerformed = base.Perform();
             if (canBePerformed)
             {

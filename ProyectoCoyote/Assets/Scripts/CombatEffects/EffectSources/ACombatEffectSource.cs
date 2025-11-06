@@ -24,9 +24,7 @@ namespace CombatEffect
         {
             effects.Add(new CritDamageEffect(this, 3));
         }
-        protected void Awake()
-        {
-        }
+        
         public virtual void addEffectsToChar(AGameCharacter charac)
         {
             foreach (var effect in effects) {

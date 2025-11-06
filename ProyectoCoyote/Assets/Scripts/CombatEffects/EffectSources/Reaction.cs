@@ -15,7 +15,7 @@ public class Reaction:ACombatEffectSource
 
     public void startReaction()
     {
-        print("reaction" +animName);
+       // print("reaction" +animName);
         enemyAI.LoadAction(animName);
         if(effects != null && effects.Count > 0) 
         addEffectsToChar(FindAnyObjectByType<Player>());

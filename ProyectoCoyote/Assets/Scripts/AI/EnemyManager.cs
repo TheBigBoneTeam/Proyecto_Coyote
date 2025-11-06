@@ -60,8 +60,8 @@ public class ClassMutex<T> where T : Object, IMutex
     }
     public bool returnPermission(T returner)
     {
-        Debug.Log(Owner);
-        Debug.Log(Owner == null);
+       // Debug.Log(Owner);
+       // Debug.Log(Owner == null);
 
         if (Owner == null || !Owner.Equals(returner))
         {

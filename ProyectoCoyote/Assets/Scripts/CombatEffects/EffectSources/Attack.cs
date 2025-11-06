@@ -8,11 +8,11 @@ using UnityEngine.Events;
 
 public class Attack : ATouchCombatEffectSource
 {
-    [SerializeField] AttackData _attackData;
+    [SerializeField] protected AttackData _attackData;
     [field:SerializeField]public AGameCharacter owner { get; private set; }
     [field: SerializeField] public bool Parreable { get;private set; }
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
-    AHittableCheck HitCheck;
+   protected AHittableCheck HitCheck;
 
     [field: SerializeField] public List<HitDirections> HitDirections { get; private set; }
 
@@ -20,14 +20,18 @@ public class Attack : ATouchCombatEffectSource
 
     protected override void OnTriggerEnter(Collider other)
     {
+        print(HitCheck == null);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
-            print("triggerCharacetr");
+            //if(HitCheck == null)
+            //{
+            //    setHitCheck(HitCheckType);
+            //}
+          
             //Comprueba si el personaje golpeado es golpeable
-            if (HitCheck.isHittable(character))
+            if (this.HitCheck.isHittable(character))
             {
-                print("checkeffect");
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
             }
 
@@ -35,14 +39,14 @@ public class Attack : ATouchCombatEffectSource
     }
     private void Update()
     {
-      
+       // print(HitCheck == null);
     }
-    protected void Awake()
+    protected virtual void Awake()
     {
         attackStateEvent = new UnityEvent<AttackState>();
 
     }
-    protected void Start()
+    protected virtual void Start()
     {
         owner = GetComponentInParent<AGameCharacter>();
         setHitCheck(HitCheckType);
@@ -55,6 +59,7 @@ public class Attack : ATouchCombatEffectSource
     public void setOwner(AGameCharacter owner)
     {
         this.owner = owner;
+        setHitCheck(HitCheckType);
     }
     public void setHitCheck(HittableTypes type)
     {
@@ -114,6 +119,7 @@ public class Attack : ATouchCombatEffectSource
         print("getData");
         if (data == null)
         {
+            print("getDataNull");
             HitDirections.Clear();
             effects.Clear();
         }

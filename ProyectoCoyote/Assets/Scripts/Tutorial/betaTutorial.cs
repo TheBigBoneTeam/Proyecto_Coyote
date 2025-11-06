@@ -1,4 +1,4 @@
-﻿/*using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+﻿using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -30,12 +30,15 @@ namespace tutorial
             congratulationState congratulationState = new congratulationState(this);
             PegarTutorial pegar = new PegarTutorial(this);
             TruePegarTutorial truePegarTutorial = new TruePegarTutorial(this);
-            machine.AddTransition(start, camara, new FuncPredicate(() => true));
-            machine.AddTransition(camara, controles, new FuncPredicate(() => camara.checkMovement()));
+            machine.AddTransition(start, controles, new FuncPredicate(() => true));
+            machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
 
-            machine.AddTransition(controles, lockear, new FuncPredicate(() => controles.checkMovement()));
+            machine.AddTransition(camara, lockear, new FuncPredicate(() => camara.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
             machine.AddTransition(esquivar, trueesquivar, new FuncPredicate(() => currentEsquives == 1));
+            /*
+             
+            */
 
             machine.AddTransition(trueesquivar, pegar, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
             machine.AddTransition(pegar, truePegarTutorial, new FuncPredicate(() => currentHits == 1));
@@ -69,7 +72,7 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = $"Con un enemigo marcado puedes esquivar con espacio + WASD. La interfaz marca la direccion donde te estan atacando";
+            tutorial.TutorialText.text = $"Cuando enfocas a un enemigo se mostrará una interfaz encima tuya para saber sobre qué dirección se ataca o esquiva. Cuando un enemigo ataque se mostrarán en rojo las direcciones donde NO tienes que esquivar. Para esquivar presiona “espacio” o “BOTON ESQUIVE”.";
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = false;
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
 
@@ -128,7 +131,7 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = "Muevete con WASD.";
+            tutorial.TutorialText.text = "Empecemos por lo esencial. Usa “aswd” o el joystick izquierdo para moverte por el escenario.";
             input = GameObject.FindAnyObjectByType<GameInput>();
 
 
@@ -156,9 +159,9 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = "Fuera de combate puedes mover la camara con el ratón";
+            tutorial.TutorialText.text = "Genial parece que sabes cómo caminar, ahora usa el ratón o el joystick derecho puedes rotar la cámara para ver lo que hay a tu alrededor.";
             //tutorial.changeTutWait = false;
-            //tutorial.waitTime(8);
+            tutorial.waitTime(8);
 
 
 
@@ -203,7 +206,7 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
-            tutorial.TutorialText.text = "Solo podrás esquivar y atacar si tienes marcado a algun enemigo. Pulsa Q para marcar al enemigo";
+            tutorial.TutorialText.text = "Muy bien, me has demostrado que esos ojos no los tienes solo de decoración. Ahora presiona “q” o “BOTON ENFOQUE” para enfocar y desenfocar a un enemigo, en este caso prueba con este cactus.";
 
 
 
@@ -270,4 +273,4 @@ namespace tutorial
             tutorial.enemy.unSubscribeToLifeChange(enemyHit);
         }
     }
-}*/
+}

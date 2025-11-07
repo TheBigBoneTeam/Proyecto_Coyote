@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Cover : MonoBehaviour
@@ -59,4 +60,6 @@ public class Cover : MonoBehaviour
         objPosition = null;
         return -1;
 }
+
+   
 }

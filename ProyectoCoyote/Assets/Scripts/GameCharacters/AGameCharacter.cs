@@ -19,8 +19,11 @@ public abstract class AGameCharacter :MonoBehaviour
     Animator anim;
 
     UnityEvent<int> lifeUpdate;
-   protected Action dieEvent;
+   protected UnityEvent<AGameCharacter> dieEvent;
     UnityEvent<HitDirections> dodgeAttackEvent;
+
+    Vector3 startPos;
+    bool setredUp;
 
     private void Awake()
     {
@@ -28,11 +31,12 @@ public abstract class AGameCharacter :MonoBehaviour
         activeEffects = new List<ATimedEffect>();
         anim = GetComponentInChildren<Animator>();
         dodgeAttackEvent = new UnityEvent<HitDirections>();
+        dieEvent = new UnityEvent<AGameCharacter>();
     }
     protected virtual void Start()
     {
-        HealthPoint = _maxHealthPoint;
-        lifeUpdate.Invoke(HealthPoint);
+        startPos = transform.position;
+        setredUp = true;
     }
     public virtual void getHit(int damage,bool crit = false)
     {
@@ -82,6 +86,16 @@ public abstract class AGameCharacter :MonoBehaviour
         invincible = false;
     }
 
+    public virtual void restart()
+    {
+        if (!setredUp)
+        {
+            startPos = transform.position;
+        }
+        HealthPoint = _maxHealthPoint;
+        lifeUpdate?.Invoke(HealthPoint);
+        transform.position = startPos;
+    }
 
     public abstract void Die();
     private void Update()
@@ -173,12 +187,12 @@ public abstract class AGameCharacter :MonoBehaviour
         dodgeAttackEvent.RemoveListener(response);
     }
 
-    public void subscribeToDie(Action response)
+    public void subscribeToDie(UnityAction<AGameCharacter> response)
     {
-        dieEvent += response;
+        dieEvent.AddListener(response);
     }
-    public void unSubscribeToDie(Action response)
+    public void unSubscribeToDie(UnityAction<AGameCharacter> response)
     {
-        dieEvent -= response;
+        dieEvent.RemoveListener(response);
     }
 }

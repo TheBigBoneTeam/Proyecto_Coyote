@@ -1,11 +1,14 @@
+using System;
 using System.Diagnostics;
 
 public class Enemy : AGameCharacter
 {
+    combatAreaManager combatArea;
     public override void Die()
     {
-        dieEvent?.Invoke();
-        Destroy(gameObject);
+        dieEvent?.Invoke(this);
+        GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
+        gameObject.SetActive(false);
     }
     public override bool isOtherTeam(AGameCharacter character)
     {
@@ -16,5 +19,15 @@ public class Enemy : AGameCharacter
     public override void getHit(int damage, bool crit = false)
     {
         base.getHit(damage, crit);
+    }
+    public override void restart()
+    {
+        base.restart();
+        
+    }
+    public void activateEnemy()
+    {
+        gameObject.SetActive(true);
+        GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
     }
 }

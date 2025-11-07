@@ -1,3 +1,4 @@
+using BehaviourAPI.UnityToolkit;
 using Services;
 using System;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 {
     //El delegado para avisar de cambios de estado
     public event EventHandler<stateData> onStateChange;
-
+    public Action restartArea;
     //Guarda el estado antes de pausar, para que se pueda pausar en gameplay, cinematicas y tal
     public GameState prePauseState;
     public GameState getState() => currentState;
@@ -64,6 +65,15 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
         onStateChange -= response;
     }
+    public void subscribeToRestart(Action response)
+    {
+        restartArea += response;
+
+    }
+    public void unSubscribeToRestart(Action response)
+    {
+        restartArea -= response;
+    }
 
     public void slowDown()
     {
@@ -80,6 +90,23 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         {
             print("slowdownoffconfirmed");
 
+            SetState(GameState.Playing);
+        }
+    }
+
+    public void Die()
+    {
+        if(currentState != GameState.DeathScreen)
+        {
+            SetState(GameState.DeathScreen);
+        }
+    }
+
+    public void Restart()
+    {
+        if (currentState == GameState.DeathScreen)
+        {
+            restartArea?.Invoke();
             SetState(GameState.Playing);
         }
     }

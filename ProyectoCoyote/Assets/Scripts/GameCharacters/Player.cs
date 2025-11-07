@@ -7,7 +7,7 @@ public class Player : AGameCharacter
   public  int storedDamage;
     public override void Die()
     {
-        dieEvent.Invoke();
+        dieEvent.Invoke(this);
         print("PERDISTE");
     }
     public override bool isOtherTeam(AGameCharacter character)

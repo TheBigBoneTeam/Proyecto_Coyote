@@ -1,7 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    private PlayerControls controls;
+
+    // Ejes de movimiento
+    public float Horizontal { get; private set; }
+    public float Vertical { get; private set; }
+
+    /*
     #region Variables de entrada
     [Header("Controles")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -9,33 +17,80 @@ public class GameInput : MonoBehaviour
     public KeyCode dashKey = KeyCode.LeftControl;
     public KeyCode hookKey = KeyCode.E;
     #endregion
-
-    #region Propiedades publicas
-    // Ejes de movimiento
-    [field: SerializeField] public float Horizontal { get; private set; }
-    [field: SerializeField] public float Vertical { get; private set; }
+    */
 
     // Acciones
-   [field:SerializeField] public bool JumpPressed { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
-    public bool attackPressed { get; private set; }
-    public bool HookPressed { get; private set; }
-    #endregion
+    public bool AttackPressed { get; private set; }
+    public bool HookAimPressed { get; private set; }
+    public bool HookConfirmPressed { get; private set; }
+    public bool Hook_TPPressed { get; private set; }
+    public bool EvadePressed { get; private set; }
+    public bool LockPressed { get; private set; }
 
     #region Metodos
-    void Update()
+
+    private void Awake()
     {
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
+        controls = new PlayerControls();
 
-        JumpPressed = Input.GetKeyDown(jumpKey);
-        SprintHeld = Input.GetKey(sprintKey);
-        DashPressed = Input.GetKeyDown(dashKey) || Input.GetMouseButtonDown(1);
+        // --- Movimiento ---
+        controls.Player.Walk.performed += ctx =>
+        {
+            Vector2 input = ctx.ReadValue<Vector2>();
+            Horizontal = input.x;
+            Vertical = input.y;
+        };
+        controls.Player.Walk.canceled += ctx =>
+        {
+            Horizontal = 0;
+            Vertical = 0;
+        };
 
-        attackPressed = Input.GetMouseButtonDown(0);
+        // --- Sprint (mantener) ---
+        controls.Player.Sprint.performed += ctx => SprintHeld = true;
+        controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
-        HookPressed = Input.GetKeyDown(hookKey) || Input.GetMouseButtonDown(2);
+        // --- Dash (pulsación) ---
+        controls.Player.Dash.performed += ctx => DashPressed = true;
+
+        // --- Attack (pulsación) ---
+        controls.Player.Attack.performed += ctx => AttackPressed = true;
+
+        // --- Evade (pulsación) ---
+        controls.Player.Evade.performed += ctx => EvadePressed = true;
+
+        // --- Lock (pulsación única) ---
+        controls.Player.Lock.performed += ctx => LockPressed = true;
+
+        // --- Gancho (pulsaciones únicas) ---
+        controls.Player.HookAim.performed += ctx => HookAimPressed = true;
+        controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
+        controls.Player.Hook_TP.performed += ctx => Hook_TPPressed = true;
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    private void LateUpdate()
+    {
+        // Reset automático cada frame (para pulsación única)
+        DashPressed = false;
+        AttackPressed = false;
+        EvadePressed = false;
+        LockPressed = false;
+        HookAimPressed = false;
+        HookConfirmPressed = false;
+        Hook_TPPressed = false;
     }
 
     public Vector2 GetMovementPlayer()

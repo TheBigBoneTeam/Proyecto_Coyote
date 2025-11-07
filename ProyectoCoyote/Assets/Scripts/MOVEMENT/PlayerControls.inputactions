@@ -3,17 +3,89 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Move",
+            "name": "Player",
             "id": "1798d507-2fd5-473f-ba01-6d170499c25e",
             "actions": [
                 {
-                    "name": "Andar",
+                    "name": "Walk",
                     "type": "Value",
                     "id": "6763d8df-61ff-4e41-948b-eef6f35524ec",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "9aa2e246-c934-4386-bb81-adfbb68f0c03",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "fb5762b0-2061-476a-b3b7-c749f4077a0e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lock",
+                    "type": "Button",
+                    "id": "89062164-bb4b-42a3-9698-a5787b8e43bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HookAim",
+                    "type": "Button",
+                    "id": "a2fe0363-c3fc-4f49-9ac8-e94bacea9c1c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HookConfirm",
+                    "type": "Button",
+                    "id": "9a62b8af-ba1b-4086-a4d1-7cdc4e1321a6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hook_TP",
+                    "type": "Button",
+                    "id": "9afa6d10-0f73-4190-81aa-38df2b5fff64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "53aa96f2-d82f-402e-8f2b-0e09dddf6245",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Evade",
+                    "type": "Button",
+                    "id": "bfca6d0b-a3e3-4510-af44-9153b992299c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -24,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -35,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -46,7 +118,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -57,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -68,7 +140,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -79,118 +151,183 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Andar",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "fed74fae-9973-494f-bc1d-28dcfcf0d425",
-                    "path": "<Touchscreen>/primaryTouch/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Móvil",
-                    "action": "Andar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Sprint",
-            "id": "e3d31ec2-13a5-40df-992d-22c72749e95c",
-            "actions": [
-                {
-                    "name": "Correr",
-                    "type": "Button",
-                    "id": "e663156f-e4df-4946-9c81-5fe0010529ad",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "7c3ea403-c043-4c4e-8537-2a9b097edd45",
+                    "id": "25446858-a223-4151-ad4a-96a2d041bf94",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Correr",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "138edb83-3ad1-49d3-a779-ae8301402f0f",
+                    "id": "507d36d6-d811-4a9c-ac4f-62ae11ed9da6",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "Correr",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "83e9b63a-4ba0-46ad-98ef-362a6a23d6b4",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": ";Móvil",
-                    "action": "Correr",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Dash",
-            "id": "1f447cc9-35dc-4e50-91e4-18832b557c8e",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "330b741e-1ec2-477e-9ed7-412334d702bf",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "d7c71a9f-55af-44f3-b803-efef3f265b58",
-                    "path": "<Keyboard>/ctrl",
+                    "id": "eb48692d-0220-4983-856a-83da7d142b35",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "New action",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "76e98b88-bbc8-47bc-8cd9-d9fbab7549c5",
+                    "id": "577d2602-e231-44eb-8630-f6bf5a1f7e39",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "New action",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5b0ad07f-fed0-4f91-a35f-9396de288242",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "MultiTap",
+                    "id": "b1ace92a-4a0d-4310-8378-69b5d5914377",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
                     "processors": "",
-                    "groups": ";Móvil",
-                    "action": "New action",
+                    "groups": ";Teclado",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7322bd28-0e42-46b2-9f8d-9112bb03e398",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef9e4926-bff8-402e-817e-597fdab28f95",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16ea6fe-eb8a-4fd4-bc8d-b25ac2babec6",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4408cd6-ed7d-4bce-b792-e97fff7235c6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84d64a68-839b-47d7-bc7e-39a30c7fff6f",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1477151-6f6e-4fbb-a231-61a0d7839ce9",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Evade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f134f6b6-ca74-4441-80c0-1f7733aacb21",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "Evade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83ab1bdd-697b-4813-95ae-5e499750a375",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Hook_TP",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3cabbad-9d7a-4740-9489-7492217e0293",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "Hook_TP",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ceeec8d5-dda4-4613-9620-f605931bff12",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41c30174-5673-4ab6-8361-05f1767c2e81",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookConfirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

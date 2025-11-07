@@ -43,10 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
-    public float jumpForce;
-    public float jumpCooldown;
     public float airSensitity;
-    bool readyToJump;
     #endregion
 
     #region Variables para el dash
@@ -142,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        readyToJump = true;
         animator = GetComponentInChildren<Animator>();
 
         gameInput = GetComponentInParent<GameInput>();
@@ -217,15 +213,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
 
-        computeAnimator();
-
-        if(gameInput.JumpPressed && readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-       
+        computeAnimator();       
     }
     #endregion
 
@@ -245,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-        if (gameInput.attackPressed && canAttack && lockMovement)
+        if (gameInput.AttackPressed && canAttack && lockMovement)
         {
             string attackName = "";
             if (horizontalInput == 0)
@@ -289,28 +277,6 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = sprintSpeed;
             isRunning = true;
         }
-
-        //// Modo gancho
-        //else if (gameInput.HookPressed)
-        //{
-        //    state = MovementState.hooking;
-        //    desiredMoveSpeed = 0f;
-        //    moveSpeed = 0f;
-
-        //    rb.linearVelocity = Vector3.zero;
-        //    rb.angularVelocity = Vector3.zero;
-        //    rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-
-        //    canMove = false;
-        //}
-        //else if (gameInput.HookPressed && state == MovementState.hooking)
-        //{
-        //    // Si se levanta la tecla, se vuelve al modo caminar
-        //    rb.constraints = RigidbodyConstraints.FreezeRotation;
-        //    canMove = true;
-        //    state = MovementState.walking;
-        //    desiredMoveSpeed = walkSpeed;
-        //}
 
         // Modo andar
         else if (grounded)
@@ -377,6 +343,7 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = desiredMoveSpeed;
         Debug.Log("Desactivando el gancho...");
     }
+
     // Codigo para mantener el momentum despues del dash
     private float speedChangeFactor;
 
@@ -475,18 +442,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
         }
-    }
-    private void Jump()
-    {
-        exitingSlope = true;
-
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-    private void ResetJump()
-    {
-        readyToJump = true;
-        exitingSlope = true;
     }
 
     private bool OnSlope()
@@ -647,20 +602,5 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     private bool isTouchingWall;
     private Vector3 wallNormal;
-
-    private bool CheckForWall()
-    {
-        // Raycast desde el centro del jugador hacia la dirección del movimiento
-        if (Physics.Raycast(transform.position, moveDirection, out RaycastHit hit, wallCheckDistance, wallLayer))
-        {
-            // Guardamos la normal de la pared para posibles ajustes
-            wallNormal = hit.normal;
-            isTouchingWall = true;
-            return true;
-        }
-
-        isTouchingWall = false;
-        return false;
-    }
     #endregion
 }

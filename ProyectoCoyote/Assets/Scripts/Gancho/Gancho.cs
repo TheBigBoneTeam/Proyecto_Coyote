@@ -5,7 +5,6 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class Gancho : MonoBehaviour
 {

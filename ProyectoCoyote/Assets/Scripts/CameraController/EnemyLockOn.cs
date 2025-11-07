@@ -2,7 +2,6 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -268,5 +267,12 @@ public class EnemyLockOn : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, noticeZone);
+    }
+    public void resetWhenDie(Transform deadTarget)
+    {
+        if(currentTarget == deadTarget)
+        {
+            ResetTarget();
+        }
     }
 }

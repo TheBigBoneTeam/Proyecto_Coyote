@@ -183,7 +183,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         endAction = false;
     }
 
-    private void DieEvent()
+    private void DieEvent(AGameCharacter character)
     {
         ReturnAttackPriority(currentAction);
     }

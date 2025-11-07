@@ -62,7 +62,7 @@ public class Gancho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameInput.HookPressed) 
+        if (gameInput.HookAimPressed) 
         {
             Debug.Log("Activando el gancho...");
             ActivateTargetHook(); 
@@ -83,23 +83,37 @@ public class Gancho : MonoBehaviour
         // Navegación por los objetos enganchables
         if (selectingHook) { 
         
-            if (Input.GetKeyDown(KeyCode.W))
+            if (gameInput.Hook_TPPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, true);
-            else if (Input.GetKeyDown(KeyCode.S))
+            }
+            else if (gameInput.HookDisconfirmPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, false);
-            else if (Input.GetKeyDown(KeyCode.D))
+            }
+            else if (gameInput.HookSelectRightPressed)
+            {
                 currentTarget = FindDirectionalTarget(true, false);
-            else if (Input.GetKeyDown(KeyCode.A))
+            }
+            else if (gameInput.HookSelectLeftPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, false);
+            }
         }
         // Selecionar objeto
-        if (Input.GetMouseButtonDown(0)) SelectTarget();
+        if (gameInput.HookConfirmPressed)
+        {
+            SelectTarget();
+        }
+
         if (isHooked) 
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (gameInput.HookAttractPressed)
                 AtractTarget();
-            else if (Input.GetKeyDown(KeyCode.W))
+            else if (gameInput.Hook_TPPressed)
+            {
                 GoToTarget();
+            }
         }
     }
 

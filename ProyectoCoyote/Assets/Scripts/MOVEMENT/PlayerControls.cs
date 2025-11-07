@@ -147,9 +147,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""HookDisconfirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""80f7e7ea-1ae6-4aa5-82ef-544724feaa8a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HookSelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""264e4b92-22fa-4721-a6a9-1de90673660a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HookSelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a1ad89f-cf00-4505-87ad-e6dc547f2cec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Hook_TP"",
                     ""type"": ""Button"",
                     ""id"": ""9afa6d10-0f73-4190-81aa-38df2b5fff64"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HookAttract"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cc19e5f-b8cf-4ea5-a35a-64dc2d877593"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -416,6 +452,94 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""HookConfirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bc8549a-de17-40ab-9df6-2d9c6d5e0f2b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""HookSelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06a14963-9bb8-405c-860c-dea745dad2cc"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""HookSelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc9dd50e-b357-4823-88d8-1f8fc2460312"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""HookSelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c22ba8bb-a758-4793-8b02-7c55ed2daf6b"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""HookSelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a938422-7092-4da3-9061-83df711e652c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""HookAttract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6f4aba2-a0a7-452f-873e-bb73711585d1"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""HookAttract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d60f8e68-2e28-436d-9e0f-8831913b1c6c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""HookDisconfirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f20e8cd6-6959-4301-b259-8037127c5d86"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""HookDisconfirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -446,7 +570,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Lock = m_Player.FindAction("Lock", throwIfNotFound: true);
         m_Player_HookAim = m_Player.FindAction("HookAim", throwIfNotFound: true);
         m_Player_HookConfirm = m_Player.FindAction("HookConfirm", throwIfNotFound: true);
+        m_Player_HookDisconfirm = m_Player.FindAction("HookDisconfirm", throwIfNotFound: true);
+        m_Player_HookSelectLeft = m_Player.FindAction("HookSelectLeft", throwIfNotFound: true);
+        m_Player_HookSelectRight = m_Player.FindAction("HookSelectRight", throwIfNotFound: true);
         m_Player_Hook_TP = m_Player.FindAction("Hook_TP", throwIfNotFound: true);
+        m_Player_HookAttract = m_Player.FindAction("HookAttract", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Evade = m_Player.FindAction("Evade", throwIfNotFound: true);
     }
@@ -535,7 +663,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Lock;
     private readonly InputAction m_Player_HookAim;
     private readonly InputAction m_Player_HookConfirm;
+    private readonly InputAction m_Player_HookDisconfirm;
+    private readonly InputAction m_Player_HookSelectLeft;
+    private readonly InputAction m_Player_HookSelectRight;
     private readonly InputAction m_Player_Hook_TP;
+    private readonly InputAction m_Player_HookAttract;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Evade;
     /// <summary>
@@ -574,9 +706,25 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @HookConfirm => m_Wrapper.m_Player_HookConfirm;
         /// <summary>
+        /// Provides access to the underlying input action "Player/HookDisconfirm".
+        /// </summary>
+        public InputAction @HookDisconfirm => m_Wrapper.m_Player_HookDisconfirm;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HookSelectLeft".
+        /// </summary>
+        public InputAction @HookSelectLeft => m_Wrapper.m_Player_HookSelectLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HookSelectRight".
+        /// </summary>
+        public InputAction @HookSelectRight => m_Wrapper.m_Player_HookSelectRight;
+        /// <summary>
         /// Provides access to the underlying input action "Player/Hook_TP".
         /// </summary>
         public InputAction @Hook_TP => m_Wrapper.m_Player_Hook_TP;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HookAttract".
+        /// </summary>
+        public InputAction @HookAttract => m_Wrapper.m_Player_HookAttract;
         /// <summary>
         /// Provides access to the underlying input action "Player/Attack".
         /// </summary>
@@ -629,9 +777,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HookConfirm.started += instance.OnHookConfirm;
             @HookConfirm.performed += instance.OnHookConfirm;
             @HookConfirm.canceled += instance.OnHookConfirm;
+            @HookDisconfirm.started += instance.OnHookDisconfirm;
+            @HookDisconfirm.performed += instance.OnHookDisconfirm;
+            @HookDisconfirm.canceled += instance.OnHookDisconfirm;
+            @HookSelectLeft.started += instance.OnHookSelectLeft;
+            @HookSelectLeft.performed += instance.OnHookSelectLeft;
+            @HookSelectLeft.canceled += instance.OnHookSelectLeft;
+            @HookSelectRight.started += instance.OnHookSelectRight;
+            @HookSelectRight.performed += instance.OnHookSelectRight;
+            @HookSelectRight.canceled += instance.OnHookSelectRight;
             @Hook_TP.started += instance.OnHook_TP;
             @Hook_TP.performed += instance.OnHook_TP;
             @Hook_TP.canceled += instance.OnHook_TP;
+            @HookAttract.started += instance.OnHookAttract;
+            @HookAttract.performed += instance.OnHookAttract;
+            @HookAttract.canceled += instance.OnHookAttract;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
@@ -667,9 +827,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HookConfirm.started -= instance.OnHookConfirm;
             @HookConfirm.performed -= instance.OnHookConfirm;
             @HookConfirm.canceled -= instance.OnHookConfirm;
+            @HookDisconfirm.started -= instance.OnHookDisconfirm;
+            @HookDisconfirm.performed -= instance.OnHookDisconfirm;
+            @HookDisconfirm.canceled -= instance.OnHookDisconfirm;
+            @HookSelectLeft.started -= instance.OnHookSelectLeft;
+            @HookSelectLeft.performed -= instance.OnHookSelectLeft;
+            @HookSelectLeft.canceled -= instance.OnHookSelectLeft;
+            @HookSelectRight.started -= instance.OnHookSelectRight;
+            @HookSelectRight.performed -= instance.OnHookSelectRight;
+            @HookSelectRight.canceled -= instance.OnHookSelectRight;
             @Hook_TP.started -= instance.OnHook_TP;
             @Hook_TP.performed -= instance.OnHook_TP;
             @Hook_TP.canceled -= instance.OnHook_TP;
+            @HookAttract.started -= instance.OnHookAttract;
+            @HookAttract.performed -= instance.OnHookAttract;
+            @HookAttract.canceled -= instance.OnHookAttract;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
@@ -798,12 +970,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHookConfirm(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "HookDisconfirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHookDisconfirm(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HookSelectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHookSelectLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HookSelectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHookSelectRight(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Hook_TP" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHook_TP(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HookAttract" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHookAttract(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

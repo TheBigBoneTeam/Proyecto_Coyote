@@ -61,9 +61,45 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "HookDisconfirm",
+                    "type": "Button",
+                    "id": "80f7e7ea-1ae6-4aa5-82ef-544724feaa8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HookSelectLeft",
+                    "type": "Button",
+                    "id": "264e4b92-22fa-4721-a6a9-1de90673660a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HookSelectRight",
+                    "type": "Button",
+                    "id": "9a1ad89f-cf00-4505-87ad-e6dc547f2cec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Hook_TP",
                     "type": "Button",
                     "id": "9afa6d10-0f73-4190-81aa-38df2b5fff64",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HookAttract",
+                    "type": "Button",
+                    "id": "7cc19e5f-b8cf-4ea5-a35a-64dc2d877593",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -328,6 +364,94 @@
                     "processors": "",
                     "groups": ";Mando",
                     "action": "HookConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bc8549a-de17-40ab-9df6-2d9c6d5e0f2b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookSelectLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06a14963-9bb8-405c-860c-dea745dad2cc",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookSelectLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc9dd50e-b357-4823-88d8-1f8fc2460312",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookSelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c22ba8bb-a758-4793-8b02-7c55ed2daf6b",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookSelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a938422-7092-4da3-9061-83df711e652c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookAttract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6f4aba2-a0a7-452f-873e-bb73711585d1",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookAttract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d60f8e68-2e28-436d-9e0f-8831913b1c6c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "HookDisconfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f20e8cd6-6959-4301-b259-8037127c5d86",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "HookDisconfirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

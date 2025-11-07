@@ -1,14 +1,24 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class combatAreaManager : MonoBehaviour
 {
  [SerializeField]   Cover[] allCover;
+    [SerializeField] Cover[] enemies;
+    [SerializeField] List<Enemy> deadEnemies;
     Player _player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         _player = FindAnyObjectByType<Player>();
+        deadEnemies = new List<Enemy>();
+        foreach (var enemy in enemies)
+        {
+           // enemy.setCombatArea(this);
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +29,23 @@ public class combatAreaManager : MonoBehaviour
             print(getCoverSpot(out Vector3 pos) == null);
 
         }
+    }
+
+    public void enemyDie(Enemy enemy)
+    {
+        if (!deadEnemies.Contains(enemy))
+        {
+            deadEnemies.Add(enemy);
+        }
+        if(deadEnemies.Count == enemies.Length)
+        {
+            AreaCompleted();
+        }
+    }
+
+    private void AreaCompleted()
+    {
+        throw new NotImplementedException();
     }
 
     public Cover getCoverSpot(out Vector3 hidePosition)

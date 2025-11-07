@@ -22,6 +22,8 @@ public interface IEnemyManager:IService
 {
     ClassMutex<EnemyAI> enemyClassMutex();
     ClassMutex<EnemyAI> attackingEnemy();
+
+   
 }
 public class ClassMutex<T> where T : Object, IMutex
 {
@@ -65,6 +67,10 @@ public class ClassMutex<T> where T : Object, IMutex
 
         if (Owner == null || !Owner.Equals(returner))
         {
+            if (queue.Contains(returner))
+            {
+                queue.Remove(returner);
+            }
             return false;
         }
         else
@@ -76,8 +82,16 @@ public class ClassMutex<T> where T : Object, IMutex
                 Owner = newowner;
                 Owner.givePriority();
             }
-            return true;
+            else
+            {
+                Owner = null;
+            }
+                return true;
         }
+    }
+    public void printOwner()
+    {
+        Debug.Log(Owner.name);
     }
 }
 public interface IMutex

@@ -5,7 +5,7 @@ namespace BehaviourAPI.BehaviourTrees
     using Core;
 
     using Core.Perceptions;
-    public class TrueFalseBranchNode : BranchNode
+    public class TrueFalseBranchNode : ReactiveBranchNode
     {
         /// <summary>
         /// The function used to get the branch index. The result will be clamped between 0 and child count.
@@ -17,11 +17,7 @@ namespace BehaviourAPI.BehaviourTrees
         /// </summary>
         /// <param name="nodeIndexFunction">The value of the function.</param>
         /// <returns>The <see cref="FunctionBranchNode"/> itself.</returns>
-        public TrueFalseBranchNode SetNodeIndexFunction(Perception perception)
-        {
-            this.Perception = perception;
-            return this;
-        }
+     
 
         protected override int SelectBranchIndex()
         {
@@ -29,4 +25,5 @@ namespace BehaviourAPI.BehaviourTrees
             return index ? 1 : 0;
         }
     }
+   
 }

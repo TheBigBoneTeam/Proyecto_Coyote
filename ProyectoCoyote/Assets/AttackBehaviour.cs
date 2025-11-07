@@ -8,7 +8,7 @@ public class AttackBehaviour : ActionBehaviour
         base.OnStateExit(animator, stateInfo, layerIndex);
         if (!animator.gameObject.GetComponentInParent<EnemyAI>().currentActionIsIdle && lastAttackInAction)
         {
-            animator.gameObject.GetComponentInParent<EnemyAI>().ReturnAttackPriority();
+            animator.gameObject.GetComponentInParent<EnemyAI>().ReturnAttackPriority(actionValue);
         }
     }
 }

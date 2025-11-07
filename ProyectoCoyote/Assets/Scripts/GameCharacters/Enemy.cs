@@ -13,4 +13,8 @@ public class Enemy : AGameCharacter
         print(character.GetComponent<Enemy>() == null);
         return character.GetComponent<Enemy>() == null;
     }
+    public override void getHit(int damage, bool crit = false)
+    {
+        base.getHit(damage, crit);
+    }
 }

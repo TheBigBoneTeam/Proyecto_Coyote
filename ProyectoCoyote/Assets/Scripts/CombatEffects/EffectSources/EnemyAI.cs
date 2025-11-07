@@ -11,7 +11,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour,IMutex
 {
 
-    public bool endAction,cancelled;
+    public bool endAction,cancelled,onAction;
     public bool counterOn, reactionOn;
   public int currentAction { get; private set; }
   [SerializeField]  private bool doingReactCounter;
@@ -89,15 +89,23 @@ public class EnemyAI : MonoBehaviour,IMutex
       //  print("TryGetAttackPriority");
         return enemyManager.attackingEnemy().getPermission(this,isLocked());
     }
-    public bool ReturnAttackPriority()
+    public void forcedReturnAttackPriority()
     {
-        if (!cancelled)
+        print("forcereturn " + name);
+        ReturnAttackPriority(currentAction);
+    }
+    public bool ReturnAttackPriority(int currentAction)
+    {
+        if (this.currentAction == currentAction)
         {
+            print("yes return " + name);
+
             return enemyManager.attackingEnemy().returnPermission(this);
 
         }
         else
         {
+            print("no return " + name);
            return false;
         }
 
@@ -117,7 +125,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     public bool onAttackDistance()
     {
         float dist = DistanceWithPlayer();
-        print($"{dist} : {attackDistance}");
+        //print($"{dist} : {attackDistance}");
         if (dist <= attackDistance)
         {
             return true;
@@ -168,10 +176,18 @@ public class EnemyAI : MonoBehaviour,IMutex
     {
         FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
         GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
+        GetComponent<Enemy>().subscribeToDie(DieEvent);
+
         currentActionIsIdle = false;
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
     }
+
+    private void DieEvent()
+    {
+        ReturnAttackPriority(currentAction);
+    }
+    
     private void Awake()
     {
         _enemyAssetBehaviourRunner = GetComponent<EnemyAssetBehaviourRunner>();
@@ -233,6 +249,8 @@ public class EnemyAI : MonoBehaviour,IMutex
        reactionOn = reaction;
     }
 
+    
+
     #region Gizmos
     private void OnDrawGizmos()
     {
@@ -249,15 +267,33 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public void endActionNode()
     {
-
+        setOnAction(false);
         endAction = false;
     }
-
+    public void setOnAction(bool onAction)
+    {
+        print("setOnAction " + name + onAction);
+        this.onAction = onAction;
+    }
     public void givePriority()
     {
+        print("getPriorityFromQueuereturn " + name);
         _enemyAssetBehaviourRunner.endQueue();
     }
-
- 
+    public Status forceSuccess()
+    {
+        return Status.Success;
+    }
+    public Status waitForEndAction()
+    {
+        if (endAction || !onAction)
+        {
+            return Status.Success;
+        }
+        else
+        {
+            return Status.Running;
+        }
+    }
     #endregion
 }

@@ -47,12 +47,12 @@ public abstract class AGameCharacter :MonoBehaviour
         }
         if (crit)
         {
-           // anim.CrossFade("GetHit", .1f, 0, 0);
-            //anim.CrossFade("GetHit_CRIT", .1f, 0, 0);
+            anim.CrossFade("GetHit", .1f, 0, 0);
+           // anim.CrossFade("GetHit_CRIT", .1f, 0, 0);
         }
         else
         {
-         //   anim.CrossFade("GetHit", .1f, 0, 0);
+            anim.CrossFade("GetHit", .1f, 0, 0);
             }
         if (invTimeAfterHit > 0)
         {

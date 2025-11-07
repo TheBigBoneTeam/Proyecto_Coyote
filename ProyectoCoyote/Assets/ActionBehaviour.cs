@@ -7,7 +7,7 @@ public class ActionBehaviour : StateMachineBehaviour
 {
     public string DebugName;
     bool isIdle;
-    int actionValue;
+   protected int actionValue;
     public bool lastAttackInAction = true;
     // public bool lastAnimInAction = true;
     EnemyAI enemyAI;
@@ -15,6 +15,9 @@ public class ActionBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
+        Debug.Log("setOnAction " + DebugName + true);
+
+        enemyAI.setOnAction(true);
         enemyAI.setReaction(false);
         actionValue = enemyAI.currentAction;
         isIdle = enemyAI.currentActionIsIdle;

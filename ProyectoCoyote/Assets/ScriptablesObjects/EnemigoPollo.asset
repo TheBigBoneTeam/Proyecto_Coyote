@@ -27,7 +27,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330713914900660
+            rid: 8725330806027845781
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -113,7 +113,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330721219543195
+            rid: 8725330803746930826
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -456,9 +456,6 @@ MonoBehaviour:
     - rid: 8725330696836219283
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
-    - rid: 8725330713914900660
-      type: {class: RunForCoverAction, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 8725330713914900835
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
@@ -520,12 +517,6 @@ MonoBehaviour:
         FirstLetter: A
         LastLetter: D
         idle: 0
-    - rid: 8725330721219543195
-      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        ExecuteOnLoop: 0
-        InterruptOptions: 2
-        subgraphId: 27060bc8-cd97-41df-afa3-41c18e4724d4
     - rid: 8725330721219543237
       type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -584,4 +575,46 @@ MonoBehaviour:
           methodName: 
     - rid: 8725330799120875734
       type: {class: SeePlayer, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8725330803746930826
+      type: {class: CompoundActionWrapper, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        compoundAction:
+          rid: 8725330803746930827
+        subActions:
+        - action:
+            rid: 8725330803746930828
+        - action:
+            rid: 8725330803746930829
+    - rid: 8725330803746930827
+      type: {class: ParallelAction, ns: BehaviourAPI.Core.Actions, asm: BehaviourAPI.Core}
+      data:
+        finishOnSuccess: 0
+        finishOnFailure: 0
+    - rid: 8725330803746930828
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725330803746930829
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 0
+        InterruptOptions: 2
+        subgraphId: 27060bc8-cd97-41df-afa3-41c18e4724d4
+    - rid: 8725330806027845781
+      type: {class: RunForCoverAction, ns: , asm: Assembly-CSharp}
       data: 

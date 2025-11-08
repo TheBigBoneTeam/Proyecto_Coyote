@@ -8,10 +8,13 @@ public class winScreen : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        FindAnyObjectByType<Enemy>().subscribeToDie(() => { anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; });
+      //  FindAnyObjectByType<Enemy>().subscribeToDie((a) => { anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; });
 
     }
-
+    public void Win()
+    {
+        anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None;
+    }
     // Update is called once per frame
     void Update()
     {

@@ -8,6 +8,8 @@ public class EEnemyAI : Editor
     SerializedProperty endAction;
     SerializedProperty Locked;
     SerializedProperty reactionOn;
+    SerializedProperty onAction;
+
     SerializedProperty counterOn;
     SerializedProperty Reaction;
     SerializedProperty Counter;
@@ -29,7 +31,7 @@ public class EEnemyAI : Editor
         counterOn = serializedObject.FindProperty("counterOn");
         Reaction = serializedObject.FindProperty("reactionObj");
         Counter = serializedObject.FindProperty("counterObj");
-
+        onAction = serializedObject.FindProperty("onAction");
     }
     public override void OnInspectorGUI()
     {
@@ -48,7 +50,7 @@ public class EEnemyAI : Editor
         EditorGUILayout.PropertyField(counterOn);
         EditorGUILayout.PropertyField(Counter);
         EditorGUILayout.PropertyField(Reaction);
-
+        EditorGUILayout.PropertyField(onAction);
         //if (enemyAI.ActionList == null || enemyAI.ActionList.Length != System.Enum.GetNames(typeof(EnemyAI.BasicAttacks)).Length)
         //{
         //    backUpStats = enemyAI.ActionList;

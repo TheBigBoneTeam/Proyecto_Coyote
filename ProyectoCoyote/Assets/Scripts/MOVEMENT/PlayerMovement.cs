@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
 
-    [Header("Manejo de ca�da")]
+    [Header("Manejo de caida")]
     public float gravity;
     /*
     0: normal
@@ -43,10 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
-    public float jumpForce;
-    public float jumpCooldown;
     public float airSensitity;
-    bool readyToJump;
     #endregion
 
     #region Variables para el dash
@@ -142,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        readyToJump = true;
         animator = GetComponentInChildren<Animator>();
 
         gameInput = GetComponentInParent<GameInput>();
@@ -217,15 +213,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
         //
 
-        computeAnimator();
-
-        if(gameInput.JumpPressed && readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-       
+        computeAnimator();       
     }
     #endregion
 
@@ -245,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-        if (gameInput.attackPressed && canAttack && lockMovement)
+        if (gameInput.AttackPressed && canAttack && lockMovement)
         {
             string attackName = "";
             if (horizontalInput == 0)
@@ -289,28 +277,6 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = sprintSpeed;
             isRunning = true;
         }
-
-        //// Modo gancho
-        //else if (gameInput.HookPressed)
-        //{
-        //    state = MovementState.hooking;
-        //    desiredMoveSpeed = 0f;
-        //    moveSpeed = 0f;
-
-        //    rb.linearVelocity = Vector3.zero;
-        //    rb.angularVelocity = Vector3.zero;
-        //    rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-
-        //    canMove = false;
-        //}
-        //else if (gameInput.HookPressed && state == MovementState.hooking)
-        //{
-        //    // Si se levanta la tecla, se vuelve al modo caminar
-        //    rb.constraints = RigidbodyConstraints.FreezeRotation;
-        //    canMove = true;
-        //    state = MovementState.walking;
-        //    desiredMoveSpeed = walkSpeed;
-        //}
 
         // Modo andar
         else if (grounded)
@@ -377,6 +343,7 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = desiredMoveSpeed;
         Debug.Log("Desactivando el gancho...");
     }
+
     // Codigo para mantener el momentum despues del dash
     private float speedChangeFactor;
 
@@ -402,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // Si está en modo gancho, el personaje NO se mueve
+        // Si está en modo gancho, no se mueve
         if (state == MovementState.hooking)
         {
             rb.linearVelocity = Vector3.zero;
@@ -411,26 +378,29 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float modeSpeed = lockMovement ? moveLockedSpeed : moveSpeed;
-        //// moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        //rb.AddForce(moveDirection.normalized * 10f, ForceMode.Force);
+
         if (canMove)
         {
-            // Para rampas
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * modeSpeed * 20f, ForceMode.Force);
+                // Calcular el ángulo de la pendiente
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
 
+                // Escalar la fuerza según el ángulo (más empinada = menos fuerza hacia arriba)
+                // Pendientes suaves ≈ 1, empinadas ≈ 0.3
+                float slopeMultiplier = Mathf.Lerp(1f, 0.3f, slopeAngle / maxSlopeAngle);
+
+                // Aplica fuerza ajustada por pendiente
+                rb.AddForce(GetSlopeMoveDirection() * modeSpeed * 10f * slopeMultiplier, ForceMode.Force);
+
+                // Evita que el jugador "salte" al bajar rampas
                 if (rb.linearVelocity.y > 0)
-                {
-                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
-                }
+                    rb.AddForce(Vector3.down * 30f, ForceMode.Force);
             }
-
             else if (grounded)
             {
                 rb.AddForce(moveDirection.normalized * modeSpeed * 10f, ForceMode.Force);
             }
-
             else if (!grounded)
             {
                 rb.AddForce(moveDirection.normalized * modeSpeed * 10f * airSensitity, ForceMode.Force);
@@ -473,18 +443,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    private void Jump()
-    {
-        exitingSlope = true;
-
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-    private void ResetJump()
-    {
-        readyToJump = true;
-        exitingSlope = true;
-    }
 
     private bool OnSlope()
     {
@@ -499,7 +457,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 GetSlopeMoveDirection()
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;   // Se normaliza la normal (ya que es una direccion)
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     // Manejo del dash
@@ -581,7 +539,7 @@ public class PlayerMovement : MonoBehaviour
 
     
     // MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.skin.label.fontSize = 30;   // Tama�o de la letra
 
@@ -594,7 +552,7 @@ public class PlayerMovement : MonoBehaviour
 
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
-    }
+    }*/
     
 
     internal void setCanAttack(bool v)
@@ -637,5 +595,12 @@ public class PlayerMovement : MonoBehaviour
         */
     }
 
+    #endregion
+
+    #region Manejo de paredes
+    [SerializeField] private float wallCheckDistance = 0.6f;
+    [SerializeField] private LayerMask wallLayer;
+    private bool isTouchingWall;
+    private Vector3 wallNormal;
     #endregion
 }

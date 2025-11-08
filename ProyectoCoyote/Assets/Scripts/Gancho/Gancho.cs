@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class Gancho : MonoBehaviour
 {
@@ -63,7 +62,7 @@ public class Gancho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameInput.HookPressed) 
+        if (gameInput.HookAimPressed) 
         {
             Debug.Log("Activando el gancho...");
             ActivateTargetHook(); 
@@ -84,23 +83,37 @@ public class Gancho : MonoBehaviour
         // Navegación por los objetos enganchables
         if (selectingHook) { 
         
-            if (gameInput.UpPressed)
+            if (gameInput.Hook_TPPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, true);
-            else if (gameInput.DownPressed)
+            }
+            else if (gameInput.HookDisconfirmPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, false);
-            else if (gameInput.RightPressed)
+            }
+            else if (gameInput.HookSelectRightPressed)
+            {
                 currentTarget = FindDirectionalTarget(true, false);
-            else if (gameInput.LeftPressed)
+            }
+            else if (gameInput.HookSelectLeftPressed)
+            {
                 currentTarget = FindDirectionalTarget(false, false);
+            }
         }
         // Selecionar objeto
-        if (Input.GetMouseButtonDown(0)) SelectTarget();
+        if (gameInput.HookConfirmPressed)
+        {
+            SelectTarget();
+        }
+
         if (isHooked) 
         {
-            if (gameInput.DownPressed)
+            if (gameInput.HookAttractPressed)
                 AtractTarget();
-            else if (gameInput.UpPressed)
+            else if (gameInput.Hook_TPPressed)
+            {
                 GoToTarget();
+            }
         }
     }
 

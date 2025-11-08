@@ -5,6 +5,7 @@ using System.Text;
 namespace BehaviourAPI.BehaviourTrees
 {
     using Core;
+    using System.Diagnostics;
     using System.Reflection;
 
     /// <summary>
@@ -67,6 +68,7 @@ namespace BehaviourAPI.BehaviourTrees
         /// <returns><inheritdoc/></returns>
         protected override Status UpdateStatus()
         {
+            UnityEngine.Debug.LogWarning("UpdateStatusBranch");
             m_SelectedNode.OnUpdated();
             return m_SelectedNode?.Status ?? Status.Failure;
         }
@@ -79,17 +81,26 @@ namespace BehaviourAPI.BehaviourTrees
         protected abstract int SelectBranchIndex();
     }
 
-    public abstract class ReactiveBranchNode : BranchNode
+    public abstract class ReactiveBranchNode : CompositeNode
     {
         int currentNode = -1;
-         public override void OnStarted()
+        bool lastframeUpdated = false;
+        protected BTNode m_SelectedNode;
+        protected abstract int SelectBranchIndex();
+
+        public override void OnStarted()
         {
-            
+            base.OnStarted();
+
+
+            lastframeUpdated = false;
             int branchIndex = SelectBranchIndex();
             if (branchIndex < 0) branchIndex = 0;
             if (branchIndex >= ChildCount) branchIndex = ChildCount - 1;
             m_SelectedNode = GetBTChildAt(branchIndex);
             currentNode = branchIndex;
+            UnityEngine.Debug.LogWarning(m_SelectedNode == null);
+
             m_SelectedNode?.OnStarted();
         }
         protected override Status UpdateStatus()
@@ -97,11 +108,44 @@ namespace BehaviourAPI.BehaviourTrees
             int branchIndex = SelectBranchIndex();
             if (currentNode != branchIndex)
             {
+                m_SelectedNode?.OnStopped();
                 if (branchIndex < 0) branchIndex = 0;
                 if (branchIndex >= ChildCount) branchIndex = ChildCount - 1;
+                currentNode = branchIndex;
                 m_SelectedNode = GetBTChildAt(branchIndex);
+                if(m_SelectedNode.Status == Status.None)
+                m_SelectedNode?.OnStarted();
+
             }
-            return Status.Running;  
+            m_SelectedNode.OnUpdated();
+            lastframeUpdated = true;
+            return m_SelectedNode?.Status ?? Status.Failure;
+            //return Status.Running;  
         }
+        public override void OnPaused()
+        {
+            base.OnPaused();
+            if (lastframeUpdated)
+            {
+                m_SelectedNode?.OnPaused();
+            }
+        }
+        public override void OnStopped()
+        {
+            base.OnStopped();
+            if (lastframeUpdated)
+            {
+                m_SelectedNode?.OnStopped();
+            }
+        }
+        public override void OnUnpaused()
+        {
+            base.OnUnpaused();
+            if (lastframeUpdated)
+            {
+                m_SelectedNode?.OnUnpaused();
+            }
+        }
+
     }
 }

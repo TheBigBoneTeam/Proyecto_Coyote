@@ -16,7 +16,7 @@ public class DoCounter : UnityAction
         if (enemyAI.endAction)
         {
             Debug.Log("success");
-            enemyAI.endActionNode();
+            enemyAI.endReactionCounter();
             return Status.Success;
         }
         return Status.Running;

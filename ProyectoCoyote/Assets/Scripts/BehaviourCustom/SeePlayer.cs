@@ -34,7 +34,6 @@ public class SeePlayer : UnityPerception
     // Called every execution frame.
     public override bool Check()
     {
-        UnityEngine.Debug.Log("SeePlayerSHit");
        return false;
     }
 

@@ -3,6 +3,7 @@ using System;
 namespace BehaviourAPI.BehaviourTrees
 {
     using Core;
+    using System.Diagnostics;
 
     /// <summary>
     /// The base node in the <see cref="BehaviourTree"/>.

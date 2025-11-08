@@ -1,11 +1,11 @@
-﻿using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+﻿/*using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using System;
 using System.Collections;
 using UnityEngine;
 
 namespace tutorial
 {
-    public class firstTutorial: Tutorial
+    public class betaTutorial: Tutorial
     {
 
         EnemyLockOn lockon;
@@ -61,8 +61,8 @@ namespace tutorial
     }
     public class EsquivarTutorial : BaseTutorialState
     {
-        new firstTutorial tutorial;
-        public EsquivarTutorial(firstTutorial _tut)
+        new betaTutorial tutorial;
+        public EsquivarTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
@@ -92,8 +92,8 @@ namespace tutorial
     }
     public class TrueEsquivarTutorial: BaseTutorialState
     {
-        new firstTutorial tutorial;
-        public TrueEsquivarTutorial(firstTutorial _tut)
+        new betaTutorial tutorial;
+        public TrueEsquivarTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
@@ -195,8 +195,8 @@ namespace tutorial
     }
     public class LockearTutorial : BaseTutorialState
     {
-        new firstTutorial tutorial;
-        public LockearTutorial(firstTutorial _tut)
+        new betaTutorial tutorial;
+        public LockearTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
@@ -215,8 +215,8 @@ namespace tutorial
     }
     public class PegarTutorial : BaseTutorialState
     {
-        new firstTutorial tutorial;
-        public PegarTutorial(firstTutorial _tut)
+        new betaTutorial tutorial;
+        public PegarTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
@@ -243,8 +243,8 @@ namespace tutorial
     }
     public class TruePegarTutorial : BaseTutorialState
     {
-        new firstTutorial tutorial;
-        public TruePegarTutorial(firstTutorial _tut)
+        new betaTutorial tutorial;
+        public TruePegarTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
@@ -270,4 +270,4 @@ namespace tutorial
             tutorial.enemy.unSubscribeToLifeChange(enemyHit);
         }
     }
-}
+}*/

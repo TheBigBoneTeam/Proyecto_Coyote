@@ -14,6 +14,13 @@ namespace Services
             ServiceLocator.Instance.Register<IEnemyManager>(new EnemyManager());
 
         }
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.P))
+            {
+                ServiceLocator.Instance.Get<IEnemyManager>().attackingEnemy().printOwner();
+            }
+        }
     }
 }
 

@@ -1,8 +1,16 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    private PlayerControls controls;
+
+    // Ejes de movimiento
+    public float Horizontal { get; private set; }
+    public float Vertical { get; private set; }
+
+    /*
     #region Variables de entrada
     [Header("Controles")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -17,47 +25,93 @@ public class GameInput : MonoBehaviour
     public KeyCode LeftKey = KeyCode.A;
     public KeyCode RightKey = KeyCode.D;
     #endregion
-
-    #region Propiedades publicas
-    // Ejes de movimiento
-    [field: SerializeField] public float Horizontal { get; private set; }
-    [field: SerializeField] public float Vertical { get; private set; }
+    */
 
     // Acciones
-   [field:SerializeField] public bool JumpPressed { get; private set; }
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
-    public bool attackPressed { get; private set; }
-    public bool HookPressed { get; private set; }
-    public bool HookSelectPressed { get; private set; }
     public bool LockPressed { get; private set; }
-
-    public bool UpPressed { get; private set; }
-    public bool DownPressed { get; private set; }
-    public bool LeftPressed { get; private set; }
-    public bool RightPressed { get; private set; }
-    #endregion
+    public bool HookAimPressed { get; private set; }
+    public bool HookConfirmPressed { get; private set; }
+    public bool HookDisconfirmPressed { get; private set; }
+    public bool HookSelectLeftPressed { get; private set; }
+    public bool HookSelectRightPressed { get; private set; }
+    public bool Hook_TPPressed { get; private set; }
+    public bool HookAttractPressed { get; private set; }
+    public bool AttackPressed { get; private set; }
+    public bool EvadePressed { get; private set; }
 
     #region Metodos
-    void Update()
+
+    private void Awake()
     {
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
+        controls = new PlayerControls();
 
-        JumpPressed = Input.GetKeyDown(jumpKey);
-        SprintHeld = Input.GetKey(sprintKey);
-        DashPressed = Input.GetKeyDown(dashKey) || Input.GetMouseButtonDown(1);
+        // --- Movimiento ---
+        controls.Player.Walk.performed += ctx =>
+        {
+            Vector2 input = ctx.ReadValue<Vector2>();
+            Horizontal = input.x;
+            Vertical = input.y;
+        };
+        controls.Player.Walk.canceled += ctx =>
+        {
+            Horizontal = 0;
+            Vertical = 0;
+        };
 
-        attackPressed = Input.GetMouseButtonDown(0);
+        // --- Sprint (mantener) ---
+        controls.Player.Sprint.performed += ctx => SprintHeld = true;
+        controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
-        HookPressed = Input.GetKeyDown(hookKey) || Input.GetMouseButtonDown(2);
-        HookSelectPressed = Input.GetKeyDown(hookSelectKey);
-        LockPressed = Input.GetKeyDown(lockKey);
+        // --- Dash (pulsaci�n) ---
+        controls.Player.Dash.performed += ctx => DashPressed = true;
 
-        UpPressed = Input.GetKeyDown(UpKey);
-        DownPressed = Input.GetKeyDown(DownKey);
-        LeftPressed = Input.GetKeyDown(LeftKey);
-        RightPressed = Input.GetKeyDown(RightKey);
+        // --- Attack (pulsaci�n) ---
+        controls.Player.Attack.performed += ctx => AttackPressed = true;
+
+        // --- Evade (pulsaci�n) ---
+        controls.Player.Evade.performed += ctx => EvadePressed = true;
+
+        // --- Lock (pulsaci�n �nica) ---
+        controls.Player.Lock.performed += ctx => LockPressed = true;
+
+        // --- Gancho (pulsaciones �nicas) ---
+        controls.Player.HookAim.performed += ctx => HookAimPressed = true;
+        controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
+        controls.Player.HookDisconfirm.performed += ctx => HookDisconfirmPressed = true;
+        controls.Player.HookSelectLeft.performed += ctx => HookSelectLeftPressed = true;
+        controls.Player.HookSelectRight.performed += ctx => HookSelectRightPressed = true;
+        controls.Player.Hook_TP.performed += ctx => Hook_TPPressed = true;
+        controls.Player.HookAttract.performed += ctx => HookAttractPressed = true;
+
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    private void LateUpdate()
+    {
+        // Reset autom�tico cada frame (para pulsaci�n �nica)
+        DashPressed = false;
+        AttackPressed = false;
+        EvadePressed = false;
+        LockPressed = false;
+        HookAimPressed = false;
+        HookConfirmPressed = false;
+        HookDisconfirmPressed = false;
+        HookSelectLeftPressed = false;
+        HookSelectRightPressed = false;
+        Hook_TPPressed = false;
+        HookAttractPressed = false;
     }
 
     public Vector2 GetMovementPlayer()

@@ -9,16 +9,30 @@ public class PlayAttackAction : UnityAction
     /// El Scriptable Object del ataque
     /// </summary>
     [SerializeField] string attack;
-
+    public bool idle;
+    EnemyAI enemyAI;
     public override Status Update()
     {
+        if (idle)
+        {
+            enemyAI.endActionNode();
+
+            return Status.Success;
+        }
+        if (!idle && enemyAI.endAction)
+        {
+          //  Debug.Log("success");
+            enemyAI.endActionNode();
+            return Status.Success;
+        }
         return Status.Running;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    public override void Start()
     {
-        context.GameObject.GetComponent<EnemyAI>().LoadAction(attack);
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+       enemyAI.LoadAction(attack);
     }
 
 

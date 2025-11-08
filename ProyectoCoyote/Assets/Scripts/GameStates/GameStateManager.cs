@@ -110,4 +110,14 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
             SetState(GameState.Playing);
         }
     }
+
+    public void startCutscene()
+    {
+        if(currentState!= GameState.Cutscene)
+        {
+            SetState(GameState.Cutscene);
+        }
+    }
+
+   
 }

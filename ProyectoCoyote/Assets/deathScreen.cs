@@ -20,11 +20,12 @@ public class deathScreen : MonoBehaviour
     }
     public void restart()
     {
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-      Services.ServiceLocator.Instance.Get<IGameStateManager>().Restart();
+        anim.Play("fadeOut");
+        Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Services.ServiceLocator.Instance.Get<IGameStateManager>().Restart();
     }
     public void menu()
     {
-        SceneManager.LoadScene(0);
     }
 }

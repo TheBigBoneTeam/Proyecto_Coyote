@@ -1,5 +1,6 @@
 using Services;
 using System;
+using UnityEngine;
 
 public class Player : AGameCharacter
 {
@@ -37,6 +38,8 @@ public class Player : AGameCharacter
         base.Start();
         PerfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+
     }
 
     private void StateChange(object sender, stateData e)
@@ -49,5 +52,11 @@ public class Player : AGameCharacter
                 default: break;
 
         }
+    }
+
+    internal void setSpawnPoint(Vector3 respawnPoint)
+    {
+        print("setSpawnPoint");
+        startPos = respawnPoint;
     }
 }

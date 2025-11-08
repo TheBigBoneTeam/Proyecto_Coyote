@@ -22,7 +22,7 @@ public abstract class AGameCharacter :MonoBehaviour
    protected UnityEvent<AGameCharacter> dieEvent;
     UnityEvent<HitDirections> dodgeAttackEvent;
 
-    Vector3 startPos;
+  [SerializeField] protected Vector3 startPos;
     bool setredUp;
 
     private void Awake()
@@ -88,9 +88,11 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void restart()
     {
+        print("restart" + name);
         if (!setredUp)
         {
             startPos = transform.position;
+            setredUp = true;
         }
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);

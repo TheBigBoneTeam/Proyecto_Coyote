@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,11 @@ using UnityEngine;
 
 public class combatAreaManager : MonoBehaviour
 {
-    [Header("Enemigos")]
+    [Header("Enemigos y Acciones")]
     [SerializeField] Enemy[] startEnemies;
+  [SerializeField]  StoryAction beforeCombatStoryAction;
+    [SerializeField] StoryAction afterCombatStoryAction;
+
     [SerializeField] WaveData[] extraEnemyWaves;
     [Header("Colliders")]
 
@@ -52,7 +56,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -86,18 +90,43 @@ public class combatAreaManager : MonoBehaviour
     }
     public void startArea()
     {
+        FindAnyObjectByType<Player>().setSpawnPoint(respawnPoint.position);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
         currentWave = 0;
         started = true;
         areaColliders.SetActive(true);
-        startWave();
+        if (beforeCombatStoryAction != null)
+        {
+            beforeCombatStoryAction.Execute(() => { startWave(); });
+
+        }
+        else
+        {
+            startWave();
+        }
+
     }
     void startWave()
     {
-        foreach (var enemy in functionalWaveDataList[currentWave].enemies)
+        if (functionalWaveDataList[currentWave].beforeWavestoryAction != null)
         {
-            enemy.activateEnemy();
-            enemy.subscribeToDie(enemyDie);
+            functionalWaveDataList[currentWave].beforeWavestoryAction.Execute(() => {
+                foreach (var enemy in functionalWaveDataList[currentWave].enemies)
+                {
+                    enemy.activateEnemy();
+                    enemy.subscribeToDie(enemyDie);
+                }
+            });
         }
+        else
+        {
+            foreach (var enemy in functionalWaveDataList[currentWave].enemies)
+            {
+                enemy.activateEnemy();
+                enemy.subscribeToDie(enemyDie);
+            }
+        }
+      
     }
     public void restart()
     {
@@ -115,8 +144,21 @@ public class combatAreaManager : MonoBehaviour
     }
     private void areaFinished()
     {
+        if(afterCombatStoryAction != null)
+        {
+            afterCombatStoryAction.Execute(() =>
+            {
+                areaColliders.SetActive(false);
+            });
+        }
+        else
+        {
+            areaColliders.SetActive(false);
+
+        }
+
         // FindAnyObjectByType<winScreen>().Win();
-        areaColliders.SetActive(false);
+
     }
     private void waveFinished()
     {
@@ -157,9 +199,11 @@ public class combatAreaManager : MonoBehaviour
  class WaveData
 {
    public Enemy[] enemies;
-   public WaveData(Enemy[] enemies)
+    public StoryAction beforeWavestoryAction;
+   public WaveData(Enemy[] enemies, StoryAction storyAction )
     {
         Array.Copy(enemies, 0, enemies, 0, enemies.Length);
-        this.enemies = enemies; 
+        this.enemies = enemies;
+        this.beforeWavestoryAction = storyAction;
     }
 }

@@ -22,8 +22,8 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     }
 
     // Update is called once per frame
-   
-   
+
+
     public void startCutscene(PlayableAsset timeline, Action endAction, CutsceneData data)
     {
 
@@ -44,7 +44,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             cutscenPlaying = false;
             SkipingCutscene = true;
             print("SALTANDO CINEMATICA");
-            endAnimation();
+            endCutscene();
             //if (!currentData.isEndLevel)
             //{
 
@@ -58,7 +58,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             //}
         }
     }
-    public void endAnimation()
+    public void endCutscene()
     {
         if (currentData.objectsToTurnOff != null && currentData.objectsToTurnOff.Length > 0)
         {
@@ -99,7 +99,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         //}
         //else
         //{
-            endAnimation();
+        endCutscene();
         //}
     }
 
@@ -112,7 +112,8 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
 
     public void Instantiate()
     {
-        currentData = null;    }
+        currentData = null;
+    }
 }
 public interface IcutsceneManager : IService
 {
@@ -171,6 +172,9 @@ endStoryAction();
                     return;
                 }
                 played=true;
+                Debug.Log(cutsceneData == null);
+                Debug.Log(ServiceLocator.Instance.Get<IcutsceneManager>() == null);
+
                 ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, endStoryAction, cutsceneData);
                 break;
             case StoryActionType.playDialog:

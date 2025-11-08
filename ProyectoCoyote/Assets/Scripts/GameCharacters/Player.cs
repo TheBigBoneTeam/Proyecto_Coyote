@@ -6,6 +6,7 @@ public class Player : AGameCharacter
 {
     IPerfectDodgeManager PerfectDodgeManager;
   public  int storedDamage;
+    PlayerMovement playerMovement;
     public override void Die()
     {
         dieEvent.Invoke(this);
@@ -37,6 +38,7 @@ public class Player : AGameCharacter
     {
         base.Start();
         PerfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
+        playerMovement = GetComponent<PlayerMovement>();    
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
 
@@ -50,7 +52,17 @@ public class Player : AGameCharacter
                 onParry();
                 break;
                 default: break;
+                case GameState.Cutscene:
+                playerMovement.setCanMove(false);
+                playerMovement.setCanAttack(false);
 
+                break;
+
+        }
+        if (e.oldState == GameState.Cutscene)
+        {
+            playerMovement.setCanMove(true);
+            playerMovement.setCanAttack(true);
         }
     }
 

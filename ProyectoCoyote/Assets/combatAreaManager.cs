@@ -38,6 +38,8 @@ public class combatAreaManager : MonoBehaviour
     [SerializeField] bool started;
 
     EnemyLockOn lockOn;
+
+    IGameStateManager gameStateManager;
     private void OnTriggerEnter(Collider other)
     {
         print("trigger"+other.gameObject.name);
@@ -50,6 +52,10 @@ public class combatAreaManager : MonoBehaviour
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Start()
+    {
+        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+    }
     void Awake()
     {
         _player = FindAnyObjectByType<Player>();
@@ -91,26 +97,32 @@ public class combatAreaManager : MonoBehaviour
     public void startArea()
     {
         FindAnyObjectByType<Player>().setSpawnPoint(respawnPoint.position);
-        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+        gameStateManager.subscribeToRestart(restart);
         currentWave = 0;
         started = true;
         areaColliders.SetActive(true);
         if (beforeCombatStoryAction != null)
         {
-            beforeCombatStoryAction.Execute(() => { startWave(); });
+            beforeCombatStoryAction.Execute(() =>
+            {
+                AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
+                gameStateManager.startCombat(); startWave();
+            });
 
         }
         else
         {
+            AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
+            gameStateManager.startCombat();
             startWave();
         }
-
     }
     void startWave()
     {
         if (functionalWaveDataList[currentWave].beforeWavestoryAction != null)
         {
             functionalWaveDataList[currentWave].beforeWavestoryAction.Execute(() => {
+                gameStateManager.startCombat();
                 foreach (var enemy in functionalWaveDataList[currentWave].enemies)
                 {
                     enemy.activateEnemy();
@@ -146,6 +158,7 @@ public class combatAreaManager : MonoBehaviour
     {
         if(afterCombatStoryAction != null)
         {
+            gameStateManager.startCombat();
             afterCombatStoryAction.Execute(() =>
             {
                 areaColliders.SetActive(false);

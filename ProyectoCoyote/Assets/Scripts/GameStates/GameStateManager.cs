@@ -119,5 +119,11 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         }
     }
 
-   
+    public void startCombat()
+    {
+        if (currentState != GameState.Playing && currentState != GameState.SlowDown)
+        {
+            SetState(GameState.Playing);
+        }
+    }
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
 {
-    private GameInput gameInput;
 
     [SerializeField] LayerMask targetLayers;
     Transform enemyTarget_Locator;
@@ -41,7 +40,6 @@ public class EnemyLockOn : MonoBehaviour
         CamControl = FindAnyObjectByType<CameraController>();
         hook = FindAnyObjectByType<Gancho>();
 
-        gameInput = FindAnyObjectByType<GameInput>();
         lockOnCanvas = GameObject.Find("LockOnCanvas").transform;
         enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
         movement = GetComponent<PlayerMovement>();

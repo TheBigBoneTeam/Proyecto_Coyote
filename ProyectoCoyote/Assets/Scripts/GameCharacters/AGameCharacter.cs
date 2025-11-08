@@ -23,7 +23,7 @@ public abstract class AGameCharacter :MonoBehaviour
     UnityEvent<HitDirections> dodgeAttackEvent;
 
   [SerializeField] protected Vector3 startPos;
-    bool setredUp;
+
 
     private void Awake()
     {
@@ -36,7 +36,6 @@ public abstract class AGameCharacter :MonoBehaviour
     protected virtual void Start()
     {
         startPos = transform.position;
-        setredUp = true;
     }
     public virtual void getHit(int damage,bool crit = false)
     {
@@ -89,14 +88,11 @@ public abstract class AGameCharacter :MonoBehaviour
     public virtual void restart()
     {
         print("restart" + name);
-        if (!setredUp)
-        {
-            startPos = transform.position;
-            setredUp = true;
-        }
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);
         transform.position = startPos;
+        print("restartposition" + name + startPos+transform.position);
+
     }
 
     public abstract void Die();

@@ -126,4 +126,20 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
             SetState(GameState.Playing);
         }
     }
+
+    public void startDialog()
+    {
+        if (currentState == GameState.Playing)
+        {
+            SetState(GameState.Dialog);
+        }
+    }
+
+    public void endDialog()
+    {
+        if (currentState == GameState.Dialog)
+        {
+            SetState(GameState.Playing);
+        }
+    }
 }

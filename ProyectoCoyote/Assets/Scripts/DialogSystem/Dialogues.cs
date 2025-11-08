@@ -18,6 +18,7 @@ public class Dialogues : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.05f;
     [SerializeField] private float WaitSpeed = 2f;
     [SerializeField] private UnityEngine.UI.Image dialogueImage;
+    Action action1 = null;
     private bool isTyping = false;
     private bool isWaitingAfterSkip = false;
 
@@ -46,16 +47,18 @@ public class Dialogues : MonoBehaviour
 
 
     #region Funciones Accesibles de DialogueSystem
-    public void StartDialogue(string startingLine) 
+    public void StartDialogue(string startingLine, Action action) 
     {
         LoadDialogues();
         currentKeyIndex = dialogueKeys.IndexOf(startingLine);
         currentPrefix = GetPrefix(startingLine);
         ShowText(dialogueKeys[currentKeyIndex]);
         UIText.gameObject.SetActive(true);
+        action1 = action;   
     }
     public void DialogueEnd()
     {
+        action1?.Invoke();
         UIText.gameObject.SetActive(false);
         Debug.Log("Fin del Diálogo");
     }

@@ -1,8 +1,10 @@
+using Services;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
     [SerializeField] string startingLine;
+    [SerializeField] StoryAction action;
     Dialogues dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +19,7 @@ public class NPC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Comenzando Dialogo..");
-            dialogue.StartDialogue(startingLine);
+            dialogue.StartDialogue(startingLine, () => action.Execute(null));
         }
     }
 }

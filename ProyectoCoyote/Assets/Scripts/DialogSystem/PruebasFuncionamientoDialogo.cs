@@ -13,16 +13,16 @@ public class PruebasFuncionamientoDialogo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T)) 
-        {
-            Debug.Log("Comenzando Dialogo..");
-            dialogue.StartDialogue("Escena1_1");
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            dialogue.DialogueEnd();
-            Debug.Log("Comenzando Dialogo..");
-            dialogue.StartDialogue("anchoa_1");
-        }
+        //if(Input.GetKeyDown(KeyCode.T)) 
+        //{
+        //    Debug.Log("Comenzando Dialogo..");
+        //    dialogue.StartDialogue("Escena1_1");
+        //}
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    dialogue.DialogueEnd();
+        //    Debug.Log("Comenzando Dialogo..");
+        //    dialogue.StartDialogue("anchoa_1");
+        //}
     }
 }

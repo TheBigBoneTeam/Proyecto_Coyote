@@ -172,8 +172,7 @@ endStoryAction();
                     return;
                 }
                 played=true;
-                Debug.Log(cutsceneData == null);
-                Debug.Log(ServiceLocator.Instance.Get<IcutsceneManager>() == null);
+            
 
                 ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, endStoryAction, cutsceneData);
                 break;

@@ -68,7 +68,6 @@ namespace BehaviourAPI.BehaviourTrees
         /// <returns><inheritdoc/></returns>
         protected override Status UpdateStatus()
         {
-            UnityEngine.Debug.LogWarning("UpdateStatusBranch");
             m_SelectedNode.OnUpdated();
             return m_SelectedNode?.Status ?? Status.Failure;
         }
@@ -99,7 +98,6 @@ namespace BehaviourAPI.BehaviourTrees
             if (branchIndex >= ChildCount) branchIndex = ChildCount - 1;
             m_SelectedNode = GetBTChildAt(branchIndex);
             currentNode = branchIndex;
-            UnityEngine.Debug.LogWarning(m_SelectedNode == null);
 
             m_SelectedNode?.OnStarted();
         }

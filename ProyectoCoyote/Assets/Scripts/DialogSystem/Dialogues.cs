@@ -13,7 +13,6 @@ public class Dialogues : MonoBehaviour
     private Dictionary<string, DialogueLine> DialogueHash;
     private List<string> dialogueKeys;
     private int currentKeyIndex = 0;
-    public string startingLine = "1";
     private Coroutine typingCoroutine;
     [SerializeField] private float typingSpeed = 0.05f;
     [SerializeField] private float WaitSpeed = 2f;

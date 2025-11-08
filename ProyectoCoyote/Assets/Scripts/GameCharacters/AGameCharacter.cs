@@ -41,7 +41,7 @@ public abstract class AGameCharacter :MonoBehaviour
     public virtual void getHit(int damage,bool crit = false)
     {
         HealthPoint -= damage;
-        print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
+        //print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
         lifeUpdate.Invoke(HealthPoint);
 
         if (HealthPoint <= 0)

@@ -13,6 +13,8 @@ public interface IGameStateManager : IService
     public void Restart();
     public void startCutscene();
 
+    public void startCombat();
+
    // public void endCutscene();
 
 

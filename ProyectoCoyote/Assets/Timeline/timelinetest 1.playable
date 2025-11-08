@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7431243313860136509
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fb417bb337dfa4595ebd46863bd161, type: 3}
-  m_Name: DialogueClip(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  dialogText: "<color=\"green\">SOMOS LOS HOMBRES PLANTA.\nY TE VAMOS A CAGAR A PI\xD1AS"
-  leaveTime: 1
-  startChars: 24
-  startCharsList: 
-  width: 1000
-  personaje: 0
 --- !u!114 &-4976828603874803690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -30,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 11.633333333333333
+  m_Time: 7.85
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 7a3f140909ac025499db9fcffd2a5f62, type: 2}
@@ -46,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fb417bb337dfa4595ebd46863bd161, type: 3}
   m_Name: DialogueClip
   m_EditorClassIdentifier: 
-  dialogText: "Que bien me lo paso por este pac\xEDfico desierto"
+  dialogText: Menos mal que les mate a todos
   leaveTime: 1
   startChars: 0
   startCharsList: 
@@ -74,10 +56,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 4.3
+    m_Start: 3.4833333333333334
     m_ClipIn: 0
     m_Asset: {fileID: 4966315638317386027}
-    m_Duration: 2.9000000000000004
+    m_Duration: 2.866666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2146405454586084308}
     m_EaseInDuration: 0
@@ -107,7 +89,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: DialogueClip
   - m_Version: 1
-    m_Start: 9.983333333333333
+    m_Start: 6.5
     m_ClipIn: 0
     m_Asset: {fileID: 5540698791672260727}
     m_Duration: 1.200000000000001
@@ -143,7 +125,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -4743742195510961737}
-    m_Duration: 4
+    m_Duration: 3.2333333333333334
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2146405454586084308}
     m_EaseInDuration: 0
@@ -171,39 +153,6 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: DialogueClip
-  - m_Version: 1
-    m_Start: 7.2
-    m_ClipIn: 0
-    m_Asset: {fileID: -7431243313860136509}
-    m_Duration: 2.4333333333333327
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: -2146405454586084308}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -259,7 +208,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: timelinetest
+  m_Name: timelinetest 1
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks:
@@ -283,11 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fb417bb337dfa4595ebd46863bd161, type: 3}
   m_Name: DialogueClip(Clone)(Clone)
   m_EditorClassIdentifier: 
-  dialogText: <color="green">SOMOS LOS HOMBRES PLANTA.</b>
+  dialogText: <color="green">TAMBIEN SOMOS LOS HOMBRES PLANTA.</b>
   leaveTime: 1
   startChars: 0
   startCharsList: 
-  width: 1000
+  width: 1100
   personaje: 0
 --- !u!114 &5540698791672260727
 MonoBehaviour:

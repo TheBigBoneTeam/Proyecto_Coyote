@@ -31,13 +31,16 @@ public class combatAreaManager : MonoBehaviour
     //Los enemigos 
     List<WaveData> functionalWaveDataList;
 
-    int currentWave;
+    int currentWaveIndex;
+    WaveData currentWaveData;
     Player _player;
 
 
     [SerializeField] bool started;
 
     EnemyLockOn lockOn;
+
+    IGameStateManager gameStateManager;
     private void OnTriggerEnter(Collider other)
     {
         print("trigger"+other.gameObject.name);
@@ -50,13 +53,17 @@ public class combatAreaManager : MonoBehaviour
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Start()
+    {
+        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+    }
     void Awake()
     {
         _player = FindAnyObjectByType<Player>();
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -91,27 +98,38 @@ public class combatAreaManager : MonoBehaviour
     public void startArea()
     {
         FindAnyObjectByType<Player>().setSpawnPoint(respawnPoint.position);
-        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
-        currentWave = 0;
+        gameStateManager.subscribeToRestart(restart);
+        currentWaveIndex = 0;
         started = true;
         areaColliders.SetActive(true);
+        foreach(Transform child in areaColliders.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
         if (beforeCombatStoryAction != null)
         {
-            beforeCombatStoryAction.Execute(() => { startWave(); });
+            beforeCombatStoryAction.Execute(() =>
+            {
+                AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
+                gameStateManager.startCombat(); startWave();
+            });
 
         }
         else
         {
+            AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
+            gameStateManager.startCombat();
             startWave();
         }
-
     }
     void startWave()
     {
-        if (functionalWaveDataList[currentWave].beforeWavestoryAction != null)
+        currentWaveData = functionalWaveDataList[currentWaveIndex];
+        if (currentWaveData.beforeWavestoryAction != null)
         {
-            functionalWaveDataList[currentWave].beforeWavestoryAction.Execute(() => {
-                foreach (var enemy in functionalWaveDataList[currentWave].enemies)
+            currentWaveData.beforeWavestoryAction.Execute(() => {
+                gameStateManager.startCombat();
+                foreach (var enemy in currentWaveData.enemies)
                 {
                     enemy.activateEnemy();
                     enemy.subscribeToDie(enemyDie);
@@ -120,7 +138,7 @@ public class combatAreaManager : MonoBehaviour
         }
         else
         {
-            foreach (var enemy in functionalWaveDataList[currentWave].enemies)
+            foreach (var enemy in currentWaveData.enemies)
             {
                 enemy.activateEnemy();
                 enemy.subscribeToDie(enemyDie);
@@ -130,7 +148,7 @@ public class combatAreaManager : MonoBehaviour
     }
     public void restart()
     {
-        currentWave = 0;
+        currentWaveIndex = 0;
         int i = 0;
         foreach (var wave in functionalWaveDataList)
         {
@@ -140,12 +158,18 @@ public class combatAreaManager : MonoBehaviour
             }
             i++;
         }
+        foreach(WaveCaller waveCaller in GetComponentsInChildren<WaveCaller>())
+        {
+            waveCaller.restart();
+        }
         startArea();
     }
     private void areaFinished()
     {
+        currentWaveData = null;
         if(afterCombatStoryAction != null)
         {
+            gameStateManager.startCombat();
             afterCombatStoryAction.Execute(() =>
             {
                 areaColliders.SetActive(false);
@@ -163,12 +187,29 @@ public class combatAreaManager : MonoBehaviour
     private void waveFinished()
     {
         deadEnemies.Clear();
-        currentWave++;
-        if(currentWave == functionalWaveDataList.Count)
+        currentWaveIndex++;
+      
+        if (currentWaveIndex == functionalWaveDataList.Count)
         {
             areaFinished();
         }
         else
+        {
+            currentWaveData = functionalWaveDataList[currentWaveIndex];
+            if (currentWaveData.colliderTurnOffBefore)
+            {
+                currentWaveData.colliderTurnOffBefore.SetActive(false);
+            }
+            if (currentWaveData.autoStart)
+            {
+                startWave();
+            }
+        }
+    }
+
+    public void startWaveExternal(int wave)
+    {
+        if(currentWaveIndex == wave)
         {
             startWave();
         }
@@ -198,12 +239,17 @@ public class combatAreaManager : MonoBehaviour
 [System.Serializable]
  class WaveData
 {
+
    public Enemy[] enemies;
+    public bool autoStart;
     public StoryAction beforeWavestoryAction;
-   public WaveData(Enemy[] enemies, StoryAction storyAction )
+    public GameObject colliderTurnOffBefore;
+   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore)
     {
-        Array.Copy(enemies, 0, enemies, 0, enemies.Length);
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
+        this.autoStart = autoStart;
+        this.colliderTurnOffBefore = colliderTurnOffBefore;
+            
     }
 }

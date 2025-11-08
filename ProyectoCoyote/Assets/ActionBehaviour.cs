@@ -15,7 +15,7 @@ public class ActionBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
-        Debug.Log("setOnAction " + DebugName + true);
+     //   Debug.Log("setOnAction " + DebugName + true);
 
         enemyAI.setOnAction(true);
         enemyAI.setReaction(false);
@@ -37,7 +37,7 @@ public class ActionBehaviour : StateMachineBehaviour
         
         if (!isIdle)
         {
-         Debug.Log("EndAction"+DebugName);
+       //  Debug.Log("EndAction"+DebugName);
             if (lastAttackInAction)
             {
                 enemyAI.endCurrentAction(actionValue);

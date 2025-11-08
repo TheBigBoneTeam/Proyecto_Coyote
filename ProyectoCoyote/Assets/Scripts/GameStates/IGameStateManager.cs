@@ -13,9 +13,14 @@ public interface IGameStateManager : IService
     public void Restart();
     public void startCutscene();
 
+    public void startDialog();
+
+    public void endDialog();
+
     public void startCombat();
 
-   // public void endCutscene();
+
+    // public void endCutscene();
 
 
     public void subscribeToStateChange(EventHandler<stateData> response);

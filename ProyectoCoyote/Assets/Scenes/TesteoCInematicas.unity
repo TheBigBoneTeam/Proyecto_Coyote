@@ -669,6 +669,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!136 &129154175
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3588,6 +3589,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 1
 --- !u!195 &686264753
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10011,6 +10013,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!136 &1612371377
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10194,6 +10197,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 1
 --- !u!136 &1616074775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10413,6 +10417,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!136 &1621850738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10778,6 +10783,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 1
 --- !u!195 &1727477091
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12933,6 +12939,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!136 &1967175786
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14148,6 +14155,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1703951339}
     m_Modifications:
+    - target: {fileID: 521909176474050532, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
+      propertyPath: ActiveBeforeFight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3991022944688306296, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
       propertyPath: m_Name
       value: Enemigo
@@ -14962,6 +14973,14 @@ PrefabInstance:
       propertyPath: 'startEnemies.Array.data[1]'
       value: 
       objectReference: {fileID: 1616074774}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: afterCombatStoryAction.playOnRestart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: beforeCombatStoryAction.playOnRestart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'extraEnemyWaves.Array.data[0].enemies.Array.data[0]'
       value: 

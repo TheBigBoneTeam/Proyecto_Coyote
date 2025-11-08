@@ -6,6 +6,7 @@ using UnityEngine;
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
 {
+
     [SerializeField] LayerMask targetLayers;
     Transform enemyTarget_Locator;
     public Transform currentTarget = null;

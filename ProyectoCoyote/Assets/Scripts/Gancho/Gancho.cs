@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
@@ -30,6 +30,7 @@ public class Gancho : MonoBehaviour
     GameObject player;
     CameraController CamControl;
     Transform HookCanvas;
+
     
     public bool selectingHook;
     public bool isHooked;
@@ -44,6 +45,9 @@ public class Gancho : MonoBehaviour
         HookCanvas = GameObject.Find("HookCanvas").transform;
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
+
+
+
         HookCanvas.gameObject.SetActive(false);
         if (Camera.main != null)
         {

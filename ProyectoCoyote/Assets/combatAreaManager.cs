@@ -48,7 +48,8 @@ public class combatAreaManager : MonoBehaviour
         {
             if (!started)
             {
-                restart();
+                startArea();
+
             }
         }
     }
@@ -56,6 +57,9 @@ public class combatAreaManager : MonoBehaviour
     private void Start()
     {
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+        gameStateManager.subscribeToRestart(restart);
+        restart();
+
     }
     void Awake()
     {
@@ -99,7 +103,9 @@ public class combatAreaManager : MonoBehaviour
     {
         FindAnyObjectByType<Player>().setSpawnPoint(respawnPoint.position);
         gameStateManager.subscribeToRestart(restart);
+
         currentWaveIndex = 0;
+        deadEnemies.Clear();
         started = true;
         areaColliders.SetActive(true);
         foreach(Transform child in areaColliders.transform)
@@ -131,7 +137,7 @@ public class combatAreaManager : MonoBehaviour
                 gameStateManager.startCombat();
                 foreach (var enemy in currentWaveData.enemies)
                 {
-                    enemy.activateEnemy();
+                    enemy.activateEnemy(true);
                     enemy.subscribeToDie(enemyDie);
                 }
             });
@@ -140,7 +146,7 @@ public class combatAreaManager : MonoBehaviour
         {
             foreach (var enemy in currentWaveData.enemies)
             {
-                enemy.activateEnemy();
+                enemy.activateEnemy(true);
                 enemy.subscribeToDie(enemyDie);
             }
         }
@@ -148,13 +154,19 @@ public class combatAreaManager : MonoBehaviour
     }
     public void restart()
     {
+        started = false;
         currentWaveIndex = 0;
         int i = 0;
         foreach (var wave in functionalWaveDataList)
         {
             foreach(var enemy in wave.enemies)
             {
+                
                 enemy.restart();
+                if (i > 0)
+                {
+                    enemy.activateEnemy(false);
+                }
             }
             i++;
         }
@@ -162,7 +174,6 @@ public class combatAreaManager : MonoBehaviour
         {
             waveCaller.restart();
         }
-        startArea();
     }
     private void areaFinished()
     {

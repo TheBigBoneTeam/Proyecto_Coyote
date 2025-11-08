@@ -7,9 +7,14 @@ public class Player : AGameCharacter
     IPerfectDodgeManager PerfectDodgeManager;
   public  int storedDamage;
     PlayerMovement playerMovement;
+    EnemyLockOn lockOn;
+
     public override void Die()
     {
+       // gameObject.SetActive(false);
         dieEvent.Invoke(this);
+        playerMovement.setCanAttack(false);
+        playerMovement.setCanMove(false);
         print("PERDISTE");
     }
     public override bool isOtherTeam(AGameCharacter character)
@@ -34,14 +39,25 @@ public class Player : AGameCharacter
         getHealed(storedDamage);
         storedDamage = 0;
     }
+    public override void restart()
+
+    {
+        gameObject.SetActive(true);
+        base.restart();
+        playerMovement.setCanAttack(true);
+        playerMovement.setCanMove(true);
+        lockOn.ResetTarget();
+
+    }
     protected override void Start()
     {
+
         base.Start();
         PerfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         playerMovement = GetComponent<PlayerMovement>();    
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
-
+        lockOn = GetComponent<EnemyLockOn>();
     }
 
     private void StateChange(object sender, stateData e)

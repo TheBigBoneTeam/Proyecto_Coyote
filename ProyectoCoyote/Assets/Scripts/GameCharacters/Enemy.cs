@@ -1,9 +1,13 @@
 using System;
 using System.Diagnostics;
+using UnityEngine;
 
 public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
+    [SerializeField] bool ActiveBeforeFight;
+    bool setredUp;
+
     public override void Die()
     {
         dieEvent?.Invoke(this);
@@ -22,12 +26,19 @@ public class Enemy : AGameCharacter
     }
     public override void restart()
     {
+        if (!setredUp)
+        {
+            startPos = transform.position;
+            setredUp = true;
+        }
         base.restart();
-        
+        gameObject.SetActive(ActiveBeforeFight);
+        GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
+
     }
-    public void activateEnemy()
+    public void activateEnemy(bool active)
     {
-        gameObject.SetActive(true);
-        GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
+        gameObject.SetActive(ActiveBeforeFight ? true:active);
+        GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
     }
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,13 @@ public class GameInput : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode dashKey = KeyCode.LeftControl;
     public KeyCode hookKey = KeyCode.E;
+    public KeyCode hookSelectKey = KeyCode.Mouse0;
+    public KeyCode lockKey = KeyCode.Q;
+
+    public KeyCode UpKey = KeyCode.W;
+    public KeyCode DownKey = KeyCode.S;
+    public KeyCode LeftKey = KeyCode.A;
+    public KeyCode RightKey = KeyCode.D;
     #endregion
     */
 
@@ -56,19 +64,19 @@ public class GameInput : MonoBehaviour
         controls.Player.Sprint.performed += ctx => SprintHeld = true;
         controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
-        // --- Dash (pulsación) ---
+        // --- Dash (pulsaciï¿½n) ---
         controls.Player.Dash.performed += ctx => DashPressed = true;
 
-        // --- Attack (pulsación) ---
+        // --- Attack (pulsaciï¿½n) ---
         controls.Player.Attack.performed += ctx => AttackPressed = true;
 
-        // --- Evade (pulsación) ---
+        // --- Evade (pulsaciï¿½n) ---
         controls.Player.Evade.performed += ctx => EvadePressed = true;
 
-        // --- Lock (pulsación única) ---
+        // --- Lock (pulsaciï¿½n ï¿½nica) ---
         controls.Player.Lock.performed += ctx => LockPressed = true;
 
-        // --- Gancho (pulsaciones únicas) ---
+        // --- Gancho (pulsaciones ï¿½nicas) ---
         controls.Player.HookAim.performed += ctx => HookAimPressed = true;
         controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
         controls.Player.HookDisconfirm.performed += ctx => HookDisconfirmPressed = true;
@@ -92,7 +100,7 @@ public class GameInput : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Reset automático cada frame (para pulsación única)
+        // Reset automï¿½tico cada frame (para pulsaciï¿½n ï¿½nica)
         DashPressed = false;
         AttackPressed = false;
         EvadePressed = false;

@@ -11,15 +11,29 @@ public interface IGameStateManager : IService
 
     public void Die();
     public void Restart();
+    public void startCutscene();
+
+    public void startDialog();
+
+    public void endDialog();
+
+    public void startCombat();
+
+
+    // public void endCutscene();
+
 
     public void subscribeToStateChange(EventHandler<stateData> response);
     public void unSubscribeToStateChange(EventHandler<stateData> response);
+    public void subscribeToRestart(Action response);
+
+    public void unSubscribeToRestart(Action response);
 }
 public enum GameState
 {
     Playing,
     Paused,
-    Cinematic,
+    Cutscene,
     Dialog,
     SlowDown,
     DeathScreen

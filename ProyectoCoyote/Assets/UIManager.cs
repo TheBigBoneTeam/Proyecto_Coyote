@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.Paused:
                 break;
-            case GameState.Cinematic:
+            case GameState.Cutscene:
                 break;
             case GameState.Dialog:
                 break;

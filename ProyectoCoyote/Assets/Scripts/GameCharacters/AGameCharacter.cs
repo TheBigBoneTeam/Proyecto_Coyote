@@ -22,8 +22,8 @@ public abstract class AGameCharacter :MonoBehaviour
    protected UnityEvent<AGameCharacter> dieEvent;
     UnityEvent<HitDirections> dodgeAttackEvent;
 
-    Vector3 startPos;
-    bool setredUp;
+  [SerializeField] protected Vector3 startPos;
+
 
     private void Awake()
     {
@@ -36,12 +36,11 @@ public abstract class AGameCharacter :MonoBehaviour
     protected virtual void Start()
     {
         startPos = transform.position;
-        setredUp = true;
     }
     public virtual void getHit(int damage,bool crit = false)
     {
         HealthPoint -= damage;
-        print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
+        //print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
         lifeUpdate.Invoke(HealthPoint);
 
         if (HealthPoint <= 0)
@@ -88,13 +87,12 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void restart()
     {
-        if (!setredUp)
-        {
-            startPos = transform.position;
-        }
+        print("restart" + name);
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);
         transform.position = startPos;
+        print("restartposition" + name + startPos+transform.position);
+
     }
 
     public abstract void Die();

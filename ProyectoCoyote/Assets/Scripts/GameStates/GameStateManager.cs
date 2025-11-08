@@ -110,4 +110,36 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
             SetState(GameState.Playing);
         }
     }
+
+    public void startCutscene()
+    {
+        if(currentState!= GameState.Cutscene)
+        {
+            SetState(GameState.Cutscene);
+        }
+    }
+
+    public void startCombat()
+    {
+        if (currentState != GameState.Playing && currentState != GameState.SlowDown)
+        {
+            SetState(GameState.Playing);
+        }
+    }
+
+    public void startDialog()
+    {
+        if (currentState == GameState.Playing)
+        {
+            SetState(GameState.Dialog);
+        }
+    }
+
+    public void endDialog()
+    {
+        if (currentState == GameState.Dialog)
+        {
+            SetState(GameState.Playing);
+        }
+    }
 }

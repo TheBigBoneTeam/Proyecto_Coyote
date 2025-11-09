@@ -50,7 +50,7 @@ public class RunForCoverAction : UnityAction
         {
             return Status.None;
         }
-       // Debug.Log(agent.remainingDistance);
+        Debug.Log(agent.remainingDistance);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -86,7 +86,7 @@ public class RunForCoverAction : UnityAction
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         agent = context.GameObject.GetComponent<NavMeshAgent>();
-       coverObj = GameObject.FindAnyObjectByType<combatAreaManager>().getCoverSpot(out Vector3 hidePosition);
+       coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(out Vector3 hidePosition);
         if (coverObj != null)
         {
             UnityEngine.Debug.Log(hidePosition);

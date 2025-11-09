@@ -163,12 +163,11 @@ public class StoryAction
         switch (actionType)
         {
             case StoryActionType.changeScene:
-                throw new NotImplementedException();
                 break;
             case StoryActionType.startCutscene:
                 if (!playOnRestart && played)
                 {
-endStoryAction();
+                    endStoryAction();
                     return;
                 }
                 played=true;
@@ -186,7 +185,11 @@ endStoryAction();
                 Debug.Log($"PimpumDialogo{nameKey}");
                 endStoryAction();
                 break;
-            case StoryActionType.continueGameplay:
+            case StoryActionType.continueNonCombatGameplay:
+                ServiceLocator.Instance.Get<IGameStateManager>().startNonCombatGameplay();
+endStoryAction();
+                break;
+            case StoryActionType.nothing:
                 endStoryAction();
                 break;
         }
@@ -202,6 +205,7 @@ public enum StoryActionType
     changeScene,
     startCutscene,
     playDialog,
-    continueGameplay
+    continueNonCombatGameplay,
+    nothing
 
 }

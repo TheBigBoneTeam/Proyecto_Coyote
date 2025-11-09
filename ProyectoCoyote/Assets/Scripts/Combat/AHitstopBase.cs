@@ -31,7 +31,7 @@ public abstract class AHitstopBase :MonoBehaviour
         for (int i = 0; i < x; i++)
         {
 
-            yield return new WaitUntil(() => _gameStateManager.getState() == GameState.Playing);
+            yield return new WaitUntil(() => _gameStateManager.getState() == GameState.Combat);
             yield return new WaitForSecondsRealtime(duration / x);
 
         }

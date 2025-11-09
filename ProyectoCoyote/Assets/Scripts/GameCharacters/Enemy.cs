@@ -6,6 +6,7 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
+    public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
 
     public override void Die()
@@ -24,6 +25,10 @@ public class Enemy : AGameCharacter
     {
         base.getHit(damage, crit);
     }
+    public void setArea(combatAreaManager combatArea)
+    {
+        CombatArea =combatArea;
+    }
     public override void restart()
     {
         if (!setredUp)
@@ -32,6 +37,7 @@ public class Enemy : AGameCharacter
             setredUp = true;
         }
         base.restart();
+        print(name);
         gameObject.SetActive(ActiveBeforeFight);
         GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
 

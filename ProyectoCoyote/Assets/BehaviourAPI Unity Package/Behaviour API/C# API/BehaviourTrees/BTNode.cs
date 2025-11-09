@@ -111,7 +111,7 @@ namespace BehaviourAPI.BehaviourTrees
             
             if (Status == Status.None)
                 throw new ExecutionStatusException(this, "ERROR: This node is already been stopped");
-            UnityEngine.Debug.Log("StopNode");
+           // UnityEngine.Debug.Log("StopNode");
             LastExecutionStatus = Status;
             Status = Status.None;
         }

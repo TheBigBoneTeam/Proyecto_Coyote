@@ -58,8 +58,8 @@ namespace tutorial
             machine.AddTransition(truePegarTutorial, ataqueP2, new FuncPredicate(() =>currentHits >= objectiveHits));
             machine.AddTransition(ataqueP2, esquiPerfP1, new FuncPredicate(() => changeTutWait == true));
             machine.AddTransition(esquiPerfP1, esquiPerfP2, new FuncPredicate(() => changeTutWait == true));
-            machine.AddTransition(ataquep1, truePegarTutorial, new FuncPredicate(() => currentEsqPerf == 1));
-            machine.AddTransition(truePegarTutorial, ataqueP2, new FuncPredicate(() => currentEsqPerf >= objectiveEsqPerf));
+            //machine.AddTransition(ataquep1, truePegarTutorial, new FuncPredicate(() => currentEsqPerf == 1));
+            //machine.AddTransition(truePegarTutorial, ataqueP2, new FuncPredicate(() => currentEsqPerf >= objectiveEsqPerf));
 
 
 

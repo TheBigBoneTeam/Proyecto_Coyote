@@ -128,17 +128,16 @@ namespace BehaviourAPI.StateMachines
             if (Status == Status.Running)
             {
                 Status actionResults = Action?.Update() ?? Status.Running;
-                if (Status == Status.None)
-                {
-                    UnityEngine.Debug.Log("CancelledAction");
-                    return;
-                }
                 if (actionResults != Status.Running)
                 {
                     Action?.Stop();
                     _isActionRunning = false;
                 }
-               
+                if (Status == Status.None)
+                {
+                    UnityEngine.Debug.Log("CancelledAction");
+                    return;
+                }
                 Status = actionResults;
                 
                 //if ((BehaviourGraph as FSM) != null && (BehaviourGraph as FSM).IsCurrentState(this))

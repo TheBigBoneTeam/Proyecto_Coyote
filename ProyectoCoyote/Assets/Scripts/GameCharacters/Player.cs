@@ -11,7 +11,11 @@ public class Player : AGameCharacter
 
     public override void Die()
     {
-       // gameObject.SetActive(false);
+        playerMovement.enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+
+        // gameObject.SetActive(false);
         dieEvent.Invoke(this);
         playerMovement.setCanAttack(false);
         playerMovement.setCanMove(false);
@@ -43,7 +47,11 @@ public class Player : AGameCharacter
 
     {
         gameObject.SetActive(true);
+        playerMovement.enabled = false;
         base.restart();
+        playerMovement.enabled = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+
         playerMovement.setCanAttack(true);
         playerMovement.setCanMove(true);
         lockOn.ResetTarget();

@@ -12,15 +12,16 @@ public class EnemyManager: IEnemyManager
     {
         enemyClassMutex = new ClassMutex<EnemyAI>();
         attackingEnemy = new ClassMutex<EnemyAI>();
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(()=>attackingEnemy.clearMutex());
     }
 
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
 
-    ClassMutex<EnemyAI> IEnemyManager.enemyClassMutex() => enemyClassMutex;
+ //   ClassMutex<EnemyAI> IEnemyManager.enemyClassMutex() => enemyClassMutex;
 }
 public interface IEnemyManager:IService
 {
-    ClassMutex<EnemyAI> enemyClassMutex();
+   // ClassMutex<EnemyAI> enemyClassMutex();
     ClassMutex<EnemyAI> attackingEnemy();
 
    
@@ -92,6 +93,11 @@ public class ClassMutex<T> where T : Object, IMutex
     public void printOwner()
     {
         Debug.Log(Owner.name);
+    }
+    public void clearMutex()
+    {
+        Owner = null;
+        queue.Clear();
     }
 }
 public interface IMutex

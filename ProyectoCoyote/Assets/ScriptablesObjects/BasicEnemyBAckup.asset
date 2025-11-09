@@ -94,13 +94,24 @@ MonoBehaviour:
       graph:
         rid: 5634289337929826421
       nodes:
+      - name: 
+        id: f1b19530-e6d2-4b0d-8bb1-80b5ecaf9a34
+        position: {x: 224.8, y: -144.79999}
+        node:
+          rid: 8725330873693503824
+        references: []
+        parentIds: []
+        childIds:
+        - 79dd7aa0-68ee-4918-abe6-ed39f806e122
+        - 0c87ccc8-af40-4e16-944a-ea081b271210
       - name: Loop
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
         position: {x: 243.75, y: 0}
         node:
           rid: 5634289356226429019
         references: []
-        parentIds: []
+        parentIds:
+        - f1b19530-e6d2-4b0d-8bb1-80b5ecaf9a34
         childIds:
         - 9142a11b-35bb-4f90-8b29-df26b1552395
       - name: AttackA
@@ -437,6 +448,20 @@ MonoBehaviour:
         parentIds:
         - 79061932-755c-4921-a0f5-52ce3929df0d
         childIds: []
+      - name: 
+        id: 79dd7aa0-68ee-4918-abe6-ed39f806e122
+        position: {x: -133.6, y: -16.8}
+        node:
+          rid: 8725330873693503822
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330873693503823
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - f1b19530-e6d2-4b0d-8bb1-80b5ecaf9a34
+        childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds:
@@ -746,3 +771,14 @@ MonoBehaviour:
     - rid: 8725330859197727673
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 8725330873693503822
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330873693503823
+      type: {class: DebugLogAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        message: StartJAJAJ
+    - rid: 8725330873693503824
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0

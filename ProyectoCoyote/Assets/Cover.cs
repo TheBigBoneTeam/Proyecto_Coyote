@@ -60,6 +60,27 @@ public class Cover : MonoBehaviour
         objPosition = null;
         return -1;
 }
+   public bool checkSafe(Transform playerPos,int index)
+    {
+        RaycastHit hit;
+     Vector3   objPosition = HidePoints[index].position;
+        Vector3 dir = playerPos.transform.position - objPosition;
 
+        if (Physics.Raycast(objPosition, dir.normalized, out hit, dir.magnitude, layer))
+        {
+            //if (hit.transform.gameObject == gameObject)
+            //{
+            //    print("isSafe");
+            //    return true;
+            //}
+            print("isSafe");
+            return false;
+        }
+        else
+        {
+            print("isUnsafe");
+            return false;
+        }
+    }
    
 }

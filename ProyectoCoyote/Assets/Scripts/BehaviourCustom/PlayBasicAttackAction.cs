@@ -63,6 +63,10 @@ public class RunForCoverAction : UnityAction
                 return Status.Success;
             }
         }
+        if (stopped)
+        {
+            return Status.None;
+        }
         return Status.Running;
 
     }
@@ -73,11 +77,10 @@ public class RunForCoverAction : UnityAction
     }
     public override void Stop()
     {
-        base.Stop();
         stopped = true;
         Debug.Log("endrunaction");
         agent.ResetPath();
-
+        base.Stop();
     }
     public override void Start()
     {
@@ -86,9 +89,10 @@ public class RunForCoverAction : UnityAction
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         agent = context.GameObject.GetComponent<NavMeshAgent>();
-       coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(out Vector3 hidePosition);
+       coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(out Vector3 hidePosition,out int coverIndex);
         if (coverObj != null)
         {
+            context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);
             UnityEngine.Debug.Log(hidePosition);
             agent.SetDestination(hidePosition);
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);

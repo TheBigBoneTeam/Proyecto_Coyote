@@ -246,15 +246,17 @@ public class combatAreaManager : MonoBehaviour
         }
     }
 
-    public Cover getCoverSpot(out Vector3 hidePosition)
+    public Cover getCoverSpot(out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
         Cover[] orderedCovers = initCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
-            if (cover.getBestPoint(_player.transform, out objPos) >= 0)
+            coverIndex = cover.getBestPoint(_player.transform, out objPos);
+            if (coverIndex >= 0)
             {
+                
 
                 hidePosition = objPos.position;
                 return cover;
@@ -263,6 +265,7 @@ public class combatAreaManager : MonoBehaviour
             }
         }
         hidePosition = Vector3.zero;
+        coverIndex = -1;
         return null;
     }
 }

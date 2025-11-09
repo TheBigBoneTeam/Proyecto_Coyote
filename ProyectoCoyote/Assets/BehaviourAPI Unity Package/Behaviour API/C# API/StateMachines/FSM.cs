@@ -316,7 +316,9 @@ namespace BehaviourAPI.StateMachines
             {
                 UnityEngine.Debug.LogWarning("no Current State");
             }
-            _currentState?.OnStopped();
+            UnityEngine.Debug.Log("StopCurrentState");
+            UnityEngine.Debug.Log(_currentState == null);
+           _currentState?.OnStopped();
             _currentState = state;
             _currentState?.OnStarted();
         }

@@ -488,7 +488,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
-
+        GetComponentInChildren<Animator>().Play("Dash_01");
         dashing = true;
 
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);

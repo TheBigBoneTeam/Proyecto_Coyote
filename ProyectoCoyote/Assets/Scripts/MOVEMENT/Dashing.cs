@@ -45,7 +45,7 @@ public class Dashing : MonoBehaviour
     {
         if(dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
-        
+        GetComponentInChildren<Animator>().Play("Dash_01");
         pm.dashing = true;
 
         Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;

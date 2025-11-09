@@ -104,10 +104,11 @@ public class Gancho : MonoBehaviour
                 currentTarget = FindDirectionalTarget(false, false);
             }
         }
-        // Selecionar objeto
-        if (gameInput.HookConfirmPressed)
+        // Selecionar objeto 
+        if (gameInput.HookConfirmPressed && selectingHook)
         {
             SelectTarget();
+            movement.animator.CrossFade("Grapple_03", 0.2f);
         }
 
         if (isHooked) 
@@ -130,7 +131,7 @@ public class Gancho : MonoBehaviour
         {
             ResetTarget();
             CamControl.ActiveFollowCamera();
-
+            movement.animator.CrossFade("Idle_01", 0.2f);
             return;
         }
 
@@ -143,6 +144,8 @@ public class Gancho : MonoBehaviour
             selectingHook = true;
             lockOn.enemyLocked = false;
             Debug.Log("----------Cámara gancho Activada");
+            movement.animator.CrossFade("Grapple_01", 0.2f);
+
         } 
            
     }
@@ -157,6 +160,7 @@ public class Gancho : MonoBehaviour
         img.color = Color.white;
         if(!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
+        
     }
 
     #region Calcular Objetos Enganchables
@@ -309,8 +313,8 @@ public class Gancho : MonoBehaviour
         // Actaliza la posici�n del localizador del enemigo
         
         HookableObjectLocator.position = currentTarget.position;
+        //transform.LookAt(currentTarget.transform);
 
-       
     }
     IEnumerator AssignCameraLater()
     {
@@ -360,9 +364,9 @@ public class Gancho : MonoBehaviour
         // Dirección desde el objeto hacia la cámara
         Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
         // POSICIÓN FINAL
-        Vector3 targetPosition = currentTarget.position + directionToCamera * MovingTargetFinalDistanceInFront; 
+        Vector3 targetPosition = currentTarget.position + directionToCamera * MovingTargetFinalDistanceInFront;
+        movement.animator.CrossFade("Grapple_04", 0.2f);
 
-       
 
         // Mover el Rigidbody del jugador
         var rb = player.GetComponent<Rigidbody>();
@@ -382,13 +386,13 @@ public class Gancho : MonoBehaviour
 
     private void AtractTarget()
     {
-        
+
         if (hookableObject.canBeHooked)
         {
             Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             Vector3 targetPosition = cam.transform.position + directionToCamera * -MovingTargetFinalDistanceInFront;
             currentTarget.position = targetPosition;
-
+            movement.animator.CrossFade("Grapple_04", 0.2f);
             if (currentTarget.gameObject.GetComponent<Enemy>())
             {
                 Debug.Log("Es enemigo");

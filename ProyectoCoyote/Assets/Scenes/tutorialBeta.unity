@@ -4401,6 +4401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoTuto
       objectReference: {fileID: 0}
+    - target: {fileID: 8004532814463855830, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8518972042478114503, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4453,17 +4457,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1363849004}
   m_SourcePrefab: {fileID: 100100000, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
---- !u!114 &1363848995 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2544703215125332735, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
-  m_PrefabInstance: {fileID: 1363848994}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680411656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1363849004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4889,7 +4882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1568128649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4902,7 +4895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HealthPoint>k__BackingField: 0
+  <HealthPoint>k__BackingField: 999
   _maxHealthPoint: 999
   inmuneStun: 0
   invTimeAfterHit: 1
@@ -4947,7 +4940,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -5518,7 +5511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialText: {fileID: 1510712511}
-  enemy: {fileID: 1363848995}
+  enemy: {fileID: 1568128649}
   player: {fileID: 5885558478740715661}
   NextScene: Nivel1
   changeTutWait: 0
@@ -5527,7 +5520,7 @@ MonoBehaviour:
   currentEsqPerf: 0
   currentGanchos: 0
   objectiveEsquives: 5
-  objectiveHits: 5
+  objectiveHits: 3
   objectiveEsqPerf: 3
   objectiveGancho: 4
 --- !u!1 &1794611166 stripped

@@ -41,7 +41,7 @@ public class EStoryAction: PropertyDrawer
 
                     drawField(nameKey, "dialogBaseName");
                     break;
-                case StoryActionType.continueGameplay:
+                case StoryActionType.continueNonCombatGameplay:
 
                     break;
                 case StoryActionType.startCutscene:

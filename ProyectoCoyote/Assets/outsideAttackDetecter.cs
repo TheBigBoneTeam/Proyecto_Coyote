@@ -10,7 +10,7 @@ public class outsideAttackDetecter : MonoBehaviour
     List<Enemy> allAttacks;
     DefenseAttackUIIndicator defenseAttackUIIndicator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         allAttacks = new List<Enemy>();
         defenseAttackUIIndicator = GetComponent<DefenseAttackUIIndicator>();
@@ -29,6 +29,10 @@ public class outsideAttackDetecter : MonoBehaviour
             if (enemies[i] != null)
             {
                 enemies[i].GetComponentInChildren<Attack>().unSubscribeToStateChange(detectOutsideAttacks);
+                if (enemies[i].GetComponent<Gun>())
+                {
+                    enemies[i].GetComponent<Gun>().unSubscribeToShoot(detectOutsideAttacks);
+                }
             }
         }
         allAttacks.Clear();
@@ -37,13 +41,19 @@ public class outsideAttackDetecter : MonoBehaviour
             Attack a = enemy.GetComponentInChildren<Attack>();
             allAttacks.Add(enemy);
             a.subscribeToStateChange(detectOutsideAttacks);
+            if (enemy.GetComponent<Gun>())
+            {
+                print("hasGun");
+                enemy.GetComponent<Gun>().subscribeToShoot(detectOutsideAttacks);
+            }
         }
+        
     }
     public void detectOutsideAttacks(Attack.AttackState state )
     {
         if (currentOutsideAttack == null)
         {
-            if (state.hitDirections.Length == 0 && !state.hitDirections.Contains(HitDirections.Outside))
+            if (state.hitDirections.Length == 0 || !state.hitDirections.Contains(HitDirections.Outside))
             {
                 return;
             }

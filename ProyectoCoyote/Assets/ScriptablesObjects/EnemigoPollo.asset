@@ -245,7 +245,7 @@ MonoBehaviour:
         - f3073e2e-3d89-48ca-94d2-a18ed9103941
       - name: Shoot
         id: e89c8ed1-9db4-465e-b934-09892f9d112f
-        position: {x: 0, y: 800}
+        position: {x: -300, y: 800}
         node:
           rid: 8725330696836219275
         references:
@@ -282,15 +282,45 @@ MonoBehaviour:
         childIds:
         - b762583a-306c-4dd8-a614-a74f1dcd4b27
         - e89c8ed1-9db4-465e-b934-09892f9d112f
+        - 4ad7c47d-53e6-410b-8c90-e85dd4c76d56
+        - 64d446b5-7dd1-4880-9042-f5b036066506
       - name: lookAtPlayer
         id: b762583a-306c-4dd8-a614-a74f1dcd4b27
-        position: {x: -300, y: 800}
+        position: {x: -600, y: 800}
         node:
           rid: 8725330732456607973
         references:
         - fieldName: Action
           value:
             rid: 8725330732456607974
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - eec2ee50-4098-4985-9ddf-bb1019f2a1ac
+        childIds: []
+      - name: HideIdle
+        id: 4ad7c47d-53e6-410b-8c90-e85dd4c76d56
+        position: {x: 0, y: 800}
+        node:
+          rid: 8725330851897802861
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330851897802863
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - eec2ee50-4098-4985-9ddf-bb1019f2a1ac
+        childIds: []
+      - name: 
+        id: 64d446b5-7dd1-4880-9042-f5b036066506
+        position: {x: 300, y: 800}
+        node:
+          rid: 8725330851897802864
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330851897802865
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -618,3 +648,18 @@ MonoBehaviour:
     - rid: 8725330806027845781
       type: {class: RunForCoverAction, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 8725330851897802861
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330851897802863
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 10
+        idle: 1
+    - rid: 8725330851897802864
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330851897802865
+      type: {class: DelayAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        delayTime: 2

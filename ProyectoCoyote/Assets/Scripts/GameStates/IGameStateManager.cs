@@ -15,9 +15,8 @@ public interface IGameStateManager : IService
 
     public void startDialog();
 
-    public void endDialog();
-
-    public void startCombat();
+    public void startNonCombatGameplay();
+    public void startCombat(combatAreaManager combatArea,WaveData waveData);
 
 
     // public void endCutscene();
@@ -31,10 +30,11 @@ public interface IGameStateManager : IService
 }
 public enum GameState
 {
-    Playing,
+    NonCombat,
     Paused,
     Cutscene,
     Dialog,
     SlowDown,
-    DeathScreen
+    DeathScreen,
+    Combat
 }

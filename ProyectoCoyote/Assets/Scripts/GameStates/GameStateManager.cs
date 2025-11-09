@@ -7,6 +7,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 {
     //El delegado para avisar de cambios de estado
     public event EventHandler<stateData> onStateChange;
+    public Action<combatAreaManager,WaveData> combatAreaChange;
     public Action restartArea;
     //Guarda el estado antes de pausar, para que se pueda pausar en gameplay, cinematicas y tal
     public GameState prePauseState;
@@ -18,7 +19,11 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     //Si se puede pausar o no (por ahora no se usa pero quien sabe)
     private bool canPause;
 
+    combatAreaManager currentCombatArea;
+    private WaveData currentWaveData;
+
     IPerfectDodgeManager perfectDodgeManager;
+
     public void Instantiate()
     {
     }
@@ -77,7 +82,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 
     public void slowDown()
     {
-        if (currentState == GameState.Playing)
+        if (currentState == GameState.Combat)
         {
             SetState(GameState.SlowDown);
         }
@@ -90,7 +95,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         {
             print("slowdownoffconfirmed");
 
-            SetState(GameState.Playing);
+            SetState(GameState.Combat);
         }
     }
 
@@ -107,7 +112,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         if (currentState == GameState.DeathScreen)
         {
             restartArea?.Invoke();
-            SetState(GameState.Playing);
+            SetState(GameState.NonCombat);
         }
     }
 
@@ -119,17 +124,23 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         }
     }
 
-    public void startCombat()
+    public void startCombat(combatAreaManager combatArea, WaveData waveData)
     {
-        if (currentState != GameState.Playing && currentState != GameState.SlowDown)
+        if (currentState != GameState.Combat && currentState != GameState.SlowDown)
         {
-            SetState(GameState.Playing);
+            SetState(GameState.Combat);
+        }
+        if((combatArea != null && combatArea != currentCombatArea) ||(currentWaveData != null && currentWaveData != waveData))
+        {
+            currentCombatArea = combatArea;
+            currentWaveData = waveData;
+            combatAreaChange?.Invoke(currentCombatArea, currentWaveData);
         }
     }
 
     public void startDialog()
     {
-        if (currentState == GameState.Playing)
+        if (currentState == GameState.NonCombat)
         {
             SetState(GameState.Dialog);
         }
@@ -139,7 +150,16 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
         if (currentState == GameState.Dialog)
         {
-            SetState(GameState.Playing);
+            SetState(GameState.NonCombat);
         }
     }
+    public void startNonCombatGameplay()
+    {
+        if (currentState != GameState.NonCombat)
+        {
+            SetState(GameState.NonCombat);
+        }
+    }
+
+   
 }

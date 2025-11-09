@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     {
         switch (data.currentState)
         {
-            case GameState.Playing:
+            case GameState.Combat:
                 slowDownGroup.alpha = 0;
 
                 break;

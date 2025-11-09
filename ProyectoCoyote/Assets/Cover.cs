@@ -65,7 +65,7 @@ public class Cover : MonoBehaviour
         RaycastHit hit;
      Vector3   objPosition = HidePoints[index].position;
         Vector3 dir = playerPos.transform.position - objPosition;
-
+        print($" {objPosition} + {dir} + {playerPos.position}");
         if (Physics.Raycast(objPosition, dir.normalized, out hit, dir.magnitude, layer))
         {
             //if (hit.transform.gameObject == gameObject)
@@ -74,7 +74,7 @@ public class Cover : MonoBehaviour
             //    return true;
             //}
             print("isSafe");
-            return false;
+            return true;
         }
         else
         {

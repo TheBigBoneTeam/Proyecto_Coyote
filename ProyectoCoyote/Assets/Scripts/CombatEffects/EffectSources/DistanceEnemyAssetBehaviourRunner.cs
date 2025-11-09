@@ -8,7 +8,7 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
 
     Player player;
     LayerMask layer;
-    bool isUnsafe;
+  [SerializeField]  bool isUnsafe;
 
     Cover currentCover;
     int currentCoverHidePos;
@@ -37,7 +37,8 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     }
     public void setUnsafe()
     {
-        isUnsafe = !currentCover.checkSafe(transform, currentCoverHidePos);
+        isUnsafe = !currentCover.checkSafe(player.transform, currentCoverHidePos);
+        print("unsafe==" +isUnsafe);
     }
     public void setCover(Cover cover, int coverindex)
     {

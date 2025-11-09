@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Services;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,7 +15,19 @@ public class outsideAttackDetecter : MonoBehaviour
     {
         allAttacks = new List<Enemy>();
         defenseAttackUIIndicator = GetComponent<DefenseAttackUIIndicator>();
-        ResetEnemies(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+        //ResetEnemies(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+    }
+    private void Start()
+    {
+        
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(combatAreaChange);
+    }
+
+    private void combatAreaChange(combatAreaManager manager, WaveData data)
+    {
+        print(data == null);
+        print("areachange");
+        ResetEnemies(data.enemies);
     }
 
     // Update is called once per frame
@@ -24,6 +37,8 @@ public class outsideAttackDetecter : MonoBehaviour
     }
     private void ResetEnemies(Enemy[] enemies)
     {
+        print("resetEnemies");
+
         for (int i = 0; i < enemies.Length; i++)
         {
             if (enemies[i] != null)

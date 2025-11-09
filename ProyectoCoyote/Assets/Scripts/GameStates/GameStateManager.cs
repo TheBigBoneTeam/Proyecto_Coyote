@@ -132,9 +132,15 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         }
         if((combatArea != null && combatArea != currentCombatArea) ||(currentWaveData != null && currentWaveData != waveData))
         {
+            print("invokeCombatAreaChange");
             currentCombatArea = combatArea;
             currentWaveData = waveData;
             combatAreaChange?.Invoke(currentCombatArea, currentWaveData);
+        }
+        else
+        {
+            print("invalidAreaChange");
+
         }
     }
 
@@ -161,5 +167,13 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         }
     }
 
-   
+    public void subscribeCombatAreaChange(Action<combatAreaManager, WaveData> response)
+    {
+        combatAreaChange += response;
+    }
+
+    public void unSubscribeCombatAreaChange(Action<combatAreaManager, WaveData> response)
+    {
+        combatAreaChange -= response;
+    }
 }

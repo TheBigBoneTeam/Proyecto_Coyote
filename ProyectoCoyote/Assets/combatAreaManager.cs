@@ -133,14 +133,13 @@ public class combatAreaManager : MonoBehaviour
             beforeCombatStoryAction.Execute(() =>
             {
                 //AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
-                gameStateManager.startCombat(this, currentWaveData); startWave();
+                 startWave();
             });
 
         }
         else
         {
             //AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
-            gameStateManager.startCombat(this,currentWaveData);
             startWave();
         }
     }
@@ -155,12 +154,13 @@ public class combatAreaManager : MonoBehaviour
         if (currentWaveData.beforeWavestoryAction != null)
         {
             currentWaveData.beforeWavestoryAction.Execute(() => {
-                gameStateManager.startCombat(this,currentWaveData);
                 foreach (var enemy in currentWaveData.enemies)
                 {
                     enemy.activateEnemy(true);
                     enemy.subscribeToDie(enemyDie);
                 }
+                gameStateManager.startCombat(this, currentWaveData);
+
             });
         }
         else
@@ -170,8 +170,9 @@ public class combatAreaManager : MonoBehaviour
                 enemy.activateEnemy(true);
                 enemy.subscribeToDie(enemyDie);
             }
+            gameStateManager.startCombat(this, currentWaveData);
         }
-      
+
     }
     public void restart()
     {

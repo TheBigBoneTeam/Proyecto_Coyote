@@ -12,6 +12,13 @@ public class combatAreaManager : MonoBehaviour
     [SerializeField] Enemy[] startEnemies;
   [SerializeField]  StoryAction beforeCombatStoryAction;
     [SerializeField] StoryAction afterCombatStoryAction;
+    [Header("Coverturas")]
+
+    [SerializeField] Cover[] initCovers;
+    [Header("Rocas")]
+
+    [SerializeField] baseBullet[] initAmmo;
+    [Header("Oleadas Extras")]
 
     [SerializeField] WaveData[] extraEnemyWaves;
     [Header("Colliders")]
@@ -19,10 +26,9 @@ public class combatAreaManager : MonoBehaviour
     [SerializeField] GameObject areaColliders;
     [SerializeField] Collider triggerCollider;
 
-    [Header("Coverturas")]
 
-    [SerializeField] Cover[] initCovers;
     Cover[] currentCovers;
+    List<baseBullet> currentAmmo;
 
     [Header("Punto de Spawn")]
 
@@ -83,7 +89,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -104,6 +110,10 @@ public class combatAreaManager : MonoBehaviour
         if (enemy != null)
         {
             enemy.unSubscribeToDie(enemyDie);
+            //if(enemy.GetComponent<baseBullet>() != null)
+            //{
+            //    currentAmmo.Remove(enemy.GetComponent<baseBullet>());
+            //}
             if (!deadEnemies.Contains(enemy))
             {
                 lockOn.resetWhenDie(enemy.transform);
@@ -145,35 +155,47 @@ public class combatAreaManager : MonoBehaviour
     }
     void startWave()
     {
-       
-        currentWaveData = functionalWaveDataList[currentWaveIndex];
+         currentWaveData = functionalWaveDataList[currentWaveIndex];
         if (currentWaveData.Covers != null && currentWaveData.Covers.Length > 0)
         {
             currentCovers = functionalWaveDataList[currentWaveIndex].Covers;
         }
+        if (currentWaveData.ammo != null && currentWaveData.ammo.Length > 0)
+        {
+            currentAmmo = functionalWaveDataList[currentWaveIndex].ammo.ToList();
+        }
         if (currentWaveData.beforeWavestoryAction != null)
         {
             currentWaveData.beforeWavestoryAction.Execute(() => {
-                foreach (var enemy in currentWaveData.enemies)
-                {
-                    enemy.activateEnemy(true);
-                    enemy.subscribeToDie(enemyDie);
-                }
-                gameStateManager.startCombat(this, currentWaveData);
+               finalStartWave();
 
             });
         }
         else
         {
-            foreach (var enemy in currentWaveData.enemies)
-            {
-                enemy.activateEnemy(true);
-                enemy.subscribeToDie(enemyDie);
-            }
-            gameStateManager.startCombat(this, currentWaveData);
+            finalStartWave();
         }
 
     }
+    void finalStartWave()
+    {
+        foreach (var enemy in currentWaveData.enemies)
+        {
+            enemy.activateEnemy(true);
+            enemy.subscribeToDie(enemyDie);
+            baseBullet bullet = enemy.GetComponent<baseBullet>();
+            if(bullet != null)
+            {
+                currentAmmo.Add(bullet);
+            }
+        }
+        foreach (var ammo in currentAmmo)
+        {
+            ammo.subcribeToShoot((a) => currentAmmo.Remove(a));
+        }
+        gameStateManager.startCombat(this, currentWaveData);
+    }
+    public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()
     {
         started = false;
@@ -250,7 +272,7 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
-        Cover[] orderedCovers = initCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+        Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
@@ -269,6 +291,22 @@ public class combatAreaManager : MonoBehaviour
         coverIndex = -1;
         return null;
     }
+    public baseBullet[] getAllBullets()
+    {
+        List<baseBullet> bullets = new List<baseBullet>();
+        foreach(baseBullet ammo in currentAmmo)
+        {
+            if(ammo == null) continue;
+            bullets.Add(ammo);
+        }
+        foreach(Enemy enemy in currentWaveData.enemies)
+        {
+            baseBullet bulet = enemy.gameObject.GetComponent<baseBullet>();
+           if(bulet == null) continue;
+           bullets.Add(bulet);
+        }
+        return bullets.ToArray();
+    }
 }
 
 [System.Serializable]
@@ -280,13 +318,15 @@ public class WaveData
     public StoryAction beforeWavestoryAction;
     public GameObject colliderTurnOffBefore;
     public Cover[] Covers;
-   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers)
+    public baseBullet[] ammo;
+   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo)
     {
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
         this.autoStart = autoStart;
         this.colliderTurnOffBefore = colliderTurnOffBefore;
         this.Covers = covers;
+        this.ammo = ammo;
             
     }
 }

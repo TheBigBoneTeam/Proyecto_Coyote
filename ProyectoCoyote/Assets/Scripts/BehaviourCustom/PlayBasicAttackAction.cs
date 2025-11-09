@@ -204,3 +204,89 @@ public class WalkToPlayerAction : UnityAction
     }
 
 }
+public class RunToAmmo : UnityAction
+{
+    NavMeshAgent agent;
+    EnemyAI enemyAI;
+    bool stopped;
+    BullEnemyAssetBehaviourRunner enemyRunner;
+    float currentDist;
+    bool isReachable;
+    public override Status Update()
+    {
+        Debug.Log("updaterunaction");
+
+        if (stopped)
+        {
+            return Status.None;
+        }
+        if (!isReachable)
+        {
+            return Status.Failure;
+        }
+        Debug.Log(agent.remainingDistance);
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().reachCover();
+                agent.ResetPath();
+
+                return Status.Success;
+            }
+        }
+        if (stopped)
+        {
+            return Status.None;
+        }
+        return Status.Running;
+
+    }
+    public override void Pause()
+    {
+        base.Pause();
+        agent.ResetPath();
+    }
+    public override void Stop()
+    {
+        stopped = true;
+        Debug.Log("endrunaction");
+        agent.ResetPath();
+        base.Stop();
+    }
+    public override void Start()
+    {
+        Debug.Log("StartRunCover");
+
+        stopped = false;
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        agent = context.GameObject.GetComponent<NavMeshAgent>();
+        foreach(baseBullet bul in context.GameObject.GetComponent<Enemy>().CombatArea.getAllBullets())
+        {
+            float newDist = Vector3.Distance(bul.transform.position,enemyAI.transform.position);
+            if (enemyRunner.currentAmmo == null || currentDist > newDist)
+            {
+                currentDist = newDist;
+                enemyRunner.currentAmmo = bul;
+            }
+        }
+        if (enemyRunner.currentAmmo == null)
+        {
+            enemyRunner.hasAmmo = false;
+            return;
+        }
+        if (agent.SetDestination(enemyRunner.currentAmmo.transform.position))
+        {
+            isReachable = true;
+            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+        }
+        else
+        {
+            isReachable = false;
+        }
+
+    }
+
+}

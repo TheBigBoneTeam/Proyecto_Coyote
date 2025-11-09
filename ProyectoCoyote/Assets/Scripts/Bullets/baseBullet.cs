@@ -1,4 +1,5 @@
 ﻿using CombatEffect;
+using System;
 using UnityEngine;
 
 public class baseBullet : Attack, IBullet
@@ -14,7 +15,7 @@ public class baseBullet : Attack, IBullet
     [SerializeField] protected ParticleSystem hitParticle;
     [SerializeField] protected ParticleSystem impactParticle;
 
-
+    Action<baseBullet> onFire;
 
 
 
@@ -53,6 +54,7 @@ public class baseBullet : Attack, IBullet
         print(this.objective);
         transform.LookAt(objective);
         flying = true; 
+        onFire?.Invoke(this);
         if (anim)
         {
             anim.Play("fly");
@@ -61,7 +63,14 @@ public class baseBullet : Attack, IBullet
     }
 
 
-
+    public void subcribeToShoot(Action<baseBullet> response)
+    {
+        onFire += response;
+    }
+    public void unSubcribeToShoot(Action<baseBullet> response)
+    {
+        onFire -= response;
+    }
     protected override void Start()
     {
         anim = GetComponentInChildren<Animator>();

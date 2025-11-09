@@ -9,6 +9,7 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     public PushPerception PlayerAttackPerception { get; private set; }
     public PushPerception PlayerHitDefensePerception { get; private set; }
     public PushPerception EndAttackQueue { get; private set; }
+  protected  Enemy enemy;
 
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
@@ -32,6 +33,10 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     {
         EndAttackQueue.Fire(Status.Success);
     }
+    public virtual void restart()
+    {
+        enemy = GetComponent<Enemy>();
+    }
 }
 public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
@@ -39,7 +44,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
     {
-    base.ModifyGraphs(graphMap, pushPerceptionMap);
+        base.ModifyGraphs(graphMap, pushPerceptionMap);
         ChosenAsAmmo = pushPerceptionMap["ChosenAsAmmo"];
     }
 }

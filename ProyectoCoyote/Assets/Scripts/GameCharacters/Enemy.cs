@@ -46,5 +46,9 @@ public class Enemy : AGameCharacter
     {
         gameObject.SetActive(ActiveBeforeFight ? true:active);
         GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
+        if (active)
+        {
+            GetComponent<EnemyAssetBehaviourRunner>().restart();
+        }
     }
 }

@@ -231,7 +231,6 @@ public class RunToAmmo : UnityAction
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
                 enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
-                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().reachCover();
                 agent.ResetPath();
 
                 return Status.Success;
@@ -263,6 +262,7 @@ public class RunToAmmo : UnityAction
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         agent = context.GameObject.GetComponent<NavMeshAgent>();
+        enemyRunner = context.GameObject.GetComponent<BullEnemyAssetBehaviourRunner>();
         foreach(baseBullet bul in context.GameObject.GetComponent<Enemy>().CombatArea.getAllBullets())
         {
             float newDist = Vector3.Distance(bul.transform.position,enemyAI.transform.position);
@@ -281,10 +281,12 @@ public class RunToAmmo : UnityAction
         {
             isReachable = true;
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+
         }
         else
         {
             isReachable = false;
+            enemyRunner.hasAmmo = false;
         }
 
     }

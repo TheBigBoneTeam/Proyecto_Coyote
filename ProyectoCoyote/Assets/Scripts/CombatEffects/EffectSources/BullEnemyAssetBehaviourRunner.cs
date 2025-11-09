@@ -6,7 +6,7 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
   [SerializeField]  int ammo;
   public  baseBullet currentAmmo;
     public bool hasAmmo;
-    public bool anyAmmo() => hasAmmo;
+    public bool noAmmo() => !hasAmmo;
     public override void restart()
     {
         base.restart();

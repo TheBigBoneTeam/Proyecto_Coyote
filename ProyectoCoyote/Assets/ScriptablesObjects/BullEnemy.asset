@@ -19,6 +19,22 @@ MonoBehaviour:
       graph:
         rid: 5634289709124943962
       nodes:
+      - name: rangeFight
+        id: 95c47532-35fc-48d9-95f9-3d5227a129d8
+        position: {x: 1389.6, y: 316.8}
+        node:
+          rid: 8725330732456607832
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330871884447833
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1c0cfab4-cbd0-4559-9a90-2ca43a633fcf
+        childIds:
+        - 37c45417-2bec-4e0f-9256-f134d80290d1
+        - 0e1708c9-b792-45f6-8dfe-c388cccbf752
       - name: meleeFight
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
         position: {x: 566.09045, y: 259.29}
@@ -149,22 +165,6 @@ MonoBehaviour:
         - 853673d4-bbff-4a13-879e-f0065441f3c6
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
-      - name: rangeFight
-        id: 95c47532-35fc-48d9-95f9-3d5227a129d8
-        position: {x: 1389.6, y: 316.8}
-        node:
-          rid: 8725330732456607832
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 1c0cfab4-cbd0-4559-9a90-2ca43a633fcf
-        childIds:
-        - 37c45417-2bec-4e0f-9256-f134d80290d1
-        - 0e1708c9-b792-45f6-8dfe-c388cccbf752
       - name: awayFromPlayer
         id: 1c0cfab4-cbd0-4559-9a90-2ca43a633fcf
         position: {x: 1028, y: 77.6}
@@ -193,7 +193,7 @@ MonoBehaviour:
         references:
         - fieldName: Perception
           value:
-            rid: -2
+            rid: 8725330871884448378
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         - fieldName: Action
@@ -207,7 +207,7 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
       - name: closeToPlayer
         id: 37c45417-2bec-4e0f-9256-f134d80290d1
-        position: {x: 1028, y: 306.4}
+        position: {x: 1002.4, y: 288}
         node:
           rid: 8725330732456607835
         references:
@@ -578,6 +578,59 @@ MonoBehaviour:
         parentIds:
         - 97cd8b96-c1b6-4729-89c8-b5787570767e
         childIds: []
+    - name: shootRocksBehaviourTree
+      id: 4299ebf5-f9aa-4d2b-a825-fae94f436950
+      graph:
+        rid: 8725330871884447827
+      nodes:
+      - name: 
+        id: 9cc8d7db-ddd0-4ae0-9537-217b0fd56f47
+        position: {x: 683.8615, y: 207.572}
+        node:
+          rid: 8725330871884447828
+        references: []
+        parentIds: []
+        childIds:
+        - ef7d2b3d-9b2c-4e9f-98d2-8277ec065be7
+      - name: 
+        id: ef7d2b3d-9b2c-4e9f-98d2-8277ec065be7
+        position: {x: 641.6, y: 356}
+        node:
+          rid: 8725330871884447829
+        references: []
+        parentIds:
+        - 9cc8d7db-ddd0-4ae0-9537-217b0fd56f47
+        childIds:
+        - 4995586a-af47-4234-a8f3-90ea95114519
+        - 43320e76-dc10-4450-89e7-3e7583e7f40a
+      - name: 
+        id: 4995586a-af47-4234-a8f3-90ea95114519
+        position: {x: 437.6, y: 529.60004}
+        node:
+          rid: 8725330871884447830
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330871884447831
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ef7d2b3d-9b2c-4e9f-98d2-8277ec065be7
+        childIds: []
+      - name: 
+        id: 43320e76-dc10-4450-89e7-3e7583e7f40a
+        position: {x: 808.3479, y: 539.13043}
+        node:
+          rid: 8725330871884447834
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330871884447835
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ef7d2b3d-9b2c-4e9f-98d2-8277ec065be7
+        childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds:
@@ -902,11 +955,11 @@ MonoBehaviour:
     - rid: 8725330732456607833
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
-        StatusFlags: -1
+        StatusFlags: 0
     - rid: 8725330732456607834
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
-        StatusFlags: -1
+        StatusFlags: 0
     - rid: 8725330732456607835
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
@@ -917,3 +970,52 @@ MonoBehaviour:
         ExecuteOnLoop: 0
         InterruptOptions: 2
         subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
+    - rid: 8725330871884447827
+      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330871884447828
+      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Iterations: -1
+    - rid: 8725330871884447829
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 8725330871884447830
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330871884447831
+      type: {class: RunToAmmo, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8725330871884447833
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 0
+        InterruptOptions: 2
+        subgraphId: 4299ebf5-f9aa-4d2b-a825-fae94f436950
+    - rid: 8725330871884447834
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330871884447835
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: Throw
+        idle: 0
+    - rid: 8725330871884448378
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: BullEnemyAssetBehaviourRunner
+          methodName: noAmmo
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 

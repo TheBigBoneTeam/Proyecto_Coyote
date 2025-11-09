@@ -189,11 +189,15 @@ public class combatAreaManager : MonoBehaviour
                 currentAmmo.Add(bullet);
             }
         }
-        foreach (var ammo in currentAmmo)
+        if (currentAmmo != null)
         {
-            ammo.subcribeToShoot((a) => currentAmmo.Remove(a));
+            foreach (var ammo in currentAmmo)
+            {
+                ammo.subcribeToShoot((a) => currentAmmo.Remove(a));
+            }
         }
         gameStateManager.startCombat(this, currentWaveData);
+
     }
     public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6548238604738954963}
   - component: {fileID: 376117243386707857}
   - component: {fileID: 535623731279865170}
+  - component: {fileID: 6842534662455487392}
   m_Layer: 24
   m_Name: EnemigoPollo
   m_TagString: Untagged
@@ -83,6 +84,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!54 &3012611354726976025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -202,6 +204,20 @@ MonoBehaviour:
     debugStatusChanges: 0
     identifier: 
   System: {fileID: 11400000, guid: b60f3cd163b43894294d0bd12d087d2e, type: 2}
+  isUnsafe: 0
+--- !u!114 &6842534662455487392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567391355380504067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b211cfb212529384e8dae72acc714062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBeHooked: 1
 --- !u!1 &4052230825202663609
 GameObject:
   m_ObjectHideFlags: 0

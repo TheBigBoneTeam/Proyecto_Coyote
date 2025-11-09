@@ -193,7 +193,7 @@ public class combatAreaManager : MonoBehaviour
         {
             foreach (var ammo in currentAmmo)
             {
-                ammo.subcribeToShoot((a) => currentAmmo.Remove(a));
+                ammo.subcribeToShoot((a) => { currentAmmo.Remove(a); print("removeammo newammocount: " + currentAmmo.Count); });
             }
         }
         gameStateManager.startCombat(this, currentWaveData);

@@ -196,10 +196,10 @@ MonoBehaviour:
         - 79f7cc0f-2505-4c3b-8240-74fbb6786be6
         childIds:
         - 0c525003-1308-4130-96b1-d813967e58c5
-        - 8493d51c-cd68-4807-a7df-bec4561c1ff5
-      - name: WaitForPriority
+        - 57e6d917-5968-4b28-9a1d-e9c77585e92a
+      - name: WaitForPriority Locked
         id: 8493d51c-cd68-4807-a7df-bec4561c1ff5
-        position: {x: 1125, y: 800}
+        position: {x: 1122.4, y: 984}
         node:
           rid: 5634289564154593281
         references:
@@ -209,7 +209,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - d21d7469-a224-4f63-89c2-a74c5f8d9965
+        - a751294c-2014-4370-a542-3ea91529c53c
         childIds: []
       - name: 
         id: e17af590-7b99-4a7a-a966-e2e0374970a6
@@ -437,6 +437,71 @@ MonoBehaviour:
         parentIds:
         - 79061932-755c-4921-a0f5-52ce3929df0d
         childIds: []
+      - name: 
+        id: 57e6d917-5968-4b28-9a1d-e9c77585e92a
+        position: {x: 1346.4, y: 708}
+        node:
+          rid: 8725330877414900123
+        references: []
+        parentIds:
+        - d21d7469-a224-4f63-89c2-a74c5f8d9965
+        childIds:
+        - a751294c-2014-4370-a542-3ea91529c53c
+        - bf57ae6e-a3ba-4a95-996d-e54b15f889f2
+      - name: 
+        id: a751294c-2014-4370-a542-3ea91529c53c
+        position: {x: 1197.6, y: 826.4}
+        node:
+          rid: 8725330877414900124
+        references:
+        - fieldName: Perception
+          value:
+            rid: 8725330877414900125
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 57e6d917-5968-4b28-9a1d-e9c77585e92a
+        childIds:
+        - 8493d51c-cd68-4807-a7df-bec4561c1ff5
+      - name: 
+        id: bf57ae6e-a3ba-4a95-996d-e54b15f889f2
+        position: {x: 1647.2, y: 855.2}
+        node:
+          rid: 8725330877414900126
+        references: []
+        parentIds:
+        - 57e6d917-5968-4b28-9a1d-e9c77585e92a
+        childIds:
+        - 65f9e725-1fe5-482c-96d7-9d9e35b212a3
+        - 0132ffdc-9a5b-42e5-a990-3105b625d167
+      - name: WaitForPriority No Locked
+        id: 65f9e725-1fe5-482c-96d7-9d9e35b212a3
+        position: {x: 1437.6, y: 1000}
+        node:
+          rid: 8725330877414900127
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330877414900129
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - bf57ae6e-a3ba-4a95-996d-e54b15f889f2
+        childIds: []
+      - name: CirclePlayer
+        id: 0132ffdc-9a5b-42e5-a990-3105b625d167
+        position: {x: 1778.4, y: 1032.8}
+        node:
+          rid: 8725330877414900130
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330877414900312
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - bf57ae6e-a3ba-4a95-996d-e54b15f889f2
+        childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds:
@@ -446,6 +511,7 @@ MonoBehaviour:
     - name: EndQueue
       targetNodeIds:
       - 8493d51c-cd68-4807-a7df-bec4561c1ff5
+      - 65f9e725-1fe5-482c-96d7-9d9e35b212a3
   references:
     version: 2
     RefIds:
@@ -745,4 +811,49 @@ MonoBehaviour:
       data: 
     - rid: 8725330859197727673
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8725330877414900123
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 8725330877414900124
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330877414900125
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: isLocked
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725330877414900126
+      type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+        finishOnSuccess: 0
+        finishOnFailure: 0
+    - rid: 8725330877414900127
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330877414900129
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 10
+        idle: 0
+    - rid: 8725330877414900130
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330877414900312
+      type: {class: CirclePlayerAction, ns: , asm: Assembly-CSharp}
       data: 

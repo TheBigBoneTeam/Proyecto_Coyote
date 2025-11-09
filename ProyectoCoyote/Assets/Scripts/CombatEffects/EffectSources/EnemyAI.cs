@@ -264,7 +264,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, seeDistance);
     }
-
+    #endregion
     public void endActionNode()
     {
         setOnAction(false);
@@ -295,5 +295,4 @@ public class EnemyAI : MonoBehaviour,IMutex
             return Status.Running;
         }
     }
-    #endregion
 }

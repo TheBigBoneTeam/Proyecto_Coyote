@@ -24,11 +24,11 @@ public class Attack : ATouchCombatEffectSource
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
-            //if(HitCheck == null)
-            //{
-            //    setHitCheck(HitCheckType);
-            //}
-          
+            if (HitCheck == null)
+            {
+                setHitCheck(HitCheckType);
+            }
+
             //Comprueba si el personaje golpeado es golpeable
             if (this.HitCheck.isHittable(character))
             {

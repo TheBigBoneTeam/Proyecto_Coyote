@@ -55,6 +55,7 @@ public class baseBullet : Attack, IBullet
         transform.LookAt(objective);
         flying = true; 
         onFire?.Invoke(this);
+        GetComponent<Collider>().enabled = true;
         if (anim)
         {
             anim.Play("fly");

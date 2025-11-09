@@ -133,14 +133,13 @@ public class combatAreaManager : MonoBehaviour
             beforeCombatStoryAction.Execute(() =>
             {
                 //AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
-                gameStateManager.startCombat(this, currentWaveData); startWave();
+                 startWave();
             });
 
         }
         else
         {
             //AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
-            gameStateManager.startCombat(this,currentWaveData);
             startWave();
         }
     }
@@ -155,12 +154,13 @@ public class combatAreaManager : MonoBehaviour
         if (currentWaveData.beforeWavestoryAction != null)
         {
             currentWaveData.beforeWavestoryAction.Execute(() => {
-                gameStateManager.startCombat(this,currentWaveData);
                 foreach (var enemy in currentWaveData.enemies)
                 {
                     enemy.activateEnemy(true);
                     enemy.subscribeToDie(enemyDie);
                 }
+                gameStateManager.startCombat(this, currentWaveData);
+
             });
         }
         else
@@ -170,8 +170,9 @@ public class combatAreaManager : MonoBehaviour
                 enemy.activateEnemy(true);
                 enemy.subscribeToDie(enemyDie);
             }
+            gameStateManager.startCombat(this, currentWaveData);
         }
-      
+
     }
     public void restart()
     {
@@ -246,15 +247,17 @@ public class combatAreaManager : MonoBehaviour
         }
     }
 
-    public Cover getCoverSpot(out Vector3 hidePosition)
+    public Cover getCoverSpot(out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
         Cover[] orderedCovers = initCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
-            if (cover.getBestPoint(_player.transform, out objPos) >= 0)
+            coverIndex = cover.getBestPoint(_player.transform, out objPos);
+            if (coverIndex >= 0)
             {
+                
 
                 hidePosition = objPos.position;
                 return cover;
@@ -263,6 +266,7 @@ public class combatAreaManager : MonoBehaviour
             }
         }
         hidePosition = Vector3.zero;
+        coverIndex = -1;
         return null;
     }
 }

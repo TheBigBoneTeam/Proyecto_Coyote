@@ -27,6 +27,10 @@ public interface IGameStateManager : IService
     public void subscribeToRestart(Action response);
 
     public void unSubscribeToRestart(Action response);
+
+    public void subscribeCombatAreaChange(Action<combatAreaManager, WaveData> response);
+    public void unSubscribeCombatAreaChange(Action<combatAreaManager, WaveData> response);
+
 }
 public enum GameState
 {

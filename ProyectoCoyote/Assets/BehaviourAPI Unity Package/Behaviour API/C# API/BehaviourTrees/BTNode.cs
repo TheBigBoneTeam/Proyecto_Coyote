@@ -108,9 +108,10 @@ namespace BehaviourAPI.BehaviourTrees
         /// <exception cref="Exception">If was already stopped.</exception>
         public virtual void OnStopped()
         {
+            
             if (Status == Status.None)
                 throw new ExecutionStatusException(this, "ERROR: This node is already been stopped");
-
+            UnityEngine.Debug.Log("StopNode");
             LastExecutionStatus = Status;
             Status = Status.None;
         }

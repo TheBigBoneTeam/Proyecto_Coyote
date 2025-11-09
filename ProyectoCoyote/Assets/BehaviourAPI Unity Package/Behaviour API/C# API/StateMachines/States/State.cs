@@ -162,13 +162,12 @@ namespace BehaviourAPI.StateMachines
                 throw new ExecutionStatusException(this, "ERROR: This node is already been stopped");
 
             Status = Status.None;
-            UnityEngine.Debug.Log("STATUSISNONErunaction" + Status);
             if(_isActionRunning)
             {
+                UnityEngine.Debug.Log("stopcurrentaction");
                 Action?.Stop();
                 _isActionRunning = false;
             }
-            UnityEngine.Debug.Log("STATUSISNONErunaction" + Status);
             _transitions.ForEach(t => t?.Stop());
         }
 

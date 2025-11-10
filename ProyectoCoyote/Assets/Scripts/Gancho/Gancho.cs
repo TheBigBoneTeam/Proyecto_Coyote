@@ -19,6 +19,7 @@ public class Gancho : MonoBehaviour
     [SerializeField] float maxNoticeZone= 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
+    [SerializeField] Vector3 lookAtRotationOffset = new Vector3(20,0,0);
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
     [SerializeField] int cooldown = 5;
     private TextMeshProUGUI _cooldownUIText;
@@ -44,6 +45,7 @@ public class Gancho : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
@@ -73,6 +75,7 @@ public class Gancho : MonoBehaviour
             Debug.LogWarning("Camera.main is null at Start. Delaying cam assignment.");
             StartCoroutine(AssignCameraLater());
         }
+        
         _canUseHook = true;
         currentTarget = null;
         selectingHook = false;
@@ -164,11 +167,12 @@ public class Gancho : MonoBehaviour
             movement.startHookMode();
             _hookImageUI.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
+
             selectingHook = true;
             lockOn.enemyLocked = false;
             Debug.Log("----------Cámara gancho Activada");
             movement.animator.CrossFade("Grapple_01", 0.2f);
-
+            LookAtTarget();
         } 
            
     }
@@ -236,7 +240,6 @@ public class Gancho : MonoBehaviour
                 bestTarget = candidate;
             }
         }
-
         return bestTarget != null ? bestTarget : currentTarget;
     }
 
@@ -336,8 +339,18 @@ public class Gancho : MonoBehaviour
         // Actaliza la posici�n del localizador del enemigo
         
         HookableObjectLocator.position = currentTarget.position;
-        //transform.LookAt(currentTarget.transform);
+        // Calcula la dirección desde el personaje hacia la cámara
+        Vector3 directionToCamera = cam.transform.position - transform.position;
 
+        // Asegúrate de que la dirección no sea cero, lo que causaría un error
+        if (directionToCamera != Vector3.zero)
+        {
+            // Calcula la rotación deseada para que el personaje mire a la cámara
+            Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
+
+            // Suaviza la rotación para que no sea instantánea
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,3);
+        }
     }
     IEnumerator AssignCameraLater()
     {

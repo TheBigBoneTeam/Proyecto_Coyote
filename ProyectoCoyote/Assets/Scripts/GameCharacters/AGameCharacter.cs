@@ -87,11 +87,11 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void restart()
     {
-        print("restart" + name);
+       // print("restart" + name);
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);
         transform.position = startPos;
-        print("restartposition" + name + startPos+transform.position);
+        //print("restartposition" + name + startPos+transform.position);
 
     }
 

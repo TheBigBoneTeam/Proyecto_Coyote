@@ -207,6 +207,10 @@ public class combatAreaManager : MonoBehaviour
                 ammo.subcribeToShoot((a) => { currentAmmo.Remove(a); ammoChangeAction?.Invoke(); print("removeammo newammocount: " + currentAmmo.Count); });
             }
         }
+        if (currentWaveData.colliderTurnOffBefore)
+        {
+            currentWaveData.colliderTurnOffBefore.SetActive(true);
+        }
         gameStateManager.startCombat(this, currentWaveData);
 
     }
@@ -217,6 +221,7 @@ public class combatAreaManager : MonoBehaviour
         started = false;
         currentWaveIndex = 0;
         int i = 0;
+        areaColliders.SetActive(false);
         foreach (var wave in functionalWaveDataList)
         {
             foreach(var enemy in wave.enemies)

@@ -117,8 +117,8 @@ GameObject:
   - component: {fileID: 5404677454582178930}
   - component: {fileID: 6541841272331430054}
   - component: {fileID: 6854922527759016282}
-  - component: {fileID: 5039585731891821637}
   - component: {fileID: 7450648403885556856}
+  - component: {fileID: 4179968761981833417}
   m_Layer: 24
   m_Name: EnemigoTuto
   m_TagString: Untagged
@@ -177,11 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HealthPoint>k__BackingField: 0
+  <HealthPoint>k__BackingField: 999
   _maxHealthPoint: 999
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  ActiveBeforeFight: 0
 --- !u!54 &5404677454582178930
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -238,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endAction: 0
   cancelled: 0
+  onAction: 0
   counterOn: 0
   reactionOn: 0
   doingReactCounter: 0
@@ -246,24 +249,6 @@ MonoBehaviour:
   Locked: 1
   seeDistance: 3
   attackDistance: 34.56
---- !u!114 &5039585731891821637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8004532814463855830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f21e425e8c89a4439e29b8e41098414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeOnLoop: 0
-  interruptOptions: 0
-  _eventHandler:
-    debugStatusChanges: 0
-    identifier: 
-  System: {fileID: 11400000, guid: b68be1189efc0e1439b102373ae71b53, type: 2}
 --- !u!114 &7450648403885556856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +263,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   distanceThreshold: 1
+--- !u!114 &4179968761981833417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004532814463855830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e79e00251ea97499a4f5214e3028de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialMode: 0
 --- !u!1001 &353036573988647618
 PrefabInstance:
   m_ObjectHideFlags: 0

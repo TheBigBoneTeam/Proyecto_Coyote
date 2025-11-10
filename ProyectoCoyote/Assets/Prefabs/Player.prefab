@@ -158,8 +158,6 @@ MonoBehaviour:
   grounded: 0
   gravity: 20
   maxSlopeAngle: 10
-  jumpForce: 25
-  jumpCooldown: 0.25
   airSensitity: 0.5
   dashForce: 25
   dashUpwardForce: 0
@@ -196,13 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a03f3e655e2511439c5eacbff5b4ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpKey: 0
-  sprintKey: 304
-  dashKey: 32
-  hookKey: 101
-  <Horizontal>k__BackingField: 0
-  <Vertical>k__BackingField: 0
-  <JumpPressed>k__BackingField: 0
 --- !u!114 &6183968440473856535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +213,7 @@ MonoBehaviour:
   zeroVert_Look: 0
   noticeZone: 20
   lookAtSmoothing: 1
-  maxNoticeAngle: 60
+  maxNoticeAngle: 180
   UI_Locked_Scale: 0.1
   enemyLocked: 0
   lockOnCanvas: {fileID: 0}
@@ -245,6 +236,7 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
   storedDamage: 0
 --- !u!114 &5175745504945967330
 MonoBehaviour:
@@ -278,12 +270,13 @@ MonoBehaviour:
     m_Bits: 50331648
   currentTarget: {fileID: 0}
   zeroVert_Look: 0
-  maxNoticeZone: 20
-  minNoticeZone: 5
+  maxNoticeZone: 100
+  minNoticeZone: 10
   lookAtSmoothing: 3
+  lookAtRotationOffset: {x: 180, y: 0, z: 0}
   maxNoticeAngle: 180
+  cooldown: 5
   MovingTargetFinalDistanceInFront: 4
-  offsetDistanceWhenSelected: {x: 0, y: 0, z: 0}
   selectingHook: 0
   isHooked: 0
 --- !u!136 &2306513555992948220
@@ -443,14 +436,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2995593092875605164, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3231400662322496749}
   m_SourcePrefab: {fileID: 100100000, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+--- !u!1 &171637570341686559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2995593092875605164, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+  m_PrefabInstance: {fileID: 3167081112982067635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3231400662322496749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171637570341686559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7dfcf899e4d6a41a7c64ae8176c081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6672640255872728573 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
   m_PrefabInstance: {fileID: 3167081112982067635}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 171637570341686559}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c484a7913f0a62a47b5ac184cb3f9344, type: 3}

@@ -68,6 +68,10 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
                 break;
 
+            case "GameplayBeta_PruebaCombate":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
+                break;
+
             default:
                 break;
         }

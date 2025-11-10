@@ -42,7 +42,6 @@ public class RunForCoverAction : UnityAction
     Cover coverObj;
     EnemyAI enemyAI;
         bool stopped;
-
     public override Status Update()
     {
 
@@ -84,11 +83,10 @@ public class RunForCoverAction : UnityAction
     public override void Start()
     {
         Debug.Log("StartRunCover");
-
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         agent = context.GameObject.GetComponent<NavMeshAgent>();
-       coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(out Vector3 hidePosition,out int coverIndex);
+        coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(enemyAI.GetComponent<Enemy>(), out Vector3 hidePosition, out int coverIndex);
         if (coverObj != null)
         {
             context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);

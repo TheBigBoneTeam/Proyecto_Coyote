@@ -9,6 +9,7 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     LayerMask layer;
   [SerializeField]  bool isUnsafe;
 
+
     Cover currentCover;
     int currentCoverHidePos;
 
@@ -44,6 +45,14 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
         currentCover = cover;
         currentCoverHidePos = coverindex;
 
+    }
+    public void returnCoverOwner()
+    {
+        if (currentCover != null)
+        {
+            currentCover.returnOwnerShip(enemy);
+            currentCover = null;
+        }
     }
     //protected void Start()
     //{

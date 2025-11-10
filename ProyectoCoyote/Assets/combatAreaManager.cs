@@ -43,12 +43,16 @@ public class combatAreaManager : MonoBehaviour
     WaveData currentWaveData;
     Player _player;
 
+    Action ammoChangeAction;
+
 
     [SerializeField] bool started;
 
     EnemyLockOn lockOn;
 
     IGameStateManager gameStateManager;
+
+
     private void OnTriggerEnter(Collider other)
     {
         print("trigger"+other.gameObject.name);
@@ -89,7 +93,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -110,10 +114,11 @@ public class combatAreaManager : MonoBehaviour
         if (enemy != null)
         {
             enemy.unSubscribeToDie(enemyDie);
-            //if(enemy.GetComponent<baseBullet>() != null)
-            //{
-            //    currentAmmo.Remove(enemy.GetComponent<baseBullet>());
-            //}
+            if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
+            {
+                ammoChangeAction?.Invoke();
+                currentAmmo.Remove(enemy.GetComponent<baseBullet>());
+            }
             if (!deadEnemies.Contains(enemy))
             {
                 lockOn.resetWhenDie(enemy.transform);
@@ -127,7 +132,7 @@ public class combatAreaManager : MonoBehaviour
     }
     public void startArea()
     {
-        FindAnyObjectByType<Player>().setSpawnPoint(respawnPoint.position);
+        _player.setSpawnPoint(respawnPoint.position);
         gameStateManager.subscribeToRestart(restart);
 
         currentWaveIndex = 0;
@@ -155,6 +160,7 @@ public class combatAreaManager : MonoBehaviour
     }
     void startWave()
     {
+        
          currentWaveData = functionalWaveDataList[currentWaveIndex];
         if (currentWaveData.Covers != null && currentWaveData.Covers.Length > 0)
         {
@@ -163,6 +169,10 @@ public class combatAreaManager : MonoBehaviour
         if (currentWaveData.ammo != null && currentWaveData.ammo.Length > 0)
         {
             currentAmmo = functionalWaveDataList[currentWaveIndex].ammo.ToList();
+        }
+        if(currentWaveData.spawnPoint != null)
+        {
+            _player.setSpawnPoint(currentWaveData.spawnPoint.position);
         }
         if (currentWaveData.beforeWavestoryAction != null)
         {
@@ -189,16 +199,18 @@ public class combatAreaManager : MonoBehaviour
                 currentAmmo.Add(bullet);
             }
         }
+        ammoChangeAction?.Invoke();
         if (currentAmmo != null)
         {
             foreach (var ammo in currentAmmo)
             {
-                ammo.subcribeToShoot((a) => { currentAmmo.Remove(a); print("removeammo newammocount: " + currentAmmo.Count); });
+                ammo.subcribeToShoot((a) => { currentAmmo.Remove(a); ammoChangeAction?.Invoke(); print("removeammo newammocount: " + currentAmmo.Count); });
             }
         }
         gameStateManager.startCombat(this, currentWaveData);
 
     }
+    
     public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()
     {
@@ -303,14 +315,27 @@ public class combatAreaManager : MonoBehaviour
             if(ammo == null) continue;
             bullets.Add(ammo);
         }
-        foreach(Enemy enemy in currentWaveData.enemies)
-        {
-            baseBullet bulet = enemy.gameObject.GetComponent<baseBullet>();
-           if(bulet == null) continue;
-           bullets.Add(bulet);
-        }
+        //foreach(Enemy enemy in currentWaveData.enemies)
+        //{
+        //    baseBullet bulet = enemy.gameObject.GetComponent<baseBullet>();
+        //   if(bulet == null) continue;
+        //   bullets.Add(bulet);
+        //}
         return bullets.ToArray();
     }
+
+    public void subscribeToAmmoChange(Action response)
+    {
+        ammoChangeAction += response;
+    }
+    public void unSubscribeToAmmoChange(Action response)
+    {
+        ammoChangeAction += response;
+    }
+    public void changeInAmmoOwnership()
+    {
+        ammoChangeAction?.Invoke();
+}
 }
 
 [System.Serializable]
@@ -323,7 +348,8 @@ public class WaveData
     public GameObject colliderTurnOffBefore;
     public Cover[] Covers;
     public baseBullet[] ammo;
-   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo)
+    public Transform spawnPoint;
+   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint)
     {
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
@@ -331,6 +357,7 @@ public class WaveData
         this.colliderTurnOffBefore = colliderTurnOffBefore;
         this.Covers = covers;
         this.ammo = ammo;
+        this.spawnPoint = spawnpoint;
             
     }
 }

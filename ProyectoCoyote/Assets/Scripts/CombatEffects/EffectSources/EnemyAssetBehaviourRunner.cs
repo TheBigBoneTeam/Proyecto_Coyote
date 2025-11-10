@@ -1,6 +1,7 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     public PushPerception EndAttackQueue { get; private set; }
   protected  Enemy enemy;
     protected Player player;
+
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
     {
@@ -41,10 +43,40 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
             player = FindAnyObjectByType<Player>();
         }
     }
+  
 }
 public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
     public PushPerception ChosenAsAmmo { get; private set; }
+    BullEnemyAssetBehaviourRunner _currentHeavy;
+    public BullEnemyAssetBehaviourRunner currentHeavy
+    {
+        get
+        {
+            return _currentHeavy;
+        }
+        set
+        {
+            if (_currentHeavy != null)
+            {
+
+                _currentHeavy.GetComponent<Enemy>().unSubscribeToDie(HeavyDie);
+                
+            }
+            _currentHeavy = value;
+            if (_currentHeavy.GetComponent<Enemy>() != null)
+            {
+                _currentHeavy.GetComponent<Enemy>().subscribeToDie(HeavyDie);
+                 ChosenAsAmmo.Fire();
+            }
+        }
+    }
+
+    private void HeavyDie(AGameCharacter arg0)
+    {
+        throw new NotImplementedException();
+    }
+
     public bool charging { get; private set; }
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
     {

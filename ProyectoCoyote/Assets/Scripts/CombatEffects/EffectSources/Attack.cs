@@ -56,10 +56,13 @@ public class Attack : ATouchCombatEffectSource
     {
         Parreable = parry;
     }
-    public void setOwner(AGameCharacter owner)
+    public virtual void setOwner(AGameCharacter owner)
     {
         this.owner = owner;
-        setHitCheck(HitCheckType);
+        if (owner != null)
+        {
+            setHitCheck(HitCheckType);
+        }
     }
     public void setHitCheck(HittableTypes type)
     {

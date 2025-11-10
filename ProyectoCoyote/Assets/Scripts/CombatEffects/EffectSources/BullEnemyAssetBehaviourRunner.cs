@@ -5,7 +5,34 @@ using UnityEngine.UIElements.Experimental;
 public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
   [SerializeField]  int ammo;
-  public  baseBullet currentAmmo;
+
+    baseBullet _currentAmmo;
+  public baseBullet currentAmmo
+    {
+        get
+        {
+            return _currentAmmo;
+        }
+        set
+        {
+            if (_currentAmmo != null)
+            {
+                if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+                {
+                    _currentAmmo.GetComponent<Enemy>().unSubscribeToDie(BombEnemyDie);
+                }
+            }
+            _currentAmmo = value;
+            if (_currentAmmo != null)
+            {
+                if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+                {
+                    _currentAmmo.GetComponent<Enemy>().subscribeToDie(BombEnemyDie);
+                    _currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>().currentHeavy = this;
+                }
+            }
+        }
+    }
     public bool hasAmmo;
 
     [SerializeField] float meleeDistance;
@@ -13,9 +40,26 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public override void restart()
     {
         base.restart();
-   
+        enemy.CombatArea.subscribeToAmmoChange(checkAmmoVoid);
+
+
     }
-    
+    private void OnDisable()
+    {
+        if (enemy && enemy.CombatArea)
+        {
+            
+            enemy.CombatArea.unSubscribeToAmmoChange(checkAmmoVoid);
+            if (currentAmmo != null && currentAmmo.owner == (AGameCharacter)enemy)
+            {
+                enemy.CombatArea.changeInAmmoOwnership();
+            }
+        }
+    }
+    void checkAmmoVoid()
+    {
+        checkAmmo();
+    }
     public Status checkAmmo()
     {
         if (enemy.CombatArea.getAllBullets().Length == 0)
@@ -38,6 +82,11 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public bool hasAnyAmmo()
     {
         return hasAmmo;
+    }
+
+    void BombEnemyDie(AGameCharacter bombEnemy)
+    {
+        currentAmmo = null;
     }
     #region Gizmos
     private void OnDrawGizmos()

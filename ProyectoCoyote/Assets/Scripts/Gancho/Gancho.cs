@@ -30,7 +30,8 @@ public class Gancho : MonoBehaviour
     GameObject player;
     CameraController CamControl;
     Transform HookCanvas;
-
+    HookController hookController;
+    HookObserver hookObserver;
     
     public bool selectingHook;
     public bool isHooked;
@@ -45,8 +46,11 @@ public class Gancho : MonoBehaviour
         HookCanvas = GameObject.Find("HookCanvas").transform;
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
-
-
+        hookController = FindAnyObjectByType<HookController>();
+        // Obsever prueba
+        hookObserver = FindAnyObjectByType<HookObserver>();
+        hookObserver.Configure(hookController);
+        //
 
         HookCanvas.gameObject.SetActive(false);
         if (Camera.main != null)
@@ -113,11 +117,15 @@ public class Gancho : MonoBehaviour
 
         if (isHooked) 
         {
-            if (gameInput.HookAttractPressed)
+            if (gameInput.HookAttractPressed) 
+            { 
                 AtractTarget();
+                hookController.HookUsed();
+            }
             else if (gameInput.Hook_TPPressed)
             {
                 GoToTarget();
+                hookController.HookUsed();
             }
         }
     }

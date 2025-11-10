@@ -33,6 +33,24 @@ public class GameInput : MonoBehaviour
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
 
+    #region Contoles para movil
+    public void SetMobileMovement(float horizontal, float vertical)
+    {
+        Horizontal = horizontal;
+        Vertical = vertical;
+    }
+
+    public void TriggerDash() => DashPressed = true;
+    public void TriggerAttack() => AttackPressed = true;
+    public void TriggerHookAim() => HookAimPressed = true;
+    public void TriggerEvade() => EvadePressed = true;
+    public void TriggerHookConfirm() => HookConfirmPressed = true;
+    public void TriggerHookTP() => Hook_TPPressed = true;
+    public void TriggerHookDisconfirm() => HookDisconfirmPressed = true;
+    public void TriggerHookAttract() => HookAttractPressed = true;
+    public void TriggerLock() => LockPressed = true;
+    #endregion
+
     #region Metodos
 
     private void Awake()
@@ -82,7 +100,6 @@ public class GameInput : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
-        controls.Enable();
     }
 
     private void OnDisable()

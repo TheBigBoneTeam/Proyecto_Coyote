@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class AnimationEventsSender : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   public void PlaySound(string soundName)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        AudioManager.Instance.PlaySimpleSound(soundName,false,Vector2.zero,true,false);
     }
 
 }

@@ -2,29 +2,72 @@ using NUnit.Framework;
 using Services;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyManager: IEnemyManager
 {
     ClassMutex<EnemyAI> enemyClassMutex;
     ClassMutex<EnemyAI> attackingEnemy;
+    Transform kungFuCircle;
+    KungFuPoint[] kungFuPoints;
 
     public void Instantiate()
     {
         enemyClassMutex = new ClassMutex<EnemyAI>();
         attackingEnemy = new ClassMutex<EnemyAI>();
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(()=>attackingEnemy.clearMutex());
+       // kungFuCircle = UnityEngine.GameObject.FindGameObjectWithTag("KungFuCircle").transform;
+       // kungFuPoints = new KungFuPoint[kungFuCircle.childCount];
+       // for (int i = 0; i < kungFuCircle.childCount; i++)
+       // {
+       //     kungFuPoints[i] = new KungFuPoint(kungFuCircle.GetChild(i));
+       // }
+    }
+    public Transform getPoint(int index, Enemy owner)
+    {
+        if (kungFuPoints[index].checkOwner(owner))
+        {
+            return kungFuPoints[index].position;
+        }
+        Debug.Log("isNull");
+        return null;
     }
 
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
 
  //   ClassMutex<EnemyAI> IEnemyManager.enemyClassMutex() => enemyClassMutex;
 }
+class KungFuPoint
+{
+    public Transform position;
+    public Enemy Owner;
+
+    public KungFuPoint(Transform position)
+    {
+        this.position = position;
+        Owner = null;
+    }
+    public bool checkOwner(Enemy owner)
+    {
+        if(owner == null || this.Owner == owner)
+        { 
+            Owner = owner;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 public interface IEnemyManager:IService
 {
    // ClassMutex<EnemyAI> enemyClassMutex();
     ClassMutex<EnemyAI> attackingEnemy();
+    public Transform getPoint(int index, Enemy owner);
 
-   
+
+
 }
 public class ClassMutex<T> where T : Object, IMutex
 {

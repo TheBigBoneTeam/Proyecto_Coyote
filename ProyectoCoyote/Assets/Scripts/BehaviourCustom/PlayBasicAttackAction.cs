@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using Services;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
@@ -44,13 +45,11 @@ public class RunForCoverAction : UnityAction
 
     public override Status Update()
     {
-        Debug.Log("updaterunaction");
 
         if (stopped)
         {
             return Status.None;
         }
-        Debug.Log(agent.remainingDistance);
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -118,7 +117,6 @@ public class RandomActionAction : UnityAction
         }
         if (!idle && enemyAI.endAction)
         {
-            Debug.Log("success");
             enemyAI.endActionNode();
             return Status.Success;
         }
@@ -130,7 +128,6 @@ public class RandomActionAction : UnityAction
         char lastletter = LastLetter[0];
         int nums = lastletter - firstletter;
         char letter = (char)('A' + Random.Range(0, nums));
-        Debug.Log(nums + ":"+letter);
 
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         if (enemyAI.endAction)
@@ -147,7 +144,7 @@ public class WalkToPlayerAction : UnityAction
     Player player;
     EnemyAI enemyAI;
     bool stopped;
-
+    
     public override Status Update()
     {
       
@@ -157,7 +154,6 @@ public class WalkToPlayerAction : UnityAction
         }
         if (Time.frameCount % 5 == 0)
         {
-            
             agent.SetDestination(player.transform.position);
         }
         //Debug.Log(player == null);
@@ -188,6 +184,7 @@ public class WalkToPlayerAction : UnityAction
         base.Stop();
         stopped = true;
         Debug.Log("endrunaction");
+        
         agent.ResetPath();
 
     }
@@ -204,6 +201,73 @@ public class WalkToPlayerAction : UnityAction
     }
 
 }
+
+public class WalkToPlayerActionCircle : UnityAction
+{
+    NavMeshAgent agent;
+    Player player;
+    EnemyAI enemyAI;
+    bool stopped;
+    Transform CirclePoint;
+
+    public override Status Update()
+    {
+
+        if (stopped)
+        {
+            return Status.None;
+        }
+        if (Time.frameCount % 5 == 0)
+        {
+            agent.SetDestination(CirclePoint.transform.position);
+        }
+        //Debug.Log(player == null);
+        //Debug.Log(player.transform.position);
+        //Debug.Log(player.name);
+
+        //Debug.Log(agent.remainingDistance);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                agent.ResetPath();
+                Debug.Log("reachPlayer");
+                return Status.Success;
+            }
+        }
+        return Status.Running;
+
+    }
+    public override void Pause()
+    {
+        base.Pause();
+        agent.ResetPath();
+    }
+    public override void Stop()
+    {
+        base.Stop();
+        stopped = true;
+        Debug.Log("endrunaction");
+
+        agent.ResetPath();
+
+    }
+    public override void Start()
+    {
+        Debug.Log("StartRunPlayer");
+        stopped = false;
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        agent = context.GameObject.GetComponent<NavMeshAgent>();
+        
+        player = GameObject.FindAnyObjectByType<Player>();
+        CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
+        agent.SetDestination(CirclePoint.position);
+        enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+
+    }
+
+}
 public class RunToAmmo : UnityAction
 {
     NavMeshAgent agent;
@@ -212,9 +276,11 @@ public class RunToAmmo : UnityAction
     BullEnemyAssetBehaviourRunner enemyRunner;
     float currentDist;
     bool isReachable;
+    bool thrown;
+    bool isBomb;
+    Enemy enemy;
     public override Status Update()
     {
-        Debug.Log("updaterunaction");
 
         if (stopped)
         {
@@ -224,16 +290,190 @@ public class RunToAmmo : UnityAction
         {
             return Status.Failure;
         }
-        Debug.Log(agent.remainingDistance);
-
+        if (isBomb)
+        {
+            if (Time.frameCount % 5 == 0)
+            {
+                agent.SetDestination(enemyRunner.currentAmmo.transform.position);
+            }
+        }
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
                 enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
-                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().reachCover();
                 agent.ResetPath();
+                thrown = true;
+                return Status.Success;
+            }
+        }
+        if (stopped)
+        {
+            return Status.None;
+        }
+        return Status.Running;
 
+    }
+    public override void Pause()
+    {
+        base.Pause();
+        agent.ResetPath();
+    }
+    public override void Stop()
+    {
+        stopped = true;
+        Debug.Log("endrunaction");
+        agent.ResetPath();
+        if (!thrown && enemyRunner.currentAmmo)
+        {
+            enemyRunner.currentAmmo.setOwner(null);
+            enemy.CombatArea.changeInAmmoOwnership();
+        }
+        base.Stop();
+    }
+    public override void Start()
+    {
+        Debug.Log("StartRunAmmo");
+        thrown = false;
+        stopped = false;
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        enemy = enemyAI.gameObject.GetComponent<Enemy>();
+        agent = enemyAI.GetComponent<NavMeshAgent>();
+        enemyRunner = enemyAI.GetComponent<BullEnemyAssetBehaviourRunner>();
+        enemyRunner.currentAmmo = null;
+        currentDist = int.MaxValue;
+        baseBullet bestAmmo = null;
+        foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
+        {
+            if(bul.owner != null && bul.owner != enemy)
+            {
+                continue;
+            }
+            float newDist = Vector3.Distance(bul.transform.position,enemyAI.transform.position);
+            if (bestAmmo == null || currentDist > newDist)
+            {
+                currentDist = newDist;
+                bestAmmo = bul;
+                
+            }
+        }
+        if (bestAmmo == null)
+        {
+            enemyRunner.hasAmmo = false;
+            isReachable = false;
+            return;
+        }
+        if (agent.SetDestination(bestAmmo.transform.position))
+        {
+            isReachable = true;
+            enemyRunner.hasAmmo = true;
+            enemyRunner.currentAmmo = bestAmmo;
+            enemyRunner.currentAmmo.setOwner(enemy);
+
+            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+            if (enemyRunner.currentAmmo.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
+            {
+                isBomb = true;
+            }
+        }
+        else
+        {
+            isReachable = false;
+            enemyRunner.hasAmmo = false;
+        }
+
+    }
+
+}
+public class CirclePlayerAction : UnityAction
+{
+    NavMeshAgent agent;
+    EnemyAI enemyAI;
+    bool stopped;
+    float currentDist;
+    bool finished;
+    Player player;
+    public override void Start()
+    {
+        stopped = false;
+        finished = false;
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        agent = context.GameObject.GetComponent<NavMeshAgent>();
+        player = GameObject.FindAnyObjectByType<Player>();
+        agent.SetDestination(player.transform.position);
+        enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+        Vector3 vec = Random.insideUnitCircle.normalized;
+        vec.z = vec.y;
+        vec.z = 0;
+        agent.SetDestination(player.transform.position + enemyAI.attackDistance * vec);
+        enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+    }
+    public override void Pause()
+    {
+        base.Pause();
+        agent.ResetPath();
+    }
+    public override void Stop()
+    {
+        stopped = true;
+        Debug.Log("endrunaction");
+        agent.ResetPath();
+        base.Stop();
+    }
+    public override Status Update()
+    {
+        if (finished)
+        {
+            return Status.Success;
+        }
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                finished = true;
+                agent.ResetPath(); return Status.Success;
+
+
+            }
+        }
+        return Status.Running;
+
+    }
+}
+public class RunToHeavyAction : UnityAction
+{
+    NavMeshAgent agent;
+    EnemyAI enemyAI;
+    bool stopped;
+    BombEnemyAssetBehaviourRunner enemyRunner;
+    float currentDist;
+    bool isReachable;
+    Enemy enemy;
+    baseBullet bullet;
+    public override Status Update()
+    {
+
+        if (stopped)
+        {
+            return Status.None;
+        }
+        if (!isReachable)
+        {
+            return Status.Failure;
+        }
+
+        if (Time.frameCount % 5 == 0)
+        {
+            agent.SetDestination(enemyRunner.currentHeavy.transform.position);
+        }
+        
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                agent.ResetPath();
                 return Status.Success;
             }
         }
@@ -258,26 +498,24 @@ public class RunToAmmo : UnityAction
     }
     public override void Start()
     {
-        Debug.Log("StartRunCover");
-
+        
+        Debug.Log("StartRunAmmo");
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
-        agent = context.GameObject.GetComponent<NavMeshAgent>();
-        foreach(baseBullet bul in context.GameObject.GetComponent<Enemy>().CombatArea.getAllBullets())
+        enemy = enemyAI.gameObject.GetComponent<Enemy>();
+        agent = enemyAI.GetComponent<NavMeshAgent>();
+        bullet = enemyAI.GetComponent<baseBullet>();
+        enemyRunner = enemyAI.GetComponent<BombEnemyAssetBehaviourRunner>();
+        enemyRunner.currentHeavy = bullet.owner.GetComponent<BullEnemyAssetBehaviourRunner>();
+        currentDist = int.MaxValue;
+        foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
+       
+        if (enemyRunner.currentHeavy == null)
         {
-            float newDist = Vector3.Distance(bul.transform.position,enemyAI.transform.position);
-            if (enemyRunner.currentAmmo == null || currentDist > newDist)
-            {
-                currentDist = newDist;
-                enemyRunner.currentAmmo = bul;
-            }
-        }
-        if (enemyRunner.currentAmmo == null)
-        {
-            enemyRunner.hasAmmo = false;
+            isReachable = false;
             return;
         }
-        if (agent.SetDestination(enemyRunner.currentAmmo.transform.position))
+        if (agent.SetDestination(enemyRunner.currentHeavy.transform.position))
         {
             isReachable = true;
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);

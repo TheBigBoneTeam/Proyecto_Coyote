@@ -13,7 +13,9 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public bool endAction,cancelled,onAction;
     public bool counterOn, reactionOn;
-  public int currentAction { get; private set; }
+    public int KungFuCirclePoint;
+
+    public int currentAction { get; private set; }
   [SerializeField]  private bool doingReactCounter;
     Attack attackObj;
    [SerializeField] public Reaction reactionObj;
@@ -264,7 +266,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, seeDistance);
     }
-
+    #endregion
     public void endActionNode()
     {
         setOnAction(false);
@@ -295,5 +297,4 @@ public class EnemyAI : MonoBehaviour,IMutex
             return Status.Running;
         }
     }
-    #endregion
 }

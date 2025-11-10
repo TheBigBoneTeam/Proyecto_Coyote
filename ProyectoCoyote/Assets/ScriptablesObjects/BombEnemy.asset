@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
-  m_Name: BasicEnemy
+  m_Name: BombEnemy
   m_EditorClassIdentifier: 
   data:
     graphs:
@@ -34,6 +34,7 @@ MonoBehaviour:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
+        - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
         position: {x: 1164, y: 194.4}
@@ -89,6 +90,40 @@ MonoBehaviour:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: GoTowardHeavy
+        id: ee188053-6bca-4f67-ac7f-db640ded7a7f
+        position: {x: 274.4, y: -280}
+        node:
+          rid: 8725330879351619668
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
+        childIds: []
+      - name: BecomeAmmo
+        id: 100bad72-ba66-4ab8-ba1e-b678305f9d8c
+        position: {x: 100, y: -3.199997}
+        node:
+          rid: 8725330879351619669
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds:
+        - ee188053-6bca-4f67-ac7f-db640ded7a7f
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -165,7 +200,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330892792005137
+            rid: 8725330806027845901
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -446,6 +481,9 @@ MonoBehaviour:
     - name: EndQueue
       targetNodeIds:
       - 8493d51c-cd68-4807-a7df-bec4561c1ff5
+    - name: ChosenAsAmmo
+      targetNodeIds:
+      - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
   references:
     version: 2
     RefIds:
@@ -648,6 +686,9 @@ MonoBehaviour:
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
+    - rid: 8725330806027845901
+      type: {class: WalkToPlayerAction, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 8725330806027845914
       type: {class: TrueFalseBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -743,6 +784,10 @@ MonoBehaviour:
     - rid: 8725330859197727673
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 8725330892792005137
-      type: {class: WalkToPlayerAction, ns: , asm: Assembly-CSharp}
+    - rid: 8725330879351619668
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
+    - rid: 8725330879351619669
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0

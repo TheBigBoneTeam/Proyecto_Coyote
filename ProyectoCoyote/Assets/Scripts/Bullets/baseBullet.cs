@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class baseBullet : Attack, IBullet
 {
-[SerializeField]    Vector3 objective;
+    [SerializeField] Vector3 objective;
     [SerializeField] public float speed;
     [SerializeField] float lifeTime;
 
@@ -18,6 +18,7 @@ public class baseBullet : Attack, IBullet
     Action<baseBullet> onFire;
 
 
+   protected combatAreaManager areaManager;
 
 
     [SerializeField] LayerMask obstacleLayer;
@@ -55,6 +56,7 @@ public class baseBullet : Attack, IBullet
         transform.LookAt(objective);
         flying = true; 
         onFire?.Invoke(this);
+        GetComponent<Collider>().enabled = true;
         if (anim)
         {
             anim.Play("fly");
@@ -66,10 +68,15 @@ public class baseBullet : Attack, IBullet
     public void subcribeToShoot(Action<baseBullet> response)
     {
         onFire += response;
+        
     }
     public void unSubcribeToShoot(Action<baseBullet> response)
     {
         onFire -= response;
+    }
+    public void setAreaManager(combatAreaManager combatAreaManager)
+    {
+        areaManager = combatAreaManager;
     }
     protected override void Start()
     {

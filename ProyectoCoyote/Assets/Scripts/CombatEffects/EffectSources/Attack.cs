@@ -24,11 +24,11 @@ public class Attack : ATouchCombatEffectSource
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
-            //if(HitCheck == null)
-            //{
-            //    setHitCheck(HitCheckType);
-            //}
-          
+            if (HitCheck == null)
+            {
+                setHitCheck(HitCheckType);
+            }
+
             //Comprueba si el personaje golpeado es golpeable
             if (this.HitCheck.isHittable(character))
             {
@@ -56,10 +56,13 @@ public class Attack : ATouchCombatEffectSource
     {
         Parreable = parry;
     }
-    public void setOwner(AGameCharacter owner)
+    public virtual void setOwner(AGameCharacter owner)
     {
         this.owner = owner;
-        setHitCheck(HitCheckType);
+        if (owner != null)
+        {
+            setHitCheck(HitCheckType);
+        }
     }
     public void setHitCheck(HittableTypes type)
     {

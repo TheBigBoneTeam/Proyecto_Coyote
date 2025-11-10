@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -18,11 +19,15 @@ public class Gancho : MonoBehaviour
     [SerializeField] float maxNoticeZone= 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
+    [SerializeField] Vector3 lookAtRotationOffset = new Vector3(20,0,0);
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
+    [SerializeField] int cooldown = 5;
+    private TextMeshProUGUI _cooldownUIText;
+    private bool _canUseHook = false;
 
     [Header("When selected")]
     [SerializeField]  float MovingTargetFinalDistanceInFront = 4;
-    [SerializeField]  Vector3 offsetDistanceWhenSelected = new Vector3(0, 0, 0);
+    
 
     HookableObject hookableObject;
     EnemyLockOn lockOn;
@@ -31,6 +36,7 @@ public class Gancho : MonoBehaviour
     CameraController CamControl;
     Transform HookCanvas;
     HookController hookController;
+    private Image _hookImageUI;
     HookObserver hookObserver;
     
     public bool selectingHook;
@@ -39,11 +45,18 @@ public class Gancho : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();
-        HookCanvas = GameObject.Find("HookCanvas").transform;
+        HookCanvas = GameObject.Find("HookUI").transform;
+        _hookImageUI = HookCanvas.Find("HookImage").
+            GetComponent<Image>();
+        _cooldownUIText = HookCanvas.Find("CooldownText").
+            GetComponent<TextMeshProUGUI>(); 
+
+
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
         hookController = FindAnyObjectByType<HookController>();
@@ -52,7 +65,7 @@ public class Gancho : MonoBehaviour
         hookObserver.Configure(hookController);
         //
 
-        HookCanvas.gameObject.SetActive(false);
+        _hookImageUI.gameObject.SetActive(false);
         if (Camera.main != null)
         {
             cam = Camera.main.transform;
@@ -62,6 +75,8 @@ public class Gancho : MonoBehaviour
             Debug.LogWarning("Camera.main is null at Start. Delaying cam assignment.");
             StartCoroutine(AssignCameraLater());
         }
+        
+        _canUseHook = true;
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
@@ -70,19 +85,20 @@ public class Gancho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameInput.HookAimPressed) 
+
+        if (currentTarget)
+        {
+            LookAtTarget();
+        }
+
+        if (gameInput.HookAimPressed && _canUseHook)
         {
             Debug.Log("Activando el gancho...");
-            ActivateTargetHook(); 
-        }
+            ActivateTargetHook();
+        } 
 
-            HookLogic();
+        HookLogic();
 
-
-        if (currentTarget) 
-        { 
-            LookAtTarget(); 
-        }
         
     }
     public void HookLogic()
@@ -120,11 +136,13 @@ public class Gancho : MonoBehaviour
             if (gameInput.HookAttractPressed) 
             { 
                 AtractTarget();
+                StartCoroutine(Cooldown());
                 hookController.HookUsed();
             }
             else if (gameInput.Hook_TPPressed)
             {
                 GoToTarget();
+                StartCoroutine(Cooldown());
                 hookController.HookUsed();
             }
         }
@@ -147,24 +165,25 @@ public class Gancho : MonoBehaviour
         if (currentTarget != null) 
         {
             movement.startHookMode();
-            HookCanvas.gameObject.SetActive(true);
+            _hookImageUI.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
+
             selectingHook = true;
             lockOn.enemyLocked = false;
             Debug.Log("----------Cámara gancho Activada");
             movement.animator.CrossFade("Grapple_01", 0.2f);
-
+            LookAtTarget();
         } 
            
     }
     void ResetTarget()
     {
         movement.stopHookMode();
-        HookCanvas.gameObject.SetActive(false);
+        _hookImageUI.gameObject.SetActive(false);
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
-        Image img = HookCanvas.GetComponentInChildren<Image>();
+        Image img = _hookImageUI.GetComponentInChildren<Image>();
         img.color = Color.white;
         if(!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
@@ -221,7 +240,6 @@ public class Gancho : MonoBehaviour
                 bestTarget = candidate;
             }
         }
-
         return bestTarget != null ? bestTarget : currentTarget;
     }
 
@@ -321,8 +339,18 @@ public class Gancho : MonoBehaviour
         // Actaliza la posici�n del localizador del enemigo
         
         HookableObjectLocator.position = currentTarget.position;
-        //transform.LookAt(currentTarget.transform);
+        // Calcula la dirección desde el personaje hacia la cámara
+        Vector3 directionToCamera = cam.transform.position - transform.position;
 
+        // Asegúrate de que la dirección no sea cero, lo que causaría un error
+        if (directionToCamera != Vector3.zero)
+        {
+            // Calcula la rotación deseada para que el personaje mire a la cámara
+            Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
+
+            // Suaviza la rotación para que no sea instantánea
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,3);
+        }
     }
     IEnumerator AssignCameraLater()
     {
@@ -362,7 +390,7 @@ public class Gancho : MonoBehaviour
         { 
             isHooked = true;
             selectingHook = false;
-            Image img = HookCanvas.GetComponentInChildren<Image>();
+            Image img = _hookImageUI.GetComponentInChildren<Image>();
             img.color = Color.red;
         }
     }
@@ -419,4 +447,23 @@ public class Gancho : MonoBehaviour
     }
 
     #endregion
+
+    private IEnumerator Cooldown()
+    {
+        _canUseHook = false;
+        _cooldownUIText.SetText($"Cooldown Hook: active");
+
+        // yield return new WaitForSeconds(cooldown);
+        int i = cooldown;
+
+        while (i > 0)
+        {
+            _cooldownUIText.SetText($"Cooldown Hook: {i}");
+            yield return new WaitForSeconds(1);
+            i--;
+        }
+        _canUseHook = true;
+        _cooldownUIText.SetText("");
+
+    }
 }

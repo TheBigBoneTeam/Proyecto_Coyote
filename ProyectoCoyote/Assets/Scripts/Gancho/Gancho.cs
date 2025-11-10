@@ -61,8 +61,8 @@ public class Gancho : MonoBehaviour
         player = GameObject.Find("Player");
         hookController = FindAnyObjectByType<HookController>();
         // Obsever prueba
-        hookObserver = FindAnyObjectByType<HookObserver>();
-        hookObserver.Configure(hookController);
+        // hookObserver = FindAnyObjectByType<HookObserver>();
+        // hookObserver.Configure(hookController);
         //
 
         _hookImageUI.gameObject.SetActive(false);
@@ -85,12 +85,6 @@ public class Gancho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (currentTarget)
-        {
-            LookAtTarget();
-        }
-
         if (gameInput.HookAimPressed && _canUseHook)
         {
             Debug.Log("Activando el gancho...");
@@ -98,8 +92,10 @@ public class Gancho : MonoBehaviour
         } 
 
         HookLogic();
-
-        
+        if (currentTarget)
+        {
+            LookAtTarget();
+        }
     }
     public void HookLogic()
     {
@@ -183,8 +179,7 @@ public class Gancho : MonoBehaviour
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
-        Image img = _hookImageUI.GetComponentInChildren<Image>();
-        img.color = Color.white;
+        _hookImageUI.color = Color.white;
         if(!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
         
@@ -324,8 +319,8 @@ public class Gancho : MonoBehaviour
             }
         }
 
-    return false;
-}
+        return false;
+    }
 
     // Mirar al objeto
     private void LookAtTarget()
@@ -338,19 +333,17 @@ public class Gancho : MonoBehaviour
 
         // Actaliza la posici�n del localizador del enemigo
         
-        HookableObjectLocator.position = currentTarget.position;
+        HookableObjectLocator.position = currentTarget.position - lookAtRotationOffset;
         // Calcula la dirección desde el personaje hacia la cámara
-        Vector3 directionToCamera = cam.transform.position - transform.position;
+        //Vector3 directionToCamera = (cam.transform.position - transform.position) + lookAtRotationOffset;
 
-        // Asegúrate de que la dirección no sea cero, lo que causaría un error
-        if (directionToCamera != Vector3.zero)
-        {
-            // Calcula la rotación deseada para que el personaje mire a la cámara
-            Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
+        //if (directionToCamera != Vector3.zero)
+        //{
+        //    Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
 
-            // Suaviza la rotación para que no sea instantánea
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,3);
-        }
+        //    player.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,3);
+        //}
+        // player.transform.rotation = Quaternion.LookRotation(new Vector3(90,90,0));
     }
     IEnumerator AssignCameraLater()
     {
@@ -390,8 +383,7 @@ public class Gancho : MonoBehaviour
         { 
             isHooked = true;
             selectingHook = false;
-            Image img = _hookImageUI.GetComponentInChildren<Image>();
-            img.color = Color.red;
+            _hookImageUI.color = Color.red;
         }
     }
     private void GoToTarget()

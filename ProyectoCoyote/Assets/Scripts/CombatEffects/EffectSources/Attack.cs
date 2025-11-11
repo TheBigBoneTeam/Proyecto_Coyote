@@ -37,6 +37,18 @@ public class Attack : ATouchCombatEffectSource
 
         }
     }
+    public override void addEffectsToChar(AGameCharacter charac)
+    {
+        foreach (var effect in effects)
+        {
+            effect.setOwner(owner);
+            charac.checkEffect(effect);
+        }
+        //if (oneUse)
+        //{
+        //    destroySource();
+        //}
+    }
     private void Update()
     {
        // print(HitCheck == null);

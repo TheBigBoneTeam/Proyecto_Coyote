@@ -6,6 +6,7 @@ namespace CombatEffect
     [System.Serializable]
     public abstract class ACombatEffect
     {
+        protected AGameCharacter owner;
         protected AGameCharacter objCharacter;
         public ACombatEffectSource source { get; private set; }
 
@@ -19,6 +20,7 @@ namespace CombatEffect
 
         public abstract void End();
         public AGameCharacter getCharacter() => objCharacter;
+        public AGameCharacter getOwner() => owner;
 
         public ACombatEffect(ACombatEffectSource source)
         {
@@ -31,6 +33,10 @@ namespace CombatEffect
         public void setSource(ACombatEffectSource source)
         {
             this.source = source;
+        }
+        public void setOwner(AGameCharacter owner)
+        {
+            this.owner = owner;
         }
     }
 }

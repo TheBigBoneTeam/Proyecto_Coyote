@@ -26,7 +26,28 @@ public class baseBullet : Attack, IBullet
     [SerializeField] protected Animator anim;
 
  [SerializeField]   bool flying;
+    protected override void OnTriggerEnter(Collider other)
+    {
+        print(HitCheck == null);
+        AGameCharacter character = other.GetComponent<AGameCharacter>();
+        if (character)
+        {
+            if (HitCheck == null)
+            {
+                setHitCheck(HitCheckType);
+            }
 
+            //Comprueba si el personaje golpeado es golpeable
+            if (this.HitCheck.isHittable(character))
+            {
+                character.GetComponent<DamageReceiver>().checkEffectSource(this);
+                flying = false;
+                Destroy(gameObject,0.5f);
+
+            }
+
+        }
+    }
     private void Update()
     {
         if (flying)
@@ -49,6 +70,7 @@ public class baseBullet : Attack, IBullet
         LoadData(_attackData);
         setOwner(shooter);
         setHitCheck(HittableTypes.onlyOtherTeam);
+        GetComponent<Collider>().isTrigger = true;
         transform.position = spawnPoint;
         print(objective);
         this.objective = objective;
@@ -57,9 +79,11 @@ public class baseBullet : Attack, IBullet
         flying = true; 
         onFire?.Invoke(this);
         GetComponent<Collider>().enabled = true;
+        
         if (anim)
         {
-            anim.Play("fly");
+            anim.enabled = true;
+            anim.Play("fly",0,0);
         }
 
     }

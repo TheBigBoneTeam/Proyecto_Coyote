@@ -504,7 +504,6 @@ public class RunToHeavyAction : UnityAction
         agent = enemyAI.GetComponent<NavMeshAgent>();
         bullet = enemyAI.GetComponent<baseBullet>();
         enemyRunner = enemyAI.GetComponent<BombEnemyAssetBehaviourRunner>();
-        enemyRunner.currentHeavy = bullet.owner.GetComponent<BullEnemyAssetBehaviourRunner>();
         currentDist = int.MaxValue;
         foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
        

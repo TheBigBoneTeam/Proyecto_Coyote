@@ -14,10 +14,15 @@ public class Gun : MonoBehaviour
             GameObject bulet = Instantiate(bullet);
             bul = bulet.GetComponent<baseBullet>();
         }
-        print("shoot");
+        print("shoot"+name);
         shootAction?.Invoke(attackState);
 
-        bul.StartBulletMovement(gameCharacter, bulletSpawnPoint.position, obj);
+        
+            print("canshoot"+name);
+            bul.StartBulletMovement(gameCharacter, bulletSpawnPoint.position, obj);
+
+        
+
     }
     protected virtual void Start()
     {

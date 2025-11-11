@@ -33,8 +33,9 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             }
         }
     }
-    public bool hasAmmo;
-
+    [field: SerializeField]
+    public bool hasAmmo /*{ get; private set; }*/
+           ;
     [SerializeField] float meleeDistance;
     public bool noAmmo() => !hasAmmo;
     public override void restart()

@@ -7,32 +7,29 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class VisualHook : MonoBehaviour
 {
     private LineRenderer lineRenderer;
     [SerializeField] private float cableSpeed = 50f;
     [SerializeField] private float handOffset = 0.5f;
-    private Animator animator;
-    private Vector3 leftHand = Vector3.zero;
+    [SerializeField] private Transform leftHand;
 
     private Transform target;
     private GameObject player;
     private float currentCableLength;
     CameraController CamControl;
+    Transform cam;
     EnemyLockOn lockOn;
 
 
     void Start()
     {
+        cam = Camera.main.transform;
         CamControl = FindAnyObjectByType<CameraController>();
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
-        // leftHand = GameObject.Find("upper_arm.L.001").transform.position;
-        
-
-        animator = player.GetComponentInChildren<Animator>();
-        //leftHand = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
 
         lineRenderer = GetComponent<LineRenderer>();
         
@@ -46,11 +43,10 @@ public class VisualHook : MonoBehaviour
     }
     private Vector3 GetHookOrigin()
     {
-        if (leftHand != Vector3.zero)
+        if (leftHand != null)
         {
             
-            return leftHand;
-           // return leftHand.transform.position;
+            return leftHand.position;
         }
         else 
         {
@@ -85,7 +81,32 @@ public class VisualHook : MonoBehaviour
         }
     }
 
+    public void RetractHookAtractTarget(float offset)
+    {
+        if (target != null)
+        {
+            StartCoroutine(RetractCableWithTarget(offset));
 
+        }
+        else
+        {
+            if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+
+        }
+    }
+    public void RetractHookGoToTarget(float offset)
+    {
+        if (target != null)
+        {
+            StartCoroutine(GoToTarget(offset));
+
+        }
+        else
+        {
+            if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+
+        }
+    }
 
 
     private IEnumerator ExtendCable()
@@ -112,6 +133,7 @@ public class VisualHook : MonoBehaviour
             yield return null;
         }
 
+        lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
     }
     private IEnumerator RetractCable()
@@ -142,10 +164,80 @@ public class VisualHook : MonoBehaviour
 
             yield return null;
         }
+        
+        lineRenderer.enabled = false;
+        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+    }
+    private IEnumerator RetractCableWithTarget(float offset)
+    {
+        Vector3 Origin = GetHookOrigin();
+        Vector3 start = Origin != Vector3.zero ? Origin : player.transform.position;
+        Vector3 end = target.position;
+        float totalDistance = Vector3.Distance(start, end);
+
+        currentCableLength = totalDistance;
+
+        while (currentCableLength > offset) 
+        {
+            currentCableLength = Mathf.MoveTowards(
+                currentCableLength,
+                offset, 
+                cableSpeed * Time.deltaTime
+            );
+
+            Vector3 direction = (end - start).normalized;
+            Vector3 currentEnd = start + direction * currentCableLength;
+
+            lineRenderer.SetPosition(0, start);
+            lineRenderer.SetPosition(1, currentEnd);
+
+            target.position = currentEnd;
+
+            yield return null;
+        }
 
         lineRenderer.enabled = false;
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
     }
 
-    
+    private IEnumerator GoToTarget(float offset)
+    {
+        Vector3 Origin = GetHookOrigin();
+        Vector3 end = Origin != Vector3.zero ? Origin : player.transform.position;
+        Vector3 start = target.position;
+        float totalDistance = Vector3.Distance(start, end);
+
+        currentCableLength = totalDistance;
+
+        lineRenderer.enabled = false;
+
+        while (currentCableLength > offset)
+        {
+            currentCableLength = Mathf.MoveTowards(
+                offset, currentCableLength,
+                cableSpeed * Time.deltaTime
+            );
+
+            Vector3 direction = (end - start).normalized;
+            Vector3 currentEnd = start + direction * currentCableLength;
+
+            //lineRenderer.SetPosition(0, currentEnd);
+            //lineRenderer.SetPosition(1, start);
+
+            var rb = player.GetComponent<Rigidbody>();
+            rb.MovePosition(currentEnd);
+
+            yield return null;
+        }
+
+        lineRenderer.enabled = false;
+        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+    }
+
+
+
+
+    // var rb = player.GetComponent<Rigidbody>();
+    // rb.MovePosition(currentEnd);
+
 }

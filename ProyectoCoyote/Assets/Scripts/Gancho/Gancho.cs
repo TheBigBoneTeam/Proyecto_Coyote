@@ -26,7 +26,7 @@ public class Gancho : MonoBehaviour
     private bool _canUseHook = false;
 
     [Header("When selected")]
-    [SerializeField]  float MovingTargetFinalDistanceInFront = 4;
+    [SerializeField]  float OffsetFinalPos = 0;
 
     VisualHook visualHook;
     HookableObject hookableObject;
@@ -388,17 +388,18 @@ public class Gancho : MonoBehaviour
     private void GoToTarget()
     {
         if (currentTarget == null) return;
-        // Dirección desde el objeto hacia la cámara
-        Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
-        // POSICIÓN FINAL
-        Vector3 targetPosition = currentTarget.position + directionToCamera * MovingTargetFinalDistanceInFront;
+        //// Dirección desde el objeto hacia la cámara
+        //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
+        //// POSICIÓN FINAL
+        //Vector3 targetPosition = currentTarget.position + directionToCamera * OffsetFinalPos;
+        
+        //// Mover el Rigidbody del jugador
+        //var rb = player.GetComponent<Rigidbody>();
+        //rb.MovePosition(targetPosition);
+
+
+        visualHook.RetractHookGoToTarget(OffsetFinalPos);
         movement.animator.CrossFade("Grapple_04", 0.2f);
-
-
-        // Mover el Rigidbody del jugador
-        var rb = player.GetComponent<Rigidbody>();
-        rb.MovePosition(targetPosition);
-
         // Activar modo enemigo si aplica
         if (currentTarget.gameObject.GetComponent<Enemy>())
         {
@@ -416,9 +417,12 @@ public class Gancho : MonoBehaviour
 
         if (hookableObject.canBeHooked)
         {
-            Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
-            Vector3 targetPosition = cam.transform.position + directionToCamera * -MovingTargetFinalDistanceInFront;
-            currentTarget.position = targetPosition;
+            
+            visualHook.RetractHookAtractTarget(OffsetFinalPos);
+            //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
+            //Vector3 targetPosition = cam.transform.position + directionToCamera * -offset;
+            //currentTarget.position = targetPosition;
+
             movement.animator.CrossFade("Grapple_04", 0.2f);
             if (currentTarget.gameObject.GetComponent<Enemy>())
             {

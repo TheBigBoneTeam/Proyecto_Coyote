@@ -213,7 +213,7 @@ MonoBehaviour:
   zeroVert_Look: 0
   noticeZone: 20
   lookAtSmoothing: 1
-  maxNoticeAngle: 60
+  maxNoticeAngle: 180
   UI_Locked_Scale: 0.1
   enemyLocked: 0
   lockOnCanvas: {fileID: 0}
@@ -270,12 +270,13 @@ MonoBehaviour:
     m_Bits: 50331648
   currentTarget: {fileID: 0}
   zeroVert_Look: 0
-  maxNoticeZone: 20
-  minNoticeZone: 5
+  maxNoticeZone: 100
+  minNoticeZone: 10
   lookAtSmoothing: 3
+  lookAtRotationOffset: {x: 180, y: 0, z: 0}
   maxNoticeAngle: 180
+  cooldown: 5
   MovingTargetFinalDistanceInFront: 4
-  offsetDistanceWhenSelected: {x: 0, y: 0, z: 0}
   selectingHook: 0
   isHooked: 0
 --- !u!136 &2306513555992948220

@@ -24,7 +24,11 @@ namespace CombatEffect
         {
             effects.Add(new CritDamageEffect(this, 3));
         }
-        
+        [ContextMenu("Add ShootGun")]
+        public void AddShootGun()
+        {
+            effects.Add(new ShootOwnerGun());
+        }
         public virtual void addEffectsToChar(AGameCharacter charac)
         {
             foreach (var effect in effects) {

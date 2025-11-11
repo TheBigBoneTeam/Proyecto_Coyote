@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class baseBullet : Attack, IBullet
 {
-[SerializeField]    Vector3 objective;
+    [SerializeField] Vector3 objective;
     [SerializeField] public float speed;
     [SerializeField] float lifeTime;
 
@@ -18,6 +18,7 @@ public class baseBullet : Attack, IBullet
     Action<baseBullet> onFire;
 
 
+   protected combatAreaManager areaManager;
 
 
     [SerializeField] LayerMask obstacleLayer;
@@ -25,7 +26,28 @@ public class baseBullet : Attack, IBullet
     [SerializeField] protected Animator anim;
 
  [SerializeField]   bool flying;
+    protected override void OnTriggerEnter(Collider other)
+    {
+        print(HitCheck == null);
+        AGameCharacter character = other.GetComponent<AGameCharacter>();
+        if (character)
+        {
+            if (HitCheck == null)
+            {
+                setHitCheck(HitCheckType);
+            }
 
+            //Comprueba si el personaje golpeado es golpeable
+            if (this.HitCheck.isHittable(character))
+            {
+                character.GetComponent<DamageReceiver>().checkEffectSource(this);
+                flying = false;
+                Destroy(gameObject,0.5f);
+
+            }
+
+        }
+    }
     private void Update()
     {
         if (flying)
@@ -48,6 +70,7 @@ public class baseBullet : Attack, IBullet
         LoadData(_attackData);
         setOwner(shooter);
         setHitCheck(HittableTypes.onlyOtherTeam);
+        GetComponent<Collider>().isTrigger = true;
         transform.position = spawnPoint;
         print(objective);
         this.objective = objective;
@@ -55,9 +78,12 @@ public class baseBullet : Attack, IBullet
         transform.LookAt(objective);
         flying = true; 
         onFire?.Invoke(this);
+        GetComponent<Collider>().enabled = true;
+        
         if (anim)
         {
-            anim.Play("fly");
+            anim.enabled = true;
+            anim.Play("fly",0,0);
         }
 
     }
@@ -66,10 +92,15 @@ public class baseBullet : Attack, IBullet
     public void subcribeToShoot(Action<baseBullet> response)
     {
         onFire += response;
+        
     }
     public void unSubcribeToShoot(Action<baseBullet> response)
     {
         onFire -= response;
+    }
+    public void setAreaManager(combatAreaManager combatAreaManager)
+    {
+        areaManager = combatAreaManager;
     }
     protected override void Start()
     {

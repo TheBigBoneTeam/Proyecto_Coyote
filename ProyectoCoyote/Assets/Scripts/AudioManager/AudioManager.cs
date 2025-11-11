@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance !=this)
         {
+          
             Destroy(gameObject);
         }
         else
@@ -65,6 +66,10 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Nivel3":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
+                break;
+
+            case "GameplayBeta_PruebaCombate":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
                 break;
 

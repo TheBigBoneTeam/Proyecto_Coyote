@@ -4,12 +4,18 @@ using UnityEngine;
 public class Cover : MonoBehaviour
 {
  [SerializeField]   Transform[] HidePoints;
-    bool[] occupiedPoints;
+    Enemy Owner;
+   // OwnerableTransform[] coverList;
   [SerializeField]   LayerMask layer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        occupiedPoints = new bool[HidePoints.Length];
+
+        //coverList = new OwnerableTransform[HidePoints.Length];
+        //for (int i = 0; i < HidePoints.Length; i++)
+        //{
+        //    coverList[i] = new OwnerableTransform(HidePoints[i]);
+        //}
     }
 
     // Update is called once per frame
@@ -17,32 +23,31 @@ public class Cover : MonoBehaviour
     {
         
     }
-
-    public bool isFree(int index)
+    public void returnOwnerShip(Enemy owner)
     {
-        if (HidePoints.Length <= index || occupiedPoints[index])
+        if(Owner == owner)
         {
-            return false;
+            Owner = null;
         }
-        return true;
     }
-    public int getBestPoint(Transform playerPos,out Transform objPosition)
+   
+    public int getBestPoint(Enemy enemy,Transform playerPos,out Transform objPosition)
     {
         for (int i = 0; i < HidePoints.Length; i++)
         {
-            if (occupiedPoints[i])
+            if (Owner != null && Owner !=enemy)
             {
                 continue;
             }
             objPosition = HidePoints[i];
             RaycastHit hit;
             Vector3 dir = playerPos.position - objPosition.position;
-
             if (Physics.Raycast(objPosition.position,dir.normalized, out hit, dir.magnitude, layer))
             {
                 print(hit.transform.name);
                 if(hit.transform.gameObject == gameObject)
                 {
+                    /*coverList[i].*/Owner = enemy;
                     print("found");
                     return i;
                 }

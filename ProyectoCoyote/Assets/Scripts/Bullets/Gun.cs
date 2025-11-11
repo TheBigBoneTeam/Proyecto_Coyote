@@ -3,22 +3,33 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
-    AGameCharacter gameCharacter;
-    [SerializeField] Transform bulletSpawnPoint;
-    Action<Attack.AttackState> shootAction;
-    Attack.AttackState attackState;
-    public void Shoot(Vector3 obj)
+    [SerializeField] protected  GameObject bullet;
+   protected AGameCharacter gameCharacter;
+    [SerializeField] protected Transform bulletSpawnPoint;
+   protected Action<Attack.AttackState> shootAction;
+   protected Attack.AttackState attackState;
+    public virtual void Shoot(Vector3 obj, baseBullet bul = null)
     {
-      GameObject bulet =  Instantiate(bullet);
-        print("shoot");
+        if (bul == null) {
+            GameObject bulet = Instantiate(bullet);
+            bul = bulet.GetComponent<baseBullet>();
+        }
+        print("shoot"+name);
         shootAction?.Invoke(attackState);
 
-        bulet.GetComponent<baseBullet>().StartBulletMovement(gameCharacter, bulletSpawnPoint.position, obj);
+        
+            print("canshoot"+name);
+            bul.StartBulletMovement(gameCharacter, bulletSpawnPoint.position, obj);
+
+        
+
     }
-    private void Start()
+    protected virtual void Start()
     {
-        attackState = new Attack.AttackState(bullet.GetComponent<baseBullet>().HitDirections.ToArray());
+        if (bullet != null)
+        {
+            attackState = new Attack.AttackState(bullet.GetComponent<baseBullet>().HitDirections.ToArray());
+        }
         gameCharacter = GetComponentInParent<AGameCharacter>();
     }
     public void subscribeToShoot(Action<Attack.AttackState> subscribe)

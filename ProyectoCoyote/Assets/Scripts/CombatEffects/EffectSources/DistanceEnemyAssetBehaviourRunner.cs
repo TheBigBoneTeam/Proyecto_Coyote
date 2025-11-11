@@ -6,16 +6,15 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     public PushPerception ReachCover { get; private set; }
     public PushPerception CoverUnsafe { get; private set; }
 
-    Player player;
     LayerMask layer;
   [SerializeField]  bool isUnsafe;
+
 
     Cover currentCover;
     int currentCoverHidePos;
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
     {
-        player = FindAnyObjectByType<Player>();
         base.ModifyGraphs(graphMap, pushPerceptionMap);
         ReachCover = pushPerceptionMap["ReachCover"];
         CoverUnsafe = pushPerceptionMap["CoverUnsafe"];
@@ -46,6 +45,14 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
         currentCover = cover;
         currentCoverHidePos = coverindex;
 
+    }
+    public void returnCoverOwner()
+    {
+        if (currentCover != null)
+        {
+            currentCover.returnOwnerShip(enemy);
+            currentCover = null;
+        }
     }
     //protected void Start()
     //{

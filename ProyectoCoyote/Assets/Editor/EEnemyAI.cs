@@ -16,6 +16,7 @@ public class EEnemyAI : Editor
 
     SerializedProperty seeDistance;
     SerializedProperty attackDistance;
+    SerializedProperty KungFuCirclePoint;
 
     //Se van guardado los ataques para que no se pierdan al borrar algo sin querer
     private AttackData[] backUpStats;
@@ -32,6 +33,7 @@ public class EEnemyAI : Editor
         Reaction = serializedObject.FindProperty("reactionObj");
         Counter = serializedObject.FindProperty("counterObj");
         onAction = serializedObject.FindProperty("onAction");
+        KungFuCirclePoint = serializedObject.FindProperty("KungFuCirclePoint");
     }
     public override void OnInspectorGUI()
     {
@@ -51,6 +53,7 @@ public class EEnemyAI : Editor
         EditorGUILayout.PropertyField(Counter);
         EditorGUILayout.PropertyField(Reaction);
         EditorGUILayout.PropertyField(onAction);
+        EditorGUILayout.PropertyField(KungFuCirclePoint);
         //if (enemyAI.ActionList == null || enemyAI.ActionList.Length != System.Enum.GetNames(typeof(EnemyAI.BasicAttacks)).Length)
         //{
         //    backUpStats = enemyAI.ActionList;

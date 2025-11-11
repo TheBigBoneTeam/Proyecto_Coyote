@@ -31,4 +31,10 @@ public class AttackData : ScriptableObject
     {
         effects.Add(new CritDamageEffect(null, 3));
     }
+    [ContextMenu("Add ShootGun")]
+    public void AddShootGun()
+    {
+        effects.Add(new ShootOwnerGun());
+    }
 }
+

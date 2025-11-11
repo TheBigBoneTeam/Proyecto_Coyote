@@ -1,6 +1,7 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     public PushPerception PlayerHitDefensePerception { get; private set; }
     public PushPerception EndAttackQueue { get; private set; }
   protected  Enemy enemy;
+    protected Player player;
 
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
@@ -35,16 +37,11 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     }
     public virtual void restart()
     {
-        enemy = GetComponent<Enemy>();
+        if (player == null)
+        {
+            enemy = GetComponent<Enemy>();
+            player = FindAnyObjectByType<Player>();
+        }
     }
-}
-public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
-{
-    public PushPerception ChosenAsAmmo { get; private set; }
-
-    protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)
-    {
-        base.ModifyGraphs(graphMap, pushPerceptionMap);
-        ChosenAsAmmo = pushPerceptionMap["ChosenAsAmmo"];
-    }
+  
 }

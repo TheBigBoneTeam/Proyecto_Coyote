@@ -15,7 +15,7 @@ public abstract class AGameCharacter :MonoBehaviour
    [SerializeField] private int _maxHealthPoint;
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
-  [SerializeField]  bool invincible;
+  [SerializeField]  protected bool invincible;
     Animator anim;
 
     UnityEvent<int> lifeUpdate;
@@ -120,12 +120,12 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual bool checkEffect(ACombatEffect effect)
     {
-        //Comprobacion de inmunidad mas compleja
-        if (inmuneStun && effect.GetType() == typeof(StunEffect))
-        {
-            addEffect(new fakeStunEffect((StunEffect)effect));
-            return false;
-        }
+        ////Comprobacion de inmunidad mas compleja
+        //if (inmuneStun && effect.GetType() == typeof(StunEffect))
+        //{
+        //    addEffect(new fakeStunEffect((StunEffect)effect));
+        //    return false;
+        //}
         if(invincible && effect.GetType() == typeof(DamageEffect))
         {
 

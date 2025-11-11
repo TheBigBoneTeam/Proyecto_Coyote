@@ -27,8 +27,8 @@ public class Gancho : MonoBehaviour
 
     [Header("When selected")]
     [SerializeField]  float MovingTargetFinalDistanceInFront = 4;
-    
 
+    VisualHook visualHook;
     HookableObject hookableObject;
     EnemyLockOn lockOn;
     PlayerMovement movement;
@@ -55,7 +55,7 @@ public class Gancho : MonoBehaviour
             GetComponent<Image>();
         _cooldownUIText = HookCanvas.Find("CooldownText").
             GetComponent<TextMeshProUGUI>(); 
-
+        visualHook = FindAnyObjectByType<VisualHook>();
 
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
@@ -89,7 +89,8 @@ public class Gancho : MonoBehaviour
         {
             Debug.Log("Activando el gancho...");
             ActivateTargetHook();
-        } 
+        }
+        
 
         HookLogic();
         if (currentTarget)
@@ -176,11 +177,12 @@ public class Gancho : MonoBehaviour
     {
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
+        visualHook.RetractHook();
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
         _hookImageUI.color = Color.white;
-        if(!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+        
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
         
     }
@@ -227,6 +229,12 @@ public class Gancho : MonoBehaviour
                 if (!toUp && verticalOffset < -0.5f) isValid = true;
             }
 
+            //if (Blocked(candidate.position))
+            //{
+            //    Debug.Log("Hay algo bloqueando el objeto");
+            //    isValid = false;
+            //}
+
             if (!isValid) continue;
 
             if (distance < closestDistance)
@@ -235,6 +243,7 @@ public class Gancho : MonoBehaviour
                 bestTarget = candidate;
             }
         }
+        
         return bestTarget != null ? bestTarget : currentTarget;
     }
 
@@ -355,7 +364,6 @@ public class Gancho : MonoBehaviour
             targetObject = currentTarget.GetComponent<HookableObject>();
             if (targetObject != null)
             {
-                // Ya tienes acceso al objeto HookableObject
                 Debug.Log("HookableObject encontrado: " + targetObject.name);
             }
             else
@@ -374,6 +382,7 @@ public class Gancho : MonoBehaviour
             isHooked = true;
             selectingHook = false;
             _hookImageUI.color = Color.red;
+            visualHook.ThrowHook(currentTarget);
         }
     }
     private void GoToTarget()

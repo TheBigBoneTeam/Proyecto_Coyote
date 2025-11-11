@@ -28,11 +28,11 @@ public class VisualHook : MonoBehaviour
         CamControl = FindAnyObjectByType<CameraController>();
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
-        // leftHand = GameObject.Find("hand.L");
+        // leftHand = GameObject.Find("upper_arm.L.001").transform.position;
         
 
         animator = player.GetComponentInChildren<Animator>();
-        // leftHand = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
+        //leftHand = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
 
         lineRenderer = GetComponent<LineRenderer>();
         

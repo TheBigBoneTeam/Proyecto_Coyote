@@ -22,5 +22,9 @@ public class EAttackDataEditor : Editor
         {
             data.AddCritDamage();
         }
+        if (GUILayout.Button("Add Shoot Gun"))
+        {
+            data.AddShootGun();
+        }
     }
 }

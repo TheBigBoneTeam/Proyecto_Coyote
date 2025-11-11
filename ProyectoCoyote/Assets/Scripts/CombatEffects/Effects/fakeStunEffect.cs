@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace CombatEffect
@@ -47,6 +48,27 @@ namespace CombatEffect
             this.objCharacter = character;
           //  character.gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
+
+        public override void End()
+        {
+            //objCharacter.gameObject.GetComponent<Renderer>().material.color = Color.gray;
+
+        }
+    }
+    public class ShootOwnerGun : ACombatEffect
+    {
+        public string ShootGun;
+        public ShootOwnerGun() 
+        {
+            ShootGun = "ESTE EFECTO ACTIVA LA EXPLOSION DEL BOMBA. HE PUESTO UN STRING PA QUE NO PAREZCA BUG";
+        }
+      
+
+        public override void Activate(AGameCharacter character)
+        {
+            Debug.Log("Activate Shoot Gun"+owner);
+            source.GetComponent<Gun>().Shoot(character.transform.position);
+                }
 
         public override void End()
         {

@@ -568,10 +568,10 @@ MonoBehaviour:
   maxNoticeZone: 100
   minNoticeZone: 5
   lookAtSmoothing: 3
-  lookAtRotationOffset: {x: 0, y: 30, z: 0}
+  lookAtRotationOffset: {x: 0, y: 20, z: 0}
   maxNoticeAngle: 180
   cooldown: 5
-  MovingTargetFinalDistanceInFront: 4
+  OffsetFinalPos: 2
   selectingHook: 0
   isHooked: 0
 --- !u!114 &2367592577155981960
@@ -587,7 +587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cableSpeed: 50
-  handOffset: 0.5
+  handOffset: 0
+  leftHand: {fileID: 799134844055698355}
 --- !u!136 &2306513555992948220
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -876546973899608171, guid: aa421b53e0385b540a22cba455e70b1a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -679,7 +680,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.5377358, g: 0.39726803, b: 0.27140442, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -704,7 +705,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -1500,6 +1501,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8984715050828392698}
   m_SourcePrefab: {fileID: 100100000, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
+--- !u!4 &799134844055698355 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8410106744554083838, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
+  m_PrefabInstance: {fileID: 9196820405481958989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8313859039731503900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}

@@ -29,8 +29,10 @@ public class Dialogues : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dialogueText = FindAnyObjectByType<TextMeshProUGUI>();
+        
         UIText = GameObject.Find("UIText").transform;
+        dialogueText = UIText.Find("CuadroDeTexto").
+            GetComponent<TextMeshProUGUI>();
         UIText.gameObject.SetActive(false);
 
         

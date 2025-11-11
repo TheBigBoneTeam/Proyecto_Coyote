@@ -7,24 +7,29 @@ public class CameraFollow : MonoBehaviour
     Transform player;
     Transform playerObj;
     EnemyLockOn enemyLockOn;
+    Gancho hook;
 
     [Header("Settings")]
     public float rotationSpeed = 5f;
 
     private bool lockedCamera;
+    private bool hookedCamera;
 
     private void Start()
     {
         if (!player) player = GameObject.Find("Player").transform;
         if (!playerObj) playerObj = GameObject.Find("Player/Player_02").transform;
         if (!enemyLockOn) enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
+        if(!hook) hook = GameObject.FindAnyObjectByType<Gancho>();
     }
 
     private void LateUpdate()
     {
         lockedCamera = enemyLockOn != null && enemyLockOn.enemyLocked;
+        hookedCamera = hook != null && hook.selectingHook;
 
         if (lockedCamera) RotateLockedPlayer();
+        else if (hookedCamera) RotateHook();
         else RotateFreePlayer();
     }
 
@@ -73,6 +78,27 @@ public class CameraFollow : MonoBehaviour
         if (viewDir != Vector3.zero)
         {
             playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
+        }
+    }
+
+    private void RotateHook()
+    {
+        // Dirección hacia el target
+        Vector3 directionToTarget = hook.currentTarget.position - playerObj.position;
+
+        if (directionToTarget.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            Quaternion offsetRotation = Quaternion.Euler(hook.lookAtRotationOffset);
+
+            targetRotation *= offsetRotation;
+
+            playerObj.rotation = Quaternion.Slerp(
+                player.transform.rotation,
+                targetRotation,
+                rotationSpeed
+            );
         }
     }
 }

@@ -19,7 +19,7 @@ public class Gancho : MonoBehaviour
     [SerializeField] float maxNoticeZone= 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
-    [SerializeField] Vector3 lookAtRotationOffset = new Vector3(20,0,0);
+    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0,0,0);
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
     [SerializeField] int cooldown = 5;
     private TextMeshProUGUI _cooldownUIText;
@@ -325,25 +325,15 @@ public class Gancho : MonoBehaviour
     // Mirar al objeto
     private void LookAtTarget()
     {
-        // Si desaparece el enemigo al que estamos mirando, reasignar enemigo
         if (currentTarget == null)
         {
             return;
         }
 
-        // Actaliza la posici�n del localizador del enemigo
-        
-        HookableObjectLocator.position = currentTarget.position - lookAtRotationOffset;
-        // Calcula la dirección desde el personaje hacia la cámara
-        //Vector3 directionToCamera = (cam.transform.position - transform.position) + lookAtRotationOffset;
+        // Actaliza la posici�n del localizador del target
+        HookableObjectLocator.position = currentTarget.position;
 
-        //if (directionToCamera != Vector3.zero)
-        //{
-        //    Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
 
-        //    player.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,3);
-        //}
-        // player.transform.rotation = Quaternion.LookRotation(new Vector3(90,90,0));
     }
     IEnumerator AssignCameraLater()
     {

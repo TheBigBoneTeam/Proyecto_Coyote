@@ -5,6 +5,8 @@ using UnityEngine;
 public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
     public PushPerception ChosenAsAmmo { get; private set; }
+    public PushPerception flyPerception { get; private set; }
+
     BullEnemyAssetBehaviourRunner _currentHeavy;
     
     public BullEnemyAssetBehaviourRunner currentHeavy
@@ -22,11 +24,16 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
                 
             }
             _currentHeavy = value;
+            print("_currentHeavyBomb" + value);
+
             if (currentHeavy != null)
             {
+
                 if (_currentHeavy.GetComponent<Enemy>() != null)
                 {
                     _currentHeavy.GetComponent<Enemy>().subscribeToDie(HeavyDie);
+                    print("chosenAsAmmo");
+
                     ChosenAsAmmo.Fire();
                 }
             }
@@ -43,6 +50,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         base.ModifyGraphs(graphMap, pushPerceptionMap);
         ChosenAsAmmo = pushPerceptionMap["ChosenAsAmmo"];
+        flyPerception = pushPerceptionMap["FlyPerception"];
     }
     public void startCharging()
     {
@@ -51,6 +59,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public override void restart()
     {
         base.restart();
+        gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
         charging = false;
         currentHeavy = null;
     }
@@ -64,5 +73,10 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             Vector3 obj = (2 * pos) - player.transform.position;
             GetComponent<baseBullet>().StartBulletMovement(player, transform.position, obj);
         }
+    }
+
+    public void Fly()
+    {
+        flyPerception?.Fire();
     }
 }

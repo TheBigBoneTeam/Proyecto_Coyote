@@ -35,6 +35,7 @@ MonoBehaviour:
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
+        - 7756f9bc-2af4-4e07-9839-72ecf048efce
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
         position: {x: 1164, y: 194.4}
@@ -92,7 +93,7 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
       - name: GoTowardHeavy
         id: ee188053-6bca-4f67-ac7f-db640ded7a7f
-        position: {x: 274.4, y: -280}
+        position: {x: 205.6, y: -300.8}
         node:
           rid: 8725330879351619668
         references:
@@ -103,7 +104,8 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
-        childIds: []
+        childIds:
+        - 478a4f3a-db02-4e7d-832c-3ce34d029b10
       - name: BecomeAmmo
         id: 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         position: {x: 100, y: -3.199997}
@@ -124,6 +126,44 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
         childIds:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
+      - name: Fly
+        id: 7756f9bc-2af4-4e07-9839-72ecf048efce
+        position: {x: 678.4, y: -284.8}
+        node:
+          rid: 8725330916002496613
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: 8725330917082792019
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds: []
+      - name: Fly2
+        id: 478a4f3a-db02-4e7d-832c-3ce34d029b10
+        position: {x: 516, y: -524}
+        node:
+          rid: 8725330916002496614
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: 8725330917082792021
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ee188053-6bca-4f67-ac7f-db640ded7a7f
+        childIds: []
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -386,8 +426,8 @@ MonoBehaviour:
         - 0c87ccc8-af40-4e16-944a-ea081b271210
         childIds:
         - a0e233ef-b556-4140-932f-9bed26f5ae1b
-        - e854279a-cdaa-48de-b51b-6f7bf6f130e6
         - d4248560-6076-4a3a-905e-0009695860c6
+        - e854279a-cdaa-48de-b51b-6f7bf6f130e6
         - 00ee2d10-8053-451e-9691-d7843ae20d02
       - name: returnattackpriority
         id: 5326e9ac-6a22-4c62-bd15-ef2db67b6a53
@@ -494,6 +534,10 @@ MonoBehaviour:
     - name: ChosenAsAmmo
       targetNodeIds:
       - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
+    - name: FlyPerception
+      targetNodeIds:
+      - 7756f9bc-2af4-4e07-9839-72ecf048efce
+      - 478a4f3a-db02-4e7d-832c-3ce34d029b10
   references:
     version: 2
     RefIds:
@@ -787,3 +831,23 @@ MonoBehaviour:
         method:
           componentName: Enemy
           methodName: Die
+    - rid: 8725330916002496613
+      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+        ExitStatus: 0
+    - rid: 8725330916002496614
+      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+        ExitStatus: 0
+    - rid: 8725330917082792019
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: CombatIdle
+        idle: 1
+    - rid: 8725330917082792021
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: CombatIdle
+        idle: 1

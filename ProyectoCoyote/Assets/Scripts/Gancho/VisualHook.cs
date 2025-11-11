@@ -14,7 +14,7 @@ public class VisualHook : MonoBehaviour
     [SerializeField] private float cableSpeed = 50f;
     [SerializeField] private float handOffset = 0.5f;
     private Animator animator;
-    private GameObject leftHand;
+    private Vector3 leftHand = Vector3.zero;
 
     private Transform target;
     private GameObject player;
@@ -28,9 +28,12 @@ public class VisualHook : MonoBehaviour
         CamControl = FindAnyObjectByType<CameraController>();
         lockOn = FindAnyObjectByType<EnemyLockOn>();
         player = GameObject.Find("Player");
-        leftHand = GameObject.Find("hand.L");
+        // leftHand = GameObject.Find("hand.L");
+        
 
-        //animator = player.GetComponent<Animator>();
+        animator = player.GetComponentInChildren<Animator>();
+        // leftHand = animator.GetBoneTransform(HumanBodyBones.RightHand).position;
+
         lineRenderer = GetComponent<LineRenderer>();
         
         lineRenderer.enabled = false;
@@ -43,10 +46,11 @@ public class VisualHook : MonoBehaviour
     }
     private Vector3 GetHookOrigin()
     {
-        if (leftHand != null)
+        if (leftHand != Vector3.zero)
         {
-            //return animator.GetBoneTransform(HumanBodyBones.RightHand).position;
-            return leftHand.transform.position;
+            
+            return leftHand;
+           // return leftHand.transform.position;
         }
         else 
         {
@@ -112,7 +116,8 @@ public class VisualHook : MonoBehaviour
     }
     private IEnumerator RetractCable()
     {
-        Vector3 start = GetHookOrigin();
+        Vector3 Origin = GetHookOrigin();
+        Vector3 start = Origin != Vector3.zero ? Origin : player.transform.position;
         Vector3 end = target.position;
         float totalDistance = Vector3.Distance(start, end);
 

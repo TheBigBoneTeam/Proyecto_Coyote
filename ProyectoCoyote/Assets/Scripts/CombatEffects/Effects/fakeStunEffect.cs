@@ -62,13 +62,13 @@ namespace CombatEffect
         {
             ShootGun = "ESTE EFECTO ACTIVA LA EXPLOSION DEL BOMBA. HE PUESTO UN STRING PA QUE NO PAREZCA BUG";
         }
-      
+
 
         public override void Activate(AGameCharacter character)
         {
-            Debug.Log("Activate Shoot Gun"+owner);
-            source.GetComponent<Gun>().Shoot(character.transform.position);
-                }
+            Debug.Log("Activate Shoot Gun" + owner);
+            source.GetComponent<Gun>().Shoot(source.transform.position);
+        }
 
         public override void End()
         {

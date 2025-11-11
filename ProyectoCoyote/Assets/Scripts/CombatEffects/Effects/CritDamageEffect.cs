@@ -14,7 +14,10 @@ namespace CombatEffect
         public override void Activate(AGameCharacter character)
         {
             this.objCharacter = character;
-            character.getHit(_critdamage, true);
+            if (character)
+            {
+                character.getHit(_critdamage, true);
+            }
         }
 
         public override void End()

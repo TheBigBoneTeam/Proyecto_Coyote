@@ -380,6 +380,10 @@ public class Gancho : MonoBehaviour
         if (hookableObject) 
         { 
             isHooked = true;
+
+            IgnorarColisiones();
+
+
             selectingHook = false;
             _hookImageUI.color = Color.red;
             visualHook.ThrowHook(currentTarget);
@@ -451,8 +455,29 @@ public class Gancho : MonoBehaviour
 
     }
 
+    public void IgnorarColisiones()
+    {
+        Collider targetCollider = currentTarget.GetComponent<Collider>();
+        if (targetCollider == null) return;
+
+        int sueloLayer = LayerMask.NameToLayer("whatIsGround");
+
+        // Ignora colisiones con todos los colliders de la escena excepto el suelo
+        Collider[] allColliders = FindObjectsOfType<Collider>();
+        foreach (Collider col in allColliders)
+        {
+            // Ignora todos menos el suelo y el propio target
+            if (col.gameObject.layer != sueloLayer && col != targetCollider)
+            {
+                Physics.IgnoreCollision(targetCollider, col, true);
+            }
+        }
+    }
+
     public void WaitForHookFinish()
     {
+        currentTarget.gameObject.GetComponent<Collider>().enabled = true;
+
         Debug.Log("Ha llegado a su destino");
         if (currentTarget.gameObject.GetComponent<Enemy>())
         {

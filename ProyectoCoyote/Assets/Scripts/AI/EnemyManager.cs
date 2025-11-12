@@ -9,31 +9,47 @@ public class EnemyManager: IEnemyManager
     ClassMutex<EnemyAI> enemyClassMutex;
     ClassMutex<EnemyAI> attackingEnemy;
     Transform kungFuCircle;
-    OwnerableTransform[] kungFuPoints;
+    OwnerableTransform[] mainKungFuPoints;
+    OwnerableTransform[] secondaryKungFuPoints;
 
     public void Instantiate()
     {
         enemyClassMutex = new ClassMutex<EnemyAI>();
         attackingEnemy = new ClassMutex<EnemyAI>();
         kungFuCircle = UnityEngine.GameObject.FindGameObjectWithTag("KungFuCircle").transform;
-        kungFuPoints = new OwnerableTransform[kungFuCircle.childCount];
-        Debug.Log(kungFuPoints.Length);
+        mainKungFuPoints = new OwnerableTransform[kungFuCircle.childCount];
+        Debug.Log(mainKungFuPoints.Length);
         for (int i = 0; i < kungFuCircle.childCount; i++)
         {
-            kungFuPoints[i] = new OwnerableTransform(kungFuCircle.GetChild(i));
+            mainKungFuPoints[i] = new OwnerableTransform(kungFuCircle.GetChild(i));
         }
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(()=>attackingEnemy.clearMutex());
       
     }
     public Transform getPoint(int index, Enemy owner)
     {
-        if (kungFuPoints[index].checkOwner(owner))
+        if (mainKungFuPoints[index].checkOwner(owner))
         {
-            return kungFuPoints[index].transform;
+            return mainKungFuPoints[index].transform;
         }
         Debug.Log("isNull");
         return null;
     }
+    public bool returnPoint(int index, Enemy owner)
+    {
+        if (mainKungFuPoints[index].checkOwner(owner))
+        {
+            mainKungFuPoints[index].Owner = null;
+            return true;
+        }
+        Debug.Log("isNull");
+        return false;
+    }
+
+    //public Transform getClosestPoint(Enemy owner, out int index)
+    //{
+
+    //}
 
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
 

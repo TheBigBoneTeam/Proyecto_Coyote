@@ -7,7 +7,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public PushPerception ChosenAsAmmo { get; private set; }
     public PushPerception flyPerception { get; private set; }
 
-    BullEnemyAssetBehaviourRunner _currentHeavy;
+    [SerializeField] BullEnemyAssetBehaviourRunner _currentHeavy;
     
     public BullEnemyAssetBehaviourRunner currentHeavy
     {
@@ -42,7 +42,11 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 
     private void HeavyDie(AGameCharacter arg0)
     {
-        throw new NotImplementedException();
+        BullEnemyAssetBehaviourRunner runner = arg0.gameObject.GetComponent<BullEnemyAssetBehaviourRunner>();
+        if(runner && currentHeavy ==runner)
+        {
+            currentHeavy = null;
+        }
     }
 
   [field:SerializeField]  public bool charging { get; private set; }
@@ -61,7 +65,14 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         base.restart();
         gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
         charging = false;
-        currentHeavy = null;
+        if (_currentHeavy != null)
+        {
+            if (_currentHeavy.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+            {
+                _currentHeavy.GetComponent<Enemy>().unSubscribeToDie(HeavyDie);
+            }
+            _currentHeavy = null;
+        }
     }
 
     public void hitByPlayer()

@@ -24,7 +24,9 @@ public abstract class AGameCharacter :MonoBehaviour
 
   [SerializeField] protected Vector3 startPos;
 
+    [SerializeField]  bool print;
 
+    string currentAnim;
     private void Awake()
     {
         lifeUpdate = new UnityEvent<int>();
@@ -87,6 +89,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void restart()
     {
+        currentAnim = "";
        // print("restart" + name);
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);
@@ -155,14 +158,21 @@ public abstract class AGameCharacter :MonoBehaviour
     }
     public void PlayAnimation(string stateName, bool idle = false)
     {
-        if (idle)
-        {
-            anim.CrossFade(stateName,.1f,0,0);
-        }
-        else
-        {
+
+        //if (stateName == "CombatIdle"&& "CombatIdle" == currentAnim)
+        //{
+        //   //anim.CrossFade(stateName,.1f);
+        //}
+        //else
+        //{
+        //    if (print)
+        //    {
+        //        Debug.Log("stateName" + stateName);
+
+        //    }
+            //currentAnim = stateName;
             anim.CrossFade(stateName,.1f, 0, 0);
-        }
+       // }
     }
     public void subscribeToLifeChange(UnityAction<int> response)
     {
@@ -187,10 +197,10 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void subscribeToDie(UnityAction<AGameCharacter> response)
     {
-        dieEvent.AddListener(response);
+        dieEvent?.AddListener(response);
     }
     public void unSubscribeToDie(UnityAction<AGameCharacter> response)
     {
-        dieEvent.RemoveListener(response);
+        dieEvent?.RemoveListener(response);
     }
 }

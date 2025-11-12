@@ -1,4 +1,5 @@
 using BehaviourAPI.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
@@ -6,7 +7,7 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
   [SerializeField]  int ammo;
 
-    baseBullet _currentAmmo;
+   [SerializeField] baseBullet _currentAmmo;
   public baseBullet currentAmmo
     {
         get
@@ -43,8 +44,14 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         base.restart();
         enemy.CombatArea.subscribeToAmmoChange(checkAmmoVoid);
-
-
+        if (_currentAmmo != null)
+        {
+            if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+            {
+                _currentAmmo.GetComponent<Enemy>().unSubscribeToDie(BombEnemyDie);
+            }
+            _currentAmmo = null;
+        }
     }
     private void OnDisable()
     {
@@ -88,7 +95,13 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 
     void BombEnemyDie(AGameCharacter bombEnemy)
     {
-        currentAmmo = null;
+        print("ammoDie");
+        baseBullet bombrunner = bombEnemy.gameObject.GetComponent<baseBullet>();
+
+        if (bombrunner && bombrunner == currentAmmo)
+        {
+            currentAmmo = null;
+        }
     }
     #region Gizmos
     private void OnDrawGizmos()

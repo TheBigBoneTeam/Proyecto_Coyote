@@ -622,7 +622,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         if (gameStateManager == null)
-            gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+            // gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
         if (gameStateManager != null)
         {

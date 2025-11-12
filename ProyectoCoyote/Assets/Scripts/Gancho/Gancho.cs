@@ -16,17 +16,17 @@ public class Gancho : MonoBehaviour
     public Transform currentTarget;
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
-    [SerializeField] float maxNoticeZone= 100;
+    [SerializeField] float maxNoticeZone = 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
-    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0,0,0);
+    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0, 0, 0);
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
     [SerializeField] int cooldown = 5;
     private TextMeshProUGUI _cooldownUIText;
     private bool _canUseHook = false;
 
     [Header("When selected")]
-    [SerializeField]  float OffsetFinalPos = 0;
+    [SerializeField] float OffsetFinalPos = 0;
 
     VisualHook visualHook;
     HookableObject hookableObject;
@@ -38,23 +38,20 @@ public class Gancho : MonoBehaviour
     HookController hookController;
     private Image _hookImageUI;
     HookObserver hookObserver;
-    
+
     public bool selectingHook;
     public bool isHooked;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();
         HookCanvas = GameObject.Find("HookUI").transform;
-        _hookImageUI = HookCanvas.Find("HookImage").
-            GetComponent<Image>();
-        _cooldownUIText = HookCanvas.Find("CooldownText").
-            GetComponent<TextMeshProUGUI>(); 
+        _hookImageUI = HookCanvas.Find("HookImage").GetComponent<Image>();
+        _cooldownUIText = HookCanvas.Find("CooldownText").GetComponent<TextMeshProUGUI>();
         visualHook = FindAnyObjectByType<VisualHook>();
 
         lockOn = FindAnyObjectByType<EnemyLockOn>();
@@ -63,7 +60,6 @@ public class Gancho : MonoBehaviour
         // Obsever prueba
         // hookObserver = FindAnyObjectByType<HookObserver>();
         // hookObserver.Configure(hookController);
-        //
 
         _hookImageUI.gameObject.SetActive(false);
         if (Camera.main != null)
@@ -75,7 +71,7 @@ public class Gancho : MonoBehaviour
             Debug.LogWarning("Camera.main is null at Start. Delaying cam assignment.");
             StartCoroutine(AssignCameraLater());
         }
-        
+
         _canUseHook = true;
         currentTarget = null;
         selectingHook = false;
@@ -89,8 +85,9 @@ public class Gancho : MonoBehaviour
         {
             Debug.Log("Activando el gancho...");
             ActivateTargetHook();
+            AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
         }
-        
+
 
         HookLogic();
         if (currentTarget)
@@ -100,25 +97,34 @@ public class Gancho : MonoBehaviour
     }
     public void HookLogic()
     {
-        
+
         // Navegación por los objetos enganchables
-        if (selectingHook) { 
-        
+        if (selectingHook)
+        {
+
             if (gameInput.Hook_TPPressed)
             {
                 currentTarget = FindDirectionalTarget(false, true);
+                // SFX Seleccionar gancho
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
             else if (gameInput.HookDisconfirmPressed)
             {
                 currentTarget = FindDirectionalTarget(false, false);
+                // SFX ?
+                // AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
             else if (gameInput.HookSelectRightPressed)
             {
                 currentTarget = FindDirectionalTarget(true, false);
+                // SFX Elegir otro enemigo
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
             else if (gameInput.HookSelectLeftPressed)
             {
                 currentTarget = FindDirectionalTarget(false, false);
+                // SFX Elegir otro enemigo
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
         }
         // Selecionar objeto 
@@ -126,26 +132,33 @@ public class Gancho : MonoBehaviour
         {
             SelectTarget();
             movement.animator.CrossFade("Grapple_03", 0.2f);
+            // SFX Lanzar gancho
+            AudioManager.Instance.PlaySimpleSound("SFX - Releasing Hook", false, Vector2.zero, true, true);
         }
 
-        if (isHooked) 
+        if (isHooked)
         {
-            if (gameInput.HookAttractPressed) 
-            { 
+            if (gameInput.HookAttractPressed)
+            {
                 AtractTarget();
                 StartCoroutine(Cooldown());
                 hookController.HookUsed();
+                // SFX CABLE
+                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, true);
+
             }
             else if (gameInput.Hook_TPPressed)
             {
                 GoToTarget();
                 StartCoroutine(Cooldown());
                 hookController.HookUsed();
+                // SFX CABLE
+                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, true);
             }
         }
     }
 
-    
+
 
     public void ActivateTargetHook()
     {
@@ -159,7 +172,7 @@ public class Gancho : MonoBehaviour
         }
 
         currentTarget = ScanNearBy();
-        if (currentTarget != null) 
+        if (currentTarget != null)
         {
             movement.startHookMode();
             _hookImageUI.gameObject.SetActive(true);
@@ -170,8 +183,8 @@ public class Gancho : MonoBehaviour
             Debug.Log("----------Cámara gancho Activada");
             movement.animator.CrossFade("Grapple_01", 0.2f);
             LookAtTarget();
-        } 
-           
+        }
+
     }
     void ResetTarget()
     {
@@ -182,9 +195,9 @@ public class Gancho : MonoBehaviour
         selectingHook = false;
         isHooked = false;
         _hookImageUI.color = Color.white;
-        
+
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
-        
+
     }
 
     #region Calcular Objetos Enganchables
@@ -247,7 +260,7 @@ public class Gancho : MonoBehaviour
         // definida en targetLayers.
         Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, maxNoticeZone, targetLayers);
 
-        // Inicializa las variables para encontrar el objetivo m�s cercano.
+        // Inicializa las variables para encontrar el objetivo m s cercano.
         float closestAngle = maxNoticeAngle;
         Transform closestTarget = null;
 
@@ -259,8 +272,8 @@ public class Gancho : MonoBehaviour
         }
 
 
-        // Recorre todos los objetivos detectados y calcula su direcci�n y 
-        // �ngulo desde la c�mara, detecta al m�s cercano.
+        // Recorre todos los objetivos detectados y calcula su direcci n y 
+        //  ngulo desde la c mara, detecta al m s cercano.
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
             float distance = Vector3.Distance(transform.position, nearbyTargets[i].transform.position);
@@ -287,14 +300,14 @@ public class Gancho : MonoBehaviour
             return null;
         }
 
-        // Si hay algun elemento de la escena bloqueando la visi�n del jugador, se sale.
+        // Si hay algun elemento de la escena bloqueando la visi n del jugador, se sale.
         if (Blocked(closestTarget.position))
         {
             Debug.Log("Hay algo bloqueando el objeto");
             return null;
         }
 
-        // Devuelve el enemigo v�lido
+        // Devuelve el enemigo v lido
         return closestTarget;
     }
 
@@ -332,7 +345,7 @@ public class Gancho : MonoBehaviour
             return;
         }
 
-        // Actaliza la posici�n del localizador del target
+        // Actaliza la posici n del localizador del target
         HookableObjectLocator.position = currentTarget.position;
 
 
@@ -365,13 +378,13 @@ public class Gancho : MonoBehaviour
             }
         }
         return targetObject;
-        
+
     }
     private void SelectTarget()
     {
         hookableObject = GetHookableObject();
-        if (hookableObject) 
-        { 
+        if (hookableObject)
+        {
             isHooked = true;
 
             IgnorarColisiones();
@@ -398,7 +411,7 @@ public class Gancho : MonoBehaviour
 
         visualHook.RetractHookGoToTarget(OffsetFinalPos);
         movement.animator.CrossFade("Grapple_04", 0.2f);
-        
+
 
     }
 
@@ -407,7 +420,7 @@ public class Gancho : MonoBehaviour
 
         if (hookableObject.canBeHooked)
         {
-            
+
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
@@ -416,15 +429,15 @@ public class Gancho : MonoBehaviour
 
 
         }
-        else 
+        else
         {
             CamControl.StartShake();
             ResetTarget();
         }
 
-       
-        
-        
+
+
+
     }
 
     #endregion

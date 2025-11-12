@@ -237,7 +237,7 @@ public class Gancho : MonoBehaviour
 
             if (!isValid) continue;
 
-            if (distance < closestDistance)
+            if (distance < closestDistance && !Blocked(candidate.position))
             {
                 closestDistance = distance;
                 bestTarget = candidate;
@@ -308,7 +308,7 @@ public class Gancho : MonoBehaviour
     // Detectar si hay un objeto bloqueando las escena
     bool Blocked(Vector3 targetPosition)
     {
-        Vector3 origin = transform.position + Vector3.up * 1.5f; // desde el pecho del jugador
+        Vector3 origin = cam.transform.position;//  + Vector3.up * 1.5f; // desde el pecho del jugador
         Vector3 direction = targetPosition - origin;
         float distance = direction.magnitude;
 

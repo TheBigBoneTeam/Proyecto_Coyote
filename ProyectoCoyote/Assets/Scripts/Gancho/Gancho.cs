@@ -198,7 +198,7 @@ public class Gancho : MonoBehaviour
 
         Collider[] candidates = Physics.OverlapSphere(currentTarget.position, maxNoticeZone, targetLayers);
         Transform bestTarget = null;
-        float closestDistance = Mathf.Infinity;
+        float bestScore = Mathf.Infinity;
 
         foreach (var c in candidates)
         {
@@ -208,44 +208,37 @@ public class Gancho : MonoBehaviour
             Vector3 offset = candidate.position - currentTarget.position;
             float distance = offset.magnitude;
 
-            // Dirección horizontal relativa a la cámara
             Vector3 rightDir = cam.right;
             float dotRight = Vector3.Dot(offset.normalized, rightDir);
-
-            // Dirección vertical global
             float verticalOffset = offset.y;
 
             bool isValid = false;
 
-            if (toRight || !toRight) // se ha pulsado A o D
-            {
-                if (toRight && dotRight > 0.5f) isValid = true;
-                if (!toRight && dotRight < -0.5f) isValid = true;
-            }
+            // Horizontal 
+            if (toRight && dotRight > 0.1f) isValid = true;
+            if (!toRight && dotRight < -0.1f) isValid = true;
 
-            if (toUp || !toUp) // se ha pulsado W o S
-            {
-                if (toUp && verticalOffset > 0.5f) isValid = true;
-                if (!toUp && verticalOffset < -0.5f) isValid = true;
-            }
-
-            //if (Blocked(candidate.position))
-            //{
-            //    Debug.Log("Hay algo bloqueando el objeto");
-            //    isValid = false;
-            //}
+            // Vertical
+            if (toUp && verticalOffset > 0.5f) isValid = true;
+            if (!toUp && verticalOffset < -0.5f) isValid = true;
 
             if (!isValid) continue;
+            if (Blocked(candidate.position)) continue;
 
-            if (distance < closestDistance && !Blocked(candidate.position))
+            float angle = Vector3.Angle(cam.forward, offset);
+            float score = distance + angle * 0.1f;
+
+            if (score < bestScore)
             {
-                closestDistance = distance;
+                bestScore = score;
                 bestTarget = candidate;
             }
         }
-        
+
         return bestTarget != null ? bestTarget : currentTarget;
     }
+
+
 
     private Transform ScanNearBy()
     {

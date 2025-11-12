@@ -22,7 +22,7 @@ public class DamageReceiver:MonoBehaviour
    public void checkEffectSource(Attack attack)
     {
         print(gameObject.name + " checkEffectSource");
-        if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>()) {
+        if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>() && !attack.GetComponent<baseBullet>()) {
             return;
         }
         if (!dodging || !checkListIntersect(attack.HitDirections, directions))

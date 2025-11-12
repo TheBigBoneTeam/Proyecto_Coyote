@@ -28,7 +28,7 @@ public class baseBullet : Attack, IBullet
  [SerializeField]   bool flying;
     protected override void OnTriggerEnter(Collider other)
     {
-        print(HitCheck == null);
+        print("BulletTrigger" + other.name);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
@@ -42,12 +42,25 @@ public class baseBullet : Attack, IBullet
             {
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
                 flying = false;
-                Destroy(gameObject,0.5f);
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                Destroy(gameObject, 0.5f);
 
             }
+        } else if (!other.isTrigger)
+        {
+            print("BulletTriggerWall" + other.name);
 
+            foreach (ACombatEffect effect in effects)
+            {
+                effect.Activate(null);
+            }
+            flying = false;
+            Destroy(gameObject, 0.5f);
         }
+        print("??");
+
     }
+
     private void Update()
     {
         if (flying)
@@ -88,7 +101,7 @@ public class baseBullet : Attack, IBullet
 
     }
 
-
+    
     public void subcribeToShoot(Action<baseBullet> response)
     {
         onFire += response;
@@ -109,55 +122,7 @@ public class baseBullet : Attack, IBullet
 
     }
 
-    //public virtual void hitSomething(GameObject obj)
-    //{
-    //    print("hit");
-    //    //Animacion o algo
-    //    hit = true;
-    //    anim.Play("bulletDestroy");
-    //    if (obj.GetComponent<CharacterLife>() != null)
-    //    {
-    //        if (hitParticle)
-    //        {
-    //            float bulletAngle = transform.eulerAngles.z;
-    //            //float rad = bulletAngle * Mathf.Deg2Rad;
-    //            //Vector2 bulletDir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-    //            var particles = obj.GetComponentInChildren<ParticleSystem>(true);
-    //            if (particles != null)
-    //            {
-    //                particles.gameObject.SetActive(true);
-    //                particles.Play();
-    //                if (transform.eulerAngles.z < 10 && transform.eulerAngles.z > -10)
-    //                {
-    //                    particles.transform.eulerAngles = new Vector3(-25, -particles.transform.eulerAngles.y, -particles.transform.eulerAngles.z);
-    //                }
-    //                else
-
-    //                    particles.transform.eulerAngles = new Vector3(transform.eulerAngles.z, -particles.transform.eulerAngles.y, -particles.transform.eulerAngles.z);
-    //            }
-
-    //            musicManager.Instance.PlaySoundPitch("snd_contacto_enemigo");
-    //        }
-    //        else
-    //        {
-    //            if (impactParticle)
-    //                impactParticle.Play();
-    //            musicManager.Instance.PlaySoundPitch("snd_contacto_obstaculo");
-    //        }
-    //        speed = 0;
-    //        GetComponent<Collider2D>().enabled = false;
-    //    }
-    //    ServiceLocator.Instance.Get<IsoftLock>().checkAll();
-    //    Destroy(gameObject, 0.5f);
-
-
-    //}
-  //  public CharacterLife.Team getTeam() => team;
-
-   // public bool hurtAll() => canHurtAll;
-
-  
-    private void OnDestroy()
+        private void OnDestroy()
     {
       
 

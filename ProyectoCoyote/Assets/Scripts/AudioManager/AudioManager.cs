@@ -56,9 +56,14 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Pueblo - Base", true, Vector2.zero, true, true);
                 break;
 
+            case "Nivel1_pruebaSonidos":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+                break;
+
             case "Nivel2":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
                 break;
+
             case "TesteoCInematicas":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true,0);
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Pelea", true, Vector2.zero, true, true,1);

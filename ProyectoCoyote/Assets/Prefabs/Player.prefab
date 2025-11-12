@@ -532,6 +532,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  print: 0
   storedDamage: 0
 --- !u!114 &5175745504945967330
 MonoBehaviour:
@@ -801,9 +802,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8280160572580057167}
     m_Modifications:
+    - target: {fileID: 300108038012978491, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2995593092875605164, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
       propertyPath: m_Name
       value: InterfazAtaque
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995593092875605164, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5109445936278067143, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -849,6 +858,22 @@ PrefabInstance:
       propertyPath: DamageReceiver
       value: 
       objectReference: {fileID: 5175745504945967330}
+    - target: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: dodgeUISignalers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: attackUISignalers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: 'dodgeUISignalers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5031216034674543432}
+    - target: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: 'attackUISignalers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 4067669759134835317}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -874,6 +899,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7dfcf899e4d6a41a7c64ae8176c081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4067669759134835317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1405403898280262598, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+  m_PrefabInstance: {fileID: 3167081112982067635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5031216034674543432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7935838619617694459, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+  m_PrefabInstance: {fileID: 3167081112982067635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6672640255872728573 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8604762106243769422, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}

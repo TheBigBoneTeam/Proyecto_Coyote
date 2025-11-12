@@ -23,6 +23,7 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
                 }
             }
             _currentAmmo = value;
+            print("_CurrentAmmo Bull" + _currentAmmo);
             if (_currentAmmo != null)
             {
                 if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)

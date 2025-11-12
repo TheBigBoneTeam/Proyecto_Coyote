@@ -19,7 +19,7 @@ namespace CombatEffect
             base.Activate(character);
             Debug.Log($"StartStun with duration of {stunDuration}");
             this.objCharacter = character;
-            if (this.objCharacter.GetComponent<Player>() != null)
+            if (objCharacter && this.objCharacter.GetComponent<Player>() != null)
             {
                 objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
                 objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);

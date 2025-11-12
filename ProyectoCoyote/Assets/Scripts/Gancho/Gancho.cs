@@ -388,11 +388,12 @@ public class Gancho : MonoBehaviour
     private void GoToTarget()
     {
         if (currentTarget == null) return;
+
         //// Dirección desde el objeto hacia la cámara
         //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
         //// POSICIÓN FINAL
         //Vector3 targetPosition = currentTarget.position + directionToCamera * OffsetFinalPos;
-        
+
         //// Mover el Rigidbody del jugador
         //var rb = player.GetComponent<Rigidbody>();
         //rb.MovePosition(targetPosition);
@@ -400,15 +401,7 @@ public class Gancho : MonoBehaviour
 
         visualHook.RetractHookGoToTarget(OffsetFinalPos);
         movement.animator.CrossFade("Grapple_04", 0.2f);
-        // Activar modo enemigo si aplica
-        if (currentTarget.gameObject.GetComponent<Enemy>())
-        {
-            Debug.Log("Es enemigo");
-            lockOn.currentTarget = currentTarget;
-            lockOn.FoundTarget();
-        }
-
-        ResetTarget();
+        
 
     }
 
@@ -422,8 +415,9 @@ public class Gancho : MonoBehaviour
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
-
             movement.animator.CrossFade("Grapple_04", 0.2f);
+
+
         }
         else 
         {
@@ -459,6 +453,7 @@ public class Gancho : MonoBehaviour
 
     public void WaitForHookFinish()
     {
+        Debug.Log("Ha llegado a su destino");
         if (currentTarget.gameObject.GetComponent<Enemy>())
         {
             Debug.Log("Es enemigo");

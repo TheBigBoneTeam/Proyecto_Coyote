@@ -455,7 +455,7 @@ public class Gancho : MonoBehaviour
         // Max Layer = 32
         for (int i = 0; i < 32; i++)
         {
-            if (i != LayerMask.NameToLayer("ahatIsGround")) 
+            if (i != LayerMask.NameToLayer("whatIsGround")) 
             {
                 Physics.IgnoreLayerCollision(targetLayer, i, true);
             }

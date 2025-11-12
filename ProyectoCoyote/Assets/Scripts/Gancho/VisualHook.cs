@@ -19,10 +19,17 @@ public class VisualHook : MonoBehaviour
     private Transform target;
     private GameObject player;
     private float currentCableLength;
-    CameraController CamControl;
-    Transform cam;
-    EnemyLockOn lockOn;
+    private CameraController CamControl;
+    private Transform cam;
+    private EnemyLockOn lockOn;
+    private Gancho hook;
 
+    // Estados del gancho
+    private enum HookState { Idle, Extending, Retracting, RetractingWithTarget, GoingToTarget }
+    private HookState currentState = HookState.Idle;
+
+    private float retractOffset;
+    public bool visualHookFinished { get; private set; } = false;
 
     void Start()
     {
@@ -32,7 +39,6 @@ public class VisualHook : MonoBehaviour
         player = GameObject.Find("Player");
 
         lineRenderer = GetComponent<LineRenderer>();
-        
         lineRenderer.enabled = false;
         lineRenderer.positionCount = 2;
         lineRenderer.widthMultiplier = 0.05f;
@@ -40,22 +46,28 @@ public class VisualHook : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Estado actual: " + currentState);
+        switch (currentState)
+        {
+            case HookState.Extending:
+                UpdateExtendCable();
+                break;
+            case HookState.Retracting:
+                UpdateRetractCable();
+                break;
+            case HookState.RetractingWithTarget:
+                Debug.Log("Estado: Atraer objetivo");
+                UpdateRetractCableWithTarget();
+                break;
+            case HookState.GoingToTarget:
+                UpdateGoToTarget();
+                break;
+        }
     }
+
     private Vector3 GetHookOrigin()
     {
-        if (leftHand != null)
-        {
-            
-            return leftHand.position;
-        }
-        else 
-        {
-            Debug.Log("Mano no encontrada");
-            return Vector3.zero;
-            
-        } 
-            
-        
+        return leftHand != null ? leftHand.position : player.transform.position;
     }
 
     public void ThrowHook(Transform targetTransform)
@@ -65,174 +77,140 @@ public class VisualHook : MonoBehaviour
         currentCableLength = 0f;
 
         lineRenderer.enabled = true;
-        StartCoroutine(ExtendCable());
+        currentState = HookState.Extending;
     }
-    
+
     public void RetractHook()
     {
-        if (target != null) 
-        { 
-            StartCoroutine(RetractCable());
+        if (target != null)
+        {
+            currentState = HookState.Retracting;
         }
         else
-        {
-            if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-
-        }
+        ResetCamera();
     }
 
     public void RetractHookAtractTarget(float offset)
     {
+        Debug.Log("target = " + target);
         if (target != null)
         {
-            StartCoroutine(RetractCableWithTarget(offset));
-
-        }
-        else
-        {
-            if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-
-        }
+            retractOffset = offset;
+            currentCableLength = Vector3.Distance(GetHookOrigin(), target.position);
+            lineRenderer.enabled = true;
+            visualHookFinished = false;
+            currentState = HookState.RetractingWithTarget;
+            Debug.Log("Estado cambiado a RetractingWithTarget");
+        } else
+        ResetCamera();
     }
+
     public void RetractHookGoToTarget(float offset)
     {
         if (target != null)
         {
-            StartCoroutine(GoToTarget(offset));
-
-        }
-        else
-        {
-            if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-
-        }
+            retractOffset = offset;
+            currentState = HookState.GoingToTarget;
+        }else
+            ResetCamera();
+        
     }
 
+    // ----------------- LÓGICA DE ESTADOS -----------------
 
-    private IEnumerator ExtendCable()
+    private void UpdateExtendCable()
     {
-        Vector3 Origin = GetHookOrigin();
-        Vector3 start = Origin!=Vector3.zero ? Origin : player.transform.position;
+        Vector3 start = GetHookOrigin();
         Vector3 end = target.position;
         float totalDistance = Vector3.Distance(start, end);
 
-        while (currentCableLength < totalDistance)
-        {
-            currentCableLength = Mathf.MoveTowards(
-                currentCableLength,
-                totalDistance,
-                cableSpeed * Time.deltaTime
-            );
+        currentCableLength = Mathf.MoveTowards(currentCableLength, totalDistance, cableSpeed * Time.deltaTime);
 
-            Vector3 direction = (end - start).normalized;
-            Vector3 currentEnd = start + direction * currentCableLength;
-
-            lineRenderer.SetPosition(0, start);
-            lineRenderer.SetPosition(1, currentEnd);
-
-            yield return null;
-        }
+        Vector3 direction = (end - start).normalized;
+        Vector3 currentEnd = start + direction * currentCableLength;
 
         lineRenderer.SetPosition(0, start);
-        lineRenderer.SetPosition(1, end);
+        lineRenderer.SetPosition(1, currentEnd);
+
+        if (currentCableLength >= totalDistance)
+        {
+            lineRenderer.SetPosition(1, end);
+            currentState = HookState.Idle;
+        }
     }
-    private IEnumerator RetractCable()
+
+    private void UpdateRetractCable()
     {
-        Vector3 Origin = GetHookOrigin();
-        Vector3 start = Origin != Vector3.zero ? Origin : player.transform.position;
+        Vector3 start = GetHookOrigin();
         Vector3 end = target.position;
-        float totalDistance = Vector3.Distance(start, end);
 
-        currentCableLength = totalDistance;
+        currentCableLength = Mathf.MoveTowards(currentCableLength, 0f, cableSpeed * Time.deltaTime);
 
-        while (currentCableLength > 0f)
+        Vector3 direction = (end - start).normalized;
+        Vector3 currentEnd = start + direction * currentCableLength;
+
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, currentEnd);
+
+        if (currentCableLength <= 0f)
         {
-            // Reducir la longitud del cable
-            currentCableLength = Mathf.MoveTowards(
-                currentCableLength,
-                0f,
-                cableSpeed * Time.deltaTime
-            );
-
-            // Dirección del cable
-            Vector3 direction = (end - start).normalized;
-            Vector3 currentEnd = start + direction * currentCableLength;
-
-            // Actualizar cable
-            lineRenderer.SetPosition(0, start);
-            lineRenderer.SetPosition(1, currentEnd);
-
-            yield return null;
+            lineRenderer.enabled = false;
+            currentState = HookState.Idle;
         }
-        
-        lineRenderer.enabled = false;
-        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
     }
-    private IEnumerator RetractCableWithTarget(float offset)
+
+    private void UpdateRetractCableWithTarget()
     {
-        Vector3 Origin = GetHookOrigin();
-        Vector3 start = Origin != Vector3.zero ? Origin : player.transform.position;
-        Vector3 end = target.position;
-        float totalDistance = Vector3.Distance(start, end);
+        Debug.Log("Atraer objetivo");
+        Vector3 frontOfPlayer = player.transform.position + player.transform.forward * retractOffset;
 
-        currentCableLength = totalDistance;
-
-        while (currentCableLength > offset) 
-        {
-            currentCableLength = Mathf.MoveTowards(
-                currentCableLength,
-                offset, 
-                cableSpeed * Time.deltaTime
+        // Mueve el target hacia esa posición
+        target.position = Vector3.MoveTowards(
+            target.position, 
+            frontOfPlayer, 
+            cableSpeed * Time.deltaTime
             );
 
-            Vector3 direction = (end - start).normalized;
-            Vector3 currentEnd = start + direction * currentCableLength;
+        lineRenderer.SetPosition(0, GetHookOrigin());
+        lineRenderer.SetPosition(1, target.position);
 
-            lineRenderer.SetPosition(0, start);
-            lineRenderer.SetPosition(1, currentEnd);
-
-            target.position = currentEnd;
-
-            yield return null;
+        if (Vector3.Distance(target.position, frontOfPlayer) <= 0.05f)
+        {
+            lineRenderer.enabled = false;
+            visualHookFinished = true;
+            hook.WaitForHookFinish();
+            currentState = HookState.Idle;
         }
-
-        lineRenderer.enabled = false;
-        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
     }
 
-    private IEnumerator GoToTarget(float offset)
+    private void UpdateGoToTarget()
     {
-        Vector3 Origin = GetHookOrigin();
-        Vector3 end = Origin != Vector3.zero ? Origin : player.transform.position;
-        Vector3 start = target.position;
-        float totalDistance = Vector3.Distance(start, end);
+        Debug.Log("Ir a objetivo");
+        Vector3 frontOfTarget = target.position + target.forward * retractOffset;
 
-        currentCableLength = totalDistance;
-
-        lineRenderer.enabled = false;
-
-        while (currentCableLength > offset)
-        {
-            currentCableLength = Mathf.MoveTowards(
-                offset, currentCableLength,
-                cableSpeed * Time.deltaTime
+        // Mueve al jugador hacia esa posición
+        player.transform.position = Vector3.MoveTowards(
+            player.transform.position, 
+            frontOfTarget, 
+            cableSpeed * Time.deltaTime
             );
 
-            Vector3 direction = (end - start).normalized;
-            Vector3 currentEnd = start + direction * currentCableLength;
+        lineRenderer.SetPosition(0, target.position);
+        lineRenderer.SetPosition(1, player.transform.position);
 
-            //lineRenderer.SetPosition(0, currentEnd);
-            //lineRenderer.SetPosition(1, start);
-
-            var rb = player.GetComponent<Rigidbody>();
-            rb.MovePosition(currentEnd);
-
-            yield return null;
+        if (Vector3.Distance(player.transform.position, frontOfTarget) <= 0.05f)
+        {
+            lineRenderer.enabled = false;
+            currentState = HookState.Idle;
         }
+    }
 
-        lineRenderer.enabled = false;
+
+    private void ResetCamera()
+    {
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
     }
+
 
 
 

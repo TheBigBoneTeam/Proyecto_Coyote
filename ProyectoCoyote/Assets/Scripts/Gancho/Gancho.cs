@@ -420,25 +420,20 @@ public class Gancho : MonoBehaviour
             
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
-            //Vector3 targetPosition = cam.transform.position + directionToCamera * -offset;
+            //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
 
             movement.animator.CrossFade("Grapple_04", 0.2f);
-            if (currentTarget.gameObject.GetComponent<Enemy>())
-            {
-                Debug.Log("Es enemigo");
-                lockOn.currentTarget = currentTarget;
-                lockOn.FoundTarget();
-            }
         }
         else 
         {
             CamControl.StartShake();
+            ResetTarget();
         }
 
        
         
-        ResetTarget();
+        
     }
 
     #endregion
@@ -461,4 +456,17 @@ public class Gancho : MonoBehaviour
         _cooldownUIText.SetText("");
 
     }
+
+    public void WaitForHookFinish()
+    {
+        if (currentTarget.gameObject.GetComponent<Enemy>())
+        {
+            Debug.Log("Es enemigo");
+            lockOn.currentTarget = currentTarget;
+            lockOn.FoundTarget();
+        }
+        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+        ResetTarget();
+    }
+
 }

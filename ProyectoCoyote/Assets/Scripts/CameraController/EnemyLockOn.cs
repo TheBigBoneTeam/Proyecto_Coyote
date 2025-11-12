@@ -205,7 +205,6 @@ public class EnemyLockOn : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 origin = cam.position;
-
         if (Physics.Linecast(origin, t, out hit))
         {
             if (!hit.transform.Equals(currentTarget))

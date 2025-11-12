@@ -64,7 +64,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public void AttackStateChange(Attack.AttackState state)
     {
         print(attack);
-        for (int i = 0; i < dodgeUISignalers.Length; i++)
+        for (int i = 0; i < attackUISignalers.Length; i++)
         {
             if (state.hitDirections.Length == 0)
             {

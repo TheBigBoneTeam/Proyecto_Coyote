@@ -37,6 +37,7 @@ MonoBehaviour:
         - 37c45417-2bec-4e0f-9256-f134d80290d1
         - 0e1708c9-b792-45f6-8dfe-c388cccbf752
         - 4244e33f-6c5c-4028-a8af-0b2a957b0459
+        - 150641e6-7a50-4be3-be56-a2233f6eba13
       - name: meleeFight
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
         position: {x: 566.09045, y: 259.29}
@@ -53,6 +54,7 @@ MonoBehaviour:
         - cdfb0225-3fa2-424e-af13-0402fcb1f8d7
         - 0e1708c9-b792-45f6-8dfe-c388cccbf752
         - 37c45417-2bec-4e0f-9256-f134d80290d1
+        - 150641e6-7a50-4be3-be56-a2233f6eba13
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 20f746a9-80a5-48a6-b2df-c8948a22554b
@@ -282,6 +284,26 @@ MonoBehaviour:
         - 95c47532-35fc-48d9-95f9-3d5227a129d8
         childIds:
         - 3a5bf04a-634c-46cb-b704-63aade7cb78d
+      - name: 
+        id: 150641e6-7a50-4be3-be56-a2233f6eba13
+        position: {x: 1262.4, y: 31.200005}
+        node:
+          rid: 8725330922265903466
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 95c47532-35fc-48d9-95f9-3d5227a129d8
+        childIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -1033,3 +1055,7 @@ MonoBehaviour:
     - rid: 8725330912159203426
       type: {class: RunToAmmo, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 8725330922265903466
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 4

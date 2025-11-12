@@ -195,7 +195,8 @@ public class WalkToPlayerAction : UnityAction
             player = GameObject.FindAnyObjectByType<Player>();
             agent.SetDestination(player.transform.position);
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
-        
+        agent.updateRotation = true;
+
     }
 
 }
@@ -207,16 +208,18 @@ public class WalkToPlayerActionCircle : UnityAction
     EnemyAI enemyAI;
     bool stopped;
     Transform CirclePoint;
-
+    bool correctingPos;
     public override Status Update()
     {
-
         if (stopped)
         {
             return Status.None;
         }
         if (Time.frameCount % 5 == 0)
         {
+            Vector3 lookTarget = new Vector3(player.transform.position.x, context.Transform.position.y, player.transform.position.z);
+            context.Transform.LookAt(lookTarget);
+
             agent.SetDestination(CirclePoint.transform.position);
         }
         //Debug.Log(player == null);
@@ -228,7 +231,10 @@ public class WalkToPlayerActionCircle : UnityAction
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
             {
-                enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                if (!correctingPos)
+                {
+                    enemyAI.LoadBasicAction(EnemyAI.BasicActions.CombatIdle, true);
+                }
                 agent.ResetPath();
                 Debug.Log("reachPlayer");
                 return Status.Success;
@@ -261,8 +267,13 @@ public class WalkToPlayerActionCircle : UnityAction
         player = GameObject.FindAnyObjectByType<Player>();
         CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
         agent.SetDestination(CirclePoint.position);
-        enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
-
+        agent.updateRotation = false;
+        Debug.Log("Remaining Distance"+Vector3.Distance(agent.transform.position, CirclePoint.transform.position));
+        if (Vector3.Distance(agent.transform.position,CirclePoint.transform.position) > (agent.stoppingDistance+1f))
+        {
+            correctingPos = true;
+            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+        }
     }
 
 }
@@ -280,11 +291,11 @@ public class RunToAmmo : UnityAction
     public override Status Update()
     {
 
-        if (stopped)
-        {
-            return Status.None;
-        }
-        if (!isReachable)
+        //if (stopped)
+        //{
+        //    return Status.None;
+        //}
+        if (!isReachable || enemyRunner.currentAmmo == null)
         {
             return Status.Failure;
         }
@@ -363,13 +374,14 @@ public class RunToAmmo : UnityAction
         }
         if (agent.SetDestination(bestAmmo.transform.position))
         {
+            agent.updateRotation = true;
             isReachable = true;
             enemyRunner.hasAmmo = true;
             enemyRunner.currentAmmo = bestAmmo;
             enemyRunner.currentAmmo.setOwner(enemy);
 
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
-            if (enemyRunner.currentAmmo.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
+            if (enemyRunner.currentAmmo.GetComponent<BombEnemy>() != null)
             {
                 isBomb = true;
             }
@@ -399,6 +411,7 @@ public class CirclePlayerAction : UnityAction
         agent = context.GameObject.GetComponent<NavMeshAgent>();
         player = GameObject.FindAnyObjectByType<Player>();
         agent.SetDestination(player.transform.position);
+        
         enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
         Vector3 vec = Random.insideUnitCircle.normalized;
         vec.z = vec.y;
@@ -456,7 +469,7 @@ public class RunToHeavyAction : UnityAction
         {
             return Status.None;
         }
-        if (!isReachable)
+        if (!isReachable || enemyRunner.currentHeavy == null)
         {
             return Status.Failure;
         }
@@ -497,7 +510,7 @@ public class RunToHeavyAction : UnityAction
     public override void Start()
     {
         
-        Debug.Log("StartRunAmmo");
+        Debug.Log("StartRunHeavy");
         stopped = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         enemy = enemyAI.gameObject.GetComponent<Enemy>();
@@ -505,6 +518,7 @@ public class RunToHeavyAction : UnityAction
         bullet = enemyAI.GetComponent<baseBullet>();
         enemyRunner = enemyAI.GetComponent<BombEnemyAssetBehaviourRunner>();
         currentDist = int.MaxValue;
+        agent.updateRotation = true;
         foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
        
         if (enemyRunner.currentHeavy == null)

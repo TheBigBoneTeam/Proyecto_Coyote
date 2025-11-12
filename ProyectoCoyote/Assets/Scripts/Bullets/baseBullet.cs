@@ -21,7 +21,6 @@ public class baseBullet : Attack, IBullet
    protected combatAreaManager areaManager;
 
 
-    [SerializeField] LayerMask obstacleLayer;
 
     [SerializeField] protected Animator anim;
 
@@ -82,7 +81,7 @@ public class baseBullet : Attack, IBullet
     {
         LoadData(_attackData);
         setOwner(shooter);
-        setHitCheck(HittableTypes.onlyOtherTeam);
+       // setHitCheck(HittableTypes.onlyOtherTeam);
         GetComponent<Collider>().isTrigger = true;
         transform.position = spawnPoint;
         print(objective);

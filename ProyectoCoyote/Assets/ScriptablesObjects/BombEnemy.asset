@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: CombatBT
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 389.6, y: 254.4}
+        position: {x: 1015.3039, y: 298.90808}
         node:
           rid: 5634289709124943963
         references:
@@ -32,13 +32,14 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
+        - a90778d2-d71d-4454-b5be-43c1f0a50e4c
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         - 7756f9bc-2af4-4e07-9839-72ecf048efce
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
-        position: {x: 1164, y: 194.4}
+        position: {x: 1137.6654, y: 963.0591}
         node:
           rid: 5634289709124943965
         references:
@@ -53,7 +54,7 @@ MonoBehaviour:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
       - name: ToReactionTransition (PUSH)
         id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 762.4, y: 149.6}
+        position: {x: 949.29224, y: 708.01874}
         node:
           rid: 5634289709124943967
         references:
@@ -73,7 +74,7 @@ MonoBehaviour:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
       - name: EndReaction
         id: 952d107d-ad5f-4496-b6a6-0f45781bf631
-        position: {x: 793.6, y: 363.19998}
+        position: {x: 1222.1157, y: 661.1536}
         node:
           rid: 8725330695958036570
         references:
@@ -93,7 +94,7 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
       - name: GoTowardHeavy
         id: ee188053-6bca-4f67-ac7f-db640ded7a7f
-        position: {x: 205.6, y: -300.8}
+        position: {x: 575.88416, y: -309.71844}
         node:
           rid: 8725330879351619668
         references:
@@ -106,9 +107,10 @@ MonoBehaviour:
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         childIds:
         - 478a4f3a-db02-4e7d-832c-3ce34d029b10
-      - name: BecomeAmmo
+        - a90778d2-d71d-4454-b5be-43c1f0a50e4c
+      - name: BecomeAmmo (PUSH)
         id: 100bad72-ba66-4ab8-ba1e-b678305f9d8c
-        position: {x: 100, y: -3.199997}
+        position: {x: 879.11035, y: -104.28143}
         node:
           rid: 8725330879351619669
         references:
@@ -128,7 +130,7 @@ MonoBehaviour:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
       - name: Fly
         id: 7756f9bc-2af4-4e07-9839-72ecf048efce
-        position: {x: 678.4, y: -284.8}
+        position: {x: 1379.2245, y: 181.51863}
         node:
           rid: 8725330916002496613
         references:
@@ -147,7 +149,7 @@ MonoBehaviour:
         childIds: []
       - name: Fly2
         id: 478a4f3a-db02-4e7d-832c-3ce34d029b10
-        position: {x: 516, y: -524}
+        position: {x: 359.87344, y: -614.91876}
         node:
           rid: 8725330916002496614
         references:
@@ -164,6 +166,26 @@ MonoBehaviour:
         parentIds:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
         childIds: []
+      - name: 
+        id: a90778d2-d71d-4454-b5be-43c1f0a50e4c
+        position: {x: 674.1851, y: 45.91597}
+        node:
+          rid: 8725330922265903460
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ee188053-6bca-4f67-ac7f-db640ded7a7f
+        childIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -851,3 +873,7 @@ MonoBehaviour:
       data:
         attack: CombatIdle
         idle: 1
+    - rid: 8725330922265903460
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 4

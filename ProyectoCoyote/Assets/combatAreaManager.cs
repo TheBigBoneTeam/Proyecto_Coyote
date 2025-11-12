@@ -47,6 +47,7 @@ public class combatAreaManager : MonoBehaviour
 
 
     [SerializeField] bool started;
+    [SerializeField] bool finished;
 
     EnemyLockOn lockOn;
 
@@ -218,31 +219,35 @@ public class combatAreaManager : MonoBehaviour
     public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()
     {
-        started = false;
-        currentWaveIndex = 0;
-        int i = 0;
-        areaColliders.SetActive(false);
-        foreach (var wave in functionalWaveDataList)
+        if (!finished)
         {
-            foreach(var enemy in wave.enemies)
+            started = false;
+            currentWaveIndex = 0;
+            int i = 0;
+            areaColliders.SetActive(false);
+            foreach (var wave in functionalWaveDataList)
             {
-                
-                enemy.restart();
-                if (i > 0)
+                foreach (var enemy in wave.enemies)
                 {
-                    enemy.activateEnemy(false);
+                    enemy.unSubscribeToDie(enemyDie);
+                    enemy.restart();
+                    if (i > 0)
+                    {
+                        enemy.activateEnemy(false);
+                    }
                 }
+                i++;
             }
-            i++;
-        }
-        foreach(WaveCaller waveCaller in GetComponentsInChildren<WaveCaller>())
-        {
-            waveCaller.restart();
+            foreach (WaveCaller waveCaller in GetComponentsInChildren<WaveCaller>())
+            {
+                waveCaller.restart();
+            }
         }
     }
     private void areaFinished()
     {
         currentWaveData = null;
+        finished = true;
         if(afterCombatStoryAction != null)
         {
             afterCombatStoryAction.Execute(() =>

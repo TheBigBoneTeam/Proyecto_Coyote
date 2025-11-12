@@ -381,7 +381,7 @@ public class Gancho : MonoBehaviour
         { 
             isHooked = true;
 
-            IgnorarColisiones();
+            DisableCollisions();
 
 
             selectingHook = false;
@@ -455,28 +455,35 @@ public class Gancho : MonoBehaviour
 
     }
 
-    public void IgnorarColisiones()
+    public void DisableCollisions()
     {
-        Collider targetCollider = currentTarget.GetComponent<Collider>();
-        if (targetCollider == null) return;
+        int targetLayer = currentTarget.gameObject.layer;
 
-        int sueloLayer = LayerMask.NameToLayer("whatIsGround");
-
-        // Ignora colisiones con todos los colliders de la escena excepto el suelo
-        Collider[] allColliders = FindObjectsOfType<Collider>();
-        foreach (Collider col in allColliders)
+        // Max Layer = 32
+        for (int i = 0; i < 32; i++)
         {
-            // Ignora todos menos el suelo y el propio target
-            if (col.gameObject.layer != sueloLayer && col != targetCollider)
+            if (i != LayerMask.NameToLayer("ahatIsGround")) 
             {
-                Physics.IgnoreCollision(targetCollider, col, true);
+                Physics.IgnoreLayerCollision(targetLayer, i, true);
             }
+        }
+    }
+
+    
+    public void EnableAllCollisions()
+    {
+        int targetLayer = currentTarget.gameObject.layer;
+
+        for (int i = 0; i < 32; i++)
+        {
+            Physics.IgnoreLayerCollision(targetLayer, i, false);
         }
     }
 
     public void WaitForHookFinish()
     {
         currentTarget.gameObject.GetComponent<Collider>().enabled = true;
+        EnableAllCollisions();
 
         Debug.Log("Ha llegado a su destino");
         if (currentTarget.gameObject.GetComponent<Enemy>())

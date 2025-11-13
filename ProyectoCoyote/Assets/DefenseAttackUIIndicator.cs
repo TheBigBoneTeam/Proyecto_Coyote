@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -18,8 +19,9 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public GameObject middleDanger;
     public Animator middleDangerAnimator;
 
-    Dictionary<AGameCharacter, HitDirections[]> currentAttacksDictionary;
-
+    Dictionary<AGameCharacter, Attack> currentAttacksDictionary;
+    List<baseBullet>currentBullets;
+ 
     [SerializeField] Vector3 paddingPosition;
 
     CanvasGroup CanvasGroup;
@@ -30,8 +32,10 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentBullets = new List<baseBullet>();
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
-        currentAttacksDictionary = new Dictionary<AGameCharacter, HitDirections[]>();
+        currentAttacksDictionary = new Dictionary<AGameCharacter,Attack>();
+        middleDanger.SetActive(false);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(CombatAreaChange);
         player = GetComponentInParent<Player>();
         lockOn = GetComponentInParent<EnemyLockOn>();
@@ -53,14 +57,39 @@ public class DefenseAttackUIIndicator : MonoBehaviour
 
     private void CombatAreaChange(combatAreaManager manager, WaveData data)
     {
-        foreach(var enemy in data.enemies)
+        middleDanger.SetActive(false);
+        foreach (var enemy in data.enemies)
         {
             print("subcribe");
             enemy.attack.subscribeToStateChange(AttackHappeneed);
             enemy.subscribeToDie(enemyDie);
+            Gun gun = enemy.GetComponent<Gun>();
+            if (gun)
+            {
+                gun.subscribeToShoot(shootGun);
+            }
         }
     }
 
+    private void shootGun(baseBullet bullet)
+    {
+        bullet.subscribeToDestroy(bulletDestroy);
+        print(bullet.owner);
+        currentBullets.Add(bullet);
+        AttackStateChange();
+    }
+    private void bulletDestroy(baseBullet bullet)
+    {
+        currentBullets.Remove(bullet);
+        AttackStateChange();
+        //if(currentAttacksDictionary.TryGetValue(bullet.owner, out Attack attack))
+        //{
+        //    if (attack.GetComponent<baseBullet>().Equals(bullet))
+        //    {
+        //        currentAttacksDictionary.Remove(bullet.owner);
+        //    }
+        //}
+    }
     private void enemyDie(AGameCharacter enemy)
     {
         enemy.attack.unSubscribeToStateChange(AttackHappeneed);
@@ -85,7 +114,16 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            print("Current Attack Dictionary Start:");
+            foreach (KeyValuePair<AGameCharacter, Attack> value in currentAttacksDictionary)
+            {
+                print($"{value.Key} {value.Value.HitDirectionsList}");
+            }
+            print("Current Attack Dictionary End.");
+
+        }
     }
     public void DodgeStateChange(DamageReceiver.ReceiverState state)
     {
@@ -108,7 +146,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public void AttackHappeneed(Attack.AttackState state)
     {
         print("Attack Happened");
-        if (state.hitDirections == null)
+        if (state.attack == null)
         {
             print("Attack is Null");
             currentAttacksDictionary.Remove(state.Owner);
@@ -116,14 +154,14 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         else
         {
             print("Attack is not Null");
-
+            
             if (currentAttacksDictionary.ContainsKey(state.Owner))
             {
-                currentAttacksDictionary[state.Owner] = state.hitDirections;
+                currentAttacksDictionary[state.Owner] = state.attack;
             }
             else
             {
-                currentAttacksDictionary.TryAdd(state.Owner, state.hitDirections);
+                currentAttacksDictionary.TryAdd(state.Owner, state.attack);
             }
         }
         AttackStateChange();
@@ -134,20 +172,25 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         bool anyLocked = false;
         AGameCharacter locked = lockOn.currentTarget?.GetComponent<AGameCharacter>();
         bool anyOutsideAttack = false;
-        foreach (KeyValuePair<AGameCharacter, HitDirections[]> value in currentAttacksDictionary)
+        foreach (KeyValuePair<AGameCharacter,Attack> value in currentAttacksDictionary)
         {
             if (value.Key.Equals(locked))
             {
                 anyLocked = true;
                 for (int i = 0; attackUISignalers.Length > i; i++)
                 {
-                    setAttackObject(attackUISignalers[i], value.Value.Contains((HitDirections)i));
+                    setAttackObject(attackUISignalers[i], value.Value.HitDirectionsList.Contains((HitDirections)i));
                 }
             }
             else
             {
                 anyOutsideAttack = true;
             }
+        }
+        foreach(baseBullet bullet in currentBullets)
+        {
+            anyOutsideAttack = true;
+            //Cambiar algo dependiendo de la cercania y tal
         }
         middleDanger.SetActive(anyOutsideAttack);
         middleDangerAnimator.Play("Danger");

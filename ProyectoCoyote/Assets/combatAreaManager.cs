@@ -53,7 +53,7 @@ public class combatAreaManager : MonoBehaviour
 
     IGameStateManager gameStateManager;
 
-
+    
     private void OnTriggerEnter(Collider other)
     {
         print("trigger"+other.gameObject.name);
@@ -134,23 +134,24 @@ public class combatAreaManager : MonoBehaviour
     }
     public void startArea()
     {
+
+        started = true;
+        areaColliders.SetActive(true);
         _player.setSpawnPoint(respawnPoint.position);
         gameStateManager.subscribeToRestart(restart);
 
         currentWaveIndex = 0;
         deadEnemies.Clear();
-        started = true;
-        areaColliders.SetActive(true);
-        foreach(Transform child in areaColliders.transform)
+        foreach (Transform child in areaColliders.transform)
         {
             child.gameObject.SetActive(true);
         }
-        if (beforeCombatStoryAction != null)
+        if (beforeCombatStoryAction != null && !functionalWaveDataList[0].finished)
         {
             beforeCombatStoryAction.Execute(() =>
             {
                 //AudioManager.Instance.ChangeMusicAt(0, "OST Cañon - Pelea", 2f, 2f);
-                 startWave();
+                startWave();
             });
 
         }
@@ -164,28 +165,34 @@ public class combatAreaManager : MonoBehaviour
     {
         
          currentWaveData = functionalWaveDataList[currentWaveIndex];
-        if (currentWaveData.Covers != null && currentWaveData.Covers.Length > 0)
+        if (currentWaveData.finished == false)
         {
-            currentCovers = functionalWaveDataList[currentWaveIndex].Covers;
-        }
-        if (currentWaveData.ammo != null && currentWaveData.ammo.Length > 0)
-        {
-            currentAmmo = functionalWaveDataList[currentWaveIndex].ammo.ToList();
-        }
-        if(currentWaveData.spawnPoint != null)
-        {
-            _player.setSpawnPoint(currentWaveData.spawnPoint.position);
-        }
-        if (currentWaveData.beforeWavestoryAction != null)
-        {
-            currentWaveData.beforeWavestoryAction.Execute(() => {
-               finalStartWave();
+            if (currentWaveData.Covers != null && currentWaveData.Covers.Length > 0)
+            {
+                currentCovers = functionalWaveDataList[currentWaveIndex].Covers;
+            }
+            if (currentWaveData.ammo != null && currentWaveData.ammo.Length > 0)
+            {
+                currentAmmo = functionalWaveDataList[currentWaveIndex].ammo.ToList();
+            }
+            if (currentWaveData.spawnPoint != null)
+            {
+                _player.setSpawnPoint(currentWaveData.spawnPoint.position);
+            }
+            if (currentWaveData.beforeWavestoryAction != null)
+            {
+                currentWaveData.beforeWavestoryAction.Execute(() =>
+                {
+                    finalStartWave();
 
-            });
-        }
-        else
-        {
-            finalStartWave();
+                });
+            }
+            else
+            {
+                finalStartWave();
+            }
+        }else  {
+            waveFinished();
         }
 
     }
@@ -276,6 +283,10 @@ public class combatAreaManager : MonoBehaviour
         }
         else
         {
+            if (functionalWaveDataList[currentWaveIndex].spawnPoint != null)
+            {
+                currentWaveData.finished = true;
+            }
             currentWaveData = functionalWaveDataList[currentWaveIndex];
             if (currentWaveData.colliderTurnOffBefore)
             {
@@ -290,6 +301,11 @@ public class combatAreaManager : MonoBehaviour
 
     public void startWaveExternal(int wave)
     {
+        if (!started)
+        {
+            startArea();
+            return;
+        }
         if(currentWaveIndex == wave)
         {
             startWave();
@@ -360,6 +376,7 @@ public class WaveData
     public Cover[] Covers;
     public baseBullet[] ammo;
     public Transform spawnPoint;
+   public bool finished;
    public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint)
     {
         this.enemies = enemies;
@@ -369,6 +386,6 @@ public class WaveData
         this.Covers = covers;
         this.ammo = ammo;
         this.spawnPoint = spawnpoint;
-            
+        finished = false;
     }
 }

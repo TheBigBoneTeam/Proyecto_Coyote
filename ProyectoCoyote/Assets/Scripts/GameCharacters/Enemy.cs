@@ -22,9 +22,9 @@ public class Enemy : AGameCharacter
         print(character.GetComponent<Enemy>() == null);
         return character.GetComponent<Enemy>() == null;
     }
-    public override void getHit(int damage, bool crit = false)
+    public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
-        base.getHit(damage, crit);
+        base.getHit(damage,directions, crit);
 
     }
     public void setArea(combatAreaManager combatArea)

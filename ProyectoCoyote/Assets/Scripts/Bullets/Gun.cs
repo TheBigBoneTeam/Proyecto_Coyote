@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected  GameObject bullet;
    protected AGameCharacter gameCharacter;
     [SerializeField] protected Transform bulletSpawnPoint;
-   protected Action<Attack.AttackState> shootAction;
+   protected Action<baseBullet> shootAction;
    protected Attack.AttackState attackState;
     public virtual void Shoot(Vector3 obj, baseBullet bul = null)
     {
@@ -15,13 +15,12 @@ public class Gun : MonoBehaviour
             bul = bulet.GetComponent<baseBullet>();
         }
         print("shoot"+name);
-        shootAction?.Invoke(attackState);
 
         
             print("canshoot"+name);
             bul.StartBulletMovement(gameCharacter, bulletSpawnPoint.position, obj);
+        shootAction?.Invoke(bul);
 
-        
 
     }
     protected virtual void Start()
@@ -32,11 +31,11 @@ public class Gun : MonoBehaviour
         //}
         gameCharacter = GetComponentInParent<AGameCharacter>();
     }
-    public void subscribeToShoot(Action<Attack.AttackState> subscribe)
+    public void subscribeToShoot(Action<baseBullet> subscribe)
     {
         shootAction += subscribe;
     }
-    public void unSubscribeToShoot(Action<Attack.AttackState> subscribe)
+    public void unSubscribeToShoot(Action<baseBullet> subscribe)
     {
         shootAction -= subscribe;
     }

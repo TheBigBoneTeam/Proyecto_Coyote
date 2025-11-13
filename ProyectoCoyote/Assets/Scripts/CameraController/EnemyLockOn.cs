@@ -145,7 +145,7 @@ public class EnemyLockOn : MonoBehaviour
     public void ResetTarget()
     {
         lockOnCanvas.gameObject.SetActive(false);
-        defenseAttackUIIndicator.setEnable(false);
+        //defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
 

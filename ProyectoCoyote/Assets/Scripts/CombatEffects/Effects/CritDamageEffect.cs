@@ -16,7 +16,7 @@ namespace CombatEffect
             this.objCharacter = character;
             if (character)
             {
-                character.getHit(_critdamage, true);
+                character.getHit(_critdamage, source.GetComponent<Attack>().getMainDirection(), true);
             }
         }
 

@@ -25,9 +25,9 @@ public class Player : AGameCharacter
     {
         return character.GetComponent<Enemy>() != null;
     }
-    public override void getHit(int damage, bool crit = false)
+    public override void getHit(int damage,HitDirections directions, bool crit = false)
     {
-        base.getHit(damage);
+        base.getHit(damage,directions);
        
         if (PerfectDodgeManager.isSlowDown())
         {

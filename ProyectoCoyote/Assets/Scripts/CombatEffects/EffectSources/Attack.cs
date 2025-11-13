@@ -14,7 +14,7 @@ public class Attack : ATouchCombatEffectSource
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
    protected AHittableCheck HitCheck;
 
-    [field: SerializeField] public List<HitDirections> HitDirections { get; private set; }
+    [field: SerializeField] public List<HitDirections> HitDirectionsList { get; private set; }
 
     public UnityEvent<AttackState> attackStateEvent;
 
@@ -62,7 +62,7 @@ public class Attack : ATouchCombatEffectSource
     {
         owner = GetComponentInParent<AGameCharacter>();
         setHitCheck(HitCheckType);
-        HitDirections = new List<HitDirections>();
+        HitDirectionsList = new List<HitDirections>();
     }
     public void setParry(bool parry)
     {
@@ -94,28 +94,28 @@ public class Attack : ATouchCombatEffectSource
     }
     public void setHitDirections(HitDirections[] directions)
     {
-        HitDirections.Clear();
-        HitDirections.AddRange(directions);
+        HitDirectionsList.Clear();
+        HitDirectionsList.AddRange(directions);
         sendState();
 
     }
     public void addHitDirection(HitDirections direction)
     {
-        if(!HitDirections.Contains(direction))
-        HitDirections.Add(direction);
+        if(!HitDirectionsList.Contains(direction))
+        HitDirectionsList.Add(direction);
         sendState();
 
     }
     public void setHitDirection(HitDirections direction)
     {
-        HitDirections.Clear();
-        HitDirections.Add(direction);
+        HitDirectionsList.Clear();
+        HitDirectionsList.Add(direction);
         sendState();
 
     }
     void sendState()
     {
-        attackStateEvent.Invoke(new AttackState(HitDirections.ToArray(),owner));
+        attackStateEvent.Invoke(new AttackState(this,owner));
 
     }
     void sendNullState()
@@ -140,7 +140,7 @@ public class Attack : ATouchCombatEffectSource
         if (data == null)
         {
             print("getDataNull");
-            HitDirections.Clear();
+            HitDirectionsList.Clear();
             effects.Clear();
             sendNullState();
         }
@@ -148,8 +148,8 @@ public class Attack : ATouchCombatEffectSource
         {
             setHitCheck(data.HitCheckType);
             setParry(data.isParreable);
-            HitDirections.Clear();
-            HitDirections.AddRange(data.HitDirections);
+            HitDirectionsList.Clear();
+            HitDirectionsList.AddRange(data.HitDirections);
             effects.Clear();
             foreach (var effect in data.effects)
             {
@@ -167,13 +167,24 @@ public class Attack : ATouchCombatEffectSource
 
     public class AttackState
     {
-       public HitDirections[] hitDirections;
+       public Attack attack;
       public  AGameCharacter Owner;
         
-        public AttackState(HitDirections[] hitDirections,AGameCharacter character)
+        public AttackState(Attack attack,AGameCharacter character)
         {
-            this.hitDirections = hitDirections;
+            this.attack = attack;
             this.Owner = character;
+        }
+    }
+    public HitDirections getMainDirection()
+    {
+        if (HitDirectionsList != null && HitDirectionsList.Count != 0)
+        {
+            return HitDirectionsList[0];
+        }
+        else
+        {
+            return HitDirections.Back;
         }
     }
 }

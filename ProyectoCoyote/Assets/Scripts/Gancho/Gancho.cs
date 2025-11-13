@@ -189,7 +189,7 @@ public class Gancho : MonoBehaviour
     }
     public void ResetTarget()
     {
-        movement.animator.CrossFade("Idle_01", 0.2f);
+       // movement.animator.CrossFade("Idle_01", 0.2f);
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();

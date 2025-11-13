@@ -43,12 +43,33 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         startPos = transform.position;
     }
-    public virtual void getHit(int damage,bool crit = false)
+    public virtual void getHit(int damage, HitDirections direction,bool crit = false)
     {
         HealthPoint -= damage;
         //print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
         lifeUpdate.Invoke(HealthPoint);
         AudioManager.Instance.PlaySimpleSound("SFX - Punch", false, Vector2.zero, true, true);
+        string extra = "";
+        //switch (direction)
+        //{
+        //    case HitDirections.Left:
+        //        extra = "L";
+        //        break;
+        //    case HitDirections.Rigth:
+        //        extra = "R";
+
+        //        break;
+        //    case HitDirections.Back:
+        //        extra = "M";
+
+        //        break;
+        //    case HitDirections.Outside:
+        //        extra = "M";
+        //        break;
+        //    default:
+        //        extra = "M";
+        //        break;
+        //}
 
         if (HealthPoint <= 0)
         {
@@ -57,13 +78,13 @@ public abstract class AGameCharacter :MonoBehaviour
         }
         if (crit)
         {
-            anim.CrossFade("GetHit", .1f, 0, 0);
+            anim.CrossFade("GetHit"+extra, .1f, 0, 0);
             AudioManager.Instance.PlaySimpleSound("SFX - Crit", false, Vector2.zero, true, true);
-            // anim.CrossFade("GetHit_CRIT", .1f, 0, 0);
+            // anim.CrossFade("GetHit_CRIT"+extra, .1f, 0, 0);
         }
         else
         {
-            anim.CrossFade("GetHit", .1f, 0, 0);
+            anim.CrossFade("GetHit" + extra, .1f, 0, 0);
             }
         if (invTimeAfterHit > 0)
         {

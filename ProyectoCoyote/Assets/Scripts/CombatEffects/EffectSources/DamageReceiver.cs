@@ -50,7 +50,7 @@ public class DamageReceiver:MonoBehaviour
     {
         print("regularcanbedodged");
 
-        return checkListIntersect(attack.HitDirections, directions);
+        return checkListIntersect(attack.HitDirectionsList, directions);
     }
     protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
     {

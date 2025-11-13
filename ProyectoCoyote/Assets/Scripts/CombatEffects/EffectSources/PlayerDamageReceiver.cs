@@ -16,7 +16,7 @@ public class PlayerDamageReceiver: DamageReceiver
         if(attack.owner.transform == lockOn.currentTarget)
         {
             print("islocked");
-            return checkListIntersect(attack.HitDirections, directions);
+            return checkListIntersect(attack.HitDirectionsList, directions);
         }
         else
         {

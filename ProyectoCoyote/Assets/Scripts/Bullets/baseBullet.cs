@@ -16,9 +16,10 @@ public class baseBullet : Attack, IBullet
     [SerializeField] protected ParticleSystem impactParticle;
 
     Action<baseBullet> onFire;
+    Action<baseBullet> beDestroy;
 
 
-   protected combatAreaManager areaManager;
+    protected combatAreaManager areaManager;
 
 
 
@@ -43,6 +44,7 @@ public class baseBullet : Attack, IBullet
                 flying = false;
                 if (GetComponentInChildren<MeshRenderer>())
                 GetComponentInChildren<MeshRenderer>().enabled = false;
+                beDestroy?.Invoke(this);
                 Destroy(gameObject, 0.5f);
 
             }
@@ -55,6 +57,7 @@ public class baseBullet : Attack, IBullet
                 effect.Activate(null);
             }
             flying = false;
+            beDestroy?.Invoke(this);
             Destroy(gameObject, 0.5f);
         }
         print("??");
@@ -70,6 +73,7 @@ public class baseBullet : Attack, IBullet
                 lifeTime -= Time.deltaTime;
                 if (lifeTime <= 0)
                 {
+                    beDestroy?.Invoke(this);
                     Destroy(gameObject);
                 }
             }
@@ -80,8 +84,9 @@ public class baseBullet : Attack, IBullet
    
     public virtual void StartBulletMovement(AGameCharacter shooter, Vector3 spawnPoint,Vector3 objective)
     {
-        LoadData(_attackData);
         setOwner(shooter);
+        print("shooter"+ shooter);
+        LoadData(_attackData);
        // setHitCheck(HittableTypes.onlyOtherTeam);
         GetComponent<Collider>().isTrigger = true;
         transform.position = spawnPoint;
@@ -89,7 +94,8 @@ public class baseBullet : Attack, IBullet
         this.objective = objective;
         print(this.objective);
         transform.LookAt(objective);
-        flying = true; 
+        flying = true;
+        print(this.owner);
         onFire?.Invoke(this);
         GetComponent<Collider>().enabled = true;
         
@@ -110,6 +116,14 @@ public class baseBullet : Attack, IBullet
     public void unSubcribeToShoot(Action<baseBullet> response)
     {
         onFire -= response;
+    }
+    public void subscribeToDestroy(Action<baseBullet> response)
+    {
+        beDestroy += response;
+    }
+    public void unSubscribeToDestroy(Action<baseBullet> response)
+    {
+        beDestroy -= response;
     }
     public void setAreaManager(combatAreaManager combatAreaManager)
     {

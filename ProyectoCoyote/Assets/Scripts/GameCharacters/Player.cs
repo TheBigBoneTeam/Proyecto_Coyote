@@ -8,6 +8,7 @@ public class Player : AGameCharacter
   public  int storedDamage;
     PlayerMovement playerMovement;
     EnemyLockOn lockOn;
+    Gancho hook;
 
     public override void Die()
     {
@@ -35,6 +36,7 @@ public class Player : AGameCharacter
         if (HealthPoint > 0)
         {
             storedDamage = damage;
+            hook.ResetTarget();
         }
     }
     public void onParry()
@@ -52,7 +54,7 @@ public class Player : AGameCharacter
         playerMovement.setCanAttack(true);
         playerMovement.setCanMove(true);
         lockOn.ResetTarget();
-
+        hook.ResetTarget();
     }
     protected override void Start()
     {
@@ -63,6 +65,7 @@ public class Player : AGameCharacter
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
         lockOn = GetComponent<EnemyLockOn>();
+        hook = GetComponent<Gancho>();
     }
 
     private void StateChange(object sender, stateData e)

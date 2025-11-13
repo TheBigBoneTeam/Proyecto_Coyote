@@ -11,11 +11,12 @@ public class EnemyManager: IEnemyManager
     Transform kungFuCircle;
     OwnerableTransform[] mainKungFuPoints;
     OwnerableTransform[] secondaryKungFuPoints;
-
+    Player player;
     public void Instantiate()
     {
         enemyClassMutex = new ClassMutex<EnemyAI>();
         attackingEnemy = new ClassMutex<EnemyAI>();
+        player = GameObject.FindAnyObjectByType<Player>();
         kungFuCircle = UnityEngine.GameObject.FindGameObjectWithTag("KungFuCircle").transform;
         mainKungFuPoints = new OwnerableTransform[kungFuCircle.childCount];
         Debug.Log(mainKungFuPoints.Length);
@@ -43,12 +44,22 @@ public class EnemyManager: IEnemyManager
             return true;
         }
         Debug.Log("isNull");
+        EnemyAssetBehaviourRunner ase;
+      
         return false;
+
     }
 
     //public Transform getClosestPoint(Enemy owner, out int index)
     //{
+    //    Vector3 playerPos = player.transform.position;
+    //    Vector3 enemyPos = owner.transform.position;
 
+    //    int 
+    //    if(playerPos.z > enemyPos.z)
+    //    {
+
+    //    }
     //}
 
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;

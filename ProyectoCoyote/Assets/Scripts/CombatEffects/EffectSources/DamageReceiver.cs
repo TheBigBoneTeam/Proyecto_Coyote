@@ -11,8 +11,8 @@ using UnityEngine.Events;
 public class DamageReceiver:MonoBehaviour
 {
     AGameCharacter character;
- [SerializeField]  List<HitDirections> directions;
- [SerializeField]   bool dodging;
+ [SerializeField] protected List<HitDirections> directions;
+ [SerializeField] protected  bool dodging;
     [SerializeField] bool parrying;
 
     UnityEvent<ReceiverState> receiverStateEvent;
@@ -25,7 +25,7 @@ public class DamageReceiver:MonoBehaviour
         if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>() && !attack.GetComponent<baseBullet>()) {
             return;
         }
-        if (!dodging || !checkListIntersect(attack.HitDirections, directions))
+        if (!dodging || !canBeDodged(attack))
         {
             print("addeffedcts");
             attack.addEffectsToChar(character);
@@ -46,7 +46,13 @@ public class DamageReceiver:MonoBehaviour
         }
     }
 
-    private bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
+   protected virtual bool canBeDodged(Attack attack)
+    {
+        print("regularcanbedodged");
+
+        return checkListIntersect(attack.HitDirections, directions);
+    }
+    protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
     {
         foreach (HitDirections hitDirection in hitDirections)
         {
@@ -64,7 +70,7 @@ public class DamageReceiver:MonoBehaviour
 
 
     }
-    private void Start()
+    protected virtual void Start()
     {
         perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         character = GetComponent<AGameCharacter>();

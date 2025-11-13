@@ -26,6 +26,9 @@ public abstract class AGameCharacter :MonoBehaviour
 
     [SerializeField]  bool print;
 
+    public Attack attack { get; private set; }
+
+
     string currentAnim;
     private void Awake()
     {
@@ -34,6 +37,7 @@ public abstract class AGameCharacter :MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         dodgeAttackEvent = new UnityEvent<HitDirections>();
         dieEvent = new UnityEvent<AGameCharacter>();
+        attack = GetComponentInChildren<Attack>();
     }
     protected virtual void Start()
     {
@@ -96,6 +100,8 @@ public abstract class AGameCharacter :MonoBehaviour
         HealthPoint = _maxHealthPoint;
         lifeUpdate?.Invoke(HealthPoint);
         transform.position = startPos;
+        dodgeAttackEvent ??= new UnityEvent<HitDirections>();
+        dieEvent ??= new UnityEvent<AGameCharacter>();
         //print("restartposition" + name + startPos+transform.position);
 
     }
@@ -154,8 +160,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void PlayAnimation(AnimationClip clip)
     {
-            AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
-
+        AnimationPlayableUtilities.PlayClip(anim, clip, out PlayableGraph graph);
         graph.Play();
     }
     public void PlayAnimation(string stateName, bool idle = false)
@@ -190,6 +195,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void subscribeToDodgeAttack(UnityAction<HitDirections> response)
     {
+        print(dodgeAttackEvent == null);
         dodgeAttackEvent.AddListener(response);
     }
     public void unSubscribeToDodgeAttack(UnityAction<HitDirections> response)

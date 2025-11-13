@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class outsideAttackDetecter : MonoBehaviour
+public class outsideAttackDetecter_DEPRECATED : MonoBehaviour
 {
 
     Attack currentOutsideAttack;

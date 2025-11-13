@@ -25,6 +25,7 @@ public class Enemy : AGameCharacter
     public override void getHit(int damage, bool crit = false)
     {
         base.getHit(damage, crit);
+
     }
     public void setArea(combatAreaManager combatArea)
     {
@@ -37,9 +38,13 @@ public class Enemy : AGameCharacter
             startPos = transform.position;
             setredUp = true;
         }
+        dieEvent?.RemoveAllListeners();
         base.restart();
         print(name);
         gameObject.SetActive(ActiveBeforeFight);
+        GetComponent<EnemyAI>().restart();
+        GetComponentInChildren<Attack>().restart();
+
         GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
 
     }

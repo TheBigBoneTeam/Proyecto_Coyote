@@ -16,7 +16,7 @@ public class VisualHook : MonoBehaviour
     [SerializeField] private float handOffset = 0.5f;
     [SerializeField] private Transform leftHand;
 
-    private Transform target;
+    private Transform target = null;
     private GameObject player;
     private float currentCableLength;
     private CameraController CamControl;
@@ -62,6 +62,9 @@ public class VisualHook : MonoBehaviour
                 break;
             case HookState.GoingToTarget:
                 UpdateGoToTarget();
+                break;
+            case HookState.Idle:
+                UpdateIdle();
                 break;
         }
     }
@@ -122,7 +125,18 @@ public class VisualHook : MonoBehaviour
     }
 
     // ----------------- LÓGICA DE ESTADOS -----------------
-
+    private void UpdateIdle()
+    {
+        if (target.position != null)
+        {
+            lineRenderer.SetPosition(1, target.position);
+        }
+        else
+        { 
+            lineRenderer.enabled = false; 
+            ResetCamera();
+        }
+    }
     private void UpdateExtendCable()
     {
         Vector3 start = GetHookOrigin();
@@ -160,6 +174,7 @@ public class VisualHook : MonoBehaviour
         if (currentCableLength <= 0f)
         {
             lineRenderer.enabled = false;
+            ResetCamera();
             currentState = HookState.Idle;
         }
     }
@@ -215,6 +230,9 @@ public class VisualHook : MonoBehaviour
 
     private void ResetCamera()
     {
+        currentCableLength = 0f;
+        target = null;
+        lineRenderer.enabled = false;
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
     }
 

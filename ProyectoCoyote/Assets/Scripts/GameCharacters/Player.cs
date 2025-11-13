@@ -11,7 +11,6 @@ public class Player : AGameCharacter
 
     public override void Die()
     {
-        playerMovement.enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
@@ -47,9 +46,7 @@ public class Player : AGameCharacter
 
     {
         gameObject.SetActive(true);
-        playerMovement.enabled = false;
         base.restart();
-        playerMovement.enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
 
         playerMovement.setCanAttack(true);

@@ -619,17 +619,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region GameState Integración
-    private void OnEnable()
-    {
-        if (gameStateManager == null)
-            // gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
-
-        if (gameStateManager != null)
-        {
-            gameStateManager.subscribeToRestart(OnRestart);
-            Debug.Log("[PlayerMovement] Resuscrito a OnRestart (OnEnable)");
-        }
-    }
+    
 
     private void OnDisable()
     {
@@ -651,6 +641,8 @@ public class PlayerMovement : MonoBehaviour
     // Desactiva movimiento, animaciones y resetea físicas.
     private void HandleDeathState()
     {
+        print("me muero");
+        print("me muero");
         canMove = false;
         canAttack = false;
         dashing = false;
@@ -696,10 +688,10 @@ public class PlayerMovement : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
-        // Restaurar posición inicial
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
-        Debug.Log($"Posición restaurada a {initialPosition}");
+        //// Restaurar posición inicial
+        //transform.position = initialPosition;
+        //transform.rotation = initialRotation;
+        //Debug.Log($"Posición restaurada a {initialPosition}");
 
         // Reset de estado
         canMove = true;

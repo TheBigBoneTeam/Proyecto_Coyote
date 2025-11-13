@@ -81,6 +81,7 @@ public class combatAreaManager : MonoBehaviour
     {
         foreach (var wave in functionalWaveDataList)
         {
+            print(name);
             foreach (var enemy in wave.enemies)
             {
                 enemy.setArea(this);

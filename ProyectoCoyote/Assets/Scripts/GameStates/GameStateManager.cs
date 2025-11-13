@@ -85,6 +85,8 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         if (currentState == GameState.Combat)
         {
             SetState(GameState.SlowDown);
+            // SFX SlowDown
+            AudioManager.Instance.PlaySimpleSound("SFX - SlowDown", false, Vector2.zero, true, true);
         }
     }
 

@@ -126,33 +126,55 @@ public class PlayerMovement : MonoBehaviour
     //Bools para bloquear acciones mediante animator
     bool canAttack,canMove = false;
     #endregion
+
+    #region Guardar datos de posicion
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private bool initialPositionSaved = false;
+
     #region Managers
     IGameStateManager gameStateManager;
     IPerfectDodgeManager perfectDodgeManager;
     #endregion
+
     #region Metodos de Unity
+
+    private void Awake()
+    {
+        // Guardamos la posición inicial ANTES de que empiece todo
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+        initialPositionSaved = true;
+        Debug.Log($"[PlayerMovement] Posición inicial guardada (Awake): {initialPosition}");
+    }
 
     private void Start()
     {
+        // Obtener referencias
+        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+        perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
+
+        if (gameStateManager != null)
+        {
+            gameStateManager.subscribeToStateChange(OnGameStateChange);
+            gameStateManager.subscribeToRestart(OnRestart);
+            Debug.Log("[PlayerMovement] Suscrito correctamente a GameStateManager");
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerMovement] No se encontró GameStateManager al iniciar");
+        }
+
         canMove = canAttack = true;
+
         cam = Camera.main.transform;
-        
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         animator = GetComponentInChildren<Animator>();
 
         gameInput = GetComponentInParent<GameInput>();
         if (gameInput == null)
-        {
-            Debug.LogError("No se encontr� el GameInput.");
-        }
-        else
-        {
-            Debug.Log("GameInput encontrado correctamente: " + gameInput.name);
-        }
-
-        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
-        perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
+            Debug.LogError("No se encontró el GameInput.");
     }
 
     void Update()
@@ -594,13 +616,109 @@ public class PlayerMovement : MonoBehaviour
         }
         */
     }
-
     #endregion
 
-    #region Manejo de paredes
-    [SerializeField] private float wallCheckDistance = 0.6f;
-    [SerializeField] private LayerMask wallLayer;
-    private bool isTouchingWall;
-    private Vector3 wallNormal;
+    #region GameState Integración
+    private void OnEnable()
+    {
+        if (gameStateManager == null)
+            // gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+
+        if (gameStateManager != null)
+        {
+            gameStateManager.subscribeToRestart(OnRestart);
+            Debug.Log("[PlayerMovement] Resuscrito a OnRestart (OnEnable)");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (gameStateManager != null)
+        {
+            gameStateManager.unSubscribeToRestart(OnRestart);
+        }
+    }
+
+    // Escucha los cambios de estado del GameStateManager.
+    private void OnGameStateChange(object sender, stateData stateInfo)
+    {
+        if (stateInfo.currentState == GameState.DeathScreen)
+        {
+            HandleDeathState();
+        }
+    }
+
+    // Desactiva movimiento, animaciones y resetea físicas.
+    private void HandleDeathState()
+    {
+        canMove = false;
+        canAttack = false;
+        dashing = false;
+        hooking = false;
+        lockMovement = false;
+
+        // Reset del Rigidbody
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        moveSpeed = 0f;
+        desiredMoveSpeed = 0f;
+        state = MovementState.walking;
+
+        /*
+        // Detener pasos
+        if (AudioManager.Instance != null && AudioManager.Instance.isWalking)
+            AudioManager.Instance.StopWalking();
+        */
+
+        // Parar animaciones
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
+    }
+
+    // Reinicio total cuando el GameStateManager ejecuta Restart()
+    private void OnRestart()
+    {
+        Debug.Log("Respawneando jugador...");
+
+        // Reinicio físico
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        // Restaurar posición inicial
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        Debug.Log($"Posición restaurada a {initialPosition}");
+
+        // Reset de estado
+        canMove = true;
+        canAttack = true;
+        moveSpeed = walkSpeed;
+        desiredMoveSpeed = walkSpeed;
+        state = MovementState.walking;
+        dashing = false;
+        hooking = false;
+        lockMovement = false;
+        isRunning = false;
+
+        // Reiniciar animaciones
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
+    }
+    #endregion
     #endregion
 }

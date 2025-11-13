@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -38,6 +39,7 @@ public class Gancho : MonoBehaviour
     HookController hookController;
     private Image _hookImageUI;
     HookObserver hookObserver;
+    [SerializeField] GameObject navMesh;
 
     public bool selectingHook;
     public bool isHooked;
@@ -191,6 +193,7 @@ public class Gancho : MonoBehaviour
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
+        EnableAllCollisions();
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
@@ -463,26 +466,35 @@ public class Gancho : MonoBehaviour
 
     public void DisableCollisions()
     {
-        int targetLayer = currentTarget.gameObject.layer;
+        if (currentTarget == null) return;
 
-        // Max Layer = 32
-        for (int i = 0; i < 32; i++)
-        {
-            if (i != LayerMask.NameToLayer("whatIsGround")) 
-            {
-                Physics.IgnoreLayerCollision(targetLayer, i, true);
-            }
+        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
+        if (enemy == null) return;
+        currentTarget.gameObject.GetComponent<Collider>().enabled = false;
+        currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
+        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
+        var rb = currentTarget.GetComponent<Rigidbody>();
+        if (rb) 
+        { 
+            rb.useGravity = false;
         }
     }
 
     
     public void EnableAllCollisions()
     {
-        int targetLayer = currentTarget.gameObject.layer;
+        if (currentTarget == null) return;
 
-        for (int i = 0; i < 32; i++)
+        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
+        if (enemy == null) return;
+        currentTarget.gameObject.GetComponent<Collider>().enabled = true;
+        currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
+        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;  
+        var rb = currentTarget.GetComponent<Rigidbody>();
+        if (rb)
         {
-            Physics.IgnoreLayerCollision(targetLayer, i, false);
+            rb.useGravity = true;
         }
     }
 

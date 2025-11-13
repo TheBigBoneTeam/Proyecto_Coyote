@@ -619,8 +619,6 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region GameState Integración
-    
-
     private void OnDisable()
     {
         if (gameStateManager != null)

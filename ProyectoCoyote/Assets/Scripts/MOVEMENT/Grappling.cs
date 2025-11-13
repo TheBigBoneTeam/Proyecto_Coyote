@@ -75,7 +75,7 @@ public class Grappling : MonoBehaviour
             ExecuteGrapple();
         }
 
-        if (gameInput != null && gameInput.Hook_TPPressed && grappling)
+        if (gameInput != null && gameInput.Hook_SelectUp && grappling)
         {
             MoveTowardHookPoint();
         }

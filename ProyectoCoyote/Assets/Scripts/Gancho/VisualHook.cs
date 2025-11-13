@@ -127,7 +127,7 @@ public class VisualHook : MonoBehaviour
     // ----------------- LÓGICA DE ESTADOS -----------------
     private void UpdateIdle()
     {
-        if (target.position != null)
+        if (target)
         {
             lineRenderer.SetPosition(1, target.position);
         }
@@ -199,6 +199,7 @@ public class VisualHook : MonoBehaviour
         {
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
+            ResetCamera();
             currentState = HookState.Idle;
         }
     }
@@ -223,6 +224,7 @@ public class VisualHook : MonoBehaviour
         {
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
+            ResetCamera();
             currentState = HookState.Idle;
         }
     }

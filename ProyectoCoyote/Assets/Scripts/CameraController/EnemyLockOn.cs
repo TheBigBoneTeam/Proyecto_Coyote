@@ -97,6 +97,7 @@ public class EnemyLockOn : MonoBehaviour
             ResetTarget();
 
         Debug.Log("Modo Lock activado");
+        AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
     }
 
     // Se ha encontrado un enemigo válido
@@ -111,8 +112,8 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
 
         defenseAttackUIIndicator.setEnemy(currentTarget.GetComponent<AGameCharacter>());
-        if (enemyDefenseAttackUIIndicator != null)
-            enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
+        //if (enemyDefenseAttackUIIndicator != null)
+        //    enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
 
         CamControl.ActiveTargetLookingCamera();
         enemyLocked = true;
@@ -130,8 +131,8 @@ public class EnemyLockOn : MonoBehaviour
 
         CamControl.ActiveFollowCamera();
         defenseAttackUIIndicator.setEnemy(null);
-        if (enemyDefenseAttackUIIndicator != null)
-            enemyDefenseAttackUIIndicator.setCharacter(null);
+        //if (enemyDefenseAttackUIIndicator != null)
+        //    enemyDefenseAttackUIIndicator.setCharacter(null);
 
         Debug.Log("Volviendo a modo SIN lockear");
     }

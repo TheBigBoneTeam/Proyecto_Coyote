@@ -33,15 +33,15 @@ public class GameInput : MonoBehaviour
     public bool LockPressed { get; private set; }
     public bool HookAimPressed { get; private set; }
     public bool HookConfirmPressed { get; private set; }
-    public bool HookDisconfirmPressed { get; private set; }
-    public bool HookSelectLeftPressed { get; private set; }
-    public bool HookSelectRightPressed { get; private set; }
-    public bool Hook_TPPressed { get; private set; }
+    public bool Hook_SelectUp { get; private set; }
+    public bool Hook_SelectDown { get; private set; }
+    public bool Hook_SelectLeft { get; private set; }
+    public bool Hook_SelectRight { get; private set; }
     public bool HookAttractPressed { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
 
-    #region Contoles para movil
+    #region Controles para movil
     public void SetMobileMovement(float horizontal, float vertical)
     {
         Horizontal = horizontal;
@@ -53,8 +53,8 @@ public class GameInput : MonoBehaviour
     public void TriggerHookAim() => HookAimPressed = true;
     public void TriggerEvade() => EvadePressed = true;
     public void TriggerHookConfirm() => HookConfirmPressed = true;
-    public void TriggerHookTP() => Hook_TPPressed = true;
-    public void TriggerHookDisconfirm() => HookDisconfirmPressed = true;
+    public void TriggerHookTP() => Hook_SelectUp = true;
+    public void TriggerHookDisconfirm() => Hook_SelectDown = true;
     public void TriggerHookAttract() => HookAttractPressed = true;
     public void TriggerLock() => LockPressed = true;
     #endregion
@@ -97,10 +97,10 @@ public class GameInput : MonoBehaviour
         // --- Gancho (pulsaciones �nicas) ---
         controls.Player.HookAim.performed += ctx => HookAimPressed = true;
         controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
-        controls.Player.HookDisconfirm.performed += ctx => HookDisconfirmPressed = true;
-        controls.Player.HookSelectLeft.performed += ctx => HookSelectLeftPressed = true;
-        controls.Player.HookSelectRight.performed += ctx => HookSelectRightPressed = true;
-        controls.Player.Hook_TP.performed += ctx => Hook_TPPressed = true;
+        controls.Player.HookDisconfirm.performed += ctx => Hook_SelectDown = true;
+        controls.Player.HookSelectLeft.performed += ctx => Hook_SelectLeft = true;
+        controls.Player.HookSelectRight.performed += ctx => Hook_SelectRight = true;
+        controls.Player.Hook_TP.performed += ctx => Hook_SelectUp = true;
         controls.Player.HookAttract.performed += ctx => HookAttractPressed = true;
 
     }
@@ -124,10 +124,10 @@ public class GameInput : MonoBehaviour
         LockPressed = false;
         HookAimPressed = false;
         HookConfirmPressed = false;
-        HookDisconfirmPressed = false;
-        HookSelectLeftPressed = false;
-        HookSelectRightPressed = false;
-        Hook_TPPressed = false;
+        Hook_SelectDown = false;
+        Hook_SelectLeft = false;
+        Hook_SelectRight = false;
+        Hook_SelectUp = false;
         HookAttractPressed = false;
     }
 

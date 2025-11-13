@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
+  m_Name: newBehaviourSystem
+  m_EditorClassIdentifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: c630a204-94f9-4606-ab1c-7a174a82c51c
+      graph:
+        rid: 8725330938386972763
+      nodes:
+      - name: 
+        id: 68f99cb4-d0ec-4c60-8e43-a58a468e07c4
+        position: {x: 792, y: -14.399998}
+        node:
+          rid: 8725330938386972764
+        references: []
+        parentIds: []
+        childIds:
+        - 5d2005dd-89af-4fb2-aff4-490ba5d855c9
+      - name: "\xBFEnemigi Cerca?"
+        id: 5d2005dd-89af-4fb2-aff4-490ba5d855c9
+        position: {x: 621.6, y: 181.6}
+        node:
+          rid: 8725330938386972765
+        references:
+        - fieldName: Perception
+          value:
+            rid: 8725330938386972768
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 68f99cb4-d0ec-4c60-8e43-a58a468e07c4
+        childIds:
+        - 30bd5bc1-8ea3-48cf-b9a0-ead7d4c3c455
+      - name: Atacar
+        id: 30bd5bc1-8ea3-48cf-b9a0-ead7d4c3c455
+        position: {x: 613.6, y: 416.8}
+        node:
+          rid: 8725330938386972766
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725330938386972771
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5d2005dd-89af-4fb2-aff4-490ba5d855c9
+        childIds: []
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8725330938386972763
+      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330938386972764
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 8725330938386972765
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330938386972766
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725330938386972768
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: 
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725330938386972771
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 0
+        idle: 0

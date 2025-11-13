@@ -198,7 +198,6 @@ public class Gancho : MonoBehaviour
 
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
-
     }
 
     #region Calcular Objetos Enganchables

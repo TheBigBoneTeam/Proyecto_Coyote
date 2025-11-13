@@ -2900,6 +2900,9 @@ MonoBehaviour:
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
   <HitDirections>k__BackingField: 
+  attackStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds:
@@ -6930,7 +6933,10 @@ MonoBehaviour:
   - {fileID: 983066174}
   - {fileID: 983066173}
   - {fileID: 983066172}
+  middleDanger: {fileID: 0}
+  middleDangerAnimator: {fileID: 0}
   paddingPosition: {x: 0, y: 0.5, z: 0}
+  lockOn: {fileID: 0}
 --- !u!1 &1013130775
 GameObject:
   m_ObjectHideFlags: 0
@@ -13244,6 +13250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobileUI_NonCombat
       objectReference: {fileID: 0}
+    - target: {fileID: 1179267589510813718, guid: 24285bca649c8cc4ba9cf40c45ed48eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13260,6 +13270,10 @@ PrefabInstance:
     - target: {fileID: 3422131293330947083, guid: 8f12745a0cb4e464db67f907e636ce4f, type: 3}
       propertyPath: m_Name
       value: MobileUI_Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422131293330947083, guid: 8f12745a0cb4e464db67f907e636ce4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6196228988645485255, guid: 8f12745a0cb4e464db67f907e636ce4f, type: 3}
       propertyPath: m_Pivot.x
@@ -13862,7 +13876,7 @@ PrefabInstance:
     - target: {fileID: 6672640255872728573, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: DamageReceiver
       value: 
-      objectReference: {fileID: 5885558478740715660}
+      objectReference: {fileID: 0}
     - target: {fileID: 6672640255872728573, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: dodgeUISignalers.Array.size
       value: 4
@@ -14028,17 +14042,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
---- !u!114 &5885558478740715660 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5175745504945967330, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
-  m_PrefabInstance: {fileID: 5885558478740715657}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559f2e8293f37334dbe07b44f985a5dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

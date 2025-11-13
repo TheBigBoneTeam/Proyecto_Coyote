@@ -267,6 +267,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  print: 0
   ActiveBeforeFight: 1
 --- !u!54 &6519264688590447640
 Rigidbody:
@@ -388,6 +389,7 @@ MonoBehaviour:
     identifier: 
   System: {fileID: 11400000, guid: 67d5602f04d394a4abab56359ca9b063, type: 2}
   ammo: 0
+  _currentAmmo: {fileID: 0}
   hasAmmo: 0
   meleeDistance: 20
 --- !u!114 &7775954666045194740
@@ -1029,6 +1031,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed29f619afef9d04cabb09f19ec9ccf8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1552379293225116503}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed29f619afef9d04cabb09f19ec9ccf8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 177913068287561466}
   m_SourcePrefab: {fileID: 100100000, guid: ed29f619afef9d04cabb09f19ec9ccf8, type: 3}
 --- !u!1 &211934052454029612 stripped
 GameObject:
@@ -1067,6 +1072,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a8338732ad89774a956b9982499f7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &177913068287561466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211934052454029612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &701189666013217686 stripped

@@ -101,7 +101,6 @@ public class Gancho : MonoBehaviour
         // Navegación por los objetos enganchables
         if (selectingHook)
         {
-
             if (gameInput.Hook_SelectUp)
             {
                 currentTarget = FindDirectionalTarget(false, true);

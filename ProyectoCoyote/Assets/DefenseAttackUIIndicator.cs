@@ -1,7 +1,11 @@
+using NUnit.Framework;
+using Services;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DefenseAttackUIIndicator : MonoBehaviour
 {
@@ -11,18 +15,58 @@ public class DefenseAttackUIIndicator : MonoBehaviour
 
     public GameObject[] attackUISignalers;
     public GameObject[] dodgeUISignalers;
+    public GameObject middleDanger;
+    public Animator middleDangerAnimator;
+
+    Dictionary<AGameCharacter, HitDirections[]> currentAttacksDictionary;
 
     [SerializeField] Vector3 paddingPosition;
 
     CanvasGroup CanvasGroup;
 
+    Player player;
+  [SerializeField]  EnemyLockOn lockOn;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
+        currentAttacksDictionary = new Dictionary<AGameCharacter, HitDirections[]>();
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(CombatAreaChange);
+        player = GetComponentInParent<Player>();
+        lockOn = GetComponentInParent<EnemyLockOn>();
         setUp();
+        if(DamageReceiver != null)
+        {
+            player.subscribeToDodgeAttack(DodgeAttack);
+        }
        // FindAnyObjectByType<PlayerMovement>().GetComponent<DamageReceiver>().subscribeToStateChange(StateChange);
     }
+
+    private void DodgeAttack(HitDirections arg0)
+    {
+        if(arg0 == HitDirections.Outside)
+        {
+            middleDangerAnimator.Play("Blocked");
+        }
+    }
+
+    private void CombatAreaChange(combatAreaManager manager, WaveData data)
+    {
+        foreach(var enemy in data.enemies)
+        {
+            print("subcribe");
+            enemy.attack.subscribeToStateChange(AttackHappeneed);
+            enemy.subscribeToDie(enemyDie);
+        }
+    }
+
+    private void enemyDie(AGameCharacter enemy)
+    {
+        enemy.attack.unSubscribeToStateChange(AttackHappeneed);
+        enemy.unSubscribeToDie(enemyDie);
+    }
+
     protected void setUp()
     {
         if (DamageReceiver != null)
@@ -31,7 +75,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
         if (attack != null)
         {
-            attack.subscribeToStateChange(AttackStateChange);
+            attack.subscribeToStateChange(AttackHappeneed);
         }
         else
         {
@@ -61,25 +105,70 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             }
         }
     }
-    public void AttackStateChange(Attack.AttackState state)
+    public void AttackHappeneed(Attack.AttackState state)
     {
-        print(attack);
-        for (int i = 0; i < attackUISignalers.Length; i++)
+        print("Attack Happened");
+        if (state.hitDirections == null)
         {
-            if (state.hitDirections.Length == 0)
-            {
-                setAttackObject(attackUISignalers[i], true);
+            print("Attack is Null");
+            currentAttacksDictionary.Remove(state.Owner);
+        }
+        else
+        {
+            print("Attack is not Null");
 
+            if (currentAttacksDictionary.ContainsKey(state.Owner))
+            {
+                currentAttacksDictionary[state.Owner] = state.hitDirections;
             }
             else
             {
-                setAttackObject(attackUISignalers[i], state.hitDirections.Contains((HitDirections)i));
+                currentAttacksDictionary.TryAdd(state.Owner, state.hitDirections);
             }
         }
+        AttackStateChange();
     }
+    public void AttackStateChange()
+    {
+        print("Attack state change");
+        bool anyLocked = false;
+        AGameCharacter locked = lockOn.currentTarget?.GetComponent<AGameCharacter>();
+        bool anyOutsideAttack = false;
+        foreach (KeyValuePair<AGameCharacter, HitDirections[]> value in currentAttacksDictionary)
+        {
+            if (value.Key.Equals(locked))
+            {
+                anyLocked = true;
+                for (int i = 0; attackUISignalers.Length > i; i++)
+                {
+                    setAttackObject(attackUISignalers[i], value.Value.Contains((HitDirections)i));
+                }
+            }
+            else
+            {
+                anyOutsideAttack = true;
+            }
+        }
+        middleDanger.SetActive(anyOutsideAttack);
+        middleDangerAnimator.Play("Danger");
+
+        if (!anyLocked)
+        {
+            print("Attack state change: NoLocked");
+            for (int i = 0; i < attackUISignalers.Length; i++)
+            {
+                setAttackObject(attackUISignalers[i], true);
+            }
+        }
+        else
+        {
+            print("Attack state change: isLocked");
+        }
+    }
+
     public void OutsideAttackChange(Attack.AttackState state)
     {
-        AttackStateChange(state);
+       // AttackHappeneed(state);
     }
     private void OnDestroy()
     {
@@ -94,6 +183,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
 
     public virtual void setCharacter(AGameCharacter character)
     {
+        print("setCharacter");
         if(DamageReceiver != null)
         DamageReceiver.unSubscribeToStateChange(DodgeStateChange);
         if (character != null)
@@ -114,29 +204,20 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
 
     }
+
     public void setEnemy(AGameCharacter character)
     {
-        if(attack != null) 
-        attack.unSubscribeToStateChange(AttackStateChange);
+        //if(attack != null) 
+        //attack.unSubscribeToStateChange(AttackHappeneed);
         if (character != null)
         {
-            attack = character.GetComponentInChildren<Attack>();
-            if (attack != null)
-            {
-                attack.subscribeToStateChange(AttackStateChange);
-                setEnable(true);
-            }
-            else
-            {
-                setEnable(false);
-
-            }
+            setEnable(true);
         }
         else
         {
-            print("setenabe");
             setEnable(false);
         }
+        AttackStateChange();
     }
     public void unSetEnemy(AGameCharacter previousEnemy)
     {
@@ -146,7 +227,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
         if (attack != null)
         {
-            attack.unSubscribeToStateChange(AttackStateChange);
+            attack.unSubscribeToStateChange(AttackHappeneed);
             attack = null;
         }
     }

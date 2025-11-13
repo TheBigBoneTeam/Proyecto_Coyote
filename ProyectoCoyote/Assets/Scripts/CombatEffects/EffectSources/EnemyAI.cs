@@ -176,10 +176,6 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     private void Start()
     {
-        FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
-        GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
-        GetComponent<Enemy>().subscribeToDie(DieEvent);
-
         currentActionIsIdle = false;
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
@@ -296,5 +292,12 @@ public class EnemyAI : MonoBehaviour,IMutex
         {
             return Status.Running;
         }
+    }
+
+    public void restart()
+    {
+        FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
+        GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
+        GetComponent<Enemy>().subscribeToDie(DieEvent);
     }
 }

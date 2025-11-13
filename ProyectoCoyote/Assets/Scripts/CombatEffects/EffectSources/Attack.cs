@@ -16,7 +16,7 @@ public class Attack : ATouchCombatEffectSource
 
     [field: SerializeField] public List<HitDirections> HitDirections { get; private set; }
 
-    UnityEvent<AttackState> attackStateEvent;
+    public UnityEvent<AttackState> attackStateEvent;
 
     protected override void OnTriggerEnter(Collider other)
     {
@@ -115,19 +115,24 @@ public class Attack : ATouchCombatEffectSource
     }
     void sendState()
     {
-        attackStateEvent.Invoke(new AttackState(HitDirections.ToArray()));
+        attackStateEvent.Invoke(new AttackState(HitDirections.ToArray(),owner));
+
+    }
+    void sendNullState()
+    {
+        attackStateEvent.Invoke(new AttackState(null, owner));
 
     }
     public void subscribeToStateChange(UnityAction<AttackState> response)
     {
         attackStateEvent.AddListener(response);
-        response(new AttackState(HitDirections.ToArray()));
+       // response(new AttackState(HitDirections.ToArray(),owner));
 
     }
 
     public void unSubscribeToStateChange(UnityAction<AttackState> response)
     {
-        attackStateEvent.AddListener(response);
+        attackStateEvent.RemoveListener(response);
     }
     public void LoadData(AttackData data)
     {
@@ -137,6 +142,7 @@ public class Attack : ATouchCombatEffectSource
             print("getDataNull");
             HitDirections.Clear();
             effects.Clear();
+            sendNullState();
         }
         else
         {
@@ -150,19 +156,24 @@ public class Attack : ATouchCombatEffectSource
                 effect.setSource(this);
                 effects.Add(effect);
             }
+            sendState();
         }
-        sendState();
     }
 
- 
+    public void restart()
+    {
+        attackStateEvent.RemoveAllListeners();
+    }
 
-    public struct AttackState
+    public class AttackState
     {
        public HitDirections[] hitDirections;
-
-        public AttackState(HitDirections[] hitDirections)
+      public  AGameCharacter Owner;
+        
+        public AttackState(HitDirections[] hitDirections,AGameCharacter character)
         {
             this.hitDirections = hitDirections;
+            this.Owner = character;
         }
     }
 }

@@ -187,6 +187,7 @@ public class Gancho : MonoBehaviour
     }
     public void ResetTarget()
     {
+        movement.animator.CrossFade("Idle_01", 0.2f);
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
@@ -195,6 +196,7 @@ public class Gancho : MonoBehaviour
         isHooked = false;
         _hookImageUI.color = Color.white;
 
+        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
 
     }
@@ -346,7 +348,6 @@ public class Gancho : MonoBehaviour
 
         // Actaliza la posici n del localizador del target
         HookableObjectLocator.position = currentTarget.position;
-
 
     }
     IEnumerator AssignCameraLater()

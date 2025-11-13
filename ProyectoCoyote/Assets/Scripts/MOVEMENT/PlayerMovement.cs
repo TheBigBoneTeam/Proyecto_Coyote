@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private bool initialPositionSaved = false;
+    #endregion
 
     #region Managers
     IGameStateManager gameStateManager;
@@ -529,7 +530,7 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput == 0 && verticalInput == 0)
         {
             //Añadir esquive neutral
-            animator.CrossFade("Dodge_M", .1f);
+            animator.CrossFade("BackBlock", .1f);
         }
         else if (horizontalInput > 0)
         {
@@ -709,6 +710,5 @@ public class PlayerMovement : MonoBehaviour
             animator.Update(0f);
         }
     }
-    #endregion
     #endregion
 }

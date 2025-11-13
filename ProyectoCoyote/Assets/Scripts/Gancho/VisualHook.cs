@@ -92,7 +92,7 @@ public class VisualHook : MonoBehaviour
         }
         else
         {
-            ResetCamera();
+            ResetVisualHook();
         }
     }
 
@@ -106,7 +106,7 @@ public class VisualHook : MonoBehaviour
         }
         else 
         {
-            ResetCamera();
+            ResetVisualHook();
         }
         
     }
@@ -119,7 +119,7 @@ public class VisualHook : MonoBehaviour
             currentState = HookState.GoingToTarget;
         }else
         {
-            ResetCamera();
+            ResetVisualHook();
         }
 
     }
@@ -134,7 +134,7 @@ public class VisualHook : MonoBehaviour
         else
         { 
             lineRenderer.enabled = false; 
-            ResetCamera();
+            ResetVisualHook();
         }
     }
     private void UpdateExtendCable()
@@ -174,7 +174,7 @@ public class VisualHook : MonoBehaviour
         if (currentCableLength <= 0f)
         {
             lineRenderer.enabled = false;
-            ResetCamera();
+            ResetVisualHook();
             currentState = HookState.Idle;
         }
     }
@@ -199,7 +199,7 @@ public class VisualHook : MonoBehaviour
         {
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
-            ResetCamera();
+            ResetVisualHook();
             currentState = HookState.Idle;
         }
     }
@@ -224,18 +224,18 @@ public class VisualHook : MonoBehaviour
         {
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
-            ResetCamera();
+            ResetVisualHook();
             currentState = HookState.Idle;
         }
     }
 
 
-    private void ResetCamera()
+    private void ResetVisualHook()
     {
         currentCableLength = 0f;
         target = null;
         lineRenderer.enabled = false;
-        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+        
     }
 
 

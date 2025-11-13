@@ -162,6 +162,11 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Reproduce Sonido 3D
+    public Transform GetPlayerTransform()
+    {
+        return _player;
+    }
+
     // POR NOMBRE
     public virtual void Play3DSound(string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1, AudioRolloffMode mode = AudioRolloffMode.Linear)
     {

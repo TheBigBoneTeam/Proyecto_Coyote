@@ -186,7 +186,7 @@ public class Gancho : MonoBehaviour
         }
 
     }
-    void ResetTarget()
+    public void ResetTarget()
     {
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);

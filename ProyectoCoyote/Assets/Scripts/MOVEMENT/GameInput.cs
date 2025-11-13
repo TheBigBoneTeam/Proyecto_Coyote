@@ -41,7 +41,7 @@ public class GameInput : MonoBehaviour
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
 
-    #region Contoles para movil
+    #region Controles para movil
     public void SetMobileMovement(float horizontal, float vertical)
     {
         Horizontal = horizontal;

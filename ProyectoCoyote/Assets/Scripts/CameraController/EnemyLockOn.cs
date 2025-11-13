@@ -34,7 +34,6 @@ public class EnemyLockOn : MonoBehaviour
     private GameObject UIMobile_Combat;
     private GameObject UIMobile_NonCombat;
 
-
     // InputSystem
     private GameInput gameInput;
     private bool prevLockPressed = false;
@@ -68,8 +67,8 @@ public class EnemyLockOn : MonoBehaviour
             Debug.LogWarning("[EnemyLockOn] No se encontró el canvas 'MobileUI_NonCombat' en la escena.");
 
         // Estado inicial: sin combate
-        if (UIMobile_Combat != null) UIMobile_Combat.SetActive(false);
         if (UIMobile_NonCombat != null) UIMobile_NonCombat.SetActive(true);
+        if (UIMobile_Combat != null) UIMobile_Combat.SetActive(false);
     }
 
     void Update()

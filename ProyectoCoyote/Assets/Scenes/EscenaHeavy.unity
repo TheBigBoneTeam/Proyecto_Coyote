@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoBasico (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3991022944688306296, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4795004792086557465, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4343,6 +4347,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2002818884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 347466109778440515, guid: 14e619e2e62ca6b43add7353aa13d66a, type: 3}
+  m_PrefabInstance: {fileID: 399574251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc75df2f958e764cb143eeb1f5cd432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2066464794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4394,6 +4409,22 @@ PrefabInstance:
     - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392701237558685079, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: _sounds.Array.data[2].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392701237558685079, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: _sounds.Array.data[3].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392701237558685079, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: _sounds.Array.data[4].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392701237558685079, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: _sounds.Array.data[5].volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8392701237558685079, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
       propertyPath: _sounds.Array.data[20].volume
@@ -4536,6 +4567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemigoBasico
       objectReference: {fileID: 0}
+    - target: {fileID: 3991022944688306296, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4795004792086557465, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4581,17 +4616,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
---- !u!114 &2134865105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 521909176474050532, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
-  m_PrefabInstance: {fileID: 2134865104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2134865106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4795004792086557465, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
@@ -5653,7 +5677,7 @@ PrefabInstance:
       objectReference: {fileID: 1134989543}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'initCovers.Array.data[0]'
@@ -5674,7 +5698,7 @@ PrefabInstance:
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 2134865105}
+      objectReference: {fileID: 2002818884}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[1]'
       value: 

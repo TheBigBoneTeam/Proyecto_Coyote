@@ -102,25 +102,25 @@ public class Gancho : MonoBehaviour
         if (selectingHook)
         {
 
-            if (gameInput.Hook_TPPressed)
+            if (gameInput.Hook_SelectUp)
             {
                 currentTarget = FindDirectionalTarget(false, true);
                 // SFX Seleccionar gancho
                 AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
-            else if (gameInput.HookDisconfirmPressed)
+            else if (gameInput.Hook_SelectDown)
             {
                 currentTarget = FindDirectionalTarget(false, false);
                 // SFX ?
                 // AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
-            else if (gameInput.HookSelectRightPressed)
+            else if (gameInput.Hook_SelectRight)
             {
                 currentTarget = FindDirectionalTarget(true, false);
                 // SFX Elegir otro enemigo
                 AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
             }
-            else if (gameInput.HookSelectLeftPressed)
+            else if (gameInput.Hook_SelectLeft)
             {
                 currentTarget = FindDirectionalTarget(false, false);
                 // SFX Elegir otro enemigo
@@ -147,7 +147,7 @@ public class Gancho : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, true);
 
             }
-            else if (gameInput.Hook_TPPressed)
+            else if (gameInput.Hook_SelectUp)
             {
                 GoToTarget();
                 StartCoroutine(Cooldown());

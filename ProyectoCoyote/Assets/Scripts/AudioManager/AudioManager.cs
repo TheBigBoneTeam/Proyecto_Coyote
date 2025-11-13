@@ -53,11 +53,8 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Nivel1":
-                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
-                break;
-
-            case "Nivel1_pruebaSonidos":
-                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+                // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
+                AudioManager.Instance.PlaySimpleSound("OST Cañon - Base", true, Vector2.zero, true, true);
                 break;
 
             case "Nivel2":
@@ -162,11 +159,6 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Reproduce Sonido 3D
-    public Transform GetPlayerTransform()
-    {
-        return _player;
-    }
-
     // POR NOMBRE
     public virtual void Play3DSound(string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1, AudioRolloffMode mode = AudioRolloffMode.Linear)
     {

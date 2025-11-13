@@ -473,10 +473,6 @@ MonoBehaviour:
   lockOnSystem: {fileID: 0}
   rotateSpeed: 3
   state: 0
-  wallCheckDistance: 0.6
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &8660330646378215771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +528,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  print: 0
   storedDamage: 0
 --- !u!114 &5175745504945967330
 MonoBehaviour:
@@ -1500,6 +1497,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8984715050828392698}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2865005522874814266}
   m_SourcePrefab: {fileID: 100100000, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
 --- !u!4 &799134844055698355 stripped
 Transform:
@@ -1543,6 +1543,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a8338732ad89774a956b9982499f7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2865005522874814266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313859039731503900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8659034585346967974 stripped

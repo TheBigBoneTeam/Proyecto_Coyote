@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 6602404230387359148}
   - component: {fileID: 1293002161105530517}
   - component: {fileID: 3667334502119828865}
+  - component: {fileID: 411182696589886192}
   m_Layer: 0
   m_Name: ZombieNopal_01
   m_TagString: Untagged
@@ -511,6 +512,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a8338732ad89774a956b9982499f7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &411182696589886192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402104790510245243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2558274527949980909
@@ -754,6 +767,7 @@ MonoBehaviour:
   invTimeAfterHit: 1
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
+  print: 0
   ActiveBeforeFight: 0
 --- !u!54 &4038297873180172337
 Rigidbody:
@@ -814,6 +828,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 2257584817160551814}
   counterObj: {fileID: 5209366784724309886}

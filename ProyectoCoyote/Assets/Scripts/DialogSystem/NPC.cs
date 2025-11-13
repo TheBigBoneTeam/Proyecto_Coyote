@@ -1,8 +1,8 @@
 using Services;
 using TMPro;
-using UnityEditor.Rendering;
+
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+
 
 public class NPC : MonoBehaviour
 {

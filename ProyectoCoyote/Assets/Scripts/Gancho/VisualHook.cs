@@ -5,7 +5,6 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
 using UnityEngine.XR;
 
@@ -124,7 +123,7 @@ public class VisualHook : MonoBehaviour
 
     }
 
-    // ----------------- LÓGICA DE ESTADOS -----------------
+    // ----------------- Lï¿½GICA DE ESTADOS -----------------
     private void UpdateIdle()
     {
         if (target)
@@ -185,7 +184,7 @@ public class VisualHook : MonoBehaviour
         Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
         Vector3 frontOfPlayer = cam.transform.position - (directionToCamera * retractOffset);
 
-        // Mueve el target hacia esa posición
+        // Mueve el target hacia esa posiciï¿½n
         target.position = Vector3.MoveTowards(
             target.position, 
             frontOfPlayer, 
@@ -210,7 +209,7 @@ public class VisualHook : MonoBehaviour
         Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
         Vector3 frontOfTarget = target.transform.position + (directionToCamera * retractOffset);
 
-        // Mueve al jugador hacia esa posición
+        // Mueve al jugador hacia esa posiciï¿½n
         rb.MovePosition(Vector3.MoveTowards(
             rb.position, 
             frontOfTarget, 

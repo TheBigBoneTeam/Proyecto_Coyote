@@ -42,6 +42,7 @@ public class GameInput : MonoBehaviour
     public bool EvadePressed { get; private set; }
 
     #region Controles para movil
+    /*
     public void SetMobileMovement(float horizontal, float vertical)
     {
         Horizontal = horizontal;
@@ -57,6 +58,7 @@ public class GameInput : MonoBehaviour
     public void TriggerHookDisconfirm() => Hook_SelectDown = true;
     public void TriggerHookAttract() => HookAttractPressed = true;
     public void TriggerLock() => LockPressed = true;
+    */
     #endregion
 
     #region Metodos

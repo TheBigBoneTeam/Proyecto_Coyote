@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Services;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,12 +12,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] protected List<AudioProducer> normalSounds;
     [Tooltip("Max 5 canales de música")] [SerializeField] protected AudioProducer[] musicSounds = new AudioProducer[5];
     protected List<AudioSource> pausedSounds = new List<AudioSource>();
-    
+
+    IGameStateManager gameStateManager;
+
     private void Awake()
     {
         if (Instance != null && Instance !=this)
         {
-          
             Destroy(gameObject);
         }
         else
@@ -29,11 +31,87 @@ public class AudioManager : MonoBehaviour
     protected void Start()
     {
         CheckScene();
+        gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
-        for(int i=0; i<musicSounds.Length; i++)
+        if (gameStateManager != null)
+        {
+            gameStateManager.subscribeToStateChange(OnGameStateChange);
+            // gameStateManager.subscribeToRestart(OnRestart);
+            Debug.Log("[AudioManager] Suscrito correctamente a GameStateManager");
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerMovement] No se encontró GameStateManager al iniciar");
+        }
+
+        for (int i=0; i<musicSounds.Length; i++)
         {
             // musicSounds[i] = null;
         }
+    }
+
+    private void OnGameStateChange(object sender, stateData stateInfo)
+    {
+        if (stateInfo.currentState == GameState.Combat)
+        {
+            HandleCombatState();
+        }
+
+        if (stateInfo.currentState == GameState.NonCombat)
+        {
+            HandleNonCombatState();
+        }
+    }
+
+    private void HandleCombatState()
+    {
+        Debug.Log("[AudioManager] → Entrando en COMBATE");
+
+        // Si ambas pistas están cargadas, hacemos crossfade
+        if (musicSounds[0] != null && musicSounds[1] != null)
+        {
+            StartCoroutine(CrossFadeVolumes(musicSounds[0], musicSounds[1], 2f));
+        }
+        else
+        {
+            Debug.LogWarning("[AudioManager] No se pudieron encontrar ambas pistas para el crossfade (Base/Pelea).");
+        }
+    }
+
+    private void HandleNonCombatState()
+    {
+        Debug.Log("[AudioManager] → Volviendo a NO COMBATE");
+
+        if (musicSounds[0] != null && musicSounds[1] != null)
+        {
+            StartCoroutine(CrossFadeVolumes(musicSounds[1], musicSounds[0], 2f));
+        }
+    }
+
+    private IEnumerator CrossFadeVolumes(AudioProducer from, AudioProducer to, float duration)
+    {
+        float timer = 0f;
+        float startVolFrom = from.audioSource.volume;
+        float startVolTo = to.audioSource.volume;
+        float targetVolTo = to.sound.volume;
+
+        // Ambas deben estar reproduciendo para mantener sincronía
+        if (!from.audioSource.isPlaying) from.audioSource.Play();
+        if (!to.audioSource.isPlaying) to.audioSource.Play();
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / duration;
+
+            from.audioSource.volume = Mathf.Lerp(startVolFrom, 0f, t);
+            to.audioSource.volume = Mathf.Lerp(startVolTo, targetVolTo, t);
+
+            yield return null;
+        }
+
+        from.audioSource.volume = 0f;
+        to.audioSource.volume = targetVolTo;
     }
 
     // Musica por escena
@@ -49,12 +127,18 @@ public class AudioManager : MonoBehaviour
 
             case "EnemyTest":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Dummy", true, Vector2.zero, true, true);
-                Debug.LogWarning("Musica reproducida exitosamente");
+                // Debug.LogWarning("Musica reproducida exitosamente");
+                break;
+
+            case "EscenaHeavy":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
+                if (musicSounds[1] != null)
+                    musicSounds[1].audioSource.volume = 0f;
                 break;
 
             case "Nivel1":
-                // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
-                AudioManager.Instance.PlaySimpleSound("OST Cañon - Base", true, Vector2.zero, true, true);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true);
                 break;
 
             case "Nivel2":

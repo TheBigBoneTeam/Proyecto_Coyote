@@ -466,6 +466,10 @@ public class Gancho : MonoBehaviour
 
     public void DisableCollisions()
     {
+        if (currentTarget == null) return;
+
+        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
+        if (enemy == null) return;
         currentTarget.gameObject.GetComponent<Collider>().enabled = false;
         currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
         currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = false;
@@ -480,6 +484,10 @@ public class Gancho : MonoBehaviour
     
     public void EnableAllCollisions()
     {
+        if (currentTarget == null) return;
+
+        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
+        if (enemy == null) return;
         currentTarget.gameObject.GetComponent<Collider>().enabled = true;
         currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
         currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;  

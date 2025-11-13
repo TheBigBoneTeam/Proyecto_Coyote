@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3952387902873740983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616893964345745830}
+  - component: {fileID: 824443642085113432}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616893964345745830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952387902873740983}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7386654085081900194}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824443642085113432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952387902873740983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f639e528880c7f34681053b068f645fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  normalSounds: []
+  musicSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!1 &4848366289490645677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6483805826639074130}
+  - component: {fileID: 8392701237558685079}
+  m_Layer: 0
+  m_Name: MusicGallery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6483805826639074130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848366289490645677}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7386654085081900194}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8392701237558685079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848366289490645677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7ada8e4b13f1f4f8acede87c181e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - name: OST Menu
+    audioClip: {fileID: 8300000, guid: f91615d439442894b928f5cc85c7ab18, type: 3}
+    volume: 0.2
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: OST Dummy
+    audioClip: {fileID: 8300000, guid: 2839d83cbd7ae764d82cf25c5819981f, type: 3}
+    volume: 0.2
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: "OST Ca\xF1on - Base"
+    audioClip: {fileID: 8300000, guid: 45f1d982139a4ac4f9ddd48a4ab7012a, type: 3}
+    volume: 0.2
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: "OST Ca\xF1on - Pelea"
+    audioClip: {fileID: 8300000, guid: a11f2a72e027ca34385b31febb2638aa, type: 3}
+    volume: 0.2
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: OST Boss Final
+    audioClip: {fileID: 8300000, guid: ec9b475d4ea0d8a4abab27329ff09db7, type: 3}
+    volume: 0.3
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: OST Creditos
+    audioClip: {fileID: 8300000, guid: 0bee1b90afdab954bb8e3cb57e685417, type: 3}
+    volume: 0.2
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Dash
+    audioClip: {fileID: 8300000, guid: 4382cf8bc9d45514881b51f22020c163, type: 3}
+    volume: 0.3
+    pitch: 1.3
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Golpe al aire
+    audioClip: {fileID: 8300000, guid: bf37f189620caa74d999e0161b7d45aa, type: 3}
+    volume: 0.4
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Paso1
+    audioClip: {fileID: 8300000, guid: e48a9ca74e2651f4687952e5645a8185, type: 3}
+    volume: 0.25
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Paso2
+    audioClip: {fileID: 8300000, guid: 312ea2305ae04a14b8e56f004a3de7e7, type: 3}
+    volume: 0.15
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Paso3
+    audioClip: {fileID: 8300000, guid: 9cca2d8ffb4fba344b62dbf42b5bf269, type: 3}
+    volume: 0.35
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Punch
+    audioClip: {fileID: 8300000, guid: 444416616fec44840811fdd58407ab2e, type: 3}
+    volume: 0.25
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Crit
+    audioClip: {fileID: 8300000, guid: e0605a6b89054a74595cf0df0aa7517f, type: 3}
+    volume: 1
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Parry
+    audioClip: {fileID: 8300000, guid: e9da39da9462fa844b15694d4a78fcd4, type: 3}
+    volume: 0.6
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - SlowDown
+    audioClip: {fileID: 8300000, guid: 451ebe755c94c3a459954be39ec34058, type: 3}
+    volume: 0.6
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Select Hookable Object
+    audioClip: {fileID: 8300000, guid: 561f09cae0b9c0444aac57360d6f935b, type: 3}
+    volume: 0.6
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Releasing Hook
+    audioClip: {fileID: 8300000, guid: 4f675c825170d124bb606de314a4afe5, type: 3}
+    volume: 0.498
+    pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Cable
+    audioClip: {fileID: 8300000, guid: 37feb121d2643324e8f916f6914e2c88, type: 3}
+    volume: 0.6
+    pitch: 3
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  - name: SFX - Shoot
+    audioClip: {fileID: 8300000, guid: 4d35b4b1442a072439af618ba6422b42, type: 3}
+    volume: 0.4
+    pitch: 3
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 100
+  _soundCollecions: []
+--- !u!1 &6160396050737567337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7386654085081900194}
+  m_Layer: 0
+  m_Name: SoundSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7386654085081900194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6160396050737567337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.035735, y: 1.528169, z: 1.4310346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1616893964345745830}
+  - {fileID: 6483805826639074130}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

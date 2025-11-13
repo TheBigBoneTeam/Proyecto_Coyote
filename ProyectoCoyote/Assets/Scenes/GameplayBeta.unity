@@ -152,18 +152,52 @@ MonoBehaviour:
   startEnemies:
   - {fileID: 1568128649}
   - {fileID: 1616074774}
+  beforeCombatStoryAction:
+    actionType: 0
+    playOnRestart: 1
+    nameKey: 
+    cutsceneData:
+      cutscene: {fileID: 0}
+      objectsToTurnOff: []
+      objectsToTurnOn: []
+      canBeSkipped: 0
+      isEndLevel: 0
+  afterCombatStoryAction:
+    actionType: 0
+    playOnRestart: 1
+    nameKey: 
+    cutsceneData:
+      cutscene: {fileID: 0}
+      objectsToTurnOff: []
+      objectsToTurnOn: []
+      canBeSkipped: 0
+      isEndLevel: 0
+  initCovers: []
+  initAmmo: []
   extraEnemyWaves:
   - enemies:
     - {fileID: 1727477090}
     - {fileID: 686264752}
+    autoStart: 0
+    beforeWavestoryAction:
+      actionType: 0
+      playOnRestart: 1
+      nameKey: 
+      cutsceneData:
+        cutscene: {fileID: 0}
+        objectsToTurnOff: []
+        objectsToTurnOn: []
+        canBeSkipped: 0
+        isEndLevel: 0
+    colliderTurnOffBefore: {fileID: 0}
+    Covers: []
+    ammo: []
+    spawnPoint: {fileID: 0}
   areaColliders: {fileID: 1488047568}
   triggerCollider: {fileID: 94827449}
-  allCover:
-  - {fileID: 1304052310}
-  - {fileID: 314722804}
-  - {fileID: 540163249}
   respawnPoint: {fileID: 0}
   started: 0
+  finished: 0
 --- !u!4 &23489549
 Transform:
   m_ObjectHideFlags: 0
@@ -619,6 +653,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 1852185421}
   counterObj: {fileID: 201144254}
@@ -684,6 +719,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &129154175
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3060,18 +3098,52 @@ MonoBehaviour:
   startEnemies:
   - {fileID: 129154174}
   - {fileID: 1612371376}
+  beforeCombatStoryAction:
+    actionType: 0
+    playOnRestart: 1
+    nameKey: 
+    cutsceneData:
+      cutscene: {fileID: 0}
+      objectsToTurnOff: []
+      objectsToTurnOn: []
+      canBeSkipped: 0
+      isEndLevel: 0
+  afterCombatStoryAction:
+    actionType: 0
+    playOnRestart: 1
+    nameKey: 
+    cutsceneData:
+      cutscene: {fileID: 0}
+      objectsToTurnOff: []
+      objectsToTurnOn: []
+      canBeSkipped: 0
+      isEndLevel: 0
+  initCovers: []
+  initAmmo: []
   extraEnemyWaves:
   - enemies:
     - {fileID: 1967175785}
     - {fileID: 1621850737}
+    autoStart: 0
+    beforeWavestoryAction:
+      actionType: 0
+      playOnRestart: 1
+      nameKey: 
+      cutsceneData:
+        cutscene: {fileID: 0}
+        objectsToTurnOff: []
+        objectsToTurnOn: []
+        canBeSkipped: 0
+        isEndLevel: 0
+    colliderTurnOffBefore: {fileID: 0}
+    Covers: []
+    ammo: []
+    spawnPoint: {fileID: 0}
   areaColliders: {fileID: 2027268625}
   triggerCollider: {fileID: 424779417}
-  allCover:
-  - {fileID: 1304052310}
-  - {fileID: 314722804}
-  - {fileID: 540163249}
   respawnPoint: {fileID: 0}
   started: 0
+  finished: 0
 --- !u!4 &557374800
 Transform:
   m_ObjectHideFlags: 0
@@ -3152,6 +3224,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 773827160}
   counterObj: {fileID: 243980968}
@@ -3217,6 +3290,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &583056144
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3290,6 +3366,7 @@ MonoBehaviour:
     debugStatusChanges: 0
     identifier: 
   System: {fileID: 11400000, guid: b60f3cd163b43894294d0bd12d087d2e, type: 2}
+  isUnsafe: 0
 --- !u!1001 &591682844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3942,6 +4019,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!195 &686264753
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3999,6 +4079,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 503938577}
   counterObj: {fileID: 1371898567}
@@ -7073,6 +7154,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141845452}
   m_CullTransparentMesh: 1
+--- !u!1001 &1160440546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6160396050737567337, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_Name
+      value: SoundSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.035735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.528169
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4310346
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386654085081900194, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6a85e6985bb27545850f82912aca4bd, type: 3}
 --- !u!1 &1163577714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9107,6 +9245,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!114 &1568128650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9207,6 +9348,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 635336949}
   counterObj: {fileID: 1731642775}
@@ -10046,6 +10188,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 1092918093}
   counterObj: {fileID: 823870198}
@@ -10111,6 +10254,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &1612371377
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10228,6 +10374,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 907072969}
   counterObj: {fileID: 1077732432}
@@ -10293,6 +10440,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &1616074775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10446,6 +10596,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 2055435550}
   counterObj: {fileID: 1103756609}
@@ -10511,6 +10662,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &1621850738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11305,6 +11459,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!195 &1727477091
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11362,6 +11519,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 1360219004}
   counterObj: {fileID: 1469058991}
@@ -13165,6 +13323,7 @@ MonoBehaviour:
   onAction: 0
   counterOn: 0
   reactionOn: 0
+  KungFuCirclePoint: 0
   doingReactCounter: 0
   reactionObj: {fileID: 265285646}
   counterObj: {fileID: 1845842759}
@@ -13230,6 +13389,9 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 0
 --- !u!136 &1967175786
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13326,13 +13488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a03f3e655e2511439c5eacbff5b4ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpKey: 32
-  sprintKey: 304
-  dashKey: 101
-  hookKey: 101
-  <Horizontal>k__BackingField: 0
-  <Vertical>k__BackingField: 0
-  <JumpPressed>k__BackingField: 0
 --- !u!4 &1992009086
 Transform:
   m_ObjectHideFlags: 0
@@ -15065,6 +15220,7 @@ SceneRoots:
   - {fileID: 983066170}
   - {fileID: 1445140303}
   - {fileID: 4019493128487609367}
+  - {fileID: 1160440546}
   - {fileID: 540163250}
   - {fileID: 314722805}
   - {fileID: 1304052311}

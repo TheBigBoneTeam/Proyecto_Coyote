@@ -26,10 +26,10 @@ public class Gun : MonoBehaviour
     }
     protected virtual void Start()
     {
-        if (bullet != null)
-        {
-            attackState = new Attack.AttackState(bullet.GetComponent<baseBullet>().HitDirections.ToArray());
-        }
+        //if (bullet != null)
+        //{
+        //    attackState = new Attack.AttackState(bullet.GetComponent<baseBullet>().HitDirections.ToArray());
+        //}
         gameCharacter = GetComponentInParent<AGameCharacter>();
     }
     public void subscribeToShoot(Action<Attack.AttackState> subscribe)

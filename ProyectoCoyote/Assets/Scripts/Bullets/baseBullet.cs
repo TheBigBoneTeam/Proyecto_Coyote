@@ -41,7 +41,8 @@ public class baseBullet : Attack, IBullet
             {
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
                 flying = false;
-                //GetComponentInChildren<MeshRenderer>().enabled = false;
+                if (GetComponentInChildren<MeshRenderer>())
+                GetComponentInChildren<MeshRenderer>().enabled = false;
                 Destroy(gameObject, 0.5f);
 
             }

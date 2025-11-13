@@ -510,17 +510,32 @@ public class PlayerMovement : MonoBehaviour
     private void Dash()
     {
         if (dashCdTimer > 0) return;
-        else dashCdTimer = dashCd;
+        dashCdTimer = dashCd;
+
         GetComponentInChildren<Animator>().Play("Dash_01");
         dashing = true;
 
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        // Reinicio la velocidad (antes retrocedia el personaje)
+        rb.linearVelocity = Vector3.zero;
 
-        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
-        delayedForceToApply = forceToApply;
-        Invoke(nameof(DelayedDashForce), 0.025f);
+        // Dirección del dash en función del input
+        Vector3 dashDir = moveDirection;
+
+        // Si no hay input, usa la dirección del jugador
+        if (dashDir.sqrMagnitude < 0.1f)
+            dashDir = transform.forward;
+
+        dashDir.Normalize();
+
+        // Aplica la fuerza de dash
+        Vector3 forceToApply = dashDir * dashForce + Vector3.up * dashUpwardForce;
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+
+        // Restablece el estado tras el dash
         Invoke(nameof(ResetDash), dashDuration);
     }
+
+
     private void Dodge()
     {
         if (dodgeCdTimer > 0) return;

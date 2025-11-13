@@ -10,6 +10,7 @@ public class Dialogues : MonoBehaviour
     // Excel
     [Header("Documento de texto en .csv ")]
     [SerializeField] TextAsset[] textDialogues;
+    private CameraController CamControl;
     private Dictionary<string, DialogueLine> DialogueHash;
     private List<string> dialogueKeys;
     private int currentKeyIndex = 0;
@@ -23,6 +24,8 @@ public class Dialogues : MonoBehaviour
 
     private string currentFullText = "";
     private string currentPrefix = "";
+    private NPC npc;
+    private Transform enemyTarget_Locator;
 
 
     Transform UIText;
@@ -34,8 +37,10 @@ public class Dialogues : MonoBehaviour
         dialogueText = UIText.Find("CuadroDeTexto").
             GetComponent<TextMeshProUGUI>();
         UIText.gameObject.SetActive(false);
+        npc = FindAnyObjectByType<NPC>();
+        CamControl = FindAnyObjectByType<CameraController>();
+        enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
 
-        
     }
     // Update is called once per frame
     void Update()
@@ -60,7 +65,9 @@ public class Dialogues : MonoBehaviour
     public void DialogueEnd()
     {
         action1?.Invoke();
+        npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
+
         Debug.Log("Fin del Diálogo");
     }
 

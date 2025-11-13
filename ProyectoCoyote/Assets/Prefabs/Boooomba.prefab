@@ -59,13 +59,15 @@ GameObject:
   m_Component:
   - component: {fileID: 7786299321051884914}
   - component: {fileID: 366489421228982734}
-  - component: {fileID: 5275007436072280377}
   - component: {fileID: 3117570330429171109}
   - component: {fileID: 5108394325496897630}
+  - component: {fileID: 347466109778440515}
   - component: {fileID: 7063492848833669818}
-  - component: {fileID: 1438254762864982246}
+  - component: {fileID: 8709861202896112953}
   - component: {fileID: 8885091992248565310}
   - component: {fileID: 4920157825102817951}
+  - component: {fileID: 4351521750099394436}
+  - component: {fileID: 1432820346050459121}
   m_Layer: 24
   m_Name: Boooomba
   m_TagString: Untagged
@@ -89,6 +91,7 @@ Transform:
   - {fileID: 2021866338796528701}
   - {fileID: 6874034179152119944}
   - {fileID: 7049389194502564424}
+  - {fileID: 4614672798694497336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &366489421228982734
@@ -114,25 +117,6 @@ CapsuleCollider:
   m_Height: 2.6918342
   m_Direction: 1
   m_Center: {x: -0.1, y: -0.14, z: 0}
---- !u!114 &5275007436072280377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058257240711720453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <HealthPoint>k__BackingField: 2
-  _maxHealthPoint: 2
-  inmuneStun: 0
-  invTimeAfterHit: 1
-  invincible: 0
-  startPos: {x: 0, y: 0, z: 0}
-  ActiveBeforeFight: 0
 --- !u!54 &3117570330429171109
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -175,6 +159,26 @@ MonoBehaviour:
   directions: 0000000001000000
   dodging: 0
   parrying: 0
+--- !u!114 &347466109778440515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058257240711720453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc75df2f958e764cb143eeb1f5cd432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HealthPoint>k__BackingField: 1
+  _maxHealthPoint: 1
+  inmuneStun: 0
+  invTimeAfterHit: 1
+  invincible: 0
+  startPos: {x: 0, y: 0, z: 0}
+  print: 0
+  ActiveBeforeFight: 1
 --- !u!114 &7063492848833669818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +203,7 @@ MonoBehaviour:
   Locked: 1
   seeDistance: 31.7
   attackDistance: 3
---- !u!114 &1438254762864982246
+--- !u!114 &8709861202896112953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,15 +212,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058257240711720453}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e93b382e0f0bd40b41705546e79292, type: 3}
+  m_Script: {fileID: 11500000, guid: b70bf309b6208d342b93279cc4bff4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   executeOnLoop: 1
-  interruptOptions: 2
+  interruptOptions: 0
   _eventHandler:
     debugStatusChanges: 0
     identifier: 
   System: {fileID: 11400000, guid: c7ae1267cf1840f43b9bd222f9b69b1b, type: 2}
+  _currentHeavy: {fileID: 0}
+  <charging>k__BackingField: 0
 --- !u!195 &8885091992248565310
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -252,6 +258,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 1
+--- !u!114 &4351521750099394436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058257240711720453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa5d74b9c1f7414985988aa1d74a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 7901026727092309145, guid: 21d447fa24b4361459daafc9e0cca33b, type: 3}
+  bulletSpawnPoint: {fileID: 4614672798694497336}
+--- !u!114 &1432820346050459121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058257240711720453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da0021d39e886448bad99d467d71853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - rid: 8725330916002496610
+  _attackData: {fileID: 11400000, guid: a1febfbda6d40a14798d0a4020f8d6ef, type: 2}
+  <owner>k__BackingField: {fileID: 0}
+  <Parreable>k__BackingField: 0
+  <HitCheckType>k__BackingField: 0
+  <HitDirections>k__BackingField: 
+  objective: {x: 0, y: 0, z: 0}
+  speed: 30
+  lifeTime: 10
+  Infinite: 0
+  hit: 0
+  hitParticle: {fileID: 0}
+  impactParticle: {fileID: 0}
+  anim: {fileID: 0}
+  flying: 0
+  layerWhenBullet:
+    serializedVersion: 2
+    m_Bits: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 8725330916002496610
+      type: {class: ShootOwnerGun, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        ShootGun: ESTE EFECTO ACTIVA LA EXPLOSION DEL BOMBA. HE PUESTO UN STRING
+          PA QUE NO PAREZCA BUG
 --- !u!1 &2402816642784451116
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +463,37 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &5199275324132310147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4614672798694497336}
+  m_Layer: 24
+  m_Name: ExplosionCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4614672798694497336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5199275324132310147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7786299321051884914}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1983173474137670614
 PrefabInstance:
   m_ObjectHideFlags: 0

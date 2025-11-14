@@ -38,14 +38,13 @@ public class EnemyManager: IEnemyManager
     }
     public bool returnPoint(int index, Enemy owner)
     {
+        if(index < 0 || index  >= mainKungFuPoints.Length) return false;
         if (mainKungFuPoints[index].checkOwner(owner))
         {
             mainKungFuPoints[index].Owner = null;
             return true;
         }
-        Debug.Log("isNull");
-        EnemyAssetBehaviourRunner ase;
-      
+        Debug.Log("isNull");      
         return false;
 
     }
@@ -105,7 +104,16 @@ public class EnemyManager: IEnemyManager
         }
         return null;
     }
+    public void DebugPositions()
+    {
+        Debug.Log("Start Debug KungFuPoints");
+        for (int i = 0;i < mainKungFuPoints.Length; i++)
+        {
+            Debug.Log(mainKungFuPoints[i].Owner);
+        }
+        Debug.Log("End Debug KungFuPoints");
 
+    }
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
 
  //   ClassMutex<EnemyAI> IEnemyManager.enemyClassMutex() => enemyClassMutex;
@@ -118,6 +126,7 @@ public interface IEnemyManager:IService
     public Transform getPoint(int index, Enemy owner);
     public bool returnPoint(int index, Enemy owner);
     public Transform getClosestPoint(Enemy owner, out int index);
+    public void DebugPositions();
 
 }
 public class ClassMutex<T> where T : Object, IMutex

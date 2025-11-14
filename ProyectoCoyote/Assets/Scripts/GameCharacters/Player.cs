@@ -36,7 +36,7 @@ public class Player : AGameCharacter
         if (HealthPoint > 0)
         {
             storedDamage = damage;
-            hook.ResetTarget();
+            hook.ResetTarget(true);
         }
     }
     public void onParry()

@@ -187,9 +187,9 @@ public class Gancho : MonoBehaviour
         }
 
     }
-    public void ResetTarget()
+    public void ResetTarget(bool skipAnimation = false)
     {
-       // movement.animator.CrossFade("Idle_01", 0.2f);
+        if(!skipAnimation)movement.animator.CrossFade("Idle_01", 0.2f);
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
@@ -317,7 +317,7 @@ public class Gancho : MonoBehaviour
     // Detectar si hay un objeto bloqueando las escena
     bool Blocked(Vector3 targetPosition)
     {
-        Vector3 origin = cam.transform.position;//  + Vector3.up * 1.5f; // desde el pecho del jugador
+        Vector3 origin = transform.position;//  + Vector3.up * 1.5f; // desde el pecho del jugador
         Vector3 direction = targetPosition - origin;
         float distance = direction.magnitude;
 

@@ -228,7 +228,7 @@ public class EnemyLockOn : MonoBehaviour
     bool Blocked(Vector3 t)
     {
         RaycastHit hit;
-        Vector3 origin = cam.position;
+        Vector3 origin = transform.position;
         if (Physics.Linecast(origin, t, out hit))
         {
             if (!hit.transform.Equals(currentTarget))

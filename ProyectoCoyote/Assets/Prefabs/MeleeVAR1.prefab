@@ -1794,6 +1794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6199721638786910964}
   - component: {fileID: 3683867941543073957}
+  - component: {fileID: 359261953212146662}
   m_Layer: 0
   m_Name: ReactionHolder
   m_TagString: Untagged
@@ -1830,6 +1831,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effects: []
   animName: Reaction
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &359261953212146662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844348617494984873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401111ceb9d2c6a4db0e025a698a428f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: []
+  animName: 
+  reactionList:
+  - animName: 
+    effects: {fileID: 0}
+  - animName: 
+    effects: {fileID: 0}
   references:
     version: 2
     RefIds: []

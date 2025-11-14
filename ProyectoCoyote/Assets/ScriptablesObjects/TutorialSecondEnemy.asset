@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
-  m_Name: TutorialEnemy
+  m_Name: TutorialSecondEnemy
   m_EditorClassIdentifier: 
   data:
     graphs:
@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
-        position: {x: 150, y: 0}
+        position: {x: 75, y: 0}
         node:
           rid: 5634289356226429019
         references: []
@@ -30,7 +30,7 @@ MonoBehaviour:
         - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
       - name: AttackA
         id: 8cc4b342-4349-469c-a8f4-d37bcc974007
-        position: {x: -914.4, y: 1636.8}
+        position: {x: 150, y: 1000}
         node:
           rid: 5634289356226429025
         references:
@@ -44,7 +44,7 @@ MonoBehaviour:
         childIds: []
       - name: AttackB
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-        position: {x: -598.4, y: 1591.2001}
+        position: {x: 450, y: 1000}
         node:
           rid: 5634289356226429027
         references:
@@ -58,19 +58,19 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4416613e-eacb-4600-9809-873056a04543
-        position: {x: -600, y: 1400}
+        position: {x: 450, y: 800}
         node:
           rid: 5634289356226429028
         references: []
         parentIds:
-        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
+        - 3af17fdf-20ee-443f-832d-a7acdcea34fb
         childIds:
         - 8cc4b342-4349-469c-a8f4-d37bcc974007
         - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
         - a01324e1-8651-4d20-affc-4094b509dac3
       - name: 
         id: 61bdc9e2-3d4f-43d1-b802-ca727904a05b
-        position: {x: 0, y: 400}
+        position: {x: -150, y: 400}
         node:
           rid: 5634289451439489124
         references: []
@@ -92,67 +92,10 @@ MonoBehaviour:
         parentIds:
         - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
         childIds:
-        - 972897bf-c258-42ca-b90d-79770affc8f4
-      - name: 
-        id: fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
-        position: {x: -284, y: 1165.6}
-        node:
-          rid: 5634289591621779550
-        references:
-        - fieldName: nodeIndexFunction
-          value:
-            rid: 5634289591621779551
-          fieldType: System.Func`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        parentIds:
-        - 3af17fdf-20ee-443f-832d-a7acdcea34fb
-        childIds:
-        - 4416613e-eacb-4600-9809-873056a04543
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        - 5078b4b0-887b-4d17-8520-9126fd1a338f
-      - name: 
-        id: b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        position: {x: 0, y: 1400}
-        node:
-          rid: 5634289591621779552
-        references: []
-        parentIds:
-        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
-        childIds:
-        - cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
-        - 1392e30e-ed66-4334-ad28-f08284a534fa
-      - name: 
-        id: cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
-        position: {x: -150, y: 1600}
-        node:
-          rid: 5634289591621779553
-        references:
-        - fieldName: Action
-          value:
-            rid: 5634289591621779554
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        childIds: []
-      - name: 
-        id: 1392e30e-ed66-4334-ad28-f08284a534fa
-        position: {x: 150, y: 1600}
-        node:
-          rid: 5634289591621779555
-        references:
-        - fieldName: Action
-          value:
-            rid: 5634289591621779556
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        childIds: []
+        - 74715d2b-6936-465d-bcb9-c97cd360c96f
       - name: 
         id: 972897bf-c258-42ca-b90d-79770affc8f4
-        position: {x: -150, y: 800}
+        position: {x: 300, y: 400}
         node:
           rid: 5634289591621779567
         references:
@@ -162,23 +105,23 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         parentIds:
-        - c53c25b2-4124-46a7-8582-d159a873827d
+        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
         childIds:
         - 3af17fdf-20ee-443f-832d-a7acdcea34fb
       - name: 
         id: 3af17fdf-20ee-443f-832d-a7acdcea34fb
-        position: {x: -150, y: 1000}
+        position: {x: 300, y: 600}
         node:
           rid: 5634289591621779580
         references: []
         parentIds:
         - 972897bf-c258-42ca-b90d-79770affc8f4
         childIds:
-        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         - a7a8418c-fc40-412a-a292-b8e2e79d326b
+        - 4416613e-eacb-4600-9809-873056a04543
       - name: 
         id: a7a8418c-fc40-412a-a292-b8e2e79d326b
-        position: {x: 16, y: 1208}
+        position: {x: 150, y: 800}
         node:
           rid: 5634289591621779581
         references:
@@ -192,7 +135,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 74715d2b-6936-465d-bcb9-c97cd360c96f
-        position: {x: 300, y: 400}
+        position: {x: -150, y: 800}
         node:
           rid: 5634289591621779584
         references:
@@ -202,11 +145,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
+        - c53c25b2-4124-46a7-8582-d159a873827d
         childIds: []
       - name: 
         id: 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
-        position: {x: 150, y: 200}
+        position: {x: 75, y: 200}
         node:
           rid: 5634289591621779594
         references: []
@@ -214,10 +157,11 @@ MonoBehaviour:
         - 0c87ccc8-af40-4e16-944a-ea081b271210
         childIds:
         - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
-        - 74715d2b-6936-465d-bcb9-c97cd360c96f
+        - 972897bf-c258-42ca-b90d-79770affc8f4
+        - 60ec6b46-4e59-483b-95fd-9c4cc6b26c84
       - name: 
         id: a01324e1-8651-4d20-affc-4094b509dac3
-        position: {x: -360, y: 1723.2001}
+        position: {x: 750, y: 1000}
         node:
           rid: 5634289679145893986
         references:
@@ -230,18 +174,18 @@ MonoBehaviour:
         - 4416613e-eacb-4600-9809-873056a04543
         childIds: []
       - name: 
-        id: 5078b4b0-887b-4d17-8520-9126fd1a338f
-        position: {x: 533.6, y: 1416}
+        id: 60ec6b46-4e59-483b-95fd-9c4cc6b26c84
+        position: {x: 597.6, y: 416}
         node:
-          rid: 8725330873693503860
+          rid: 8725330984943747207
         references:
         - fieldName: Action
           value:
-            rid: 8725330873693503863
+            rid: 8725330984943747208
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
+        - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
         childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
@@ -305,35 +249,6 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 5634289591621779550
-      type: {class: FunctionBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 5634289591621779551
-      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        componentName: enemigoTutorial
-        methodName: checkTutorialMode
-    - rid: 5634289591621779552
-      type: {class: RandomBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 5634289591621779553
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 5634289591621779554
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 3
-        idle: 0
-    - rid: 5634289591621779555
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 5634289591621779556
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 4
-        idle: 0
     - rid: 5634289591621779567
       type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -386,11 +301,9 @@ MonoBehaviour:
       data:
         action: 2
         idle: 0
-    - rid: 8725330873693503860
+    - rid: 8725330984943747207
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725330873693503863
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 10
-        idle: 1
+    - rid: 8725330984943747208
+      type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
+      data: 

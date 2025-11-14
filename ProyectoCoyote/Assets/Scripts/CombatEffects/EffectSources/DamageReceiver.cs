@@ -98,6 +98,11 @@ public class DamageReceiver:MonoBehaviour
         parrying = parry;
         sendDodgeEvent();
     }
+    public void clearDirection()
+    {
+        directions.Clear();
+        sendDodgeEvent();
+    }
     void sendDodgeEvent()
     {
         receiverStateEvent.Invoke(new ReceiverState(directions.ToArray(),dodging));

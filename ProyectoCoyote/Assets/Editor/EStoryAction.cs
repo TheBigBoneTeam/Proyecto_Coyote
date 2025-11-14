@@ -1,3 +1,5 @@
+using CombatEffect;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -81,3 +83,57 @@ public class EStoryAction: PropertyDrawer
 
     }
 }
+//[CustomPropertyDrawer(typeof( ReactionDataForMultiple))]
+//public class EReactionDataForMultiple : PropertyDrawer
+//{
+//    SerializedProperty animMame;
+//    SerializedProperty effects;
+//    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+//    {
+//        animMame = property.FindPropertyRelative("animName");
+//        effects = property.FindPropertyRelative("effects");
+
+//        ReactionDataForMultiple data = fieldInfo.GetValue(property.serializedObject.targetObject) as ReactionDataForMultiple;
+
+//        EditorGUI.BeginProperty(position, label, property);
+//        drawField(animMame);
+//        drawField(effects);
+//        if (GUILayout.Button("Add Damage"))
+//        {
+//            //data.effects ??= new List<ACombatEffect>();
+//            effects.InsertArrayElementAtIndex(effects.arraySize);
+
+//        }
+//        if (GUILayout.Button("Add Stun"))
+//        {
+//            data.effects ??= new List<ACombatEffect>();
+
+//            data.effects.Add(new StunEffect(null,3));
+//        }
+//        if (GUILayout.Button("Add Crit Damage"))
+//        {
+//            data.effects ??= new List<ACombatEffect>();
+
+//            data.effects.Add(new CritDamageEffect(null,3));
+//        }
+//        GUILayout.Space(20);
+
+//    }
+//    void drawField(SerializedProperty property, string guicontent = null)
+//    {
+//        EditorGUILayout.BeginHorizontal();
+
+//        GUILayout.Space(10);
+//        if (guicontent != null)
+//        {
+//            EditorGUILayout.PropertyField(property, new GUIContent(guicontent));
+//        }
+//        else
+//        {
+//            EditorGUILayout.PropertyField(property);
+
+//        }
+//        EditorGUILayout.EndHorizontal();
+
+//    }
+//}

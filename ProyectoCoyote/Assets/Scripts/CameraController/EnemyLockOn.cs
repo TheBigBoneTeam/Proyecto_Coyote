@@ -231,7 +231,7 @@ public class EnemyLockOn : MonoBehaviour
         Vector3 origin = transform.position;
         if (Physics.Linecast(origin, t, out hit))
         {
-            if (!hit.transform.Equals(currentTarget))
+            if (!hit.transform.Equals(currentTarget) && !hit.transform.Equals(transform))
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;

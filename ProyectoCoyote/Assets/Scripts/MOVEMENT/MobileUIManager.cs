@@ -7,6 +7,7 @@ public class MobileUIManager : MonoBehaviour
     [Header("UI Móvil")]
     [SerializeField] private GameObject mobileUI_Combat;
     [SerializeField] private GameObject mobileUI_NonCombat;
+    [SerializeField] private GameObject mobileUI_Hooking;
 
     public bool isMobile {  get; private set; }
 
@@ -24,6 +25,7 @@ public class MobileUIManager : MonoBehaviour
         {
             if (mobileUI_Combat) mobileUI_Combat.SetActive(false);
             if (mobileUI_NonCombat) mobileUI_NonCombat.SetActive(false);
+            if (mobileUI_Hooking) mobileUI_Hooking.SetActive(false);
             return;
         }
 
@@ -38,6 +40,7 @@ public class MobileUIManager : MonoBehaviour
         // Si es en un movil, se desactiva la interfaz de NonCombat y se activa la de Combat
         if (mobileUI_Combat) mobileUI_Combat.SetActive(true);
         if (mobileUI_NonCombat) mobileUI_NonCombat.SetActive(false);
+        if (mobileUI_Hooking) mobileUI_Hooking.SetActive(false);
     }
 
     public void SetNonCombatUI()
@@ -48,5 +51,17 @@ public class MobileUIManager : MonoBehaviour
         // Si es en un movil, se activa la interfaz de NonCombat y se desactiva la de Combat
         if (mobileUI_Combat) mobileUI_Combat.SetActive(false);
         if (mobileUI_NonCombat) mobileUI_NonCombat.SetActive(true);
+        if (mobileUI_Hooking) mobileUI_Hooking.SetActive(false);
+    }
+
+    public void SetHookUI()
+    {
+        // Si no es en un movil, no pasa nada
+        if (!isMobile) return;
+
+        // Si es en un movil, se desactiva la interfaz de NonCombat y se activa la de Combat
+        if (mobileUI_Combat) mobileUI_Combat.SetActive(false);
+        if (mobileUI_NonCombat) mobileUI_NonCombat.SetActive(false);
+        if (mobileUI_Hooking) mobileUI_Hooking.SetActive(true);
     }
 }

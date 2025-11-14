@@ -185,6 +185,12 @@ public class Gancho : MonoBehaviour
             Debug.Log("----------Cámara gancho Activada");
             movement.animator.CrossFade("Grapple_01", 0.2f);
             LookAtTarget();
+
+            // Si se detecta el modo movil, se activa la interfaz del gancho
+            if (MobileUIManager.Instance != null)
+            {
+                MobileUIManager.Instance.SetHookUI();
+            }
         }
 
     }
@@ -202,6 +208,12 @@ public class Gancho : MonoBehaviour
 
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
+
+        // Si se detecta el modo movil, se desactiva la interfaz del gancho
+        if (MobileUIManager.Instance != null)
+        {
+            MobileUIManager.Instance.SetNonCombatUI();
+        }
     }
 
     #region Calcular Objetos Enganchables

@@ -77,7 +77,7 @@ public class EnemyLockOn : MonoBehaviour
             LookAtTarget();
 
             // Volver a modo sin lockear si hay un obstáculo
-            if (Blocked(GetTargetCenter(currentTarget)))
+            if (Blocked(GetTargetCenter(currentTarget), currentTarget))
                 ResetTarget();
         }
     }
@@ -157,7 +157,7 @@ public class EnemyLockOn : MonoBehaviour
     {
         Debug.Log("Buscando enemigos...");
 
-        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, noticeZone, targetLayers);
+        Collider[] nearbyTargets = Physics.OverlapSphere(cam.transform.position, noticeZone, targetLayers);
 
         float closestAngle = maxNoticeAngle;
         Transform closestTarget = null;
@@ -195,7 +195,7 @@ public class EnemyLockOn : MonoBehaviour
 
         Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
 
-        if (Blocked(tarPos))
+        if (Blocked(tarPos, closestTarget))
         {
             Debug.Log("Hay algo bloqueando el enemigo");
             return null;
@@ -211,19 +211,19 @@ public class EnemyLockOn : MonoBehaviour
         CapsuleCollider col = target.GetComponent<CapsuleCollider>();
         if (col == null) return target.position;
 
-        float h = col.height * target.localScale.y;
-        float half_h = (h / 2) / 2;
-        return target.position + new Vector3(0, h - half_h, 0);
+        // Centro del collider: posición base + mitad de la altura
+        float half_h = col.height / 8;
+        return target.position + new Vector3(0, half_h, 0);
     }
 
     // Detectar si hay un objeto bloqueando la visión
-    bool Blocked(Vector3 t)
+    bool Blocked(Vector3 t, Transform target)
     {
         RaycastHit hit;
         Vector3 origin = transform.position;
         if (Physics.Linecast(origin, t, out hit))
         {
-            if (!hit.transform.Equals(currentTarget))
+            if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;

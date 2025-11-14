@@ -40,6 +40,9 @@ public class Gancho : MonoBehaviour
     private Image _hookImageUI;
     HookObserver hookObserver;
     [SerializeField] GameObject navMesh;
+    private bool hookAttackBuffer = false;
+    private bool canAttack = false;
+
 
     public bool selectingHook;
     public bool isHooked;
@@ -95,6 +98,14 @@ public class Gancho : MonoBehaviour
         if (currentTarget)
         {
             LookAtTarget();
+
+            if (Blocked(currentTarget.position, currentTarget))
+                ResetTarget();
+        }
+
+        if (gameInput.AttackPressed && canAttack)
+        {
+            hookAttackBuffer = true;
         }
     }
     public void HookLogic()
@@ -196,7 +207,7 @@ public class Gancho : MonoBehaviour
     }
     public void ResetTarget(bool skipAnimation = false)
     {
-        if(!skipAnimation)movement.animator.CrossFade("Idle_01", 0.2f);
+        if (!skipAnimation) movement.animator.CrossFade("Idle_01", 0.2f);
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
@@ -252,7 +263,7 @@ public class Gancho : MonoBehaviour
             if (!toUp && verticalOffset < -0.5f) isValid = true;
 
             if (!isValid) continue;
-            if (Blocked(candidate.position)) continue;
+            if (Blocked(candidate.position, candidate.transform)) continue;
 
             float angle = Vector3.Angle(cam.forward, offset);
             float score = distance + angle * 0.1f;
@@ -312,12 +323,12 @@ public class Gancho : MonoBehaviour
         // Si no hay objetivos cerca, se sale.
         if (!closestTarget)
         {
-            Debug.Log("No se han encontrado objetos válidos!");
+            Debug.Log("No se han encontrado objetos válidos");
             return null;
         }
 
         // Si hay algun elemento de la escena bloqueando la visi n del jugador, se sale.
-        if (Blocked(closestTarget.position))
+        if (Blocked(closestTarget.position, closestTarget))
         {
             Debug.Log("Hay algo bloqueando el objeto");
             return null;
@@ -328,24 +339,15 @@ public class Gancho : MonoBehaviour
     }
 
     // Detectar si hay un objeto bloqueando las escena
-    bool Blocked(Vector3 targetPosition)
+    bool Blocked(Vector3 targetPosition, Transform target)
     {
-        Vector3 origin = transform.position;//  + Vector3.up * 1.5f; // desde el pecho del jugador
-        Vector3 direction = targetPosition - origin;
-        float distance = direction.magnitude;
-
-        RaycastHit[] hits = Physics.RaycastAll(origin, direction.normalized, distance);
-
-        foreach (RaycastHit hit in hits)
+        RaycastHit hit;
+        Vector3 origin = transform.position + Vector3.up * 1.5f;
+        if (Physics.Linecast(origin, targetPosition, out hit))
         {
-            // Ignora el jugador y el objetivo
-            if (hit.transform == currentTarget || hit.transform == transform)
-                continue;
-
-            // Ignora objetos sin collider físico o con capas ignoradas
-            if (((1 << hit.transform.gameObject.layer) & targetLayers) == 0)
+            if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
             {
-                Debug.Log($"Bloqueado por: {hit.transform.name}");
+                Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;
             }
         }
@@ -403,7 +405,7 @@ public class Gancho : MonoBehaviour
             isHooked = true;
 
             DisableCollisions();
-
+            canAttack = true;
 
             selectingHook = false;
             _hookImageUI.color = Color.red;
@@ -487,13 +489,13 @@ public class Gancho : MonoBehaviour
         currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
         var rb = currentTarget.GetComponent<Rigidbody>();
-        if (rb) 
-        { 
+        if (rb)
+        {
             rb.useGravity = false;
         }
     }
 
-    
+
     public void EnableAllCollisions()
     {
         if (currentTarget == null) return;
@@ -502,7 +504,7 @@ public class Gancho : MonoBehaviour
         if (enemy == null) return;
         currentTarget.gameObject.GetComponent<Collider>().enabled = true;
         currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
-        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;  
+        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         var rb = currentTarget.GetComponent<Rigidbody>();
         if (rb)
         {
@@ -522,8 +524,22 @@ public class Gancho : MonoBehaviour
             lockOn.currentTarget = currentTarget;
             lockOn.FoundTarget();
         }
+        canAttack = false;
+        
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         ResetTarget();
+        HookAttack();
+    }
+
+    public void HookAttack()
+    {
+        if (hookAttackBuffer)
+        {
+            movement.animator.CrossFade("Hit_L", .1f);
+            Debug.Log("Gancho patá");
+        }
+            
+        hookAttackBuffer = false;
     }
 
 }

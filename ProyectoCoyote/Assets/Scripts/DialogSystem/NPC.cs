@@ -29,7 +29,7 @@ public class NPC : MonoBehaviour
         dialogue = FindAnyObjectByType<Dialogues>();
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
-
+        character = FindAnyObjectByType<Player>().transform;
 
         playingDialogue = false;
         hover.gameObject.SetActive(false);

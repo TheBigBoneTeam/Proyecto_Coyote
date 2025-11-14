@@ -1,6 +1,7 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
 using Services;
+using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
@@ -125,7 +126,7 @@ public class RandomActionAction : UnityAction
         char firstletter = FirstLetter[0];
         char lastletter = LastLetter[0];
         int nums = lastletter - firstletter;
-        char letter = (char)('A' + Random.Range(0, nums));
+        char letter = (char)('A' + UnityEngine.Random.Range(0, nums));
 
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         if (enemyAI.endAction)
@@ -222,6 +223,17 @@ public class WalkToPlayerActionCircle : UnityAction
 
             agent.SetDestination(CirclePoint.transform.position);
         }
+        if(Time.frameCount % 60==0)
+        {
+            int index = -1;
+         Transform   CirclePointTest = ServiceLocator.Instance.Get<IEnemyManager>().getClosestPoint(enemyAI.GetComponent<Enemy>(), out index);
+            if(CirclePointTest != null && CirclePointTest != CirclePoint)
+            {
+                enemyAI.ReturnKungFuPoint();
+                enemyAI.KungFuCirclePoint = index;
+                CirclePoint = CirclePointTest;
+            }
+        }
         //Debug.Log(player == null);
         //Debug.Log(player.transform.position);
         //Debug.Log(player.name);
@@ -265,10 +277,21 @@ public class WalkToPlayerActionCircle : UnityAction
         agent = context.GameObject.GetComponent<NavMeshAgent>();
         
         player = GameObject.FindAnyObjectByType<Player>();
-        CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
+        int index = enemyAI.KungFuCirclePoint;
+        CirclePoint = null;
+        if(enemyAI.KungFuCirclePoint >= 0)
+        {
+            CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
+        }
+        if (CirclePoint == null)
+        {
+            CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getClosestPoint(enemyAI.GetComponent<Enemy>(), out index);
+        }
+      //  CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
         //CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getClosestPoint(enemyAI.GetComponent<Enemy>(),out int index);
         if (CirclePoint != null)
         {
+            enemyAI.KungFuCirclePoint = index;
             agent.SetDestination(CirclePoint.position);
             agent.updateRotation = false;
             Debug.Log("Remaining Distance" + Vector3.Distance(agent.transform.position, CirclePoint.transform.position));
@@ -417,7 +440,7 @@ public class CirclePlayerAction : UnityAction
         agent.SetDestination(player.transform.position);
         
         enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
-        Vector3 vec = Random.insideUnitCircle.normalized;
+        Vector3 vec = UnityEngine.Random.insideUnitCircle.normalized;
         vec.z = vec.y;
         vec.z = 0;
         agent.SetDestination(player.transform.position + enemyAI.attackDistance * vec);

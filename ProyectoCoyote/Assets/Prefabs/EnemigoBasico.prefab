@@ -768,6 +768,7 @@ MonoBehaviour:
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
   print: 0
+  renderer: {fileID: 0}
   ActiveBeforeFight: 0
 --- !u!54 &4038297873180172337
 Rigidbody:
@@ -834,7 +835,7 @@ MonoBehaviour:
   counterObj: {fileID: 5209366784724309886}
   Locked: 1
   seeDistance: 31.7
-  attackDistance: 3
+  attackDistance: 4
 --- !u!114 &3419061470261984890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +868,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1687,7 +1688,10 @@ MonoBehaviour:
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
-  <HitDirections>k__BackingField: 
+  <HitDirectionsList>k__BackingField: 
+  attackStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds: []

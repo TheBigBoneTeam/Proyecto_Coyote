@@ -1,9 +1,12 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     [Header("References")]
-    public Transform cameraTarget; 
+    public CinemachineCamera lockOnCamera;
+    public CinemachineCamera hookCamera;
+    public Transform cameraTarget;
     Transform player;
     Transform playerObj;
     EnemyLockOn enemyLockOn;
@@ -11,16 +14,16 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Settings")]
     public float rotationSpeed = 5f;
-
+    public float minDistanceToSwitch = 3f;
     private bool lockedCamera;
     private bool hookedCamera;
 
     private void Start()
     {
-        if (!player) player = GameObject.Find("Player").transform;
-        if (!playerObj) playerObj = GameObject.Find("Player/Player_02").transform;
-        if (!enemyLockOn) enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
-        if(!hook) hook = GameObject.FindAnyObjectByType<Gancho>();
+        player = GameObject.Find("Player").transform;
+        playerObj = GameObject.Find("Player/Player_02").transform;
+        enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
+        hook = GameObject.FindAnyObjectByType<Gancho>();
     }
 
     private void LateUpdate()
@@ -28,21 +31,21 @@ public class CameraFollow : MonoBehaviour
         lockedCamera = enemyLockOn != null && enemyLockOn.enemyLocked;
         hookedCamera = hook != null && hook.selectingHook;
 
-        if (lockedCamera) RotateLockedPlayer();
-        else if (hookedCamera) RotateHook();
+        if (lockedCamera) HandleTarget(enemyLockOn.currentTarget, lockOnCamera);
+        else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
         else RotateFreePlayer();
     }
 
     private void RotateFreePlayer()
     {
-        // Dirección desde cámara hacia jugador
-        Vector3 viewDir = player.position - new Vector3(Camera.main.transform.position.x, player.position.y, Camera.main.transform.position.z);
+        // Dirección desde cámara hacia jugadorObj
+        Vector3 viewDir = playerObj.position - new Vector3(Camera.main.transform.position.x, playerObj.position.y, Camera.main.transform.position.z);
         Vector3 forward = viewDir.normalized;
 
         // Input del jugador
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 inputDir = forward * verticalInput + Camera.main.transform.right * horizontalInput;
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector3 inputDir = forward * v + Camera.main.transform.right * h;
 
         // Rotar el jugador si hay input
         if (inputDir != Vector3.zero)
@@ -51,54 +54,41 @@ public class CameraFollow : MonoBehaviour
         }
 
         // Actualizar posición del target de cámara
-        cameraTarget.position = player.position + Vector3.up * 2f;
+        cameraTarget.position = playerObj.position + Vector3.up * 2f;
     }
 
-    private void RotateLockedPlayer()
+    // Maneja la lógica común de lock-on y hook.
+    private void HandleTarget(Transform target, CinemachineCamera cam, Vector3 rotationOffset = default)
     {
-        if (enemyLockOn.currentTarget == null) return;
+        if (target == null || cam == null) return;
 
-        Vector3 enemyPos = enemyLockOn.currentTarget.position;
+        Vector3 targetPos = target.position;
+        float distance = Vector3.Distance(playerObj.position, targetPos);
 
-        // Posición detrás jugador
-        Vector3 backDir = -player.forward;
-        Vector3 desiredPosition = player.position + backDir  + Vector3.up;
+        // Offset detrás del jugador
+        Vector3 playerOffset = playerObj.position - playerObj.forward * 2f + Vector3.up * 2f;
+        // Offset cercano al objetivo, con menos altura
+        Vector3 closeOffset = targetPos - playerObj.forward * 2f + Vector3.up * 1f;
 
-        // Mover el target de cámara
-        cameraTarget.position = Vector3.Lerp(cameraTarget.position, desiredPosition, Time.deltaTime * rotationSpeed);
+        // Elegir offset según distancia y suavizar transición
+        Vector3 desiredOffset = distance < minDistanceToSwitch ? closeOffset : playerOffset;
+        cameraTarget.position = Vector3.Lerp(cameraTarget.position, desiredOffset, Time.deltaTime * rotationSpeed);
 
-        // Rotar el target hacia el enemigo
-        Vector3 lookDir = (enemyPos + Vector3.up * 1.5f) - cameraTarget.position;
-        Quaternion lookRotation = Quaternion.LookRotation(lookDir);
-        cameraTarget.rotation = Quaternion.Slerp(cameraTarget.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        // Configurar cámara
+        cam.Follow = cameraTarget;
+        cam.LookAt = target;
 
-        // Rotar el jugador hacia el enemigo
-        Vector3 viewDir = enemyPos - player.position;
+        // Rotar el jugador hacia el objetivo
+        Vector3 viewDir = targetPos - playerObj.position;
         viewDir.y = 0;
-        if (viewDir != Vector3.zero)
+        if (viewDir.sqrMagnitude > 0.01f)
         {
-            playerObj.forward = Vector3.Slerp(playerObj.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
-        }
-    }
+            Quaternion targetRotation = Quaternion.LookRotation(viewDir);
+            if (rotationOffset != Vector3.zero)
+                targetRotation *= Quaternion.Euler(rotationOffset);
 
-    private void RotateHook()
-    {
-        // Dirección hacia el target
-        Vector3 directionToTarget = hook.currentTarget.position - playerObj.position;
-
-        if (directionToTarget.sqrMagnitude > 0.01f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
-            Quaternion offsetRotation = Quaternion.Euler(hook.lookAtRotationOffset);
-
-            targetRotation *= offsetRotation;
-
-            playerObj.rotation = Quaternion.Slerp(
-                player.transform.rotation,
-                targetRotation,
-                rotationSpeed
-            );
+            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
 }
+

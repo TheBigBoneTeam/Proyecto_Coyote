@@ -20,9 +20,16 @@ namespace tutorial
         [SerializeField] public int objectiveHits;
         [SerializeField] public int objectiveEsqPerf;
         [SerializeField] public int objectiveGancho;
+        public int tutorialStateNum = 0;
 
+        public GameInput gameInput;
+
+        public Enemy secondEnemy;
+
+        public IGameStateManager gamestateManager;
         protected override void Start()
         {
+            gameInput = FindAnyObjectByType<GameInput>();
             lockon = FindAnyObjectByType<EnemyLockOn>();
             print("setTUT");
             machine = new StateMachine();
@@ -46,10 +53,11 @@ namespace tutorial
             Gancho1 gancho1 = new Gancho1 (this);
             Gancho2 gancho2 = new Gancho2 (this);
             Gancho3 gancho3 = new Gancho3 (this);
+            tutorialStateNum = 0;
             //TrueGancho truegancho = new TrueGancho (this);
-
-
-
+            secondEnemy.gameObject.SetActive (false);
+           enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
+             gamestateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
             machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
@@ -58,12 +66,15 @@ namespace tutorial
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
             machine.AddTransition(esquivar, trueesquivar, new FuncPredicate(() => currentEsquives == 1));
 
-            machine.AddTransition(trueesquivar, esquiveTrasero, new FuncPredicate(() => currentEsquives >= objectiveEsquives));
-            machine.AddTransition(esquiveTrasero, ataquep1, new FuncPredicate(() => changeTutWait == true));
-            machine.AddTransition(ataquep1, ataqueP2, new FuncPredicate(() => changeTutWait == true));
+            machine.AddTransition(trueesquivar, esquiveTrasero, new FuncPredicate(() => currentEsquives >= objectiveEsquives && tutorialStateNum == 0));
+            machine.AddTransition(esquiveTrasero, trueesquivar, new FuncPredicate(() => currentEsquives == 1));
+            machine.AddTransition(trueesquivar, ataquep1, new FuncPredicate(() => currentEsquives >= objectiveEsquives && tutorialStateNum == 1));
+
+            //machine.AddTransition(esquiveTrasero, ataquep1, new FuncPredicate(() => changeTutWait == true));
+            machine.AddTransition(ataquep1, ataqueP2, new FuncPredicate(() => currentHits == 1));
             machine.AddTransition(ataqueP2, truePegarTutorial, new FuncPredicate(() => currentHits == 1));
             machine.AddTransition(truePegarTutorial, esquiPerfP1, new FuncPredicate(() =>currentHits >= objectiveHits));
-            machine.AddTransition(esquiPerfP1, esquiPerfP2, new FuncPredicate(() => changeTutWait == true));
+            machine.AddTransition(esquiPerfP1, esquiPerfP2, new FuncPredicate(()=>changeTutWait == true));
             machine.AddTransition(esquiPerfP2, trueEsquivePerf, new FuncPredicate(() => currentEsqPerf == 1));
             machine.AddTransition(trueEsquivePerf, gancho1, new FuncPredicate(() => currentEsqPerf >= objectiveEsqPerf));
             machine.AddTransition(gancho1, gancho2, new FuncPredicate(() => changeTutWait == true));
@@ -77,6 +88,10 @@ namespace tutorial
 
 
 
+        }
+        public void changeTutWaitSet(bool set)
+        {
+            changeTutWait = set;
         }
 
     public void startWaitEnemy()
@@ -100,11 +115,8 @@ namespace tutorial
         public override void OnEnter()
         {
             
-            tutorial.TutorialText.text = $"Cuando enfocas a un enemigo se mostrará una interfaz para saber sobre qué dirección se ataca o esquiva. Cuando un enemigo ataque se mostrarán en rojo las direcciones donde NO tienes que esquivar. Para esquivar presiona “espacio” o “BOTON ESQUIVE”.";
-            tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = false;
+            tutorial.TutorialText.text = $"Mientras enfocas a un enemigo podrás esquivar pulsando <Espacio>. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>.";
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
-
-            tutorial.startWaitEnemy();
             tutorial.player.subscribeToDodgeAttack(esquive);
 
 
@@ -130,13 +142,24 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(5);
-            tutorial.changeTutWait = false;
+            tutorial.currentEsquives = 0;
+            tutorial.tutorialStateNum = 1;
+            tutorial.player.subscribeToDodgeAttack(esquive);
+            tutorial.secondEnemy.gameObject.SetActive(true);
+            tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
+            tutorial.TutorialText.text = $"Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  <Espacio> sin ninguna dirección.";
+            
+        }
+        public void esquive(HitDirections d)
+        {
+            Debug.Log("Esquive");
+            tutorial.currentEsquives++;
+        }
+        public override void OnExit()
+        {
+            tutorial.player.unSubscribeToDodgeAttack(esquive);
 
-            
-            tutorial.TutorialText.text = $"Buenos reflejos campeón. Hay ciertos ataques que te vendrán del exterior. Si tienes a un enemigo fijado se te mostrará en la interfaz un símbolo “!”. " +
-                $"Cuando aparezca presiona el botón de esquive y muévete hacia atrás. Si no tienes ningún enemigo fijado, con presionar el botón de esquive servirá.";
-            
         }
     }
     public class AtaqueP1 : BaseTutorialState
@@ -148,11 +171,25 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(15);
-            tutorial.changeTutWait = false;
-            
-            tutorial.TutorialText.text = $"Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione “click derecho” o “BOTON ATAQUE”. " +
-                $"En caso de que quieras hacer un ataque hacia la izquierda o derecha muévase en esa dirección a la vez que atacas.";
+            tutorial.secondEnemy.gameObject.SetActive(false);
+            tutorial.enemy.GetComponent<DamageReceiver>().setDodge(false);
+            tutorial.enemy.GetComponent<DamageReceiver>().clearDirection();
+
+            tutorial.currentHits = -1;
+            tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
+
+            tutorial.TutorialText.text = $"Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione <CLICK DERECHO> + <DIRECCIÓN>.";
+        }
+        public void enemyHit(int currentLife)
+        {
+            tutorial.currentHits++;
+        }
+        public override void OnExit()
+        {
+            base.OnExit();
+            tutorial.enemy.unSubscribeToLifeChange(enemyHit);
+
         }
     }
     public class TruePegarTutorial : BaseTutorialState
@@ -164,7 +201,6 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.currentHits--;
             tutorial.TutorialText.text = $"Realiza {tutorial.objectiveHits - tutorial.currentHits} ataques.";
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
@@ -174,7 +210,7 @@ namespace tutorial
 
         public void enemyHit(int currentLife)
         {
-            tutorial.currentHits--;
+            tutorial.currentHits++;
             tutorial.TutorialText.text = $"Realiza {tutorial.objectiveHits - tutorial.currentHits} ataques.";
 
         }
@@ -193,7 +229,8 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.currentHits = -1;
-            tutorial.TutorialText.text = $"Los enemigos pueden bloquear, si atacas en la dirección  en la que bloquean el enemigo no sufren daño y en ocasiones pueden realizarar un contraataque.Atacale para hacerle daño."; tutorial.enemy.subscribeToLifeChange(enemyHit);
+            tutorial.TutorialText.text = $"Los enemigos pueden bloquear, si atacas en la dirección en la que bloquean el enemigo no sufren daño y en ocasiones pueden realizarar un contraataque. Fijate en sus movimientos y golpeale correctamente"; 
+            tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
 
 
@@ -219,10 +256,11 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(15);
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = $"Se ve que sabes usar esos puños, pero ¿sabes cómo recuperar fuerzas? Para curarte hay dos maneras: tocando botiques que encontrarás por el camino o haciendo contrataque a los enemigos. " +
-                $"Eso sí, dicho contraataque solo recuperará el daño recibido en el último ataque. Si poses menos corazones que daño recibido caerás en combate así que ten mucho cuidado.";
+            tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(4);
+            tutorial.TutorialText.text = "";
+            //tutorial.TutorialText.text = $"Se ve que sabes usar esos puños, pero ¿sabes cómo recuperar fuerzas? Para curarte hay dos maneras: tocando botiques que encontrarás por el camino o haciendo contrataque a los enemigos. " +
+            //    $"Eso sí, dicho contraataque solo recuperará el daño recibido en el último ataque. Si poses menos corazones que daño recibido caerás en combate así que ten mucho cuidado.";
 
         }
     }
@@ -235,14 +273,27 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(15);
-            tutorial.TutorialText.text = $"Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque que provoque el doble de daño. Pruebalo";
+            Time.timeScale = 0;
+
+            tutorial.TutorialText.text = $"Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador. Pulsa <ESPACIO> para hacer el esquive perfecto";
+          //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
         }
         public void Parry(object sender, stateData e)
         {
-            tutorial.currentEsqPerf++;
+            if (e.currentState == GameState.SlowDown)
+            {
 
+                tutorial.currentEsqPerf++;
+            }
+        }
+        public override void Update()
+        {
+            base.Update();
+            if (tutorial.gameInput.DashPressed)
+            {
+                tutorial.gamestateManager.slowDown();
+            }
         }
         public override void OnExit()
         {
@@ -334,7 +385,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-
+            tutorial.currentEsquives = 1;
             tutorial.TutorialText.text = $"Esquiva {tutorial.objectiveEsquives - tutorial.currentEsquives} ataques.";
             tutorial.player.subscribeToDodgeAttack(esquive);
 

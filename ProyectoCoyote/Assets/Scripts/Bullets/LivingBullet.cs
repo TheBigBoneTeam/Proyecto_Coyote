@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CombatEffect;
+using UnityEngine;
 
 public class LivingBullet : baseBullet
 {
@@ -12,5 +13,10 @@ public class LivingBullet : baseBullet
         }
         base.StartBulletMovement(shooter, spawnPoint, objective);
         GetComponent<BombEnemyAssetBehaviourRunner>().Fly();
+    }
+
+    public override void destroyFunc()
+    {
+        GetComponent<Enemy>().Die();
     }
 }

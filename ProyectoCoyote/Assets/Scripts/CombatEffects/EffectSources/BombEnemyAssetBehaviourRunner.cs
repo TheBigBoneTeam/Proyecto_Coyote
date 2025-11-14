@@ -2,12 +2,16 @@ using BehaviourAPI.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
     public PushPerception ChosenAsAmmo { get; private set; }
     public PushPerception flyPerception { get; private set; }
 
     [SerializeField] BullEnemyAssetBehaviourRunner _currentHeavy;
+
+
+    UnityEvent<BombEnemyAssetBehaviourRunner, bool> chargeAction;
     
     public BullEnemyAssetBehaviourRunner currentHeavy
     {
@@ -59,22 +63,34 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public void startCharging()
     {
         charging = true;
+        chargeAction?.Invoke(this,true);
     }
     public override void restart()
     {
         base.restart();
-        gameObject.GetComponentInChildren<Renderer>().material.color = Color.red;
+        chargeAction?.Invoke(this, false);
+        chargeAction = new UnityEvent<BombEnemyAssetBehaviourRunner, bool>();
         charging = false;
-        if (_currentHeavy != null)
+        if (currentHeavy != null)
         {
-            if (_currentHeavy.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
-            {
-                _currentHeavy.GetComponent<Enemy>().unSubscribeToDie(HeavyDie);
-            }
-            _currentHeavy = null;
+            ChosenAsAmmo.Fire();
         }
     }
-
+    private void OnDisable()
+    {
+        if (charging)
+        {
+            chargeAction?.Invoke(this, false);
+            if (_currentHeavy != null)
+            {
+                if (_currentHeavy.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+                {
+                    _currentHeavy.GetComponent<Enemy>().unSubscribeToDie(HeavyDie);
+                }
+                _currentHeavy = null;
+            }
+        }
+    }
     public void hitByPlayer()
     {
         print("hitByPlayer");
@@ -89,5 +105,15 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public void Fly()
     {
         flyPerception?.Fire();
+        chargeAction?.Invoke(this,false);
+    }
+
+    public void subscribeToCharge(UnityAction<BombEnemyAssetBehaviourRunner, bool> response)
+    {
+         chargeAction.AddListener(response);
+    }
+    public void unSubscribeToCharge(UnityAction<BombEnemyAssetBehaviourRunner, bool> response)
+    {
+        chargeAction.RemoveListener(response);
     }
 }

@@ -56,9 +56,12 @@ public class combatAreaManager : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        print("trigger"+other.gameObject.name);
+      
+
         if (other.GetComponent<Player>() != null)
         {
+            print("trigger" + other.gameObject.name);
+            print("triggerpn" + transform.parent.name);
             if (!started)
             {
 
@@ -72,9 +75,26 @@ public class combatAreaManager : MonoBehaviour
     {
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
         gameStateManager.subscribeToRestart(restart);
+        gameStateManager.subscribeToStateChange(StateChange);
         setAreas();
         restart();
 
+    }
+
+    private void StateChange(object sender, stateData e)
+    {
+        //if(e.currentState == GameState.DeathScreen)
+        //{
+        //    foreach (var wave in functionalWaveDataList)
+        //    {
+        //        print(name);
+        //        foreach (var enemy in wave.enemies)
+        //        {
+        //            enemy.activateEnemy(false);
+
+        //        }
+        //    }
+        //}
     }
 
     private void setAreas()
@@ -146,7 +166,7 @@ public class combatAreaManager : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
-        if (beforeCombatStoryAction != null && !functionalWaveDataList[0].finished)
+        if (beforeCombatStoryAction != null && !functionalWaveDataList[0].waveFinished)
         {
             beforeCombatStoryAction.Execute(() =>
             {
@@ -165,7 +185,18 @@ public class combatAreaManager : MonoBehaviour
     {
         
          currentWaveData = functionalWaveDataList[currentWaveIndex];
-        if (currentWaveData.finished == false)
+        if(currentWaveIndex>0 && currentWaveData.spawnPoint != null)
+        {
+            for (int i = currentWaveIndex - 1; i >= 0; i--)
+            {
+                if (functionalWaveDataList[i].waveFinished)
+                {
+                    break;
+                }
+                functionalWaveDataList[i].waveFinished = true;
+            }
+        }
+        if (currentWaveData.waveFinished == false)
         {
             if (currentWaveData.Covers != null && currentWaveData.Covers.Length > 0)
             {
@@ -192,6 +223,7 @@ public class combatAreaManager : MonoBehaviour
                 finalStartWave();
             }
         }else  {
+            print("WavwCandelled");
             waveFinished();
         }
 
@@ -205,6 +237,7 @@ public class combatAreaManager : MonoBehaviour
             baseBullet bullet = enemy.GetComponent<baseBullet>();
             if(bullet != null)
             {
+                currentAmmo ??= new List<baseBullet>();
                 currentAmmo.Add(bullet);
             }
         }
@@ -283,9 +316,9 @@ public class combatAreaManager : MonoBehaviour
         }
         else
         {
-            if (functionalWaveDataList[currentWaveIndex].spawnPoint != null)
+            if (functionalWaveDataList[currentWaveIndex].spawnPoint != null && functionalWaveDataList[currentWaveIndex].autoStart)
             {
-                currentWaveData.finished = true;
+                currentWaveData.waveFinished = true;
             }
             currentWaveData = functionalWaveDataList[currentWaveIndex];
             if (currentWaveData.colliderTurnOffBefore)
@@ -376,7 +409,7 @@ public class WaveData
     public Cover[] Covers;
     public baseBullet[] ammo;
     public Transform spawnPoint;
-   public bool finished;
+   public bool waveFinished;
    public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint)
     {
         this.enemies = enemies;
@@ -386,6 +419,6 @@ public class WaveData
         this.Covers = covers;
         this.ammo = ammo;
         this.spawnPoint = spawnpoint;
-        finished = false;
+        waveFinished = false;
     }
 }

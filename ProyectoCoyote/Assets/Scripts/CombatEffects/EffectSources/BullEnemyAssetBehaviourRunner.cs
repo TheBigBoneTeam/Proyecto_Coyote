@@ -21,6 +21,7 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
                 if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
                 {
                     _currentAmmo.GetComponent<Enemy>().unSubscribeToDie(BombEnemyDie);
+                    _currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>().currentHeavy = null;
                 }
             }
             _currentAmmo = value;
@@ -44,14 +45,6 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         base.restart();
         enemy.CombatArea.subscribeToAmmoChange(checkAmmoVoid);
-        if (_currentAmmo != null)
-        {
-            if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
-            {
-                _currentAmmo.GetComponent<Enemy>().unSubscribeToDie(BombEnemyDie);
-            }
-            _currentAmmo = null;
-        }
     }
     private void OnDisable()
     {
@@ -63,6 +56,14 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             {
                 enemy.CombatArea.changeInAmmoOwnership();
             }
+        }
+        if (_currentAmmo != null)
+        {
+            if (_currentAmmo.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
+            {
+                _currentAmmo.GetComponent<Enemy>().unSubscribeToDie(BombEnemyDie);
+            }
+            _currentAmmo = null;
         }
     }
     void checkAmmoVoid()

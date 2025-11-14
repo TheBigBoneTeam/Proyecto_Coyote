@@ -266,13 +266,17 @@ public class WalkToPlayerActionCircle : UnityAction
         
         player = GameObject.FindAnyObjectByType<Player>();
         CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getPoint(enemyAI.KungFuCirclePoint, enemyAI.GetComponent<Enemy>());
-        agent.SetDestination(CirclePoint.position);
-        agent.updateRotation = false;
-        Debug.Log("Remaining Distance"+Vector3.Distance(agent.transform.position, CirclePoint.transform.position));
-        if (Vector3.Distance(agent.transform.position,CirclePoint.transform.position) > (agent.stoppingDistance+1f))
+        //CirclePoint = ServiceLocator.Instance.Get<IEnemyManager>().getClosestPoint(enemyAI.GetComponent<Enemy>(),out int index);
+        if (CirclePoint != null)
         {
-            correctingPos = true;
-            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+            agent.SetDestination(CirclePoint.position);
+            agent.updateRotation = false;
+            Debug.Log("Remaining Distance" + Vector3.Distance(agent.transform.position, CirclePoint.transform.position));
+            if (Vector3.Distance(agent.transform.position, CirclePoint.transform.position) > (agent.stoppingDistance + 1f))
+            {
+                correctingPos = true;
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+            }
         }
     }
 

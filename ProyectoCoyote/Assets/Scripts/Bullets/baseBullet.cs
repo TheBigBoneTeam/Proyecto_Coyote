@@ -6,17 +6,17 @@ public class baseBullet : Attack, IBullet
 {
     [SerializeField] Vector3 objective;
     [SerializeField] public float speed;
-    [SerializeField] float lifeTime;
+    [SerializeField] protected float lifeTime;
 
-    [SerializeField] bool Infinite;
+    [SerializeField] protected bool Infinite;
 
     public bool hit;
 
     [SerializeField] protected ParticleSystem hitParticle;
     [SerializeField] protected ParticleSystem impactParticle;
 
-    Action<baseBullet> onFire;
-    Action<baseBullet> beDestroy;
+    protected Action<baseBullet> onFire;
+    protected Action<baseBullet> beDestroy;
 
 
     protected combatAreaManager areaManager;
@@ -25,7 +25,7 @@ public class baseBullet : Attack, IBullet
 
     [SerializeField] protected Animator anim;
 
- [SerializeField]   bool flying;
+ [SerializeField] protected  bool flying;
     protected override void OnTriggerEnter(Collider other)
     {
         print("BulletTrigger" + other.name);
@@ -45,7 +45,7 @@ public class baseBullet : Attack, IBullet
                 if (GetComponentInChildren<MeshRenderer>())
                 GetComponentInChildren<MeshRenderer>().enabled = false;
                 beDestroy?.Invoke(this);
-                Destroy(gameObject, 0.5f);
+                destroyFunc();
 
             }
         } else if (!other.isTrigger)
@@ -58,12 +58,16 @@ public class baseBullet : Attack, IBullet
             }
             flying = false;
             beDestroy?.Invoke(this);
-            Destroy(gameObject, 0.5f);
+            destroyFunc();
         }
         print("??");
 
     }
+    public virtual void destroyFunc()
+    {
+        Destroy(gameObject, 0.5f);
 
+    }
     private void Update()
     {
         if (flying)
@@ -74,7 +78,7 @@ public class baseBullet : Attack, IBullet
                 if (lifeTime <= 0)
                 {
                     beDestroy?.Invoke(this);
-                    Destroy(gameObject);
+                    destroyFunc();
                 }
             }
             transform.Translate(Vector3.forward * speed * Time.deltaTime);

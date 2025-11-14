@@ -50,17 +50,61 @@ public class EnemyManager: IEnemyManager
 
     }
 
-    //public Transform getClosestPoint(Enemy owner, out int index)
-    //{
-    //    Vector3 playerPos = player.transform.position;
-    //    Vector3 enemyPos = owner.transform.position;
+    public Transform getClosestPoint(Enemy owner, out int index)
+    {
+        Vector3 playerPos = player.transform.position;
+        Vector3 enemyPos = owner.transform.position;
 
-    //    int 
-    //    if(playerPos.z > enemyPos.z)
-    //    {
-
-    //    }
-    //}
+        int zOption = (enemyPos.z > playerPos.z) ? 0 : 2;
+        int xOption = (enemyPos.x > playerPos.x) ? 1 : 3;
+        
+        if(Mathf.Abs(enemyPos.z) >= Mathf.Abs(enemyPos.x)){
+            index = zOption;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = xOption;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = (zOption + 2) % 4;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = (xOption + 2) % 4;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+        }
+        else
+        {
+            index = xOption;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = zOption;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = (xOption + 2) % 4;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+            index = (zOption + 2) % 4;
+            if (mainKungFuPoints[index].checkOwner(owner))
+            {
+                return mainKungFuPoints[index].transform;
+            }
+        }
+        return null;
+    }
 
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
 
@@ -72,8 +116,8 @@ public interface IEnemyManager:IService
    // ClassMutex<EnemyAI> enemyClassMutex();
     ClassMutex<EnemyAI> attackingEnemy();
     public Transform getPoint(int index, Enemy owner);
-
-
+    public bool returnPoint(int index, Enemy owner);
+    public Transform getClosestPoint(Enemy owner, out int index);
 
 }
 public class ClassMutex<T> where T : Object, IMutex

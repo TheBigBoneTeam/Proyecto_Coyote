@@ -21,6 +21,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
 
     Dictionary<AGameCharacter, Attack> currentAttacksDictionary;
     List<baseBullet>currentBullets;
+    List<BombEnemyAssetBehaviourRunner> currentExplosions;
  
     [SerializeField] Vector3 paddingPosition;
 
@@ -35,6 +36,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         currentBullets = new List<baseBullet>();
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
         currentAttacksDictionary = new Dictionary<AGameCharacter,Attack>();
+        currentExplosions = new List<BombEnemyAssetBehaviourRunner>();
         middleDanger.SetActive(false);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(CombatAreaChange);
         player = GetComponentInParent<Player>();
@@ -60,13 +62,21 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         middleDanger.SetActive(false);
         foreach (var enemy in data.enemies)
         {
-            print("subcribe");
-            enemy.attack.subscribeToStateChange(AttackHappeneed);
-            enemy.subscribeToDie(enemyDie);
-            Gun gun = enemy.GetComponent<Gun>();
-            if (gun)
+            BombEnemyAssetBehaviourRunner bombRunner = enemy.GetComponent<BombEnemyAssetBehaviourRunner>();
+            if (bombRunner != null)
             {
-                gun.subscribeToShoot(shootGun);
+                bombRunner.subscribeToCharge(chargeExplosion);
+            }
+            else
+            {
+                print("subcribe");
+                enemy.attack.subscribeToStateChange(AttackHappeneed);
+                enemy.subscribeToDie(enemyDie);
+                Gun gun = enemy.GetComponent<Gun>();
+                if (gun)
+                {
+                    gun.subscribeToShoot(shootGun);
+                }
             }
         }
     }
@@ -92,8 +102,10 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     }
     private void enemyDie(AGameCharacter enemy)
     {
+        currentAttacksDictionary.Remove(enemy);
         enemy.attack.unSubscribeToStateChange(AttackHappeneed);
         enemy.unSubscribeToDie(enemyDie);
+        AttackStateChange();
     }
 
     protected void setUp()
@@ -146,6 +158,11 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public void AttackHappeneed(Attack.AttackState state)
     {
         print("Attack Happened");
+        if(state.Owner == null)
+        {
+            print("NULL OWNER");
+            return;
+        }
         if (state.attack == null)
         {
             print("Attack is Null");
@@ -188,6 +205,11 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             }
         }
         foreach(baseBullet bullet in currentBullets)
+        {
+            anyOutsideAttack = true;
+            //Cambiar algo dependiendo de la cercania y tal
+        }
+        foreach (BombEnemyAssetBehaviourRunner bomb in currentExplosions)
         {
             anyOutsideAttack = true;
             //Cambiar algo dependiendo de la cercania y tal
@@ -284,4 +306,21 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         obj.GetComponent<Image>().color = new Color(on ? 0 : 1, 0,0,1);
 
     }
+   
+    internal void chargeExplosion(BombEnemyAssetBehaviourRunner enemy,bool isCharging)
+    {
+        if (isCharging)
+        {
+            if (!currentExplosions.Contains(enemy))
+            {
+                currentExplosions.Add(enemy);
+            }
+        }
+        else
+        {
+            currentExplosions.Remove(enemy);
+        }
+        AttackStateChange();
+    }
+
 }

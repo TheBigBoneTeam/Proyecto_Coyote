@@ -36,7 +36,14 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     }
     public void setUnsafe()
     {
-        isUnsafe = !currentCover.checkSafe(player.transform, currentCoverHidePos);
+        if (currentCover == null)
+        {
+            isUnsafe = true;
+        }
+        else
+        {
+            isUnsafe = !currentCover.checkSafe(player.transform, currentCoverHidePos);
+        }
         print("unsafe==" +isUnsafe);
     }
     public void setCover(Cover cover, int coverindex)

@@ -535,7 +535,6 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(ResetDash), dashDuration);
     }
 
-
     private void Dodge()
     {
         if (dodgeCdTimer > 0) return;

@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] protected List<AudioProducer> normalSounds;
     [Tooltip("Max 5 canales de música")] [SerializeField] protected AudioProducer[] musicSounds = new AudioProducer[5];
     protected List<AudioSource> pausedSounds = new List<AudioSource>();
+    Player player;
 
     IGameStateManager gameStateManager;
 
@@ -48,6 +49,15 @@ public class AudioManager : MonoBehaviour
         {
             // musicSounds[i] = null;
         }
+
+        // Se suscribe
+        player = FindAnyObjectByType<Player>();
+        player.subscribeToDodgeAttack(DodgeAttack);
+    }
+
+    private void DodgeAttack(HitDirections arg0)
+    {
+        AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, true);
     }
 
     private void OnGameStateChange(object sender, stateData stateInfo)

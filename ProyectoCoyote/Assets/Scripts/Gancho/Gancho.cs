@@ -135,6 +135,7 @@ public class Gancho : MonoBehaviour
             movement.animator.CrossFade("Grapple_03", 0.2f);
             // SFX Lanzar gancho
             AudioManager.Instance.PlaySimpleSound("SFX - Releasing Hook", false, Vector2.zero, true, true);
+            AudioManager.Instance.PlaySimpleSound("SFX - Revolver girando", false, Vector2.zero, true, true);
         }
 
         if (isHooked)

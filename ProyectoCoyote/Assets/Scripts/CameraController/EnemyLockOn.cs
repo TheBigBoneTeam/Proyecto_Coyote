@@ -55,20 +55,6 @@ public class EnemyLockOn : MonoBehaviour
         if (gameInput == null) gameInput = GetComponentInParent<GameInput>();
 
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
-
-        // Buscar las UIs móviles por nombre en la escena
-        UIMobile_Combat = GameObject.Find("MobileUI_Combat");
-        UIMobile_NonCombat = GameObject.Find("MobileUI_NonCombat");
-
-        if (UIMobile_Combat == null)
-            Debug.LogWarning("[EnemyLockOn] No se encontró el canvas 'MobileUI_Combat' en la escena.");
-
-        if (UIMobile_NonCombat == null)
-            Debug.LogWarning("[EnemyLockOn] No se encontró el canvas 'MobileUI_NonCombat' en la escena.");
-
-        // Estado inicial: sin combate
-        if (UIMobile_NonCombat != null) UIMobile_NonCombat.SetActive(true);
-        if (UIMobile_Combat != null) UIMobile_Combat.SetActive(false);
     }
 
     void Update()
@@ -136,9 +122,12 @@ public class EnemyLockOn : MonoBehaviour
         enemyLocked = true;
 
         Debug.Log("Enemigo encontrado");
+
         // Se activa la interfaz de movil de combate
-        // UIMobile_Combat.SetActive(true);
-        // UIMobile_NonCombat.SetActive(false);
+        if (MobileUIManager.Instance != null)
+        {
+            MobileUIManager.Instance.SetCombatUI();
+        }
     }
 
     // Resetear el lock
@@ -155,9 +144,12 @@ public class EnemyLockOn : MonoBehaviour
         //    enemyDefenseAttackUIIndicator.setCharacter(null);
 
         Debug.Log("Volviendo a modo SIN lockear");
-        // Se desactiva la interfaz de movil de combate
-        // UIMobile_Combat.SetActive(false);
-        // UIMobile_NonCombat.SetActive(true);
+
+        // Se activa la interfaz de movil de combate
+        if (MobileUIManager.Instance != null)
+        {
+            MobileUIManager.Instance.SetNonCombatUI();
+        }
     }
 
     // Escanear alrededores en busca de enemigos

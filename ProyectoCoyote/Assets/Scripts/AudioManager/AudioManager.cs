@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
             // musicSounds[i] = null;
         }
 
-        // Se suscribe
+        // Encuentra un jugador y se suscribe al metodo de bloqueo
         player = FindAnyObjectByType<Player>();
         player.subscribeToDodgeAttack(DodgeAttack);
     }

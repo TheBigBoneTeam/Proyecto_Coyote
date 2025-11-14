@@ -17,6 +17,7 @@ public class WaveCaller : MonoBehaviour
             if (!started)
             {
                 combatAreaManager.startWaveExternal(waveIndex);
+                started = true;
             }
         }
     }

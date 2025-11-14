@@ -336,6 +336,11 @@ public class combatAreaManager : MonoBehaviour
     {
         if (!started)
         {
+            currentWaveIndex = wave;
+            for (int i = currentWaveIndex - 1; i >= 0; i--)
+            {
+                functionalWaveDataList[i].waveFinished = true;
+            }
             startArea();
             return;
         }

@@ -25,7 +25,7 @@ public abstract class AGameCharacter :MonoBehaviour
   [SerializeField] protected Vector3 startPos;
 
     [SerializeField]  bool print;
-
+    [SerializeField] Renderer renderer;
     public Attack attack { get; private set; }
 
 
@@ -38,6 +38,10 @@ public abstract class AGameCharacter :MonoBehaviour
         dodgeAttackEvent = new UnityEvent<HitDirections>();
         dieEvent = new UnityEvent<AGameCharacter>();
         attack = GetComponentInChildren<Attack>();
+        if (renderer == null)
+        {
+            renderer= GetComponentInChildren<Renderer>();
+        }
     }
     protected virtual void Start()
     {
@@ -100,16 +104,15 @@ public abstract class AGameCharacter :MonoBehaviour
     IEnumerator ResetInvincible(float time)
     {
         float timepass = 0;
-        Renderer filter = GetComponentInChildren<Renderer>();
 
         while ((timepass<time))
         {
             yield return new WaitForSeconds(0.1f);
-            filter.enabled = !filter.enabled;
+            renderer.enabled = !renderer.enabled;
             timepass+=0.1f;
 
         }
-        filter.enabled = true;
+        renderer.enabled = true;
 
         invincible = false;
     }

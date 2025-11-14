@@ -530,6 +530,7 @@ MonoBehaviour:
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
   print: 0
+  renderer: {fileID: 8180094521649531177}
   storedDamage: 0
 --- !u!114 &3355173975873023152
 MonoBehaviour:
@@ -555,6 +556,7 @@ MonoBehaviour:
   maxNoticeAngle: 180
   cooldown: 5
   OffsetFinalPos: 5
+  navMesh: {fileID: 0}
   selectingHook: 0
   isHooked: 0
 --- !u!114 &2367592577155981960
@@ -804,7 +806,7 @@ MonoBehaviour:
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
-  <HitDirections>k__BackingField: 
+  <HitDirectionsList>k__BackingField: 
   attackStateEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1567,6 +1569,11 @@ PrefabInstance:
 --- !u!4 &799134844055698355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8410106744554083838, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
+  m_PrefabInstance: {fileID: 9196820405481958989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8180094521649531177 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1018978784232793956, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
   m_PrefabInstance: {fileID: 9196820405481958989}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8313859039731503900 stripped

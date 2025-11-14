@@ -31,7 +31,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
   [SerializeField]  EnemyLockOn lockOn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   protected virtual void Start()
     {
         currentBullets = new List<baseBullet>();
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
@@ -81,14 +81,14 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
     }
 
-    private void shootGun(baseBullet bullet)
+    protected void shootGun(baseBullet bullet)
     {
         bullet.subscribeToDestroy(bulletDestroy);
         print(bullet.owner);
         currentBullets.Add(bullet);
         AttackStateChange();
     }
-    private void bulletDestroy(baseBullet bullet)
+    protected void bulletDestroy(baseBullet bullet)
     {
         currentBullets.Remove(bullet);
         AttackStateChange();
@@ -100,7 +100,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         //    }
         //}
     }
-    private void enemyDie(AGameCharacter enemy)
+    protected void enemyDie(AGameCharacter enemy)
     {
         currentAttacksDictionary.Remove(enemy);
         enemy.attack.unSubscribeToStateChange(AttackHappeneed);

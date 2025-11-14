@@ -5,7 +5,7 @@ using UnityEngine;
 public class Reaction:ACombatEffectSource
 {
     public string animName;
-    EnemyAI enemyAI;
+   protected EnemyAI enemyAI;
 
 
     private void Start()
@@ -13,7 +13,7 @@ public class Reaction:ACombatEffectSource
         enemyAI = GetComponentInParent<EnemyAI>();
     }
 
-    public void startReaction()
+    public virtual void startReaction()
     {
        // print("reaction" +animName);
         enemyAI.LoadAction(animName);
@@ -45,3 +45,4 @@ public class Reaction:ACombatEffectSource
         }
     }
 }
+

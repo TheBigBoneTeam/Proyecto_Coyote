@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class timelineDirector : MonoBehaviour, IcutsceneManager
@@ -163,6 +164,7 @@ public class StoryAction
         switch (actionType)
         {
             case StoryActionType.changeScene:
+                SceneManager.LoadScene(nameKey);
                 break;
             case StoryActionType.startCutscene:
                 if (!playOnRestart && played)

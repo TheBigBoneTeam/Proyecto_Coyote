@@ -40,6 +40,9 @@ public class Gancho : MonoBehaviour
     private Image _hookImageUI;
     HookObserver hookObserver;
     [SerializeField] GameObject navMesh;
+    private bool hookAttackBuffer = false;
+    private bool canAttack = false;
+
 
     public bool selectingHook;
     public bool isHooked;
@@ -98,6 +101,11 @@ public class Gancho : MonoBehaviour
 
             if (Blocked(currentTarget.position, currentTarget))
                 ResetTarget();
+        }
+
+        if (gameInput.AttackPressed && canAttack)
+        {
+            hookAttackBuffer = true;
         }
     }
     public void HookLogic()
@@ -193,7 +201,7 @@ public class Gancho : MonoBehaviour
     }
     public void ResetTarget(bool skipAnimation = false)
     {
-        if(!skipAnimation)movement.animator.CrossFade("Idle_01", 0.2f);
+        if (!skipAnimation) movement.animator.CrossFade("Idle_01", 0.2f);
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
@@ -385,7 +393,7 @@ public class Gancho : MonoBehaviour
             isHooked = true;
 
             DisableCollisions();
-
+            canAttack = true;
 
             selectingHook = false;
             _hookImageUI.color = Color.red;
@@ -469,13 +477,13 @@ public class Gancho : MonoBehaviour
         currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
         var rb = currentTarget.GetComponent<Rigidbody>();
-        if (rb) 
-        { 
+        if (rb)
+        {
             rb.useGravity = false;
         }
     }
 
-    
+
     public void EnableAllCollisions()
     {
         if (currentTarget == null) return;
@@ -484,7 +492,7 @@ public class Gancho : MonoBehaviour
         if (enemy == null) return;
         currentTarget.gameObject.GetComponent<Collider>().enabled = true;
         currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
-        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;  
+        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         var rb = currentTarget.GetComponent<Rigidbody>();
         if (rb)
         {
@@ -504,8 +512,22 @@ public class Gancho : MonoBehaviour
             lockOn.currentTarget = currentTarget;
             lockOn.FoundTarget();
         }
+        canAttack = false;
+        
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         ResetTarget();
+        HookAttack();
+    }
+
+    public void HookAttack()
+    {
+        if (hookAttackBuffer)
+        {
+            movement.animator.CrossFade("Hit_L", .1f);
+            Debug.Log("Gancho patá");
+        }
+            
+        hookAttackBuffer = false;
     }
 
 }

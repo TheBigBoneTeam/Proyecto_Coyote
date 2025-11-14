@@ -96,6 +96,12 @@ public class EnemyAI : MonoBehaviour,IMutex
         print("forcereturn " + name);
         ReturnAttackPriority(currentAction);
     }
+    public void ReturnKungFuPoint()
+    {
+        print("RETURN KUNG FU POINT");
+        enemyManager.returnPoint(KungFuCirclePoint, GetComponent<Enemy>());
+        KungFuCirclePoint = -1;
+    }
     public bool ReturnAttackPriority(int currentAction)
     {
         if (this.currentAction == currentAction)
@@ -180,12 +186,15 @@ public class EnemyAI : MonoBehaviour,IMutex
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
     }
-
+    
     private void DieEvent(AGameCharacter character)
     {
         ReturnAttackPriority(currentAction);
+        enemyManager.returnPoint(KungFuCirclePoint, GetComponent<Enemy>());
+        KungFuCirclePoint = -1;
+
     }
-    
+
     private void Awake()
     {
         _enemyAssetBehaviourRunner = GetComponent<EnemyAssetBehaviourRunner>();

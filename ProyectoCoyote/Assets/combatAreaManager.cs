@@ -123,11 +123,10 @@ public class combatAreaManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    print(getCoverSpot(out Vector3 pos) == null);
-
-        //}
+        if (Input.GetKeyDown(KeyCode.U) && started && !finished)
+        {
+            ServiceLocator.Instance.Get<IEnemyManager>().DebugPositions();
+        }
     }
 
     public void enemyDie(AGameCharacter deadChar)

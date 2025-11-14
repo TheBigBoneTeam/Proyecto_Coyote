@@ -137,8 +137,8 @@ public class EnemyLockOn : MonoBehaviour
 
         Debug.Log("Enemigo encontrado");
         // Se activa la interfaz de movil de combate
-        UIMobile_Combat.SetActive(true);
-        UIMobile_NonCombat.SetActive(false);
+        // UIMobile_Combat.SetActive(true);
+        // UIMobile_NonCombat.SetActive(false);
     }
 
     // Resetear el lock
@@ -156,8 +156,8 @@ public class EnemyLockOn : MonoBehaviour
 
         Debug.Log("Volviendo a modo SIN lockear");
         // Se desactiva la interfaz de movil de combate
-        UIMobile_Combat.SetActive(false);
-        UIMobile_NonCombat.SetActive(true);
+        // UIMobile_Combat.SetActive(false);
+        // UIMobile_NonCombat.SetActive(true);
     }
 
     // Escanear alrededores en busca de enemigos

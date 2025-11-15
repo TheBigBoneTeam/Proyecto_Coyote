@@ -10,7 +10,7 @@ public class SaveManager : ISaveManager
 
         if (File.Exists(dir))
         {
-            return File.ReadAllText(dir);
+         return  File.ReadAllText(dir);
         }
         return null;
     }
@@ -21,15 +21,15 @@ public class SaveManager : ISaveManager
     {
         string dir = Application.persistentDataPath + "/saveData.txt";
         Debug.Log(dir);
-        if (!File.Exists(dir))
-        {
-            File.Create(dir);
+        //if (!File.Exists(dir))
+        //{
+        //    File.Create(dir);
 
-        }
+        //}
         Debug.Log("Escrito");
 
-        //File.Open(dir,FileMode.);
-        File.WriteAllText(dir, sceneName);
+      //  File.Open(dir,FileMode.OpenOrCreate);
+        File.WriteAllText(dir,sceneName);
 
     }
 }

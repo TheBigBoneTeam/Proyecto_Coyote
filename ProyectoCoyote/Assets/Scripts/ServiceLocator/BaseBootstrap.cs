@@ -13,6 +13,7 @@ namespace Services
             ServiceLocator.Instance.Register<IPerfectDodgeManager>(FindFirstObjectByType<PerfectDodgeManager>());
             ServiceLocator.Instance.Register<IEnemyManager>(new EnemyManager());
             ServiceLocator.Instance.Register<IcutsceneManager>(FindFirstObjectByType<timelineDirector>());
+            ServiceLocator.Instance.Register<ISaveManager>(new SaveManager());
 
         }
         private void Update()

@@ -107,6 +107,8 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         {
             SetState(GameState.DeathScreen);
         }
+
+        // AudioManager.Instance.PlaySimpleSound("OST - Derrota", false, Vector2.zero, true, true);
     }
 
     public void Restart()

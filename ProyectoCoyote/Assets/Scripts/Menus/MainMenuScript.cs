@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 public class MainMenuScript : MonoBehaviour
 {
     public int sceneSelector;
+    public void Start()
+    {
+       
+    }
 
     public void ExitGame()
     {
@@ -14,4 +18,5 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(sceneSelector);
     }
+
 }

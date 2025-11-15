@@ -52,7 +52,7 @@ public abstract class AGameCharacter :MonoBehaviour
         HealthPoint -= damage;
         //print($"{name} Recibido daño {damage} Vida actual {HealthPoint}");
         lifeUpdate.Invoke(HealthPoint);
-        AudioManager.Instance.PlaySimpleSound("SFX - Punch", false, Vector2.zero, true, true);
+        AudioManager.Instance.PlaySimpleSound("SFX - Punch", false, Vector2.zero, true, false);
         string extra = "";
         //switch (direction)
         //{
@@ -83,7 +83,7 @@ public abstract class AGameCharacter :MonoBehaviour
         if (crit)
         {
             anim.CrossFade("GetHit"+extra, .1f, 0, 0);
-            AudioManager.Instance.PlaySimpleSound("SFX - Crit", false, Vector2.zero, true, true);
+            AudioManager.Instance.PlaySimpleSound("SFX - Crit", false, Vector2.zero, true, false);
             // anim.CrossFade("GetHit_CRIT"+extra, .1f, 0, 0);
         }
         else

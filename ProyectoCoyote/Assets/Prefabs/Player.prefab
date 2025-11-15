@@ -548,12 +548,9 @@ MonoBehaviour:
   dashCd: 1.5
   dodgeCd: 0
   dashing: 0
-  walkSoundName: PERSONAJE - pisadas ANDAR
-  runSoundName: PERSONAJE - pisadas CORRER
-  stepIntervalWalk: 0.6
-  stepIntervalRun: 0.35
   orientation: {fileID: 8883753195278190126}
   moveDirection: {x: 0, y: 0, z: 0}
+  IsMoving: 0
   gameInput: {fileID: 0}
   animator: {fileID: 0}
   moveLockedSpeed: 3
@@ -1714,6 +1711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6020926924141813085}
+  movement: {fileID: 4037878208120886704}
 --- !u!4 &8659034585346967974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}

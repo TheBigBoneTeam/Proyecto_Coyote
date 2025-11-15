@@ -100,7 +100,7 @@ public class EnemyLockOn : MonoBehaviour
             ResetTarget();
 
         Debug.Log("Modo Lock activado");
-        AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+        AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
     }
 
     // Se ha encontrado un enemigo válido

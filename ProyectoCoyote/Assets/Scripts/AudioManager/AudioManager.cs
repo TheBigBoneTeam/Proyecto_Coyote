@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
     private void DodgeAttack(HitDirections arg0)
     {
-        AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, true);
+        AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, false);
     }
 
     private void OnGameStateChange(object sender, stateData stateInfo)

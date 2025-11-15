@@ -90,7 +90,7 @@ public class Gancho : MonoBehaviour
         {
             Debug.Log("Activando el gancho...");
             ActivateTargetHook();
-            AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+            AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
         }
 
 
@@ -117,26 +117,26 @@ public class Gancho : MonoBehaviour
             if (gameInput.Hook_SelectUp)
             {
                 currentTarget = FindDirectionalTarget(false, true);
-                // SFX Seleccionar gancho
-                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+                // SFX Seleccionar objetivo arriba
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
             }
             else if (gameInput.Hook_SelectDown)
             {
                 currentTarget = FindDirectionalTarget(false, false);
-                // SFX ?
-                // AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+                // SFX Seleccionar objetivo abajo
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
             }
             else if (gameInput.Hook_SelectRight)
             {
                 currentTarget = FindDirectionalTarget(true, false);
-                // SFX Elegir otro enemigo
-                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+                // SFX Seleccionar objetivo derecha
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
             }
             else if (gameInput.Hook_SelectLeft)
             {
                 currentTarget = FindDirectionalTarget(false, false);
-                // SFX Elegir otro enemigo
-                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, true);
+                // SFX Seleccionar objetivo izquierda
+                AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
             }
         }
         // Selecionar objeto 
@@ -145,9 +145,8 @@ public class Gancho : MonoBehaviour
             SelectTarget();
             movement.animator.CrossFade("Grapple_03", 0.2f);
             // SFX Lanzar gancho
-            AudioManager.Instance.PlaySimpleSound("SFX - Releasing Hook", false, Vector2.zero, true, true);
-            AudioManager.Instance.PlaySimpleSound("SFX - Revolver girando", false, Vector2.zero, true, true);
-            
+            AudioManager.Instance.PlaySimpleSound("SFX - Releasing Hook", false, Vector2.zero, true, false);
+            AudioManager.Instance.PlaySimpleSound("SFX - Revolver girando", false, Vector2.zero, true, false);
         }
 
         if (isHooked && !selectingHook)
@@ -158,7 +157,7 @@ public class Gancho : MonoBehaviour
                 StartCoroutine(Cooldown());
                 hookController.HookUsed();
                 // SFX CABLE
-                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, true);
+                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, false);
 
             }
             else if (gameInput.Hook_SelectUp)
@@ -167,12 +166,10 @@ public class Gancho : MonoBehaviour
                 StartCoroutine(Cooldown());
                 hookController.HookUsed();
                 // SFX CABLE
-                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, true);
+                AudioManager.Instance.PlaySimpleSound("SFX - Cable", false, Vector2.zero, true, false);
             }
         }
     }
-
-
 
     public void ActivateTargetHook()
     {

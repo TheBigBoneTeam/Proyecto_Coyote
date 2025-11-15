@@ -50,7 +50,6 @@ public class Player : AGameCharacter
         gameObject.SetActive(true);
         base.restart();
         GetComponent<Rigidbody>().isKinematic = false;
-
         playerMovement.setCanAttack(true);
         playerMovement.setCanMove(true);
         lockOn.ResetTarget();
@@ -64,8 +63,15 @@ public class Player : AGameCharacter
         playerMovement = GetComponent<PlayerMovement>();    
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(combatAreaChange);
+
         lockOn = GetComponent<EnemyLockOn>();
         hook = GetComponent<Gancho>();
+    }
+
+    private void combatAreaChange(combatAreaManager manager, WaveData data)
+    {
+        setHealthPoint(_maxHealthPoint);
     }
 
     private void StateChange(object sender, stateData e)

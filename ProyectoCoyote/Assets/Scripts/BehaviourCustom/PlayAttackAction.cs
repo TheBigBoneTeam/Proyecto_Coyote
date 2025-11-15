@@ -31,6 +31,7 @@ public class PlayAttackAction : UnityAction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    public override void Start()
     {
+        Debug.Log(attack);
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
        enemyAI.LoadAction(attack);
     }

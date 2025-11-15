@@ -160,7 +160,7 @@ public class ClassMutex<T> where T : Object, IMutex
                 }
             }
 
-            Debug.Log($"Permiso de ataque no concedido, el permiso lo tiene {Owner}");
+            Debug.Log($"Permiso de ataque no concedido a {offerer}, el permiso lo tiene {Owner}");
             return false;
         }
     }
@@ -175,6 +175,7 @@ public class ClassMutex<T> where T : Object, IMutex
             {
                 queue.Remove(returner);
             }
+            Debug.Log($"{returner} cantremovepermission  it belongs to {Owner}");
             return false;
         }
         else
@@ -184,7 +185,7 @@ public class ClassMutex<T> where T : Object, IMutex
                 T newowner = queue[0];
                 queue.RemoveAt(0);
                 Owner = newowner;
-                Owner.givePriority();
+                newowner.givePriority();
             }
             else
             {

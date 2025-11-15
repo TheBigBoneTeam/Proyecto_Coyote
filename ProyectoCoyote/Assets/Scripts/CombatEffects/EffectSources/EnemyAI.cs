@@ -32,6 +32,8 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     EnemyAssetBehaviourRunner _enemyAssetBehaviourRunner;
 
+  [SerializeField] public bool hasPriority;
+
     public bool currentActionIsIdle { get; private set; }
     #region Calculo Distancia Jugador
 
@@ -88,11 +90,13 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public bool TryGetAttackPriority()
     {
-      //  print("TryGetAttackPriority");
-        return enemyManager.attackingEnemy().getPermission(this,isLocked());
+        hasPriority = enemyManager.attackingEnemy().getPermission(this, isLocked());
+         print("TryGetAttackPriority"+hasPriority+name);
+        return hasPriority;
     }
     public void forcedReturnAttackPriority()
     {
+        hasPriority = false;
         print("forcereturn " + name);
         ReturnAttackPriority(currentAction);
     }
@@ -107,7 +111,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         if (this.currentAction == currentAction)
         {
             print("yes return " + name);
-
+            hasPriority = true;
             return enemyManager.attackingEnemy().returnPermission(this);
 
         }
@@ -189,6 +193,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     
     private void DieEvent(AGameCharacter character)
     {
+        hasPriority = false;
         ReturnAttackPriority(currentAction);
         enemyManager.returnPoint(KungFuCirclePoint, GetComponent<Enemy>());
         KungFuCirclePoint = -1;
@@ -285,6 +290,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void givePriority()
     {
         print("getPriorityFromQueuereturn " + name);
+        hasPriority = true;
         _enemyAssetBehaviourRunner.endQueue();
     }
     public Status forceSuccess()
@@ -305,6 +311,7 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public void restart()
     {
+        hasPriority = false;
         FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
         GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
         GetComponent<Enemy>().subscribeToDie(DieEvent);

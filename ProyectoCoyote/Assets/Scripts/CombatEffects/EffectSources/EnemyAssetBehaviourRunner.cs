@@ -33,7 +33,9 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     }
     public void endQueue()
     {
+        print("endQueue" + name);
         EndAttackQueue.Fire(Status.Success);
+
     }
     public virtual void restart()
     {

@@ -164,8 +164,8 @@ public class StoryAction
         switch (actionType)
         {
             case StoryActionType.changeScene:
-                SceneManager.LoadScene(nameKey);
-                break;
+                ServiceLocator.Instance.Get<ILevelManager>().loadEscene(nameKey);
+                    break;
             case StoryActionType.startCutscene:
                 if (!playOnRestart && played)
                 {

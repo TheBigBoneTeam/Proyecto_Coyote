@@ -53,6 +53,7 @@ public class combatAreaManager : MonoBehaviour
 
     IGameStateManager gameStateManager;
 
+
     
     private void OnTriggerEnter(Collider other)
     {
@@ -259,6 +260,7 @@ public class combatAreaManager : MonoBehaviour
     public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()
     {
+        print("restart");
         if (!finished)
         {
             started = false;
@@ -280,7 +282,9 @@ public class combatAreaManager : MonoBehaviour
             }
             foreach (WaveCaller waveCaller in GetComponentsInChildren<WaveCaller>())
             {
+                print("restartWaveCaller"+gameObject.name +waveCaller.name);
                 waveCaller.restart();
+                print("restartWaveDespues");
             }
         }
     }
@@ -293,12 +297,13 @@ public class combatAreaManager : MonoBehaviour
             afterCombatStoryAction.Execute(() =>
             {
                 areaColliders.SetActive(false);
+                gameStateManager.startNonCombatGameplay();
             });
         }
         else
         {
             areaColliders.SetActive(false);
-
+            gameStateManager.startNonCombatGameplay();
         }
 
         // FindAnyObjectByType<winScreen>().Win();
@@ -352,11 +357,13 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(Enemy enemy,out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
-        Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+         Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+        //Cover[] orderedCovers = currentCovers.OrderBy<>
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
             coverIndex = cover.getBestPoint(enemy,_player.transform, out objPos);
+            print(coverIndex);
             if (coverIndex >= 0)
             {
                 

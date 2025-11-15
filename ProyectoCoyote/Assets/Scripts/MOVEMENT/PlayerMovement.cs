@@ -574,7 +574,6 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
     }
 
-    
     // MOSTRAR POR PANTALLA VELOCIDAD Y ALTURA
     /*private void OnGUI()
     {
@@ -590,7 +589,7 @@ public class PlayerMovement : MonoBehaviour
         GUI.Label(new Rect(10, 10, 400, 40), "Velocidad: " + speed.ToString("F2") + " m/s");
         GUI.Label(new Rect(10, 50, 400, 40), "Altura: " + height.ToString("F2") + " m");
     }*/
-    
+
 
     internal void setCanAttack(bool v)
     {
@@ -645,10 +644,64 @@ public class PlayerMovement : MonoBehaviour
     // Escucha los cambios de estado del GameStateManager.
     private void OnGameStateChange(object sender, stateData stateInfo)
     {
-        if (stateInfo.currentState == GameState.DeathScreen)
+        switch (stateInfo.currentState)
         {
-            HandleDeathState();
+            case GameState.Cutscene:
+                FreezeMovement();
+                break;
+
+            case GameState.Dialog:
+                FreezeMovement();
+                break;
+
+            case GameState.NonCombat:
+            case GameState.Combat:
+                UnfreezeMovement();
+                break;
+
+            case GameState.DeathScreen:
+                HandleDeathState();
+                break;
         }
+    }
+
+    private void FreezeMovement()
+    {
+        canMove = false;
+        canAttack = false;
+        dashing = false;
+        hooking = false;
+
+        // Bloqueo total de físicas
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        }
+
+        moveSpeed = 0;
+        desiredMoveSpeed = 0;
+
+        Debug.Log("[PlayerMovement] Movimiento congelado por GameState");
+    }
+
+    private void UnfreezeMovement()
+    {
+        canMove = true;
+        canAttack = true;
+
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        moveSpeed = walkSpeed;
+        desiredMoveSpeed = walkSpeed;
+
+        Debug.Log("[PlayerMovement] Movimiento restaurado por GameState");
     }
 
     // Desactiva movimiento, animaciones y resetea físicas.

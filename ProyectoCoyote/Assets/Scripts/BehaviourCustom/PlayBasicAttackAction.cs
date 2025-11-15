@@ -50,7 +50,7 @@ public class RunForCoverAction : UnityAction
         {
             return Status.None;
         }
-
+        Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance} {agent.hasPath} {agent.velocity}");
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -92,8 +92,12 @@ public class RunForCoverAction : UnityAction
         {
             context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);
             UnityEngine.Debug.Log(hidePosition);
-            agent.SetDestination(hidePosition);
+            Debug.Log(agent.SetDestination(hidePosition));
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+        }
+        else
+        {
+            Debug.Log("coverNotFound");
         }
     }
 

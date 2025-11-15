@@ -40,8 +40,8 @@ public class Gancho : MonoBehaviour
     private Image _hookImageUI;
     HookObserver hookObserver;
     [SerializeField] GameObject navMesh;
-    private bool hookAttackBuffer = false;
-    private bool canAttack = false;
+    public bool hookAttackBuffer = false;
+    public bool canAttack = false;
 
 
     public bool selectingHook;
@@ -112,7 +112,7 @@ public class Gancho : MonoBehaviour
     {
 
         // Navegación por los objetos enganchables
-        if (selectingHook)
+        if (selectingHook && !isHooked)
         {
             if (gameInput.Hook_SelectUp)
             {
@@ -147,9 +147,10 @@ public class Gancho : MonoBehaviour
             // SFX Lanzar gancho
             AudioManager.Instance.PlaySimpleSound("SFX - Releasing Hook", false, Vector2.zero, true, true);
             AudioManager.Instance.PlaySimpleSound("SFX - Revolver girando", false, Vector2.zero, true, true);
+            
         }
 
-        if (isHooked)
+        if (isHooked && !selectingHook)
         {
             if (gameInput.HookAttractPressed)
             {
@@ -347,7 +348,7 @@ public class Gancho : MonoBehaviour
         {
             if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
             {
-                Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
+                Debug.Log($"Hay algo bloqueando al objeto: {hit.transform}");
                 return true;
             }
         }
@@ -405,7 +406,7 @@ public class Gancho : MonoBehaviour
             isHooked = true;
 
             DisableCollisions();
-            canAttack = true;
+            
 
             selectingHook = false;
             _hookImageUI.color = Color.red;
@@ -415,7 +416,7 @@ public class Gancho : MonoBehaviour
     private void GoToTarget()
     {
         if (currentTarget == null) return;
-
+        canAttack = true;
         //// Dirección desde el objeto hacia la cámara
         //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
         //// POSICIÓN FINAL
@@ -437,7 +438,7 @@ public class Gancho : MonoBehaviour
 
         if (hookableObject.canBeHooked)
         {
-
+            canAttack = true;
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
@@ -541,5 +542,7 @@ public class Gancho : MonoBehaviour
             
         hookAttackBuffer = false;
     }
+
+
 
 }

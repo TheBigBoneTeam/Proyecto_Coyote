@@ -54,26 +54,26 @@ public abstract class AGameCharacter :MonoBehaviour
         lifeUpdate.Invoke(HealthPoint);
         AudioManager.Instance.PlaySimpleSound("SFX - Punch", false, Vector2.zero, true, true);
         string extra = "";
-        //switch (direction)
-        //{
-        //    case HitDirections.Left:
-        //        extra = "L";
-        //        break;
-        //    case HitDirections.Rigth:
-        //        extra = "R";
+        switch (direction)
+        {
+            case HitDirections.Left:
+                extra = "L";
+                break;
+            case HitDirections.Rigth:
+                extra = "R";
 
-        //        break;
-        //    case HitDirections.Back:
-        //        extra = "M";
+                break;
+            case HitDirections.Back:
+                extra = "M";
 
-        //        break;
-        //    case HitDirections.Outside:
-        //        extra = "M";
-        //        break;
-        //    default:
-        //        extra = "M";
-        //        break;
-        //}
+                break;
+            case HitDirections.Outside:
+                extra = "M";
+                break;
+            default:
+                extra = "M";
+                break;
+        }
 
         if (HealthPoint <= 0)
         {
@@ -176,8 +176,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void DodgeAttack(HitDirections direction)
     {
-        if(dodgeAttackEvent != null)
-        dodgeAttackEvent.Invoke(direction);
+        dodgeAttackEvent?.Invoke(direction);
         checkEffect(new Dodge(2));
     }
 

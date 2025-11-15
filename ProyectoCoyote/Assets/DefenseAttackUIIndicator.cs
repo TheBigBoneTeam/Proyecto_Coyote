@@ -39,6 +39,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         currentExplosions = new List<BombEnemyAssetBehaviourRunner>();
         middleDanger.SetActive(false);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(CombatAreaChange);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+
         player = GetComponentInParent<Player>();
         lockOn = GetComponentInParent<EnemyLockOn>();
         setUp();
@@ -59,6 +61,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
 
     private void CombatAreaChange(combatAreaManager manager, WaveData data)
     {
+        print("combatAreaChange");
+        restart();
         middleDanger.SetActive(false);
         foreach (var enemy in data.enemies)
         {
@@ -230,7 +234,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             print("Attack state change: isLocked");
         }
     }
-
+    public void restart()
+    {
+        currentAttacksDictionary.Clear();
+        currentBullets.Clear();
+        currentExplosions.Clear();
+    }
     public void OutsideAttackChange(Attack.AttackState state)
     {
        // AttackHappeneed(state);

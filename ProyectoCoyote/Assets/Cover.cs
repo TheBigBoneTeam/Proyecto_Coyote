@@ -42,19 +42,22 @@ public class Cover : MonoBehaviour
             objPosition = HidePoints[i];
             RaycastHit hit;
             Vector3 dir = playerPos.position - objPosition.position;
+            print(objPosition.position);
+            print(playerPos.position);
+
             if (Physics.Raycast(objPosition.position,dir.normalized, out hit, dir.magnitude, layer))
             {
                 print(hit.transform.name);
-                if(hit.transform.gameObject == gameObject)
-                {
+                //if(hit.transform.gameObject == gameObject || (hit.transform.parent && hit.transform.parent == gameObject)
+                //{
                     /*coverList[i].*/Owner = enemy;
                     print("found");
                     return i;
-                }
-                else
-                {
-                    print("Hit another thing");
-                }
+                //}
+                //else
+                //{
+                //    print("Hit another thing");
+                //}
             }
             else
             {
@@ -73,6 +76,12 @@ public class Cover : MonoBehaviour
         print($" {objPosition} + {dir} + {playerPos.position}");
         if (Physics.Raycast(objPosition, dir.normalized, out hit, dir.magnitude, layer))
         {
+            print(hit.transform.name);
+            if (hit.transform.gameObject.GetComponent<Player>() != null)
+            {
+                print("isUnsafe");
+                return false;
+            }
             //if (hit.transform.gameObject == gameObject)
             //{
             //    print("isSafe");

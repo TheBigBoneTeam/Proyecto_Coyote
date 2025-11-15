@@ -10,7 +10,6 @@ public class deathScreen : MonoBehaviour
         anim = GetComponent<Animator>();
         FindAnyObjectByType<Player>().subscribeToDie((t) => { anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; Services.ServiceLocator.Instance.Get<IGameStateManager>().Die();
         });
-
     }
 
     // Update is called once per frame

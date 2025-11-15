@@ -73,7 +73,11 @@ public class RunForCoverAction : UnityAction
         {
             return Status.None;
         }
-        Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance} {agent.hasPath} {agent.velocity}");
+        if (agent.pathPending)
+        {
+            return Status.Running;
+        }
+        Debug.Log($"{agent.pathPending} {agent.remainingDistance} {agent.stoppingDistance} {agent.hasPath} {agent.velocity}");
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)

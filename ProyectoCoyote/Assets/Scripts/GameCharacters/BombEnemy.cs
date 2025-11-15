@@ -1,4 +1,5 @@
 using CombatEffect;
+using UnityEngine;
 
 public class BombEnemy : Enemy
 {
@@ -16,7 +17,12 @@ public class BombEnemy : Enemy
                 GetComponent<BombEnemyAssetBehaviourRunner>().hitByPlayer();
                 return false;
             }
-           
+            if (effect.getOwner().GetComponent<BombEnemy>() != null)
+            {
+                GetComponentInChildren<Animator>().Play("Explosion");
+                return false;
+            }
+
         }
         addEffect(effect);
         return true;

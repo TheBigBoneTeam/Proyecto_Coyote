@@ -178,7 +178,8 @@ MonoBehaviour:
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
   print: 0
-  ActiveBeforeFight: 1
+  renderer: {fileID: 0}
+  ActiveBeforeFight: 0
 --- !u!114 &7063492848833669818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +291,10 @@ MonoBehaviour:
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
-  <HitDirections>k__BackingField: 
+  <HitDirectionsList>k__BackingField: 
+  attackStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   objective: {x: 0, y: 0, z: 0}
   speed: 30
   lifeTime: 10
@@ -383,7 +387,10 @@ MonoBehaviour:
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 0
-  <HitDirections>k__BackingField: 
+  <HitDirectionsList>k__BackingField: 
+  attackStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds: []

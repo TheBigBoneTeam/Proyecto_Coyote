@@ -105,6 +105,8 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
         if(currentState != GameState.DeathScreen)
         {
+            currentCombatArea = null;
+            currentWaveData = null;
             SetState(GameState.DeathScreen);
         }
 

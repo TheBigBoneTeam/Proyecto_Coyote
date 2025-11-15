@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     [Header("References")]
+    public Camera cam;
     public CinemachineCamera lockOnCamera;
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
@@ -17,6 +19,13 @@ public class CameraFollow : MonoBehaviour
     public float minDistanceToSwitch = 3f;
     private bool lockedCamera;
     private bool hookedCamera;
+
+    [Header("Trasparencias")]
+    private List<MeshRenderer> disabledRenderers = new List<MeshRenderer>();
+    // Shader
+    public Material transparentMaterial;
+    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
+    private List<Renderer> currentHits = new List<Renderer>();
 
     private void Start()
     {
@@ -34,6 +43,9 @@ public class CameraFollow : MonoBehaviour
         if (lockedCamera) HandleTarget(enemyLockOn.currentTarget, lockOnCamera);
         else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
         else RotateFreePlayer();
+
+       HandleOcclusion(); // HandleTransparency();
+
     }
 
     private void RotateFreePlayer()
@@ -65,9 +77,8 @@ public class CameraFollow : MonoBehaviour
         Vector3 targetPos = target.position;
         float distance = Vector3.Distance(playerObj.position, targetPos);
 
-        // Offset detrás del jugador
+        // Offset
         Vector3 playerOffset = playerObj.position - playerObj.forward * 2f + Vector3.up * 2f;
-        // Offset cercano al objetivo, con menos altura
         Vector3 closeOffset = targetPos - playerObj.forward * 2f + Vector3.up * 1f;
 
         // Elegir offset según distancia y suavizar transición
@@ -90,5 +101,74 @@ public class CameraFollow : MonoBehaviour
             playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
-}
 
+    private void HandleOcclusion()
+    {
+        Vector3 origin = cam.transform.position;
+        Vector3 target = playerObj.position + Vector3.up * 1.5f;
+        Vector3 dir = target - origin;
+        float dist = dir.magnitude;
+
+        // Restaurar renderers 
+        foreach (MeshRenderer rend in disabledRenderers)
+        {
+            if (rend != null) rend.enabled = true;
+        }
+        disabledRenderers.Clear();
+
+        // Raycast hacia el jugador
+        RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
+        foreach (RaycastHit hit in hits)
+        {
+            MeshRenderer rend = hit.collider.GetComponent<MeshRenderer>();
+            if (rend != null)
+            {
+                rend.enabled = false; // Desactivar render
+                disabledRenderers.Add(rend);
+            }
+        }
+    }
+
+    // Para hacerlo con shaders
+    private void HandleTransparency()
+    {
+        Vector3 origin = cam.transform.position;
+        Vector3 target = playerObj.position + Vector3.up * 1.5f;
+        Vector3 dir = target - origin;
+        float dist = dir.magnitude;
+
+        // Restaurar materiales
+        foreach (Renderer rend in currentHits)
+        {
+            if (rend != null && originalMaterials.ContainsKey(rend))
+            {
+                rend.material = originalMaterials[rend];
+            }
+        }
+        currentHits.Clear();
+
+        // Raycast hacia el jugador
+        RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
+        foreach (RaycastHit hit in hits)
+        {
+            Renderer rend = hit.collider.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                // Guardar material original si no lo tenemos
+                if (!originalMaterials.ContainsKey(rend))
+                {
+                    originalMaterials[rend] = rend.material;
+                }
+
+                // Aplicar material transparente
+                rend.material = transparentMaterial;
+
+                // Añadir a lista de objetos transparentes este frame
+                currentHits.Add(rend);
+            }
+        }
+
+
+    }
+
+}

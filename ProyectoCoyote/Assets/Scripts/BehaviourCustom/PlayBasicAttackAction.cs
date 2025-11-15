@@ -37,6 +37,29 @@ public class PlayBasicAttackAction : UnityAction
         enemyAI.LoadBasicAction(action,idle);
     }
 }
+public class PlayWaitAction : UnityAction
+{
+    EnemyAI enemyAI;
+    public override Status Update()
+    {
+        if (enemyAI.hasPriority)
+        {
+            enemyAI.endActionNode();
+
+            return Status.Success;
+        }
+        return Status.Running;
+    }
+    public override void Start()
+    {
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
+        if (enemyAI.endAction)
+        {
+            Debug.Log("cagada");
+        }
+        enemyAI.LoadAction("CombatIdle");
+    }
+}
 public class RunForCoverAction : UnityAction
 {
     NavMeshAgent agent;

@@ -23,6 +23,7 @@ public class WaveCaller : MonoBehaviour
     }
     public void restart()
     {
+        print("restartWave");
         started = false;
     }
 }

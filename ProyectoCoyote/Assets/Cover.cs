@@ -76,6 +76,7 @@ public class Cover : MonoBehaviour
         print($" {objPosition} + {dir} + {playerPos.position}");
         if (Physics.Raycast(objPosition, dir.normalized, out hit, dir.magnitude, layer))
         {
+            print(hit.transform.name);
             if (hit.transform.gameObject.GetComponent<Player>() != null)
             {
                 print("isUnsafe");

@@ -53,6 +53,7 @@ public class combatAreaManager : MonoBehaviour
 
     IGameStateManager gameStateManager;
 
+
     
     private void OnTriggerEnter(Collider other)
     {
@@ -131,6 +132,7 @@ public class combatAreaManager : MonoBehaviour
 
     public void enemyDie(AGameCharacter deadChar)
     {
+        print("enemyDie" + deadChar.name);
       Enemy enemy =deadChar.GetComponent<Enemy>();
         if (enemy != null)
         {
@@ -153,13 +155,16 @@ public class combatAreaManager : MonoBehaviour
     }
     public void startArea()
     {
+        print("startArea");
 
         started = true;
         areaColliders.SetActive(true);
         _player.setSpawnPoint(respawnPoint.position);
         gameStateManager.subscribeToRestart(restart);
-
-        currentWaveIndex = 0;
+        if (!functionalWaveDataList[0].waveFinished)
+        {
+            currentWaveIndex = 0;
+        }
         deadEnemies.Clear();
         foreach (Transform child in areaColliders.transform)
         {
@@ -259,6 +264,7 @@ public class combatAreaManager : MonoBehaviour
     public WaveData getCurrentWaveData()=>currentWaveData;
     public void restart()
     {
+        print("restart");
         if (!finished)
         {
             started = false;
@@ -280,7 +286,9 @@ public class combatAreaManager : MonoBehaviour
             }
             foreach (WaveCaller waveCaller in GetComponentsInChildren<WaveCaller>())
             {
+                print("restartWaveCaller"+gameObject.name +waveCaller.name);
                 waveCaller.restart();
+                print("restartWaveDespues");
             }
         }
     }
@@ -293,12 +301,13 @@ public class combatAreaManager : MonoBehaviour
             afterCombatStoryAction.Execute(() =>
             {
                 areaColliders.SetActive(false);
+                gameStateManager.startNonCombatGameplay();
             });
         }
         else
         {
             areaColliders.SetActive(false);
-
+            gameStateManager.startNonCombatGameplay();
         }
 
         // FindAnyObjectByType<winScreen>().Win();
@@ -308,7 +317,7 @@ public class combatAreaManager : MonoBehaviour
     {
         deadEnemies.Clear();
         currentWaveIndex++;
-      
+        
         if (currentWaveIndex == functionalWaveDataList.Count)
         {
             areaFinished();
@@ -341,7 +350,6 @@ public class combatAreaManager : MonoBehaviour
                 functionalWaveDataList[i].waveFinished = true;
             }
             startArea();
-            return;
         }
         if(currentWaveIndex == wave)
         {

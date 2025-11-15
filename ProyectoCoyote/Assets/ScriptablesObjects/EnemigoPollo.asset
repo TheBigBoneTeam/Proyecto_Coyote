@@ -281,13 +281,13 @@ MonoBehaviour:
         childIds: []
       - name: HideIdle
         id: f3073e2e-3d89-48ca-94d2-a18ed9103941
-        position: {x: 150, y: 400}
+        position: {x: 187.2, y: 416}
         node:
           rid: 8725330696836219277
         references:
         - fieldName: Action
           value:
-            rid: 8725330696836219280
+            rid: 8725331012510548631
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -305,6 +305,7 @@ MonoBehaviour:
         - b762583a-306c-4dd8-a614-a74f1dcd4b27
         - e89c8ed1-9db4-465e-b934-09892f9d112f
         - 4ad7c47d-53e6-410b-8c90-e85dd4c76d56
+        - f4f2c600-ba39-4a9b-a0e7-e7e682e0a9eb
         - dd672abf-6c81-4277-908c-84a68beb526e
         - 64d446b5-7dd1-4880-9042-f5b036066506
       - name: lookAtPlayer
@@ -323,7 +324,7 @@ MonoBehaviour:
         childIds: []
       - name: HideIdle
         id: 4ad7c47d-53e6-410b-8c90-e85dd4c76d56
-        position: {x: -150, y: 800}
+        position: {x: -193.6, y: 816}
         node:
           rid: 8725330851897802861
         references:
@@ -337,7 +338,7 @@ MonoBehaviour:
         childIds: []
       - name: wait
         id: 64d446b5-7dd1-4880-9042-f5b036066506
-        position: {x: 450, y: 800}
+        position: {x: 584, y: 792}
         node:
           rid: 8725330851897802864
         references:
@@ -351,13 +352,27 @@ MonoBehaviour:
         childIds: []
       - name: checkSafe
         id: dd672abf-6c81-4277-908c-84a68beb526e
-        position: {x: 150, y: 800}
+        position: {x: 252, y: 808}
         node:
           rid: 8725330856855208069
         references:
         - fieldName: Action
           value:
             rid: 8725330856855208070
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - eec2ee50-4098-4985-9ddf-bb1019f2a1ac
+        childIds: []
+      - name: returnPriority
+        id: f4f2c600-ba39-4a9b-a0e7-e7e682e0a9eb
+        position: {x: 39.2, y: 824}
+        node:
+          rid: 8725331011652289196
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331011652289197
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -514,11 +529,6 @@ MonoBehaviour:
     - rid: 8725330696836219277
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725330696836219280
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 10
-        idle: 0
     - rid: 8725330696836219282
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -763,3 +773,15 @@ MonoBehaviour:
         method:
           componentName: DistanceEnemyAssetBehaviourRunner
           methodName: returnCoverOwner
+    - rid: 8725331011652289196
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725331011652289197
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
+    - rid: 8725331012510548631
+      type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
+      data: 

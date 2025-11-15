@@ -352,11 +352,13 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(Enemy enemy,out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
-        Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+         Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+        //Cover[] orderedCovers = currentCovers.OrderBy<>
         foreach (var cover in orderedCovers)
         {
             print(cover.name);
             coverIndex = cover.getBestPoint(enemy,_player.transform, out objPos);
+            print(coverIndex);
             if (coverIndex >= 0)
             {
                 

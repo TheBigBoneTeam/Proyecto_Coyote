@@ -176,8 +176,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void DodgeAttack(HitDirections direction)
     {
-        if(dodgeAttackEvent != null)
-        dodgeAttackEvent.Invoke(direction);
+        dodgeAttackEvent?.Invoke(direction);
         checkEffect(new Dodge(2));
     }
 

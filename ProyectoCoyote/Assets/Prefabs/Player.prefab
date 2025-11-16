@@ -550,7 +550,6 @@ MonoBehaviour:
   dashing: 0
   orientation: {fileID: 8883753195278190126}
   moveDirection: {x: 0, y: 0, z: 0}
-  IsMoving: 0
   gameInput: {fileID: 0}
   animator: {fileID: 0}
   moveLockedSpeed: 3
@@ -607,8 +606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c46e4360206c6e4fa2bf8e32ee42b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HealthPoint>k__BackingField: 5
-  _maxHealthPoint: 5
+  <HealthPoint>k__BackingField: 10
+  _maxHealthPoint: 10
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
@@ -641,6 +640,8 @@ MonoBehaviour:
   cooldown: 5
   OffsetFinalPos: 5
   navMesh: {fileID: 0}
+  hookAttackBuffer: 0
+  canAttack: 0
   selectingHook: 0
   isHooked: 0
 --- !u!114 &2367592577155981960
@@ -1712,7 +1713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6020926924141813085}
-  movement: {fileID: 4037878208120886704}
 --- !u!4 &8659034585346967974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}

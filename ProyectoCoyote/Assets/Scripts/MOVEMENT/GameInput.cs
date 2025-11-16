@@ -1,31 +1,17 @@
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    public enum DeviceType { KeyboardMouse, Gamepad }
+    public DeviceType CurrentDevice { get; private set; } = DeviceType.KeyboardMouse;
+
     private PlayerControls controls;
 
-    // Ejes de movimiento
+    // Movimiento
     public float Horizontal { get; private set; }
     public float Vertical { get; private set; }
-
-    /*
-    #region Variables de entrada
-    [Header("Controles")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode dashKey = KeyCode.LeftControl;
-    public KeyCode hookKey = KeyCode.E;
-    public KeyCode hookSelectKey = KeyCode.Mouse0;
-    public KeyCode lockKey = KeyCode.Q;
-
-    public KeyCode UpKey = KeyCode.W;
-    public KeyCode DownKey = KeyCode.S;
-    public KeyCode LeftKey = KeyCode.A;
-    public KeyCode RightKey = KeyCode.D;
-    #endregion
-    */
 
     // Acciones
     public bool SprintHeld { get; private set; }
@@ -40,28 +26,6 @@ public class GameInput : MonoBehaviour
     public bool HookAttractPressed { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
-
-    #region Controles para movil
-    /*
-    public void SetMobileMovement(float horizontal, float vertical)
-    {
-        Horizontal = horizontal;
-        Vertical = vertical;
-    }
-
-    public void TriggerDash() => DashPressed = true;
-    public void TriggerAttack() => AttackPressed = true;
-    public void TriggerHookAim() => HookAimPressed = true;
-    public void TriggerEvade() => EvadePressed = true;
-    public void TriggerHookConfirm() => HookConfirmPressed = true;
-    public void TriggerHookTP() => Hook_SelectUp = true;
-    public void TriggerHookDisconfirm() => Hook_SelectDown = true;
-    public void TriggerHookAttract() => HookAttractPressed = true;
-    public void TriggerLock() => LockPressed = true;
-    */
-    #endregion
-
-    #region Metodos
 
     private void Awake()
     {
@@ -80,23 +44,15 @@ public class GameInput : MonoBehaviour
             Vertical = 0;
         };
 
-        // --- Sprint (mantener) ---
+        // --- Sprint ---
         controls.Player.Sprint.performed += ctx => SprintHeld = true;
         controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
-        // --- Dash (pulsaci�n) ---
+        // --- Pulsaciones ---
         controls.Player.Dash.performed += ctx => DashPressed = true;
-
-        // --- Attack (pulsaci�n) ---
         controls.Player.Attack.performed += ctx => AttackPressed = true;
-
-        // --- Evade (pulsaci�n) ---
         controls.Player.Evade.performed += ctx => EvadePressed = true;
-
-        // --- Lock (pulsaci�n �nica) ---
         controls.Player.Lock.performed += ctx => LockPressed = true;
-
-        // --- Gancho (pulsaciones �nicas) ---
         controls.Player.HookAim.performed += ctx => HookAimPressed = true;
         controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
         controls.Player.HookDisconfirm.performed += ctx => Hook_SelectDown = true;
@@ -104,7 +60,6 @@ public class GameInput : MonoBehaviour
         controls.Player.HookSelectRight.performed += ctx => Hook_SelectRight = true;
         controls.Player.Hook_TP.performed += ctx => Hook_SelectUp = true;
         controls.Player.HookAttract.performed += ctx => HookAttractPressed = true;
-
     }
 
     private void OnEnable()
@@ -114,12 +69,14 @@ public class GameInput : MonoBehaviour
 
     private void OnDisable()
     {
-        controls.Disable();
+        controls.Player.Disable();
     }
 
     private void LateUpdate()
     {
-        // Reset autom�tico cada frame (para pulsaci�n �nica)
+        DetectDevice();
+
+        // Reset de pulsaciones únicas
         DashPressed = false;
         AttackPressed = false;
         EvadePressed = false;
@@ -133,9 +90,22 @@ public class GameInput : MonoBehaviour
         HookAttractPressed = false;
     }
 
+    private void DetectDevice()
+    {
+        // Si hay gamepad y algún botón está presionado → Gamepad
+        if (Gamepad.current != null && Gamepad.current.allControls.Any(c => c.IsPressed()))
+        {
+            CurrentDevice = DeviceType.Gamepad;
+        }
+        // Si se presiona alguna tecla → Keyboard/Mouse
+        else if (Keyboard.current != null && Keyboard.current.anyKey.isPressed)
+        {
+            CurrentDevice = DeviceType.KeyboardMouse;
+        }
+    }
+
     public Vector2 GetMovementPlayer()
     {
-        return new Vector2 (Horizontal, Vertical);
+        return new Vector2(Horizontal, Vertical);
     }
-    #endregion
 }

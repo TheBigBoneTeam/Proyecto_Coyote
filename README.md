@@ -1,32 +1,32 @@
-# PROYECTO COYOTE
+# COYOTE REQUIEM
 **GAME DESIGN DOCUMENT**
 
 Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo
 
-Version 1.0
+Version 2.0
 
 
 # 0. Introducción
-**Este documento presenta el diseño y desarrollo del videojuego “Proyecto Coyote”, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final.**
+**Este documento presenta el diseño y desarrollo del videojuego Coyote Requiem, donde se expondrá el proceso creativo a lo largo del tiempo hasta su lanzamiento final.**
 
-“Proyecto Coyote” es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
+Coyote Requiem es un juego de acción frenética en 3D con cámara en tercera persona, centrado en la gestión de múltiples enemigos y el combate cuerpo a cuerpo. 
 
 # 1. Concepto del juego 
-"Proyecto Coyote” es un videojuego donde el jugador tomará el papel de un vaquero que quiere cumplir la última voluntad de su marido enterrando sus cenizas en un oasis cercano al pueblo donde nació, Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo. 
+Coyote Requiem es un videojuego donde el jugador tomará el papel de Coyote, un vaquero que busca revivir a su marido tras escuchar de una leyenda sobre una persona que intentó revivir a su madre en un oasis cerca de Pricklytown. Su viaje se complicará al llegar al poblado, que ha sido amenazado por una misteriosa infección desconocida que provoca mutaciones con forma de cactus en el cuerpo de quienes consumen el “sagrado” higo chumbo.
 
 # 2. Historia
 ## 2.1. Ambientación 
-"Proyecto Coyote” se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
+Coyote Requiem se desarrolla en un viejo oeste fantástico y oscuro. En este mundo existen magias como la necromancia, criaturas sobrenaturales, animales antropomórficos, entre otros. 
 
 La zona donde se desarrolla el videojuego es un área poblada en el desierto que se ha visto afectado por una misteriosa enfermedad que provoca mutaciones en el cuerpo y comportamientos agresivos.  
 
-### Zonas de "Proyecto Coyote"
+### Zonas de Coyote Requiem
 
   ####  Pricklytown
-  El protagonista llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay unas pocas viviendas, comercios variados, un peculiar cantina "El Revólver Revoltoso" y un cochambroso hostal para viajeros desafortunados que acaban en Pricklytown.
+  Coyote llega inicialmente a Pricklytown, el único poblado de la zona. Se trata de un pequeño burgo muy aislado, habitado por diversas criaturas de personalidades extravagantes. Hay algunas viviendas, comercios variados,una iglesia, entre otros sitios de interés.
 
   ####  El Cañón
-  Tras su visita por Pricklytown el protagonista se ve obligado a viajar hacia el oasis del sur, accesible únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas edificaciones de madera y carros abandonados, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
+  Tras su visita por Pricklytown Coyote se ve obligado a viajar hacia el oasis del sur, accesible únicamente a través de un cañón. Se trata de una zona desértica, seca y vacía. Hay algunas cajas de madera y elementos de transporte, ya que esta ruta era empleada por los habitantes de Pricklytown para transportar agua antes de la construcción del pozo.
 
   ####  El Oasis
   El Oasis es una pequeña zona misteriosa y excesivamente frondosa. Los habitantes de Pricklytown afirman que, a pesar de contener agua, en el pasado prácticamente ninguna planta crecía en la zona, y que solo se conocía como oasis por tradición. Ahora es una exhuberante y densa jungla de todo tipo de cactus y plantas desérticas. En el oasis además hay una edificación puntiaguda que se asemeja a una iglesia.
@@ -55,41 +55,40 @@ Finalmente la misión fue considerada fallida y se atribuyeron los delirios de l
 
 ### La llamada
 Con el grave periodo de escasez al que se enfrentaba Pricklytown y la incomprensibilidad general de los efectos de los higos, resultó imposible evitar que los vecinos se alimentaran de ellos.
-Quienes los consumían empeoraban con rapidez, y junto con los desagradables síntomas aparecían actitudes agresivas y destructivas. Los "infectados", como fueron etiquetados, eran trasladados recurrentemente al oasis por los pocos que resistían.
+Quienes los consumían empeoraban con rapidez, y junto con los desagradables síntomas aparecían actitudes agresivas y destructivas. Los "infectados", como fueron etiquetados, eran trasladados recurrentemente al oasis por un culto surgido de aquellos expedicionistas.
 
-El acceso a la jungla de cactus era cada vez más complicado. Según algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.
+### El origen de la leyenda
 
-<!--/Millones de años después, en medio del desierto, los habitantes del pueblo más cercano, Pricklytown, crearon un canal subterráneo para facilitar la llegada de agua gracias a un oasis cercano. Debido a estas obras despertaron a uno de estos huevos que creó unos misteriosos cactus que empezaron a brotar sobre él absorbiendo gran parte del agua del canal. De estos cactus se obtienen unos higos chumbos jugosos e irresistibles para los vecinos de Prickytown. La abundancia de estos frutos fue muy conveniente, ya que los vecinos pasaban por un periodo de hambruna./
+En medio de la situación crítica que pasada Pricklytown, un joven llamado Jimmy que había perdido a su madre antes de haberse transformado, empezó a escuchar los discursos de los sectarios pues, debido a su dolor, creyó con firmeza sus palabras que decían que en el oasis había una piedra capaz de devolver a la vida a los fallecidos.
+Jimmy emprendió un viaje hacia el oasis, pero nunca más se volvió a saber de él
 
-<img src="./Imagenes_README/HigoChumboÑam.png" alt="Higo" width="30%"/>
+<!--El acceso a la jungla de cactus era cada vez más complicado. Según algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.-->
 
-
-A medida que fueron pasando el tiempo estos cactus los habitantes de Pricklytown y alrededores empezaron a presentar un malestar profundo debido al consumo del higo chumbo. Entre los síntomas se encuentran: deshidratación general, cansancio, fiebre, enrojecimientos de la piel y/o protuberancias con forma de espinas, y en muy pocos casos diarrea. 
-
-Debido a lo ocurrido se mandó una expedición formada por matasanos, voluntarios y miembros de la iglesia. A medida que se iban acercando a la zona cero cuando el sol ya se había ocultado, algunos expedicionistas afirmaron haber visto algunos de estos cactus moverse. 
-
-Al día siguiente de los 20 expedicionistas originales solo volvieron 7 cargados con bolsas llenas de aquellos higos. Cuando las familias y habitantes de Pricklytown y otros pueblos cercanos pidieron explicaciones de los que había ocurrido solo dijeron que ellos eran los elegidos por los dioses. Habían visto el maravilloso poder de los higos que, según ellos, era un milagro capaz de hacer inmortales a aquellos que los consumían permitiendo una mayor conexión el mundo espiritual, llegando a formar parte de él. 
-
-Los bendecidos con el “milagro chungo” fueron llevados de forma voluntaria o forzada a la nueva iglesia formada por aquellos miembros eclesiásticos que habían sobrevivido para realizar cultos y rituales con ellos. El “culto del higo” se expandió poco a poco hasta formar un ejército de criaturas cactus sedientas que buscaban fuentes de agua, ya fueran pozos en los pueblos o criaturas, para crecer y aumentar en número provocando disturbios en las áreas cercanas. 
-
-Año y medio después de los acontecimientos ocurrido empieza el viaje de nuestro protagonista.--> 
  
 ## 2.3. Personajes principales 
 
-### Protagonisto
+### Protagonista
 
-El protagonista de “Proyecto Coyote”, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
+El protagonista de Coyote Requiem, Coyote, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 
-<!--### Personajes no jugables (NPCs)-->
+### Personajes no jugables (NPCs)
+
+#### El señor del carro
+Este personaje aparece al final del primer nivel y es el encargado de llevar a Coyote al Coñón como recompensa por haber liberado a Pricklytown de los infectados, se trata de un perro humanoide dueño de un carro.
+
+#### Líder de la secta
+Se trata de uno de los expedicionistas supervivientes que acabó sumiendo el liderazgo del nuevo culto a los cactus. Se trata de un ciervo humanoide infectado que intenta de forma “pacífica” atraer a la gente al oasis.
 
 ### Enemigos 
 
-Planteamiento de siluetas
+
 
 <div style="display: flex; justify-content: center; gap= 0px">
   <img src="./Imagenes_README/SiluetasCactus1.png" alt="CactusZombieSiluetas" style="width: 49%"/>
   <img src="./Imagenes_README/SiluetasCactus2.png" alt="CactusZombieSiluetas" style="width: 49%"/>
 </div>
+
+ *Planteamiento de siluetas*
 
 ### La infección
 Los pocos doctores cuerdos que han sobrevivido a la infección han observado que su síntoma más vistoso es el crecimiento de protuberancias con forma de cactus en el cuerpo de la criatura afectada. Los infectados no parecen ser conscietes de sus acciones y aparentan obedecer a una fuerza extraña.
@@ -143,15 +142,13 @@ El jugador puede desplazarse en cualquier dirección horizontalmente y correr de
 ### **Desplazamiento vertical** 
 El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del botón que pulse el jugador, es decir, si usa el gancho y se mueve hacia delante irá donde esté el gancho, mientras que si se mueve para atrás lo que tenga el gancho será atraido hacia el jugador.
 
-Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá usar hasta que se haya cargado de nuevo. Para hacer más rápida esta carga el jugador tendrá la posibilidad de recargar la mitad del gancho si realiza un parry a un enemigo.
+Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá usar hasta que se haya cargado de nuevo.
 
-El gancho cuenta con una logitud máxima de 6 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios a 1,5 metros pues no se considera necesario su utilidad a esas distancias.
+El gancho cuenta con una logitud máxima aproximada de 25 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios aproximada de 1,5 metros pues no se considera necesario su utilidad a esas distancias.
 
 ## 3.2. Sistema de combate y vida
 ### **Estilo duelo** 
 El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto, el jugador realiza un parry bloqueando el ataque y stunneando al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
-
-Si el jugador consigue derrotar al enemigo fijado, se enfocará automaticamente al enemigo de al lado si es que existe. 
 
 ### **Ataque** 
 El jugador puede atacar en varias direcciones.
@@ -164,7 +161,7 @@ El jugador puede atacar en varias direcciones.
 
 En el caso que el jugador utilice el input de dirección adelante o atrás junto al botón de ataque se interpretará como un ataque al centro.
 
-Si un jugador ataca en la misma dirección en la que un enemigo está bloqueando, esté realizará un contratrataque al jugador poniendolo en un aprieto.
+Si un jugador ataca en la misma dirección en la que un enemigo está bloqueando, esté podrá realizará un contratrataque al jugador poniendolo en un aprieto.
 
 ### **Esquives**
 El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demasiado daño. Estos ataques se categorizan en dos tipos:
@@ -175,35 +172,37 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
     
     * Izquierda: input de dirección izquierda (A/joystick) + esquivar.
 
-    * Centro: sin input de dirección + esquivar.
+    * Centro: input de dirección izquierda (S/joystick) + esquivar.
 
     * Derecha: input de dirección derecha (D/joystick) + esquivar.
 
     La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también bloquearán los ataques del jugador bajo las mismas normas.
 
-  - **Esquive perfecto**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) produce un bloqueo. Los bloqueos suponen mayor riesgo y recompensa, pudiendo dejar al enemigo aturdido si se ejecutan correctamente y pudiendo contraatacar como respuesta. Los bloqueos se realizan en las mismas direcciones que los esquives.
+  - **Esquive perfecto**: un esquive en el momento exacto (con una ventana de frames más pequeña que el esquive normal) permite al jugador contraatacar como respuesta. Los esquives perfectos se realizan en las mismas direcciones que los esquives.
 
 - **Ataques secundarios** Son los ejecutados por enemigos no fijados, que pueden atacarte por la espalda o dispararte.
   
   * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques o disparos gracias a los frames de invulnerabilidad que otorga el esquive. Un esquive en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
 
-  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar + dirección atrás (s/joystick)** para realizar un esquive que le protegerá de recibir daño.
-
-<img width="760" height="206" alt="image" src="https://github.com/user-attachments/assets/0ccea54d-8d7f-4c84-89b9-38925bfd3b2d" />
+  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar sin direccionamiento** para realizar un esquive que le protegerá de recibir daño.
 
 
-De esta forma se recompensa por realizar esquives y bloqueos correctos, fomentando esto como mecánica principal de la jugabilidad de "Proyecto Coyote".
+De esta forma se recompensa por realizar esquives correctos, fomentando esto como mecánica principal de la jugabilidad de "Proyecto Coyote".
 
 <img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
+  
+*Boceto inicial de la interfaz de dirección*
 
 ### **Vida**
-El jugador contará con 5 puntos de vida los cuales de pueden recargar de dos formas:
+El jugador contará con 7 puntos de vida los cuales de pueden recargar de dos maneras:
 
-  1. **Botiquines**: En los niveles el jugador podrá encontrar botiquines en zonas de transición entre combates. Estos botiquines restauran 2 puntos de vida.
+ * **Contraataque**. Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o no, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
-  2. **Recuperar vida**: Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o no, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
+ * **Acabar área combate**: al terminar con todos los enemigos de una zona en concreto el jugador recuperará toda la vida perdida.
 
   <img src="./Imagenes_README/DiagramaVida.png" alt="DiagramaVida" style="width: 70%"/>
+
+  *Boceto planteamiento funcionamiento vida*
 
 ### **Comportamiento enemigos**
 
@@ -214,48 +213,56 @@ El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
   * **Estado combate**: Si el jugador es detectado por un enemigo este le atacará a distancia o se acercará para pegarle. Si otros enemigos ven a uno de ellos ponerse en este modo buscarán al jugador para atacarle también.
 
 ## 3.3. Controles 
+Estos serían los inputs asociados a las distintas acciones que puede realizar el jugador:
 
 MECÁNICA              | TECLADO     | Dispositivos táctiles
 --                    | --          | --
 MOVIMIENTO DE CÁMARA  | RATÓN       | Joystick tactil der.
 MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.
+ENFOCAR               | Q    | Joystick tactil der.
 CORRER                | SHIFT       | 
 GANCHO                | E           |
 ATAQUE PRINCIPAL      | CLICK IZQ.  |
-ESQUIVE/BLOQUEO         | ESPACIO     |
+ESQUIVE/ESQUIVE PERFECTO         | ESPACIO     |
+
+Si se juega en movil los controles varían en función del modo de juego en el que estés:
+* **Modo duelo**: al entrar en un combate se mostrará solo el joystick de movimiento, el botón de desfijado, el de ataque y el de esquivar.
+* **Modo libre**: en este modo el jugador tendrá el joystick para moverse, el joystick para la cámara, el botón de fijado y el de usar el gancho.
 
 ## 3.4. Tipos de enemigos 
+### Dummy
+Este no es un enemigo es sí. Se trata de un cactus que se utiliza en el tutorial, capaz de atacar y bloquear. Su uso es principalmente enseñar al jugador como combatir y jugar.
 
-### Enemigos melee 
-Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo tiene un rango de detección de 7 metros y pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma.
+### Enemigos melee (Bandido Nopal)
+Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma de aparición.
 
-#### Melee Básico
-Este enimgo sirbe de seudotutorial al ser un enemigo sin ningún tipo de combos. Su aparición será principalmente en el primer nivel y cuenta con ataques y bloqueos básicos.
+#### Melee Básico 
+Este enemigo sirbe de seudotutorial al ser un enemigo sin ningún tipo de combos. Su aparición será principalmente en el primer nivel y cuenta con ataques y bloqueos básicos.
 
-#### Melee Pricklytown
+#### Melee Pricklytown (Variante 1)
 Este enemigo se encuentra por el pueblo de Pricklytown. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida.  Posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
   1. Bloque izquierdo y central, ataque central.
   2. Bloque izquierdo y central, ataque central y ataque izquierdo.
   3. Bloqueo total y "ataque abrazo".
   4. Ataque derecho, bloqueo derecho y ataque central
 
-#### Melee Cañón
+#### Melee Cañón (Variante 2)
 Este enemigo se encuentra en la zona del cañón. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida. Al igual que la variante anterior posee un ataque (“ataque abrazo”) que solo se puede esquivar por el centro y si el jugador lo recibe se queda aturdido por unos segundos quedando expuesto a cualquier ataque. Sus patrones de ataque son:
 
   1. Bloqueo total y "ataque abrazo".
   2. Ataque derecho, ataque derecho y ataque izquierdo.
   3. Ataque derecho, ataque derecho, bloqueo derecho y ataque izquierdo.
 
-#### Melee Oasis
+#### Melee Oasis (Variante 3)
 
-ste enemigo se encuentra en la zona del oasis. Sus ataques hacen 1 de daño y cuenta con 5 puntos de vida.Sus patrones de ataque son:
+Este enemigo se encuentra en la zona del oasis. Sus ataques hacen 1 de daño y cuenta con 4 puntos de vida.Sus patrones de ataque son:
 
   1. Ataque derecho, ataque derecho y ataque izquierdo.
   2. Ataque central, bloqueo central y ataque derecho.
   3. Bloqueo izquierdo, ataque derecho y bloqueo derecho.
 
-### Enemigo suicida
-Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión (7 metros) va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
+### Enemigo suicida (Bimby Bomb)
+Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión  va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
 
 Para poderse librar de este enemigo existen varias opciones:
 
@@ -263,29 +270,29 @@ Para poderse librar de este enemigo existen varias opciones:
 
   * Si el jugador fija a este enemigo, este realizará un ataque suicida en una de las tres direcciones de forma aleatoria. Como este ataque no es esquivable el jugador tendrá que atacar al enemigo antes de que le ataque para lanzarlo y que explote.
 
-  * Si el jugador usa el gancho contra el enemigo cuando se acerta tiene una pequeña ventana para atacarlo y lanzarlo provocando su explosión.
+  * Si el jugador lo ataca en el momento justo, este saldrá lanzado provocando su explosión.
 
-### Enemigo robusto
+### Enemigo robusto (Espinotauro)
 El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará piedras hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva.En ocasiones podrá lanzar a los enemigos suicidas. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
  
   1.	Ataque central, defensa central y ataque central.
   2.	Defensa izquierda, ataque izquierdo y ataque derecho.
   3.	Ataque izquierdo (con amague de central), ataque derecho y defensa derecha.
 
-### Francotirador
+### Francotirador (Buitre Saguaro)
 Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 5 patrones de defensa:
   1. Defensa izquierda.
   2. Defensa izquierda y defensa central.
   3. Defensa central e izquierda a la vez.
   4. Defensa derecha.
-  5. efensa central e izquierda a la vez y defensa derecha.
+  5. Defensa central e izquierda a la vez y defensa derecha.
 
-Si el jugador golpea en la dirección donde defiende, este huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
+Si el jugador golpea en la dirección donde defiende, este contratacará y si le da, huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
 
 
 # 4. Arte 
 
-A continuación se hará un resumen del apartado artístico general de Proyecto Coyote, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
+A continuación se hará un resumen del apartado artístico general de Coyote Requiem, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
 
 ## 4.1. Estilo artístico general
 
@@ -313,7 +320,7 @@ Modelo 3D finalizado del personaje principal
 
 ## 4.3. Escenarios
 
-Como se ha mencionado anteriormente, "Proyecto Coyote" cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
+Como se ha mencionado anteriormente, Coyote Requiem cuenta con tres zonas principales,cada una de estas zonas será un único nivel por lo tanto, el juego contará con tres niveles bien diferenciados. Para la introducción y la transición de niveles se meterán cinemáticas simulando ser un comic.
 
 ### Pueblo
 
@@ -345,16 +352,14 @@ Modelado de el Zombi Nopal
 
 ## 4.4. Arte 2D
 
-
-
 # 5. Sonido y música 
 ## 5.1. Estilo Sonoro y musical
 La música será ambientada en bandas sonoras del oeste para el menú de introducción, y temas de acción y aventura para el gameplay. Se usará el software “Musescore” para la composición de las canciones. Algunos instrumentos empleados serán el banjo o la trompeta entre otros.
 
 Por otra parte, los sonidos y efectos especiales (SFX) tendrán una temática 8 bits, para acompañar la estética visual del juego. Se emplearán páginas como SFXR o BFXR.
 
-<!--## 6.2. Banda sonora 
-## 6.3. Efectos sonoros (SFX) -->
+## 6.2. Banda sonora 
+## 6.3. Efectos sonoros (SFX)
 
 # 6. Menús e Interfaces 
 ## 6.1. Diagramas de flujo 
@@ -404,9 +409,12 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
  * __Termina el nivel:__ Al completar el nivel se presentan dos situaciones. Si hay otro nivel después se pasará al siguiente, pero si ya ha terminado el juego irá a la pantalla de créditos y luego al menú inicio cuando acabe.
 
  ## 6.2. Diseño de interfaces
+ ### Interfaces combate
  ###  Menú principal
 
 <img src="./Imagenes_README/BocetoMenuPrincipal.png" alt="BocetoMenuPincipal" style="width: 70%"/>
+
+*Boceto menú principal*
 
 1.	Título del juego.
 
@@ -450,46 +458,6 @@ La realización del proyecto tendrá un tiempo límite de 13 semanas teniendo en
 
 Durante estas versiones cada semana se pondrán metas a alcanzar para el final de esta.
 
-### Costes adicionales
-
-#### Costes del personal
-Estos serían los costes directos de la empresa, The Big Bone Team, asumiendo que el proyecto va a durar 13 semanas:
-
-MIEMBRO DEL EQUIPO  |  ROL | COSTE POR HORA (€) | COSTE MENSUAL (€) | COSTE TOTAL (€)
---  |  -- |  -- |  --  |  --  
-Andrea |   Programadora | 20 | 2400 | 7800
-Antonio | Diseñador de sonido y programador | 25 | 3000 | 10050
-Candela | Artista 2D, artista 3D y animadora 3D | 15 | 1800 | 5850
-Diego | Programador | 25 | 3000 | 10050
-David | Game designer y guionista | 15 | 1800 | 5850
-Edu | Artista 2D, artista 3D y animador 3D | 15 | 1800 | 5850
-__Total__ | - | 85 | 10200 | 45450
-
-#### Licencias y software
-CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
--- | -- | --
-Internet | 60 | 195
-Unity: Licencia Pro | 925 | 3006.25
-Procreate | (coste único) | 14.99
-Clip Studio | (coste único) | 49
-Github | Licencia gratuita | 0
-Aseprite | Licencia gratuita| 0
-Miro | Licencia gratuita | 0
-Jira | Licencia gratuita| 0
-Mocrosoft Teams | Licencia gratuita| 0
-Blender | Licencia gratuita | 0
-MuseScore | Licencia gratuita | 0
-Google Docs | Licencia gratuita | 195
-__Total__ | 985 | 3265.34
-
-#### Otros gastos
-CONCEPTO | COSTE MENSUAL (€) | COSTE TOTAL (€)
--- | -- | --
-Alquiler oficina | 800 | 2600
-Internet | 60 | 195
-Equipos | (coste único) | 5000
-Servicios externos (testers) | 500 | 3000
-__Total__ | 2285 | 10795
 
 # 8. Marketing y Redes Sociales
 
@@ -525,7 +493,6 @@ También me he mantenido en contacto con los programadores para comprender sus s
 
 Además he tenido un papel significativo en la toma de decisiones sobre diseño, ambientación y, en general, sobre la idea del juego en las primeras reuiniones
 
----
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
@@ -544,7 +511,6 @@ He mantenido contacto sobre todo con el equipo de programación (Andrea, Diego y
 
 Además, todo el trabajo de programación ha pasado por la supervisión de Diego y también he estado en contacto con él como asesor.
 
----
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
@@ -568,7 +534,6 @@ En general yo planteaba los conceptos o ideas en el GDD con un desarrollo y ella
 
 También cabe resaltar que la idea de que el prota tenga que enterrar las cenizas de su marido fue una idea general del grupo al igual que la ambientación. 
 
----
 ### Diego Fernández Manso
 
 #### Lecciones aprendidas
@@ -584,8 +549,6 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 #### Trabajo colectivo realizado
   El mayor problema colectivo a nivel de programación es que algunas tareas no se han dividido muy bien, lo que ha llevado a cierta solapación en los sistemas a realizar, lo que ha significado trabajo perdido.
   En el lado positivo, una vez se corrigieron estos problemas iniciales hemos podido sincronizarnos bien y, debido a que tenemos experiencia previa con github, hemos podido evitar conflictos de archivos y branches.
-
----
 
 ### Candela Jiménez González
 #### Lecciones aprendidas
@@ -605,7 +568,6 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
   
   También he colaborado conjuntamente con Diego y Edu a la hora de integrar las animaciones en el motor de desarrollo e incluirlas en el controlador. 
 
-  ---
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
@@ -615,5 +577,58 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 #### Trabajo colectivo realizado
   Gestión y reparto de tareas.
 
-<!--## 9.2. Post Mortem - Beta
-## 9.3. Post Mortem - Gold-->
+## 9.2. Post Mortem - Beta
+
+### Eduardo Almarza Blasco
+#### Lecciones aprendidas
+
+#### Trabajo individual realizado
+
+#### Trabajo colectivo realizado
+
+
+### Antonio Bernal de Celis
+#### Lecciones aprendidas
+
+#### Trabajo individual realizado
+
+#### Trabajo colectivo realizado
+
+
+### David del Castillo Enríquez
+#### Lecciones aprendidas
+
+
+#### Trabajo individual realizado
+
+#### Trabajo colectivo realizado
+
+
+### Diego Fernández Manso
+#### Lecciones aprendidas
+
+#### Trabajo individual realizado
+
+#### Trabajo colectivo realizado
+
+
+### Candela Jiménez González
+#### Lecciones aprendidas 
+
+#### Trabajo individual realizado
+  
+#### Trabajo colectivo realizado
+
+
+### Andrea Luengo Zazo
+#### Lecciones aprendidas
+La importancia de comunicarse a la hora de realizar proyectos en equipo. Dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión.
+
+#### Trabajo individual realizado
+Desarrollo completo del sistema de gancho, que está conformado por: una nueva cámara con su gestión complementaria del movimiento, objetivo a seguir y lookAt; sistema de estados del gancho; gestión de objetos y enemigos con los que se puede usar el gancho; sistema de selección de objetivos; sistema de lanzamiento y retracción del gancho; implementación visual del cable del gancho con tiempo de lanzamiento en función de la distancia al objetivo; cooldown para evitar el uso indiscriminado; desactivación de colisiones del enemigo al retraer el gancho cuando se atrae a un enemigo y del jugador al retraer el gancho cuando el jugador va hacia el enemigo; ventana de tiempo entre que se ha pulsado el botón de retraer y termina la acción para poder hacer un ataque especial (patada) al llegar el gancho a su destino.
+
+Por otro lado se han estado corrigiendo bugs y mejorando el sistema de cámaras y de lock como la optimización del lookAt de las cámaras o la corrección de la detección de objetos bloqueantes entre el objetivo y el personaje, entre otras cosas. También se han terminado de implementar los menús.
+
+#### Trabajo colectivo realizado
+Se ha estado en contacto con David, el game designer, para implementar el sistema de gancho conforme a las necesidades del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar.
+<!--## 9.3. Post Mortem - Gold-->

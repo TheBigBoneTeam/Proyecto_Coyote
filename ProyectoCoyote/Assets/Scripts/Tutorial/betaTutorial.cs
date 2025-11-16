@@ -140,7 +140,7 @@ namespace tutorial
         public override void OnEnter()
         {
             
-            tutorial.TutorialText.text = $"Mientras enfocas a un enemigo podrás esquivar pulsando <Espacio>. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ más /movimiento/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>. Solo podrás esquivar si estás fijando a un enemigo");
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -174,7 +174,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
-            tutorial.TutorialText.text = $"Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  <Espacio> sin ninguna dirección. El punto central de la interfaz te avisará de ataques desde fuera.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivar/ sin ninguna dirección. El punto central de la interfaz te avisará de ataques desde fuera.");
             
         }
         public void esquive(HitDirections d)
@@ -237,7 +237,7 @@ namespace tutorial
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = $"Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione <CLICK DERECHO> + <DIRECCIÓN>.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione /pegar/. Solo podrás atacar mientras fijas a un enemigo");
         }
         public void enemyHit(int currentLife)
         {
@@ -337,7 +337,7 @@ namespace tutorial
         {
             Time.timeScale = 0;
             tutorial.currentEsqPerf = 0;
-            tutorial.TutorialText.text = $"Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador. Pulsa /ESPACIO/ para hacer el esquive perfecto";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador. Pulsa /esquivar/ para hacer el esquive perfecto");
           //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
         }
@@ -373,7 +373,7 @@ namespace tutorial
         {
             tutorial.changeTutWait = false;
 
-            tutorial.TutorialText.text = $"Ataca ahora para hacer un daño devastador";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /pegar/ ahora para hacer un daño devastador");
             //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
         }
@@ -441,7 +441,7 @@ namespace tutorial
             tutorial.enemigoGancho.gameObject.SetActive(true);
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
-            tutorial.TutorialText.text = $"Como último detalle, tus puchos son ganchos también ¿no? Podrás usarlo para atraer o acercarte a los enemigos. Pulsa /E/ para apuntar al enemigo.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Como último detalle, tus puños son ganchos también ¿no? Podrás usarlo para atraer o acercarte a los enemigos. Pulsa /gancho/ para apuntar al enemigo.");
         }
         public override void Update()
         {
@@ -465,7 +465,7 @@ namespace tutorial
             tutorial.enemigoGancho.GetComponent<HookableObject>().canBeHooked = false;
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
-            tutorial.TutorialText.text = $"Ahora pulsa <click> para enganchar al enemigo.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora pulsa /pegar/ para enganchar al enemigo.");
         }
         public override void Update()
         {
@@ -489,7 +489,7 @@ namespace tutorial
             tutorial.detectPlayerEnemy.setCharacter(tutorial.player);
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
-            tutorial.TutorialText.text = $"Pulsa <W> para ir hacia él.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /ir a enemigo/ para ir hacia él.");
         }
     }
     public class Gancho2 : BaseTutorialState
@@ -504,7 +504,7 @@ namespace tutorial
             tutorial.zonaGancho2.SetActive(true);
             tutorial.currentGanchos = 0;
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = $"También hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /WASD/. Recorre todos los objetivos.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("También hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Recorre todos los objetivos.");
         }
     }
     public class Gancho3 : BaseTutorialState
@@ -520,7 +520,7 @@ namespace tutorial
 
             tutorial.currentGanchos = 0;
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = $"Por último, atrae hacia a ti al enemigo para terminar el tutorial";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer a enemigo/ para terminar el tutorial");
         }
     }
     //public class Gancho4 : BaseTutorialState
@@ -579,7 +579,7 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = "Empecemos por lo esencial. Usa /WASD/ o el joystick izquierdo para moverte por el escenario.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario.");
             input = GameObject.FindAnyObjectByType<GameInput>();
 
 
@@ -606,9 +606,8 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.waitTime(3);
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = "Genial parece que sabes cómo caminar, ahora usa el ratón o el joystick derecho puedes rotar la cámara para ver lo que hay a tu alrededor.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Genial parece que sabes cómo caminar, ahora usa /camara/ para ver lo que hay a tu alrededor.");
             
         }
         public override void OnExit()
@@ -652,7 +651,7 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
-            tutorial.TutorialText.text = "Muy bien, me has demostrado que esos ojos no los tienes solo de decoración. Ahora presiona “q” o “BOTON ENFOQUE” para enfocar y desenfocar a un enemigo, en este caso prueba con este cactus.";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Muy bien, me has demostrado que esos ojos no los tienes solo de decoración. Ahora presiona /lockeo/ para enfocar y desenfocar a un enemigo, en este caso prueba con este cactus.");
         }
         public override void OnExit()
         {
@@ -662,23 +661,23 @@ namespace tutorial
 
     public static class InputTextFormatter
     {
-        public static string Cambiar(string og, GameInput.DeviceType device)
+        public static string Cambiar(string og)
         {
+            GameInput.DeviceType device = GameObject.FindAnyObjectByType<GameInput>().CurrentDevice;
             string[] partes = og.Split('/');
             string resultado = "";
-
+            Debug.Log(device);
             for (int i = 0; i < partes.Length; i++)
             {
-                if (i % 2 == 0)
-                {
-                    // Texto normal
-                    resultado += partes[i];
-                    continue;
-                }
+                //if (i % 2 == 0)
+                //{
+                //    // Texto normal
+                //    resultado += partes[i];
+                //    continue;
+                //}
 
                 // Texto entre / / → es un comando
                 string token = partes[i].ToLower();
-
                 switch (token)
                 {
                     case "movimiento":

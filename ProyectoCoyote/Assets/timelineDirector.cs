@@ -36,6 +36,11 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         currentData = data;
         director.playableAsset = timeline;
         endCutsceneAction = endAction;
+        if (data.isEndLevel)
+        {
+            endCutsceneAction +=()=> ServiceLocator.Instance.Get<ILevelManager>().loadEscene(data.nextLevel);
+
+        }
         if (/*!settingManager.Instance.skipCutscenes */true || !currentData.canBeSkipped)
         {
             canvasgroup.alpha = 1;

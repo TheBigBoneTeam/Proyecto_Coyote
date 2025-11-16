@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     protected void Start()
     {
         CheckScene();
+        if(ServiceLocator.Instance != null)
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
         if (gameStateManager != null)
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour
 
         // Encuentra un jugador y se suscribe al metodo de bloqueo
         player = FindAnyObjectByType<Player>();
+        if(player != null)
         player.subscribeToDodgeAttack(DodgeAttack);
     }
     public void SceneChange()

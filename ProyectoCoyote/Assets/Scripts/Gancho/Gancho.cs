@@ -588,7 +588,7 @@ public class Gancho : MonoBehaviour
         if (rb)
         {
             rb.useGravity = false;
-            rb.isKinematic = true; // Hacer kinematic para evitar interferencias físicas
+            //rb.isKinematic = true; // Hacer kinematic para evitar interferencias físicas
         }
     }
 
@@ -639,7 +639,7 @@ public class Gancho : MonoBehaviour
         if (rb)
         {
             rb.useGravity = true;
-            rb.isKinematic = false; 
+            //rb.isKinematic = false; 
         }
     }
     #endregion

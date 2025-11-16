@@ -417,6 +417,11 @@ Arte conceptual inicial de algunos enemigos
 Modelado de el Zombi Nopal
 
 ## 4.4. Arte 2D - Interfaces
+Diseño inicial de interfaces - vida e indicador de direcciones de ataque o bloqueo.
+
+<img src="./Imagenes_README/Interfaz_vida.jpeg" alt="zombi3" style="width: 50%"/>
+<img src="./Imagenes_README/Interfaz_ataque.jpeg" alt="zombi3" style="width: 41%"/>
+
 
 # 5. Sonido y música 
 ## 5.1. Instrumentación
@@ -560,7 +565,7 @@ Se trata de un tema sosegado que es acorde con el momento emocional del final de
 ## 6.1. Diagramas de flujo 
 
 ### Menú inicio
-<img width="1050" height="562" alt="DiagramaflujoMenuPrincipal drawio" src="https://github.com/user-attachments/assets/b133867e-11f8-44f8-8a3e-f341eae1f700" />
+<img src="./Imagenes_README/DiagramaflujoMenuPrincipal2.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
 ### Menú opciones
 <img width="611" height="301" alt="DiagramaflujoMenuOpciones drawio" src="https://github.com/user-attachments/assets/f8e94939-37c0-43d9-bf1f-1a1998928cb2" />
@@ -568,22 +573,25 @@ Se trata de un tema sosegado que es acorde con el momento emocional del final de
 ### In game
 <img width="716" height="862" alt="DiagramaflujoInGame drawio" src="https://github.com/user-attachments/assets/551992dc-3eae-4f19-a586-60a36025282a" />
 
+
+
 ### Requisitos funcionales
 __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador cuando inicia el juego. En este menú se pueden observar los siguientes botones:
  
- * __Nueva partida:__ El jugador comienza el juego desde 0.
  
+* __Nueva partida:__ El jugador comienza el juego desde 0.
+
  * __Continuar:__ El jugador continua la partida desde el punto donde lo había dejado en caso de tener una partida guardada, si no la tiene no pasará nada.
- 
- * __Controles:__ El jugador podrá ver los controles tanto en ordenador como dispositivos móviles.
- 
+
+Tutorial El jugador puede ir a la escena del tutorial para saber como jugar.
+
  * __Opciones:__ El jugador accederá al menú de opciones donde podrá ajustar los niveles de audio general, música y efectos sonoros.
- 
- * __Créditos:__ El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
- 
- * __Contenido descargable:__ Al pulsar este botón se desplegará una pantalla donde se podrá observar el contenido descargable de pago que contiene le juego.
- 
- * __Salir:__ Con este botón el jugador saldrá del juego.
+
+ * __Créditos:__  El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
+
+ * __Contenido descargable:__ Hay unos desplegables con el contenido descargable pendiente de sacar, junto a un texto que describe el contenido del mismo.
+
+ * __Salir:__  Con este botón el jugador saldrá del juego.
 
 __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc" en ordenador o el respectivo botón en dispositivos móviles.
 
@@ -777,19 +785,28 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### Eduardo Almarza Blasco
 #### Lecciones aprendidas
+Siendo este el proyecto más ambicioso en el que he trabajado, me he enfrentado a muchos retos nuevos, especialmente en cuanto al trabajo en 3D y arte técnico. Han aparecido múltiples retos que implican ir un poco más allá que modelar, hacer uvs y texturizar (que es lo que había hecho hasta ahora). Además he tenido que animar muchísimo, lo que me ha hecho practicar una barbaridad sobre animación
 
 #### Trabajo individual realizado
+Mi trabajo principal ha sido el de animar en 3D los enemigos, así como desarrollarlos desde 0 (incluido el concept art). Además de eso he modelado y texturizado todos los escenarios del juego, utilizando técnicas de texturizado procedural y bakeo en blender.
 
 #### Trabajo colectivo realizado
-
+He colaborado con Candela en la realización de arte, pero nuestras tareas no se han solapado apenas. La persona con la que he tenido que coordinarme más ha sido David, quien ha sido encargado de montar la lógica de los enemigos y escenarios, por lo que mi trabajo ha dependido un poco de sus demandas.
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
+Este proyecto me está ayudando a descubrir nuevas técnicas, tanto de programación como especialmente a nivel de ingeniería de sonido. También me está permitiendo salir de mi zona de confort al componer. Se está buscando mezclar un mundo western con toques de fantasía, y las composiciones tienen referencias indirectamente a otros sectores musicales ajenos a los videojuegos, como el flamenco o la música relativa a la Semana Santa, haciendo que de esta banda sonora algo único. También se han creado leitmotifs para los personajes.
 
 #### Trabajo individual realizado
+Principalmente, mi trabajo ha sido componer la banda sonora del videojuego en su totalidad, haciendo una música dinámica que alterne entre la tranquilidad del personaje caminando por el mundo y la música de combate que suena al enfrentarte a enemigos. Este dinamismo se consigue componiendo ambas tracks (base y combate) y alternándolas mediante el sistema de sonido del juego.
+
+Sistema de movimiento del jugador: andar, correr, dash, gravedad, deslizamiento en el suelo, movimiento en rampas...
+
+Efectos de sonido: se han añadido SFX de terceros, mediante AnimationEvents (golpes en el aire, pasos, muelles...) y SFX de puñetazos, parrys, bloqueos...
 
 #### Trabajo colectivo realizado
-
+Aporte sobre el diseño de la IA de enemigos. Aunque el trabajo de IA haya sido primordialmente y en su mayoría, parte de Diego, se ha trabajado en conjunto sobre el diseño de los enemigos y su comportamiento.
+También he colaborado con Candela en la realización de las publicaciones de redes sociales.
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
@@ -803,18 +820,31 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
+La mayor lección ha sido aprender a utilizar librerías externas y tener que ajustar el ritmo de trabajo a utilizar código no propio (y muchas veces con poca documentación). Esto es refiriéndose a la API de IA que nos proporcionaron en la asignatura de Comportamiento de Personajes.
 
 #### Trabajo individual realizado
+Ampliación del sistema de combate para incluir mecánicas como ataques a distancias, counters, reacciones y proyectiles.
+
+Creación de sistema de niveles, zonas de combate (gestión de enemigos y de bloquear el paso al jugador). También se ha desarrollado un sistema básico de cinemáticas usando Timeline. (Aunque las cinemáticas de la beta son muy simples debido al tiempo).
+
+Se ha ampliado en gran medida el sistema de IA creando todos los enemigos nuevos y añadiendo nuevas funciones a los antiguos.
 
 #### Trabajo colectivo realizado
+Aunque la propia programación de la IA ha sido una tarea individual, el diseño de los árboles/máquinas de estados y la planificación a alto nivel se ha realizado junto con Antonio.
 
+Para el desarrollo del sistema de niveles y zonas de combate. Se ha trabajado junto con David para que las características del sistema se adapten a las necesidades del proyecto y el diseño de niveles, que en ocasiones tuvo que cambiar a lo largo del desarrollo.
 
 ### Candela Jiménez González
 #### Lecciones aprendidas 
+En esta parte del desarrollo del proyecto he aprendido principalmente sobre modelado y texturizado en 3D. El estilo artístico del proyecto, al ser 3D con texturas pixel art, requiere una realización de UVs y texturas diferente y nueva para mí. También he ampliado mis conocimientos sobre animación 3D.
 
 #### Trabajo individual realizado
-  
+Para la entrega Beta he trabajado principalmente en el modelado, texturizado y algo de animación de personajes. A nivel de arte, también he realizado las interfaces del juego y el concept art de algunos personajes.
+Además me he encargado de el desarrollo completo de la página web-portfolio del equipo y junto mis compañeros de equipo he colaborado en las redes sociales, así como de la documentación y realización del Readme. 
+
 #### Trabajo colectivo realizado
+Colectivamente he trabajado con Edu en el proceso de diseño de personajes, modelado, texturizado y animación.
+Además he trabajado con Antonio y Edu en las redes sociales.
 
 
 ### Andrea Luengo Zazo

@@ -144,10 +144,11 @@ public class combatAreaManager : MonoBehaviour
             }
             if (!deadEnemies.Contains(enemy))
             {
+                print("enemyDieadd" + deadChar.name);
                 lockOn.resetWhenDie(enemy.transform);
                 deadEnemies.Add(enemy);
             }
-            if (deadEnemies.Count >= startEnemies.Length)
+            if (deadEnemies.Count >= currentWaveData.enemies.Length)
             {
                 waveFinished();
             }
@@ -360,7 +361,7 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(Enemy enemy,out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
-         Cover[] orderedCovers = currentCovers.OrderBy((c) => -((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+         Cover[] orderedCovers = currentCovers.OrderBy((c) => ((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
         //Cover[] orderedCovers = currentCovers.OrderBy<>
         foreach (var cover in orderedCovers)
         {

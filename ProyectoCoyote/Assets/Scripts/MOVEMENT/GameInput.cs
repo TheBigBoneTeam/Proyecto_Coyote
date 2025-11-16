@@ -25,6 +25,8 @@ public class GameInput : MonoBehaviour
     public bool HookAttractPressed { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
+    public bool EscapePressed { get; private set; }
+    public bool SkipPressed { get; private set; }
 
     private void Awake()
     {
@@ -72,6 +74,8 @@ public class GameInput : MonoBehaviour
         controls.Player.HookSelectRight.performed += ctx => { Hook_SelectRight = true; DetectDeviceFromContext(ctx); };
         controls.Player.Hook_TP.performed += ctx => { Hook_SelectUp = true; DetectDeviceFromContext(ctx); };
         controls.Player.HookAttract.performed += ctx => { HookAttractPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Escape.performed += ctx => { EscapePressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Skip.performed += ctx => { SkipPressed = true; DetectDeviceFromContext(ctx); };
     }
 
     private void DetectDeviceFromContext(InputAction.CallbackContext ctx)
@@ -111,6 +115,8 @@ public class GameInput : MonoBehaviour
         Hook_SelectRight = false;
         Hook_SelectUp = false;
         HookAttractPressed = false;
+        EscapePressed = false;
+        SkipPressed = false;
     }
 
     public Vector2 GetMovementPlayer()

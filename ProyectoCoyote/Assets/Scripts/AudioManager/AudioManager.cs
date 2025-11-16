@@ -194,6 +194,10 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
                 break;
 
+            case "Credits":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Creditos", true, Vector2.zero, true, true);
+                break;
+
             default:
                 break;
         }

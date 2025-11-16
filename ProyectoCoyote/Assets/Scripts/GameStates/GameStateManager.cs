@@ -41,7 +41,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     }
     public void Pause()
     {
-        if (canPause && currentState != GameState.Paused)
+        if (/*canPause &&*/ currentState != GameState.Paused)
         {
             prePauseState = currentState;
             Time.timeScale = 0;

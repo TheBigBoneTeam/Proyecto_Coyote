@@ -1,15 +1,23 @@
 using UnityEngine;
 using Services;
+using UnityEngine.SceneManagement;
 
 
 public class PauseMenu : MonoBehaviour
 {
     IGameStateManager gameStateManager;
+    menuSceneChanger MenuSceneChanger;
+
+    Animator anim;
     [SerializeField] Canvas pauseMenuCanvas;
+    string scene;
     void Start()
     {
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
         pauseMenuCanvas.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
+
+        MenuSceneChanger = new menuSceneChanger();
     }
 
     // Update is called once per frame
@@ -28,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         {
             pauseMenuCanvas.gameObject.SetActive(true);
             Cursor.visible = true;
-            
+            Cursor.lockState = CursorLockMode.None;
         }
         Debug.Log("Estado: "+ state);
     }
@@ -38,14 +46,21 @@ public class PauseMenu : MonoBehaviour
     {
         gameStateManager.UnPause();
         pauseMenuCanvas.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     public void Reiniciar()
     {
-        // Reiniciar
+        gameStateManager.UnPause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        pauseMenuCanvas.gameObject.SetActive(false);
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void ExitGame()
     {
-        // Menu de inicio
+        SceneManager.LoadScene(0);
     }
 }

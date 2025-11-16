@@ -3,11 +3,12 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class cutsceneSkipController : MonoBehaviour
 {
-    private CutsceneData currentData;
+    [SerializeField] private CutsceneData currentData;
     [SerializeField] float currrentSkipPressTime;
     [SerializeField] float SkipPressTime;
     [SerializeField] Image skipCupstecenesBar;
@@ -21,12 +22,13 @@ public class cutsceneSkipController : MonoBehaviour
     private void Start()
     {
         cutscenePlaying = false;
+        cutsceneManager = ServiceLocator.Instance.Get<IcutsceneManager>();
     }
     void Update()
     {
         if (cutscenePlaying)
         {
-            if (!Input.GetKey(KeyCode.Space))
+            if (!Input.anyKey)
             {
                 currrentSkipPressTime -= Time.deltaTime;
                 if (currrentSkipPressTime < 0)
@@ -37,7 +39,7 @@ public class cutsceneSkipController : MonoBehaviour
             skipCupstecenesBar.fillAmount = currrentSkipPressTime / SkipPressTime;
             if (currentData != null && currentData.canBeSkipped == true && !cutsceneManager.isSkipingCutscene())
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.anyKey)
                 {
                     currrentSkipPressTime += Time.deltaTime;
                     if (currrentSkipPressTime >= SkipPressTime)

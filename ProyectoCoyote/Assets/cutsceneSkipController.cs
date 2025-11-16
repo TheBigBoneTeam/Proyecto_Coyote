@@ -123,6 +123,7 @@ public class cutsceneSkipController : MonoBehaviour
 
     internal void startCutscene(CutsceneData data)
     {
+        currrentSkipPressTime = 0;
         currentData = data;
         cutscenePlaying = true;
         textoSaltarCinematicaEstado = estadoMensajeSkip.turningOff;

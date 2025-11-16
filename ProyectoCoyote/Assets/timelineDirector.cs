@@ -36,6 +36,11 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         currentData = data;
         director.playableAsset = timeline;
         endCutsceneAction = endAction;
+        if (data.isEndLevel)
+        {
+            endCutsceneAction +=()=> ServiceLocator.Instance.Get<ILevelManager>().loadEscene(data.nextLevel);
+
+        }
         if (/*!settingManager.Instance.skipCutscenes */true || !currentData.canBeSkipped)
         {
             canvasgroup.alpha = 1;
@@ -141,13 +146,15 @@ public class CutsceneData
     public GameObject[] objectsToTurnOn;
     public bool canBeSkipped;
     public bool isEndLevel;
-    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null)
+    public string nextLevel;
+    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null,string nextLevel="")
     {
         this.cutscene = cutscene;
         objectsToTurnOff = _objectsOff;
         objectsToTurnOn = _objectsOn;
         canBeSkipped = _canSkipped;
         this.isEndLevel = isEndLevel;
+        this.nextLevel = nextLevel;
     }
 }
 public class CutsceneCaller : MonoBehaviour

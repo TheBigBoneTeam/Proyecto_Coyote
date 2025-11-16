@@ -434,8 +434,8 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.secondEnemy.Die();
-            tutorial.enemy.Die();
-
+            GameObject.FindAnyObjectByType<EnemyLockOn>().resetWhenDie(tutorial.enemy.transform);
+            tutorial.enemy.gameObject.SetActive(false);
             tutorial.zonaGancho1.SetActive(true);
             tutorial.zonaGancho2.SetActive(false);
             tutorial.enemigoGancho.gameObject.SetActive(true);

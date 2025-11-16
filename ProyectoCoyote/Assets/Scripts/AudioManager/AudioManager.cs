@@ -28,10 +28,19 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    private void Start()
+    {
+        SceneChange();
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
-    protected void Start()
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CheckScene();
+
+    }
+    public void SceneChange()
+    {
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
         if (gameStateManager != null)
@@ -45,13 +54,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("[PlayerMovement] No se encontró GameStateManager al iniciar");
         }
 
-        for (int i=0; i<musicSounds.Length; i++)
+        for (int i = 0; i < musicSounds.Length; i++)
         {
             // musicSounds[i] = null;
         }
 
         // Encuentra un jugador y se suscribe al metodo de bloqueo
         player = FindAnyObjectByType<Player>();
+        if(player != null)
         player.subscribeToDodgeAttack(DodgeAttack);
     }
 

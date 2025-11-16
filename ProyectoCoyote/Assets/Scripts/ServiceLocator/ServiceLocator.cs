@@ -46,5 +46,6 @@ namespace Services {
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            FindAnyObjectByType<AudioManager>().SceneChange();
         }
     }  }

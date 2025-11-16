@@ -219,7 +219,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public void unSubscribeToLifeChange(UnityAction<int> response)
     {
-        lifeUpdate.AddListener(response);
+        lifeUpdate.RemoveListener(response);
     }
 
     public void subscribeToDodgeAttack(UnityAction<HitDirections> response)

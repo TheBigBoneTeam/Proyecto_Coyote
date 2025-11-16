@@ -40,7 +40,13 @@ public class DamageReceiver:MonoBehaviour
                 Debug.Log("PARRY");
                 if (!perfectDodgeManager.isSlowDown())
                 {
+                    print("startSlowdownn");
                     perfectDodgeManager.StartSlowdown();
+                }
+                else
+                {
+                    print("inSlowDown");
+
                 }
             }
         }

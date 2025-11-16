@@ -81,6 +81,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
                 item.SetActive(true);
             }
         }
+        director.Stop();
         canvasgroup.alpha = 0;
         cutsceneSkip.endCutscene();
         cutscenPlaying = false;

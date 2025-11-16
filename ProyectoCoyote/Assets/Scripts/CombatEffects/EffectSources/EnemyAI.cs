@@ -311,6 +311,7 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public void restart()
     {
+        onAction = false;
         hasPriority = false;
         FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
         GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);

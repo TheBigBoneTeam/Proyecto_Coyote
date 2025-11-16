@@ -12,7 +12,7 @@ public abstract class AGameCharacter :MonoBehaviour
 {
     List<ATimedEffect> activeEffects;
    [field:SerializeField] public int HealthPoint { get; private set; }
-   [SerializeField] private int _maxHealthPoint;
+   [SerializeField] protected int _maxHealthPoint;
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  protected bool invincible;
@@ -88,6 +88,7 @@ public abstract class AGameCharacter :MonoBehaviour
         }
         else
         {
+            print("GetHit" + extra);
             anim.CrossFade("GetHit" + extra, .1f, 0, 0);
             }
         if (invTimeAfterHit > 0)
@@ -100,6 +101,10 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         HealthPoint += points;
         lifeUpdate.Invoke(HealthPoint);
+    }
+    public void setHealthPoint(int points)
+    {
+        HealthPoint = points;
     }
     IEnumerator ResetInvincible(float time)
     {

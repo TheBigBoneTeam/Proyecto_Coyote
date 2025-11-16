@@ -615,4 +615,33 @@ public class AudioManager : MonoBehaviour
             _player=this.gameObject.transform;
         }
     }
+
+    #region Control de Volumen
+
+    public virtual void SetMusicVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume); 
+
+        foreach (AudioProducer ap in musicSounds)
+        {
+            if (ap != null && ap.audioSource != null)
+            {
+                ap.audioSource.volume = volume * ap.sound.volume; 
+            }
+        }
+    }
+
+    public virtual void SetSFXVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume); 
+
+        foreach (AudioProducer ap in normalSounds)
+        {
+            if (ap != null && ap.audioSource != null)
+            {
+                ap.audioSource.volume = volume * ap.sound.volume; 
+            }
+        }
+    }
+    #endregion
 }

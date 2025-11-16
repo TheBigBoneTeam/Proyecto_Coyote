@@ -209,7 +209,8 @@ public class Gancho : MonoBehaviour
         movement.stopHookMode();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
-        EnableAllCollisions();
+        EnableAllCollisions(currentTarget);
+        EnableAllCollisions(transform);
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
@@ -402,7 +403,6 @@ public class Gancho : MonoBehaviour
         {
             isHooked = true;
 
-            DisableCollisions();
             
 
             selectingHook = false;
@@ -412,6 +412,8 @@ public class Gancho : MonoBehaviour
     }
     private void GoToTarget()
     {
+
+        DisableCollisions(transform);
         if (currentTarget == null) return;
         canAttack = true;
         //// Dirección desde el objeto hacia la cámara
@@ -435,6 +437,7 @@ public class Gancho : MonoBehaviour
 
         if (hookableObject.canBeHooked)
         {
+            DisableCollisions (currentTarget);
             canAttack = true;
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
@@ -476,17 +479,25 @@ public class Gancho : MonoBehaviour
 
     }
 
-    public void DisableCollisions()
+    public void DisableCollisions(Transform target)
     {
-        if (currentTarget == null) return;
+        if (target == null) return;
 
-        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
-        if (enemy == null) return;
-        currentTarget.gameObject.GetComponent<Collider>().enabled = false;
-        currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        Enemy enemy = target.gameObject.GetComponent<Enemy>();
+        Player player = target.GetComponent<Player>();
+        if (enemy == null && player == null) return;
 
-        var rb = currentTarget.GetComponent<Rigidbody>();
+        target.gameObject.GetComponent<Collider>().enabled = false;
+        if (enemy)
+        {
+            target.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
+            target.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
+        }
+       
+       
+
+        var rb = target.GetComponent<Rigidbody>();
         if (rb)
         {
             rb.useGravity = false;
@@ -494,16 +505,23 @@ public class Gancho : MonoBehaviour
     }
 
 
-    public void EnableAllCollisions()
+    public void EnableAllCollisions(Transform target)
     {
-        if (currentTarget == null) return;
+        if (target == null) return;
 
-        Enemy enemy = currentTarget.gameObject.GetComponent<Enemy>();
-        if (enemy == null) return;
-        currentTarget.gameObject.GetComponent<Collider>().enabled = true;
-        currentTarget.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
-        currentTarget.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-        var rb = currentTarget.GetComponent<Rigidbody>();
+        Enemy enemy = target.gameObject.GetComponent<Enemy>();
+        Player player = target.GetComponent<Player>();
+        if (enemy == null && player == null) return;
+
+        target.gameObject.GetComponent<Collider>().enabled = true;
+        if (enemy)
+        {
+            target.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
+            target.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
+        }
+
+        var rb = target.GetComponent<Rigidbody>();
         if (rb)
         {
             rb.useGravity = true;
@@ -513,7 +531,7 @@ public class Gancho : MonoBehaviour
     public void WaitForHookFinish()
     {
         currentTarget.gameObject.GetComponent<Collider>().enabled = true;
-        EnableAllCollisions();
+        
 
         Debug.Log("Ha llegado a su destino");
         if (currentTarget.gameObject.GetComponent<Enemy>())

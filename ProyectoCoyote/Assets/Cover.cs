@@ -7,6 +7,7 @@ public class Cover : MonoBehaviour
     Enemy Owner;
    // OwnerableTransform[] coverList;
   [SerializeField]   LayerMask layer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -41,30 +42,28 @@ public class Cover : MonoBehaviour
             }
             objPosition = HidePoints[i];
             RaycastHit hit;
-            Vector3 dir = playerPos.position - objPosition.position;
-            print(objPosition.position);
+            Vector3 dir = objPosition.position - playerPos.position;
+                print(objPosition.position);
             print(playerPos.position);
-
-            if (Physics.Raycast(objPosition.position,dir.normalized, out hit, dir.magnitude, layer))
+         //   Debug.DrawRay(playerPos.position, dir, Color.green,10);
+            if (Physics.Raycast(playerPos.position, dir, out hit, dir.magnitude, layer))
             {
                 print(hit.transform.name);
-                //if(hit.transform.gameObject == gameObject || (hit.transform.parent && hit.transform.parent == gameObject)
-                //{
-                    /*coverList[i].*/Owner = enemy;
-                    print("found");
-                    return i;
-                //}
-                //else
-                //{
-                //    print("Hit another thing");
-                //}
-            }
-            else
-            {
-                print("Not Safe Spot");
-            }
 
+                if (hit.transform.IsChildOf(transform) || hit.transform == transform)
+                {
+                    /*coverList[i].*/
+                    Owner = enemy;
+                    print("Safe Spot");
+                    return i;
+                }
+                else
+                {
+                    print("Hit another thing");
+                }
+            }
         }
+        print("Not Safe Spot");
         objPosition = null;
         return -1;
 }
@@ -72,23 +71,24 @@ public class Cover : MonoBehaviour
     {
         RaycastHit hit;
      Vector3   objPosition = HidePoints[index].position;
-        Vector3 dir = playerPos.transform.position - objPosition;
+        Vector3 dir = objPosition - playerPos.position;
         print($" {objPosition} + {dir} + {playerPos.position}");
-        if (Physics.Raycast(objPosition, dir.normalized, out hit, dir.magnitude, layer))
+        if (Physics.Raycast(playerPos.position, dir, out hit, dir.magnitude, layer))
         {
             print(hit.transform.name);
-            if (hit.transform.gameObject.GetComponent<Player>() != null)
+            if (hit.transform.IsChildOf(transform) || hit.transform == transform)
             {
-                print("isUnsafe");
-                return false;
+                /*coverList[i].*/
+                print("Safe Spot");
+                return true;
             }
             //if (hit.transform.gameObject == gameObject)
             //{
             //    print("isSafe");
             //    return true;
             //}
-            print("isSafe");
-            return true;
+            print("Safe but no attack");
+            return false;
         }
         else
         {

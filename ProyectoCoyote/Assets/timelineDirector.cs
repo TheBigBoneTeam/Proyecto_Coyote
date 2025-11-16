@@ -14,12 +14,13 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     PlayableDirector director;
     public bool SkipingCutscene;
     public bool cutscenPlaying;
-
+    CanvasGroup canvasgroup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         director = GetComponent<PlayableDirector>();
+        canvasgroup = GetComponentInChildren<CanvasGroup>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         endCutsceneAction = endAction;
         if (/*!settingManager.Instance.skipCutscenes */true || !currentData.canBeSkipped)
         {
+            canvasgroup.alpha = 1;
             SkipingCutscene = false;
             director.time = 0;
             cutscenPlaying = true;
@@ -75,9 +77,11 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
                 item.SetActive(true);
             }
         }
+        canvasgroup.alpha = 0;
+
         cutscenPlaying = false;
         SkipingCutscene = false;
-        print("helou");
+        print("endcutscene");
         print(endCutsceneAction.ToString());
         endCutsceneAction.Invoke();
     }
@@ -154,7 +158,6 @@ public class StoryAction
     public bool playOnRestart =true;
     bool played = false;
     public string nameKey;
-
     public CutsceneData cutsceneData;
 
     Action postStoryAction;

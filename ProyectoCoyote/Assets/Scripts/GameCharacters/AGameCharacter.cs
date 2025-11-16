@@ -105,6 +105,7 @@ public abstract class AGameCharacter :MonoBehaviour
     public void setHealthPoint(int points)
     {
         HealthPoint = points;
+        lifeUpdate.Invoke(HealthPoint);
     }
     IEnumerator ResetInvincible(float time)
     {

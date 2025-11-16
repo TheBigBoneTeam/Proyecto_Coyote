@@ -17,6 +17,7 @@ public class EnemyManager: IEnemyManager
         enemyClassMutex = new ClassMutex<EnemyAI>();
         attackingEnemy = new ClassMutex<EnemyAI>();
         player = GameObject.FindAnyObjectByType<Player>();
+        
         kungFuCircle = UnityEngine.GameObject.FindGameObjectWithTag("KungFuCircle").transform;
         mainKungFuPoints = new OwnerableTransform[kungFuCircle.childCount];
         Debug.Log(mainKungFuPoints.Length);
@@ -24,8 +25,10 @@ public class EnemyManager: IEnemyManager
         {
             mainKungFuPoints[i] = new OwnerableTransform(kungFuCircle.GetChild(i));
         }
-        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(()=>attackingEnemy.clearMutex());
-      
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(()=> { attackingEnemy.clearMutex(); clearKungFuPoints(); });
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange((a,b) => { attackingEnemy.clearMutex(); clearKungFuPoints(); });
+
+
     }
     public Transform getPoint(int index, Enemy owner)
     {
@@ -115,6 +118,14 @@ public class EnemyManager: IEnemyManager
 
     }
     ClassMutex<EnemyAI> IEnemyManager.attackingEnemy() => attackingEnemy;
+
+    void clearKungFuPoints()
+    {
+        for(int i = 0; i < mainKungFuPoints.Length; i++)
+        {
+            mainKungFuPoints[i].Owner = null;
+        }
+    }
 
  //   ClassMutex<EnemyAI> IEnemyManager.enemyClassMutex() => enemyClassMutex;
 }

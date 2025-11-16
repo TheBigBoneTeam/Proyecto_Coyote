@@ -17,18 +17,22 @@ public class cutsceneSkipController : MonoBehaviour
     [SerializeField] float alphaTextoCambiar = 0;
     [SerializeField] bool cutscenePlaying = false;
 
+    GameInput gameInput;
+
     IcutsceneManager cutsceneManager;
 
     private void Start()
     {
         cutscenePlaying = false;
         cutsceneManager = ServiceLocator.Instance.Get<IcutsceneManager>();
+        gameInput = FindAnyObjectByType<GameInput>();
+
     }
     void Update()
     {
         if (cutscenePlaying)
         {
-            if (!Input.anyKey)
+            if (!gameInput.SkipPressed)
             {
                 currrentSkipPressTime -= Time.deltaTime;
                 if (currrentSkipPressTime < 0)
@@ -39,7 +43,7 @@ public class cutsceneSkipController : MonoBehaviour
             skipCupstecenesBar.fillAmount = currrentSkipPressTime / SkipPressTime;
             if (currentData != null && currentData.canBeSkipped == true && !cutsceneManager.isSkipingCutscene())
             {
-                if (Input.anyKey)
+                if (gameInput.SkipPressed)
                 {
                     currrentSkipPressTime += Time.deltaTime;
                     if (currrentSkipPressTime >= SkipPressTime)
@@ -123,6 +127,7 @@ public class cutsceneSkipController : MonoBehaviour
 
     internal void startCutscene(CutsceneData data)
     {
+        currrentSkipPressTime = 0;
         currentData = data;
         cutscenePlaying = true;
         textoSaltarCinematicaEstado = estadoMensajeSkip.turningOff;

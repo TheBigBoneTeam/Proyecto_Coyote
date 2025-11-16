@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Abrazo
   m_EditorClassIdentifier: 
   <clip>k__BackingField: {fileID: 0}
-  <isParreable>k__BackingField: 0
+  <isParreable>k__BackingField: 1
   <HitCheckType>k__BackingField: 2
   <HitDirections>k__BackingField: 02000000
   effects:
   - rid: 1727648663332192350
+  - rid: 1727648698563821716
   references:
     version: 2
     RefIds:
@@ -25,3 +26,7 @@ MonoBehaviour:
       type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
         _damage: 1
+    - rid: 1727648698563821716
+      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        stunDuration: 1

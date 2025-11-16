@@ -434,8 +434,8 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.secondEnemy.Die();
-            GameObject.FindAnyObjectByType<EnemyLockOn>().resetWhenDie(tutorial.enemy.transform);
-            tutorial.enemy.gameObject.SetActive(false);
+            tutorial.enemy.Die();
+
             tutorial.zonaGancho1.SetActive(true);
             tutorial.zonaGancho2.SetActive(false);
             tutorial.enemigoGancho.gameObject.SetActive(true);
@@ -641,6 +641,7 @@ namespace tutorial
 
         }
     }
+
     public class LockearTutorial : BaseTutorialState
     {
         new betaTutorial tutorial;
@@ -652,15 +653,144 @@ namespace tutorial
         {
             tutorial.enemy.gameObject.SetActive(true);
             tutorial.TutorialText.text = "Muy bien, me has demostrado que esos ojos no los tienes solo de decoración. Ahora presiona “q” o “BOTON ENFOQUE” para enfocar y desenfocar a un enemigo, en este caso prueba con este cactus.";
-
-
-
         }
         public override void OnExit()
         {
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
         }
     }
+
+    public static class InputTextFormatter
+    {
+        public static string Cambiar(string og, GameInput.DeviceType device)
+        {
+            string[] partes = og.Split('/');
+            string resultado = "";
+
+            for (int i = 0; i < partes.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    // Texto normal
+                    resultado += partes[i];
+                    continue;
+                }
+
+                // Texto entre / / → es un comando
+                string token = partes[i].ToLower();
+
+                switch (token)
+                {
+                    case "movimiento":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>WASD</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Joystick Izquierdo</b>",
+                            GameInput.DeviceType.Mobile => "<b>Joystick Izquierdo</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "camara":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>Mover Ratón</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Joystick Derecho</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Cámara</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "correr":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>LShift</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón RT / R2</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Correr</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "esquivar":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>ESPACIO</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón A / X</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "dashear":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>ESPACIO</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón A / X</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Dash</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "pegar":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>CLICK IZQUIERDO</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón X / Cuadrado</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Ataque</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "gancho":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>E</b>",
+                            GameInput.DeviceType.Gamepad => "<b>RB / R1</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Gancho</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "lockeo":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>Q</b>",
+                            GameInput.DeviceType.Gamepad => "<b>LT / L2</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Gancho</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "atraer enemigo":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>S</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Joystick izquierdo abajo</b>",
+                            GameInput.DeviceType.Mobile => "<b>Joystick izquierdo abajo</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    case "ir a enemigo":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>W</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Joystick izquierdo arriba</b>",
+                            GameInput.DeviceType.Mobile => "<b>Joystick izquierdo arriba</b>",
+                            _ => partes[i]
+                        };
+                        break;
+
+                    default:
+                        resultado += partes[i];
+                        break;
+                }
+            }
+
+            return resultado;
+        }
+    }
+
     /*public class PegarTutorial : BaseTutorialState
     {
         new betaTutorial tutorial;
@@ -689,5 +819,5 @@ namespace tutorial
             tutorial.enemy.unSubscribeToLifeChange(enemyHit);
         }
     }*/
-    
+
 }

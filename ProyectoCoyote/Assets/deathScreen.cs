@@ -1,3 +1,4 @@
+using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,5 +27,6 @@ public class deathScreen : MonoBehaviour
     }
     public void menu()
     {
+        ServiceLocator.Instance.Get<ILevelManager>().loadEscene("MainMenu");
     }
 }

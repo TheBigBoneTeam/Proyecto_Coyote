@@ -75,7 +75,9 @@ public class GameInput : MonoBehaviour
         controls.Player.Hook_TP.performed += ctx => { Hook_SelectUp = true; DetectDeviceFromContext(ctx); };
         controls.Player.HookAttract.performed += ctx => { HookAttractPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.Escape.performed += ctx => { EscapePressed = true; DetectDeviceFromContext(ctx); };
+
         controls.Player.Skip.performed += ctx => { SkipPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Skip.canceled += ctx => { SkipPressed = false; };
     }
 
     private void DetectDeviceFromContext(InputAction.CallbackContext ctx)
@@ -116,7 +118,6 @@ public class GameInput : MonoBehaviour
         Hook_SelectUp = false;
         HookAttractPressed = false;
         EscapePressed = false;
-        SkipPressed = false;
     }
 
     public Vector2 GetMovementPlayer()

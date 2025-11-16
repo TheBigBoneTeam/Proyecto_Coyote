@@ -215,15 +215,19 @@ El comportamiento de los enemigos varía dependiendo del lo que haga el jugador:
 ## 3.3. Controles 
 Estos serían los inputs asociados a las distintas acciones que puede realizar el jugador:
 
-MECÁNICA              | TECLADO     | Dispositivos táctiles
---                    | --          | --
-MOVIMIENTO DE CÁMARA  | RATÓN       | Joystick tactil der.
-MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.
-ENFOCAR               | Q    | Joystick tactil der.
-CORRER                | SHIFT       | 
-GANCHO                | E           |
-ATAQUE PRINCIPAL      | CLICK IZQ.  |
-ESQUIVE/ESQUIVE PERFECTO         | ESPACIO     |
+MECÁNICA              | TECLADO     | Dispositivos táctiles  |  Mando
+--                    | --          | --                     |  --
+MOVIMIENTO DE CÁMARA  | RATÓN       | Joystick tactil der.   |  Joystick der. 
+MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.   |  Joystick izq.
+ENFOCAR               | Q           | Joystick tactil der.   |  L2
+CORRER                | SHIFT       | Botón correr           |  R2
+ACTIVAR GANCHO        | E           | Joystick tactil izq.   |  Joystick izq.
+CAMBIAR OBJETIVO GAN. | W,A,S,D     | Botón activar gancho   |  R1
+LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
+ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
+ESQUIVE/PARRY         | ESPACIO     | Botón esquive          |  Equis
+DASH                  | ESPACIO     | Botón dash             |  Equis
+
 
 Si se juega en movil los controles varían en función del modo de juego en el que estés:
 * **Modo duelo**: al entrar en un combate se mostrará solo el joystick de movimiento, el botón de desfijado, el de ataque y el de esquivar.
@@ -233,8 +237,11 @@ Si se juega en movil los controles varían en función del modo de juego en el q
 ### Dummy
 Este no es un enemigo es sí. Se trata de un cactus que se utiliza en el tutorial, capaz de atacar y bloquear. Su uso es principalmente enseñar al jugador como combatir y jugar.
 
+
 ### Enemigos melee (Bandido Nopal)
 Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma de aparición.
+
+<img src="./Imagenes_README/Capturas3D/Nopal.png" alt="DiagramaVida" style="width: 70%"/>
 
 #### Melee Básico 
 Este enemigo sirbe de seudotutorial al ser un enemigo sin ningún tipo de combos. Su aparición será principalmente en el primer nivel y cuenta con ataques y bloqueos básicos.
@@ -261,7 +268,7 @@ Este enemigo se encuentra en la zona del oasis. Sus ataques hacen 1 de daño y c
   2. Ataque central, bloqueo central y ataque derecho.
   3. Bloqueo izquierdo, ataque derecho y bloqueo derecho.
 
-### Enemigo suicida (Bimby Bomb)
+### Enemigo suicida (Sapobombo)
 Este enemigo busca provocar el mayor daño posible al jugador. Cuando entra en su campo de visión  va corriendo tras él y, cuando se encuentra a una distancia inferior a un metro, se lanza hacia el jugador creando una explosión que acaba con su vida y provoca 3 de daño si no se esquiva. Si el jugador usa el gancho contra él, el enemigo explotará cuando el jugador lo atraiga o vaya hacia él.
 
 Para poderse librar de este enemigo existen varias opciones:
@@ -281,6 +288,9 @@ El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, con
   4. Ataque derecho.
   5. Ataque izquierdo.
 
+
+  <img src="./Imagenes_README/Capturas3D/Heavy.png" alt="DiagramaVida" style="width: 70%"/>
+
 ### Francotirador (Buitre Saguaro)
 Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 5 patrones de defensa:
   1. Defensa izquierda.
@@ -290,6 +300,8 @@ Como su nombre indica este enemigo porta un arma con forma de francotirador, pud
   5. Defensa central e izquierda a la vez y defensa derecha.
 
 Si el jugador golpea en la dirección donde defiende, este contratacará y si le da, huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
+
+<img src="./Imagenes_README/Capturas3D/Gunner.png" alt="DiagramaVida" style="width: 70%"/>
 
 ### Jefe final (Lince)
 El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es mayor al del protagonista y porta un arma que es una combianción de hacha y rifle. Al tratarse del jefe final cuenta con dos fases diferentes:
@@ -306,6 +318,8 @@ El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es ma
 # 4. Arte 
 
 A continuación se hará un resumen del apartado artístico general de Coyote Requiem, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
+
+Coyote Requiem combina elementos de Western con algunos de Fantasía Oscura y un toque de terror Lovecraftiano. La paleta de colores elegida es por tanto una combinación de estos elementos: paletas tierra, propias del oeste, pero pasando por tonos más fríos del terror cósmico, con un toque extraterrestre para representar a los enemigos como fuerza extraña al entorno natural del desierto donde se ambienta el juego. 
 
 ## 4.1. Estilo artístico general
 

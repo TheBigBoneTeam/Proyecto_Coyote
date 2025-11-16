@@ -1,10 +1,9 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
-    public enum DeviceType { KeyboardMouse, Gamepad }
+    public enum DeviceType { KeyboardMouse, Gamepad, Mobile }
     public DeviceType CurrentDevice { get; private set; } = DeviceType.KeyboardMouse;
 
     private PlayerControls controls;
@@ -29,14 +28,22 @@ public class GameInput : MonoBehaviour
 
     private void Awake()
     {
+        // Detectar móvil antes que nada
+        if (Application.isMobilePlatform)
+        {
+            CurrentDevice = DeviceType.Mobile;
+        }
+
         controls = new PlayerControls();
 
         // --- Movimiento ---
         controls.Player.Walk.performed += ctx =>
         {
-            Vector2 input = ctx.ReadValue<Vector2>();
+            var input = ctx.ReadValue<Vector2>();
             Horizontal = input.x;
             Vertical = input.y;
+
+            DetectDeviceFromContext(ctx);
         };
         controls.Player.Walk.canceled += ctx =>
         {
@@ -45,21 +52,39 @@ public class GameInput : MonoBehaviour
         };
 
         // --- Sprint ---
-        controls.Player.Sprint.performed += ctx => SprintHeld = true;
+        controls.Player.Sprint.performed += ctx =>
+        {
+            SprintHeld = true;
+            DetectDeviceFromContext(ctx);
+        };
         controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
         // --- Pulsaciones ---
-        controls.Player.Dash.performed += ctx => DashPressed = true;
-        controls.Player.Attack.performed += ctx => AttackPressed = true;
-        controls.Player.Evade.performed += ctx => EvadePressed = true;
-        controls.Player.Lock.performed += ctx => LockPressed = true;
-        controls.Player.HookAim.performed += ctx => HookAimPressed = true;
-        controls.Player.HookConfirm.performed += ctx => HookConfirmPressed = true;
-        controls.Player.HookDisconfirm.performed += ctx => Hook_SelectDown = true;
-        controls.Player.HookSelectLeft.performed += ctx => Hook_SelectLeft = true;
-        controls.Player.HookSelectRight.performed += ctx => Hook_SelectRight = true;
-        controls.Player.Hook_TP.performed += ctx => Hook_SelectUp = true;
-        controls.Player.HookAttract.performed += ctx => HookAttractPressed = true;
+        controls.Player.Dash.performed += ctx => { DashPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Attack.performed += ctx => { AttackPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Evade.performed += ctx => { EvadePressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Lock.performed += ctx => { LockPressed = true; DetectDeviceFromContext(ctx); };
+
+        controls.Player.HookAim.performed += ctx => { HookAimPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.HookConfirm.performed += ctx => { HookConfirmPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.HookDisconfirm.performed += ctx => { Hook_SelectDown = true; DetectDeviceFromContext(ctx); };
+        controls.Player.HookSelectLeft.performed += ctx => { Hook_SelectLeft = true; DetectDeviceFromContext(ctx); };
+        controls.Player.HookSelectRight.performed += ctx => { Hook_SelectRight = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Hook_TP.performed += ctx => { Hook_SelectUp = true; DetectDeviceFromContext(ctx); };
+        controls.Player.HookAttract.performed += ctx => { HookAttractPressed = true; DetectDeviceFromContext(ctx); };
+    }
+
+    private void DetectDeviceFromContext(InputAction.CallbackContext ctx)
+    {
+        if (CurrentDevice == DeviceType.Mobile)
+            return; // móvil ya fijado
+
+        var device = ctx.control.device;
+
+        if (device is Gamepad)
+            CurrentDevice = DeviceType.Gamepad;
+        else
+            CurrentDevice = DeviceType.KeyboardMouse;
     }
 
     private void OnEnable()
@@ -74,9 +99,7 @@ public class GameInput : MonoBehaviour
 
     private void LateUpdate()
     {
-        DetectDevice();
-
-        // Reset de pulsaciones únicas
+        // Reset pulsaciones únicas
         DashPressed = false;
         AttackPressed = false;
         EvadePressed = false;
@@ -88,20 +111,6 @@ public class GameInput : MonoBehaviour
         Hook_SelectRight = false;
         Hook_SelectUp = false;
         HookAttractPressed = false;
-    }
-
-    private void DetectDevice()
-    {
-        // Si hay gamepad y algún botón está presionado → Gamepad
-        if (Gamepad.current != null && Gamepad.current.allControls.Any(c => c.IsPressed()))
-        {
-            CurrentDevice = DeviceType.Gamepad;
-        }
-        // Si se presiona alguna tecla → Keyboard/Mouse
-        else if (Keyboard.current != null && Keyboard.current.anyKey.isPressed)
-        {
-            CurrentDevice = DeviceType.KeyboardMouse;
-        }
     }
 
     public Vector2 GetMovementPlayer()

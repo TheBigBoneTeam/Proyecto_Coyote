@@ -135,7 +135,7 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Menu", true, Vector2.zero, true, true);
                 break;
 
-            case "EnemyTest":
+            case "tutorialBeta":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Dummy", true, Vector2.zero, true, true);
                 // Debug.LogWarning("Musica reproducida exitosamente");
                 break;

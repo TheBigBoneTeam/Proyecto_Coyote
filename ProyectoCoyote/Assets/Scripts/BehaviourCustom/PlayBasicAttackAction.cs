@@ -182,6 +182,10 @@ public class WalkToPlayerAction : UnityAction
         {
             return Status.None;
         }
+        if (agent.pathPending)
+        {
+            return Status.Running;
+        }
         if (Time.frameCount % 5 == 0)
         {
             agent.SetDestination(player.transform.position);
@@ -246,6 +250,10 @@ public class WalkToPlayerActionCircle : UnityAction
         if (stopped)
         {
             return Status.None;
+        }
+        if (agent.pathPending)
+        {
+            return Status.Running;
         }
         if (Time.frameCount % 5 == 0)
         {
@@ -356,6 +364,10 @@ public class RunToAmmo : UnityAction
         if (!isReachable || enemyRunner.currentAmmo == null)
         {
             return Status.Failure;
+        }
+        if (agent.pathPending)
+        {
+            return Status.Running;
         }
         if (isBomb)
         {
@@ -495,6 +507,10 @@ public class CirclePlayerAction : UnityAction
         {
             return Status.Success;
         }
+        if (agent.pathPending)
+        {
+            return Status.Running;
+        }
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -531,7 +547,10 @@ public class RunToHeavyAction : UnityAction
         {
             return Status.Failure;
         }
-
+        if (agent.pathPending)
+        {
+            return Status.Running;
+        }
         if (Time.frameCount % 5 == 0)
         {
             agent.SetDestination(enemyRunner.currentHeavy.transform.position);

@@ -15821,16 +15821,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: afterCombatStoryAction.actionType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: beforeCombatStoryAction.actionType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].autoStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: afterCombatStoryAction.cutsceneData.cutscene
+      value: 
+      objectReference: {fileID: 11400000, guid: b5bdf4cec533392409a9f2492d90796d, type: 2}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: beforeCombatStoryAction.cutsceneData.cutscene
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ae3da94f0b08f24e8460d4a3ab8cd66, type: 2}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].enemies.Array.size
       value: 5
@@ -16659,9 +16667,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
+      propertyPath: playCutscene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: cutsceneData.cutscene
       value: 
-      objectReference: {fileID: 11400000, guid: 6be031e2de6e9684caf4a5811ca6a52e, type: 2}
+      objectReference: {fileID: 11400000, guid: ce808a2faa18885418f3b9ce09003bfc, type: 2}
     - target: {fileID: 8034579978877027827, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: m_Name
       value: Managers

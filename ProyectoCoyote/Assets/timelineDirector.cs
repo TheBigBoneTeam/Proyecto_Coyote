@@ -141,13 +141,15 @@ public class CutsceneData
     public GameObject[] objectsToTurnOn;
     public bool canBeSkipped;
     public bool isEndLevel;
-    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null)
+    public string nextLevel;
+    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null,string nextLevel="")
     {
         this.cutscene = cutscene;
         objectsToTurnOff = _objectsOff;
         objectsToTurnOn = _objectsOn;
         canBeSkipped = _canSkipped;
         this.isEndLevel = isEndLevel;
+        this.nextLevel = nextLevel;
     }
 }
 public class CutsceneCaller : MonoBehaviour

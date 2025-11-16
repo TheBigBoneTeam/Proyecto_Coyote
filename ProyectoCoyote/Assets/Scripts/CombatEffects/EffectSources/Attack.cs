@@ -180,6 +180,9 @@ public class Attack : ATouchCombatEffectSource
     {
         if (HitDirectionsList != null && HitDirectionsList.Count != 0)
         {
+            if (HitDirectionsList.Contains(HitDirections.Left)){
+
+            }
             return HitDirectionsList[0];
         }
         else

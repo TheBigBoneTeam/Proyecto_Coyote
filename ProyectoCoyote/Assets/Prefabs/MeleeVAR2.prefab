@@ -151,7 +151,8 @@ MonoBehaviour:
   counterObj: {fileID: 4978420160745527813}
   Locked: 1
   seeDistance: 31.7
-  attackDistance: 4
+  attackDistance: 5
+  hasPriority: 0
 --- !u!114 &5216476422810896807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -529,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!4 &689203256152146248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fade302e03824b647881090905063819, type: 3}

@@ -17,12 +17,15 @@ public class TutorialDefenseAttackUIIndicator:DefenseAttackUIIndicator
             else
             {
                 print("subcribe");
-                enemy.attack.subscribeToStateChange(AttackHappeneed);
-                enemy.subscribeToDie(enemyDie);
                 Gun gun = enemy.GetComponent<Gun>();
                 if (gun)
                 {
                     gun.subscribeToShoot(shootGun);
+                }
+                else
+                {
+                    enemy.attack.subscribeToStateChange(AttackHappeneed);
+                    enemy.subscribeToDie(enemyDie);
                 }
             }
         }

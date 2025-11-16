@@ -182,4 +182,12 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
         combatAreaChange -= response;
     }
+
+    public void startCombatforTutorial()
+    {
+        if (currentState != GameState.Combat && currentState != GameState.SlowDown)
+        {
+            SetState(GameState.Combat);
+        }
+    }
 }

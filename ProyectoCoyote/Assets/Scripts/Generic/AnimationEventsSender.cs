@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using tutorial;
+using UnityEngine;
 
 public class AnimationEventsSender : MonoBehaviour
 {
@@ -30,5 +31,8 @@ public class AnimationEventsSender : MonoBehaviour
 
         AudioManager.Instance.PlaySimpleSound(soundName, false, Vector2.zero, true, false);
     }
-
+    public void changeTutWait()
+    {
+        FindAnyObjectByType<betaTutorial>().changeTutWait = true;
+    }
 }

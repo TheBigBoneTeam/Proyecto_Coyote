@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Modo correr
-        else if (grounded && gameInput.SprintHeld)
+        else if (grounded && gameInput.SprintHeld && !lockMovement)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
@@ -627,16 +627,12 @@ public class PlayerMovement : MonoBehaviour
         dashing = false;
         hooking = false;
 
-        // Bloqueo total de físicas
         if (rb != null)
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
-
-        moveSpeed = 0;
-        desiredMoveSpeed = 0;
 
         Debug.Log("[PlayerMovement] Movimiento congelado por GameState");
     }
@@ -649,13 +645,11 @@ public class PlayerMovement : MonoBehaviour
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.linearVelocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;  // Solo se puede dejar o quitar según prefieras
             rb.angularVelocity = Vector3.zero;
         }
 
-        moveSpeed = walkSpeed;
-        desiredMoveSpeed = walkSpeed;
-
+        // NO tocar moveSpeed ni desiredMoveSpeed
         Debug.Log("[PlayerMovement] Movimiento restaurado por GameState");
     }
 

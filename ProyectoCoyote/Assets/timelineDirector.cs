@@ -117,7 +117,14 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         endCutscene();
         //}
     }
+    public void PlayBossIntro()
+    {
 
+    }
+    public void PlayBossMusic()
+    {
+
+    }
     public void PlaySound(string sound)
     {
 

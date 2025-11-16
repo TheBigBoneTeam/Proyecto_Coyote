@@ -551,7 +551,7 @@ public class Gancho : MonoBehaviour
     {
         if (hookAttackBuffer)
         {
-            movement.animator.CrossFade("Hit_L", .1f);
+            movement.animator.CrossFade("Hit_Gancho", .1f);
             Debug.Log("Gancho patá");
         }
             

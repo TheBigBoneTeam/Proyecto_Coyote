@@ -27,6 +27,7 @@ public class StateMachine
 
     public void SetState(IState state)
     {
+
         current = nodes[state.GetType()];
         current.State?.OnEnter();
     }

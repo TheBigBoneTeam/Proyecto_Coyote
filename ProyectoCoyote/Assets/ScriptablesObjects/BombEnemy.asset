@@ -33,10 +33,11 @@ MonoBehaviour:
         parentIds:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
         - a90778d2-d71d-4454-b5be-43c1f0a50e4c
+        - 8daa27b6-cbfa-42d8-aa3f-2f4fc9f73d53
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
-        - 7756f9bc-2af4-4e07-9839-72ecf048efce
+        - 9487638a-f6b2-4b49-a222-ac5ef59b2e20
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
         position: {x: 1137.6654, y: 963.0591}
@@ -106,8 +107,8 @@ MonoBehaviour:
         parentIds:
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         childIds:
-        - 478a4f3a-db02-4e7d-832c-3ce34d029b10
         - a90778d2-d71d-4454-b5be-43c1f0a50e4c
+        - 74ddb184-3ac3-4abb-b986-87c5a9265f12
       - name: BecomeAmmo (PUSH)
         id: 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         position: {x: 879.11035, y: -104.28143}
@@ -128,44 +129,6 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
         childIds:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
-      - name: Fly
-        id: 7756f9bc-2af4-4e07-9839-72ecf048efce
-        position: {x: 1379.2245, y: 181.51863}
-        node:
-          rid: 8725330916002496613
-        references:
-        - fieldName: Perception
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: 8725330917082792019
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 94fabb78-1297-46cb-9109-6e3ef00ab138
-        childIds: []
-      - name: Fly2
-        id: 478a4f3a-db02-4e7d-832c-3ce34d029b10
-        position: {x: 359.87344, y: -614.91876}
-        node:
-          rid: 8725330916002496614
-        references:
-        - fieldName: Perception
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: 8725330917082792021
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - ee188053-6bca-4f67-ac7f-db640ded7a7f
-        childIds: []
       - name: 
         id: a90778d2-d71d-4454-b5be-43c1f0a50e4c
         position: {x: 674.1851, y: 45.91597}
@@ -184,6 +147,82 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
+        childIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: Fly2
+        id: 74ddb184-3ac3-4abb-b986-87c5a9265f12
+        position: {x: 383.2, y: -498.4}
+        node:
+          rid: 8725331017162032170
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ee188053-6bca-4f67-ac7f-db640ded7a7f
+        childIds:
+        - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
+      - name: End
+        id: cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
+        position: {x: 929.6, y: -517.6}
+        node:
+          rid: 8725331017162032171
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331017162032173
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 74ddb184-3ac3-4abb-b986-87c5a9265f12
+        - 9487638a-f6b2-4b49-a222-ac5ef59b2e20
+        childIds:
+        - 8daa27b6-cbfa-42d8-aa3f-2f4fc9f73d53
+      - name: Fly
+        id: 9487638a-f6b2-4b49-a222-ac5ef59b2e20
+        position: {x: 1436.8, y: -64}
+        node:
+          rid: 8725331017162032172
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds:
+        - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
+      - name: 
+        id: 8daa27b6-cbfa-42d8-aa3f-2f4fc9f73d53
+        position: {x: 981.6, y: -313.6}
+        node:
+          rid: 8725331017162032317
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
     - name: newbehaviourgraph
@@ -558,8 +597,8 @@ MonoBehaviour:
       - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
     - name: FlyPerception
       targetNodeIds:
-      - 7756f9bc-2af4-4e07-9839-72ecf048efce
-      - 478a4f3a-db02-4e7d-832c-3ce34d029b10
+      - 9487638a-f6b2-4b49-a222-ac5ef59b2e20
+      - 74ddb184-3ac3-4abb-b986-87c5a9265f12
   references:
     version: 2
     RefIds:
@@ -710,7 +749,7 @@ MonoBehaviour:
     - rid: 5634289709124943964
       type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
-        ExecuteOnLoop: 0
+        ExecuteOnLoop: 1
         InterruptOptions: 2
         subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
     - rid: 5634289709124943965
@@ -853,27 +892,27 @@ MonoBehaviour:
         method:
           componentName: Enemy
           methodName: Die
-    - rid: 8725330916002496613
-      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: 0
-        ExitStatus: 0
-    - rid: 8725330916002496614
-      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: 0
-        ExitStatus: 0
-    - rid: 8725330917082792019
-      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        attack: CombatIdle
-        idle: 1
-    - rid: 8725330917082792021
-      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        attack: CombatIdle
-        idle: 1
     - rid: 8725330922265903460
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
         StatusFlags: 4
+    - rid: 8725331017162032170
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 8725331017162032171
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 8725331017162032172
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 8725331017162032173
+      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        action: 10
+        idle: 1
+    - rid: 8725331017162032317
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 7

@@ -1,31 +1,34 @@
 using Services;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class cutsceneSkipController : MonoBehaviour
 {
-    private CutsceneData currentData;
+    [SerializeField] private CutsceneData currentData;
     [SerializeField] float currrentSkipPressTime;
     [SerializeField] float SkipPressTime;
     [SerializeField] Image skipCupstecenesBar;
     [SerializeField] TMP_Text textoInstruccionSaltar;
     [SerializeField] estadoMensajeSkip textoSaltarCinematicaEstado = 0;
     [SerializeField] float alphaTextoCambiar = 0;
-    bool cutscenePlaying = false;
+    [SerializeField] bool cutscenePlaying = false;
 
     IcutsceneManager cutsceneManager;
 
     private void Start()
     {
-        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(changeGameState);
+        cutscenePlaying = false;
+        cutsceneManager = ServiceLocator.Instance.Get<IcutsceneManager>();
     }
     void Update()
     {
         if (cutscenePlaying)
         {
-            if (!Input.GetKey(KeyCode.Space))
+            if (!Input.anyKey)
             {
                 currrentSkipPressTime -= Time.deltaTime;
                 if (currrentSkipPressTime < 0)
@@ -36,7 +39,7 @@ public class cutsceneSkipController : MonoBehaviour
             skipCupstecenesBar.fillAmount = currrentSkipPressTime / SkipPressTime;
             if (currentData != null && currentData.canBeSkipped == true && !cutsceneManager.isSkipingCutscene())
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.anyKey)
                 {
                     currrentSkipPressTime += Time.deltaTime;
                     if (currrentSkipPressTime >= SkipPressTime)
@@ -117,6 +120,22 @@ public class cutsceneSkipController : MonoBehaviour
             textoInstruccionSaltar.gameObject.SetActive(false);
         }
     }
+
+    internal void startCutscene(CutsceneData data)
+    {
+        currentData = data;
+        cutscenePlaying = true;
+        textoSaltarCinematicaEstado = estadoMensajeSkip.turningOff;
+        textoInstruccionSaltar.color = new Color(1, 1, 1, 1);
+    }
+
+    internal void endCutscene()
+    {
+        cutscenePlaying = false;
+        textoSaltarCinematicaEstado = estadoMensajeSkip.finished;
+        textoInstruccionSaltar.color = new Color(1, 1, 1, 0);
+    }
+
     enum estadoMensajeSkip
     {
         finished,

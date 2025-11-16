@@ -16,11 +16,14 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     public bool cutscenPlaying;
     CanvasGroup canvasgroup;
 
+    cutsceneSkipController cutsceneSkip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         director = GetComponent<PlayableDirector>();
         canvasgroup = GetComponentInChildren<CanvasGroup>();
+        cutsceneSkip = GetComponentInChildren<cutsceneSkipController>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,11 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         currentData = data;
         director.playableAsset = timeline;
         endCutsceneAction = endAction;
+        if (data.isEndLevel)
+        {
+            endCutsceneAction +=()=> ServiceLocator.Instance.Get<ILevelManager>().loadEscene(data.nextLevel);
+
+        }
         if (/*!settingManager.Instance.skipCutscenes */true || !currentData.canBeSkipped)
         {
             canvasgroup.alpha = 1;
@@ -40,6 +48,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             director.time = 0;
             cutscenPlaying = true;
             director.Play();
+            cutsceneSkip.startCutscene(data);
 
         }
         else
@@ -77,8 +86,9 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
                 item.SetActive(true);
             }
         }
+        director.Stop();
         canvasgroup.alpha = 0;
-
+        cutsceneSkip.endCutscene();
         cutscenPlaying = false;
         SkipingCutscene = false;
         print("endcutscene");
@@ -107,7 +117,14 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         endCutscene();
         //}
     }
+    public void PlayBossIntro()
+    {
 
+    }
+    public void PlayBossMusic()
+    {
+
+    }
     public void PlaySound(string sound)
     {
 
@@ -136,13 +153,15 @@ public class CutsceneData
     public GameObject[] objectsToTurnOn;
     public bool canBeSkipped;
     public bool isEndLevel;
-    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null)
+    public string nextLevel;
+    public CutsceneData(PlayableAsset cutscene,bool _canSkipped, bool isEndLevel, GameObject[] _objectsOff = null, GameObject[] _objectsOn = null,string nextLevel="")
     {
         this.cutscene = cutscene;
         objectsToTurnOff = _objectsOff;
         objectsToTurnOn = _objectsOn;
         canBeSkipped = _canSkipped;
         this.isEndLevel = isEndLevel;
+        this.nextLevel = nextLevel;
     }
 }
 public class CutsceneCaller : MonoBehaviour

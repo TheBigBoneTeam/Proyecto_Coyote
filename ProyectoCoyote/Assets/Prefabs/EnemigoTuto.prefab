@@ -187,6 +187,7 @@ MonoBehaviour:
   invincible: 0
   startPos: {x: 0, y: 0, z: 0}
   print: 0
+  renderer: {fileID: 0}
   ActiveBeforeFight: 0
 --- !u!54 &5404677454582178930
 Rigidbody:
@@ -254,6 +255,7 @@ MonoBehaviour:
   Locked: 1
   seeDistance: 3
   attackDistance: 34.56
+  hasPriority: 0
 --- !u!114 &7450648403885556856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be504a8ef66f4e6458ea6b4513aab20f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0559998
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be504a8ef66f4e6458ea6b4513aab20f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -634,3 +636,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}

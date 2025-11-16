@@ -41,7 +41,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     }
     public void Pause()
     {
-        if (canPause && currentState != GameState.Paused)
+        if (/*canPause &&*/ currentState != GameState.Paused)
         {
             prePauseState = currentState;
             Time.timeScale = 0;
@@ -181,5 +181,13 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     public void unSubscribeCombatAreaChange(Action<combatAreaManager, WaveData> response)
     {
         combatAreaChange -= response;
+    }
+
+    public void startCombatforTutorial()
+    {
+        if (currentState != GameState.Combat && currentState != GameState.SlowDown)
+        {
+            SetState(GameState.Combat);
+        }
     }
 }

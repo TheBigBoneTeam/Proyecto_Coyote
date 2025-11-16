@@ -54,6 +54,10 @@ public class AudioManager : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         player.subscribeToDodgeAttack(DodgeAttack);
     }
+    public void SceneChange()
+    {
+
+    }
 
     private void DodgeAttack(HitDirections arg0)
     {
@@ -135,7 +139,7 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Menu", true, Vector2.zero, true, true);
                 break;
 
-            case "EnemyTest":
+            case "tutorialBeta":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Dummy", true, Vector2.zero, true, true);
                 // Debug.LogWarning("Musica reproducida exitosamente");
                 break;
@@ -188,6 +192,10 @@ public class AudioManager : MonoBehaviour
 
             case "GameplayBeta_PruebaCombate":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
+                break;
+
+            case "Credits":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Creditos", true, Vector2.zero, true, true);
                 break;
 
             default:

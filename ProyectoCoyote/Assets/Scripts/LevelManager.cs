@@ -24,12 +24,13 @@ public class LevelManager : MonoBehaviour, ILevelManager
     {
         if (playCutscene && cutsceneData != null)
         {
-            ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, () => { ServiceLocator.Instance.Get<IGameStateManager>().Restart(); }, cutsceneData);
+            ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, () => { ServiceLocator.Instance.Get<IGameStateManager>().Restart(); ServiceLocator.Instance.Get<IGameStateManager>().startNonCombatGameplay(); }, cutsceneData);
 
         }
         else
         {
             ServiceLocator.Instance.Get<IGameStateManager>().Restart();
+            ServiceLocator.Instance.Get<IGameStateManager>().startNonCombatGameplay();
         }
         ServiceLocator.Instance.Get<ISaveManager>().saveGame(SceneManager.GetActiveScene().name);
     }

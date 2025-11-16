@@ -62,7 +62,6 @@ public class combatAreaManager : MonoBehaviour
         if (other.GetComponent<Player>() != null)
         {
             print("trigger" + other.gameObject.name);
-            print("triggerpn" + transform.parent.name);
             if (!started)
             {
 
@@ -133,10 +132,15 @@ public class combatAreaManager : MonoBehaviour
     public void enemyDie(AGameCharacter deadChar)
     {
         print("enemyDie" + deadChar.name);
+
       Enemy enemy =deadChar.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.unSubscribeToDie(enemyDie);
+            if (deadEnemies.Contains(enemy))
+            {
+                return;
+            }
+                enemy.unSubscribeToDie(enemyDie);
             if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
             {
                 ammoChangeAction?.Invoke();
@@ -361,7 +365,7 @@ public class combatAreaManager : MonoBehaviour
     public Cover getCoverSpot(Enemy enemy,out Vector3 hidePosition,out int coverIndex)
     {
         Transform objPos;
-         Cover[] orderedCovers = currentCovers.OrderBy((c) => ((c.transform.position - _player.transform.position).sqrMagnitude)).ToArray();
+         Cover[] orderedCovers = currentCovers.OrderBy((c) => ((c.transform.position - enemy.transform.position).sqrMagnitude)).ToArray();
         //Cover[] orderedCovers = currentCovers.OrderBy<>
         foreach (var cover in orderedCovers)
         {

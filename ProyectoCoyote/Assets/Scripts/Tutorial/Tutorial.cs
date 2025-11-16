@@ -122,7 +122,7 @@ namespace tutorial
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = "Ahora ya posees los conocimientos necesarios yo creo que ya estás preparado para continuar tu viaje, mucha suerte chaval.";
-            tutorial.waitTime(4);
+            tutorial.waitTime(5);
         }
     }
 

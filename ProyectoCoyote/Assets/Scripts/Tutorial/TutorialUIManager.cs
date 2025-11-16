@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class TutorialUIManager : MonoBehaviour
 {
+    [Header("PC / Gamepad")]
     [SerializeField] private GameObject keyboardTutorial;
     [SerializeField] private GameObject gamepadTutorial;
+
+    [Header("Mobile")]
+    [SerializeField] private GameObject mobileTutorial;
 
     [SerializeField] private GameInput gameInput;
 
@@ -20,13 +24,13 @@ public class TutorialUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameInput == null) return;
+        if (gameInput == null)
+            return;
 
-        var current = gameInput.CurrentDevice;
-        if (current != lastDevice)
+        if (gameInput.CurrentDevice != lastDevice)
         {
-            lastDevice = current;
-            UpdateTutorialCanvas(current);
+            lastDevice = gameInput.CurrentDevice;
+            UpdateTutorialCanvas(lastDevice);
         }
     }
 
@@ -34,5 +38,6 @@ public class TutorialUIManager : MonoBehaviour
     {
         keyboardTutorial.SetActive(device == GameInput.DeviceType.KeyboardMouse);
         gamepadTutorial.SetActive(device == GameInput.DeviceType.Gamepad);
+        mobileTutorial.SetActive(device == GameInput.DeviceType.Mobile);
     }
 }

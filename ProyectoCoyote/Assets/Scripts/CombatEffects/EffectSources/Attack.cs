@@ -1,3 +1,4 @@
+using BehaviourAPI.UnityToolkit.GUIDesigner.Editor;
 using CombatEffect;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using UnityEngine.Events;
 public class Attack : ATouchCombatEffectSource
 {
     [SerializeField] protected AttackData _attackData;
-    [field:SerializeField]public AGameCharacter owner { get; private set; }
-    [field: SerializeField] public bool Parreable { get;private set; }
+    [field: SerializeField] public AGameCharacter owner { get; private set; }
+    [field: SerializeField] public bool Parreable { get; private set; }
     [field: SerializeField] public HittableTypes HitCheckType { get; private set; }
-   protected AHittableCheck HitCheck;
+    protected AHittableCheck HitCheck;
 
     [field: SerializeField] public List<HitDirections> HitDirectionsList { get; private set; }
 
@@ -51,7 +52,7 @@ public class Attack : ATouchCombatEffectSource
     }
     private void Update()
     {
-       // print(HitCheck == null);
+        // print(HitCheck == null);
     }
     protected virtual void Awake()
     {
@@ -101,8 +102,8 @@ public class Attack : ATouchCombatEffectSource
     }
     public void addHitDirection(HitDirections direction)
     {
-        if(!HitDirectionsList.Contains(direction))
-        HitDirectionsList.Add(direction);
+        if (!HitDirectionsList.Contains(direction))
+            HitDirectionsList.Add(direction);
         sendState();
 
     }
@@ -115,7 +116,7 @@ public class Attack : ATouchCombatEffectSource
     }
     void sendState()
     {
-        attackStateEvent.Invoke(new AttackState(this,owner));
+        attackStateEvent.Invoke(new AttackState(this, owner));
 
     }
     void sendNullState()
@@ -126,7 +127,7 @@ public class Attack : ATouchCombatEffectSource
     public void subscribeToStateChange(UnityAction<AttackState> response)
     {
         attackStateEvent.AddListener(response);
-       // response(new AttackState(HitDirections.ToArray(),owner));
+        // response(new AttackState(HitDirections.ToArray(),owner));
 
     }
 
@@ -167,10 +168,10 @@ public class Attack : ATouchCombatEffectSource
 
     public class AttackState
     {
-       public Attack attack;
-      public  AGameCharacter Owner;
-        
-        public AttackState(Attack attack,AGameCharacter character)
+        public Attack attack;
+        public AGameCharacter Owner;
+
+        public AttackState(Attack attack, AGameCharacter character)
         {
             this.attack = attack;
             this.Owner = character;
@@ -180,10 +181,28 @@ public class Attack : ATouchCombatEffectSource
     {
         if (HitDirectionsList != null && HitDirectionsList.Count != 0)
         {
-            if (HitDirectionsList.Contains(HitDirections.Left)){
+            if (HitDirectionsList.Contains(HitDirections.Left))
+            {
+                if (HitDirectionsList.Contains(HitDirections.Rigth))
+                {
+                    bool b = (UnityEngine.Random.Range(0, 2) == 0);
+                    return HitDirections.Back;
+                }
+                else
+                {
+                    return HitDirections.Rigth;
+                }
+            }
+            else if (HitDirectionsList.Contains(HitDirections.Rigth))
+            {
+                
+                    return HitDirections.Left;
+                
+            }else
+            {
+                return HitDirections.Back;
 
             }
-            return HitDirectionsList[0];
         }
         else
         {

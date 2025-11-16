@@ -223,6 +223,8 @@ ENFOCAR               | Q           | Joystick tactil der.   |  L2
 CORRER                | SHIFT       | Botón correr           |  R2
 ACTIVAR GANCHO        | E           | Joystick tactil izq.   |  Joystick izq.
 CAMBIAR OBJETIVO GAN. | W,A,S,D     | Botón activar gancho   |  R1
+IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq.
+ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq.
 LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
 ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
 ESQUIVE/PARRY         | ESPACIO     | Botón esquive          |  Equis
@@ -319,15 +321,24 @@ El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es ma
 
 A continuación se hará un resumen del apartado artístico general de Coyote Requiem, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
 
-Coyote Requiem combina elementos de Western con algunos de Fantasía Oscura y un toque de terror Lovecraftiano. La paleta de colores elegida es por tanto una combinación de estos elementos: paletas tierra, propias del oeste, pero pasando por tonos más fríos del terror cósmico, con un toque extraterrestre para representar a los enemigos como fuerza extraña al entorno natural del desierto donde se ambienta el juego. 
 
 ## 4.1. Estilo artístico general
 
-Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
+Coyote Requiem combina elementos de Western con algunos de Fantasía Oscura y un toque de terror Lovecraftiano. La paleta de colores elegida es por tanto una combinación de estos elementos: paletas tierra, propias del oeste, pero pasando por tonos más fríos del terror cósmico, con un toque extraterrestre para representar a los enemigos como fuerza extraña al entorno natural del desierto donde se ambienta el juego. 
+
+<img src="./Imagenes_README/pal1.PNG" alt="Prota1" style="width: 50%"/>
+
+Los enemigos comparten un lenguaje visual único dentro del juego que los diferencia del resto del mundo. En la historia del juego, una fuerza extraterrestre llega al desierto en forma de meteorito, lo que causa una infección de hombres cactus. El lenguaje visual de los enemigos es por tanto el de los cactus en sus diferentes variantes, pero con una paleta de color exclusiva de ellos como grupo. 
+
+<img src="./Imagenes_README/pal2.PNG" alt="Prota1" style="width: 50%"/>
+
+Además de en la mezcla de paletas, la combinación del juego de fantasía y realismo se verá reflejada en el diseño de personajes (animales antropomórficos, anatomías de fantasía, elementos mecánicos exagerados) y en el de escenarios (arquitectura fantástica, entornos naturales místicos). 
 
 ## 4.2. Personajes
 
 ###  Personaje principal
+
+El diseño del protagonista de Proyecto Coyote ha pasado por varias iteraciones en su desarrollo. Fue el primer personaje diseñado y, por tanto, fue importante decidir para él unas proporciones y lenguaje visual que definirían a todos los demás personajes del proyecto. 
 
 <img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
 
@@ -344,6 +355,34 @@ Concept art con el diseño final del personaje
 <img src="./Imagenes_README/MainChar4.jpg" alt="Prota3" style="width: 70%"/>
 
 Modelo 3D finalizado del personaje principal
+
+###  Enemigos
+
+#### Bandido Nopal
+
+#### Buitre Saguaro
+<img src="./Imagenes_README/GunnerConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Espinotauro
+<img src="./Imagenes_README/HeavyConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Sapo Bombo
+<img src="./Imagenes_README/SapoConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Lince
+<img src="./Imagenes_README/conceptboss.jpg" alt="Prota3" style="width: 100%"/>
+
+###  NPCs
+
+#### NPC 1
+
+#### NPC 2
+<img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
+
+#### NPC 3
+<img src="./Imagenes_README/DeerConcept.png" alt="Prota3" style="width: 100%"/>
+
+
 
 ## 4.3. Escenarios
 
@@ -377,7 +416,12 @@ Arte conceptual inicial de algunos enemigos
 
 Modelado de el Zombi Nopal
 
-## 4.4. Arte 2D
+## 4.4. Arte 2D - Interfaces
+Diseño inicial de interfaces - vida e indicador de direcciones de ataque o bloqueo.
+
+<img src="./Imagenes_README/Interfaz_vida.jpeg" alt="zombi3" style="width: 50%"/>
+<img src="./Imagenes_README/Interfaz_ataque.jpeg" alt="zombi3" style="width: 41%"/>
+
 
 # 5. Sonido y música 
 ## 5.1. Instrumentación
@@ -479,7 +523,11 @@ En esta canción de combate sí hay percusión. Unos tambores militares marcan e
 Aún por definir.
 
 ##### Combate
+Aún por definir.
+
+##### Boss Final
 Este es el tema que suena al enfrentarte al jefe final. Es el más complejo de todos y hace uso de todos los instrumentos mencionados anteriormente, añadiendo algunos nuevos. Su compás es 4/4.
+
 
 ###### Sección A
 En esta escena, nuestro protagonista reposa las cenizas de su difunto marido sobre el meteorito con la intención de devolverle a la vida. Es por eso por lo que el tema empieza con una introducción emotiva, usando una orquesta con secciones de cuerdas y vientos madera.
@@ -501,7 +549,15 @@ El primer tema de esta sección lo realiza la guitarra eléctrica, para luego se
 
 
 #### Créditos
-Hay una canción (para la Beta), pero no es la versión final.
+El tema de créditos tiene un compás 4/4.
+
+La percusión consiste en castañuelas y maracas, haciendo ritmos sincopados.
+
+La armonía de la canción la lleva un bajo acústico, dando la tónica, y un banjo, arpegiando los acordes. 
+
+Las melodías las interpretan una flauta y una armónica.
+
+Se trata de un tema sosegado que es acorde con el momento emocional del final del juego.
 
 
 
@@ -509,7 +565,7 @@ Hay una canción (para la Beta), pero no es la versión final.
 ## 6.1. Diagramas de flujo 
 
 ### Menú inicio
-<img width="1050" height="562" alt="DiagramaflujoMenuPrincipal drawio" src="https://github.com/user-attachments/assets/b133867e-11f8-44f8-8a3e-f341eae1f700" />
+<img src="./Imagenes_README/DiagramaflujoMenuPrincipal2.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
 ### Menú opciones
 <img width="611" height="301" alt="DiagramaflujoMenuOpciones drawio" src="https://github.com/user-attachments/assets/f8e94939-37c0-43d9-bf1f-1a1998928cb2" />
@@ -517,22 +573,25 @@ Hay una canción (para la Beta), pero no es la versión final.
 ### In game
 <img width="716" height="862" alt="DiagramaflujoInGame drawio" src="https://github.com/user-attachments/assets/551992dc-3eae-4f19-a586-60a36025282a" />
 
+
+
 ### Requisitos funcionales
 __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador cuando inicia el juego. En este menú se pueden observar los siguientes botones:
  
- * __Nueva partida:__ El jugador comienza el juego desde 0.
  
+* __Nueva partida:__ El jugador comienza el juego desde 0.
+
  * __Continuar:__ El jugador continua la partida desde el punto donde lo había dejado en caso de tener una partida guardada, si no la tiene no pasará nada.
- 
- * __Controles:__ El jugador podrá ver los controles tanto en ordenador como dispositivos móviles.
- 
+
+Tutorial El jugador puede ir a la escena del tutorial para saber como jugar.
+
  * __Opciones:__ El jugador accederá al menú de opciones donde podrá ajustar los niveles de audio general, música y efectos sonoros.
- 
- * __Créditos:__ El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
- 
- * __Contenido descargable:__ Al pulsar este botón se desplegará una pantalla donde se podrá observar el contenido descargable de pago que contiene le juego.
- 
- * __Salir:__ Con este botón el jugador saldrá del juego.
+
+ * __Créditos:__  El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
+
+ * __Contenido descargable:__ Hay unos desplegables con el contenido descargable pendiente de sacar, junto a un texto que describe el contenido del mismo.
+
+ * __Salir:__  Con este botón el jugador saldrá del juego.
 
 __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc" en ordenador o el respectivo botón en dispositivos móviles.
 
@@ -726,19 +785,28 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### Eduardo Almarza Blasco
 #### Lecciones aprendidas
+Siendo este el proyecto más ambicioso en el que he trabajado, me he enfrentado a muchos retos nuevos, especialmente en cuanto al trabajo en 3D y arte técnico. Han aparecido múltiples retos que implican ir un poco más allá que modelar, hacer uvs y texturizar (que es lo que había hecho hasta ahora). Además he tenido que animar muchísimo, lo que me ha hecho practicar una barbaridad sobre animación
 
 #### Trabajo individual realizado
+Mi trabajo principal ha sido el de animar en 3D los enemigos, así como desarrollarlos desde 0 (incluido el concept art). Además de eso he modelado y texturizado todos los escenarios del juego, utilizando técnicas de texturizado procedural y bakeo en blender.
 
 #### Trabajo colectivo realizado
-
+He colaborado con Candela en la realización de arte, pero nuestras tareas no se han solapado apenas. La persona con la que he tenido que coordinarme más ha sido David, quien ha sido encargado de montar la lógica de los enemigos y escenarios, por lo que mi trabajo ha dependido un poco de sus demandas.
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
+Este proyecto me está ayudando a descubrir nuevas técnicas, tanto de programación como especialmente a nivel de ingeniería de sonido. También me está permitiendo salir de mi zona de confort al componer. Se está buscando mezclar un mundo western con toques de fantasía, y las composiciones tienen referencias indirectamente a otros sectores musicales ajenos a los videojuegos, como el flamenco o la música relativa a la Semana Santa, haciendo que de esta banda sonora algo único. También se han creado leitmotifs para los personajes.
 
 #### Trabajo individual realizado
+Principalmente, mi trabajo ha sido componer la banda sonora del videojuego en su totalidad, haciendo una música dinámica que alterne entre la tranquilidad del personaje caminando por el mundo y la música de combate que suena al enfrentarte a enemigos. Este dinamismo se consigue componiendo ambas tracks (base y combate) y alternándolas mediante el sistema de sonido del juego.
+
+Sistema de movimiento del jugador: andar, correr, dash, gravedad, deslizamiento en el suelo, movimiento en rampas...
+
+Efectos de sonido: se han añadido SFX de terceros, mediante AnimationEvents (golpes en el aire, pasos, muelles...) y SFX de puñetazos, parrys, bloqueos...
 
 #### Trabajo colectivo realizado
-
+Aporte sobre el diseño de la IA de enemigos. Aunque el trabajo de IA haya sido primordialmente y en su mayoría, parte de Diego, se ha trabajado en conjunto sobre el diseño de los enemigos y su comportamiento.
+También he colaborado con Candela en la realización de las publicaciones de redes sociales.
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
@@ -752,18 +820,31 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
+La mayor lección ha sido aprender a utilizar librerías externas y tener que ajustar el ritmo de trabajo a utilizar código no propio (y muchas veces con poca documentación). Esto es refiriéndose a la API de IA que nos proporcionaron en la asignatura de Comportamiento de Personajes.
 
 #### Trabajo individual realizado
+Ampliación del sistema de combate para incluir mecánicas como ataques a distancias, counters, reacciones y proyectiles.
+
+Creación de sistema de niveles, zonas de combate (gestión de enemigos y de bloquear el paso al jugador). También se ha desarrollado un sistema básico de cinemáticas usando Timeline. (Aunque las cinemáticas de la beta son muy simples debido al tiempo).
+
+Se ha ampliado en gran medida el sistema de IA creando todos los enemigos nuevos y añadiendo nuevas funciones a los antiguos.
 
 #### Trabajo colectivo realizado
+Aunque la propia programación de la IA ha sido una tarea individual, el diseño de los árboles/máquinas de estados y la planificación a alto nivel se ha realizado junto con Antonio.
 
+Para el desarrollo del sistema de niveles y zonas de combate. Se ha trabajado junto con David para que las características del sistema se adapten a las necesidades del proyecto y el diseño de niveles, que en ocasiones tuvo que cambiar a lo largo del desarrollo.
 
 ### Candela Jiménez González
 #### Lecciones aprendidas 
+En esta parte del desarrollo del proyecto he aprendido principalmente sobre modelado y texturizado en 3D. El estilo artístico del proyecto, al ser 3D con texturas pixel art, requiere una realización de UVs y texturas diferente y nueva para mí. También he ampliado mis conocimientos sobre animación 3D.
 
 #### Trabajo individual realizado
-  
+Para la entrega Beta he trabajado principalmente en el modelado, texturizado y algo de animación de personajes. A nivel de arte, también he realizado las interfaces del juego y el concept art de algunos personajes.
+Además me he encargado de el desarrollo completo de la página web-portfolio del equipo y junto mis compañeros de equipo he colaborado en las redes sociales, así como de la documentación y realización del Readme. 
+
 #### Trabajo colectivo realizado
+Colectivamente he trabajado con Edu en el proceso de diseño de personajes, modelado, texturizado y animación.
+Además he trabajado con Antonio y Edu en las redes sociales.
 
 
 ### Andrea Luengo Zazo

@@ -275,9 +275,11 @@ Para poderse librar de este enemigo existen varias opciones:
 ### Enemigo robusto (Espinotauro)
 El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará piedras hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva.En ocasiones podrá lanzar a los enemigos suicidas. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
  
-  1.	Ataque central, defensa central y ataque central.
-  2.	Defensa izquierda, ataque izquierdo y ataque derecho.
-  3.	Ataque izquierdo (con amague de central), ataque derecho y defensa derecha.
+  1.	Ataque central.
+  2.	Ataque izquierdo y ataque derecho.
+  3.	Ataque derecho y central.
+  4. Ataque derecho.
+  5. Ataque izquierdo.
 
 ### Francotirador (Buitre Saguaro)
 Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 5 patrones de defensa:
@@ -288,6 +290,17 @@ Como su nombre indica este enemigo porta un arma con forma de francotirador, pud
   5. Defensa central e izquierda a la vez y defensa derecha.
 
 Si el jugador golpea en la dirección donde defiende, este contratacará y si le da, huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
+
+### Jefe final (Lince)
+El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es mayor al del protagonista y porta un arma que es una combianción de hacha y rifle. Al tratarse del jefe final cuenta con dos fases diferentes:
+  * **Fase 1**: Esta fase cuenta con 12 puntos de vida y se centra solo en ataques melee. Sus ataques son muy rapidos, realizando 1 de daño por lo general. Cuenta con los siguientes patrones de ataque:
+    1. Ataque derecha, ataque izquierda y ataque central.
+    2. Defensa izquierda y centra, ataque central, defensa derecha y central, y ataque derecha.
+    3. Defensa total y ataque total (solo se esquiva para atrás y hace 2 de daño).
+    4. Defensa total, ataque derecho y ataque izquierdo.
+    5. Defensa derecha y central, ataque izquierdo y ataque derecho.
+  
+  * **Fase 2**: La fase 2 del jefe todavía está en desarrollo. Se tiene pensado implememtar ataques a distancia e invocar enemigos, además de nuevos ataques melee.
 
 
 # 4. Arte 
@@ -353,13 +366,130 @@ Modelado de el Zombi Nopal
 ## 4.4. Arte 2D
 
 # 5. Sonido y música 
-## 5.1. Estilo Sonoro y musical
-La música será ambientada en bandas sonoras del oeste para el menú de introducción, y temas de acción y aventura para el gameplay. Se usará el software “Musescore” para la composición de las canciones. Algunos instrumentos empleados serán el banjo o la trompeta entre otros.
+## 5.1. Instrumentación
+Para un videojuego ambientado en un lejano oeste con toques de fantasía, se han empleado instrumentos característicos del spaghetti western combinados con sección orquestal. 
 
-Por otra parte, los sonidos y efectos especiales (SFX) tendrán una temática 8 bits, para acompañar la estética visual del juego. Se emplearán páginas como SFXR o BFXR.
+En los niveles 1 y 2, se combina la música ambiental y de combate haciendo transiciones suaves entre estas pistas, de manera que cuando el jugador entra en un combate suena la canción de “pelea”, y en los momentos de descanso la “ambiental”. 
 
-## 6.2. Banda sonora 
-## 6.3. Efectos sonoros (SFX)
+### Música ambiental 
+
+Para la música ambiental (o la que suena “normalmente”), se usan los instrumentos típicos de un western: 
+
+* Para las melodías, los instrumentos protagonistas son la flauta/armónica, la trompeta o el banjo. 
+
+* En el cuerpo armónico, se han usado principalmente el bajo acústico y las guitarras clásicas. 
+
+* La percusión en las pistas ambientales es muy moderada y suave, siendo en su mayoría solo timbales o maracas/castañuelas. 
+
+### Música de combate 
+
+Para las batallas, se hace más uso de los instrumentos propios de una orquesta, como se ha comentado anteriormente. Estos son los vientos-madera, los vientos-metales y las cuerdas (violines, violas, violonchelos y contrabajos). 
+
+* Las melodías son llevadas por instrumentos como la trompeta o el violín. 
+
+* El cuerpo armónico está compuesto por los demás vientos-metales, el resto de las cuerdas y los vientos-madera. También se usa un coro compuesto por soprano, alto, tenores y barítonos. 
+
+* La percusión aumenta considerablemente con instrumentos como timbales, tambores de marcha, bombos, platillos… Se añaden campanas tubulares. Aquí la percusión cobra mucha más importancia. 
+
+Son en estas secciones donde suenan los leitmotivs de los personajes.
+
+## 5.2. Leitmotivs 
+Todos los leitmotivs están tocados por instrumentos de viento-metal, para darle más importancia a la instrumentación western. 
+
+### Tema de los villanos 
+![temaVillanos](image.png)
+
+*Leitmotiv de los villanos* 
+
+El tema de los villanos es tocado por los instrumentos metales (trompas o trompeta). Se trata de una escala descendente, que representa al mal. 
+
+ 
+
+### Tema del héroe 
+
+ ![temaHeroe](image-1.png)
+
+*Leitmotiv del héroe* 
+
+El tema del héroe es tocado por una trompeta solista y, al igual que el tema de los villanos, se repite a lo largo de las canciones de combate, contraponiendo ambos motivos como si del propio combate se tratara. Tiene una ligera subida ascendente a modo heroico. 
+
+ 
+
+### Tema del marido 
+
+ ![alt text](image-2.png)
+
+*Leitmotiv del marido* 
+
+Este tema es idéntico al del héroe, pero realizando la segunda voz. Representa la unión con su marido.
+## 5.3. Soundtrack
+### Tema Menú
+Este es el tema que suena al iniciar el juego, en el menú principal.
+Está en la tonalidad de Re menor, en un compás de 4/4.
+Tiene una percusión de tambores, maracas, castañuelas y bombo. El ritmo lo marcan el tambor y los bajos acústicos, principalmente.
+La melodía la llevan una guitarra eléctrica y un banjo, con ciertos detalles de flautas de pan y armónicas o coros masculinos
+
+#### Tema Tutorial
+Se trata de un tema desenfadado y divertido, donde el protagonista se enfrenta a un cactus a modo de tutorial. Está en tono de Mi menor, variando a La menor (su 5ª) cada 8 compases, y un compás de 4/4. Tiene cierto aire circense.
+Se emplea como base un piano y dos bajos (acústico y eléctrico). La melodía la llevan en un principio una guitarra eléctrica y un banjo, para luego ser protagonistas una flauta de pan y una trompeta en la siguiente sección.
+Se mantiene un ritmo alegre y bailable durante toda la canción.
+
+#### Tema Pueblo
+Su compás es 4/4.
+##### Base
+Es un tema aventurero, que transmite calma al principio, pero va adquiriendo fuerza e intensidad. Su instrumentación es puramente de vientos-madera.
+La melodía es tocada por flauta y oboe. Mientras que los clarinetes marcan el ritmo y el clarinete bajo y fagot llevan la armonía.
+La única percusión son los timbales.
+
+##### Combate
+Para dar un toque más marcial, se añaden los demás instrumentos de percusión (tambor, bombo, platillos) y los vientos-metales (trompas, trompeta, bombardino y tuba). Estos instrumentos añadidos le dan más cuerpo y consistencia a la canción, haciéndola más épica y adecuada al combate.
+En un pequeño fragmento sección A de la canción, las trompas realizan el tema de los villanos, con un sonido oscuro. Mientras que al final de la sección B, la trompeta toca el motivo del héroe, con un timbre mucho más claro y limpio.
+Al final de la canción suenan campanas en referencia a la iglesia del pueblo.
+
+#### Tema Cañón
+El segundo nivel del videojuego se desarrolla en un cañón. Para este entorno, nuevamente hay una canción base y una canción de combate, que añade instrumentos y voces sobre la base. Está en el tono de La menor, y su compás es 12/8, para dar una sensación de dinamismo.
+##### Base
+La armonía de la canción la lleva la sección de cuerdas frotadas: los violines y violas realizan notas cortas y picadas, mientras que los violonchelos y contrabajos realizan una cadencia andaluza (LAm-SOL-FA-MI) con notas más alargadas para llenar el espacio.
+La armónica realiza la voz solista, y una guitarra eléctrica haciendo la cadencia andaluza con acordes y algunos arreglos.
+Por último, se realiza un crescendo y la canción “rompe”, añadiendo una melodía solista de violín mientras se repite toda la estructura anterior.
+La percusión es simple: unos timbales redoblan y rompen en platillos cuando hay una subida.
+
+##### Combate
+La voz solista inicial de la armónica es reemplazada por una trompeta, con un cuerpo armónico de bombardino y tuba. Las trompas realizan el leitmotiv de los villanos. En el crescendo, se incorporan las voces de un coro (soprano, alto, tenor y barítono).
+Cuando rompe la canción (aquí sí rompe, realmente), se incorpora la armónica de la canción base, acompañada por la trompeta. Suena también una campana tubular en La.
+Las trompas realizan primero el leitmotiv del héroe y después el del villano (simulando el enfrentamiento entre estas dos partes). El tema del villano está más acentuado que el del héroe, dando a entender que el enemigo aún sigue suelto y el héroe no ha vencido aún.
+En esta canción de combate sí hay percusión. Unos tambores militares marcan el ritmo de la marcha, junto con el bombo.
+
+#### Tema Oasis
+##### Base
+Aún por definir.
+
+##### Combate
+Este es el tema que suena al enfrentarte al jefe final. Es el más complejo de todos y hace uso de todos los instrumentos mencionados anteriormente, añadiendo algunos nuevos. Su compás es 4/4.
+
+###### Sección A
+En esta escena, nuestro protagonista reposa las cenizas de su difunto marido sobre el meteorito con la intención de devolverle a la vida. Es por eso por lo que el tema empieza con una introducción emotiva, usando una orquesta con secciones de cuerdas y vientos madera.
+La voz solista la llevan la armónica y los violines primeros, y una guitarra haciendo un trémolo. Simbolizan la esperanza y desesperación de volver a reencontrarse con él. La guitarra (que representa la esperanza) se acaba apagando, mientras la armónica (desesperación) y el resto de la orquesta aumentan y bajan su intensidad, a medida que nuestro personaje va notando que algo no marcha bien.
+Por último, esta sección acaba con dos toques de campana tubular en DO (representa al protagonista y al marido), dando un toque más místico al ambiente e introduciendo la siguiente sección.
+
+###### Sección B
+Aquí el tema rompe por completo y el personaje entabla combate contra su adversario. Se acelera el tempo. El violín 1º y el fagot tocan el motivo dramático de esta sección, acompañados por el clarinete bajo que realiza una segunda voz.
+Entran voces de coro haciendo ritmos sincopados, pero desplazando el acento de la métrica y dando una sensación de inestabilidad, al igual que los timbales. Los violines segundos, violas y violonchelos realizan una cadencia en semicorcheas para dar agitación al tema.
+Los vientos metales tienen la base armónica de esta sección. Aquí la trompeta introduce sutilmente el leitmotif de los villanos, dando a entender que a quien te enfrentas ya no es tu marido. El tema se modula en sus dos últimos compases, con un redoble de timbales, para dar paso a la siguiente sección.
+
+###### Sección C
+En esta sección la canción se torna más western, con una base de percusión que simula a un caballo galopando con el protagonismo de los tambores.
+Aquí se suprime la sección de cuerda y vientos-madera; y los vientos-metales toman más importancia. Se mantiene el coro realizando acordes sincopados, pero inestables; y entra un bajo acústico.
+El primer tema de esta sección lo realiza la guitarra eléctrica, para luego ser reemplazada por la trompeta. Esta realiza una función muy importante, ya que hace sonar el leitmotiv del héroe y del marido al unísono, dando a entender esa unión tan especial que tenían, pero a la vez el enfrentamiento que están teniendo.
+
+![temaMaridoyProta](image-3.png)
+*Leitmotiv del protagonista y marido*
+
+
+#### Créditos
+Hay una canción (para la Beta), pero no es la versión final.
+
+
 
 # 6. Menús e Interfaces 
 ## 6.1. Diagramas de flujo 
@@ -428,14 +558,15 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
 ## 7.1. Monetización
 
-Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***. 
+Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***, pues es lo normal en juegos de este estilo donde los jugadores realizan un pago único para disfrutar de la experiencia completa.
 
-Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego.
+Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego. Por el momento se tiene plateados 2 DLCs para aquellos jugadores que más les haya gustado el videojuego: libro de arte y banda sonora. Estos DLCs, aunque no amplifican la experiencia de juego, permite a los jugadores tener en su poder el arte del juego y el soundtrack del mismo para disfrutarlo en cualquier momento, cosa que suelen hacer juegos de escala menor como el nuestro para sacar un beneficio extra.
 
 PRODUCTO              |  PRECIO
 --                    |  --     
-Juego base  |   20 €
-DLC: libro de arte |   7.5 €
+Juego base  |   15 €
+DLC: libro de arte |   5 €
+DLC: Banda sonora | 5 €
 
 ## 7.2. Planificación y Costes
 ### El equipo humano
@@ -597,12 +728,13 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
-
+  Durante esta etapa del proyecto he aprendido la importancia de la comunicación entre las distintas secciones que conforman el proyecto y el trabajo en equipo que es necesario para llevar adelante un proyecto como es el realizado.
 
 #### Trabajo individual realizado
+  Durante esta etapa del proyecto he realizado el diseño de los niveles, montado y dividido de las escenas, colocando los props, enemigos y las zonas de combate. También me he dedicado a montar los animators de los enemigos y la inclusión de los eventos de estas mismas. Testeo de los niveles y balanceo. Por último, me he dedicado a preparar las cinemáticas y diálogos que habrá en la versión Gold del juego.
 
 #### Trabajo colectivo realizado
-
+  Como game designer he trabajado juntamente con todos los sectores del proyecto: programación, en cuanto a la sección de definición de mecánicas como el gancho y elementos del juego; música para responder cuestiones como los temas de los personajes; y arte a la hora de definir las animaciones de combate de los distintos enemigos y los props necesarios en cada nivel.
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
@@ -622,13 +754,13 @@ También cabe resaltar que la idea de que el prota tenga que enterrar las ceniza
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
-La importancia de comunicarse a la hora de realizar proyectos en equipo. Dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión.
+  La importancia de comunicarse a la hora de realizar proyectos en equipo. Dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión.
 
 #### Trabajo individual realizado
-Desarrollo completo del sistema de gancho, que está conformado por: una nueva cámara con su gestión complementaria del movimiento, objetivo a seguir y lookAt; sistema de estados del gancho; gestión de objetos y enemigos con los que se puede usar el gancho; sistema de selección de objetivos; sistema de lanzamiento y retracción del gancho; implementación visual del cable del gancho con tiempo de lanzamiento en función de la distancia al objetivo; cooldown para evitar el uso indiscriminado; desactivación de colisiones del enemigo al retraer el gancho cuando se atrae a un enemigo y del jugador al retraer el gancho cuando el jugador va hacia el enemigo; ventana de tiempo entre que se ha pulsado el botón de retraer y termina la acción para poder hacer un ataque especial (patada) al llegar el gancho a su destino.
+  Desarrollo completo del sistema de gancho, que está conformado por: una nueva cámara con su gestión complementaria del movimiento, objetivo a seguir y lookAt; sistema de estados del gancho; gestión de objetos y enemigos con los que se puede usar el gancho; sistema de selección de objetivos; sistema de lanzamiento y retracción del gancho; implementación visual del cable del gancho con tiempo de lanzamiento en función de la distancia al objetivo; cooldown para evitar el uso indiscriminado; desactivación de colisiones del enemigo al retraer el gancho cuando se atrae a un enemigo y del jugador al retraer el gancho cuando el jugador va hacia el enemigo; ventana de tiempo entre que se ha pulsado el botón de retraer y termina la acción para poder hacer un ataque especial (patada) al llegar el gancho a su destino.
 
-Por otro lado se han estado corrigiendo bugs y mejorando el sistema de cámaras y de lock como la optimización del lookAt de las cámaras o la corrección de la detección de objetos bloqueantes entre el objetivo y el personaje, entre otras cosas. También se han terminado de implementar los menús.
+  Por otro lado se han estado corrigiendo bugs y mejorando el sistema de cámaras y de lock como la optimización del lookAt de las cámaras o la corrección de la detección de objetos bloqueantes entre el objetivo y el personaje, entre otras cosas. También se han terminado de implementar los menús.
 
 #### Trabajo colectivo realizado
-Se ha estado en contacto con David, el game designer, para implementar el sistema de gancho conforme a las necesidades del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar.
+  Se ha estado en contacto con David, el game designer, para implementar el sistema de gancho conforme a las necesidades del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar.
 <!--## 9.3. Post Mortem - Gold-->

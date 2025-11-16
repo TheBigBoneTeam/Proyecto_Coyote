@@ -9,12 +9,17 @@ public class Enemy : AGameCharacter
     [SerializeField] bool ActiveBeforeFight;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
+    bool dead;
 
     public override void Die()
     {
-        dieEvent?.Invoke(this);
-        GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-        gameObject.SetActive(false);
+        if (!dead)
+        {
+            dead = true;
+            dieEvent?.Invoke(this);
+            GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
+            gameObject.SetActive(false);
+        }
     }
     public override bool isOtherTeam(AGameCharacter character)
     {
@@ -38,6 +43,7 @@ public class Enemy : AGameCharacter
             startPos = transform.position;
             setredUp = true;
         }
+        dead = false;
         dieEvent?.RemoveAllListeners();
         base.restart();
         print(name);

@@ -62,7 +62,6 @@ public class combatAreaManager : MonoBehaviour
         if (other.GetComponent<Player>() != null)
         {
             print("trigger" + other.gameObject.name);
-            print("triggerpn" + transform.parent.name);
             if (!started)
             {
 
@@ -133,10 +132,15 @@ public class combatAreaManager : MonoBehaviour
     public void enemyDie(AGameCharacter deadChar)
     {
         print("enemyDie" + deadChar.name);
+
       Enemy enemy =deadChar.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.unSubscribeToDie(enemyDie);
+            if (deadEnemies.Contains(enemy))
+            {
+                return;
+            }
+                enemy.unSubscribeToDie(enemyDie);
             if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
             {
                 ammoChangeAction?.Invoke();

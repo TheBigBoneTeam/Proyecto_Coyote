@@ -320,7 +320,7 @@ MonoBehaviour:
         - 6ba5aca3-5ba1-4151-b5d3-1eef56d24cee
       - name: AttackB
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-        position: {x: 300, y: 1600}
+        position: {x: 316, y: 1604}
         node:
           rid: 5634289356226429027
         references:
@@ -369,7 +369,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 5634289564154593282
+            rid: 8725331030298329570
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -409,7 +409,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 5634289564154593379
+            rid: 8725331030298329569
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -575,7 +575,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: ab1b0ff4-6d0c-4c58-a140-0002d5fc357d
-        position: {x: 287.77606, y: 761.76}
+        position: {x: 353.6, y: 804.80005}
         node:
           rid: 8725330990191607940
         references:
@@ -692,11 +692,6 @@ MonoBehaviour:
     - rid: 5634289564154593281
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289564154593282
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 10
-        idle: 0
     - rid: 5634289564154593287
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -725,11 +720,6 @@ MonoBehaviour:
     - rid: 5634289564154593378
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289564154593379
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 8
-        idle: 0
     - rid: 5634289564154593395
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -1083,3 +1073,11 @@ MonoBehaviour:
         method:
           componentName: EnemyAI
           methodName: ReturnKungFuPoint
+    - rid: 8725331030298329569
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: AttackD
+        idle: 0
+    - rid: 8725331030298329570
+      type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
+      data: 

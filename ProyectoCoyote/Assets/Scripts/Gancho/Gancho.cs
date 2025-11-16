@@ -29,6 +29,13 @@ public class Gancho : MonoBehaviour
     [Header("When selected")]
     [SerializeField] float OffsetFinalPos = 0;
 
+    [Header("Hook Attack Timing Window")]
+    [SerializeField] float attackWindowDuration = 1; // Duración de la ventana de tiempo en segundos
+    [SerializeField] float attackWindowStartDelay = 0.1f; // Tiempo después de iniciar retracción antes de abrir la ventana
+
+    private bool isInAttackWindow = false;
+    private Coroutine attackWindowCoroutine;
+
     VisualHook visualHook;
     HookableObject hookableObject;
     EnemyLockOn lockOn;
@@ -40,8 +47,9 @@ public class Gancho : MonoBehaviour
     private Image _hookImageUI;
     HookObserver hookObserver;
     [SerializeField] GameObject navMesh;
-    public bool hookAttackBuffer = false;
-    public bool canAttack = false;
+    private bool hookAttackBuffer = false;
+    private bool canAttack = false;
+    private bool isRetracting = false; // Flag para saber si el gancho está retrayendo
 
 
     public bool selectingHook;
@@ -99,13 +107,14 @@ public class Gancho : MonoBehaviour
         {
             LookAtTarget();
 
-            if (Blocked(currentTarget.position, currentTarget))
+            if (!isRetracting && Blocked(currentTarget.position, currentTarget))
                 ResetTarget();
         }
 
-        if (gameInput.AttackPressed && canAttack)
+        if (gameInput.AttackPressed && isInAttackWindow)
         {
             hookAttackBuffer = true;
+            Debug.Log("Input de ataque detectado");
         }
     }
     public void HookLogic()
@@ -214,7 +223,10 @@ public class Gancho : MonoBehaviour
         currentTarget = null;
         selectingHook = false;
         isHooked = false;
+        isRetracting = false;
         _hookImageUI.color = Color.white;
+
+        StopAttackWindow();
 
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
@@ -416,6 +428,7 @@ public class Gancho : MonoBehaviour
         DisableCollisions(transform);
         if (currentTarget == null) return;
         canAttack = true;
+        isRetracting = true;
         //// Dirección desde el objeto hacia la cámara
         //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
         //// POSICIÓN FINAL
@@ -428,7 +441,7 @@ public class Gancho : MonoBehaviour
 
         visualHook.RetractHookGoToTarget(OffsetFinalPos);
         movement.animator.CrossFade("Grapple_04", 0.2f);
-
+        StartAttackWindow();
 
     }
 
@@ -439,12 +452,13 @@ public class Gancho : MonoBehaviour
         {
             DisableCollisions (currentTarget);
             canAttack = true;
+            isRetracting = true;
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
             movement.animator.CrossFade("Grapple_04", 0.2f);
-
+            StartAttackWindow();
 
         }
         else
@@ -459,7 +473,52 @@ public class Gancho : MonoBehaviour
     }
 
     #endregion
+    #region Attack Window System
+    private void StartAttackWindow()
+    {
+        // Detener corrutina anterior si existe
+        if (attackWindowCoroutine != null)
+        {
+            StopCoroutine(attackWindowCoroutine);
+        }
 
+        attackWindowCoroutine = StartCoroutine(AttackWindowCoroutine());
+    }
+
+    private void StopAttackWindow()
+    {
+        isInAttackWindow = false;
+        hookAttackBuffer = false;
+
+        if (attackWindowCoroutine != null)
+        {
+            StopCoroutine(attackWindowCoroutine);
+            attackWindowCoroutine = null;
+        }
+    }
+
+    private IEnumerator AttackWindowCoroutine()
+    {
+        // Esperar el delay inicial
+        yield return new WaitForSeconds(attackWindowStartDelay);
+
+        // Abrir la ventana de ataque
+        isInAttackWindow = true;
+        Debug.Log("¡VENTANA DE ATAQUE ABIERTA!");
+
+        // Opcional: Feedback visual
+        // _hookImageUI.color = Color.yellow; // Indicador visual
+
+        // Mantener la ventana abierta durante la duración especificada
+        yield return new WaitForSeconds(attackWindowDuration);
+
+        // Cerrar la ventana
+        isInAttackWindow = false;
+        Debug.Log("Ventana de ataque cerrada");
+
+        attackWindowCoroutine = null;
+    }
+    #endregion
     private IEnumerator Cooldown()
     {
         _canUseHook = false;
@@ -479,31 +538,59 @@ public class Gancho : MonoBehaviour
 
     }
 
+    #region Collision Management
     public void DisableCollisions(Transform target)
     {
         if (target == null) return;
 
         Enemy enemy = target.gameObject.GetComponent<Enemy>();
         Player player = target.GetComponent<Player>();
+
         if (enemy == null && player == null) return;
 
-        target.gameObject.GetComponent<Collider>().enabled = false;
+        // Desactivar Collider
+        Collider col = target.gameObject.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        // Si es enemigo
         if (enemy)
         {
-            target.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-            target.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            // Desactivar comportamiento del enemigo
+            EnemyAssetBehaviourRunner behaviorRunner = target.gameObject.GetComponent<EnemyAssetBehaviourRunner>();
+            if (behaviorRunner != null)
+            {
+                behaviorRunner.enabled = false;
+            }
+
+            // Desactivar NavMeshAgent
+            NavMeshAgent agent = target.gameObject.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.enabled = false;
+            }
+        }
+
+        // Si es jugador
+        if (player)
+        {
+            NavMeshObstacle obstacle = target.gameObject.GetComponent<NavMeshObstacle>();
+            if (obstacle != null)
+            {
+                obstacle.enabled = false;
+            }
 
         }
-       
-       
 
-        var rb = target.GetComponent<Rigidbody>();
+        Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb)
         {
             rb.useGravity = false;
+            rb.isKinematic = true; // Hacer kinematic para evitar interferencias físicas
         }
     }
-
 
     public void EnableAllCollisions(Transform target)
     {
@@ -511,22 +598,51 @@ public class Gancho : MonoBehaviour
 
         Enemy enemy = target.gameObject.GetComponent<Enemy>();
         Player player = target.GetComponent<Player>();
+
         if (enemy == null && player == null) return;
 
-        target.gameObject.GetComponent<Collider>().enabled = true;
-        if (enemy)
+        // Reactivar Collider
+        Collider col = target.gameObject.GetComponent<Collider>();
+        if (col != null)
         {
-            target.gameObject.GetComponent<EnemyAssetBehaviourRunner>().enabled = true;
-            target.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-
+            col.enabled = true;
         }
 
-        var rb = target.GetComponent<Rigidbody>();
+        // Si es enemigo
+        if (enemy)
+        {
+            NavMeshAgent agent = target.gameObject.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.enabled = true;
+            }
+
+            EnemyAssetBehaviourRunner behaviorRunner = target.gameObject.GetComponent<EnemyAssetBehaviourRunner>();
+            if (behaviorRunner != null)
+            {
+                behaviorRunner.enabled = true;
+            }
+        }
+
+        // Si es jugador
+        if (player)
+        {
+            NavMeshObstacle obstacle = target.gameObject.GetComponent<NavMeshObstacle>();
+            if (obstacle != null)
+            {
+                obstacle.enabled = true;
+            }
+        }
+
+       
+        Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb)
         {
             rb.useGravity = true;
+            rb.isKinematic = false; 
         }
     }
+    #endregion
 
     public void WaitForHookFinish()
     {
@@ -541,10 +657,12 @@ public class Gancho : MonoBehaviour
             lockOn.FoundTarget();
         }
         canAttack = false;
-        
+        isRetracting = false;
+
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-        ResetTarget();
         HookAttack();
+        ResetTarget();
+        
     }
 
     public void HookAttack()
@@ -554,8 +672,13 @@ public class Gancho : MonoBehaviour
             movement.animator.CrossFade("Hit_Gancho", .1f);
             Debug.Log("Gancho patá");
         }
-            
+        else
+        {
+            Debug.Log("No se presionó ataque durante la ventana de tiempo");
+        }
+
         hookAttackBuffer = false;
+        StopAttackWindow();
     }
 
 

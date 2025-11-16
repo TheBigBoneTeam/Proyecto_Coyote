@@ -16,11 +16,14 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     public bool cutscenPlaying;
     CanvasGroup canvasgroup;
 
+    cutsceneSkipController cutsceneSkip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         director = GetComponent<PlayableDirector>();
         canvasgroup = GetComponentInChildren<CanvasGroup>();
+        cutsceneSkip = GetComponentInChildren<cutsceneSkipController>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             director.time = 0;
             cutscenPlaying = true;
             director.Play();
+            cutsceneSkip.startCutscene(data);
 
         }
         else
@@ -78,7 +82,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             }
         }
         canvasgroup.alpha = 0;
-
+        cutsceneSkip.endCutscene();
         cutscenPlaying = false;
         SkipingCutscene = false;
         print("endcutscene");

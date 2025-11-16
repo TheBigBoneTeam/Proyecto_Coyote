@@ -223,6 +223,8 @@ ENFOCAR               | Q           | Joystick tactil der.   |  L2
 CORRER                | SHIFT       | Botón correr           |  R2
 ACTIVAR GANCHO        | E           | Joystick tactil izq.   |  Joystick izq.
 CAMBIAR OBJETIVO GAN. | W,A,S,D     | Botón activar gancho   |  R1
+IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq.
+ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq.
 LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
 ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
 ESQUIVE/PARRY         | ESPACIO     | Botón esquive          |  Equis
@@ -319,15 +321,24 @@ El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es ma
 
 A continuación se hará un resumen del apartado artístico general de Coyote Requiem, desde el arte conceptual, inspiraciones y paletas de color hasta el arte final que se utilice en el juego. Para información más detallada sobre guías de diseño y modelado, procesos de trabajo y especificaciones artísticas, consultar el **documento de estilo**.
 
-Coyote Requiem combina elementos de Western con algunos de Fantasía Oscura y un toque de terror Lovecraftiano. La paleta de colores elegida es por tanto una combinación de estos elementos: paletas tierra, propias del oeste, pero pasando por tonos más fríos del terror cósmico, con un toque extraterrestre para representar a los enemigos como fuerza extraña al entorno natural del desierto donde se ambienta el juego. 
 
 ## 4.1. Estilo artístico general
 
-Como ya se ha mencionado el juego estará completamente implementado en 3D, tanto escenarios como personajes. Por una combinación de necesidades técnicas y decisiones artísticas, los 
+Coyote Requiem combina elementos de Western con algunos de Fantasía Oscura y un toque de terror Lovecraftiano. La paleta de colores elegida es por tanto una combinación de estos elementos: paletas tierra, propias del oeste, pero pasando por tonos más fríos del terror cósmico, con un toque extraterrestre para representar a los enemigos como fuerza extraña al entorno natural del desierto donde se ambienta el juego. 
+
+<img src="./Imagenes_README/pal1.PNG" alt="Prota1" style="width: 50%"/>
+
+Los enemigos comparten un lenguaje visual único dentro del juego que los diferencia del resto del mundo. En la historia del juego, una fuerza extraterrestre llega al desierto en forma de meteorito, lo que causa una infección de hombres cactus. El lenguaje visual de los enemigos es por tanto el de los cactus en sus diferentes variantes, pero con una paleta de color exclusiva de ellos como grupo. 
+
+<img src="./Imagenes_README/pal2.PNG" alt="Prota1" style="width: 50%"/>
+
+Además de en la mezcla de paletas, la combinación del juego de fantasía y realismo se verá reflejada en el diseño de personajes (animales antropomórficos, anatomías de fantasía, elementos mecánicos exagerados) y en el de escenarios (arquitectura fantástica, entornos naturales místicos). 
 
 ## 4.2. Personajes
 
 ###  Personaje principal
+
+El diseño del protagonista de Proyecto Coyote ha pasado por varias iteraciones en su desarrollo. Fue el primer personaje diseñado y, por tanto, fue importante decidir para él unas proporciones y lenguaje visual que definirían a todos los demás personajes del proyecto. 
 
 <img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
 
@@ -344,6 +355,34 @@ Concept art con el diseño final del personaje
 <img src="./Imagenes_README/MainChar4.jpg" alt="Prota3" style="width: 70%"/>
 
 Modelo 3D finalizado del personaje principal
+
+###  Enemigos
+
+#### Bandido Nopal
+
+#### Buitre Saguaro
+<img src="./Imagenes_README/GunnerConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Espinotauro
+<img src="./Imagenes_README/HeavyConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Sapo Bombo
+<img src="./Imagenes_README/SapoConcept.png" alt="Prota3" style="width: 100%"/>
+
+#### Lince
+<img src="./Imagenes_README/conceptboss.jpg" alt="Prota3" style="width: 100%"/>
+
+###  NPCs
+
+#### NPC 1
+
+#### NPC 2
+<img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
+
+#### NPC 3
+<img src="./Imagenes_README/DeerConcept.png" alt="Prota3" style="width: 100%"/>
+
+
 
 ## 4.3. Escenarios
 
@@ -377,7 +416,7 @@ Arte conceptual inicial de algunos enemigos
 
 Modelado de el Zombi Nopal
 
-## 4.4. Arte 2D
+## 4.4. Arte 2D - Interfaces
 
 # 5. Sonido y música 
 ## 5.1. Instrumentación
@@ -479,7 +518,11 @@ En esta canción de combate sí hay percusión. Unos tambores militares marcan e
 Aún por definir.
 
 ##### Combate
+Aún por definir.
+
+##### Boss Final
 Este es el tema que suena al enfrentarte al jefe final. Es el más complejo de todos y hace uso de todos los instrumentos mencionados anteriormente, añadiendo algunos nuevos. Su compás es 4/4.
+
 
 ###### Sección A
 En esta escena, nuestro protagonista reposa las cenizas de su difunto marido sobre el meteorito con la intención de devolverle a la vida. Es por eso por lo que el tema empieza con una introducción emotiva, usando una orquesta con secciones de cuerdas y vientos madera.
@@ -501,7 +544,15 @@ El primer tema de esta sección lo realiza la guitarra eléctrica, para luego se
 
 
 #### Créditos
-Hay una canción (para la Beta), pero no es la versión final.
+El tema de créditos tiene un compás 4/4.
+
+La percusión consiste en castañuelas y maracas, haciendo ritmos sincopados.
+
+La armonía de la canción la lleva un bajo acústico, dando la tónica, y un banjo, arpegiando los acordes. 
+
+Las melodías las interpretan una flauta y una armónica.
+
+Se trata de un tema sosegado que es acorde con el momento emocional del final del juego.
 
 
 

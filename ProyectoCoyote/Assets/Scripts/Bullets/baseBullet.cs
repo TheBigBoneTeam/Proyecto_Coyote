@@ -30,6 +30,10 @@ public class baseBullet : Attack, IBullet
     {
         print("BulletTrigger" + other.name);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
+        if (!flying)
+        {
+            return;
+        }
         if (character)
         {
             if (HitCheck == null)

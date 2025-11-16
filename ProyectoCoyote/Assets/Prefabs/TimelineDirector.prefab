@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3307199686972629718
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500091400783239140}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Pero ten mucho cuidado, pues aquello que buscas puede hacerse realidad" '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -200,6 +200,14 @@ PlayableDirector:
     value: {fileID: 8466354512056359737}
   - key: {fileID: -528647328076752086, guid: 3ae3da94f0b08f24e8460d4a3ab8cd66, type: 2}
     value: {fileID: 2611185536931641100}
+  - key: {fileID: 5413413185526641115, guid: 3d5f1c0706c9d854b8e1b6e541d4423f, type: 2}
+    value: {fileID: 7332520501238097041}
+  - key: {fileID: -2146405454586084308, guid: ce808a2faa18885418f3b9ce09003bfc, type: 2}
+    value: {fileID: 8466354512056359737}
+  - key: {fileID: -5353636795393869493, guid: ce808a2faa18885418f3b9ce09003bfc, type: 2}
+    value: {fileID: 7332520501238097041}
+  - key: {fileID: -528647328076752086, guid: ce808a2faa18885418f3b9ce09003bfc, type: 2}
+    value: {fileID: 2611185536931641100}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &7810348771620631834
@@ -304,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5040095063535045046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -339,7 +347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5034397379030799018}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -374,6 +382,8 @@ GameObject:
   - component: {fileID: 283020317171771841}
   - component: {fileID: 4236002602047464886}
   - component: {fileID: 3622518305644101980}
+  - component: {fileID: 1744859613225104183}
+  - component: {fileID: 7332520501238097041}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -465,3 +475,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &1744859613225104183
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7006211863744227980}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &7332520501238097041
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7006211863744227980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

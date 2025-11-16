@@ -13,10 +13,12 @@ public class LivingBullet : baseBullet
         }
         base.StartBulletMovement(shooter, spawnPoint, objective);
         GetComponent<BombEnemyAssetBehaviourRunner>().Fly();
+        GetComponent<BombEnemyAssetBehaviourRunner>().enabled = false;
     }
 
     public override void destroyFunc()
     {
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
         GetComponent<Enemy>().Die();
     }
 }

@@ -204,6 +204,7 @@ MonoBehaviour:
   Locked: 1
   seeDistance: 31.7
   attackDistance: 3
+  hasPriority: 0
 --- !u!114 &8709861202896112953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executeOnLoop: 1
-  interruptOptions: 0
+  interruptOptions: 2
   _eventHandler:
     debugStatusChanges: 0
     identifier: 
@@ -897,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f389b4634a35ff14483d88cb23d75ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!4 &2021866338796528701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6bacfea967a5ecf4fb5d517356fc13c8, type: 3}

@@ -1,4 +1,5 @@
 using Services;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,13 +14,13 @@ public class cutsceneSkipController : MonoBehaviour
     [SerializeField] TMP_Text textoInstruccionSaltar;
     [SerializeField] estadoMensajeSkip textoSaltarCinematicaEstado = 0;
     [SerializeField] float alphaTextoCambiar = 0;
-    bool cutscenePlaying = false;
+    [SerializeField] bool cutscenePlaying = false;
 
     IcutsceneManager cutsceneManager;
 
     private void Start()
     {
-        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(changeGameState);
+        cutscenePlaying = false;
     }
     void Update()
     {
@@ -117,6 +118,22 @@ public class cutsceneSkipController : MonoBehaviour
             textoInstruccionSaltar.gameObject.SetActive(false);
         }
     }
+
+    internal void startCutscene(CutsceneData data)
+    {
+        currentData = data;
+        cutscenePlaying = true;
+        textoSaltarCinematicaEstado = estadoMensajeSkip.turningOff;
+        textoInstruccionSaltar.color = new Color(1, 1, 1, 1);
+    }
+
+    internal void endCutscene()
+    {
+        cutscenePlaying = false;
+        textoSaltarCinematicaEstado = estadoMensajeSkip.finished;
+        textoInstruccionSaltar.color = new Color(1, 1, 1, 0);
+    }
+
     enum estadoMensajeSkip
     {
         finished,

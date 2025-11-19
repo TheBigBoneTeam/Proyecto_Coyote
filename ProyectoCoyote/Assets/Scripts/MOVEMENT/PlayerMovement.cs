@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
             if (horizontalInput == 0)
             {
                 attackName += "Hit_M_R";
-            
+
             }
             if (horizontalInput > 0)
             {
@@ -256,12 +256,12 @@ public class PlayerMovement : MonoBehaviour
             if (horizontalInput < 0)
             {
                 attackName += "Hit_L";
-                    
+
             }
-            if(gameStateManager.getState() == GameState.SlowDown)
+            if (gameStateManager.getState() == GameState.SlowDown)
             {
-               attackName += "_CRIT";
-               perfectDodgeManager.StopSlowdown();
+                attackName += "_CRIT";
+                perfectDodgeManager.StopSlowdown();
             }
             animator.CrossFade(attackName, .1f);
 

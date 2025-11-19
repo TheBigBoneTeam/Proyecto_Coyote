@@ -38,7 +38,7 @@ MonoBehaviour:
         - 0c515d50-b036-4637-9569-a89674240af9
       - name: Shoot
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 1183.963, y: 632.0506}
+        position: {x: 1204, y: 686.4}
         node:
           rid: 5634289709124943963
         references:
@@ -69,7 +69,7 @@ MonoBehaviour:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
       - name: ToCounterTransition (PUSH)
         id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 78.094826, y: -51.863297}
+        position: {x: -4, y: 324.8}
         node:
           rid: 5634289709124943967
         references:
@@ -89,13 +89,13 @@ MonoBehaviour:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
       - name: EndReaction
         id: 952d107d-ad5f-4496-b6a6-0f45781bf631
-        position: {x: 15.556791, y: 208.37611}
+        position: {x: 135.2, y: 65.6}
         node:
           rid: 8725330695958036570
         references:
         - fieldName: Perception
           value:
-            rid: 8725330696293843330
+            rid: 8725331095404937464
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         - fieldName: Action
@@ -133,7 +133,7 @@ MonoBehaviour:
         references:
         - fieldName: Perception
           value:
-            rid: 8725330713914900836
+            rid: 8725331095404937459
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         - fieldName: Action
@@ -153,7 +153,7 @@ MonoBehaviour:
         references:
         - fieldName: Perception
           value:
-            rid: 8725330713914900838
+            rid: 8725331095404937460
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         - fieldName: Action
@@ -167,7 +167,7 @@ MonoBehaviour:
         - 2081fe08-f1ff-4bd0-94b9-66166d333581
       - name: reachCover (PUSH)
         id: 0c515d50-b036-4637-9569-a89674240af9
-        position: {x: 1542.4, y: 283.19998}
+        position: {x: 1674.4, y: 713.60004}
         node:
           rid: 8725330732456607931
         references:
@@ -207,7 +207,7 @@ MonoBehaviour:
         - c8b7781b-ec4b-4317-a8f2-aa5359e341c1
       - name: CoverUnsafe(PUSH)
         id: f72d011e-4bd7-4730-905e-dec34a5c682d
-        position: {x: 1536, y: 608}
+        position: {x: 1628.8, y: 332.8}
         node:
           rid: 8725330856855208084
         references:
@@ -225,6 +225,81 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
         childIds:
         - 2081fe08-f1ff-4bd0-94b9-66166d333581
+    - name: BaseStateMachine
+      id: 959a0f34-2e01-4e48-ba4f-1e9ce3b0ecc1
+      graph:
+        rid: 8725331092473380949
+      nodes:
+      - name: Combat
+        id: ed67d957-8350-494c-8cfa-96950bee1768
+        position: {x: 461.6, y: 511.19998}
+        node:
+          rid: 8725331092473380950
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331095404937473
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 40647a54-2b31-4070-baae-c4897e73e411
+        childIds:
+        - c36dbf61-a2de-42c0-b04e-dc48d1969994
+      - name: 
+        id: 97b4684a-7951-4fb3-ad32-33bec488422c
+        position: {x: 1081.6, y: 457.6}
+        node:
+          rid: 8725331092473380951
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - c36dbf61-a2de-42c0-b04e-dc48d1969994
+        childIds:
+        - 40647a54-2b31-4070-baae-c4897e73e411
+      - name: CloseToPlayer
+        id: c36dbf61-a2de-42c0-b04e-dc48d1969994
+        position: {x: 779.2, y: 437.6}
+        node:
+          rid: 8725331092473380954
+        references:
+        - fieldName: Perception
+          value:
+            rid: 8725331092473380956
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ed67d957-8350-494c-8cfa-96950bee1768
+        childIds:
+        - 97b4684a-7951-4fb3-ad32-33bec488422c
+      - name: FarFromPlayer
+        id: 40647a54-2b31-4070-baae-c4897e73e411
+        position: {x: 827.2, y: 651.2}
+        node:
+          rid: 8725331092473380955
+        references:
+        - fieldName: Perception
+          value:
+            rid: 8725331095404937448
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 97b4684a-7951-4fb3-ad32-33bec488422c
+        childIds:
+        - ed67d957-8350-494c-8cfa-96950bee1768
     - name: ShootBT
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -256,7 +331,7 @@ MonoBehaviour:
         - eec2ee50-4098-4985-9ddf-bb1019f2a1ac
       - name: choosemutex
         id: 88c2e647-e066-4002-93f7-4bdf6316e20a
-        position: {x: 0, y: 200}
+        position: {x: 16, y: 281.6}
         node:
           rid: 8725330696836219274
         references: []
@@ -281,7 +356,7 @@ MonoBehaviour:
         childIds: []
       - name: HideIdle
         id: f3073e2e-3d89-48ca-94d2-a18ed9103941
-        position: {x: 187.2, y: 416}
+        position: {x: 207.2, y: 427.19998}
         node:
           rid: 8725330696836219277
         references:
@@ -324,7 +399,7 @@ MonoBehaviour:
         childIds: []
       - name: HideIdle
         id: 4ad7c47d-53e6-410b-8c90-e85dd4c76d56
-        position: {x: -193.6, y: 816}
+        position: {x: -219.2, y: 808}
         node:
           rid: 8725330851897802861
         references:
@@ -338,7 +413,7 @@ MonoBehaviour:
         childIds: []
       - name: wait
         id: 64d446b5-7dd1-4880-9042-f5b036066506
-        position: {x: 584, y: 792}
+        position: {x: 557.6, y: 764.80005}
         node:
           rid: 8725330851897802864
         references:
@@ -352,7 +427,7 @@ MonoBehaviour:
         childIds: []
       - name: checkSafe
         id: dd672abf-6c81-4277-908c-84a68beb526e
-        position: {x: 252, y: 808}
+        position: {x: 244, y: 794.4}
         node:
           rid: 8725330856855208069
         references:
@@ -366,7 +441,7 @@ MonoBehaviour:
         childIds: []
       - name: returnPriority
         id: f4f2c600-ba39-4a9b-a0e7-e7e682e0a9eb
-        position: {x: 39.2, y: 824}
+        position: {x: 5.6, y: 816}
         node:
           rid: 8725331011652289196
         references:
@@ -408,7 +483,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 681bc4a0-27e8-402e-9f00-cbc7541b25e1
-        position: {x: 175.2, y: 676}
+        position: {x: 183.2, y: 649.60004}
         node:
           rid: 8725330721219543237
         references: []
@@ -419,7 +494,7 @@ MonoBehaviour:
         - 4c2dd111-126d-4050-980e-27a630a51043
       - name: 
         id: 4c2dd111-126d-4050-980e-27a630a51043
-        position: {x: 480.8, y: 832.80005}
+        position: {x: 445.6, y: 862.4}
         node:
           rid: 8725330721219543238
         references:
@@ -501,24 +576,6 @@ MonoBehaviour:
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
         StatusFlags: -1
-    - rid: 8725330696293843330
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: EnemyAI
-          methodName: notDuringReactCounter
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330696836219274
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -539,46 +596,10 @@ MonoBehaviour:
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
         StatusFlags: -1
-    - rid: 8725330713914900836
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: EnemyAI
-          methodName: isLocked
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330713914900837
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
         StatusFlags: -1
-    - rid: 8725330713914900838
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: EnemyAI
-          methodName: isNotLocked
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330721219543040
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -785,3 +806,149 @@ MonoBehaviour:
     - rid: 8725331012510548631
       type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 8725331092473380949
+      type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 8725331092473380950
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 8725331092473380951
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 8725331092473380954
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: -1
+    - rid: 8725331092473380955
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 8725331092473380956
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: seePlayer
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725331095404937448
+      type: {class: CompoundPerceptionWrapper, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        compoundPerception:
+          rid: 8725331095404937449
+        subPerceptions:
+        - perception:
+            rid: 8725331095404937450
+    - rid: 8725331095404937449
+      type: {class: OppositePerception, ns: BehaviourAPI.Core.Perceptions, asm: BehaviourAPI.Core}
+      data: 
+    - rid: 8725331095404937450
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: seePlayer
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725331095404937459
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: isLocked
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725331095404937460
+      type: {class: CompoundPerceptionWrapper, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        compoundPerception:
+          rid: 8725331095404937461
+        subPerceptions:
+        - perception:
+            rid: 8725331095404937462
+    - rid: 8725331095404937461
+      type: {class: OppositePerception, ns: BehaviourAPI.Core.Perceptions, asm: BehaviourAPI.Core}
+      data: 
+    - rid: 8725331095404937462
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: isLocked
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725331095404937464
+      type: {class: CompoundPerceptionWrapper, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        compoundPerception:
+          rid: 8725331095404937465
+        subPerceptions:
+        - perception:
+            rid: 8725331095404937466
+    - rid: 8725331095404937465
+      type: {class: OppositePerception, ns: BehaviourAPI.Core.Perceptions, asm: BehaviourAPI.Core}
+      data: 
+    - rid: 8725331095404937466
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: EnemyAI
+          methodName: isDoingReactionCounter
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 8725331095404937473
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 0
+        InterruptOptions: 2
+        subgraphId: 5b4afe39-d4dc-4f10-bd35-4fc11be59257

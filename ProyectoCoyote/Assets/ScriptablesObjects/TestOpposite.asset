@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
+  m_Name: TestOpposite
+  m_EditorClassIdentifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: 91da8a81-c6ee-4e5a-8f5b-26c5dbf24d3c
+      graph:
+        rid: 8725331092473380963
+      nodes:
+      - name: 
+        id: fedec198-c111-42a8-a5fc-8b1f2ff5e4c0
+        position: {x: 0, y: 0}
+        node:
+          rid: 8725331092473380965
+        references: []
+        parentIds: []
+        childIds:
+        - 0ac55e3b-d5a6-46d2-80ba-8be32fb8b00e
+      - name: 
+        id: 116af88d-c9a4-4623-968b-e414a3fc711d
+        position: {x: 300, y: 400}
+        node:
+          rid: 8725331095404937312
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331095404937321
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 0ac55e3b-d5a6-46d2-80ba-8be32fb8b00e
+        childIds: []
+      - name: 
+        id: 0ac55e3b-d5a6-46d2-80ba-8be32fb8b00e
+        position: {x: 0, y: 200}
+        node:
+          rid: 8725331095404937317
+        references: []
+        parentIds:
+        - fedec198-c111-42a8-a5fc-8b1f2ff5e4c0
+        childIds:
+        - 40bc8f9c-bd34-42bd-8a48-d43e19f81c07
+        - 116af88d-c9a4-4623-968b-e414a3fc711d
+      - name: 
+        id: 40bc8f9c-bd34-42bd-8a48-d43e19f81c07
+        position: {x: -300, y: 400}
+        node:
+          rid: 8725331095404937370
+        references:
+        - fieldName: Perception
+          value:
+            rid: 8725331095404937436
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 0ac55e3b-d5a6-46d2-80ba-8be32fb8b00e
+        childIds:
+        - 9d78a896-d492-4859-81f9-11f1a219ae30
+      - name: 
+        id: 9d78a896-d492-4859-81f9-11f1a219ae30
+        position: {x: -300, y: 600}
+        node:
+          rid: 8725331095404937372
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331095404937373
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 40bc8f9c-bd34-42bd-8a48-d43e19f81c07
+        childIds: []
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8725331092473380963
+      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725331092473380965
+      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Iterations: -1
+    - rid: 8725331095404937312
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725331095404937317
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 8725331095404937321
+      type: {class: DebugLogAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        message: Falso
+    - rid: 8725331095404937370
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725331095404937372
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 8725331095404937373
+      type: {class: DebugLogAction, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        message: Verdadero
+    - rid: 8725331095404937436
+      type: {class: CompoundPerceptionWrapper, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        compoundPerception:
+          rid: 8725331095404937437
+        subPerceptions: []
+    - rid: 8725331095404937437
+      type: {class: OppositePerception, ns: BehaviourAPI.Core.Perceptions, asm: BehaviourAPI.Core}
+      data: 

@@ -14,6 +14,7 @@ public class testColorChange : MonoBehaviour
     {
 
     }
+    [SerializeField] bool val;
     public Status Blue()
     {
         gameObject.GetComponent<Renderer>().material.color = Color.blue;
@@ -48,4 +49,7 @@ public class testColorChange : MonoBehaviour
         print("checkMouse" + Input.GetMouseButtonDown(0));
         return Input.GetMouseButtonDown(0);
     }
+    public bool isTrue() => val;
+    public bool isNotTrue() => !val;
+
 }

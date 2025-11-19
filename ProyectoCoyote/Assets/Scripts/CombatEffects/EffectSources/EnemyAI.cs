@@ -83,7 +83,15 @@ public class EnemyAI : MonoBehaviour,IMutex
         }
         return false;
     }
-  
+    public bool notSeePlayer()
+    {
+        if (DistanceWithPlayer() <= seeDistance)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public float DistanceWithPlayer()
     {
         return Vector3.Distance(player.transform.position, this.transform.position);

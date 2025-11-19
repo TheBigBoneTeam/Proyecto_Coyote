@@ -1,16 +1,15 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
-using Services;
-using System;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class PlayBasicAttackAction : UnityAction
+public class RandomActionAction : UnityAction
 {
-    public EnemyAI.BasicActions action;
+    public string BaseAction;
+    public string FirstLetter;
+    public string LastLetter;
     public bool idle;
     EnemyAI enemyAI;
+
     public override Status Update()
     {
         if (idle)
@@ -21,7 +20,6 @@ public class PlayBasicAttackAction : UnityAction
         }
         if (!idle && enemyAI.endAction)
         {
-            Debug.Log("success");
             enemyAI.endActionNode();
             return Status.Success;
         }
@@ -29,11 +27,17 @@ public class PlayBasicAttackAction : UnityAction
     }
     public override void Start()
     {
+        char firstletter = FirstLetter[0];
+        char lastletter = LastLetter[0];
+        int nums = lastletter - firstletter;
+        char letter = (char)('A' + UnityEngine.Random.Range(0, nums));
+
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         if (enemyAI.endAction)
         {
             Debug.Log("cagada");
         }
-        enemyAI.LoadBasicAction(action,idle);
+        enemyAI.LoadAction(BaseAction +letter, idle);
     }
+
 }

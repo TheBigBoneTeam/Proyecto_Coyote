@@ -89,6 +89,8 @@ public abstract class AGameCharacter :MonoBehaviour
         else
         {
             print("GetHit" + extra);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+            StartCoroutine("ResetMaterialHit");
             anim.CrossFade("GetHit" + extra, .1f, 0, 0);
             }
         if (invTimeAfterHit > 0)
@@ -97,6 +99,12 @@ public abstract class AGameCharacter :MonoBehaviour
             StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
     }
+    public IEnumerator ResetMaterialHit()
+    {
+        yield return new WaitForSeconds(.3f);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 0);
+    }
+
     public virtual void getHealed(int points)
     {
         HealthPoint += points;

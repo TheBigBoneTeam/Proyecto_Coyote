@@ -9,6 +9,7 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
+    [SerializeField] GameObject HitParticles;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     bool dead;
@@ -33,15 +34,19 @@ public class Enemy : AGameCharacter
     {
         base.getHit(damage,directions, crit);
         GetComponent<Animator>().Play("heavySquish");
-        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
-        StartCoroutine("ResetMaterialHit");
+        if(HitParticles != null)
+        {
+            HitParticles.transform.position += new Vector3(UnityEngine.Random.Range(-.5f, .5f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.5f, .5f));
+            foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>())
+            {
+                if(!particle.isPlaying)
+                    particle.Play();
+            }
+        }
+
     }
 
-    public IEnumerator ResetMaterialHit()
-    {
-        yield return new WaitForSeconds(.7f);
-        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 0);
-    }
+
     
     
 

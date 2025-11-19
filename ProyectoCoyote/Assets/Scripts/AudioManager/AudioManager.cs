@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     protected void Start()
     {
         CheckScene();
+        if(ServiceLocator.Instance != null)
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
 
         if (gameStateManager != null)
@@ -52,6 +53,7 @@ public class AudioManager : MonoBehaviour
 
         // Encuentra un jugador y se suscribe al metodo de bloqueo
         player = FindAnyObjectByType<Player>();
+        if(player != null)
         player.subscribeToDodgeAttack(DodgeAttack);
     }
     public void SceneChange()
@@ -183,7 +185,7 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Nivel3":
-                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
 
                 // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
                 // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);

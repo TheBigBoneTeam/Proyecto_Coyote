@@ -123,7 +123,6 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     }
     public void PlayBossMusic()
     {
-
     }
     public void PlaySound(string sound)
     {

@@ -1,5 +1,6 @@
 using CombatEffect;
 using JetBrains.Annotations;
+using Services;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -9,11 +10,16 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
-    [SerializeField] GameObject HitParticles;
+    [SerializeField] GameObject HitParticles, blockParticles;
+    Transform initialParticleTransform;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     bool dead;
 
+    public void Start()
+    {
+        initialParticleTransform = HitParticles.transform;
+    }
     public override void Die()
     {
         if (!dead)
@@ -36,8 +42,8 @@ public class Enemy : AGameCharacter
         GetComponent<Animator>().Play("heavySquish");
         if(HitParticles != null)
         {
-            HitParticles.transform.position += new Vector3(UnityEngine.Random.Range(-.5f, .5f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.5f, .5f));
-            foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>())
+            HitParticles.transform.position = initialParticleTransform.position + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+            foreach(ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
             {
                 if(!particle.isPlaying)
                     particle.Play();
@@ -81,4 +87,39 @@ public class Enemy : AGameCharacter
             GetComponent<EnemyAssetBehaviourRunner>().restart();
         }
     }
+
+    public override void DodgeAttack(HitDirections direction)
+    {
+        base.DodgeAttack(direction);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.blue);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .45f);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+        GetComponent<Animator>().Play("lightSquish");
+        AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, false);
+        StartCoroutine("ResetMaterialHit");
+        if (blockParticles != null)
+        {
+            float xadd = 0;
+            switch(direction)
+            {
+                case HitDirections.Left:
+                    xadd = -1f;
+                    break;
+                case HitDirections.Rigth:
+                    xadd = 1f;
+                    break;
+                default:
+                    xadd = 0f;
+                    break;
+            }
+            blockParticles.transform.position = initialParticleTransform.position + new Vector3(xadd, UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+
+            foreach (ParticleSystem particle in blockParticles.GetComponentsInChildren<ParticleSystem>())
+            {
+                if (!particle.isPlaying)
+                    particle.Play();
+            }
+        }
+    }
+
 }

@@ -89,6 +89,8 @@ public abstract class AGameCharacter :MonoBehaviour
         else
         {
             print("GetHit" + extra);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.red);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .2f);
             GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
             StartCoroutine("ResetMaterialHit");
             anim.CrossFade("GetHit" + extra, .1f, 0, 0);
@@ -188,7 +190,7 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
-    public void DodgeAttack(HitDirections direction)
+    public virtual void DodgeAttack(HitDirections direction)
     {
         dodgeAttackEvent?.Invoke(direction);
         checkEffect(new Dodge(2));

@@ -2764,6 +2764,7 @@ MonoBehaviour:
   print: 0
   renderer: {fileID: 0}
   ActiveBeforeFight: 0
+  HitParticles: {fileID: 0}
 --- !u!1 &1252604497 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3422131293330947083, guid: 4b41cec4b96bd3e41af27caefab03ba7, type: 3}
@@ -2936,6 +2937,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
+      value: 0.13470857
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
+      value: 0.87325954
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: 0.23214898
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].inSlope
+      value: 1.7273204
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: 0.23214898
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].inWeight
+      value: 0.21923013
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].outSlope
+      value: 1.7273204
+      objectReference: {fileID: 0}
+    - target: {fileID: 23848180288889403, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
+      value: 0.2281785
+      objectReference: {fileID: 0}
     - target: {fileID: 898257346240071921, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.09170344
@@ -3003,6 +3052,18 @@ PrefabInstance:
     - target: {fileID: 2960567127998013941, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.12029419
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974658811736869025, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974658811736869025, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974658811736869025, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3214013194493151561, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3143,6 +3204,18 @@ PrefabInstance:
     - target: {fileID: 6897300252242732763, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947158430212231356, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947158430212231356, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947158430212231356, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7283076477116222888, guid: 802f7cacb2fa3bd41b5fee855d134b80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5541,6 +5614,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282e04fed6225aa4fb310181ee27074c, type: 3}
+--- !u!1001 &1822492710528318209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7044742414479448896, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_Name
+      value: impact_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7044742414479448896, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.288208
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7440338
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246837383325996244, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d486e53e06b21304e900f8e4a3cd33b6, type: 3}
 --- !u!1001 &4019493128487609367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5624,3 +5758,4 @@ SceneRoots:
   - {fileID: 417585854}
   - {fileID: 1169196231}
   - {fileID: 1212556610}
+  - {fileID: 1822492710528318209}

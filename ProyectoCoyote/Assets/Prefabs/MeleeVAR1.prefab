@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 2196448438841205111}
   - component: {fileID: 2607764545182507113}
   - component: {fileID: 5303121682506655119}
+  - component: {fileID: 7469561271418414055}
   m_Layer: 24
   m_Name: MeleeVAR1
   m_TagString: Untagged
@@ -188,6 +189,7 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  anim: {fileID: 2002077231683336221}
   startPos: {x: 0, y: 0, z: 0}
   print: 0
   renderer: {fileID: 0}
@@ -312,6 +314,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 1
+--- !u!95 &7469561271418414055
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263494869588589020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbf49058a1dfcc44ca2176a8741080ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8043831015899463514
 GameObject:
   m_ObjectHideFlags: 0

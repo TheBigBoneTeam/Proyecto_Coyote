@@ -16,7 +16,7 @@ public abstract class AGameCharacter :MonoBehaviour
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  protected bool invincible;
-    Animator anim;
+    [SerializeField] Animator anim;
 
     UnityEvent<int> lifeUpdate;
    protected UnityEvent<AGameCharacter> dieEvent;
@@ -34,7 +34,7 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
-        anim = GetComponentInChildren<Animator>();
+        //anim = GetComponentInChildren<Animator>();
         dodgeAttackEvent = new UnityEvent<HitDirections>();
         dieEvent = new UnityEvent<AGameCharacter>();
         attack = GetComponentInChildren<Attack>();
@@ -117,9 +117,9 @@ public abstract class AGameCharacter :MonoBehaviour
             renderer.enabled = !renderer.enabled;
             timepass+=0.1f;
 
-        }
+        }   
         renderer.enabled = true;
-
+   
         invincible = false;
     }
 

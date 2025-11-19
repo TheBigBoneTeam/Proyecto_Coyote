@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 6854922527759016282}
   - component: {fileID: 7450648403885556856}
   - component: {fileID: 4179968761981833417}
+  - component: {fileID: 4453080225844153639}
   m_Layer: 24
   m_Name: EnemigoTuto
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  anim: {fileID: 4595652645221742494}
   startPos: {x: 0, y: 0, z: 0}
   print: 0
   renderer: {fileID: 0}
@@ -283,6 +285,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialMode: 0
+--- !u!95 &4453080225844153639
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004532814463855830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbf49058a1dfcc44ca2176a8741080ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &353036573988647618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,6 +567,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 23.199451
       objectReference: {fileID: 0}
+    - target: {fileID: 5074512353664290214, guid: be504a8ef66f4e6458ea6b4513aab20f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0613947a5fcbf1b44a7b59724dc65dea, type: 2}
     - target: {fileID: 7577459914591501164, guid: be504a8ef66f4e6458ea6b4513aab20f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.082763426

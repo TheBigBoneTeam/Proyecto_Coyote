@@ -1,5 +1,7 @@
 using CombatEffect;
+using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -30,8 +32,19 @@ public class Enemy : AGameCharacter
     public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
         base.getHit(damage,directions, crit);
-
+        GetComponent<Animator>().Play("heavySquish");
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+        StartCoroutine("ResetMaterialHit");
     }
+
+    public IEnumerator ResetMaterialHit()
+    {
+        yield return new WaitForSeconds(.7f);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 0);
+    }
+    
+    
+
     public void setArea(combatAreaManager combatArea)
     {
         CombatArea =combatArea;

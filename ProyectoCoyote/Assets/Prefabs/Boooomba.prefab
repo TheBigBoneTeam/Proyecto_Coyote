@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 4920157825102817951}
   - component: {fileID: 4351521750099394436}
   - component: {fileID: 1432820346050459121}
+  - component: {fileID: 5247851787586681143}
   m_Layer: 24
   m_Name: Boooomba
   m_TagString: Untagged
@@ -176,6 +177,7 @@ MonoBehaviour:
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
+  anim: {fileID: 610226567119405151}
   startPos: {x: 0, y: 0, z: 0}
   print: 0
   renderer: {fileID: 0}
@@ -316,6 +318,28 @@ MonoBehaviour:
       data:
         ShootGun: ESTE EFECTO ACTIVA LA EXPLOSION DEL BOMBA. HE PUESTO UN STRING
           PA QUE NO PAREZCA BUG
+--- !u!95 &5247851787586681143
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058257240711720453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbf49058a1dfcc44ca2176a8741080ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2402816642784451116
 GameObject:
   m_ObjectHideFlags: 0

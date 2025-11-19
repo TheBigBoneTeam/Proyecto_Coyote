@@ -76,7 +76,7 @@ namespace tutorial
              gamestateManager = ServiceLocator.Instance.Get<IGameStateManager>();
             gamestateManager.startCombatforTutorial();
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
-            machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
+            machine.AddTransition(controles, ataquep1, new FuncPredicate(() => controles.checkMovement()));
 
             machine.AddTransition(camara, lockear, new FuncPredicate(() => camara.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));

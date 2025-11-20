@@ -10,7 +10,7 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
-    [SerializeField] GameObject HitParticles, blockParticles;
+    [SerializeField] GameObject HitParticles, blockParticles, blockParticlesPosition;
     Transform initialParticleTransform;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
@@ -39,8 +39,9 @@ public class Enemy : AGameCharacter
     public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
         base.getHit(damage,directions, crit);
-        GetComponent<Animator>().Play("heavySquish");
-        if(HitParticles != null)
+        GetComponent<Animator>()?.Play("heavySquish");
+        GetComponent<HitStopComponent>()?.HitStop(.075f);
+        if (HitParticles != null)
         {
             HitParticles.transform.position = initialParticleTransform.position + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
             foreach(ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
@@ -51,6 +52,9 @@ public class Enemy : AGameCharacter
         }
 
     }
+
+ 
+
 
 
     
@@ -94,12 +98,12 @@ public class Enemy : AGameCharacter
         GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.blue);
         GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .45f);
         GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
-        GetComponent<Animator>().Play("lightSquish");
+        GetComponent<Animator>()?.Play("lightSquish");
         AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, false);
         StartCoroutine("ResetMaterialHit");
-        if (blockParticles != null)
+        if (blockParticles != null && blockParticlesPosition != null)
         {
-            float xadd = 0;
+            /*float xadd = 0;
             switch(direction)
             {
                 case HitDirections.Left:
@@ -112,8 +116,9 @@ public class Enemy : AGameCharacter
                     xadd = 0f;
                     break;
             }
-            blockParticles.transform.position = initialParticleTransform.position + new Vector3(xadd, UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
-
+            */
+            blockParticles.transform.position = blockParticlesPosition.transform.position;
+            
             foreach (ParticleSystem particle in blockParticles.GetComponentsInChildren<ParticleSystem>())
             {
                 if (!particle.isPlaying)

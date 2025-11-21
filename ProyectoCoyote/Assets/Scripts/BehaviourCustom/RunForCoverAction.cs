@@ -9,6 +9,8 @@ public class RunForCoverAction : UnityAction
     Cover coverObj;
     EnemyAI enemyAI;
         bool stopped;
+    bool isReachable;
+
     public override Status Update()
     {
 
@@ -16,11 +18,14 @@ public class RunForCoverAction : UnityAction
         {
             return Status.None;
         }
+        if (!isReachable)
+        {
+            return Status.Failure;
+        }
         if (agent.pathPending)
         {
             return Status.Running;
         }
-        Debug.Log($"{agent.pathPending} {agent.remainingDistance} {agent.stoppingDistance} {agent.hasPath} {agent.velocity}");
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -45,25 +50,34 @@ public class RunForCoverAction : UnityAction
         agent.ResetPath();
     }
     public override void Stop()
-    {
+    { 
         stopped = true;
-        Debug.Log("endrunaction");
         agent.ResetPath();
         base.Stop();
     }
     public override void Start()
     {
-        Debug.Log("StartRunCover");
         stopped = false;
+        isReachable = false;
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         agent = context.GameObject.GetComponent<NavMeshAgent>();
         coverObj = context.GameObject.GetComponent<Enemy>().CombatArea.getCoverSpot(enemyAI.GetComponent<Enemy>(), out Vector3 hidePosition, out int coverIndex);
         if (coverObj != null)
         {
-            context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);
-            UnityEngine.Debug.Log(hidePosition);
-            Debug.Log(agent.SetDestination(hidePosition));
-            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+            Debug.Log("SetCover");
+            if (agent.SetDestination(hidePosition))
+            {
+                isReachable = true;
+
+                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);
+                UnityEngine.Debug.Log(hidePosition);
+                enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
+            }
+            else
+            {
+                isReachable = false;
+
+            }
         }
         else
         {

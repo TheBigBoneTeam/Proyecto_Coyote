@@ -279,6 +279,7 @@ namespace BehaviourAPI.StateMachines
         /// </summary>
         protected override void OnUpdated()
         {
+            
             _currentState?.OnUpdated();
         }
 

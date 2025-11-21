@@ -192,6 +192,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void DodgeAttack(HitDirections direction)
     {
+        print("dodge");
         dodgeAttackEvent?.Invoke(direction);
         checkEffect(new Dodge(2));
     }

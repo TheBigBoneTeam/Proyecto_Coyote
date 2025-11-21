@@ -22,6 +22,7 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
 
     public void reachCover()
     {
+        print("reachCover");
         ReachCover.Fire();  
     }
     public void reachUnsafe()
@@ -32,7 +33,19 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     public bool checkUnsafe()
     {
         return isUnsafe;
-
+    }
+    public bool CanShootPlayer()
+    {
+        if (currentCover == null)
+        {
+            return false;
+        }
+        return currentCover.canShootPlayer(player.transform,currentCoverHidePos);
+    }
+    public bool setCheckUnsafe()
+    {
+        setUnsafe();
+        return checkUnsafe();
     }
     public void setUnsafe()
     {
@@ -42,17 +55,21 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
         }
         else
         {
-            isUnsafe = !currentCover.checkSafe(player.transform, currentCoverHidePos);
+            isUnsafe = !currentCover.checkSafe(transform,player.transform, currentCoverHidePos);
         }
         print("unsafe==" +isUnsafe);
     }
     public void setCover(Cover cover, int coverindex)
     {
+        if(currentCover != null){
+            currentCover.returnOwnerShip(enemy);
+        }
         isUnsafe = false;
         currentCover = cover;
         currentCoverHidePos = coverindex;
 
     }
+    public Cover getCurrentCover() => currentCover;
     public void returnCoverOwner()
     {
         if (currentCover != null)

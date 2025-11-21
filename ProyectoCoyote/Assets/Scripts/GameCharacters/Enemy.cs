@@ -74,7 +74,6 @@ public class Enemy : AGameCharacter
         dead = false;
         dieEvent?.RemoveAllListeners();
         base.restart();
-        print(name);
         gameObject.SetActive(ActiveBeforeFight);
         GetComponent<EnemyAI>().restart();
         GetComponentInChildren<Attack>().restart();

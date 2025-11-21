@@ -189,7 +189,11 @@ public class EnemyAI : MonoBehaviour,IMutex
         {
             endAction = false;
         }
-        character.PlayAnimation(action, idle);
+        else
+        {
+            setOnAction(false);
+        }
+            character.PlayAnimation(action, idle);
 
     }
     private void Start()
@@ -226,6 +230,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     private void PlayerHitDefenseEvent(HitDirections arg0)
     {
+        print("hitdefenseevent");
         if (counterOn && isLocked())
         {
             _enemyAssetBehaviourRunner.FirePlayerHitDefense();
@@ -304,6 +309,10 @@ public class EnemyAI : MonoBehaviour,IMutex
     public Status forceSuccess()
     {
         return Status.Success;
+    }
+    public Status forceFailure()
+    {
+        return Status.Failure;
     }
     public Status waitForEndAction()
     {

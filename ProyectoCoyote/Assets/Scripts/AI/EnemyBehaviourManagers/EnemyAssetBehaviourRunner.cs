@@ -28,6 +28,7 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
     }
     public void FirePlayerHitDefense()
     {
+        print("PlayerHitDefense");
         PlayerHitDefensePerception.Fire();
 
     }

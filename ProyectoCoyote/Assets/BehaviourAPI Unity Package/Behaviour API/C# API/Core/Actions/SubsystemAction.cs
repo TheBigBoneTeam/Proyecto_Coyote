@@ -93,7 +93,6 @@
         /// <exception cref="MissingSubsystemException">If subsystem is null.</exception>
         public override void Stop()
         {
-            UnityEngine.Debug.Log("SubSystemStop");
             if (SubSystem == null)
                 throw new MissingSubsystemException(this, "Subsystem cannot be null");
 
@@ -108,7 +107,6 @@
                 }
                 else if (InterruptOptions == ExecutionInterruptOptions.Stop)
                 {
-                    UnityEngine.Debug.Log("SubSystemStopStop");
 
                     SubSystem.Stop();
                 }

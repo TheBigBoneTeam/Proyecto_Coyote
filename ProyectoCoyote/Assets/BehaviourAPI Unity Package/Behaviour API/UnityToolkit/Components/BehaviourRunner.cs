@@ -96,19 +96,22 @@ namespace BehaviourAPI.UnityToolkit
         {
             if (_executionGraph != null)
             {
+                
                 if (_executionGraph.Status != Status.Running) return;
 
                 _executionGraph.Update();
-
                 if (_executionGraph.Status != Status.Running)
                 {
-                    if(executeOnLoop)
+                    Debug.LogWarning("EndBehaviour");
+
+                    if (executeOnLoop)
                     {
                         _executionGraph.Restart();
                     }
                     else
                     {
                         _executionGraph.Stop();
+                        
                     }
                 }
             }

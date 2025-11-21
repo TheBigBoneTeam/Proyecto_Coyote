@@ -35,6 +35,7 @@ public class WanderAroundAction : UnityAction
     public override void Start()
     {
         base.Start();
+        enemyAI = context.GameObject.GetComponent<EnemyAI>();
         wanderer = context.GameObject.GetComponent<AIWanderer>();
         if (wanderer == null)
         {
@@ -48,6 +49,7 @@ public class WanderAroundAction : UnityAction
         objective = wanderer.getPoint();
         if (agent.SetDestination(objective.position))
         {
+            enemyAI.LoadAction("Wander", true);
             agent.updateRotation = true;
             isReachable = true;
         }

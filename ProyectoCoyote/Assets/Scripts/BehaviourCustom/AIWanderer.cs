@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIWanderer : MonoBehaviour
 {
     [SerializeField] Transform[] wanderPoints;
-    bool random;
+    [SerializeField] bool random;
    [SerializeField] int currentPoint;
 
     private void Start()

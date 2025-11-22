@@ -43,7 +43,7 @@ public class Enemy : AGameCharacter
         GetComponent<HitStopComponent>()?.HitStop(.075f);
         if (HitParticles != null)
         {
-            HitParticles.transform.position = initialParticleTransform.position + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+            HitParticles.transform.localPosition = initialParticleTransform.localPosition + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
             foreach(ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
             {
                 if(!particle.isPlaying)

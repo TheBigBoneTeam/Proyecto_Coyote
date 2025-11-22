@@ -20,6 +20,7 @@ public class RunForCoverAction : UnityAction
         }
         if (!isReachable)
         {
+            
             return Status.Failure;
         }
         if (agent.pathPending)

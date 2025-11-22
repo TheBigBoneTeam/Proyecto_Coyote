@@ -77,10 +77,15 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public bool seePlayer()
     {
+        print("seePlayer");
         if (DistanceWithPlayer() <= seeDistance)
         {
+            print("seePlayerClose");
+
             return true;
         }
+        print("seePlayerFar");
+
         return false;
     }
     public bool notSeePlayer()

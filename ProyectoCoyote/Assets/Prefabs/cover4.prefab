@@ -82,8 +82,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.0992136, y: 2.3578587, z: 1.3200967}
-  m_Center: {x: 0.19179739, y: 0.67893, z: 0.0051795286}
+  m_Size: {x: 3.0992136, y: 1.6490728, z: 1.3200965}
+  m_Center: {x: 0.19179736, y: 0.32453695, z: 0.0051794904}
 --- !u!1 &2587102642633956676
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,9 +216,13 @@ MonoBehaviour:
   HidePoints:
   - {fileID: 7339886998861214975}
   - {fileID: 8850725915598228858}
-  layer:
+  environmentLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 3072
+  fullLayer:
+    serializedVersion: 2
+    m_Bits: 3080
+  chickenHeight: 2
 --- !u!4 &2135026910824476302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: db2e325b3d32c0744905380345783e40, type: 3}

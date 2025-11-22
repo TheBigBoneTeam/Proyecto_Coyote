@@ -1,5 +1,8 @@
 using CombatEffect;
+using JetBrains.Annotations;
+using Services;
 using System;
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -7,10 +10,16 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
+    [SerializeField] GameObject HitParticles, blockParticles, blockParticlesPosition;
+    Transform initialParticleTransform;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     bool dead;
 
+    public void Start()
+    {
+        initialParticleTransform = HitParticles.transform;
+    }
     public override void Die()
     {
         if (!dead)
@@ -30,8 +39,27 @@ public class Enemy : AGameCharacter
     public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
         base.getHit(damage,directions, crit);
+        GetComponent<Animator>()?.Play("heavySquish");
+        GetComponent<HitStopComponent>()?.HitStop(.075f);
+        if (HitParticles != null)
+        {
+            HitParticles.transform.localPosition = initialParticleTransform.localPosition + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+            foreach(ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
+            {
+                if(!particle.isPlaying)
+                    particle.Play();
+            }
+        }
 
     }
+
+ 
+
+
+
+    
+    
+
     public void setArea(combatAreaManager combatArea)
     {
         CombatArea =combatArea;
@@ -46,7 +74,6 @@ public class Enemy : AGameCharacter
         dead = false;
         dieEvent?.RemoveAllListeners();
         base.restart();
-        print(name);
         gameObject.SetActive(ActiveBeforeFight);
         GetComponent<EnemyAI>().restart();
         GetComponentInChildren<Attack>().restart();
@@ -63,4 +90,40 @@ public class Enemy : AGameCharacter
             GetComponent<EnemyAssetBehaviourRunner>().restart();
         }
     }
+
+    public override void DodgeAttack(HitDirections direction)
+    {
+        base.DodgeAttack(direction);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.blue);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .45f);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+        GetComponent<Animator>()?.Play("lightSquish");
+        AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, false);
+        StartCoroutine("ResetMaterialHit");
+        if (blockParticles != null && blockParticlesPosition != null)
+        {
+            /*float xadd = 0;
+            switch(direction)
+            {
+                case HitDirections.Left:
+                    xadd = -1f;
+                    break;
+                case HitDirections.Rigth:
+                    xadd = 1f;
+                    break;
+                default:
+                    xadd = 0f;
+                    break;
+            }
+            */
+            blockParticles.transform.position = blockParticlesPosition.transform.position;
+            
+            foreach (ParticleSystem particle in blockParticles.GetComponentsInChildren<ParticleSystem>())
+            {
+                if (!particle.isPlaying)
+                    particle.Play();
+            }
+        }
+    }
+
 }

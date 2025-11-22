@@ -77,13 +77,26 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     public bool seePlayer()
     {
+        print("seePlayer");
+        if (DistanceWithPlayer() <= seeDistance)
+        {
+            print("seePlayerClose");
+
+            return true;
+        }
+        print("seePlayerFar");
+
+        return false;
+    }
+    public bool notSeePlayer()
+    {
         if (DistanceWithPlayer() <= seeDistance)
         {
             return true;
         }
         return false;
     }
-  
+
     public float DistanceWithPlayer()
     {
         return Vector3.Distance(player.transform.position, this.transform.position);
@@ -181,7 +194,11 @@ public class EnemyAI : MonoBehaviour,IMutex
         {
             endAction = false;
         }
-        character.PlayAnimation(action, idle);
+        else
+        {
+            setOnAction(false);
+        }
+            character.PlayAnimation(action, idle);
 
     }
     private void Start()
@@ -218,6 +235,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     private void PlayerHitDefenseEvent(HitDirections arg0)
     {
+        print("hitdefenseevent");
         if (counterOn && isLocked())
         {
             _enemyAssetBehaviourRunner.FirePlayerHitDefense();
@@ -296,6 +314,10 @@ public class EnemyAI : MonoBehaviour,IMutex
     public Status forceSuccess()
     {
         return Status.Success;
+    }
+    public Status forceFailure()
+    {
+        return Status.Failure;
     }
     public Status waitForEndAction()
     {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace BehaviourAPI.Core.Perceptions
@@ -8,6 +9,7 @@ namespace BehaviourAPI.Core.Perceptions
     /// </summary>
     public abstract class CompoundPerception : Perception
     {
+
         /// <summary>
         /// The list of subperceptions.
         /// </summary>
@@ -20,6 +22,7 @@ namespace BehaviourAPI.Core.Perceptions
         {
             Perceptions = new List<Perception>();
         }
+        
 
         /// <summary>
         /// Create a new compound perception.
@@ -45,6 +48,7 @@ namespace BehaviourAPI.Core.Perceptions
         /// </summary>
         public override void Initialize()
         {
+            UnityEngine.Debug.Log("InitializaPerception");
             Perceptions.ForEach(p => p.Initialize());
         }
 
@@ -54,6 +58,8 @@ namespace BehaviourAPI.Core.Perceptions
         /// </summary>
         public override void Reset()
         {
+            UnityEngine.Debug.Log("ResetPerception");
+
             Perceptions.ForEach(p => p.Reset());
         }
 
@@ -63,6 +69,8 @@ namespace BehaviourAPI.Core.Perceptions
         /// </summary>
         public override void Pause()
         {
+            UnityEngine.Debug.Log("PausePerception");
+
             Perceptions.ForEach(p => p.Reset());
         }
 
@@ -81,6 +89,8 @@ namespace BehaviourAPI.Core.Perceptions
         /// <param name="context"><inheritdoc/></param>
         public override void SetExecutionContext(ExecutionContext context)
         {
+            UnityEngine.Debug.Log("SetExecutionPerception");
+
             Perceptions.ForEach(p => p.SetExecutionContext(context));
         }
 
@@ -95,5 +105,6 @@ namespace BehaviourAPI.Core.Perceptions
             perception.Perceptions = Perceptions.Select(p => (Perception)p.Clone()).ToList();
             return perception;
         }
+        public abstract bool allowMultiple();
     }
 }

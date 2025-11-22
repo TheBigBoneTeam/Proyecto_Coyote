@@ -42,5 +42,9 @@ namespace BehaviourAPI.Core.Perceptions
             }
             return result;
         }
+        public override bool allowMultiple()
+        {
+            return true;
+        }
     }
 }

@@ -76,7 +76,7 @@ namespace tutorial
              gamestateManager = ServiceLocator.Instance.Get<IGameStateManager>();
             gamestateManager.startCombatforTutorial();
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
-            machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
+            machine.AddTransition(controles, ataquep1, new FuncPredicate(() => controles.checkMovement()));
 
             machine.AddTransition(camara, lockear, new FuncPredicate(() => camara.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
@@ -205,7 +205,7 @@ namespace tutorial
             tutorial.tutorialGun.startShooting();
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = $"Algunos enemigos te dispararán desde la distancia. Normalmente querrás ir a por ellos los más rápido posible pero practica esquivando estas piedras.";
+            tutorial.TutorialText.text = $"Algunos enemigos te dispararán desde la distancia. Normalmente querrás ir a por ellos los más rápido posible. Para esquivar los disparos practica con el enemigo fijado y esquiva por detrás.";
 
         }
         public void esquive(HitDirections d)
@@ -337,7 +337,7 @@ namespace tutorial
         {
             Time.timeScale = 0;
             tutorial.currentEsqPerf = 0;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador. Pulsa /esquivar/ para hacer el esquive perfecto");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador que te permire recuperar la vida quitada en el último ataque recibido. Pulsa /esquivar/ para hacer el esquive perfecto");
           //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
         }
@@ -441,7 +441,7 @@ namespace tutorial
             tutorial.enemigoGancho.gameObject.SetActive(true);
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Como último detalle, tus puños son ganchos también ¿no? Podrás usarlo para atraer o acercarte a los enemigos. Pulsa /gancho/ para apuntar al enemigo.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Como último detalle, tus puños son ganchos también ¿no? Podrás usarlo para acercate los enemigos o ir hacia ellos. Pulsa /gancho/ para apuntar al enemigo.");
         }
         public override void Update()
         {
@@ -504,7 +504,7 @@ namespace tutorial
             tutorial.zonaGancho2.SetActive(true);
             tutorial.currentGanchos = 0;
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("También hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Recorre todos los objetivos.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Recorre todos los objetivos.");
         }
     }
     public class Gancho3 : BaseTutorialState
@@ -579,7 +579,7 @@ namespace tutorial
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario y /dash/ a la vez para correr.");
             input = GameObject.FindAnyObjectByType<GameInput>();
 
 

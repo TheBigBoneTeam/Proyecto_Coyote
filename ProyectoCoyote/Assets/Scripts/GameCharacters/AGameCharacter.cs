@@ -16,7 +16,7 @@ public abstract class AGameCharacter :MonoBehaviour
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  protected bool invincible;
-    Animator anim;
+    [SerializeField] Animator anim;
 
     UnityEvent<int> lifeUpdate;
    protected UnityEvent<AGameCharacter> dieEvent;
@@ -34,7 +34,7 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
-        anim = GetComponentInChildren<Animator>();
+        //anim = GetComponentInChildren<Animator>();
         dodgeAttackEvent = new UnityEvent<HitDirections>();
         dieEvent = new UnityEvent<AGameCharacter>();
         attack = GetComponentInChildren<Attack>();
@@ -89,6 +89,10 @@ public abstract class AGameCharacter :MonoBehaviour
         else
         {
             print("GetHit" + extra);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.red);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .2f);
+            GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+            StartCoroutine("ResetMaterialHit");
             anim.CrossFade("GetHit" + extra, .1f, 0, 0);
             }
         if (invTimeAfterHit > 0)
@@ -97,6 +101,12 @@ public abstract class AGameCharacter :MonoBehaviour
             StartCoroutine(ResetInvincible(invTimeAfterHit));
         }
     }
+    public IEnumerator ResetMaterialHit()
+    {
+        yield return new WaitForSeconds(.3f);
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 0);
+    }
+
     public virtual void getHealed(int points)
     {
         HealthPoint += points;
@@ -117,9 +127,9 @@ public abstract class AGameCharacter :MonoBehaviour
             renderer.enabled = !renderer.enabled;
             timepass+=0.1f;
 
-        }
+        }   
         renderer.enabled = true;
-
+   
         invincible = false;
     }
 
@@ -180,8 +190,9 @@ public abstract class AGameCharacter :MonoBehaviour
         return false;
     }
 
-    public void DodgeAttack(HitDirections direction)
+    public virtual void DodgeAttack(HitDirections direction)
     {
+        print("dodge");
         dodgeAttackEvent?.Invoke(direction);
         checkEffect(new Dodge(2));
     }

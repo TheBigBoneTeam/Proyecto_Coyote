@@ -241,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-        if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
+        if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed) && gameStateManager.getState() == GameState.SlowDown)
         {
             string attackName = "";
 
@@ -254,11 +254,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 attackName += "Hit_R";
             }
-            if (gameStateManager.getState() == GameState.SlowDown)
-            {
-                attackName += "_CRIT";
-                perfectDodgeManager.StopSlowdown();
-            }
+            //if (gameStateManager.getState() == GameState.SlowDown)
+            //{
+            //    attackName += "_CRIT";
+            //    perfectDodgeManager.StopSlowdown();
+            //}
+            perfectDodgeManager.StopSlowdown();
             animator.CrossFade(attackName, .1f);
         }
 

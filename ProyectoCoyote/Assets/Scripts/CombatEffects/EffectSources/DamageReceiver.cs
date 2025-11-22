@@ -27,7 +27,7 @@ public class DamageReceiver:MonoBehaviour
             return;
         }
         if(Invincible){
-            return;
+           // return;
         }
         if (!dodging || !canBeDodged(attack))
         {

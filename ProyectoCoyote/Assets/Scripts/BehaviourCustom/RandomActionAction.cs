@@ -31,6 +31,8 @@ public class RandomActionAction : UnityAction
         char lastletter = LastLetter[0];
         int nums = lastletter - firstletter;
         int min = firstletter - 'A';
+        Debug.Log(min);
+
         char letter = (char)('A' + UnityEngine.Random.Range(min, nums + 1));
 
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
@@ -38,6 +40,7 @@ public class RandomActionAction : UnityAction
         {
             Debug.Log("cagada");
         }
+        Debug.Log("AccionRandom: "+(BaseAction + letter));
         enemyAI.LoadAction(BaseAction +letter, idle);
     }
 

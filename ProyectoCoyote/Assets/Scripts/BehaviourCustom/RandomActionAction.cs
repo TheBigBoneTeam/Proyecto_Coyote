@@ -30,7 +30,8 @@ public class RandomActionAction : UnityAction
         char firstletter = FirstLetter[0];
         char lastletter = LastLetter[0];
         int nums = lastletter - firstletter;
-        char letter = (char)('A' + UnityEngine.Random.Range(0, nums));
+        int min = firstletter - 'A';
+        char letter = (char)('A' + UnityEngine.Random.Range(min, nums + 1));
 
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         if (enemyAI.endAction)

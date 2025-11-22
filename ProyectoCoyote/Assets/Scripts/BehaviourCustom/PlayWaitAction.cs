@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayWaitAction : UnityAction
 {
     [SerializeField] string attack;
+    [SerializeField] bool random;
+    [SerializeField] string FirstLetter;
+    [SerializeField] string LastLetter;
+
     EnemyAI enemyAI;
     public override Status Update()
     {
@@ -23,6 +27,19 @@ public class PlayWaitAction : UnityAction
         {
             Debug.Log("cagada");
         }
-        enemyAI.LoadAction(attack);
+        if (random)
+        {
+            char firstletter = FirstLetter[0];
+            char lastletter = LastLetter[0];
+            int nums = lastletter - firstletter;
+            int min = firstletter - 'A';
+            char letter = (char)('A' + UnityEngine.Random.Range(min, nums + 1));
+            enemyAI.LoadAction(attack+letter);
+
+        }
+        else
+        {
+            enemyAI.LoadAction(attack);
+        }
     }
 }

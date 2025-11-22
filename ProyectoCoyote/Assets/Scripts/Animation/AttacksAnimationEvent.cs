@@ -69,6 +69,17 @@ public class AttacksAnimationEvent : MonoBehaviour
             enemyAI.setReaction(true);
         }
     }
+    public void setInvincible(int invincible)
+    {
+        if (invincible == 0)
+        {
+            damageReceiver.setInvincible(false);
+        }
+        else
+        {
+            damageReceiver.setInvincible(true);
+        }
+    }
     public void setCounterAnim(string anim)
     {
         Counter.setAnim(anim);

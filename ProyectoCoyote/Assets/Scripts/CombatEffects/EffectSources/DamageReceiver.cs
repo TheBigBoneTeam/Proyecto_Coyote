@@ -13,6 +13,7 @@ public class DamageReceiver:MonoBehaviour
     AGameCharacter character;
  [SerializeField] protected List<HitDirections> directions;
  [SerializeField] protected  bool dodging;
+    [SerializeField] protected bool Invincible;
     [SerializeField] bool parrying;
 
     UnityEvent<ReceiverState> receiverStateEvent;
@@ -23,6 +24,9 @@ public class DamageReceiver:MonoBehaviour
     {
         print(gameObject.name + " checkEffectSource");
         if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>() && !attack.GetComponent<baseBullet>()) {
+            return;
+        }
+        if(Invincible){
             return;
         }
         if (!dodging || !canBeDodged(attack))
@@ -98,6 +102,10 @@ public class DamageReceiver:MonoBehaviour
     {
         dodging = dodge;
         sendDodgeEvent();
+    }
+    public void setInvincible(bool invincible)
+    {
+        Invincible = invincible;
     }
     public void setParry(bool parry)
     {

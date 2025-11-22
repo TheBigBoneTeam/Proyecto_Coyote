@@ -32,6 +32,11 @@ public class WanderAroundAction : UnityAction
         }
         return Status.Running;
     }
+    public override void Stop()
+    {
+        base.Stop();
+        agent.ResetPath();
+    }
     public override void Start()
     {
         base.Start();

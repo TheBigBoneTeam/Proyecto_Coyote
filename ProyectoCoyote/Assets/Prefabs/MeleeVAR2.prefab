@@ -86,6 +86,9 @@ MonoBehaviour:
   print: 0
   renderer: {fileID: 0}
   ActiveBeforeFight: 0
+  HitParticles: {fileID: 0}
+  blockParticles: {fileID: 0}
+  blockParticlesPosition: {fileID: 0}
 --- !u!54 &1010365923393377867
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -526,6 +529,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1002743169608343674, guid: fade302e03824b647881090905063819, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2e4a47d8a8121247a0bb5f1e317b133, type: 2}
     - target: {fileID: 919132149155446097, guid: fade302e03824b647881090905063819, type: 3}
       propertyPath: m_Name
       value: ZombieNopal_Final_Joined_Nuevo

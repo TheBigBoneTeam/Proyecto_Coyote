@@ -101,6 +101,9 @@ public class DamageReceiver:MonoBehaviour
     public void setDodge(bool dodge)
     {
         dodging = dodge;
+        if(enemyAI)
+        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isBlock", dodging ? 1 : 0);
+
         sendDodgeEvent();
     }
     public void setInvincible(bool invincible)
@@ -119,6 +122,7 @@ public class DamageReceiver:MonoBehaviour
     }
     void sendDodgeEvent()
     {
+
         receiverStateEvent.Invoke(new ReceiverState(directions.ToArray(),dodging));
 
     }

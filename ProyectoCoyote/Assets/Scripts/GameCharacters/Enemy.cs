@@ -12,13 +12,16 @@ public class Enemy : AGameCharacter
     [SerializeField] bool ActiveBeforeFight;
     [SerializeField] GameObject HitParticles, blockParticles, blockParticlesPosition;
     Transform initialParticleTransform;
+    DamageReceiver damageReceiver;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     bool dead;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
         initialParticleTransform = HitParticles.transform;
+        damageReceiver = GetComponent<DamageReceiver>();
     }
     public override void Die()
     {
@@ -38,6 +41,7 @@ public class Enemy : AGameCharacter
     }
     public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
+        damageReceiver.setDodge(false);
         base.getHit(damage,directions, crit);
         GetComponent<Animator>()?.Play("heavySquish");
         GetComponent<HitStopComponent>()?.HitStop(.075f);

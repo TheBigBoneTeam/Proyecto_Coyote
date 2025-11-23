@@ -115,8 +115,8 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(true);
 
         defenseAttackUIIndicator.setEnemy(currentTarget.GetComponent<AGameCharacter>());
-        //if (enemyDefenseAttackUIIndicator != null)
-        //    enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
+        if (enemyDefenseAttackUIIndicator != null)
+            enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
 
         CamControl.ActiveTargetLookingCamera();
         enemyLocked = true;
@@ -134,14 +134,14 @@ public class EnemyLockOn : MonoBehaviour
     public void ResetTarget()
     {
         lockOnCanvas.gameObject.SetActive(false);
-        //defenseAttackUIIndicator.setEnable(false);
+        defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
 
         CamControl.ActiveFollowCamera();
         defenseAttackUIIndicator.setEnemy(null);
-        //if (enemyDefenseAttackUIIndicator != null)
-        //    enemyDefenseAttackUIIndicator.setCharacter(null);
+        if (enemyDefenseAttackUIIndicator != null)
+            enemyDefenseAttackUIIndicator.setCharacter(null);
 
         Debug.Log("Volviendo a modo SIN lockear");
 

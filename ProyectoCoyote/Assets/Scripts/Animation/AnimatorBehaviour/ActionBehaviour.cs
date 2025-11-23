@@ -9,6 +9,7 @@ public class ActionBehaviour : StateMachineBehaviour
     bool isIdle;
    protected int actionValue;
     public bool lastAttackInAction = true;
+    bool finished;
     // public bool lastAnimInAction = true;
     EnemyAI enemyAI;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -16,7 +17,7 @@ public class ActionBehaviour : StateMachineBehaviour
     {
         enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
      //   Debug.Log("setOnAction " + DebugName + true);
-
+     finished = false;
         enemyAI.setOnAction(true);
         enemyAI.setReaction(false);
         actionValue = enemyAI.currentAction;
@@ -26,24 +27,30 @@ public class ActionBehaviour : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-
-    //}
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
-        if (!isIdle)
+        Debug.Log($"{stateInfo.loop} {stateInfo.normalizedTime}");
+        if(stateInfo.normalizedTime > 0.9 && !finished)
         {
-       //  Debug.Log("EndAction"+DebugName);
-            if (lastAttackInAction)
+            finished = true;
+            if (!isIdle)
             {
-                enemyAI.endCurrentAction(actionValue);
+                //  Debug.Log("EndAction"+DebugName);
+                if (lastAttackInAction)
+                {
+                    Debug.Log("endAction");
+                    enemyAI.endCurrentAction(actionValue);
+                }
             }
         }
     }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+        
+      
+    //}
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

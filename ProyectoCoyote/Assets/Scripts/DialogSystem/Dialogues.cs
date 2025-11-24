@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Dialogues : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class Dialogues : MonoBehaviour
     private string currentFullText = "";
     private string currentPrefix = "";
     private NPC npc;
-    private Transform enemyTarget_Locator;
-
+    private Transform targetLocator;
+    private PlayerMovement movement;
 
     Transform UIText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,10 +38,9 @@ public class Dialogues : MonoBehaviour
         dialogueText = UIText.Find("CuadroDeTexto").
             GetComponent<TextMeshProUGUI>();
         UIText.gameObject.SetActive(false);
-        npc = FindAnyObjectByType<NPC>();
         CamControl = FindAnyObjectByType<CameraController>();
-        enemyTarget_Locator = GameObject.Find("EnemyTarget_Locator").transform;
-
+        targetLocator = GameObject.Find("HookableObjectLocator").transform;
+        movement = FindAnyObjectByType<PlayerMovement>();   
     }
     // Update is called once per frame
     void Update()
@@ -53,9 +53,13 @@ public class Dialogues : MonoBehaviour
 
 
     #region Funciones Accesibles de DialogueSystem
-    public void StartDialogue(string startingLine, Action action) 
+    public void StartDialogue(string startingLine, Action action, Transform npc) 
     {
         LoadDialogues();
+        movement.startHookMode();
+        targetLocator.position = npc.position;
+
+        CamControl.ActiveHookCamera();
         currentKeyIndex = dialogueKeys.IndexOf(startingLine);
         currentPrefix = GetPrefix(startingLine);
         ShowText(dialogueKeys[currentKeyIndex]);
@@ -65,9 +69,10 @@ public class Dialogues : MonoBehaviour
     public void DialogueEnd()
     {
         action1?.Invoke();
+        CamControl.ActiveFollowCamera();
         npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
-
+        movement.stopHookMode();
         Debug.Log("Fin del Diálogo");
     }
 

@@ -18,6 +18,8 @@ public class NPC : MonoBehaviour
     private Transform cam;
     private Dialogues dialogue;
     private EnemyLockOn lockOn;
+    private PlayerMovement movement;
+
     public bool playingDialogue;
     private bool prevLockPressed = false;
 
@@ -30,7 +32,7 @@ public class NPC : MonoBehaviour
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
         lockOn = FindAnyObjectByType<EnemyLockOn>();    
-        
+        movement = FindAnyObjectByType<PlayerMovement>();
 
         playingDialogue = false;
         hover.gameObject.SetActive(false);
@@ -57,6 +59,7 @@ public class NPC : MonoBehaviour
         else
         {
             hover.gameObject.SetActive(false);
+            
         }
     }
 
@@ -77,7 +80,7 @@ public class NPC : MonoBehaviour
         Debug.Log("Comenzando Dialogo..");
         hover.gameObject.SetActive(false);
         playingDialogue = true;
-        dialogue.StartDialogue(startingLine, () => action.Execute(null));
+        dialogue.StartDialogue(startingLine, () => action.Execute(null), transform);
 
     }
 

@@ -10,7 +10,6 @@ public class NPC : MonoBehaviour
     [SerializeField] string startingLine;
     [SerializeField] StoryAction action;
     [SerializeField] float noticeZone;
-    [SerializeField] Transform character;
 
     private CameraController CamControl;
     private GameInput gameInput;
@@ -18,6 +17,7 @@ public class NPC : MonoBehaviour
     private Transform enemyTarget_Locator;
     private Transform cam;
     private Dialogues dialogue;
+    private EnemyLockOn lockOn;
     public bool playingDialogue;
     private bool prevLockPressed = false;
 
@@ -29,7 +29,8 @@ public class NPC : MonoBehaviour
         dialogue = FindAnyObjectByType<Dialogues>();
         gameInput = FindAnyObjectByType<GameInput>();
         CamControl = FindAnyObjectByType<CameraController>();
-        character = FindAnyObjectByType<Player>().transform;
+        lockOn = FindAnyObjectByType<EnemyLockOn>();    
+        
 
         playingDialogue = false;
         hover.gameObject.SetActive(false);
@@ -41,7 +42,7 @@ public class NPC : MonoBehaviour
     {
 
         bool currentLock = gameInput != null && gameInput.LockPressed;
-        if (LookForPlayer() && !playingDialogue)
+        if (LookForPlayer() == true && !playingDialogue && !lockOn.enemyLocked)
         {
             hover.gameObject.SetActive(true);
             if (currentLock)
@@ -63,10 +64,12 @@ public class NPC : MonoBehaviour
     private bool LookForPlayer()
     {
 
-        Vector3 npcPos = new Vector3(character.position.x, 0, character.position.z);
+        Vector3 npcPos = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 playerPos = new Vector3(player.position.x, 0, player.position.z);
 
         float distance = Vector3.Distance(npcPos, playerPos);
+
+        // Debug.Log("Distancia: " + distance);
         return distance <= noticeZone;
     }
     private void PlayDialogue() 

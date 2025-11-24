@@ -11,7 +11,7 @@ using UnityEngine.XR;
 public class VisualHook : MonoBehaviour
 {
     private LineRenderer lineRenderer;
-    [SerializeField] private float cableSpeed = 50f;
+    [SerializeField] public float cableSpeed = 50f;
     [SerializeField] private float handOffset = 0.5f;
     [SerializeField] private Transform leftHand;
 
@@ -181,8 +181,16 @@ public class VisualHook : MonoBehaviour
     private void UpdateRetractCableWithTarget()
     {
         Debug.Log("Atraer objetivo");
-        Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
-        Vector3 frontOfPlayer = cam.transform.position - (directionToCamera * retractOffset);
+
+        float enemyRadius = GetTargetRadius(target);
+        float playerRadius = GetTargetRadius(player.transform);
+
+        float optimalDistance = enemyRadius + playerRadius + retractOffset;
+
+        Vector3 cameraForward = cam.transform.forward;
+        cameraForward.Normalize();
+
+        Vector3 frontOfPlayer = player.transform.position + (cameraForward * optimalDistance);
 
         // Mueve el target hacia esa posici�n
         target.position = Vector3.MoveTowards(
@@ -238,9 +246,31 @@ public class VisualHook : MonoBehaviour
     }
 
 
+    public float GetRetractTime()
+    {
+        return currentCableLength / cableSpeed;
+    }
 
+    private float GetTargetRadius(Transform targetTransform)
+    {
+        if (targetTransform == null) return 0.5f;
 
+        // Intentar obtener diferentes tipos de colliders
+        CapsuleCollider capsule = targetTransform.GetComponent<CapsuleCollider>();
+        if (capsule != null)
+        {
+            return capsule.radius;
+        }
 
+        //// Fallback: usar bounds del renderer
+        //Renderer renderer = targetTransform.GetComponent<Renderer>();
+        //if (renderer != null)
+        //{
+        //    return renderer.bounds.extents.magnitude * 0.5f;
+        //}
+        else
+        return 0.5f;
+    }
     // var rb = player.GetComponent<Rigidbody>();
     // rb.MovePosition(currentEnd);
 

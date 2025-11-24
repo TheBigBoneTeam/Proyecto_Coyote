@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -27,14 +28,14 @@ public class Gancho : MonoBehaviour
     private bool _canUseHook = false;
 
     [Header("When selected")]
-    [SerializeField] float OffsetFinalPos = 0;
+    [SerializeField] float OffsetFinalPos = 1;
 
-    [Header("Hook Attack Timing Window")]
-    [SerializeField] float attackWindowDuration = 1; // Duración de la ventana de tiempo en segundos
-    [SerializeField] float attackWindowStartDelay = 0.1f; // Tiempo después de iniciar retracción antes de abrir la ventana
-
+    [Header("Hook Attack Window")]
+    [SerializeField] float attackWindowStartDelay = 0.1f; 
     private bool isInAttackWindow = false;
     private Coroutine attackWindowCoroutine;
+    private bool hookAttackBuffer = false;
+
 
     VisualHook visualHook;
     HookableObject hookableObject;
@@ -46,10 +47,7 @@ public class Gancho : MonoBehaviour
     HookController hookController;
     private Image _hookImageUI;
     HookObserver hookObserver;
-    [SerializeField] GameObject navMesh;
-    private bool hookAttackBuffer = false;
-    private bool canAttack = false;
-    private bool isRetracting = false; // Flag para saber si el gancho está retrayendo
+    private bool isRetracting = false; 
 
 
     public bool selectingHook;
@@ -424,10 +422,9 @@ public class Gancho : MonoBehaviour
     }
     private void GoToTarget()
     {
-
+        StartAttackWindow();
         DisableCollisions(transform);
         if (currentTarget == null) return;
-        canAttack = true;
         isRetracting = true;
         //// Dirección desde el objeto hacia la cámara
         //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
@@ -441,24 +438,22 @@ public class Gancho : MonoBehaviour
 
         visualHook.RetractHookGoToTarget(OffsetFinalPos);
         movement.animator.CrossFade("Grapple_04", 0.2f);
-        StartAttackWindow();
 
     }
-
     private void AtractTarget()
     {
 
         if (hookableObject.canBeHooked)
         {
+            StartAttackWindow();
             DisableCollisions (currentTarget);
-            canAttack = true;
             isRetracting = true;
             visualHook.RetractHookAtractTarget(OffsetFinalPos);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
             movement.animator.CrossFade("Grapple_04", 0.2f);
-            StartAttackWindow();
+            
 
         }
         else
@@ -467,11 +462,54 @@ public class Gancho : MonoBehaviour
             ResetTarget();
         }
 
-
-
-
     }
 
+    public void WaitForHookFinish()
+    {
+        currentTarget.gameObject.GetComponent<Collider>().enabled = true;
+
+        Debug.Log("Ha llegado a su destino");
+
+        if(currentTarget.gameObject.GetComponent<Enemy>())
+        {
+            Debug.Log("Es enemigo - Lockeando...");
+            lockOn.currentTarget = currentTarget;
+            lockOn.FoundTarget();
+        }
+        HookAttack();
+
+        StartCoroutine(FinishHookSequence());
+    }
+
+    private IEnumerator FinishHookSequence()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        isRetracting = false;
+        isInAttackWindow = false;
+        Debug.Log("¡VENTANA DE ATAQUE CERRADA!");
+
+        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+        movement.stopHookMode();
+
+        if (!hookAttackBuffer)
+        {
+            ResetTarget(skipAnimation: true);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            movement.stopHookMode();
+            _hookImageUI.gameObject.SetActive(false);
+            selectingHook = false;
+            isHooked = false;
+            isRetracting = false;
+            _hookImageUI.color = Color.white;
+            StopAttackWindow();
+
+            Debug.Log("Gancho reseteado");
+        }
+    }
     #endregion
     #region Attack Window System
     private void StartAttackWindow()
@@ -500,23 +538,36 @@ public class Gancho : MonoBehaviour
     private IEnumerator AttackWindowCoroutine()
     {
         // Esperar el delay inicial
-        yield return new WaitForSeconds(attackWindowStartDelay);
+        float initialDelay = attackWindowStartDelay*visualHook.GetRetractTime();
+        yield return new WaitForSeconds(initialDelay);
 
         // Abrir la ventana de ataque
         isInAttackWindow = true;
         Debug.Log("¡VENTANA DE ATAQUE ABIERTA!");
+    }
+    public void HookAttack()
+    {
+        if (hookAttackBuffer)
+        {
+            Enemy enemy = currentTarget?.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                if (lockOn.enemyLocked && lockOn.currentTarget == currentTarget)
+                {
+                    movement.animator.CrossFade("Hit_Gancho", 0.05f);
+                    Debug.Log("Gancho patá");
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("No se presionó ataque durante la ventana de tiempo");
+        }
 
-        // Opcional: Feedback visual
-        // _hookImageUI.color = Color.yellow; // Indicador visual
 
-        // Mantener la ventana abierta durante la duración especificada
-        yield return new WaitForSeconds(attackWindowDuration);
 
-        // Cerrar la ventana
-        isInAttackWindow = false;
-        Debug.Log("Ventana de ataque cerrada");
-
-        attackWindowCoroutine = null;
+        hookAttackBuffer = false;
+        StopAttackWindow();
     }
     #endregion
     private IEnumerator Cooldown()
@@ -644,42 +695,9 @@ public class Gancho : MonoBehaviour
     }
     #endregion
 
-    public void WaitForHookFinish()
-    {
-        currentTarget.gameObject.GetComponent<Collider>().enabled = true;
-        
+    
 
-        Debug.Log("Ha llegado a su destino");
-        if (currentTarget.gameObject.GetComponent<Enemy>())
-        {
-            Debug.Log("Es enemigo");
-            lockOn.currentTarget = currentTarget;
-            lockOn.FoundTarget();
-        }
-        canAttack = false;
-        isRetracting = false;
-
-        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-        HookAttack();
-        ResetTarget();
-        
-    }
-
-    public void HookAttack()
-    {
-        if (hookAttackBuffer)
-        {
-            movement.animator.CrossFade("Hit_Gancho", .1f);
-            Debug.Log("Gancho patá");
-        }
-        else
-        {
-            Debug.Log("No se presionó ataque durante la ventana de tiempo");
-        }
-
-        hookAttackBuffer = false;
-        StopAttackWindow();
-    }
+    
 
 
 

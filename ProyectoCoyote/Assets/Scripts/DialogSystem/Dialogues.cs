@@ -25,9 +25,9 @@ public class Dialogues : MonoBehaviour
 
     private string currentFullText = "";
     private string currentPrefix = "";
-    private NPC npc;
     private Transform targetLocator;
     private PlayerMovement movement;
+    private NPC _npc;
 
     Transform UIText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +41,7 @@ public class Dialogues : MonoBehaviour
         CamControl = FindAnyObjectByType<CameraController>();
         targetLocator = GameObject.Find("HookableObjectLocator").transform;
         movement = FindAnyObjectByType<PlayerMovement>();   
+        _npc = FindAnyObjectByType<NPC>();
     }
     // Update is called once per frame
     void Update()
@@ -53,11 +54,12 @@ public class Dialogues : MonoBehaviour
 
 
     #region Funciones Accesibles de DialogueSystem
-    public void StartDialogue(string startingLine, Action action, Transform npc) 
+    public void StartDialogue(string startingLine, Action action, NPC npc, Transform npcTransform) 
     {
         LoadDialogues();
         movement.startHookMode();
-        targetLocator.position = npc.position;
+        targetLocator.position = npcTransform.position;
+        _npc = npc;
 
         CamControl.ActiveHookCamera();
         currentKeyIndex = dialogueKeys.IndexOf(startingLine);
@@ -68,9 +70,10 @@ public class Dialogues : MonoBehaviour
     }
     public void DialogueEnd()
     {
+        if (_npc == null) return;
         action1?.Invoke();
         CamControl.ActiveFollowCamera();
-        npc.playingDialogue = false;
+        _npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
         movement.stopHookMode();
         Debug.Log("Fin del Diálogo");
@@ -152,7 +155,9 @@ public class Dialogues : MonoBehaviour
 
     private void ShowNextLine() 
     {
-        currentKeyIndex++;
+        if (dialogueKeys == null) { return; }
+
+        currentKeyIndex++;        
         if (currentKeyIndex < dialogueKeys.Count)
         {
             string nextKey = dialogueKeys[currentKeyIndex];

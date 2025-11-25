@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
     [SerializeField] string startingLine;
     [SerializeField] StoryAction action;
     [SerializeField] float noticeZone;
+    [SerializeField] Transform lookAtPlayer;
 
     private CameraController CamControl;
     private GameInput gameInput;
@@ -33,7 +34,6 @@ public class NPC : MonoBehaviour
         CamControl = FindAnyObjectByType<CameraController>();
         lockOn = FindAnyObjectByType<EnemyLockOn>();    
         movement = FindAnyObjectByType<PlayerMovement>();
-
         playingDialogue = false;
         hover.gameObject.SetActive(false);
 
@@ -80,7 +80,7 @@ public class NPC : MonoBehaviour
         Debug.Log("Comenzando Dialogo..");
         hover.gameObject.SetActive(false);
         playingDialogue = true;
-        dialogue.StartDialogue(startingLine, () => action.Execute(null), transform);
+        dialogue.StartDialogue(startingLine, () => action.Execute(null), this, lookAtPlayer);
 
     }
 

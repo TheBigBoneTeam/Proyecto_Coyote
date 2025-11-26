@@ -25,6 +25,8 @@ public class GameInput : MonoBehaviour
     public bool HookAttractPressed { get; private set; }
     public bool AttackPressed { get; private set; }
     public bool EvadePressed { get; private set; }
+    public bool Evade_LeftPressed { get; private set; }
+    public bool Evade_RightPressed { get; private set; }
     public bool EscapePressed { get; private set; }
     public bool SkipPressed { get; private set; }
 
@@ -38,7 +40,7 @@ public class GameInput : MonoBehaviour
 
         controls = new PlayerControls();
 
-        // --- Movimiento ---
+        // MOVIMIENTO
         controls.Player.Walk.performed += ctx =>
         {
             var input = ctx.ReadValue<Vector2>();
@@ -47,13 +49,14 @@ public class GameInput : MonoBehaviour
 
             DetectDeviceFromContext(ctx);
         };
+
         controls.Player.Walk.canceled += ctx =>
         {
             Horizontal = 0;
             Vertical = 0;
         };
 
-        // --- Sprint ---
+        // SPRINT
         controls.Player.Sprint.performed += ctx =>
         {
             SprintHeld = true;
@@ -61,12 +64,32 @@ public class GameInput : MonoBehaviour
         };
         controls.Player.Sprint.canceled += ctx => SprintHeld = false;
 
-        // --- Pulsaciones ---
+        // DASH
         controls.Player.Dash.performed += ctx => { DashPressed = true; DetectDeviceFromContext(ctx); };
+
+        // ATAQUE
         controls.Player.Attack.performed += ctx => { AttackPressed = true; DetectDeviceFromContext(ctx); };
+        
+        // BLOQUEO
         controls.Player.Evade.performed += ctx => { EvadePressed = true; DetectDeviceFromContext(ctx); };
+
+        // ESQUIVES LATERALES
+        /*
+        controls.Player.Evade_Left.performed += ctx => { Evade_LeftPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Evade_Right.performed += ctx => { Evade_RightPressed = true; DetectDeviceFromContext(ctx); };
+        */
+
+        controls.Player.Evade_Left.started += ctx => { Evade_LeftPressed = true; };
+        controls.Player.Evade_Left.canceled += ctx => { Evade_LeftPressed = false; };
+
+        controls.Player.Evade_Right.started += ctx => { Evade_RightPressed = true; };
+        controls.Player.Evade_Right.canceled += ctx => { Evade_RightPressed = false; };
+
+
+        // LOCKEO
         controls.Player.Lock.performed += ctx => { LockPressed = true; DetectDeviceFromContext(ctx); };
 
+        // GANCHO
         controls.Player.HookAim.performed += ctx => { HookAimPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.HookConfirm.performed += ctx => { HookConfirmPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.HookDisconfirm.performed += ctx => { Hook_SelectDown = true; DetectDeviceFromContext(ctx); };
@@ -74,8 +97,11 @@ public class GameInput : MonoBehaviour
         controls.Player.HookSelectRight.performed += ctx => { Hook_SelectRight = true; DetectDeviceFromContext(ctx); };
         controls.Player.Hook_TP.performed += ctx => { Hook_SelectUp = true; DetectDeviceFromContext(ctx); };
         controls.Player.HookAttract.performed += ctx => { HookAttractPressed = true; DetectDeviceFromContext(ctx); };
+
+        // MENU
         controls.Player.Escape.performed += ctx => { EscapePressed = true; DetectDeviceFromContext(ctx); };
 
+        // SALTAR DIALOGOS
         controls.Player.Skip.performed += ctx => { SkipPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.Skip.canceled += ctx => { SkipPressed = false; };
     }
@@ -103,13 +129,38 @@ public class GameInput : MonoBehaviour
         controls.Player.Disable();
     }
 
+    public void ResetOneFrameInputs()
+    {
+        DashPressed = false;
+        EvadePressed = false;
+        Evade_LeftPressed = false;
+        Evade_RightPressed = false;
+        AttackPressed = false;
+        LockPressed = false;
+        HookAimPressed = false;
+        HookConfirmPressed = false;
+        Hook_SelectUp = false;
+        Hook_SelectDown = false;
+        Hook_SelectLeft = false;
+        Hook_SelectRight = false;
+        HookAttractPressed = false;
+        EscapePressed = false;
+    }
+
+    /*
     private void LateUpdate()
     {
-        // Reset pulsaciones únicas
+        // DASH
         DashPressed = false;
+
+        // COMBATE
         AttackPressed = false;
         EvadePressed = false;
+        Evade_LeftPressed = false;
+        Evade_RightPressed = false;
         LockPressed = false;
+
+        // GANCHO
         HookAimPressed = false;
         HookConfirmPressed = false;
         Hook_SelectDown = false;
@@ -117,8 +168,11 @@ public class GameInput : MonoBehaviour
         Hook_SelectRight = false;
         Hook_SelectUp = false;
         HookAttractPressed = false;
+
+        // MENU
         EscapePressed = false;
     }
+    */
 
     public Vector2 GetMovementPlayer()
     {

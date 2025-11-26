@@ -172,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
         HandleDashInput();
+        gameInput.ResetOneFrameInputs();
         // HandleFootsteps();
 
         // Manipulacion del deslizamiento
@@ -197,7 +198,8 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
 
         }
-            MovePlayer();
+
+        MovePlayer();
     }
     #endregion
 
@@ -209,8 +211,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = gameInput.Horizontal;
         verticalInput = gameInput.Vertical;
 
-        //  A�adido Andrea
-        // tener en cuenta c�mara
+        if (lockMovement)
+        {
+            horizontalInput = 0f; // Bloquea el movimiento lateral
+        }
+
+        // Direccion segun la camara
         Vector3 forward = cam.forward;
         Vector3 right = cam.right;
         forward.y = 0;
@@ -219,11 +225,11 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
-        //
 
         computeAnimator();       
     }
     #endregion
+
 
     #region Animaciones y movimiento
     private void computeAnimator()
@@ -241,9 +247,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
+
         if (gameInput.AttackPressed && canAttack && lockMovement)
         {
             string attackName = "";
+
             if (horizontalInput == 0)
             {
                 attackName += "Hit_M_R";
@@ -263,10 +271,9 @@ public class PlayerMovement : MonoBehaviour
                 attackName += "_CRIT";
                 perfectDodgeManager.StopSlowdown();
             }
+
             animator.CrossFade(attackName, .1f);
-
         }
-
     }
     private void StateHandler()
     {
@@ -329,7 +336,7 @@ public class PlayerMovement : MonoBehaviour
         lastDesiredMoveSpeed = desiredMoveSpeed;
         lastState = state;
     }
-    public void startHookMode() 
+    public void StopMovement() 
     {
         state = MovementState.hooking;
         desiredMoveSpeed = 0f;
@@ -341,7 +348,7 @@ public class PlayerMovement : MonoBehaviour
 
         canMove = false;
     }
-    public void stopHookMode() 
+    public void RestartMovement() 
     {
         // Si se levanta la tecla, se vuelve al modo caminar
         rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -478,7 +485,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (lockMovement)
         {
-            if (gameInput.DashPressed && dodgeCdTimer <= 0f)
+            if ((gameInput.Evade_LeftPressed || gameInput.EvadePressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f)
             {
                 Dodge();
             }
@@ -526,6 +533,27 @@ public class PlayerMovement : MonoBehaviour
         else dodgeCdTimer = dodgeCd;
 
         dashing = true;
+
+        if (gameInput.Evade_LeftPressed) animator.CrossFade("Dodge_L", .1f);
+        else if (gameInput.Evade_RightPressed) animator.CrossFade("Dodge_R", .1f);
+        else if (gameInput.EvadePressed) animator.CrossFade("BackBlock", .1f);
+        
+        if (gameStateManager.getState() == GameState.SlowDown)
+        {
+            perfectDodgeManager.StopSlowdown();
+        }
+
+        Invoke(nameof(ResetDash), dashDuration);
+    }
+
+    /*
+    private void Dodge()
+    {
+        if (dodgeCdTimer > 0) return;
+        else dodgeCdTimer = dodgeCd;
+
+        dashing = true;
+
         if (horizontalInput == 0 && verticalInput == 0)
         {
             //Añadir esquive neutral
@@ -549,6 +577,7 @@ public class PlayerMovement : MonoBehaviour
         }
         Invoke(nameof(ResetDash), dashDuration);
     }
+    */
     private void DelayedDashForce()
     {
         rb.AddForce(delayedForceToApply, ForceMode.Impulse);

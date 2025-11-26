@@ -243,28 +243,22 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isRunning", isRunning);
 
 
-        float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
+        float movement = (Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)) * (lockMovement?0:1);
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-
-        if (gameInput.AttackPressed && canAttack && lockMovement)
+        if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
         {
             string attackName = "";
 
-            if (horizontalInput == 0)
-            {
-                attackName += "Hit_M_R";
-
-            }
-            if (horizontalInput > 0)
-            {
-                attackName += "Hit_R";
-            }
-            if (horizontalInput < 0)
+            if (gameInput.AttackPressed)
             {
                 attackName += "Hit_L";
 
+            }
+            else if (gameInput.AttackRightPressed)
+            {
+                attackName += "Hit_R";
             }
             if (gameStateManager.getState() == GameState.SlowDown)
             {
@@ -274,6 +268,33 @@ public class PlayerMovement : MonoBehaviour
 
             animator.CrossFade(attackName, .1f);
         }
+
+
+        //if (gameInput.AttackPressed && canAttack && lockMovement)
+        //{
+        //    string attackName = "";
+        //    if (horizontalInput == 0)
+        //    {
+        //        attackName += "Hit_M_R";
+            
+        //    }
+        //    if (horizontalInput > 0)
+        //    {
+        //        attackName += "Hit_R";
+        //    }
+        //    if (horizontalInput < 0)
+        //    {
+        //        attackName += "Hit_L";
+                    
+        //    }
+        //    if(gameStateManager.getState() == GameState.SlowDown)
+        //    {
+        //       attackName += "_CRIT";
+        //       perfectDodgeManager.StopSlowdown();
+        //    }
+
+        //}
+
     }
     private void StateHandler()
     {

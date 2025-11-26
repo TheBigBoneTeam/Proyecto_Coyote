@@ -24,6 +24,8 @@ public class GameInput : MonoBehaviour
     public bool Hook_SelectRight { get; private set; }
     public bool HookAttractPressed { get; private set; }
     public bool AttackPressed { get; private set; }
+    public bool AttackRightPressed { get; private set; }
+
     public bool EvadePressed { get; private set; }
     public bool Evade_LeftPressed { get; private set; }
     public bool Evade_RightPressed { get; private set; }
@@ -69,8 +71,8 @@ public class GameInput : MonoBehaviour
 
         // ATAQUE
         controls.Player.Attack.performed += ctx => { AttackPressed = true; DetectDeviceFromContext(ctx); };
-        
-        // BLOQUEO
+        controls.Player.AttackR.performed += ctx => { AttackRightPressed = true; DetectDeviceFromContext(ctx); };
+
         controls.Player.Evade.performed += ctx => { EvadePressed = true; DetectDeviceFromContext(ctx); };
 
         // ESQUIVES LATERALES
@@ -133,6 +135,7 @@ public class GameInput : MonoBehaviour
     {
         DashPressed = false;
         EvadePressed = false;
+                AttackRightPressed = false;
         Evade_LeftPressed = false;
         Evade_RightPressed = false;
         AttackPressed = false;
@@ -150,7 +153,8 @@ public class GameInput : MonoBehaviour
     /*
     private void LateUpdate()
     {
-        // DASH
+        // Reset pulsaciones únicas
+        AttackRightPressed = false;
         DashPressed = false;
 
         // COMBATE

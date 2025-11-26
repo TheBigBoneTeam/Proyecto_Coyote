@@ -39,7 +39,19 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
         perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>(); 
     }
-    public void Pause()
+    
+    public void PauseUnpause()
+    {
+        if (/*canPause &&*/ currentState != GameState.Paused)
+        {
+            Pause();
+        }
+        else
+        {
+            UnPause();
+        }
+    }
+    void Pause()
     {
         if (/*canPause &&*/ currentState != GameState.Paused)
         {

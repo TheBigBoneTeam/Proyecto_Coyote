@@ -160,7 +160,7 @@ public class Attack : ATouchCombatEffectSource
         }
     }
 
-    public void restart()
+    public virtual void restart()
     {
         attackStateEvent.RemoveAllListeners();
     }

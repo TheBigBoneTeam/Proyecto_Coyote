@@ -69,6 +69,17 @@ public class AttacksAnimationEvent : MonoBehaviour
             enemyAI.setReaction(true);
         }
     }
+    public void setInvincible(int invincible)
+    {
+        if (invincible == 0)
+        {
+            damageReceiver.setInvincible(false);
+        }
+        else
+        {
+            damageReceiver.setInvincible(true);
+        }
+    }
     public void setCounterAnim(string anim)
     {
         Counter.setAnim(anim);
@@ -92,6 +103,10 @@ public class AttacksAnimationEvent : MonoBehaviour
     public void addDodgeDirection(HitDirections direction)
     {
         damageReceiver.addDirection(direction);
+    }
+    public void setShaderBlockConfiguration(blockShaderConfigurations configuration)
+    {
+       damageReceiver.setBlockShaderConfiguration(configuration);
     }
     //public void endAttack()
     //{

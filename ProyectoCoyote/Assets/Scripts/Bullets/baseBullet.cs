@@ -21,7 +21,8 @@ public class baseBullet : Attack, IBullet
 
     protected combatAreaManager areaManager;
 
-
+    bool shouldNotBeDestroyed = false;
+    Vector3 ogPosition;
 
     [SerializeField] protected Animator anim;
 
@@ -69,6 +70,10 @@ public class baseBullet : Attack, IBullet
     }
     public virtual void destroyFunc()
     {
+        if(shouldNotBeDestroyed){
+            gameObject.SetActive(false);
+            return;
+        }
         Destroy(gameObject, 0.5f);
 
     }
@@ -115,6 +120,12 @@ public class baseBullet : Attack, IBullet
 
     }
 
+    public override void restart()
+    {
+        base.restart();
+        gameObject.SetActive(true);
+        transform.position = ogPosition;
+    }
     
     public void subcribeToShoot(Action<baseBullet> response)
     {
@@ -135,6 +146,7 @@ public class baseBullet : Attack, IBullet
     }
     public void setAreaManager(combatAreaManager combatAreaManager)
     {
+        shouldNotBeDestroyed = true;
         areaManager = combatAreaManager;
     }
     protected override void Start()

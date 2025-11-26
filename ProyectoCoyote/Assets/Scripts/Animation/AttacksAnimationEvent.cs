@@ -104,6 +104,10 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         damageReceiver.addDirection(direction);
     }
+    public void setShaderBlockConfiguration(blockShaderConfigurations configuration)
+    {
+       damageReceiver.setBlockShaderConfiguration(configuration);
+    }
     //public void endAttack()
     //{
     //    print("endAttack");

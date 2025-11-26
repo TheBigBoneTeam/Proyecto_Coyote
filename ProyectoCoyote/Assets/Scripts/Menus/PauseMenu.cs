@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenMenu() 
     { 
-        gameStateManager.Pause();
+        gameStateManager.PauseUnpause();
         GameState state = gameStateManager.getState();
         if (state.Equals(GameState.Paused))
         {

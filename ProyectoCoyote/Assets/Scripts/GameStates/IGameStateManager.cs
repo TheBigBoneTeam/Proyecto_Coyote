@@ -4,7 +4,7 @@ using Services;
 public interface IGameStateManager : IService
 {
     public GameState getState();
-    public void Pause();
+    public void PauseUnpause();
     public void UnPause();
     public void slowDown();
     public void slowDownOff();

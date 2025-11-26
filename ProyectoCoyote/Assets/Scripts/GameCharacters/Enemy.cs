@@ -20,8 +20,8 @@ public class Enemy : AGameCharacter
     protected override void Start()
     {
         base.Start();
-        initialParticleTransform = HitParticles.transform;
         damageReceiver = GetComponent<DamageReceiver>();
+        initialParticleTransform = HitParticles.transform;
     }
     public override void Die()
     {

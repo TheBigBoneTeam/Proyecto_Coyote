@@ -243,10 +243,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isRunning", isRunning);
 
 
-        float movement = (Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)) * (lockMovement?0:1);
+        float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
+
         if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
         {
             string attackName = "";
@@ -443,7 +444,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
     private void SpeedControl()
     {
         // Si está en modo gancho, el personaje NO se mueve

@@ -7,9 +7,10 @@ public class AnimationEventsSender : MonoBehaviour
 
     private float lastStepTime = 0f;
     private const float stepCooldown = 0.22f;
-
+    ParticleSystem[] particles;
     private void Start()
     {
+        particles = GetComponentsInChildren<ParticleSystem>(true);
         anim = GetComponent<Animator>();
     }
 
@@ -34,5 +35,14 @@ public class AnimationEventsSender : MonoBehaviour
     public void changeTutWait()
     {
         FindAnyObjectByType<betaTutorial>().changeTutWait = true;
+    }
+
+    public void playParticle(int idx)
+    {
+        
+        if (particles != null)
+        {
+            particles[idx].Play();
+        }
     }
 }

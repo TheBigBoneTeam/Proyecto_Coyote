@@ -57091,32 +57091,46 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: setDodge
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0
     functionName: setDodgeDirection
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.041666668
-    functionName: addDodgeDirection
+  - time: 0
+    functionName: setShaderBlockConfiguration
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
+  - time: 0.5416667
+    functionName: setDodge
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5416667
+    functionName: setInvincible
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.5833333
     functionName: setAttackData
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: 1432fd9c32739ea4b9ba721777558eec, type: 2}
     floatParameter: 0
     intParameter: 0
-    messageOptions: 0
-  - time: 0.125
-    functionName: setDodge
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
     messageOptions: 0
   - time: 0.9583333
     functionName: PlaySound
@@ -57125,8 +57139,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9583333
-    functionName: setDodge
+  - time: 1
+    functionName: setInvincible
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

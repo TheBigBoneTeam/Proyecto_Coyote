@@ -82585,6 +82585,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.375
+    functionName: setInvincible
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
   - time: 1.5833334
     functionName: PlaySound
     data: SFX - Golpe al aire
@@ -82592,19 +82599,12 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4583333
-    functionName: setDodge
+  - time: 1.6666666
+    functionName: setInvincible
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 2.4583333
-    functionName: setCounter
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
+    intParameter: 0
     messageOptions: 0
   - time: 2.5416667
     functionName: setDodgeDirection
@@ -82614,30 +82614,37 @@ AnimationClip:
     intParameter: 1
     messageOptions: 0
   - time: 2.5416667
-    functionName: addDodgeDirection
+    functionName: setDodge
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 1
     messageOptions: 0
-  - time: 2.9583333
-    functionName: setAttackData
+  - time: 2.5416667
+    functionName: setShaderBlockConfiguration
     data: 
-    objectReferenceParameter: {fileID: 11400000, guid: b22b55204f3ab7b46a8a48a09ec2881e, type: 2}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 3
     messageOptions: 0
-  - time: 2.9583333
+  - time: 3.125
     functionName: setDodge
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.9583333
-    functionName: setCounter
+  - time: 3.125
+    functionName: setInvincible
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 3.1666667
+    functionName: setAttackData
+    data: 
+    objectReferenceParameter: {fileID: 11400000, guid: b22b55204f3ab7b46a8a48a09ec2881e, type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -82651,6 +82658,13 @@ AnimationClip:
   - time: 3.4166667
     functionName: PlaySound
     data: SFX - Paso 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.4166667
+    functionName: setInvincible
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

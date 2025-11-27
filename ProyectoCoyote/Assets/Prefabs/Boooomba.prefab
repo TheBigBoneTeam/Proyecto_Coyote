@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directions: 0000000001000000
   dodging: 0
+  Invincible: 0
   parrying: 0
 --- !u!114 &347466109778440515
 MonoBehaviour:
@@ -208,6 +209,7 @@ MonoBehaviour:
   seeDistance: 31.7
   attackDistance: 3
   hasPriority: 0
+  <blockingAction>k__BackingField: 0
 --- !u!114 &8709861202896112953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +249,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.62
-  m_BaseOffset: 1.51
+  m_BaseOffset: 1.35
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4920157825102817951
@@ -366,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 2296925547907402212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.10000038, y: -0.13999999, z: 0}
+  m_LocalPosition: {x: -0.039, y: -0.13999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -584,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1028966232507041465, guid: 70d619f1462e58d418c691dd9b945096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.061000824
       objectReference: {fileID: 0}
     - target: {fileID: 1028966232507041465, guid: 70d619f1462e58d418c691dd9b945096, type: 3}
       propertyPath: m_LocalPosition.y

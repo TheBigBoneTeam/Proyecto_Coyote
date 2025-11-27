@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using UnityEditor;
 using UnityEngine;
 
 public class RandomActionAction : UnityAction
@@ -8,6 +9,7 @@ public class RandomActionAction : UnityAction
     public string FirstLetter;
     public string LastLetter;
     public bool idle;
+    public int loops = 1;
     EnemyAI enemyAI;
 
     public override Status Update()
@@ -38,7 +40,17 @@ public class RandomActionAction : UnityAction
         {
             Debug.Log("cagada");
         }
-        enemyAI.LoadAction(BaseAction +letter, idle);
+        bool isBlock = false;
+        if (BaseAction.Contains("Stance"))
+        {
+            isBlock = true;
+            if (enemyAI.blockingAction)
+            {
+                enemyAI.modifyActionLoop(loops);
+                return;
+            }
+        }
+        enemyAI.LoadAction(BaseAction +letter, idle,loops, isBlock);
     }
 
 }

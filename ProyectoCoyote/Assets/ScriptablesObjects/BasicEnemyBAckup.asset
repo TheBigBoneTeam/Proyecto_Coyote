@@ -467,6 +467,7 @@ MonoBehaviour:
       data:
         action: 1
         idle: 0
+        loops: 1
     - rid: 5634289709124943962
       type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -606,6 +607,7 @@ MonoBehaviour:
       data:
         action: 10
         idle: 0
+        loops: 1
     - rid: 8725330898659311742
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
       data: 
@@ -616,6 +618,7 @@ MonoBehaviour:
         FirstLetter: A
         LastLetter: D
         idle: 0
+        loops: 1
     - rid: 8725330898659311746
       type: {class: DoReactionAction, ns: , asm: Assembly-CSharp}
       data: 
@@ -633,4 +636,8 @@ MonoBehaviour:
           methodName: ReturnKungFuPoint
     - rid: 8725331126323249438
       type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        attack: 
+        random: 0
+        FirstLetter: 
+        LastLetter: 

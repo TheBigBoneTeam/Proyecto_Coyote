@@ -10,6 +10,7 @@ public class PlayBasicAttackAction : UnityAction
 {
     public EnemyAI.BasicActions action;
     public bool idle;
+    public int loops = 1;
     EnemyAI enemyAI;
     public override Status Update()
     {
@@ -34,6 +35,16 @@ public class PlayBasicAttackAction : UnityAction
         {
             Debug.Log("cagada");
         }
-        enemyAI.LoadBasicAction(action,idle);
+        bool isBlock = false;
+        if (action.ToString().Contains("Stance"))
+        {
+            isBlock = true;
+            if (enemyAI.blockingAction)
+            {
+                enemyAI.modifyActionLoop(loops);
+                return;
+            }
+        }
+        enemyAI.LoadBasicAction(action,idle,loops,isBlock);
     }
 }

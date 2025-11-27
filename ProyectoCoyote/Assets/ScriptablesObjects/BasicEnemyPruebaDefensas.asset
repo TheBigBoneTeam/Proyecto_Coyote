@@ -213,7 +213,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 79061932-755c-4921-a0f5-52ce3929df0d
-        position: {x: 600, y: 1000}
+        position: {x: 653.6, y: 967.2001}
         node:
           rid: 5634289564154593389
         references: []
@@ -223,6 +223,7 @@ MonoBehaviour:
         - ba17d699-bd12-4c32-bbbd-155b04fe45b3
         - e17af590-7b99-4a7a-a966-e2e0374970a6
         - bbc38f68-6c51-4e06-b40b-4f4265a05ce9
+        - 3bc457a9-232f-4a46-b166-2707b38af398
       - name: 
         id: 9142a11b-35bb-4f90-8b29-df26b1552395
         position: {x: 187.5, y: 200}
@@ -234,7 +235,6 @@ MonoBehaviour:
         childIds:
         - a0e233ef-b556-4140-932f-9bed26f5ae1b
         - 79f7cc0f-2505-4c3b-8240-74fbb6786be6
-        - 3bc457a9-232f-4a46-b166-2707b38af398
       - name: truefalse
         id: 79f7cc0f-2505-4c3b-8240-74fbb6786be6
         position: {x: 375, y: 400}
@@ -293,7 +293,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 3bc457a9-232f-4a46-b166-2707b38af398
-        position: {x: 675, y: 400}
+        position: {x: 1238.4, y: 1016}
         node:
           rid: 8725330810325435323
         references:
@@ -303,7 +303,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 9142a11b-35bb-4f90-8b29-df26b1552395
+        - 79061932-755c-4921-a0f5-52ce3929df0d
         childIds: []
       - name: LookAt
         id: ba17d699-bd12-4c32-bbbd-155b04fe45b3
@@ -437,8 +437,9 @@ MonoBehaviour:
     - rid: 5634289564154593397
       type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
       data:
-        action: 1
+        action: 8
         idle: 0
+        loops: 1
     - rid: 5634289709124943962
       type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -570,6 +571,7 @@ MonoBehaviour:
         FirstLetter: A
         LastLetter: C
         idle: 0
+        loops: 1
     - rid: 8725330898659311746
       type: {class: DoReactionAction, ns: , asm: Assembly-CSharp}
       data: 
@@ -588,17 +590,18 @@ MonoBehaviour:
     - rid: 8725331126323249438
       type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
       data:
-        attack: IdleAction
-        random: 0
-        FirstLetter: 
-        LastLetter: 
+        attack: StanceLoopStart
+        random: 1
+        FirstLetter: A
+        LastLetter: B
     - rid: 8725331161590530143
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
     - rid: 8725331161590530144
       type: {class: RandomActionAction, ns: , asm: Assembly-CSharp}
       data:
-        BaseAction: Stance
+        BaseAction: StanceLoopStart
         FirstLetter: A
         LastLetter: B
         idle: 0
+        loops: 1

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class ActionBehaviour : StateMachineBehaviour
     protected int actionValue;
     public bool lastAttackInAction = true;
     bool finished;
+    int loops;
+    bool canEnd;
     // public bool lastAnimInAction = true;
     EnemyAI enemyAI;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -20,6 +23,8 @@ public class ActionBehaviour : StateMachineBehaviour
         finished = false;
         enemyAI.setOnAction(true);
         enemyAI.setReaction(false);
+        loops = enemyAI.currentActionLoops;
+        canEnd = loops != -1;
         actionValue = enemyAI.currentAction;
         isIdle = enemyAI.currentActionIsIdle;
         // Debug.Log("StartAction"+isIdle + DebugName);
@@ -29,8 +34,11 @@ public class ActionBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log($"{stateInfo.loop} {stateInfo.normalizedTime}");
-        if (stateInfo.normalizedTime > 0.9 && !finished)
+        if (enemyAI.currentActionLoops == -1)
+        {
+            return;
+        }
+        if (stateInfo.normalizedTime > enemyAI.currentActionTime && !finished)
         {
             finished = true;
             if (!isIdle)
@@ -38,7 +46,6 @@ public class ActionBehaviour : StateMachineBehaviour
                 //  Debug.Log("EndAction"+DebugName);
                 if (lastAttackInAction)
                 {
-                    Debug.Log("endAction");
                     enemyAI.endCurrentAction(actionValue);
                 }
             }

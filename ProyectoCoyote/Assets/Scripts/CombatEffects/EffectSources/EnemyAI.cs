@@ -35,6 +35,11 @@ public class EnemyAI : MonoBehaviour,IMutex
   [SerializeField] public bool hasPriority;
 
     public bool currentActionIsIdle { get; private set; }
+    public int currentActionLoops { get; private set; }
+    public float currentActionTime { get; private set; }
+ [field:SerializeField]   public bool blockingAction { get; private set; }
+
+
     #region Calculo Distancia Jugador
 
     #endregion
@@ -57,7 +62,6 @@ public class EnemyAI : MonoBehaviour,IMutex
             endAction = true;
             setReaction(false);
             counterOn = false;
-
         }
         cancelled = false;
 
@@ -172,7 +176,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         Idle,
         CombatIdle
     }
-    public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false)
+    public void LoadBasicAction(EnemyAI.BasicActions action, bool idle = false, int loops = 1, bool isBlock = false)
     {
         //currentActionIsIdle = idle;
         //if (!idle)
@@ -183,13 +187,17 @@ public class EnemyAI : MonoBehaviour,IMutex
         //print(character == null);
 
         //character.PlayAnimation(action.ToString(),idle);
-        LoadAction(action.ToString(), idle);
+        LoadAction(action.ToString(), idle,loops,isBlock);
 
     }
-    public void LoadAction(string action, bool idle = false)
+
+    public void LoadAction(string action, bool idle = false, int loops = 1, bool isBlock = false)
     {
         currentAction =  (action+Time.frameCount%60).GetHashCode();
         currentActionIsIdle = idle;
+        currentActionTime = (loops - 1) + 0.9f;
+        setBlockingAction(isBlock);
+        this.currentActionLoops = loops;
         if (!idle)
         {
             endAction = false;
@@ -201,11 +209,21 @@ public class EnemyAI : MonoBehaviour,IMutex
             character.PlayAnimation(action, idle);
 
     }
+    public void modifyActionLoop(int loops)
+    {
+        currentActionIsIdle = false;
+        currentActionTime = loops == -1 ? -1: (loops - 1) + 0.9f;
+        this.currentActionLoops = loops;
+
+    }
     private void Start()
     {
         currentActionIsIdle = false;
+        currentActionLoops = -1;
+        currentActionTime = -1;
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
+        setBlockingAction(false);
     }
     
     private void DieEvent(AGameCharacter character)
@@ -249,8 +267,11 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void startReaction()
     {
         currentActionIsIdle = false;
+        currentActionLoops = 1;
+        currentActionTime = 0.9f;
         cancelled = true;
         endAction = false;
+        setBlockingAction(false);
         setReaction(false);
         doingReactCounter = true;
 
@@ -259,13 +280,20 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void startCounter()
     {
         currentActionIsIdle = false;
+        currentActionLoops = 1;
+        currentActionTime = 0.9f;
         cancelled = true;
         endAction = false;
+        setBlockingAction(false);
         setCounter(false);
         doingReactCounter = true;
         counterObj.startReaction();
     }
-    
+    void setBlockingAction(bool b)
+    {
+        print($"setBlockingAction{name}{b}");
+        blockingAction = b;
+    }
     public bool isCounterOn() => counterOn;
     public bool isReactionOn() => reactionOn;
 
@@ -321,7 +349,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public Status waitForEndAction()
     {
-        if (endAction || !onAction)
+        if (endAction || !onAction || blockingAction)
         {
             return Status.Success;
         }
@@ -338,5 +366,12 @@ public class EnemyAI : MonoBehaviour,IMutex
         FindAnyObjectByType<Player>().GetComponentInChildren<Attack>().subscribeToStateChange(PlayerAttackEvent);
         GetComponent<Enemy>().subscribeToDodgeAttack(PlayerHitDefenseEvent);
         GetComponent<Enemy>().subscribeToDie(DieEvent);
+    }
+
+    public void getHit()
+    {
+        ReturnAttackPriority(currentAction);
+        setOnAction(false);
+       setBlockingAction(false);
     }
 }

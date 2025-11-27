@@ -52,8 +52,8 @@ public class getHitBehaviour : StateMachineBehaviour
             {
                 enemyAssetRunner.enabled = true;
                 EnemyAI enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
-                enemyAI.ReturnAttackPriority(enemyAI.currentAction);
-                enemyAI.setOnAction(false);
+                enemyAI.getHit();
+             
 
             }
         }

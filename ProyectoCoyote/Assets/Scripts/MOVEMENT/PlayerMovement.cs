@@ -241,35 +241,36 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Input", inputMagnitude);
         animator.SetBool("isRunning", isRunning);
-
+        animator.SetBool("isGround", grounded);
 
         float movement = Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput);
         animator.SetFloat("Horizontal", horizontalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalInput, 0.2f, Time.deltaTime);
         animator.SetFloat("Movement", movement);
-
-        if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
-        {
-            string attackName = "";
-
-            if (gameInput.AttackPressed)
+        
+      
+            if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
             {
-                attackName += "Hit_L";
+                string attackName = "";
 
-            }
-            else if (gameInput.AttackRightPressed)
-            {
-                attackName += "Hit_R";
-            }
-            if (gameStateManager.getState() == GameState.SlowDown)
-            {
-                attackName += "_CRIT";
-                perfectDodgeManager.StopSlowdown();
-            }
+                if (gameInput.AttackPressed)
+                {
+                    attackName += "Hit_L";
 
-            animator.CrossFade(attackName, .1f);
+                }
+                else if (gameInput.AttackRightPressed)
+                {
+                    attackName += "Hit_R";
+                }
+                if (gameStateManager.getState() == GameState.SlowDown)
+                {
+                    attackName += "_CRIT";
+                    perfectDodgeManager.StopSlowdown();
+                }
+
+                animator.CrossFade(attackName, .1f);
+            
         }
-
 
         //if (gameInput.AttackPressed && canAttack && lockMovement)
         //{

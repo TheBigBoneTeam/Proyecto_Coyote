@@ -77,7 +77,6 @@ namespace BehaviourAPI.Core
         /// </summary>
         public void Update()
         {
-            UnityEngine.Debug.LogWarning(Status);
             if (Status != Status.Running) return; // Graph already finished or paused
             OnUpdated();
         }

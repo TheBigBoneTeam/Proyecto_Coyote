@@ -25,7 +25,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
  
     [SerializeField] Vector3 paddingPosition;
 
-    CanvasGroup CanvasGroup;
+    protected CanvasGroup CanvasGroup;
 
     Player player;
   [SerializeField]  EnemyLockOn lockOn;
@@ -37,6 +37,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
         currentAttacksDictionary = new Dictionary<AGameCharacter,Attack>();
         currentExplosions = new List<BombEnemyAssetBehaviourRunner>();
+        if(middleDanger)
         middleDanger.SetActive(false);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(CombatAreaChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
@@ -55,7 +56,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     {
         if(arg0 == HitDirections.Outside)
         {
-            middleDangerAnimator.Play("Blocked");
+            if (middleDanger)
+                middleDangerAnimator.Play("Blocked");
         }
     }
 
@@ -63,7 +65,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     {
         print("combatAreaChange");
         restart();
-        middleDanger.SetActive(false);
+        if (middleDanger)
+            middleDanger.SetActive(false);
         foreach (var enemy in data.enemies)
         {
             BombEnemyAssetBehaviourRunner bombRunner = enemy.GetComponent<BombEnemyAssetBehaviourRunner>();
@@ -128,7 +131,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+ protected virtual   void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -218,8 +221,11 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             anyOutsideAttack = true;
             //Cambiar algo dependiendo de la cercania y tal
         }
-        middleDanger.SetActive(anyOutsideAttack);
-        middleDangerAnimator.Play("Danger");
+        if (middleDanger)
+        {
+            middleDanger.SetActive(anyOutsideAttack);
+            middleDangerAnimator.Play("Danger");
+        }
 
         if (!anyLocked)
         {

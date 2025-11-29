@@ -1,3 +1,4 @@
+using Services;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,15 @@ public class EnemyDefenseAttackUIIndicator:DefenseAttackUIIndicator
         base.setCharacter(character);
         if(DamageReceiver != null)
         DamageReceiver.GetComponent<AGameCharacter>().subscribeToDodgeAttack(Dodge);
+
+    }
+    protected override void Start()
+    {
+        CanvasGroup = GetComponentInChildren<CanvasGroup>();
+        setEnable(false);
+    }
+    protected override void Update()
+    {
 
     }
     void Dodge(HitDirections d)

@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using UnityEditor;
 using UnityEngine;
 
 public class RandomActionAction : UnityAction
@@ -8,6 +9,7 @@ public class RandomActionAction : UnityAction
     public string FirstLetter;
     public string LastLetter;
     public bool idle;
+    public int loops = 1;
     EnemyAI enemyAI;
 
     public override Status Update()
@@ -30,14 +32,25 @@ public class RandomActionAction : UnityAction
         char firstletter = FirstLetter[0];
         char lastletter = LastLetter[0];
         int nums = lastletter - firstletter;
-        char letter = (char)('A' + UnityEngine.Random.Range(0, nums));
+        int min = firstletter - 'A';
+        char letter = (char)('A' + UnityEngine.Random.Range(min, nums + 1));
 
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         if (enemyAI.endAction)
         {
             Debug.Log("cagada");
         }
-        enemyAI.LoadAction(BaseAction +letter, idle);
+        bool isBlock = false;
+        if (BaseAction.Contains("Stance"))
+        {
+            isBlock = true;
+            if (enemyAI.loopBlockingAction)
+            {
+                enemyAI.modifyActionLoop(loops);
+                return;
+            }
+        }
+        enemyAI.LoadAction(BaseAction +letter, idle,loops, isBlock);
     }
 
 }

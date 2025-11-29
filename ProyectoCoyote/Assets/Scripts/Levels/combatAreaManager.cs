@@ -107,6 +107,10 @@ public class combatAreaManager : MonoBehaviour
                 enemy.setArea(this);
                 
             }
+            foreach(var ammo in wave.ammo)
+            {
+                ammo.setAreaManager(this);
+            }
         }
     }
     void Awake()
@@ -282,10 +286,14 @@ public class combatAreaManager : MonoBehaviour
                 {
                     enemy.unSubscribeToDie(enemyDie);
                     enemy.restart();
-                    if (i > 0)
-                    {
+                    //if (i > 0)
+                    //{
                         enemy.activateEnemy(false);
-                    }
+                    //}
+                }
+                foreach(baseBullet bul in wave.ammo)
+                {
+                    bul.restart();
                 }
                 i++;
             }

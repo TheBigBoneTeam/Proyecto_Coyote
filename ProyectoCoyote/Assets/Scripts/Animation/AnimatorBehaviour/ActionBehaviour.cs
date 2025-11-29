@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -7,43 +8,56 @@ public class ActionBehaviour : StateMachineBehaviour
 {
     public string DebugName;
     bool isIdle;
-   protected int actionValue;
+    protected int actionValue;
     public bool lastAttackInAction = true;
+    bool finished;
+    int loops;
+    bool canEnd;
     // public bool lastAnimInAction = true;
     EnemyAI enemyAI;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
-     //   Debug.Log("setOnAction " + DebugName + true);
-
+        //   Debug.Log("setOnAction " + DebugName + true);
+        finished = false;
         enemyAI.setOnAction(true);
         enemyAI.setReaction(false);
+        loops = enemyAI.currentActionLoops;
+        canEnd = loops != -1;
         actionValue = enemyAI.currentAction;
         isIdle = enemyAI.currentActionIsIdle;
-       // Debug.Log("StartAction"+isIdle + DebugName);
+        // Debug.Log("StartAction"+isIdle + DebugName);
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-
-    //}
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
-        if (!isIdle)
+        if (enemyAI.currentActionLoops == -1)
         {
-       //  Debug.Log("EndAction"+DebugName);
-            if (lastAttackInAction)
+            return;
+        }
+        if (stateInfo.normalizedTime > enemyAI.currentActionTime && !finished)
+        {
+            finished = true;
+            if (!isIdle)
             {
-                enemyAI.endCurrentAction(actionValue);
+                //  Debug.Log("EndAction"+DebugName);
+                if (lastAttackInAction)
+                {
+                    enemyAI.endCurrentAction(actionValue);
+                }
             }
         }
     }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+
+
+    //}
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

@@ -728,6 +728,7 @@ MonoBehaviour:
         FirstLetter: A
         LastLetter: F
         idle: 0
+        loops: 1
     - rid: 8725330721219543237
       type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -748,6 +749,7 @@ MonoBehaviour:
       data:
         attack: OutsideAttack
         idle: 0
+        loops: 1
     - rid: 8725330732456607931
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
@@ -834,6 +836,7 @@ MonoBehaviour:
       data:
         action: 10
         idle: 1
+        loops: 1
     - rid: 8725330851897802864
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -868,7 +871,11 @@ MonoBehaviour:
           methodName: forcedReturnAttackPriority
     - rid: 8725331012510548631
       type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        attack: 
+        random: 0
+        FirstLetter: 
+        LastLetter: 
     - rid: 8725331092473380949
       type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 

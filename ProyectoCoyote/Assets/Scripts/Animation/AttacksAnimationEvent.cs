@@ -9,6 +9,9 @@ public class AttacksAnimationEvent : MonoBehaviour
     Reaction Reaction;
     Reaction Counter;
     Gun gun;
+    [SerializeField] private int actionValue;
+
+
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);
@@ -40,11 +43,11 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         if (dodge == 0)
         {
-            damageReceiver.setDodge(false);
+            damageReceiver.setDodge(false/*,actionValue*/);
         }
         else
         {
-            damageReceiver.setDodge(true);
+            damageReceiver.setDodge(true/*, actionValue*/);
         }
     }
     public void setCounter(int dodge)
@@ -67,6 +70,17 @@ public class AttacksAnimationEvent : MonoBehaviour
         else
         {
             enemyAI.setReaction(true);
+        }
+    }
+    public void setInvincible(int invincible)
+    {
+        if (invincible == 0)
+        {
+            damageReceiver.setInvincible(false);
+        }
+        else
+        {
+            damageReceiver.setInvincible(true);
         }
     }
     public void setCounterAnim(string anim)
@@ -93,6 +107,10 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         damageReceiver.addDirection(direction);
     }
+    public void setShaderBlockConfiguration(blockShaderConfigurations configuration)
+    {
+       damageReceiver.setBlockShaderConfiguration(configuration);
+    }
     //public void endAttack()
     //{
     //    print("endAttack");
@@ -117,5 +135,10 @@ public class AttacksAnimationEvent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    internal void setActionValue(int actionValue)
+    {
+        this.actionValue = actionValue;
     }
 }

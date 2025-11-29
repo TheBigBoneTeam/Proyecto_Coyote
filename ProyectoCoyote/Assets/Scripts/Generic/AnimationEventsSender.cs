@@ -1,5 +1,7 @@
 ﻿using tutorial;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Windows;
 
 public class AnimationEventsSender : MonoBehaviour
 {
@@ -7,9 +9,10 @@ public class AnimationEventsSender : MonoBehaviour
 
     private float lastStepTime = 0f;
     private const float stepCooldown = 0.22f;
-
+    ParticleSystem[] particles;
     private void Start()
     {
+        particles = GetComponentsInChildren<ParticleSystem>(true);
         anim = GetComponent<Animator>();
     }
 
@@ -34,5 +37,18 @@ public class AnimationEventsSender : MonoBehaviour
     public void changeTutWait()
     {
         FindAnyObjectByType<betaTutorial>().changeTutWait = true;
+    }
+
+    public void playParticle(string idx)
+    {
+        string[] parts = idx.Split('-');
+        int i = int.Parse(parts[0], System.Globalization.CultureInfo.InvariantCulture);
+        float scale = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture);
+
+        if (particles != null)
+        {
+            particles[i].transform.localScale = new Vector3(scale, scale, scale);
+            particles[i].Play();
+        }
     }
 }

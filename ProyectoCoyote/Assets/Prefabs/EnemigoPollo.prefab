@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directions: 0000000001000000
   dodging: 0
+  Invincible: 0
   parrying: 0
 --- !u!114 &4220892482738226576
 MonoBehaviour:
@@ -156,9 +157,10 @@ MonoBehaviour:
   reactionObj: {fileID: 3520703102938653512}
   counterObj: {fileID: 7833554840396396472}
   Locked: 1
-  seeDistance: 14
+  seeDistance: 100
   attackDistance: 13.5
   hasPriority: 0
+  <blockingAction>k__BackingField: 0
 --- !u!195 &6548238604738954963
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1.81
+  m_BaseOffset: 1.79
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &376117243386707857
@@ -207,12 +209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe592e9ff1245064d92b75abde9f86f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executeOnLoop: 0
+  executeOnLoop: 1
   interruptOptions: 2
   _eventHandler:
     debugStatusChanges: 0
     identifier: 
-  System: {fileID: 11400000, guid: b60f3cd163b43894294d0bd12d087d2e, type: 2}
+  System: {fileID: 11400000, guid: d8400c5307484a04ca88eafb81416956, type: 2}
   isUnsafe: 0
 --- !u!114 &6842534662455487392
 MonoBehaviour:

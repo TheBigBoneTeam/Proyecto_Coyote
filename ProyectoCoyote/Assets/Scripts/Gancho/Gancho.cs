@@ -192,7 +192,7 @@ public class Gancho : MonoBehaviour
         currentTarget = ScanNearBy();
         if (currentTarget != null)
         {
-            movement.startHookMode();
+            movement.StopMovement();
             _hookImageUI.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
 
@@ -213,7 +213,7 @@ public class Gancho : MonoBehaviour
     public void ResetTarget(bool skipAnimation = false)
     {
         if (!skipAnimation) movement.animator.CrossFade("Idle_01", 0.2f);
-        movement.stopHookMode();
+        movement.RestartMovement();
         _hookImageUI.gameObject.SetActive(false);
         visualHook.RetractHook();
         EnableAllCollisions(currentTarget);
@@ -490,7 +490,7 @@ public class Gancho : MonoBehaviour
         Debug.Log("¡VENTANA DE ATAQUE CERRADA!");
 
         if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
-        movement.stopHookMode();
+        movement.RestartMovement();
 
         if (!hookAttackBuffer)
         {
@@ -499,7 +499,7 @@ public class Gancho : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(0.5f);
-            movement.stopHookMode();
+            movement.RestartMovement();
             _hookImageUI.gameObject.SetActive(false);
             selectingHook = false;
             isHooked = false;

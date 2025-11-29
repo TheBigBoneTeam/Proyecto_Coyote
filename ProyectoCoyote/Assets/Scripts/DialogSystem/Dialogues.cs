@@ -57,7 +57,7 @@ public class Dialogues : MonoBehaviour
     public void StartDialogue(string startingLine, Action action, NPC npc, Transform npcTransform) 
     {
         LoadDialogues();
-        movement.startHookMode();
+        movement.StopMovement();
         targetLocator.position = npcTransform.position;
         _npc = npc;
 
@@ -75,7 +75,7 @@ public class Dialogues : MonoBehaviour
         CamControl.ActiveFollowCamera();
         _npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
-        movement.stopHookMode();
+        movement.RestartMovement();
         Debug.Log("Fin del Diálogo");
     }
 

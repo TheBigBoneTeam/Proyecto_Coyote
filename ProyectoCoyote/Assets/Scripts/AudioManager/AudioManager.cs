@@ -185,10 +185,10 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Nivel3":
-                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
+                //AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
 
-                // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
-                // AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Pelea", true, Vector2.zero, true, true, 1);
 
                 break;
 

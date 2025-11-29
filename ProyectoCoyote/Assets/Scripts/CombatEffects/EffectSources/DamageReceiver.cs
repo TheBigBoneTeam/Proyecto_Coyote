@@ -13,40 +13,35 @@ public class DamageReceiver:MonoBehaviour
     AGameCharacter character;
  [SerializeField] protected List<HitDirections> directions;
  [SerializeField] protected  bool dodging;
+    [SerializeField] protected bool Invincible;
     [SerializeField] bool parrying;
 
     UnityEvent<ReceiverState> receiverStateEvent;
     IPerfectDodgeManager perfectDodgeManager;
-    EnemyAI enemyAI;
+ [SerializeField]   EnemyAI enemyAI;
+    List<string> currentBlockShaderParts;
 
    public void checkEffectSource(Attack attack)
     {
-        print(gameObject.name + " checkEffectSource");
         if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>() && !attack.GetComponent<baseBullet>()) {
+            return;
+        }
+        if(Invincible){
             return;
         }
         if (!dodging || !canBeDodged(attack))
         {
-            print("addeffedcts");
             attack.addEffectsToChar(character);
             //aOwnerableEffectSource.addEffectsToObj(character);
         }
         else
         {
-            Debug.Log("Dodge");
             character.DodgeAttack(directions[0]);
             if (parrying && attack.Parreable)
             {
-                Debug.Log("PARRY");
                 if (!perfectDodgeManager.isSlowDown())
                 {
-                    print("startSlowdownn");
                     perfectDodgeManager.StartSlowdown();
-                }
-                else
-                {
-                    print("inSlowDown");
-
                 }
             }
         }
@@ -54,8 +49,6 @@ public class DamageReceiver:MonoBehaviour
 
    protected virtual bool canBeDodged(Attack attack)
     {
-        print("regularcanbedodged");
-
         return checkListIntersect(attack.HitDirectionsList, directions);
     }
     protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
@@ -78,6 +71,7 @@ public class DamageReceiver:MonoBehaviour
     }
     protected virtual void Start()
     {
+        currentBlockShaderParts = new List<string>();
         perfectDodgeManager = ServiceLocator.Instance.Get<IPerfectDodgeManager>();
         character = GetComponent<AGameCharacter>();
         enemyAI = GetComponent<EnemyAI>();
@@ -97,7 +91,72 @@ public class DamageReceiver:MonoBehaviour
     public void setDodge(bool dodge)
     {
         dodging = dodge;
+        print($"SetDodge: {dodge}");
+        if (enemyAI)
+        {
+            foreach (SkinnedMeshRenderer skinnedMeshRenderer in gameObject.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                changeBlockColor(skinnedMeshRenderer);
+            }
+
+        }
+
         sendDodgeEvent();
+    }
+    public void setDodgeFromEvent(bool dodge, int actionvalue)
+    {
+        if (enemyAI == null)//Es Jugador
+        {
+            setDodge(dodge);
+            return;
+        }
+        if (actionvalue == enemyAI.currentAction)
+        {
+            setDodge(dodge);
+        }
+    }
+    void changeBlockColor(SkinnedMeshRenderer skinMesh)
+    {
+        skinMesh.material.SetInt("_isBlockL", (dodging && currentBlockShaderParts.Contains("_isBlockL"))? 1 : 0);
+        skinMesh.material.SetInt("_isBlockR", (dodging && currentBlockShaderParts.Contains("_isBlockR")) ? 1 : 0);
+        skinMesh.material.SetInt("_isBlockWeapon", (dodging && currentBlockShaderParts.Contains("_isBlockWeapon")) ? 1 : 0);
+
+
+    }
+    public void setBlockShaderConfiguration(blockShaderConfigurations blockShaderConfigurations)
+    {
+        currentBlockShaderParts.Clear();
+        switch (blockShaderConfigurations)
+        {
+            case blockShaderConfigurations.LeftArm:
+                currentBlockShaderParts.Add("_isBlockL");
+                break;
+            case blockShaderConfigurations.RightArm:
+                currentBlockShaderParts.Add("_isBlockR");
+
+                break;
+            case blockShaderConfigurations.BothArms:
+                currentBlockShaderParts.Add("_isBlockL");
+                currentBlockShaderParts.Add("_isBlockR");
+
+                break;
+            case blockShaderConfigurations.Weapon:
+                currentBlockShaderParts.Add("_isBlockWeapon");
+
+                break;
+            case blockShaderConfigurations.All:
+                currentBlockShaderParts.Add("_isBlockWeapon");
+                currentBlockShaderParts.Add("_isBlockL");
+                currentBlockShaderParts.Add("_isBlockR");
+
+                break;
+            case blockShaderConfigurations.None:
+                break;
+        }
+    }
+    public void setInvincible(bool invincible)
+    {
+        Invincible = invincible;
     }
     public void setParry(bool parry)
     {
@@ -111,6 +170,7 @@ public class DamageReceiver:MonoBehaviour
     }
     void sendDodgeEvent()
     {
+
         receiverStateEvent.Invoke(new ReceiverState(directions.ToArray(),dodging));
 
     }
@@ -139,4 +199,8 @@ public class DamageReceiver:MonoBehaviour
             this.isDodge = isDodge;
         }
     }
+
+}
+public enum blockShaderConfigurations{
+    LeftArm,RightArm,BothArms,Weapon,All,None
 }

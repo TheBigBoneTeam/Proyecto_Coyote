@@ -10,14 +10,18 @@ public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
     [SerializeField] bool ActiveBeforeFight;
-    [SerializeField] GameObject HitParticles, blockParticles, blockParticlesPosition;
+    [SerializeField] GameObject HitParticles, blockParticles, critParticles, blockParticlesPosition;
     Transform initialParticleTransform;
+    DamageReceiver damageReceiver;
+
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     bool dead;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
+        damageReceiver = GetComponent<DamageReceiver>();
         initialParticleTransform = HitParticles.transform;
     }
     public override void Die()
@@ -38,17 +42,31 @@ public class Enemy : AGameCharacter
     }
     public override void getHit(int damage, HitDirections directions, bool crit = false)
     {
+        damageReceiver.setDodge(false);
         base.getHit(damage,directions, crit);
         GetComponent<Animator>()?.Play("heavySquish");
         GetComponent<HitStopComponent>()?.HitStop(.075f);
-        if (HitParticles != null)
+        if (!crit)
         {
-            HitParticles.transform.localPosition = initialParticleTransform.localPosition + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
-            foreach(ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
+            if (HitParticles != null)
             {
-                if(!particle.isPlaying)
-                    particle.Play();
+                HitParticles.transform.localPosition = initialParticleTransform.localPosition + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+                foreach (ParticleSystem particle in HitParticles.GetComponentsInChildren<ParticleSystem>())
+                {
+                    if (!particle.isPlaying)
+                        particle.Play();
+                }
             }
+        }else
+        { if (critParticles != null)
+            {
+                critParticles.transform.localPosition = initialParticleTransform.localPosition + new Vector3(UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f), UnityEngine.Random.Range(-.2f, .2f));
+                foreach (ParticleSystem particle in critParticles.GetComponentsInChildren<ParticleSystem>())
+                {
+                    if (!particle.isPlaying)
+                        particle.Play();
+                }
+            } 
         }
 
     }
@@ -83,6 +101,7 @@ public class Enemy : AGameCharacter
     }
     public void activateEnemy(bool active)
     {
+        print($"activateEnemy{name} {active}");
         gameObject.SetActive(ActiveBeforeFight ? true:active);
         GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
         if (active)

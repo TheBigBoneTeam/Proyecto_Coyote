@@ -124,6 +124,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Evade_Left",
+                    "type": "Button",
+                    "id": "0de15990-a334-429a-90bc-5385bf485982",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Evade_Right",
+                    "type": "Button",
+                    "id": "af94610e-98a1-41ff-9fbc-82f95412fd0a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Escape",
                     "type": "Button",
                     "id": "ade7c241-8928-442d-b4d9-007e3d5c04bb",
@@ -136,6 +154,15 @@
                     "name": "Skip",
                     "type": "Button",
                     "id": "b6d0e86c-a413-4994-8c8c-cf814d8e63a0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AttackR",
+                    "type": "Button",
+                    "id": "2ba7c3fe-1eae-4edf-9254-78d88e5cee7c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -547,6 +574,50 @@
                     "processors": "",
                     "groups": ";Mando",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c94788f-9957-4279-94ae-474ab527a83c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Evade_Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d493adb-f41b-4d9e-ad38-9e838cf279e3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Evade_Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0197c18-2f9c-4ad4-b234-46b0d1ffb03b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76700024-4a6d-477f-aafd-99ccb0445693",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

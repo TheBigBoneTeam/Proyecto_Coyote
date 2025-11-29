@@ -10,6 +10,7 @@ public class PlayAttackAction : UnityAction
     /// </summary>
     [SerializeField] string attack;
     public bool idle;
+    public int loops = 1;
     EnemyAI enemyAI;
     public override Status Update()
     {
@@ -33,7 +34,17 @@ public class PlayAttackAction : UnityAction
     {
         Debug.Log(attack);
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
-       enemyAI.LoadAction(attack);
+        bool isBlock = false;
+        if (attack.Contains("Stance"))
+        {
+            isBlock = true;
+            if (enemyAI.loopBlockingAction)
+            {
+                enemyAI.modifyActionLoop(loops);
+                return;
+            }
+        }
+        enemyAI.LoadAction(attack,idle,loops,isBlock);
     }
 
 

@@ -44,7 +44,8 @@ public class CameraFollow : MonoBehaviour
         else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
         else RotateFreePlayer();
 
-       HandleOcclusion(); // HandleTransparency();
+        // HandleOcclusion(); //
+        HandleTransparency();
 
     }
 
@@ -106,6 +107,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 origin = cam.transform.position;
         Vector3 target = playerObj.position + Vector3.up * 1.5f;
+        Vector3 boxDimension = new Vector3(2,2,2);
         Vector3 dir = target - origin;
         float dist = dir.magnitude;
 
@@ -116,7 +118,20 @@ public class CameraFollow : MonoBehaviour
         }
         disabledRenderers.Clear();
 
-        // Raycast hacia el jugador
+        //// Raycast hacia el jugador
+        //float height = 2f * dist * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        //float width = height * cam.aspect;
+
+        //Vector3 halfExtents = new Vector3(width * 0.5f, height * 0.5f, dist * 0.5f);
+
+        //Vector3 midPoint = origin + dir * 0.5f;
+
+        //// BoxCast
+        //RaycastHit[] hitsCam = Physics.BoxCastAll(
+        //    midPoint,
+        //    halfExtents,
+        //    dir.normalized,
+        //    Quaternion.LookRotation(dir), dist*0.5f);
         RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
         foreach (RaycastHit hit in hits)
         {
@@ -152,6 +167,7 @@ public class CameraFollow : MonoBehaviour
         foreach (RaycastHit hit in hits)
         {
             Renderer rend = hit.collider.GetComponent<Renderer>();
+            var texture = rend.material.GetTexture("_Texture2D");
             if (rend != null)
             {
                 // Guardar material original si no lo tenemos
@@ -162,7 +178,7 @@ public class CameraFollow : MonoBehaviour
 
                 // Aplicar material transparente
                 rend.material = transparentMaterial;
-
+                rend.material.SetTexture("_Texture2D", texture);
                 // Añadir a lista de objetos transparentes este frame
                 currentHits.Add(rend);
             }

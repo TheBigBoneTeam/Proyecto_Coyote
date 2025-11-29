@@ -44,7 +44,7 @@ public class RandomActionAction : UnityAction
         if (BaseAction.Contains("Stance"))
         {
             isBlock = true;
-            if (enemyAI.blockingAction)
+            if (enemyAI.loopBlockingAction)
             {
                 enemyAI.modifyActionLoop(loops);
                 return;

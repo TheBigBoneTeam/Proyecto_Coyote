@@ -286,10 +286,10 @@ public class combatAreaManager : MonoBehaviour
                 {
                     enemy.unSubscribeToDie(enemyDie);
                     enemy.restart();
-                    if (i > 0)
-                    {
+                    //if (i > 0)
+                    //{
                         enemy.activateEnemy(false);
-                    }
+                    //}
                 }
                 foreach(baseBullet bul in wave.ammo)
                 {

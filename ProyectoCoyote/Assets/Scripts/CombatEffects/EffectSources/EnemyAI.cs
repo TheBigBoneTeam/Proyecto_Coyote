@@ -15,11 +15,13 @@ public class EnemyAI : MonoBehaviour,IMutex
     public bool counterOn, reactionOn;
     public int KungFuCirclePoint;
 
-    public int currentAction { get; private set; }
+  [field:SerializeField]  public int currentAction { get; private set; }
   [SerializeField]  private bool doingReactCounter;
     Attack attackObj;
    [SerializeField] public Reaction reactionObj;
     [SerializeField] Reaction counterObj;
+    DamageReceiver damageReceiver;
+    AttacksAnimationEvent attackAnimationEvent;
 
     AGameCharacter character;
     public bool Locked;
@@ -37,7 +39,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     public bool currentActionIsIdle { get; private set; }
     public int currentActionLoops { get; private set; }
     public float currentActionTime { get; private set; }
- [field:SerializeField]   public bool blockingAction { get; private set; }
+ [field:SerializeField]   public bool loopBlockingAction { get; private set; }
 
 
     #region Calculo Distancia Jugador
@@ -194,9 +196,10 @@ public class EnemyAI : MonoBehaviour,IMutex
     public void LoadAction(string action, bool idle = false, int loops = 1, bool isBlock = false)
     {
         currentAction =  (action+Time.frameCount%60).GetHashCode();
+       attackAnimationEvent.setActionValue(currentAction);
         currentActionIsIdle = idle;
         currentActionTime = (loops - 1) + 0.9f;
-        setBlockingAction(isBlock);
+        setLoopBlockingAction(isBlock);
         this.currentActionLoops = loops;
         if (!idle)
         {
@@ -218,12 +221,13 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     private void Start()
     {
+        currentAction = 0;
         currentActionIsIdle = false;
         currentActionLoops = -1;
         currentActionTime = -1;
         enemyManager = ServiceLocator.Instance.Get<IEnemyManager>();
         endAction = false;
-        setBlockingAction(false);
+        setLoopBlockingAction(false);
     }
     
     private void DieEvent(AGameCharacter character)
@@ -237,6 +241,8 @@ public class EnemyAI : MonoBehaviour,IMutex
 
     private void Awake()
     {
+        attackAnimationEvent = GetComponentInChildren<AttacksAnimationEvent>();
+        damageReceiver = GetComponent<DamageReceiver>();
         _enemyAssetBehaviourRunner = GetComponent<EnemyAssetBehaviourRunner>();
         attackObj = GetComponentInChildren<Attack>();
         character = GetComponent<AGameCharacter>();
@@ -271,7 +277,7 @@ public class EnemyAI : MonoBehaviour,IMutex
         currentActionTime = 0.9f;
         cancelled = true;
         endAction = false;
-        setBlockingAction(false);
+        setLoopBlockingAction(false);
         setReaction(false);
         doingReactCounter = true;
 
@@ -284,15 +290,19 @@ public class EnemyAI : MonoBehaviour,IMutex
         currentActionTime = 0.9f;
         cancelled = true;
         endAction = false;
-        setBlockingAction(false);
+        setLoopBlockingAction(false);
         setCounter(false);
         doingReactCounter = true;
         counterObj.startReaction();
     }
-    void setBlockingAction(bool b)
+    void setLoopBlockingAction(bool b)
     {
         print($"setBlockingAction{name}{b}");
-        blockingAction = b;
+        loopBlockingAction = b;
+        if(b == false)
+        {
+            damageReceiver.setDodge(false);
+        }
     }
     public bool isCounterOn() => counterOn;
     public bool isReactionOn() => reactionOn;
@@ -349,7 +359,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public Status waitForEndAction()
     {
-        if (endAction || !onAction || blockingAction)
+        if (endAction || !onAction || loopBlockingAction)
         {
             return Status.Success;
         }
@@ -372,6 +382,6 @@ public class EnemyAI : MonoBehaviour,IMutex
     {
         ReturnAttackPriority(currentAction);
         setOnAction(false);
-       setBlockingAction(false);
+       setLoopBlockingAction(false);
     }
 }

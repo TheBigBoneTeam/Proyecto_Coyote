@@ -20,7 +20,6 @@ public class Attack : ATouchCombatEffectSource
 
     protected override void OnTriggerEnter(Collider other)
     {
-        print(HitCheck == null);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
         if (character)
         {
@@ -136,10 +135,8 @@ public class Attack : ATouchCombatEffectSource
     }
     public void LoadData(AttackData data)
     {
-        print("getData");
         if (data == null)
         {
-            print("getDataNull");
             HitDirectionsList.Clear();
             effects.Clear();
             sendNullState();

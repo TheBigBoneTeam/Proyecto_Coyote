@@ -9,6 +9,9 @@ public class AttacksAnimationEvent : MonoBehaviour
     Reaction Reaction;
     Reaction Counter;
     Gun gun;
+    [SerializeField] private int actionValue;
+
+
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);
@@ -40,11 +43,11 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         if (dodge == 0)
         {
-            damageReceiver.setDodge(false);
+            damageReceiver.setDodge(false/*,actionValue*/);
         }
         else
         {
-            damageReceiver.setDodge(true);
+            damageReceiver.setDodge(true/*, actionValue*/);
         }
     }
     public void setCounter(int dodge)
@@ -132,5 +135,10 @@ public class AttacksAnimationEvent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    internal void setActionValue(int actionValue)
+    {
+        this.actionValue = actionValue;
     }
 }

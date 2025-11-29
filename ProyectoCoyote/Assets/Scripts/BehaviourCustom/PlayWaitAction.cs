@@ -31,8 +31,8 @@ public class PlayWaitAction : UnityAction
         }
         if (attack.Contains("Stance"))
         {
-            Debug.Log($"Contains Stance{enemyAI.blockingAction}");
-            if (enemyAI.blockingAction)
+            Debug.Log($"Contains Stance{enemyAI.loopBlockingAction}");
+            if (enemyAI.loopBlockingAction)
             {
                 enemyAI.modifyActionLoop(-1);
                 return;

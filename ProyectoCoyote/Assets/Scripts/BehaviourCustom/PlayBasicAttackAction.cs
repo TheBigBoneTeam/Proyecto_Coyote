@@ -39,7 +39,7 @@ public class PlayBasicAttackAction : UnityAction
         if (action.ToString().Contains("Stance"))
         {
             isBlock = true;
-            if (enemyAI.blockingAction)
+            if (enemyAI.loopBlockingAction)
             {
                 enemyAI.modifyActionLoop(loops);
                 return;

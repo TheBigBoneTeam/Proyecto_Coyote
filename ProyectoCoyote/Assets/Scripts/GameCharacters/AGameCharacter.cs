@@ -45,6 +45,7 @@ public abstract class AGameCharacter :MonoBehaviour
     }
     protected virtual void Start()
     {
+        print($"setStartPos{name}");
         startPos = transform.position;
     }
     public virtual void getHit(int damage, HitDirections direction,bool crit = false)

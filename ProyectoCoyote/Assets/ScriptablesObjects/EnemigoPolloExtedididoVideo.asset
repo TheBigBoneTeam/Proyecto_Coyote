@@ -127,7 +127,7 @@ MonoBehaviour:
         - 5ea39a04-720a-4e2a-887f-93bd69ee054f
       - name: 
         id: 67627175-59bd-4c95-8b31-e07eb0af31bf
-        position: {x: 1261.6, y: 255.19998}
+        position: {x: 1261.6, y: 250.4}
         node:
           rid: 8725330713914900835
         references:
@@ -147,7 +147,7 @@ MonoBehaviour:
         - c8b7781b-ec4b-4317-a8f2-aa5359e341c1
       - name: 
         id: 5ea39a04-720a-4e2a-887f-93bd69ee054f
-        position: {x: 1092.2908, y: -4.640245}
+        position: {x: 1117.6, y: 4}
         node:
           rid: 8725330713914900837
         references:
@@ -806,8 +806,9 @@ MonoBehaviour:
       data:
         BaseAction: Stance
         FirstLetter: A
-        LastLetter: F
+        LastLetter: C
         idle: 0
+        loops: 1
     - rid: 8725330721219543237
       type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -828,6 +829,7 @@ MonoBehaviour:
       data:
         attack: OutsideAttack
         idle: 0
+        loops: 1
     - rid: 8725330732456607931
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:
@@ -872,6 +874,7 @@ MonoBehaviour:
       data:
         action: 10
         idle: 1
+        loops: 1
     - rid: 8725330851897802864
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -1172,6 +1175,7 @@ MonoBehaviour:
       data:
         attack: Bark
         idle: 0
+        loops: 1
     - rid: 8725331144205926632
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

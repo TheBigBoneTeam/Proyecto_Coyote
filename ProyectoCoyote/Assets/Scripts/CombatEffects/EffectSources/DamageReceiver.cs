@@ -18,12 +18,11 @@ public class DamageReceiver:MonoBehaviour
 
     UnityEvent<ReceiverState> receiverStateEvent;
     IPerfectDodgeManager perfectDodgeManager;
-    EnemyAI enemyAI;
+ [SerializeField]   EnemyAI enemyAI;
     List<string> currentBlockShaderParts;
 
    public void checkEffectSource(Attack attack)
     {
-        print(gameObject.name + " checkEffectSource");
         if (enemyAI != null && !enemyAI.isLocked() && attack.owner.GetComponent<Player>() && !attack.GetComponent<baseBullet>()) {
             return;
         }
@@ -32,26 +31,17 @@ public class DamageReceiver:MonoBehaviour
         }
         if (!dodging || !canBeDodged(attack))
         {
-            print("addeffedcts");
             attack.addEffectsToChar(character);
             //aOwnerableEffectSource.addEffectsToObj(character);
         }
         else
         {
-            Debug.Log("Dodge");
             character.DodgeAttack(directions[0]);
             if (parrying && attack.Parreable)
             {
-                Debug.Log("PARRY");
                 if (!perfectDodgeManager.isSlowDown())
                 {
-                    print("startSlowdownn");
                     perfectDodgeManager.StartSlowdown();
-                }
-                else
-                {
-                    print("inSlowDown");
-
                 }
             }
         }
@@ -59,8 +49,6 @@ public class DamageReceiver:MonoBehaviour
 
    protected virtual bool canBeDodged(Attack attack)
     {
-        print("regularcanbedodged");
-
         return checkListIntersect(attack.HitDirectionsList, directions);
     }
     protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
@@ -103,6 +91,7 @@ public class DamageReceiver:MonoBehaviour
     public void setDodge(bool dodge)
     {
         dodging = dodge;
+        print($"SetDodge: {dodge}");
         if (enemyAI)
         {
             foreach (SkinnedMeshRenderer skinnedMeshRenderer in gameObject.GetComponentsInChildren<SkinnedMeshRenderer>())
@@ -113,6 +102,18 @@ public class DamageReceiver:MonoBehaviour
         }
 
         sendDodgeEvent();
+    }
+    public void setDodgeFromEvent(bool dodge, int actionvalue)
+    {
+        if (enemyAI == null)//Es Jugador
+        {
+            setDodge(dodge);
+            return;
+        }
+        if (actionvalue == enemyAI.currentAction)
+        {
+            setDodge(dodge);
+        }
     }
     void changeBlockColor(SkinnedMeshRenderer skinMesh)
     {

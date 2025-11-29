@@ -1,5 +1,6 @@
 ﻿using CombatEffect;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LivingBullet : baseBullet
 {
@@ -20,5 +21,13 @@ public class LivingBullet : baseBullet
     {
         gameObject.layer = LayerMask.NameToLayer("Enemy");
         GetComponent<Enemy>().Die();
+    }
+    public override void restart()
+    {
+        //Si pones el restart se bugea lo pos
+        //base.restart();
+        //gameObject.SetActive(true);
+        //transform.position = ogPosition;
+        attackStateEvent.RemoveAllListeners();
     }
 }

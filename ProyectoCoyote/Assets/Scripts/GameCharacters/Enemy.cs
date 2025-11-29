@@ -101,6 +101,7 @@ public class Enemy : AGameCharacter
     }
     public void activateEnemy(bool active)
     {
+        print($"activateEnemy{name} {active}");
         gameObject.SetActive(ActiveBeforeFight ? true:active);
         GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
         if (active)

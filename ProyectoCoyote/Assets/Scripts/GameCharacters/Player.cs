@@ -64,7 +64,7 @@ public class Player : AGameCharacter
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(StateChange);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(combatAreaChange);
-
+        startPos = transform.position;
         lockOn = GetComponent<EnemyLockOn>();
         hook = GetComponent<Gancho>();
     }

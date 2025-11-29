@@ -42,11 +42,12 @@ public abstract class AGameCharacter :MonoBehaviour
         {
             renderer= GetComponentInChildren<Renderer>();
         }
+        print($"setStartPos{name}{transform.localPosition}");
+        //startPos = transform.position;
     }
     protected virtual void Start()
     {
-        print($"setStartPos{name}");
-        startPos = transform.position;
+
     }
     public virtual void getHit(int damage, HitDirections direction,bool crit = false)
     {

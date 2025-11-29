@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour
     Transform playerObj;
     EnemyLockOn enemyLockOn;
     Gancho hook;
+    HandleOcclusions handleOcclusions;
 
     [Header("Settings")]
     public float rotationSpeed = 5f;
@@ -20,19 +21,13 @@ public class CameraFollow : MonoBehaviour
     private bool lockedCamera;
     private bool hookedCamera;
 
-    [Header("Trasparencias")]
-    private List<MeshRenderer> disabledRenderers = new List<MeshRenderer>();
-    // Shader
-    public Material transparentMaterial;
-    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
-    private List<Renderer> currentHits = new List<Renderer>();
-
     private void Start()
     {
         player = GameObject.Find("Player").transform;
         playerObj = GameObject.Find("Player/Player_02").transform;
         enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
         hook = GameObject.FindAnyObjectByType<Gancho>();
+        handleOcclusions = GameObject.FindAnyObjectByType<HandleOcclusions>();
     }
 
     private void LateUpdate()
@@ -44,7 +39,7 @@ public class CameraFollow : MonoBehaviour
         else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
         else RotateFreePlayer();
 
-       HandleOcclusion(); // HandleTransparency();
+        handleOcclusions.HandleTransparency();
 
     }
 
@@ -102,73 +97,6 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    private void HandleOcclusion()
-    {
-        Vector3 origin = cam.transform.position;
-        Vector3 target = playerObj.position + Vector3.up * 1.5f;
-        Vector3 dir = target - origin;
-        float dist = dir.magnitude;
 
-        // Restaurar renderers 
-        foreach (MeshRenderer rend in disabledRenderers)
-        {
-            if (rend != null) rend.enabled = true;
-        }
-        disabledRenderers.Clear();
-
-        // Raycast hacia el jugador
-        RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
-        foreach (RaycastHit hit in hits)
-        {
-            MeshRenderer rend = hit.collider.GetComponent<MeshRenderer>();
-            if (rend != null)
-            {
-                rend.enabled = false; // Desactivar render
-                disabledRenderers.Add(rend);
-            }
-        }
-    }
-
-    // Para hacerlo con shaders
-    private void HandleTransparency()
-    {
-        Vector3 origin = cam.transform.position;
-        Vector3 target = playerObj.position + Vector3.up * 1.5f;
-        Vector3 dir = target - origin;
-        float dist = dir.magnitude;
-
-        // Restaurar materiales
-        foreach (Renderer rend in currentHits)
-        {
-            if (rend != null && originalMaterials.ContainsKey(rend))
-            {
-                rend.material = originalMaterials[rend];
-            }
-        }
-        currentHits.Clear();
-
-        // Raycast hacia el jugador
-        RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
-        foreach (RaycastHit hit in hits)
-        {
-            Renderer rend = hit.collider.GetComponent<Renderer>();
-            if (rend != null)
-            {
-                // Guardar material original si no lo tenemos
-                if (!originalMaterials.ContainsKey(rend))
-                {
-                    originalMaterials[rend] = rend.material;
-                }
-
-                // Aplicar material transparente
-                rend.material = transparentMaterial;
-
-                // Añadir a lista de objetos transparentes este frame
-                currentHits.Add(rend);
-            }
-        }
-
-
-    }
 
 }

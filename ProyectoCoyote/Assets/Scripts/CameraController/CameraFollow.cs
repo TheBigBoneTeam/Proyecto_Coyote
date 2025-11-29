@@ -145,7 +145,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Para hacerlo con shaders
-    private void HandleTransparency()
+    void HandleTransparency()
     {
         Vector3 origin = cam.transform.position;
         Vector3 target = playerObj.position + Vector3.up * 1.5f;
@@ -156,35 +156,41 @@ public class CameraFollow : MonoBehaviour
         foreach (Renderer rend in currentHits)
         {
             if (rend != null && originalMaterials.ContainsKey(rend))
-            {
                 rend.material = originalMaterials[rend];
-            }
         }
         currentHits.Clear();
 
-        // Raycast hacia el jugador
-        RaycastHit[] hits = Physics.RaycastAll(origin, dir.normalized, dist);
-        foreach (RaycastHit hit in hits)
-        {
-            Renderer rend = hit.collider.GetComponent<Renderer>();
-            var texture = rend.material.GetTexture("_Texture2D");
-            if (rend != null)
-            {
-                // Guardar material original si no lo tenemos
-                if (!originalMaterials.ContainsKey(rend))
-                {
-                    originalMaterials[rend] = rend.material;
-                }
+        // Proyección del jugador en viewport
+        Vector3 playerViewportPos = cam.WorldToViewportPoint(target);
 
-                // Aplicar material transparente
+        Renderer[] allRenderers = Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None);
+        foreach (Renderer rend in allRenderers)
+        {
+            if (rend.transform == playerObj) continue;
+
+            Bounds b = rend.bounds;
+            Vector3 boundsCenter = b.center;
+            Vector3 viewportPos = cam.WorldToViewportPoint(boundsCenter);
+
+            // Chequeo: ¿está en pantalla y entre cámara y jugador?
+            bool isInFront = viewportPos.z < dist;
+            bool overlapsPlayer = Mathf.Abs(viewportPos.x - playerViewportPos.x) < 0.1f &&
+                                  Mathf.Abs(viewportPos.y - playerViewportPos.y) < 0.1f;
+
+            if (isInFront && overlapsPlayer)
+            {
+                if (!originalMaterials.ContainsKey(rend))
+                    originalMaterials[rend] = rend.material;
+
+                var texture = rend.material.GetTexture("_Texture2D");
                 rend.material = transparentMaterial;
                 rend.material.SetTexture("_Texture2D", texture);
-                // Añadir a lista de objetos transparentes este frame
+
                 currentHits.Add(rend);
             }
         }
-
-
     }
+
+
 
 }

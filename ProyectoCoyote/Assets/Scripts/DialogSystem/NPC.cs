@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour
     [SerializeField] string startingLine;
     [SerializeField] StoryAction action;
     [SerializeField] float noticeZone;
-    [SerializeField] Transform lookAtPlayer;
+    [SerializeField] Transform lookAtCamera;
 
     private CameraController CamControl;
     private GameInput gameInput;

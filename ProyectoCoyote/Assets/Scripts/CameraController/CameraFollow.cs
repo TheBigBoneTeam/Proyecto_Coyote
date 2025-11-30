@@ -102,9 +102,9 @@ public class CameraFollow : MonoBehaviour
         Vector3 desiredOffset = distance < minDistanceToSwitch ? closeOffset : playerOffset;
         cameraTarget.position = Vector3.Lerp(cameraTarget.position, desiredOffset, Time.deltaTime * rotationSpeed);
 
-        // Configurar cámara
-        cam.Follow = cameraTarget;
-        cam.LookAt = target;
+        //// Configurar cámara
+        //cam.Follow = cameraTarget;
+        //cam.LookAt = target;
 
         // Rotar el jugador hacia el objetivo
         Vector3 viewDir = targetPos - playerObj.position;

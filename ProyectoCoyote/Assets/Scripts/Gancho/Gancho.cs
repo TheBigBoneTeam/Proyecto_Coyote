@@ -372,7 +372,7 @@ public class Gancho : MonoBehaviour
             return;
         }
 
-        // Actaliza la posici n del localizador del target
+        // Actaliza la posicion del localizador del target
         HookableObjectLocator.position = currentTarget.position;
 
     }

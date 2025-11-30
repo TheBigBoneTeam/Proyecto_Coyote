@@ -9,11 +9,14 @@ public class CameraFollow : MonoBehaviour
     public CinemachineCamera lockOnCamera;
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
+
     Transform player;
     Transform playerObj;
     EnemyLockOn enemyLockOn;
     Gancho hook;
     HandleOcclusions handleOcclusions;
+
+
 
     [Header("Settings")]
     public float rotationSpeed = 5f;
@@ -35,7 +38,7 @@ public class CameraFollow : MonoBehaviour
         lockedCamera = enemyLockOn != null && enemyLockOn.enemyLocked;
         hookedCamera = hook != null && hook.selectingHook;
 
-        if (lockedCamera) HandleTarget(enemyLockOn.currentTarget, lockOnCamera);
+        if (lockedCamera) HandleLockCamera(enemyLockOn.currentTarget, lockOnCamera);
         else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
         else RotateFreePlayer();
 
@@ -64,7 +67,26 @@ public class CameraFollow : MonoBehaviour
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
     }
 
-    // Maneja la lógica común de lock-on y hook.
+    private void HandleLockCamera(Transform enemy, CinemachineCamera cam)
+    {
+        if (enemy == null || cam == null) return;
+        
+        // Rotar el jugador hacia el enemigo
+        Vector3 lookToEnemy = enemy.position - playerObj.position;
+        lookToEnemy.y = 0f;
+        if (lookToEnemy.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(lookToEnemy);
+            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRot, Time.deltaTime * rotationSpeed);
+        }
+        cameraTarget.position = playerObj.position + Vector3.up * 2f;
+
+        // Alinea la rotación base del pivot con la espalda del jugador
+        cameraTarget.rotation = Quaternion.Euler(0f, playerObj.eulerAngles.y, 0f);
+
+    }
+
+    // Hook
     private void HandleTarget(Transform target, CinemachineCamera cam, Vector3 rotationOffset = default)
     {
         if (target == null || cam == null) return;

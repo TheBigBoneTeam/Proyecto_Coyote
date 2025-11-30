@@ -10,11 +10,11 @@ public class ActionBehaviour : StateMachineBehaviour
     bool isIdle;
     protected int actionValue;
     public bool lastAttackInAction = true;
-    bool finished;
-    int loops;
+   protected bool finished;
+   int loops;
     bool canEnd;
     // public bool lastAnimInAction = true;
-    EnemyAI enemyAI;
+  protected  EnemyAI enemyAI;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

@@ -97,8 +97,9 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         if (charging)
         {
             Vector3 pos = transform.position;
-            Vector3 camPos = new Vector3(Camera.main.transform.position.x,transform.position.y,Camera.main.transform.position.y);
+            Vector3 camPos = new Vector3(Camera.main.transform.position.x,transform.position.y,Camera.main.transform.position.z);
             Vector3 obj = (2 * pos) - camPos;
+            Debug.DrawRay(transform.position, obj-pos,Color.red,10);
             GetComponent<baseBullet>().StartBulletMovement(player, transform.position, obj);
         }
     }

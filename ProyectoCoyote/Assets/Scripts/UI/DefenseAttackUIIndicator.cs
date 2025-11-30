@@ -224,6 +224,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         if (middleDanger)
         {
             middleDanger.SetActive(anyOutsideAttack);
+            if(anyOutsideAttack) 
             middleDangerAnimator.Play("Danger");
         }
 

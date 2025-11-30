@@ -27,6 +27,8 @@ public class baseBullet : Attack, IBullet
     [SerializeField] protected Animator anim;
 
  [SerializeField] protected  bool flying;
+
+ protected   Collider Bulcollider;
     protected override void OnTriggerEnter(Collider other)
     {
         print("BulletTrigger" + other.name);
@@ -49,6 +51,7 @@ public class baseBullet : Attack, IBullet
                 flying = false;
                 if (GetComponentInChildren<MeshRenderer>())
                 GetComponentInChildren<MeshRenderer>().enabled = false;
+                print("DestroyBul"+ other.name);
                 beDestroy?.Invoke(this);
                 destroyFunc();
 
@@ -62,6 +65,7 @@ public class baseBullet : Attack, IBullet
                 effect.Activate(null);
             }
             flying = false;
+            print("DestroyBul");
             beDestroy?.Invoke(this);
             destroyFunc();
         }
@@ -87,6 +91,7 @@ public class baseBullet : Attack, IBullet
                 if (lifeTime <= 0)
                 {
                     beDestroy?.Invoke(this);
+                    print("DestroyBul");
                     destroyFunc();
                 }
             }
@@ -110,7 +115,7 @@ public class baseBullet : Attack, IBullet
         flying = true;
         print(this.owner);
         onFire?.Invoke(this);
-        GetComponent<Collider>().enabled = true;
+        Bulcollider.enabled = true;
         
         if (anim)
         {
@@ -124,9 +129,14 @@ public class baseBullet : Attack, IBullet
     {
         base.restart();
         gameObject.SetActive(true);
+        Bulcollider.enabled=false;
         transform.position = ogPosition;
     }
-    
+    protected override void Awake()
+    {
+        base.Awake();
+        Bulcollider = gameObject.GetComponent<Collider>();
+    }
     public void subcribeToShoot(Action<baseBullet> response)
     {
         onFire += response;

@@ -66,10 +66,6 @@ public class EnemyLockOn : MonoBehaviour
 
         // Lectura del input Lock (Q o botón mando)
         bool currentLock = gameInput != null && gameInput.LockPressed;
-        Debug.Log($"GameInput{gameInput == null}");
-        Debug.Log($"prevLockPressed{prevLockPressed}");
-        Debug.Log($"modoGancho{modoGancho}");
-        Debug.Log($"gameInput.LockPressed{gameInput.LockPressed}");
 
         if (currentLock && !prevLockPressed && !modoGancho)
         {

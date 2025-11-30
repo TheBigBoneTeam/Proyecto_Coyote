@@ -66,7 +66,7 @@ namespace CombatEffect
 
         public override void Activate(AGameCharacter character)
         {
-            Debug.Log("Activate Shoot Gun" + owner);
+            Debug.Log("Activate Shoot Gun" + owner + source.transform.position);
             source.GetComponent<Gun>().Shoot(source.transform.position);
         }
 

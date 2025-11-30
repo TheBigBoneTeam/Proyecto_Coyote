@@ -135,11 +135,34 @@ public class GameInput : MonoBehaviour
     {
         DashPressed = false;
         EvadePressed = false;
-                AttackRightPressed = false;
+        AttackRightPressed = false;
         Evade_LeftPressed = false;
         Evade_RightPressed = false;
         AttackPressed = false;
         //LockPressed = false;
+        //HookAimPressed = false;
+        //HookConfirmPressed = false;
+        //Hook_SelectUp = false;
+        //Hook_SelectDown = false;
+        //Hook_SelectLeft = false;
+        //Hook_SelectRight = false;
+        //HookAttractPressed = false;
+        EscapePressed = false;
+    }
+
+
+    private void LateUpdate()
+    {
+        // // Reset pulsaciones únicas
+        // AttackRightPressed = false;
+        //  DashPressed = false;
+
+        ////  COMBATE
+        // AttackPressed = false;
+        //  EvadePressed = false;
+        //  Evade_LeftPressed = false;
+        //  Evade_RightPressed = false;
+        LockPressed = false;
         HookAimPressed = false;
         HookConfirmPressed = false;
         Hook_SelectUp = false;
@@ -147,34 +170,17 @@ public class GameInput : MonoBehaviour
         Hook_SelectLeft = false;
         Hook_SelectRight = false;
         HookAttractPressed = false;
-        EscapePressed = false;
-    }
+        // // GANCHO
+        // HookAimPressed = false;
+        //  HookConfirmPressed = false;
+        //  Hook_SelectDown = false;
+        //  Hook_SelectLeft = false;
+        //  Hook_SelectRight = false;
+        //  Hook_SelectUp = false;
+        //  HookAttractPressed = false;
 
-
-    private void LateUpdate()
-    {
-      // // Reset pulsaciones únicas
-      // AttackRightPressed = false;
-      //  DashPressed = false;
-
-      ////  COMBATE
-      // AttackPressed = false;
-      //  EvadePressed = false;
-      //  Evade_LeftPressed = false;
-      //  Evade_RightPressed = false;
-        LockPressed = false;
-
-      // // GANCHO
-      // HookAimPressed = false;
-      //  HookConfirmPressed = false;
-      //  Hook_SelectDown = false;
-      //  Hook_SelectLeft = false;
-      //  Hook_SelectRight = false;
-      //  Hook_SelectUp = false;
-      //  HookAttractPressed = false;
-
-      ////  MENU
-      // EscapePressed = false;
+        ////  MENU
+        // EscapePressed = false;
     }
 
 

@@ -9,11 +9,13 @@ public class CameraFollow : MonoBehaviour
     public CinemachineCamera lockOnCamera;
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
+
     Transform player;
     Transform playerObj;
     EnemyLockOn enemyLockOn;
     Gancho hook;
     HandleOcclusions handleOcclusions;
+
 
     [Header("Settings")]
     public float rotationSpeed = 5f;

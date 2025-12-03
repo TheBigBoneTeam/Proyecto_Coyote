@@ -260,7 +260,7 @@ public class EnemyAI : MonoBehaviour,IMutex
     private void PlayerHitDefenseEvent(HitDirections arg0)
     {
         print("hitdefenseevent");
-        if (counterOn && isLocked())
+        if (arg0 != HitDirections.Back && counterOn && isLocked())
         {
             _enemyAssetBehaviourRunner.FirePlayerHitDefense();
         }

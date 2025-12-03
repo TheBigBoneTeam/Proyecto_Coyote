@@ -83,6 +83,19 @@ public class AttacksAnimationEvent : MonoBehaviour
             damageReceiver.setInvincible(true);
         }
     }
+    public void setSuperArmor(int armorOn)
+    {
+        if (armorOn == 1)
+        {
+            setDodgeDirection(HitDirections.Back);
+            setDodge(1);
+            setShaderBlockConfiguration(blockShaderConfigurations.None);
+        }
+        else
+        {
+           setDodge(0);
+        }
+    }
     public void setCounterAnim(string anim)
     {
         Counter.setAnim(anim);

@@ -147,7 +147,6 @@ public class GameInput : MonoBehaviour
         //Hook_SelectLeft = false;
         //Hook_SelectRight = false;
         //HookAttractPressed = false;
-        EscapePressed = false;
     }
 
 
@@ -170,6 +169,7 @@ public class GameInput : MonoBehaviour
         Hook_SelectLeft = false;
         Hook_SelectRight = false;
         HookAttractPressed = false;
+        EscapePressed = false;
         // // GANCHO
         // HookAimPressed = false;
         //  HookConfirmPressed = false;

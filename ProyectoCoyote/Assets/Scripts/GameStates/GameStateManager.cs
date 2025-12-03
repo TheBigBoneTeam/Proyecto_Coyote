@@ -42,7 +42,7 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     
     public void PauseUnpause()
     {
-        if (/*canPause &&*/ currentState != GameState.Paused)
+        if (/*canPause &&*/ currentState != GameState.Paused && currentState != GameState.DeathScreen)
         {
             Pause();
         }

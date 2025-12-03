@@ -137,7 +137,7 @@ public class combatAreaManager : MonoBehaviour
     {
         print("enemyDie" + deadChar.name);
 
-      Enemy enemy =deadChar.GetComponent<Enemy>();
+        Enemy enemy = deadChar.GetComponent<Enemy>();
         if (enemy != null)
         {
             if (deadEnemies.Contains(enemy))
@@ -284,6 +284,7 @@ public class combatAreaManager : MonoBehaviour
             {
                 foreach (var enemy in wave.enemies)
                 {
+                    print("unsubscribeToEnemy");
                     enemy.unSubscribeToDie(enemyDie);
                     enemy.restart();
                     //if (i > 0)

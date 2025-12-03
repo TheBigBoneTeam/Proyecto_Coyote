@@ -29,6 +29,7 @@ public class Enemy : AGameCharacter
         if (!dead)
         {
             dead = true;
+            print("dieEnemy"+name);
             dieEvent?.Invoke(this);
             GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
             gameObject.SetActive(false);

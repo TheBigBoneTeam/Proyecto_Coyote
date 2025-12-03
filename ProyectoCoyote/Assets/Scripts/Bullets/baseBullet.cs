@@ -135,6 +135,7 @@ public class baseBullet : Attack, IBullet
     protected override void Awake()
     {
         base.Awake();
+        ogPosition = transform.position;    
         Bulcollider = gameObject.GetComponent<Collider>();
     }
     public void subcribeToShoot(Action<baseBullet> response)

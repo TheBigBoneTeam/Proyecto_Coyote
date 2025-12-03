@@ -111,10 +111,15 @@ public class HandleOcclusions : MonoBehaviour
 
                         // Intentar copiar la textura principal del material original
                         Texture mainTex = null;
+                        Color32 mainColor = Color.black;
 
-                        if (originalMats[i].HasProperty("_Texture2D"))
+                        if (originalMats[i].HasProperty("_BaseMap"))
                         {
-                            mainTex = originalMats[i].GetTexture("_Texture2D");
+                            mainTex = originalMats[i].GetTexture("_BaseMap");
+                        }
+                        if(originalMats[i].HasProperty("_BaseColor"))
+                        {
+                            mainColor = originalMats[i].GetColor("_BaseColor");
                         }
                         else
                         {
@@ -125,14 +130,18 @@ public class HandleOcclusions : MonoBehaviour
                         // Aplicar la textura al material transparente si existe
                         if (mainTex != null)
                         {
-                            if (transparentInstance.HasProperty("_Texture2D"))
+                            if (transparentInstance.HasProperty("_BaseMap"))
                             {
-                                transparentInstance.SetTexture("_Texture2D", mainTex);
+                                transparentInstance.SetTexture("_BaseMap", mainTex);
                             }
                             else
                             {
                                 transparentInstance.mainTexture = mainTex;
                             }
+                        }
+                        if (transparentInstance.HasProperty("_BaseColor"))
+                        {
+                            transparentInstance.SetColor("_BaseColor", mainColor);
                         }
 
                         transparentMats[i] = transparentInstance;

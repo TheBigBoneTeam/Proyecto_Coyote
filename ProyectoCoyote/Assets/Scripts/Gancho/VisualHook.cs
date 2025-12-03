@@ -27,7 +27,7 @@ public class VisualHook : MonoBehaviour
     private enum HookState { Idle, Extending, Retracting, RetractingWithTarget, GoingToTarget }
     private HookState currentState = HookState.Idle;
 
-    private float retractOffset;
+    private Vector3 retractOffset;
     public bool visualHookFinished { get; private set; } = false;
 
     void Start()
@@ -95,7 +95,7 @@ public class VisualHook : MonoBehaviour
         }
     }
 
-    public void RetractHookAtractTarget(float offset)
+    public void RetractHookAtractTarget(Vector3 offset)
     {
         Debug.Log("target = " + target);
         if (target != null)
@@ -110,7 +110,7 @@ public class VisualHook : MonoBehaviour
         
     }
 
-    public void RetractHookGoToTarget(float offset)
+    public void RetractHookGoToTarget(Vector3 offset)
     {
         if (target != null)
         {
@@ -185,7 +185,7 @@ public class VisualHook : MonoBehaviour
         float enemyRadius = GetTargetRadius(target);
         float playerRadius = GetTargetRadius(player.transform);
 
-        float optimalDistance = enemyRadius + playerRadius + retractOffset;
+        float optimalDistance = enemyRadius + playerRadius + retractOffset.x;
 
         Vector3 cameraForward = cam.transform.forward;
         cameraForward.Normalize();
@@ -215,7 +215,7 @@ public class VisualHook : MonoBehaviour
     {
         Debug.Log("Ir a objetivo");
         Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
-        Vector3 frontOfTarget = target.transform.position + (directionToCamera * retractOffset);
+        Vector3 frontOfTarget = target.transform.position + (directionToCamera * retractOffset.x);
 
         // Mueve al jugador hacia esa posici�n
         rb.MovePosition(Vector3.MoveTowards(

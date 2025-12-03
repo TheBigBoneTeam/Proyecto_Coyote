@@ -21,7 +21,7 @@ public class Gancho : MonoBehaviour
     [SerializeField] float maxNoticeZone = 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
-    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0, 0, 0);
+    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0, 2, 0);
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
     [SerializeField] int cooldown = 5;
     private TextMeshProUGUI _cooldownUIText;
@@ -436,7 +436,7 @@ public class Gancho : MonoBehaviour
         //rb.MovePosition(targetPosition);
 
 
-        visualHook.RetractHookGoToTarget(OffsetFinalPos);
+        visualHook.RetractHookGoToTarget(lookAtRotationOffset);
         movement.animator.CrossFade("Grapple_04", 0.2f);
 
     }
@@ -448,7 +448,7 @@ public class Gancho : MonoBehaviour
             StartAttackWindow();
             DisableCollisions (currentTarget);
             isRetracting = true;
-            visualHook.RetractHookAtractTarget(OffsetFinalPos);
+            visualHook.RetractHookAtractTarget(lookAtRotationOffset);
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
@@ -595,7 +595,7 @@ public class Gancho : MonoBehaviour
         if (target == null) return;
 
         Enemy enemy = target.gameObject.GetComponent<Enemy>();
-        Player player = target.GetComponent<Player>();
+        Player player = transform.GetComponent<Player>();
 
         if (enemy == null && player == null) return;
 
@@ -641,6 +641,13 @@ public class Gancho : MonoBehaviour
             rb.useGravity = false;
             //rb.isKinematic = true; // Hacer kinematic para evitar interferencias físicas
         }
+        if (target.GetComponent<GroundClamp>() == null)
+        {
+            GroundClamp clamp = target.gameObject.AddComponent<GroundClamp>();
+            clamp.groundMask = LayerMask.GetMask("whatIsGround"); 
+            clamp.maxCheckDistance = 5f;
+            clamp.skin = 0.1f;
+        }
     }
 
     public void EnableAllCollisions(Transform target)
@@ -648,7 +655,7 @@ public class Gancho : MonoBehaviour
         if (target == null) return;
 
         Enemy enemy = target.gameObject.GetComponent<Enemy>();
-        Player player = target.GetComponent<Player>();
+        Player player = transform.GetComponent<Player>();
 
         if (enemy == null && player == null) return;
 
@@ -692,6 +699,11 @@ public class Gancho : MonoBehaviour
             rb.useGravity = true;
             //rb.isKinematic = false; 
         }
+        GroundClamp clamp = target.GetComponent<GroundClamp>();
+    if (clamp != null)
+    {
+        GameObject.Destroy(clamp);
+    }
     }
     #endregion
 

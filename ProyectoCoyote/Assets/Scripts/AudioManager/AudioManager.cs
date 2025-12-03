@@ -177,6 +177,13 @@ public class AudioManager : MonoBehaviour
                     musicSounds[1].audioSource.volume = 0f;
 
                 break;
+            case "Nivel2.1":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
+                if (musicSounds[1] != null)
+                    musicSounds[1].audioSource.volume = 0f;
+
+                break;
 
             case "TesteoCInematicas":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true,0);
@@ -185,6 +192,13 @@ public class AudioManager : MonoBehaviour
                 break;
 
             case "Nivel3":
+                //AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
+
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Pelea", true, Vector2.zero, true, true, 1);
+
+                break;
+            case "Nivel3.1":
                 //AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
 
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Base", true, Vector2.zero, true, true, 0);

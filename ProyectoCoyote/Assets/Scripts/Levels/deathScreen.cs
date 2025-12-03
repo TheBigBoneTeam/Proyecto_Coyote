@@ -9,7 +9,8 @@ public class deathScreen : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        FindAnyObjectByType<Player>().subscribeToDie((t) => { anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; Services.ServiceLocator.Instance.Get<IGameStateManager>().Die();
+        FindAnyObjectByType<Player>().subscribeToDie((t) => {
+            anim.Play("fadeIn"); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; Services.ServiceLocator.Instance.Get<IGameStateManager>().Die();
         });
     }
 
@@ -24,6 +25,7 @@ public class deathScreen : MonoBehaviour
         Cursor.visible = false; Cursor.lockState = CursorLockMode.Locked;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Services.ServiceLocator.Instance.Get<IGameStateManager>().Restart();
+       
     }
     public void menu()
     {

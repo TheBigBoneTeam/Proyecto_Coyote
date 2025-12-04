@@ -37,3 +37,21 @@ public class EBombEnemy : Editor
         }
     }
 }
+[CustomEditor(typeof(BossEnemy))]
+
+public class EBossEnemy : Editor
+{
+    Vector3 pos;
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        Enemy data = (Enemy)target;
+        if (Application.isPlaying)
+        {
+            if (GUILayout.Button("Die"))
+            {
+                data.Die();
+            }
+        }
+    }
+}

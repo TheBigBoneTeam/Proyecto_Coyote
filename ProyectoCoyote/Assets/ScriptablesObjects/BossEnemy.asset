@@ -413,7 +413,7 @@ MonoBehaviour:
         parentIds:
         - dab6db57-21ce-42d8-ab15-b3f4eafa1c29
         childIds:
-        - 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
+        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
       - name: 
         id: 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
         position: {x: 587.2, y: 608}
@@ -426,7 +426,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 648f58e8-bba0-4185-a89d-5b64e897f6d4
+        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
         childIds: []
       - name: RandomAnim
         id: a5f0c57d-c02a-4024-8b83-5acec2fa4bff
@@ -442,6 +442,31 @@ MonoBehaviour:
         parentIds:
         - dab6db57-21ce-42d8-ab15-b3f4eafa1c29
         childIds: []
+      - name: 
+        id: e5e4bebe-6885-4ba2-8672-49146b05e8b3
+        position: {x: 487.2, y: 423.19998}
+        node:
+          rid: 2751277260353307357
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277260353307358
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
+        childIds: []
+      - name: 
+        id: e272e605-5e6e-4258-a5a4-f8625fc1f7be
+        position: {x: 700.8, y: 507.19998}
+        node:
+          rid: 2751277260353307359
+        references: []
+        parentIds:
+        - 648f58e8-bba0-4185-a89d-5b64e897f6d4
+        childIds:
+        - e5e4bebe-6885-4ba2-8672-49146b05e8b3
+        - 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds:
@@ -567,6 +592,16 @@ MonoBehaviour:
         method:
           componentName: BossEnemyAssetBehaviourRunner
           methodName: GoToRock
+    - rid: 2751277260353307357
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2751277260353307358
+      type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2751277260353307359
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

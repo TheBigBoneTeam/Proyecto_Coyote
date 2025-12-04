@@ -4,19 +4,20 @@ using Services;
 using System;
 using System.Collections;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : AGameCharacter
 {
     combatAreaManager combatArea;
-    [SerializeField] bool ActiveBeforeFight;
+    [SerializeField] protected bool ActiveBeforeFight;
     [SerializeField] GameObject HitParticles, blockParticles, critParticles, blockParticlesPosition;
     Transform initialParticleTransform;
     DamageReceiver damageReceiver;
 
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
-    bool dead;
+    protected bool dead;
 
     protected override void Start()
     {
@@ -35,6 +36,7 @@ public class Enemy : AGameCharacter
             gameObject.SetActive(false);
         }
     }
+   
     public override bool isOtherTeam(AGameCharacter character)
     {
         print(character.name);
@@ -100,7 +102,7 @@ public class Enemy : AGameCharacter
         GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
 
     }
-    public void activateEnemy(bool active)
+    public virtual void activateEnemy(bool active)
     {
         print($"activateEnemy{name} {active}");
         gameObject.SetActive(ActiveBeforeFight ? true:active);
@@ -145,5 +147,6 @@ public class Enemy : AGameCharacter
             }
         }
     }
-
+    
 }
+

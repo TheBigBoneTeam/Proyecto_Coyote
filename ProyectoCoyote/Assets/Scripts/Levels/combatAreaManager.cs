@@ -407,6 +407,10 @@ public class combatAreaManager : MonoBehaviour
     public baseBullet[] getAllBullets()
     {
         List<baseBullet> bullets = new List<baseBullet>();
+        if(currentAmmo == null)
+        {
+            return null;
+        }
         foreach(baseBullet ammo in currentAmmo)
         {
             if(ammo == null) continue;

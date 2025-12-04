@@ -72,13 +72,14 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     }
     public Status checkAmmo()
     {
-        if (enemy.CombatArea.getAllBullets().Length == 0)
+        baseBullet[] bullets = enemy.CombatArea.getAllBullets();
+        if (bullets == null || bullets.Length == 0)
         {
-            hasAmmo = true;
-            return Status.Success;
+            hasAmmo = false;
+            return Status.Failure;
         }
-        hasAmmo = false;
-        return Status.Failure;
+        hasAmmo = true;
+        return Status.Success;
     }
 
     public bool closeToPlayer()

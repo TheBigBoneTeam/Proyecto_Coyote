@@ -73,7 +73,7 @@ public class RunToHeavyAction : UnityAction
         enemyRunner = enemyAI.GetComponent<BombEnemyAssetBehaviourRunner>();
         currentDist = int.MaxValue;
         agent.updateRotation = true;
-        foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
+        //foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
        
         if (enemyRunner.currentHeavy == null)
         {

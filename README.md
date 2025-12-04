@@ -3,7 +3,7 @@
 
 Eduardo Almarza Blasco • Antonio Bernal de Celis • David del Castillo Enríquez • Diego Fernández Manso • Candela Jiménez González • Andrea Luengo Zazo
 
-Version 2.0
+Version 3.0
 
 
 # 0. Introducción
@@ -61,9 +61,6 @@ Quienes los consumían empeoraban con rapidez, y junto con los desagradables sí
 
 En medio de la situación crítica que pasada Pricklytown, un joven llamado Jimmy que había perdido a su madre antes de haberse transformado, empezó a escuchar los discursos de los sectarios pues, debido a su dolor, creyó con firmeza sus palabras que decían que en el oasis había una piedra capaz de devolver a la vida a los fallecidos.
 Jimmy emprendió un viaje hacia el oasis, pero nunca más se volvió a saber de él
-
-<!--El acceso a la jungla de cactus era cada vez más complicado. Según algunos transportistas, desde las afueras de la zona vegetal se escuchaban cánticos inentendibles, pero que parecían atraer con un extraño magnetismo a quienes los escuchaban. Quienes eran capaces de ignorar la llamada la comparaban con la mitología sobre el canto de las sirenas, pero negaban su sobrenaturalidad y atrubuían la atracción al agua fresca del oasis.-->
-
  
 ## 2.3. Personajes principales 
 
@@ -73,8 +70,14 @@ El protagonista de Coyote Requiem, Coyote, es un vaquero que se dirige al oasis 
 
 ### Personajes no jugables (NPCs)
 
-#### El señor del carro
-Este personaje aparece al final del primer nivel y es el encargado de llevar a Coyote al Coñón como recompensa por haber liberado a Pricklytown de los infectados, se trata de un perro humanoide dueño de un carro.
+#### Denébola
+Se trata de una habitante de Pricklytown que entrena a las afueras para poder internar hacer cara a los infectados que de vez en cuando ocupan el pueblo. Para entrenar usa un cactus con un papel que simula ser una cara que funciona como saco de boxeo. Además, es amiga del carretero.
+
+#### El carretero
+Este personaje aparece al final del primer nivel y es el encargado de llevar a Coyote al Coñón como recompensa por haber liberado a Pricklytown de los infectados, se trata de un perro humanoide dueño de un carro. Su papel en la trata es de consejero e intenta convencer a Coyote que abandone el camino del dolor.
+
+#### Carlos
+Carlos antes de convertirse en cactus era acompañante de un sheriff en busca de forajidos. Sus principales criminales buscados eran Coyote y Lince, pero al convertirse perdió parte de sus recuerdos y otros están borrosos.
 
 #### Líder de la secta
 Se trata de uno de los expedicionistas supervivientes que acabó sumiendo el liderazgo del nuevo culto a los cactus. Se trata de un ciervo humanoide infectado que intenta de forma “pacífica” atraer a la gente al oasis.
@@ -138,13 +141,9 @@ Al tratarse de un videojuego en 3D y tener un combate frenético donde te enfren
 El jugador se desplaza en tres dimensiones en el escenario de juego y puede realizar las siguientes acciones: 
 
 ### **Desplazamiento horizontal**
-El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada.
+El jugador puede desplazarse en cualquier dirección horizontalmente y correr de forma limitada mientras no tenga a ningún enemigo fijado.
 ### **Desplazamiento vertical** 
 El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de enemigos. Además de engancharse a zonas concretas para moverse por el mapa. El jugador puede usar el gancho para atraer enemigos hacia él o para acercarse a ellos. Esto depende del botón que pulse el jugador, es decir, si usa el gancho y se mueve hacia delante irá donde esté el gancho, mientras que si se mueve para atrás lo que tenga el gancho será atraido hacia el jugador.
-
-Cuando se ha usado el gancho este tendrá una recarga progresiva y no se podrá usar hasta que se haya cargado de nuevo.
-
-El gancho cuenta con una logitud máxima aproximada de 25 metros y se desactivará la opción de usarlo con enemigos cuando se encuentre a una distancia inferios aproximada de 1,5 metros pues no se considera necesario su utilidad a esas distancias.
 
 ## 3.2. Sistema de combate y vida
 ### **Estilo duelo** 

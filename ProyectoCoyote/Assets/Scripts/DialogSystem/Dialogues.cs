@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+[System.Serializable]
+public class CharacterColor
+{
+    public string characterName;
+    public Color textColor;
+}
 
 public class Dialogues : MonoBehaviour
 {
@@ -18,7 +24,10 @@ public class Dialogues : MonoBehaviour
     private Coroutine typingCoroutine;
     [SerializeField] private float typingSpeed = 0.05f;
     [SerializeField] private float WaitSpeed = 2f;
-    [SerializeField] private UnityEngine.UI.Image dialogueImage;
+    [Header("Colores por personaje")]
+    [SerializeField] private List<CharacterColor> characterColors;
+
+    // [SerializeField] private UnityEngine.UI.Image dialogueImage;
     Action action1 = null;
     private bool isTyping = false;
     private bool isWaitingAfterSkip = false;
@@ -128,29 +137,44 @@ public class Dialogues : MonoBehaviour
             }
 
             typingCoroutine = StartCoroutine(TypeText(currentFullText));
-            ShowImageForCharacter(dialogue.character);
+            // ShowImageForCharacter(dialogue.character);
+            ShowColorForCharacter(dialogue.character);
         }
         else
         {
             dialogueText.text = $"[Diálogo no encontrado para clave: {key}]";
-            dialogueImage.enabled = false;
+            // dialogueImage.enabled = false;
         }
     }
 
-    private void ShowImageForCharacter(string character)
+    //private void ShowImageForCharacter(string character)
+    //{
+    //    Sprite sprite = Resources.Load<Sprite>($"DialogueNPC/{character}");
+    //    if (sprite != null)
+    //    {
+    //        dialogueImage.sprite = sprite;
+    //        dialogueImage.enabled = true;
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning($"Imagen no encontrada para personaje: {character}");
+    //        dialogueImage.enabled = false;
+    //    }
+    //}
+    private void ShowColorForCharacter(string character)
     {
-        Sprite sprite = Resources.Load<Sprite>($"DialogueNPC/{character}");
-        if (sprite != null)
+        CharacterColor config = characterColors.Find(c => c.characterName == character);
+
+        if (config != null)
         {
-            dialogueImage.sprite = sprite;
-            dialogueImage.enabled = true;
+            dialogueText.color = config.textColor;
         }
         else
         {
-            Debug.LogWarning($"Imagen no encontrada para personaje: {character}");
-            dialogueImage.enabled = false;
+            dialogueText.color = Color.white;
         }
     }
+
 
 
     private void ShowNextLine() 

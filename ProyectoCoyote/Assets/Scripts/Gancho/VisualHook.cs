@@ -213,8 +213,16 @@ public class VisualHook : MonoBehaviour
     private void UpdateGoToTarget()
     {
         Debug.Log("Ir a objetivo");
-        Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
-        Vector3 frontOfTarget = target.transform.position + (directionToCamera * retractOffset);
+
+        float enemyRadius = GetTargetRadius(target);
+        float playerRadius = GetTargetRadius(player.transform);
+
+        float optimalDistance = enemyRadius + playerRadius + retractOffset;
+
+        Vector3 cameraForward = cam.transform.forward;
+        cameraForward.Normalize();
+
+        Vector3 frontOfTarget = target.transform.position - (cameraForward * optimalDistance);
 
         // Mueve al jugador hacia esa posici�n
         rb.MovePosition(Vector3.MoveTowards(

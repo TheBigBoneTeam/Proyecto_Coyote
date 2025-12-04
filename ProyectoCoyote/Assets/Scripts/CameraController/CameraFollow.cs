@@ -69,7 +69,7 @@ public class CameraFollow : MonoBehaviour
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
     }
 
-    private void HandleLockCamera(Transform enemy, CinemachineCamera cam)
+    private void HandleLockCamera(Transform enemy, CinemachineCamera cam, Vector3 rotationOffset = default)
     {
         if (enemy == null || cam == null) return;
         
@@ -78,8 +78,11 @@ public class CameraFollow : MonoBehaviour
         lookToEnemy.y = 0f;
         if (lookToEnemy.sqrMagnitude > 0.01f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(lookToEnemy);
-            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRot, Time.deltaTime * rotationSpeed);
+            Quaternion targetRotation = Quaternion.LookRotation(lookToEnemy);
+            if (rotationOffset != Vector3.zero)
+                targetRotation *= Quaternion.Euler(rotationOffset);
+
+            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
 

@@ -24,8 +24,8 @@ public abstract class AGameCharacter :MonoBehaviour
 
   [SerializeField] protected Vector3 startPos;
 
-    [SerializeField]  bool print;
-    [SerializeField] Renderer renderer;
+    [SerializeField]  bool shouldprint;
+    [SerializeField] Renderer[] renderers;
     public Attack attack { get; private set; }
 
 
@@ -38,10 +38,9 @@ public abstract class AGameCharacter :MonoBehaviour
         dodgeAttackEvent = new UnityEvent<HitDirections>();
         dieEvent = new UnityEvent<AGameCharacter>();
         attack = GetComponentInChildren<Attack>();
-        if (renderer == null)
-        {
-            renderer= GetComponentInChildren<Renderer>();
-        }
+      
+            renderers= GetComponentsInChildren<Renderer>();
+        
         print($"setStartPos{name}{transform.localPosition}");
         //startPos = transform.position;
     }
@@ -91,9 +90,12 @@ public abstract class AGameCharacter :MonoBehaviour
         else
         {
             print("GetHit" + extra);
-            GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor("_HitColor", Color.red);
-            GetComponentInChildren<SkinnedMeshRenderer>().material.SetFloat("hitTransparency", .2f);
-            GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 1);
+            foreach (SkinnedMeshRenderer mesh in renderers)
+            {
+                mesh.material.SetColor("_HitColor", Color.red);
+                mesh.material.SetFloat("hitTransparency", .2f);
+                mesh.material.SetInt("_isHit", 1);
+            }
             StartCoroutine("ResetMaterialHit");
             anim.CrossFade("GetHit" + extra, .1f, 0, 0);
             }
@@ -106,7 +108,10 @@ public abstract class AGameCharacter :MonoBehaviour
     public IEnumerator ResetMaterialHit()
     {
         yield return new WaitForSeconds(.3f);
-        GetComponentInChildren<SkinnedMeshRenderer>().material.SetInt("_isHit", 0);
+        foreach (SkinnedMeshRenderer mesh in renderers)
+        {
+            mesh.material.SetInt("_isHit", 0);
+        }
     }
 
     public virtual void getHealed(int points)
@@ -123,15 +128,21 @@ public abstract class AGameCharacter :MonoBehaviour
     {
         float timepass = 0;
 
-        while ((timepass<time))
+        while ((timepass < time))
         {
             yield return new WaitForSeconds(0.1f);
-            renderer.enabled = !renderer.enabled;
+            foreach (SkinnedMeshRenderer mesh in renderers) { 
+
+                mesh.enabled = !mesh.enabled;
+        }
             timepass+=0.1f;
 
-        }   
-        renderer.enabled = true;
-   
+        }
+        foreach (SkinnedMeshRenderer mesh in renderers)
+        {
+
+            mesh.enabled = true;
+        }
         invincible = false;
     }
 

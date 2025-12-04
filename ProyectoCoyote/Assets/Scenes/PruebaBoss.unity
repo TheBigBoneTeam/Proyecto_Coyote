@@ -8628,7 +8628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.size
@@ -8637,7 +8637,7 @@ PrefabInstance:
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 1198754192}
+      objectReference: {fileID: 1782851407}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[1]'
       value: 
@@ -28048,6 +28048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy
       objectReference: {fileID: 0}
+    - target: {fileID: 2720399610303996669, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6335104620132246021, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
       propertyPath: m_StoppingDistance
       value: 3
@@ -28097,17 +28101,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
---- !u!114 &1198754192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2311556821209853738, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
-  m_PrefabInstance: {fileID: 1198754191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1201185275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32103,6 +32096,10 @@ PrefabInstance:
     - target: {fileID: 3991022944688306296, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
       propertyPath: m_Name
       value: EnemigoBasico
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991022944688306296, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4795004792086557465, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43071,6 +43068,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.011624919
       objectReference: {fileID: 0}
+    - target: {fileID: 7785142740099129453, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: renderer
+      value: 
+      objectReference: {fileID: 1947850202}
     - target: {fileID: 7789860426589703775, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -26.91268
@@ -43207,8 +43208,8 @@ MonoBehaviour:
   invincible: 0
   anim: {fileID: 1782851401}
   startPos: {x: 0, y: 0, z: 0}
-  print: 0
-  renderer: {fileID: 0}
+  shouldprint: 0
+  renderers: []
   ActiveBeforeFight: 0
   HitParticles: {fileID: 0}
   blockParticles: {fileID: 0}
@@ -43220,6 +43221,17 @@ MonoBehaviour:
     hasCactusAttack: 0
     life: 10
   bossEnemyAssetBehaviourRunner: {fileID: 1782851405}
+--- !u!114 &1782851407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7785142740099129453, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+  m_PrefabInstance: {fileID: 1782851400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782851403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a0074853fd3ef459ebc1d90fd78926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1783162284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46846,6 +46858,11 @@ BoxCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31f2c437ad844b14ab15350cb4453de4, type: 3}
   m_PrefabInstance: {fileID: 1924574225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &1947850202 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 290564743749997020, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+  m_PrefabInstance: {fileID: 1782851400}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1949574708 stripped
 Transform:

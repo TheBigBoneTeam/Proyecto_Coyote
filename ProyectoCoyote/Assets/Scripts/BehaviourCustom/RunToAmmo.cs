@@ -82,18 +82,22 @@ public class RunToAmmo : UnityAction
         enemyRunner.currentAmmo = null;
         currentDist = int.MaxValue;
         baseBullet bestAmmo = null;
-        foreach (baseBullet bul in enemy.CombatArea.getAllBullets())
+        baseBullet[] allBullets = enemy.CombatArea.getAllBullets();
+        if (allBullets != null)
         {
-            if(bul.owner != null && bul.owner != enemy)
+            foreach (baseBullet bul in allBullets)
             {
-                continue;
-            }
-            float newDist = Vector3.Distance(bul.transform.position,enemyAI.transform.position);
-            if (bestAmmo == null || currentDist > newDist)
-            {
-                currentDist = newDist;
-                bestAmmo = bul;
-                
+                if (bul.owner != null && bul.owner != enemy)
+                {
+                    continue;
+                }
+                float newDist = Vector3.Distance(bul.transform.position, enemyAI.transform.position);
+                if (bestAmmo == null || currentDist > newDist)
+                {
+                    currentDist = newDist;
+                    bestAmmo = bul;
+
+                }
             }
         }
         if (bestAmmo == null)

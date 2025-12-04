@@ -137,13 +137,14 @@ public class combatAreaManager : MonoBehaviour
     {
         print("enemyDie" + deadChar.name);
 
-      Enemy enemy =deadChar.GetComponent<Enemy>();
+        Enemy enemy = deadChar.GetComponent<Enemy>();
         if (enemy != null)
         {
             if (deadEnemies.Contains(enemy))
             {
                 return;
             }
+            print("unsubscribeToDie" + deadChar.name);
                 enemy.unSubscribeToDie(enemyDie);
             if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
             {
@@ -243,9 +244,11 @@ public class combatAreaManager : MonoBehaviour
     }
     void finalStartWave()
     {
+        print("finalStartWave");
         foreach (var enemy in currentWaveData.enemies)
         {
             enemy.activateEnemy(true);
+            print("subscribetodie" + enemy);
             enemy.subscribeToDie(enemyDie);
             baseBullet bullet = enemy.GetComponent<baseBullet>();
             if(bullet != null)
@@ -284,6 +287,7 @@ public class combatAreaManager : MonoBehaviour
             {
                 foreach (var enemy in wave.enemies)
                 {
+                    print("unsubscribeToDie" + enemy.name);
                     enemy.unSubscribeToDie(enemyDie);
                     enemy.restart();
                     //if (i > 0)
@@ -363,8 +367,7 @@ public class combatAreaManager : MonoBehaviour
                 functionalWaveDataList[i].waveFinished = true;
             }
             startArea();
-        }
-        if(currentWaveIndex == wave)
+        }else if (currentWaveIndex == wave)
         {
             startWave();
         }
@@ -404,6 +407,10 @@ public class combatAreaManager : MonoBehaviour
     public baseBullet[] getAllBullets()
     {
         List<baseBullet> bullets = new List<baseBullet>();
+        if(currentAmmo == null)
+        {
+            return null;
+        }
         foreach(baseBullet ammo in currentAmmo)
         {
             if(ammo == null) continue;

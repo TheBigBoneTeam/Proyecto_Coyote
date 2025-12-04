@@ -14,6 +14,7 @@ public class VisualHook : MonoBehaviour
     [SerializeField] public float cableSpeed = 50f;
     [SerializeField] private float handOffset = 0.5f;
     [SerializeField] private Transform leftHand;
+    [SerializeField] private float retractOffset = 0.5f;
 
     private Transform target = null;
     private GameObject player;
@@ -27,7 +28,7 @@ public class VisualHook : MonoBehaviour
     private enum HookState { Idle, Extending, Retracting, RetractingWithTarget, GoingToTarget }
     private HookState currentState = HookState.Idle;
 
-    private float retractOffset;
+    
     public bool visualHookFinished { get; private set; } = false;
 
     void Start()
@@ -95,12 +96,11 @@ public class VisualHook : MonoBehaviour
         }
     }
 
-    public void RetractHookAtractTarget(float offset)
+    public void RetractHookAtractTarget()
     {
         Debug.Log("target = " + target);
         if (target != null)
         {
-            retractOffset = offset;
             currentState = HookState.RetractingWithTarget;
         }
         else 
@@ -110,11 +110,10 @@ public class VisualHook : MonoBehaviour
         
     }
 
-    public void RetractHookGoToTarget(float offset)
+    public void RetractHookGoToTarget()
     {
         if (target != null)
         {
-            retractOffset = offset;
             currentState = HookState.GoingToTarget;
         }else
         {
@@ -202,7 +201,7 @@ public class VisualHook : MonoBehaviour
         lineRenderer.SetPosition(0, GetHookOrigin());
         lineRenderer.SetPosition(1, target.position);
 
-        if (Vector3.Distance(target.position, frontOfPlayer) <= 0.05f)
+        if (Vector3.Distance(target.position, frontOfPlayer) <= optimalDistance)
         {
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
@@ -214,8 +213,16 @@ public class VisualHook : MonoBehaviour
     private void UpdateGoToTarget()
     {
         Debug.Log("Ir a objetivo");
-        Vector3 directionToCamera = (cam.transform.position - target.position).normalized;
-        Vector3 frontOfTarget = target.transform.position + (directionToCamera * retractOffset);
+
+        float enemyRadius = GetTargetRadius(target);
+        float playerRadius = GetTargetRadius(player.transform);
+
+        float optimalDistance = enemyRadius + playerRadius + retractOffset;
+
+        Vector3 cameraForward = cam.transform.forward;
+        cameraForward.Normalize();
+
+        Vector3 frontOfTarget = target.transform.position - (cameraForward * optimalDistance);
 
         // Mueve al jugador hacia esa posici�n
         rb.MovePosition(Vector3.MoveTowards(

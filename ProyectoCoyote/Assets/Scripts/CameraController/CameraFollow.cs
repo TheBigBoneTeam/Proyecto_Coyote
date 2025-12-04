@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     public CinemachineCamera lockOnCamera;
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
+    public Transform HookableObjectLocator;
 
     Transform player;
     Transform playerObj;
@@ -28,6 +29,7 @@ public class CameraFollow : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         playerObj = GameObject.Find("Player/Player_02").transform;
+        HookableObjectLocator = GameObject.Find("HookableObjectLocator").transform;
         enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
         hook = GameObject.FindAnyObjectByType<Gancho>();
         handleOcclusions = GameObject.FindAnyObjectByType<HandleOcclusions>();
@@ -39,10 +41,10 @@ public class CameraFollow : MonoBehaviour
         hookedCamera = hook != null && hook.selectingHook;
 
         if (lockedCamera) HandleLockCamera(enemyLockOn.currentTarget, lockOnCamera);
-        else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera, hook.lookAtRotationOffset);
+        else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera);
         else RotateFreePlayer();
 
-        handleOcclusions.HandleTransparency();
+        // handleOcclusions.HandleTransparency();
 
     }
 
@@ -67,7 +69,7 @@ public class CameraFollow : MonoBehaviour
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
     }
 
-    private void HandleLockCamera(Transform enemy, CinemachineCamera cam)
+    private void HandleLockCamera(Transform enemy, CinemachineCamera cam, Vector3 rotationOffset = default)
     {
         if (enemy == null || cam == null) return;
         
@@ -76,8 +78,11 @@ public class CameraFollow : MonoBehaviour
         lookToEnemy.y = 0f;
         if (lookToEnemy.sqrMagnitude > 0.01f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(lookToEnemy);
-            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRot, Time.deltaTime * rotationSpeed);
+            Quaternion targetRotation = Quaternion.LookRotation(lookToEnemy);
+            if (rotationOffset != Vector3.zero)
+                targetRotation *= Quaternion.Euler(rotationOffset);
+
+            playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
 
@@ -93,18 +98,6 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 targetPos = target.position;
         float distance = Vector3.Distance(playerObj.position, targetPos);
-
-        // Offset
-        Vector3 playerOffset = playerObj.position - playerObj.forward * 2f + Vector3.up * 2f;
-        Vector3 closeOffset = targetPos - playerObj.forward * 2f + Vector3.up * 1f;
-
-        // Elegir offset según distancia y suavizar transición
-        Vector3 desiredOffset = distance < minDistanceToSwitch ? closeOffset : playerOffset;
-        cameraTarget.position = Vector3.Lerp(cameraTarget.position, desiredOffset, Time.deltaTime * rotationSpeed);
-
-        //// Configurar cámara
-        //cam.Follow = cameraTarget;
-        //cam.LookAt = target;
 
         // Rotar el jugador hacia el objetivo
         Vector3 viewDir = targetPos - playerObj.position;

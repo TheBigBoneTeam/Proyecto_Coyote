@@ -11,8 +11,10 @@ public class PauseMenu : MonoBehaviour
     Animator anim;
     [SerializeField] Canvas pauseMenuCanvas;
     string scene;
+    GameInput gameInput;
     void Start()
     {
+        gameInput = FindAnyObjectByType<GameInput>();
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
         pauseMenuCanvas.gameObject.SetActive(false);
         anim = GetComponent<Animator>();
@@ -24,7 +26,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // Input System
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (gameInput.EscapePressed)
             OpenMenu();
     }
 
@@ -32,13 +34,22 @@ public class PauseMenu : MonoBehaviour
     { 
         gameStateManager.PauseUnpause();
         GameState state = gameStateManager.getState();
-        if (state.Equals(GameState.Paused))
+        if (state.Equals(GameState.Paused) )
         {
             pauseMenuCanvas.gameObject.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        Debug.Log("Estado: "+ state);
+        else
+        {
+            pauseMenuCanvas.gameObject.SetActive(false);
+            if (!state.Equals(GameState.DeathScreen))
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+            Debug.Log("Estado: " + state);
     }
     
 

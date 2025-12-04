@@ -5568,10 +5568,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.59438914
+  m_Radius: 0.78
   m_Height: 2.4955504
   m_Direction: 1
-  m_Center: {x: 0.020000031, y: 0.014954686, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0.19}
 --- !u!120 &3948545024617165540
 LineRenderer:
   serializedVersion: 2
@@ -5711,6 +5711,7 @@ MonoBehaviour:
   dodging: 0
   Invincible: 0
   parrying: 0
+  enemyAI: {fileID: 0}
 --- !u!1 &7333409097424894539
 GameObject:
   m_ObjectHideFlags: 0
@@ -11488,6 +11489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8338732ad89774a956b9982499f7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionValue: 0
 --- !u!114 &2865005522874814266
 MonoBehaviour:
   m_ObjectHideFlags: 0

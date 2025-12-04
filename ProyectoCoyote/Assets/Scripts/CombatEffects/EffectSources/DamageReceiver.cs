@@ -53,6 +53,10 @@ public class DamageReceiver:MonoBehaviour
     }
     protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
     {
+        if (directions.Contains(HitDirections.Back))
+        {
+            return true;
+        }
         foreach (HitDirections hitDirection in hitDirections)
         {
            if(directions.Contains(hitDirection))
@@ -152,6 +156,13 @@ public class DamageReceiver:MonoBehaviour
                 break;
             case blockShaderConfigurations.None:
                 break;
+        }
+        if (enemyAI)
+        {
+            foreach (SkinnedMeshRenderer skinnedMeshRenderer in gameObject.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                changeBlockColor(skinnedMeshRenderer);
+            }
         }
     }
     public void setInvincible(bool invincible)

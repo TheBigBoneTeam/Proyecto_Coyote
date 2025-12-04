@@ -44,7 +44,7 @@ public class CameraFollow : MonoBehaviour
         else if (hookedCamera) HandleTarget(hook.currentTarget, hookCamera);
         else RotateFreePlayer();
 
-        handleOcclusions.HandleTransparency();
+        // handleOcclusions.HandleTransparency();
 
     }
 

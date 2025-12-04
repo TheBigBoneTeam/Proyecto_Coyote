@@ -21,7 +21,7 @@ public class Gancho : MonoBehaviour
     [SerializeField] float maxNoticeZone = 100;
     [SerializeField] float minNoticeZone = 10;
     [SerializeField] float lookAtSmoothing;
-    [SerializeField] public Vector3 lookAtRotationOffset = new Vector3(0, 2, 0);
+    [SerializeField] public float groundClamp = 1.7f;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 120;
     [SerializeField] int cooldown = 5;
     private TextMeshProUGUI _cooldownUIText;
@@ -47,7 +47,7 @@ public class Gancho : MonoBehaviour
     HookController hookController;
     private Image _hookImageUI;
     HookObserver hookObserver;
-    private bool isRetracting = false; 
+    public bool isRetracting = false; 
 
 
     public bool selectingHook;
@@ -436,7 +436,7 @@ public class Gancho : MonoBehaviour
         //rb.MovePosition(targetPosition);
 
 
-        visualHook.RetractHookGoToTarget(lookAtRotationOffset);
+        visualHook.RetractHookGoToTarget();
         movement.animator.CrossFade("Grapple_04", 0.2f);
 
     }
@@ -448,7 +448,7 @@ public class Gancho : MonoBehaviour
             StartAttackWindow();
             DisableCollisions (currentTarget);
             isRetracting = true;
-            visualHook.RetractHookAtractTarget(lookAtRotationOffset);
+            visualHook.RetractHookAtractTarget();
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
@@ -646,7 +646,7 @@ public class Gancho : MonoBehaviour
             GroundClamp clamp = target.gameObject.AddComponent<GroundClamp>();
             clamp.groundMask = LayerMask.GetMask("whatIsGround"); 
             clamp.maxCheckDistance = 5f;
-            clamp.skin = 0.1f;
+            clamp.skin = groundClamp;
         }
     }
 

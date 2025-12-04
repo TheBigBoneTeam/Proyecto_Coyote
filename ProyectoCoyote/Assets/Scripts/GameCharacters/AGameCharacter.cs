@@ -39,7 +39,7 @@ public abstract class AGameCharacter :MonoBehaviour
         dieEvent = new UnityEvent<AGameCharacter>();
         attack = GetComponentInChildren<Attack>();
       
-            renderers= GetComponentsInChildren<Renderer>();
+            renderers= GetComponentsInChildren<SkinnedMeshRenderer>();
         
         print($"setStartPos{name}{transform.localPosition}");
         //startPos = transform.position;
@@ -108,7 +108,7 @@ public abstract class AGameCharacter :MonoBehaviour
     public IEnumerator ResetMaterialHit()
     {
         yield return new WaitForSeconds(.3f);
-        foreach (SkinnedMeshRenderer mesh in renderers)
+        foreach (Renderer mesh in renderers)
         {
             mesh.material.SetInt("_isHit", 0);
         }
@@ -131,14 +131,14 @@ public abstract class AGameCharacter :MonoBehaviour
         while ((timepass < time))
         {
             yield return new WaitForSeconds(0.1f);
-            foreach (SkinnedMeshRenderer mesh in renderers) { 
+            foreach (Renderer mesh in renderers) { 
 
                 mesh.enabled = !mesh.enabled;
         }
             timepass+=0.1f;
 
         }
-        foreach (SkinnedMeshRenderer mesh in renderers)
+        foreach (Renderer mesh in renderers)
         {
 
             mesh.enabled = true;

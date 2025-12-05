@@ -64,6 +64,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     private void CombatAreaChange(combatAreaManager manager, WaveData data)
     {
         print("combatAreaChange");
+       
         restart();
         if (middleDanger)
             middleDanger.SetActive(false);
@@ -85,6 +86,10 @@ public class DefenseAttackUIIndicator : MonoBehaviour
                     gun.subscribeToShoot(shootGun);
                 }
             }
+        }
+        if (data.spawner != null)
+        {
+            data.spawner.subscribeToCactusAttackChange(AttackHappeneed);
         }
     }
 

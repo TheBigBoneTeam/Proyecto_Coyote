@@ -2,6 +2,9 @@ using Services;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UIElements.Experimental;
+using static Attack;
 
 public class CactusSpawner : MonoBehaviour
 {
@@ -17,7 +20,10 @@ public class CactusSpawner : MonoBehaviour
     Coroutine currentNumerator;
   [SerializeField]  bool on;
     IGameStateManager gamestate;
- [SerializeField] public bool On
+
+    public UnityEvent<AttackState> cactusAttackEvent;
+
+    [SerializeField] public bool On
     {
         get => on; set { setPause(value); }
 
@@ -68,6 +74,7 @@ public class CactusSpawner : MonoBehaviour
         StopCoroutine(currentNumerator);
         currentNumerator = null;
         setSpawnTime(-1);
+        cactusAttackEvent?.RemoveAllListeners();
     }
 
     private void stateChange(object sender, stateData e)
@@ -153,5 +160,21 @@ public class CactusSpawner : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, radius);
 
+    }
+  public void cactusAttack(AttackState state)
+    {
+        cactusAttackEvent?.Invoke(state);
+    }
+
+    public void subscribeToCactusAttackChange(UnityAction<AttackState> response)
+    {
+        cactusAttackEvent.AddListener(response);
+        // response(new AttackState(HitDirections.ToArray(),owner));
+
+    }
+
+    public void unSubscribeToStateChange(UnityAction<AttackState> response)
+    {
+        cactusAttackEvent.RemoveListener(response);
     }
 }

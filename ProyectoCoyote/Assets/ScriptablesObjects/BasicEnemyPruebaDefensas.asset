@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: CombatBT
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 389.6, y: 254.4}
+        position: {x: 529.84045, y: 177.11203}
         node:
           rid: 5634289709124943963
         references:
@@ -32,11 +32,13 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
+        - 26e026ad-0dcf-4735-b858-e695e4aee4ec
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
+        - 872dd027-603a-4bd4-94ea-190430fb21c3
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
-        position: {x: 1164, y: 194.4}
+        position: {x: 829.8502, y: 708.4846}
         node:
           rid: 5634289709124943965
         references:
@@ -51,7 +53,7 @@ MonoBehaviour:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
       - name: ToReactionTransition (PUSH)
         id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 762.4, y: 149.6}
+        position: {x: 566.4413, y: 555.1788}
         node:
           rid: 5634289709124943967
         references:
@@ -71,7 +73,7 @@ MonoBehaviour:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
       - name: EndReaction
         id: 952d107d-ad5f-4496-b6a6-0f45781bf631
-        position: {x: 793.6, y: 363.19998}
+        position: {x: 834.7851, y: 403.8116}
         node:
           rid: 8725330695958036570
         references:
@@ -87,6 +89,61 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
+        childIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: Counter
+        id: 4045bf14-b074-48cd-857d-1ab4820ff453
+        position: {x: 229.94942, y: -352.24933}
+        node:
+          rid: 2751277282843951855
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277282843951856
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 872dd027-603a-4bd4-94ea-190430fb21c3
+        childIds:
+        - 26e026ad-0dcf-4735-b858-e695e4aee4ec
+      - name: TCounterTransition(PUSH)
+        id: 872dd027-603a-4bd4-94ea-190430fb21c3
+        position: {x: 225.14381, y: -46.839424}
+        node:
+          rid: 2751277282843951857
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds:
+        - 4045bf14-b074-48cd-857d-1ab4820ff453
+      - name: EndCounter
+        id: 26e026ad-0dcf-4735-b858-e695e4aee4ec
+        position: {x: 508, y: -184}
+        node:
+          rid: 2751277282843951859
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 4045bf14-b074-48cd-857d-1ab4820ff453
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
     - name: newbehaviourgraph
@@ -352,7 +409,8 @@ MonoBehaviour:
       targetNodeIds:
       - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
     - name: PlayerHitDefensePerception
-      targetNodeIds: []
+      targetNodeIds:
+      - 872dd027-603a-4bd4-94ea-190430fb21c3
     - name: EndQueue
       targetNodeIds:
       - 8493d51c-cd68-4807-a7df-bec4561c1ff5
@@ -361,6 +419,20 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2751277282843951855
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 2751277282843951856
+      type: {class: DoCounter, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2751277282843951857
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 2751277282843951859
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 2
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

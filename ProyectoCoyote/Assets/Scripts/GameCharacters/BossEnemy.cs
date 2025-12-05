@@ -3,8 +3,14 @@ using UnityEngine;
 public class BossEnemy : Enemy
 {
     [SerializeField] int currentFase;
+
   [SerializeField]  BossFaseData[] bossFases;
     [SerializeField] BossEnemyAssetBehaviourRunner bossEnemyAssetBehaviourRunner;
+
+    [SerializeField] int baseCactusAttackTime;
+
+    [SerializeField] CactusSpawner spawner;
+    
     public bool NextFase()
     {
         currentFase++;
@@ -25,6 +31,15 @@ public class BossEnemy : Enemy
         else
         {
             setHealthPoint(_maxHealthPoint);
+        }
+        spawner.On = bossFases[currentFase].hasCactusAttack;
+        if (bossFases[currentFase].cactusAttackTime != -1)
+        {
+            spawner.setSpawnTime(baseCactusAttackTime);
+        }
+        else
+        {
+            spawner.setSpawnTime(bossFases[currentFase].cactusAttackTime);
         }
     }
     public override void Die()
@@ -66,11 +81,13 @@ class BossFaseData
 {
     public BossState state;
     public bool hasCactusAttack;
+    public int cactusAttackTime;
     public int life;
-    public BossFaseData(BossState state, bool hasCactusAttack, int life)
+    public BossFaseData(BossState state, bool hasCactusAttack, int life, int cactusAttackTime)
     {
         this.state = state;
         this.hasCactusAttack = hasCactusAttack;
         this.life = life;
+        this.cactusAttackTime = cactusAttackTime;
     }
 }

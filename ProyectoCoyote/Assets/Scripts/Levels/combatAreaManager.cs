@@ -26,6 +26,8 @@ public class combatAreaManager : MonoBehaviour
     [SerializeField] GameObject areaColliders;
     [SerializeField] Collider triggerCollider;
 
+    [SerializeField]  CactusSpawner cactusSpawner;
+
 
     Cover[] currentCovers;
     List<baseBullet> currentAmmo;
@@ -119,7 +121,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint,cactusSpawner));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -451,7 +453,8 @@ public class WaveData
     public baseBullet[] ammo;
     public Transform spawnPoint;
    public bool waveFinished;
-   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint)
+    public CactusSpawner spawner;
+   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint,CactusSpawner spawner = null)
     {
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
@@ -461,5 +464,6 @@ public class WaveData
         this.ammo = ammo;
         this.spawnPoint = spawnpoint;
         waveFinished = false;
+        this.spawner = spawner;
     }
 }

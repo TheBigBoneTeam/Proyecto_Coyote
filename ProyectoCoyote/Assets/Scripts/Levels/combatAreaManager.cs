@@ -28,6 +28,7 @@ public class combatAreaManager : MonoBehaviour
 
     [SerializeField]  CactusSpawner cactusSpawner;
 
+    [SerializeField] Vector3 initCameraDirection = Vector3.forward;
 
     Cover[] currentCovers;
     List<baseBullet> currentAmmo;
@@ -121,7 +122,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint,cactusSpawner));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint,cactusSpawner, initCameraDirection));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -148,7 +149,7 @@ public class combatAreaManager : MonoBehaviour
             }
             print("unsubscribeToDie" + deadChar.name);
                 enemy.unSubscribeToDie(enemyDie);
-            if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BullEnemyAssetBehaviourRunner>() != null)
+            if (enemy.GetComponent<baseBullet>() != null || enemy.GetComponent<BombEnemyAssetBehaviourRunner>() != null)
             {
                 ammoChangeAction?.Invoke();
                 currentAmmo.Remove(enemy.GetComponent<baseBullet>());
@@ -454,7 +455,8 @@ public class WaveData
     public Transform spawnPoint;
    public bool waveFinished;
     public CactusSpawner spawner;
-   public WaveData(Enemy[] enemies, StoryAction storyAction ,bool autoStart,GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint,CactusSpawner spawner = null)
+    public Vector3 initCameraDirection;
+   public WaveData(Enemy[] enemies, StoryAction storyAction, bool autoStart, GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint, CactusSpawner spawner = null, Vector3 initCameraDirection = default)
     {
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
@@ -465,5 +467,6 @@ public class WaveData
         this.spawnPoint = spawnpoint;
         waveFinished = false;
         this.spawner = spawner;
+        this.initCameraDirection = initCameraDirection;
     }
 }

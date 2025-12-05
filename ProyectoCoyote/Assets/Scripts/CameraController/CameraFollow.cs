@@ -1,3 +1,5 @@
+using Services;
+using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -34,12 +36,19 @@ public class CameraFollow : MonoBehaviour
         enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
         hook = GameObject.FindAnyObjectByType<Gancho>();
         handleOcclusions = GameObject.FindAnyObjectByType<HandleOcclusions>();
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(InitialCameraDirection);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(AreaChange);
 
         InitialCameraDirection();
 
 
     }
 
+    private void AreaChange(combatAreaManager manager, WaveData data)
+    {
+        setInitialCameraDirection(data.initCameraDirection);
+
+    }
 
     private void LateUpdate()
     {
@@ -141,6 +150,10 @@ public class CameraFollow : MonoBehaviour
             }
         }
 
+    }
+    public void setInitialCameraDirection(Vector3 initialCameraDirection)
+    {
+        this.initialFacingDirection = initialCameraDirection;
     }
 
 }

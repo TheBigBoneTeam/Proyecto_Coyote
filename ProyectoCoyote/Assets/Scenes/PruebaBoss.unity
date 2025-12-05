@@ -8641,7 +8641,7 @@ PrefabInstance:
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 627079031}
+      objectReference: {fileID: 1781752858}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[1]'
       value: 
@@ -15421,17 +15421,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec0375865400d8f499d1f8b562679cb1, type: 3}
   m_PrefabInstance: {fileID: 626488743}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &627079031 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2311556821209853738, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
-  m_PrefabInstance: {fileID: 1198754191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &629589211
 GameObject:
   m_ObjectHideFlags: 0
@@ -25726,6 +25715,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 891953781}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: extraEnemyWaves.Array.data[0].initCameraDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: extraEnemyWaves.Array.data[0].initCameraDirection.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].beforeWavestoryAction.actionType
       value: 4
       objectReference: {fileID: 0}
@@ -28588,7 +28585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2720399610303996669, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6335104620132246021, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
       propertyPath: m_StoppingDistance
@@ -43346,6 +43343,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 549ca32db1ffd3445b12d9d3d8b7dc4d, type: 3}
+--- !u!114 &1781752858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 521909176474050532, guid: 5d2f868731053af4ea43e44c6c51cae8, type: 3}
+  m_PrefabInstance: {fileID: 1319848545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1782597129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31f2c437ad844b14ab15350cb4453de4, type: 3}

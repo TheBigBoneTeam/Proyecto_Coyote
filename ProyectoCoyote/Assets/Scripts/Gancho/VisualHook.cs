@@ -152,8 +152,17 @@ public class VisualHook : MonoBehaviour
         if (currentCableLength >= totalDistance)
         {
             lineRenderer.SetPosition(1, end);
-            currentState = HookState.Idle;
+            
+            var hookableObject = hook.GetHookableObject();
+            if (hookableObject.dodge)
+            {
+                currentState = HookState.Retracting;
+                
+            }
+            else currentState = HookState.Idle;
         }
+
+        
     }
 
     private void UpdateRetractCable()

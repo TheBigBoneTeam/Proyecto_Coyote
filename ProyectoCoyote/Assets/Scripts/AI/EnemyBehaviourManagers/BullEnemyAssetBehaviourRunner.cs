@@ -46,11 +46,11 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         base.restart();
         enemy.CombatArea.subscribeToAmmoChange(checkAmmoVoid);
     }
-    private void OnDisable()
+    protected override void OnDisable()
     {
         if (enemy && enemy.CombatArea)
         {
-            
+
             enemy.CombatArea.unSubscribeToAmmoChange(checkAmmoVoid);
             if (currentAmmo != null && currentAmmo.owner == (AGameCharacter)enemy)
             {
@@ -65,7 +65,9 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             }
             _currentAmmo = null;
         }
+        base.OnDisable();
     }
+
     void checkAmmoVoid()
     {
         checkAmmo();

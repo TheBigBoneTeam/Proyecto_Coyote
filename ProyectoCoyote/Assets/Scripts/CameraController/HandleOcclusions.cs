@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -25,7 +24,16 @@ public class HandleOcclusions : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         playerObj = GameObject.Find("Player/Player_02").transform;
-        
+        cachedRenderers = FindObjectsByType<Renderer>(FindObjectsSortMode.None);
+
+        initiallyActiveRenderers = new HashSet<Renderer>();
+        foreach (Renderer rend in cachedRenderers)
+        {
+            if (rend.enabled)
+            {
+                initiallyActiveRenderers.Add(rend);
+            }
+        }
     }
 
     #region Gestión de Transparencias
@@ -45,8 +53,6 @@ public class HandleOcclusions : MonoBehaviour
         }
         disabledRenderers.Clear();
 
-        LookForRenderers();
-
         // Desactivar renderers
         foreach (MeshRenderer rend in cachedRenderers)
         {
@@ -56,22 +62,11 @@ public class HandleOcclusions : MonoBehaviour
             if (DontApplyToObject(rend))
                 continue;
 
-            rend.enabled = false;
-            disabledRenderers.Add(rend);
             
-        }
-    }
-
-    private void LookForRenderers()
-    {
-        cachedRenderers = FindObjectsByType<Renderer>(FindObjectsSortMode.None);
-
-        initiallyActiveRenderers = new HashSet<Renderer>();
-        foreach (Renderer rend in cachedRenderers)
-        {
-            if (rend.enabled)
+            if (IsRendererObstructingView(rend, origin, target, dist))
             {
-                initiallyActiveRenderers.Add(rend);
+                rend.enabled = false;
+                disabledRenderers.Add(rend);
             }
         }
     }

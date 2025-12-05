@@ -9,6 +9,7 @@ public class Player : AGameCharacter
     PlayerMovement playerMovement;
     EnemyLockOn lockOn;
     Gancho hook;
+    [SerializeField] int parryHeal = 1;
 
     public override void Die()
     {
@@ -45,7 +46,7 @@ public class Player : AGameCharacter
     }
     public void onParry()
     {
-        getHealed(storedDamage);
+        getHealed(parryHeal);
         storedDamage = 0;
     }
     public override void restart()
@@ -75,7 +76,7 @@ public class Player : AGameCharacter
 
     private void combatAreaChange(combatAreaManager manager, WaveData data)
     {
-        setHealthPoint(_maxHealthPoint);
+       // setHealthPoint(_maxHealthPoint);
     }
 
     private void StateChange(object sender, stateData e)

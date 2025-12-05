@@ -445,10 +445,13 @@ public class Gancho : MonoBehaviour
 
         if (hookableObject.canBeHooked)
         {
+            
+            hookableObject.getHook();
             StartAttackWindow();
             DisableCollisions (currentTarget);
             isRetracting = true;
             visualHook.RetractHookAtractTarget();
+
             //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
             //Vector3 targetPosition = cam.transform.position + directionToCamera * -OffsetFinalPos;
             //currentTarget.position = targetPosition;
@@ -470,7 +473,7 @@ public class Gancho : MonoBehaviour
 
         Debug.Log("Ha llegado a su destino");
 
-        if(currentTarget.gameObject.GetComponent<Enemy>())
+        if(currentTarget.gameObject.GetComponent<Enemy>() && !currentTarget.GetComponent<HookableObject>().Dodge)
         {
             Debug.Log("Es enemigo - Lockeando...");
             lockOn.currentTarget = currentTarget;

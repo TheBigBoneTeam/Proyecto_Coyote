@@ -99,7 +99,7 @@ public class VisualHook : MonoBehaviour
     public void RetractHookAtractTarget()
     {
         Debug.Log("target = " + target);
-        if (target != null)
+        if (target != null && !hook.GetHookableObject().Dodge)
         {
 
             currentState = HookState.RetractingWithTarget;
@@ -107,18 +107,20 @@ public class VisualHook : MonoBehaviour
         else 
         {
             ResetVisualHook();
+            hook.ResetTarget();
         }
         
     }
 
     public void RetractHookGoToTarget()
     {
-        if (target != null)
+        if (target != null && !hook.GetHookableObject().Dodge)
         {
             currentState = HookState.GoingToTarget;
         }else
         {
             ResetVisualHook();
+            hook.ResetTarget();
         }
 
     }
@@ -157,9 +159,8 @@ public class VisualHook : MonoBehaviour
             var hookableObject = hook.GetHookableObject();
             if (hookableObject.Dodge)
             {
-                currentState = HookState.Retracting;
                 hookableObject.dodgeHook();
-
+                currentState = HookState.Retracting;
             }
             else
             {
@@ -187,12 +188,14 @@ public class VisualHook : MonoBehaviour
         if (currentCableLength <= 0f)
         {
             lineRenderer.enabled = false;
-            if(hook.GetHookableObject() != null && hook.GetHookableObject().Dodge)
+            if (hook.GetHookableObject() != null && hook.GetHookableObject().Dodge)
             {
                 hook.WaitForHookFinish();
             }
             ResetVisualHook();
             currentState = HookState.Idle;
+
+
         }
     }
 

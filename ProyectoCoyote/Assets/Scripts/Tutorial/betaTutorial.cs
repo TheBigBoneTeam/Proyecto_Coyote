@@ -76,7 +76,7 @@ namespace tutorial
              gamestateManager = ServiceLocator.Instance.Get<IGameStateManager>();
             gamestateManager.startCombatforTutorial();
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
-            machine.AddTransition(controles, ataquep1, new FuncPredicate(() => controles.checkMovement()));
+            machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
 
             machine.AddTransition(camara, lockear, new FuncPredicate(() => camara.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
@@ -140,7 +140,7 @@ namespace tutorial
         public override void OnEnter()
         {
             
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ más /movimiento/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>. Solo podrás esquivar si estás fijando a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ o /esquivar/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>. Solo podrás esquivar si estás fijando a un enemigo");
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -237,7 +237,7 @@ namespace tutorial
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora que sabes esquivar vamos a lo importante. Tienes 3 direcciones de ataque: centro, izquierda y derecha. Para atacar presione /pegar/. Solo podrás atacar mientras fijas a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora que sabes esquivar vamos a lo importante. Tienes 2 direcciones de ataque: izquierda y derecha. Para atacar presione /pegar/ o /pegar/. Solo podrás atacar mientras fijas a un enemigo");
         }
         public void enemyHit(int currentLife)
         {

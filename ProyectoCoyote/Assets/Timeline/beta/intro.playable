@@ -175,6 +175,23 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &-8227469589340594093
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
+  m_Name: AudioPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 22d4f5e9b7a02404cbfe8c2e010a7075, type: 3}
+  m_Loop: 0
+  m_bufferingTime: 0.1
+  m_ClipProperties:
+    volume: 0.55
 --- !u!74 &-7674751262168935964
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -544,7 +561,7 @@ MonoBehaviour:
   dialogText: "A lo largo del desierto se habla de la leyenda de un hombre incapaz
     de superar la p\xE9rdida de su ser m\xE1s querido. Un hombre que sacrific\xF3
     todo lo que ten\xEDa y m\xE1s para verlo una \xFAltima vez. Un hombre que cruz\xF3
-    las peligrosas tierras de priclytown para completar su objetivo."
+    las peligrosas tierras de Pricklytown para completar su objetivo."
   leaveTime: 2
   startChars: 0
   startCharsList: 
@@ -1414,7 +1431,7 @@ MonoBehaviour:
   dialogText: "A lo largo del desierto se habla de la leyenda de un hombre incapaz
     de superar la p\xE9rdida de su ser m\xE1s querido. Un hombre que sacrific\xF3
     todo lo que ten\xEDa y m\xE1s para verlo una \xFAltima vez. Un hombre que cruz\xF3
-    las peligrosas tierras de priclytown para completar su objetivo.\n\nSu nombre
+    las peligrosas tierras de Pricklytown para completar su objetivo.\n\nSu nombre
     era Coyote."
   leaveTime: 4
   startChars: 271
@@ -1998,6 +2015,102 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &-243963808123561876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b22792c3b570444eb18cb78c2af3a74, type: 3}
+  m_Name: Audio Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0
+    m_ClipIn: 0.5166666666666667
+    m_Asset: {fileID: -8227469589340594093}
+    m_Duration: 58.483333333333334
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -243963808123561876}
+    m_EaseInDuration: 0.5
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 1
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: 0. TRAILER INTRO
+  m_Markers:
+    m_Objects: []
+  m_TrackProperties:
+    volume: 1
+    stereoPan: 0
+    spatialBlend: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,6 +2141,7 @@ MonoBehaviour:
   - {fileID: 912264489281551508}
   - {fileID: 8344783631120848466}
   - {fileID: -1276700053526762224}
+  - {fileID: -243963808123561876}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60

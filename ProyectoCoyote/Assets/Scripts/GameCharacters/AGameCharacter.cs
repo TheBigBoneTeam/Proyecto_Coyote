@@ -234,6 +234,11 @@ public abstract class AGameCharacter :MonoBehaviour
             anim.CrossFade(stateName,.1f, 0, 0);
        // }
     }
+    public void PlayAnimationCut(string stateName)
+    {
+        anim.Play(stateName);
+
+    }
     public void subscribeToLifeChange(UnityAction<int> response)
     {
         lifeUpdate.AddListener(response);

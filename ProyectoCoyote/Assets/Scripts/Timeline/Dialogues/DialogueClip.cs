@@ -12,7 +12,7 @@ public class DialogueClip : PlayableAsset
     public int startChars;
     public int[] startCharsList;
     public float width;
-    public int personaje;
+    public VocesDialogo personaje;
   //  public Language LanguageForEditor;
 
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)

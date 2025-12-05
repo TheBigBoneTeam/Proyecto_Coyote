@@ -12,6 +12,8 @@ public class playerAttackehaviour : StateMachineBehaviour
         {
             move.setCanMove(false);
             move.setCanAttack(false);
+            move.setCanDodge(false);
+
         }
     }
 
@@ -28,6 +30,8 @@ public class playerAttackehaviour : StateMachineBehaviour
         {
             move.setCanMove(true);
             move.setCanAttack(true);
+            move.setCanDodge(true);
+
         }
     }
 

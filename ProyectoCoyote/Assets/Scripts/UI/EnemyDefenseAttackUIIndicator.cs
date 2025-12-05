@@ -25,7 +25,10 @@ public class EnemyDefenseAttackUIIndicator:DefenseAttackUIIndicator
     }
     void Dodge(HitDirections d)
     {
-
+        if((int)d >= dodgeUISignalers.Length)
+        {
+            return;
+        }
         dodgeUISignalers[(int)d].GetComponent<Image>().color = new Color(0, 1, 0, 1);
 
     }

@@ -317,7 +317,7 @@ public class EnemyAI : MonoBehaviour,IMutex
        reactionOn = reaction;
     }
 
-    
+   
 
     #region Gizmos
     private void OnDrawGizmos()
@@ -384,4 +384,5 @@ public class EnemyAI : MonoBehaviour,IMutex
         setOnAction(false);
        setLoopBlockingAction(false);
     }
+    
 }

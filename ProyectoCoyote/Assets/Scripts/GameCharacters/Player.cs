@@ -20,6 +20,7 @@ public class Player : AGameCharacter
         dieEvent.Invoke(this);
         playerMovement.setCanAttack(false);
         playerMovement.setCanMove(false);
+        playerMovement.setCanDodge(false);
         print("PERDISTE");
     }
     public override bool isOtherTeam(AGameCharacter character)
@@ -57,6 +58,8 @@ public class Player : AGameCharacter
         GetComponent<Rigidbody>().isKinematic = false;
         playerMovement.setCanAttack(true);
         playerMovement.setCanMove(true);
+        playerMovement.setCanDodge(true);
+
         lockOn.ResetTarget();
         hook.ResetTarget();
     }
@@ -90,6 +93,7 @@ public class Player : AGameCharacter
                 case GameState.Cutscene:
                 playerMovement.setCanMove(false);
                 playerMovement.setCanAttack(false);
+                playerMovement.setCanDodge(false);
 
                 break;
 
@@ -98,6 +102,7 @@ public class Player : AGameCharacter
         {
             playerMovement.setCanMove(true);
             playerMovement.setCanAttack(true);
+            playerMovement.setCanDodge(true);
         }
     }
 

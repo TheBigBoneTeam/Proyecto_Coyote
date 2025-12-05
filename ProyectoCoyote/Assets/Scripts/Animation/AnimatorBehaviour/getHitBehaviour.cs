@@ -17,6 +17,7 @@ public class getHitBehaviour : StateMachineBehaviour
         {
             move.setCanMove(false);
             move.setCanAttack(false);
+            move.setCanDodge(false);
         }
         else
         {
@@ -47,6 +48,7 @@ public class getHitBehaviour : StateMachineBehaviour
             {
                 move.setCanMove(true);
                 move.setCanAttack(true);
+                move.setCanDodge(true);
             }
             if (enemyAssetRunner != null)
             {

@@ -97,6 +97,12 @@ public class Enemy : AGameCharacter
         base.restart();
         gameObject.SetActive(ActiveBeforeFight);
         GetComponent<EnemyAI>().restart();
+        if (GetComponent<HookableObject>() != null)
+        {
+            GetComponent<HookableObject>().restart();
+
+        }
+
         GetComponentInChildren<Attack>().restart();
 
         GetComponent<EnemyAssetBehaviourRunner>().enabled = false;

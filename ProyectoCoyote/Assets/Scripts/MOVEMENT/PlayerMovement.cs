@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 delayedForceToApply;
 
     public bool dashing;
+    public bool canDodge = true;
     #endregion
 
     #region Variables de control
@@ -507,7 +508,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (lockMovement)
         {
-            if ((gameInput.Evade_LeftPressed || gameInput.EvadePressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f)
+            if ((gameInput.Evade_LeftPressed || gameInput.EvadePressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f && canDodge)
             {
                 Dodge();
             }
@@ -551,7 +552,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dodge()
     {
-        if (dodgeCdTimer > 0) return;
+        if (dodgeCdTimer > 0 || !canDodge) return;
         else dodgeCdTimer = dodgeCd;
 
         dashing = true;
@@ -636,6 +637,16 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = v;
     }
+
+    internal void setCanDodge(bool v)
+    {
+        canDodge = v;
+    }
+
+    public bool getCanDodge()
+    {
+        return canDodge;
+    }
     #endregion
 
     #region GameState Integración
@@ -675,6 +686,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = false;
         canAttack = false;
+        canDodge = false;
         dashing = false;
         hooking = false;
 
@@ -692,6 +704,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         canAttack = true;
+        canDodge = true;
 
         if (rb != null)
         {
@@ -711,6 +724,7 @@ public class PlayerMovement : MonoBehaviour
         print("me muero");
         canMove = false;
         canAttack = false;
+        canDodge = false;
         dashing = false;
         hooking = false;
         lockMovement = false;
@@ -762,6 +776,7 @@ public class PlayerMovement : MonoBehaviour
         // Reset de estado
         canMove = true;
         canAttack = true;
+        canDodge = true;
         moveSpeed = walkSpeed;
         desiredMoveSpeed = walkSpeed;
         state = MovementState.walking;

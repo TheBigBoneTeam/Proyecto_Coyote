@@ -141,6 +141,10 @@ public class AudioManager : MonoBehaviour
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Menu", true, Vector2.zero, true, true);
                 break;
 
+            case "cinematicaIntro":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Intro", false, Vector2.zero, true, true);
+                break;
+
             case "tutorialBeta":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Dummy", true, Vector2.zero, true, true);
                 // Debug.LogWarning("Musica reproducida exitosamente");

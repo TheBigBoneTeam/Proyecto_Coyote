@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [Header("References")]
     public Camera cam;
+    public CinemachineCamera freeCamera;
     public CinemachineCamera lockOnCamera;
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
@@ -17,8 +18,8 @@ public class CameraFollow : MonoBehaviour
     Gancho hook;
     HandleOcclusions handleOcclusions;
 
-
-
+    [Header("Initial Settings")]
+    public Vector3 initialFacingDirection = Vector3.forward;
     [Header("Settings")]
     public float rotationSpeed = 5f;
     public float minDistanceToSwitch = 3f;
@@ -33,7 +34,12 @@ public class CameraFollow : MonoBehaviour
         enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
         hook = GameObject.FindAnyObjectByType<Gancho>();
         handleOcclusions = GameObject.FindAnyObjectByType<HandleOcclusions>();
+
+        InitialCameraDirection();
+
+
     }
+
 
     private void LateUpdate()
     {
@@ -112,6 +118,29 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    public void InitialCameraDirection() 
+    {
+        if (initialFacingDirection != Vector3.zero)
+        {
+            Quaternion startRotation = Quaternion.LookRotation(initialFacingDirection.normalized, Vector3.up);
+            playerObj.rotation = startRotation;
 
+            cameraTarget.position = playerObj.position + Vector3.up * 2f;
+
+            var orbitalFollow = freeCamera.GetComponent<CinemachineOrbitalFollow>();
+            if (orbitalFollow != null)
+            {
+                float targetYaw = startRotation.eulerAngles.y;
+
+                orbitalFollow.HorizontalAxis.Value = targetYaw;
+
+                freeCamera.ForceCameraPosition(
+                    cameraTarget.position + startRotation * Vector3.back * 5f, // Ajusta la distancia según necesites
+                    startRotation
+                );
+            }
+        }
+
+    }
 
 }

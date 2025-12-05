@@ -22309,37 +22309,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2098993168}
   m_SourcePrefab: {fileID: 100100000, guid: cf848d23370308b44aa9e3585887b71d, type: 3}
---- !u!1 &875588970
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 875588971}
-  m_Layer: 0
-  m_Name: BulletSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &875588971
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875588970}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1782851402}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &878140882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43601,6 +43570,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.05829272
       objectReference: {fileID: 0}
+    - target: {fileID: 1739359507618206778, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 1782851401}
     - target: {fileID: 1837773354329516478, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: System
       value: 
@@ -43649,6 +43622,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 155.37917
       objectReference: {fileID: 0}
+    - target: {fileID: 2581277938799203006, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: rockTeleportPoint
+      value: 
+      objectReference: {fileID: 1991591614}
+    - target: {fileID: 2581277938799203006, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: groundTeleportPoint
+      value: 
+      objectReference: {fileID: 1439541501}
     - target: {fileID: 2610209188050783530, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -53.914783
@@ -43813,6 +43794,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 73.2826
       objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossEnemyAssetBehaviourRunner
+      value: 
+      objectReference: {fileID: 1782851405}
     - target: {fileID: 6314996030971366563, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 1.3613404
@@ -43904,107 +43889,27 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1837773354329516478, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
     - {fileID: 2355806531120987156, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4084431529716820018, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 875588971}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2547937317134907897, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1782851404}
-    - targetCorrespondingSourceObject: {fileID: 2547937317134907897, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1782851405}
-    - targetCorrespondingSourceObject: {fileID: 2547937317134907897, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1782851406}
+    m_RemovedGameObjects:
+    - {fileID: 250467076418817161, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
---- !u!95 &1782851401 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6153062160765132037, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
-  m_PrefabInstance: {fileID: 1782851400}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1782851402 stripped
+--- !u!4 &1782851401 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4084431529716820018, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2629283156661750131, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
   m_PrefabInstance: {fileID: 1782851400}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1782851403 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2547937317134907897, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+--- !u!114 &1782851405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2581277938799203006, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
   m_PrefabInstance: {fileID: 1782851400}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1782851404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782851403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa5d74b9c1f7414985988aa1d74a9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 5769535899948514715, guid: ae914c95d3d0c4d44bc4bbe582ee7210, type: 3}
-  bulletSpawnPoint: {fileID: 875588971}
---- !u!114 &1782851405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782851403}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cb21ef472d5ee54c87c26e9aced5d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executeOnLoop: 1
-  interruptOptions: 2
-  _eventHandler:
-    debugStatusChanges: 0
-    identifier: 
-  System: {fileID: 11400000, guid: f2e9eacfe778b774696fe11690a42dd9, type: 2}
-  <bossState>k__BackingField: 0
-  rockTeleportPoint: {fileID: 1991591614}
-  groundTeleportPoint: {fileID: 1439541501}
---- !u!114 &1782851406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782851403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a0074853fd3ef459ebc1d90fd78926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <HealthPoint>k__BackingField: 10
-  _maxHealthPoint: 10
-  inmuneStun: 0
-  invTimeAfterHit: 1
-  invincible: 0
-  anim: {fileID: 1782851401}
-  startPos: {x: 0, y: 0, z: 0}
-  shouldprint: 0
-  renderers: []
-  ActiveBeforeFight: 0
-  HitParticles: {fileID: 0}
-  blockParticles: {fileID: 0}
-  critParticles: {fileID: 0}
-  blockParticlesPosition: {fileID: 0}
-  currentFase: 0
-  bossFases:
-  - state: 0
-    hasCactusAttack: 0
-    cactusAttackTime: 0
-    life: 10
-  bossEnemyAssetBehaviourRunner: {fileID: 1782851405}
-  baseCactusAttackTime: 0
-  spawner: {fileID: 0}
 --- !u!1001 &1783162284
 PrefabInstance:
   m_ObjectHideFlags: 0

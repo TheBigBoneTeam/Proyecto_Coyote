@@ -1,4 +1,5 @@
 using System;
+using TreeEditor;
 using UnityEngine;
 
 public class SpawnableCactus : AGameCharacter,IPoolObject
@@ -10,8 +11,8 @@ public class SpawnableCactus : AGameCharacter,IPoolObject
 
     public void Clean()
     {
-        anim.Play("Idle");
-        
+        anim.Play("Idle", 0, 0);
+
 
     }
     public override bool isOtherTeam(AGameCharacter character)
@@ -33,9 +34,10 @@ public class SpawnableCactus : AGameCharacter,IPoolObject
   
     internal void startAttack(Player player)
     {
-
-        transform.LookAt(player.transform.position);
-        anim.Play("Attack",0,0);
+        Vector3 look = player.transform.position;
+        look.y = transform.position.y;
+        transform.LookAt(look);
+        anim.Play("Armature_Appear", 0,0);
         
         print(attackState == null);
         spawner.cactusAttack(attackState);

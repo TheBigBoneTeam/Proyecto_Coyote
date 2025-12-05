@@ -24,6 +24,8 @@ namespace CombatEffect
                 objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.yellow;
                 objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(false);
                 objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(false);
+                objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanDodge(false);
+
                 objCharacter.gameObject.GetComponentInParent<EnemyLockOn>().ResetTarget();
             }
         }
@@ -35,6 +37,8 @@ namespace CombatEffect
             objCharacter.gameObject.GetComponentInChildren<Renderer>().material.color = Color.gray;
             objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanMove(true);
             objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanAttack(true);
+            objCharacter.gameObject.GetComponentInParent<PlayerMovement>().setCanDodge(true);
+
 
         }
 

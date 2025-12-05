@@ -135,8 +135,9 @@ public class CactusSpawner : MonoBehaviour
         do
         {
             Vector2 circle = UnityEngine.Random.insideUnitCircle;
-            Vector3 Pos = new Vector3(circle.x, 0, circle.y);
+            Vector3 Pos = new Vector3(circle.x,0, circle.y);
             pos = player.transform.position + (Pos * PlayerDist);
+            pos.y = transform.position.y;
             emergencyTries++;
         } while (Vector3.Distance(transform.position, pos) > radius && emergencyTries <= 99);
         if (emergencyTries > 99)

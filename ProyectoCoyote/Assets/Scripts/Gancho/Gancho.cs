@@ -497,19 +497,22 @@ public class Gancho : MonoBehaviour
 
         if (!hookAttackBuffer)
         {
-            ResetTarget(skipAnimation: true);
+            ResetTarget(skipAnimation: false);
+            Debug.Log("No patada");
         }
         else
         {
+            Debug.Log("Gancho patada");
             yield return new WaitForSeconds(0.5f);
-            movement.RestartMovement();
-            _hookImageUI.gameObject.SetActive(false);
-            selectingHook = false;
-            isHooked = false;
-            isRetracting = false;
-            _hookImageUI.color = Color.white;
-            StopAttackWindow();
-
+            ResetTarget(skipAnimation: true);
+            //movement.RestartMovement();
+            //_hookImageUI.gameObject.SetActive(false);
+            //selectingHook = false;
+            //isHooked = false;
+            //isRetracting = false;
+            //_hookImageUI.color = Color.white;
+            //StopAttackWindow();
+            hookAttackBuffer = false;
             Debug.Log("Gancho reseteado");
         }
     }
@@ -529,12 +532,13 @@ public class Gancho : MonoBehaviour
     private void StopAttackWindow()
     {
         isInAttackWindow = false;
-        hookAttackBuffer = false;
+        
 
         if (attackWindowCoroutine != null)
         {
             StopCoroutine(attackWindowCoroutine);
             attackWindowCoroutine = null;
+            ResetTarget(skipAnimation: true);
         }
     }
 
@@ -569,7 +573,7 @@ public class Gancho : MonoBehaviour
 
 
 
-        hookAttackBuffer = false;
+        // hookAttackBuffer = false;
         StopAttackWindow();
     }
     #endregion

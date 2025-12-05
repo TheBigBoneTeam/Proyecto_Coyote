@@ -1,8 +1,7 @@
-﻿using UnityEngine.Playables;
+﻿using Services;
 using TMPro;
 using UnityEngine;
-using Unity.VisualScripting.FullSerializer;
-using Services;
+using UnityEngine.Playables;
 
 public class DialogueBehaviour : PlayableBehaviour
 {
@@ -15,7 +14,8 @@ public class DialogueBehaviour : PlayableBehaviour
     int maxVisible;
     public float width;
     bool first = true;
-    public int personaje;
+    // public int personaje;
+    public VocesDialogo personaje;
     // public int lang;
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
@@ -81,22 +81,52 @@ public class DialogueBehaviour : PlayableBehaviour
 
                         //if (numeroAleatorio == 0)
                         //{
-                        //    if (musicmana.instance != null)
+                        //    if (AudioManager.Instance != null)
                         //    {
                         //        if (personaje == 0) // es la prota
                         //        {
-                        //            m.instance.playsoundpitch("snd_voicemedium", 0.2f);
+                        //            AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
                         //        }
                         //        else if (personaje == 1) // es el cura
                         //        {
-                        //            musicmanager.instance.playsoundpitch("snd_voicehigh", 0.2f);
+                        //            AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.2f);
                         //        }
                         //        else // otros
                         //        {
-                        //            musicmanager.instance.playsoundpitch("snd_voicelow", 0.2f);
+                        //            AudioManager.Instance.PlayDialogue("Cinematicas - Voz Denebola", 0.2f);
                         //        }
                         //    }
                         //}
+
+                        if (AudioManager.Instance != null)
+                        {
+                            switch (personaje)
+                            {
+                                case VocesDialogo.Coyote:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
+                                    break;
+
+                                case VocesDialogo.Perro:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.2f);
+                                    break;
+
+                                case VocesDialogo.Denebola:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Denebola", 0.2f);
+                                    break;
+
+                                case VocesDialogo.Lince:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Lince", 0.2f);
+                                    break;
+
+                                case VocesDialogo.Cultista:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultista", 0.2f);
+                                    break;
+
+                                case VocesDialogo.Carlos:
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Carlos", 0.2f);
+                                    break;
+                            }
+                        }
                     }
 
 
@@ -118,4 +148,14 @@ public class DialogueBehaviour : PlayableBehaviour
         //}
 
     }
+}
+
+public enum VocesDialogo
+{
+    Perro,
+    Coyote,
+    Denebola,
+    Lince,
+    Carlos,
+    Cultista
 }

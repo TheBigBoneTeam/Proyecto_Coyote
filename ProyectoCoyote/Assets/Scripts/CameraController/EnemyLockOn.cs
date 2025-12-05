@@ -73,6 +73,15 @@ public class EnemyLockOn : MonoBehaviour
         }
         prevLockPressed = currentLock;
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            currentTarget = FindDirectionalTarget(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            currentTarget = FindDirectionalTarget(true);
+        }
+
         if (enemyLocked)
         {
             LookAtTarget();
@@ -99,7 +108,6 @@ public class EnemyLockOn : MonoBehaviour
             FoundTarget();
         else
             ResetTarget();
-
         Debug.Log("Modo Lock activado");
         AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
     }
@@ -203,6 +211,47 @@ public class EnemyLockOn : MonoBehaviour
         }
 
         return closestTarget;
+    }
+    private Transform FindDirectionalTarget(bool toRight)
+    {
+        if (currentTarget == null) return null;
+
+        Collider[] candidates = Physics.OverlapSphere(currentTarget.position, noticeZone, targetLayers);
+        Transform bestTarget = null;
+        float bestScore = Mathf.Infinity;
+
+        foreach (var c in candidates)
+        {
+            Transform candidate = c.transform;
+            if (candidate == currentTarget) continue;
+
+            Vector3 offset = candidate.position - currentTarget.position;
+            float distance = Vector3.Distance(candidate.position, currentTarget.position);
+
+            Vector3 rightDir = cam.right;
+            float dotRight = Vector3.Dot(offset.normalized, rightDir);
+            float verticalOffset = offset.y;
+
+            bool isValid = false;
+
+            // Horizontal 
+            if (toRight && dotRight > 0.1f) isValid = true;
+            if (!toRight && dotRight < -0.1f) isValid = true;
+
+            if (!isValid) continue;
+            if (Blocked(candidate.position, candidate.transform)) continue;
+
+            float angle = Vector3.Angle(cam.forward, offset);
+            float score = distance + angle * 0.1f;
+
+            if (score < bestScore)
+            {
+                bestScore = score;
+                bestTarget = candidate;
+            }
+        }
+
+        return bestTarget != null ? bestTarget : currentTarget;
     }
 
     // Detectar el centro actual del objetivo

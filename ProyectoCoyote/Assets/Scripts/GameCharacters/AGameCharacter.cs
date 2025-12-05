@@ -16,7 +16,7 @@ public abstract class AGameCharacter :MonoBehaviour
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  protected bool invincible;
-    [SerializeField] Animator anim;
+    [SerializeField] protected Animator anim;
 
     UnityEvent<int> lifeUpdate;
    protected UnityEvent<AGameCharacter> dieEvent;

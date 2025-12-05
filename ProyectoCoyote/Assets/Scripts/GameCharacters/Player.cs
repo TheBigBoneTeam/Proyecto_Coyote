@@ -23,7 +23,11 @@ public class Player : AGameCharacter
     }
     public override bool isOtherTeam(AGameCharacter character)
     {
-        return character.GetComponent<Enemy>() != null;
+        
+        if (character.GetComponent<Enemy>() != null)
+            return true;
+        //if(character.GetComponent<SpawnableCactus>() != null) return true;
+        return false;
     }
     public override void getHit(int damage,HitDirections directions, bool crit = false)
     {

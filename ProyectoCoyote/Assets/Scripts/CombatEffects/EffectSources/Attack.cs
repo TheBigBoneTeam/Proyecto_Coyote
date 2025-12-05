@@ -36,6 +36,7 @@ public class Attack : ATouchCombatEffectSource
 
         }
     }
+    
     public override void addEffectsToChar(AGameCharacter charac)
     {
         foreach (var effect in effects)
@@ -55,6 +56,9 @@ public class Attack : ATouchCombatEffectSource
     protected virtual void Awake()
     {
         attackStateEvent = new UnityEvent<AttackState>();
+        if(_attackData != null){
+            LoadData(_attackData);
+        }
 
     }
     protected virtual void Start()

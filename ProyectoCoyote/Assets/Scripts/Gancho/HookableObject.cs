@@ -60,6 +60,10 @@ public class HookableObject : MonoBehaviour
     public void endHook()
     {
         enemyAssetBehaviourRunner.enabled = true;
+        if (GetComponent<BossEnemy>() != null)
+        {
+            GetComponent<BossEnemy>().NextFase();
+        }
 
     }
     public void dodgeHook()

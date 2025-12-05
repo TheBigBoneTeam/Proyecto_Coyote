@@ -24,10 +24,17 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         director = GetComponent<PlayableDirector>();
         canvasgroup = GetComponentInChildren<CanvasGroup>();
         cutsceneSkip = GetComponentInChildren<cutsceneSkipController>();
+        director.timeUpdateMode = DirectorUpdateMode.DSPClock;
     }
 
     // Update is called once per frame
-
+    private IEnumerator PlayWithSync()
+    {
+        director.RebuildGraph();
+        yield return null;
+        director.time = 0;
+        director.Play();
+    }
 
     public void startCutscene(PlayableAsset timeline, Action endAction, CutsceneData data)
     {
@@ -45,11 +52,9 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         {
             canvasgroup.alpha = 1;
             SkipingCutscene = false;
-            director.time = 0;
             cutscenPlaying = true;
-            director.Play();
+            StartCoroutine(PlayWithSync());
             cutsceneSkip.startCutscene(data);
-
         }
         else
         {
@@ -144,10 +149,12 @@ public interface IcutsceneManager : IService
     public bool isSkipingCutscene();
 }
 
+
+
 [System.Serializable]   
 public class CutsceneData
 {
-  public  PlayableAsset cutscene;
+    public  PlayableAsset cutscene;
     public GameObject[] objectsToTurnOff;
     public GameObject[] objectsToTurnOn;
     public bool canBeSkipped;

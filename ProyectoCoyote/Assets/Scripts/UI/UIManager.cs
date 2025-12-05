@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
             case GameState.DeathScreen:
                 lifeGroup.alpha = 0;
                 break;
+            case GameState.NonCombat:
+                lifeGroup.alpha = 1;
+                slowDownGroup.alpha = 0;
+
+                break;
         }
 
 

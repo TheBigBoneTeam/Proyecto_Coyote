@@ -116,7 +116,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void getHealed(int points)
     {
-        HealthPoint += points;
+        HealthPoint = Mathf.Min( HealthPoint + points,_maxHealthPoint);
         lifeUpdate.Invoke(HealthPoint);
     }
     public void setHealthPoint(int points)

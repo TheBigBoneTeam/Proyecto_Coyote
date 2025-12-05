@@ -152,13 +152,9 @@ El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esq
 ### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
-  * Izquierda: input de dirección izquierda (A/joystick) + golpear.
+  * Izquierda: input de ataque izquierdo (click izquierdo/...).
 
-  * Centro: sin input de dirección + golpear.
-
-  * Derecha: input de dirección derecha (D/joystick) + golpear.
-
-En el caso que el jugador utilice el input de dirección adelante o atrás junto al botón de ataque se interpretará como un ataque al centro.
+  * Derecha: input de ataque derecho (click derecho/...).
 
 Si un jugador ataca en la misma dirección en la que un enemigo está bloqueando, esté podrá realizará un contratrataque al jugador poniendolo en un aprieto.
 
@@ -169,11 +165,11 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
 
   - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la dirección indicada por la interfaz para no sufrir daño observando 3 posibles direcciones:
     
-    * Izquierda: input de dirección izquierda (A/joystick) + esquivar.
+    * Izquierda: input de dirección izquierda (A/....).
 
-    * Centro: input de dirección izquierda (S/joystick) + esquivar.
+    * Derecha: input de dirección derecha (D/....).
 
-    * Derecha: input de dirección derecha (D/joystick) + esquivar.
+    * Detrás: input de esquive trasero(espacio/....)
 
     La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también bloquearán los ataques del jugador bajo las mismas normas.
 
@@ -183,10 +179,10 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
   
   * Si el jugador no ha fijado ningún enemigo, puede esquivar ataques o disparos gracias a los frames de invulnerabilidad que otorga el esquive. Un esquive en el momento exacto puede ayudar a salir de la trayectoria del ataque o a omitirlo por completo si se hace correctamente.
 
-  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar sin direccionamiento** para realizar un esquive que le protegerá de recibir daño.
+  * Si el jugador tiene fijado a un enemigo, el resto entrarán en un estado de "Kung fu Circle", donde se turnarán para atacar al jugador de manera controlada, complicando los enfrentamientos con varios enemigos al mismo tiempo, pero haciéndolos plausibles. Si el jugador va a recibir un ataque o disparo de un enemigo no fijado mientras está en estado de combate, puede introducer el imput **esquivar detrás** para realizar un esquive que le protegerá de recibir daño.
 
 
-De esta forma se recompensa por realizar esquives correctos, fomentando esto como mecánica principal de la jugabilidad de "Proyecto Coyote".
+De esta forma se recompensa por realizar esquives correctos, fomentando esto como mecánica principal de la jugabilidad de "Coyote Requiem".
 
 <img width="517" height="436" alt="image" src="https://github.com/user-attachments/assets/aa28e730-dd0e-4687-9f02-7e6f53d38f46" />
   
@@ -197,7 +193,7 @@ El jugador contará con 7 puntos de vida los cuales de pueden recargar de dos ma
 
  * **Contraataque**. Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o no, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
- * **Acabar área combate**: al terminar con todos los enemigos de una zona en concreto el jugador recuperará toda la vida perdida.
+ * **Matamdo enemigos**: al matar a un enemigo, este suelta una bola que equivale a ciertos puntos de vida dependiendo del enemigo.
 
   <img src="./Imagenes_README/DiagramaVida.png" alt="DiagramaVida" style="width: 70%"/>
 
@@ -226,7 +222,7 @@ IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq.
 ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq.
 LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
 ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
-ESQUIVE/PARRY         | ESPACIO     | Botón esquive          |  Equis
+ESQUIVE/PARRY         | a,d     | Botón esquive          |  Equis
 DASH                  | ESPACIO     | Botón dash             |  Equis
 
 

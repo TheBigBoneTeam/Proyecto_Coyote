@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8280160572580057167, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 8280160572580057167, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8660,7 +8660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6257046788735200814, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.38
+      value: -20.03
       objectReference: {fileID: 0}
     - target: {fileID: 6257046788735200814, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24956,6 +24956,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: initCameraDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: initCameraDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: initCovers.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -25071,6 +25079,10 @@ PrefabInstance:
       propertyPath: 'extraEnemyWaves.Array.data[0].enemies.Array.data[2]'
       value: 
       objectReference: {fileID: 891953781}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: extraEnemyWaves.Array.data[0].initCameraDirection.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].beforeWavestoryAction.actionType
       value: 4
@@ -34871,6 +34883,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.10424898
       objectReference: {fileID: 0}
+    - target: {fileID: 2556590257125662241, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
+      propertyPath: initialFacingDirection.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556590257125662241, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
+      propertyPath: initialFacingDirection.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9949556
@@ -40675,6 +40695,10 @@ PrefabInstance:
       propertyPath: 'extraEnemyWaves.Array.data[0].enemies.Array.data[3]'
       value: 
       objectReference: {fileID: 998771827}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: extraEnemyWaves.Array.data[0].initCameraDirection.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].beforeWavestoryAction.actionType
       value: 4

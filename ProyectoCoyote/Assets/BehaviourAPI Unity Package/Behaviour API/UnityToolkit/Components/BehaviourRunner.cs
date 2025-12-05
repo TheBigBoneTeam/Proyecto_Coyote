@@ -50,9 +50,9 @@ namespace BehaviourAPI.UnityToolkit
 
         private void Update() => OnUpdated();
 
-        private void OnEnable() => OnDisableSystem();
+        protected virtual void OnEnable() => OnDisableSystem();
 
-        private void OnDisable() => OnEnableSystem();
+        protected virtual void OnDisable() => OnEnableSystem();
 
 
         /// <summary>

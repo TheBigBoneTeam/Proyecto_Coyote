@@ -76,7 +76,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             ChosenAsAmmo.Fire();
         }
     }
-    private void OnDisable()
+    protected override void OnDisable()
     {
         if (charging)
         {
@@ -90,6 +90,8 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
                 _currentHeavy = null;
             }
         }
+        base.OnDisable();
+
     }
     public void hitByPlayer()
     {

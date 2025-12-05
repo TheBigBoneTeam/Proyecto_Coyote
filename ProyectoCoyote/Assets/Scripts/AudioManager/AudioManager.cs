@@ -67,10 +67,6 @@ public class AudioManager : MonoBehaviour
         {
             AudioManager.Instance.PlaySimpleSound("SFX - Block Attack", false, Vector2.zero, true, false);
         }
-        else
-        {
-            AudioManager.Instance.PlaySimpleSound("SFX - Dash", false, Vector2.zero, true, false);
-        }
     }
 
     private void OnGameStateChange(object sender, stateData stateInfo)

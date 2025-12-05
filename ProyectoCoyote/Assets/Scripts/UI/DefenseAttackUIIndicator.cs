@@ -161,10 +161,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < dodgeUISignalers.Length; i++)
+            for (int i = 0; i < dodgeUISignalers.Length-1; i++)
             {
                 setDodgeObject(dodgeUISignalers[i], false);
             }
+            setDodgeObject(dodgeUISignalers[2], true);
+
         }
     }
     public void AttackHappeneed(Attack.AttackState state)

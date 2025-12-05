@@ -5439,6 +5439,7 @@ MonoBehaviour:
   dashCd: 1.5
   dodgeCd: 0
   dashing: 0
+  canDodge: 1
   orientation: {fileID: 8883753195278190126}
   moveDirection: {x: 0, y: 0, z: 0}
   gameInput: {fileID: 0}
@@ -5504,9 +5505,10 @@ MonoBehaviour:
   invincible: 0
   anim: {fileID: 6020926924141813085}
   startPos: {x: 0, y: 0, z: 0}
-  print: 0
-  renderer: {fileID: 8180094521649531177}
+  shouldprint: 0
+  renderers: []
   storedDamage: 0
+  parryHeal: 1
 --- !u!114 &3355173975873023152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5527,11 +5529,12 @@ MonoBehaviour:
   maxNoticeZone: 100
   minNoticeZone: 5
   lookAtSmoothing: 3
-  lookAtRotationOffset: {x: 0, y: 20, z: 0}
+  groundClamp: 1.7
   maxNoticeAngle: 180
   cooldown: 0
   OffsetFinalPos: 1
   attackWindowStartDelay: 0.1
+  isRetracting: 0
   selectingHook: 0
   isHooked: 0
 --- !u!114 &2367592577155981960
@@ -5549,6 +5552,7 @@ MonoBehaviour:
   cableSpeed: 50
   handOffset: 0
   leftHand: {fileID: 799134844055698355}
+  retractOffset: 0.5
 --- !u!136 &2306513555992948220
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10701,6 +10705,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1058666257884295904, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2995593092875605164, guid: 6b8795db21fe8e248bd67ed088cdce40, type: 3}
       propertyPath: m_Name
       value: InterfazAtaque
@@ -11443,11 +11451,6 @@ PrefabInstance:
 --- !u!4 &799134844055698355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8410106744554083838, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
-  m_PrefabInstance: {fileID: 9196820405481958989}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &8180094521649531177 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1018978784232793956, guid: c8a70eda54526634dba4ad6cffa1fde4, type: 3}
   m_PrefabInstance: {fileID: 9196820405481958989}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8313859039731503900 stripped

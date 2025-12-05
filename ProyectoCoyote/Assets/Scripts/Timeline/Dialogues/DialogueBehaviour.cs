@@ -77,23 +77,23 @@ public class DialogueBehaviour : PlayableBehaviour
                     //Debug.Log(maxVisible + "Bip");
                     if (ServiceLocator.Instance && !ServiceLocator.Instance.Get<IcutsceneManager>().isSkipingCutscene())
                     {
-                        int numeroAleatorio = Random.Range(0, 3);
+                        //int numeroAleatorio = Random.Range(0, 3);
 
                         //if (numeroAleatorio == 0)
                         //{
-                        //    if (musicManager.Instance != null)
+                        //    if (musicmana.instance != null)
                         //    {
-                        //        if (personaje == 0) // Es la prota
+                        //        if (personaje == 0) // es la prota
                         //        {
-                        //            musicManager.Instance.PlaySoundPitch("snd_voicemedium", 0.2f);
+                        //            m.instance.playsoundpitch("snd_voicemedium", 0.2f);
                         //        }
-                        //        else if (personaje == 1) // Es el cura
+                        //        else if (personaje == 1) // es el cura
                         //        {
-                        //            musicManager.Instance.PlaySoundPitch("snd_voicehigh", 0.2f);
+                        //            musicmanager.instance.playsoundpitch("snd_voicehigh", 0.2f);
                         //        }
-                        //        else // Otros
+                        //        else // otros
                         //        {
-                        //            musicManager.Instance.PlaySoundPitch("snd_voicelow", 0.2f);
+                        //            musicmanager.instance.playsoundpitch("snd_voicelow", 0.2f);
                         //        }
                         //    }
                         //}

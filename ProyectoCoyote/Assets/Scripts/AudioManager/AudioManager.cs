@@ -301,6 +301,30 @@ public class AudioManager : MonoBehaviour
             ap.Play();
         }
     }
+
+    // VOCES DE DIALOGOS
+    public void PlayDialogue(string soundName, float pitchVariation = 0.1f)
+    {
+        Sound sound = SoundGallery.Instance.FindSound(soundName);
+        if (sound == null)
+        {
+            Debug.LogError($"El sonido '{soundName}' no se encontró en SoundGallery.");
+            return;
+        }
+
+        AudioProducer ap = this.gameObject.AddComponent<AudioProducer>();
+        ap.SetAudioProducer("", sound);
+
+        pitchVariation = Mathf.Clamp(pitchVariation, 0f, 1f);
+        float minPitch = 1f - pitchVariation;
+        float maxPitch = 1f + pitchVariation;
+        float randomPitch = Random.Range(minPitch, maxPitch);
+
+        ap.StartAudio(false, false, Vector2.zero, randomPitch);
+        normalSounds.Add(ap);
+        ap.Play();
+    }
+
     #endregion
 
     #region Reproduce Sonido 3D

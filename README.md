@@ -370,7 +370,7 @@ Modelo 3D finalizado del personaje principal
 ###  NPCs
 
 #### Denebola
-
+<img src="./Imagenes_README/Denebola.png" alt="Denebola" style="width: 60%"/>
 
 #### El carretero
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
@@ -386,17 +386,17 @@ Como se ha mencionado anteriormente, Coyote Requiem cuenta con tres zonas princi
 
 ### Pueblo
 
-![alt text](<Nivel1Con elementos del nivel.png>)
+<img src="./Imagenes_README/Nivel1Con elementos del nivel.png" alt="Nivel1" style="width: 100%"/>
 
 Este es el mapa del primer nivel del juego que se desarrolla en el pueblo de Pricklytown. El nivel esta dividido en 5 subáreas de combate donde también podrá encontrarse con distintos Npcs que le pondrá en contexto sobre que son esos seres con forma de cactus.
 ### Cañón
 
-![alt text](<Nivel2Con elementos del nivel.png>)
+<img src="./Imagenes_README/Nivel2Con elementos del nivel.png" alt="Nivel2" style="width: 100%"/>
 
 El segundo nivel se sitúa en un oásis. En el mapa se puede observar que es un nivel alargado y dividido en 4 subáreas de combate.
 ### Oasis
 
-![alt text](<Nivel3Con elementos del nivel.png>)
+<img src="./Imagenes_README/Nivel3 Con elementos del nivel.png" alt="Nivel3" style="width: 100%"/>
 
 El último nivel se desarrolla en el oasis donde se encuentra tanto el huevo cosmico como la iglesia de la secta. Este nivel es más corto de los demás dividiendolo en 3 áreas de combate. Las 2 primeras son áreas que se dividen en 2 oleadas y la última zona es donde se desarrolla la batalla contra el jefe final.
 
@@ -451,7 +451,7 @@ Son en estas secciones donde suenan los leitmotivs de los personajes.
 Todos los leitmotivs están tocados por instrumentos de viento-metal, para darle más importancia a la instrumentación western. 
 
 ### Tema de los villanos 
-![temaVillanos](image.png)
+<img src="./Imagenes_README/TemaVillanos.png" alt="tema villanos" style="width: 100%"/>
 
 *Leitmotiv de los villanos* 
 
@@ -461,7 +461,7 @@ El tema de los villanos es tocado por los instrumentos metales (trompas o trompe
 
 ### Tema del héroe 
 
- ![temaHeroe](image-1.png)
+<img src="./Imagenes_README/temaHeroe.png" alt="tema villanos" style="width: 100%"/>
 
 *Leitmotiv del héroe* 
 
@@ -471,7 +471,7 @@ El tema del héroe es tocado por una trompeta solista y, al igual que el tema de
 
 ### Tema del marido 
 
- ![alt text](image-2.png)
+<img src="./Imagenes_README/temaMarido.png" alt="tema villanos" style="width: 100%"/>
 
 *Leitmotiv del marido* 
 
@@ -540,7 +540,8 @@ En esta sección la canción se torna más western, con una base de percusión q
 Aquí se suprime la sección de cuerda y vientos-madera; y los vientos-metales toman más importancia. Se mantiene el coro realizando acordes sincopados, pero inestables; y entra un bajo acústico.
 El primer tema de esta sección lo realiza la guitarra eléctrica, para luego ser reemplazada por la trompeta. Esta realiza una función muy importante, ya que hace sonar el leitmotiv del héroe y del marido al unísono, dando a entender esa unión tan especial que tenían, pero a la vez el enfrentamiento que están teniendo.
 
-![temaMaridoyProta](image-3.png)
+<img src="./Imagenes_README/temaPorymar.png" alt="tema villanos" style="width: 100%"/>
+
 *Leitmotiv del protagonista y marido*
 
 

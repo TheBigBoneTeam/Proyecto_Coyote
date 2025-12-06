@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         animator = GetComponentInChildren<Animator>();
 
-        gameInput = GetComponentInParent<GameInput>();
+        gameInput = FindAnyObjectByType<GameInput>();
         if (gameInput == null)
             Debug.LogError("No se encontró el GameInput.");
     }

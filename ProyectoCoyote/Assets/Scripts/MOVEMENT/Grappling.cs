@@ -35,7 +35,7 @@ public class Grappling : MonoBehaviour
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
-        gameInput = GetComponent<GameInput>();
+        gameInput = FindAnyObjectByType<GameInput>();
 
         if (Gamepad.current == null)
             Debug.LogWarning("No se detecta ningún mando conectado.");

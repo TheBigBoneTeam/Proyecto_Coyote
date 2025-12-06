@@ -34,6 +34,7 @@ public class GameInput : MonoBehaviour
 
     private void Awake()
     {
+        print("awakeInput");
         // Detectar móvil antes que nada
         if (Application.isMobilePlatform)
         {

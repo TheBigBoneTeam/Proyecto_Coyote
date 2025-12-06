@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalInput = 0f; // Bloquea el movimiento lateral
         }
-        if (gameInput.AttackPressed || gameInput.AttackRightPressed)
+        if (gameInput.AttackLeftPressed || gameInput.AttackRightPressed)
         {
             _currentAttackanyBuffer = _maxAttackBuffer;
         }
@@ -235,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _currentAttackanyBuffer -= Time.deltaTime;
         }
-        if (gameInput.AttackPressed)
+        if (gameInput.AttackLeftPressed)
         {
             _currentAttackLeftBuffer = _maxAttackBuffer;
         }
@@ -267,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _currentAttackRigthBuffer -= Time.deltaTime;
         }
-        if (gameInput.EvadePressed)
+        if (gameInput.BlockPressed)
         {
             _currentDodgeOutsideBuffer = _maxDodgeBuffer;
         }
@@ -275,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _currentDodgeOutsideBuffer -= Time.deltaTime;
         }
-        if(gameInput.EvadePressed || gameInput.Evade_LeftPressed || gameInput.Evade_RightPressed)
+        if(gameInput.BlockPressed || gameInput.Evade_LeftPressed || gameInput.Evade_RightPressed)
         {
             _currentDodgeAnyBuffer = _maxDodgeBuffer;
         }

@@ -36,24 +36,43 @@ public class AudioProducer : MonoBehaviour
         sound=_sound;
     }
 
-    // Prepara el audio con volumen, tono y bucle (true o false)
-    public void StartAudio(bool loop, bool onlyOne, Vector2 pos, float pitch=-1){
-        audioSource.maxDistance=sound.maxSoundDistance;
-        audioSource.transform.position=pos;
+    public void StartAudio(bool loop, bool onlyOne, Vector2 pos, float pitch = -1)
+    {
+        audioSource.maxDistance = sound.maxSoundDistance;
+        audioSource.transform.position = pos;
         audioSource.clip = sound.audioClip;
         audioSource.volume = sound.volume;
-
-        if (pitch >= 0f)
+        
+        if (pitch >= 0)
         {
-            audioSource.pitch = pitch;
+            audioSource.pitch = sound.pitch;
         }
         else
         {
-            audioSource.pitch = sound.pitch;
+            audioSource.pitch = pitch;
         }
 
         audioSource.loop = loop;
     }
+
+    // Prepara el audio con volumen, tono y bucle (true o false)
+    //public void StartAudio(bool loop, bool onlyOne, Vector2 pos, float pitch=-1){
+    //    audioSource.maxDistance=sound.maxSoundDistance;
+    //    audioSource.transform.position=pos;
+    //    audioSource.clip = sound.audioClip;
+    //    audioSource.volume = sound.volume;
+
+    //    if (pitch >= 0f)
+    //    {
+    //        audioSource.pitch = pitch;
+    //    }
+    //    else
+    //    {
+    //        audioSource.pitch = sound.pitch;
+    //    }
+
+    //    audioSource.loop = loop;
+    //}
 
 #region Reproduccion
     public void Play(){

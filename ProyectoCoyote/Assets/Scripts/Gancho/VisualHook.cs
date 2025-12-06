@@ -225,11 +225,11 @@ public class VisualHook : MonoBehaviour
 
         if (Vector3.Distance(target.position, frontOfPlayer) <= optimalDistance)
         {
+            hook.GetHookableObject().endHook();
             lineRenderer.enabled = false;
             hook.WaitForHookFinish();
             ResetVisualHook();
             currentState = HookState.Idle;
-            hook.GetHookableObject().endHook();
         }
     }
 

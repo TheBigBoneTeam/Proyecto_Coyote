@@ -68,7 +68,7 @@ public class HookableObject : MonoBehaviour
 
             if (GetComponent<BossEnemy>() != null)
             {
-                GetComponent<BossEnemy>().NextFase();
+                GetComponent<BossEnemy>().finishHook();
             }
         }
 

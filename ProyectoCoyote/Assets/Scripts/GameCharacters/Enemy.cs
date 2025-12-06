@@ -14,7 +14,7 @@ public class Enemy : AGameCharacter
     [SerializeField] GameObject HitParticles, blockParticles, critParticles, blockParticlesPosition;
     Transform initialParticleTransform;
     DamageReceiver damageReceiver;
-    [SerializeField] int healthDrop;
+    [SerializeField] protected int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     protected bool dead;

@@ -23,6 +23,10 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
 
     public void spawnOrb(Vector3 pos,int health)
     {
+        if (health == 0)
+        {
+            return;
+        }
         HealOrb orb = orbs.Get();
         orb.setHeal(health);
         orb.transform.position = pos;

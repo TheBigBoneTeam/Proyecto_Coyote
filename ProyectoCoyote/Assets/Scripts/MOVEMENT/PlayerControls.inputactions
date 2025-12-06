@@ -43,6 +43,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LockSelectLeft",
+                    "type": "Button",
+                    "id": "ad9e83f2-5988-46aa-8e5e-0960f4a76fbb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LockSelectRight",
+                    "type": "Button",
+                    "id": "9cc8764b-16d2-478a-be89-95f53f264366",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "HookAim",
                     "type": "Button",
                     "id": "a2fe0363-c3fc-4f49-9ac8-e94bacea9c1c",
@@ -106,7 +124,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "AttackL",
                     "type": "Button",
                     "id": "53aa96f2-d82f-402e-8f2b-0e09dddf6245",
                     "expectedControlType": "",
@@ -115,7 +133,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Evade",
+                    "name": "AttackR",
+                    "type": "Button",
+                    "id": "2ba7c3fe-1eae-4edf-9254-78d88e5cee7c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
                     "type": "Button",
                     "id": "bfca6d0b-a3e3-4510-af44-9153b992299c",
                     "expectedControlType": "",
@@ -154,15 +181,6 @@
                     "name": "Skip",
                     "type": "Button",
                     "id": "b6d0e86c-a413-4994-8c8c-cf814d8e63a0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "AttackR",
-                    "type": "Button",
-                    "id": "2ba7c3fe-1eae-4edf-9254-78d88e5cee7c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -294,7 +312,7 @@
                 {
                     "name": "",
                     "id": "7322bd28-0e42-46b2-9f8d-9112bb03e398",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
@@ -327,7 +345,7 @@
                 {
                     "name": "",
                     "id": "c16ea6fe-eb8a-4fd4-bc8d-b25ac2babec6",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
@@ -342,18 +360,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Attack",
+                    "action": "AttackL",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "84d64a68-839b-47d7-bc7e-39a30c7fff6f",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "Attack",
+                    "action": "AttackL",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -364,7 +382,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Teclado",
-                    "action": "Evade",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -375,7 +393,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "Evade",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -668,11 +686,55 @@
                 {
                     "name": "",
                     "id": "76700024-4a6d-477f-aafd-99ccb0445693",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "AttackR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85e157bf-7559-4ff6-823d-0cb3246c0615",
+                    "path": "<Keyboard>/z",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "LockSelectLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df85ed72-3f2b-4bcb-8169-a252757f3a2a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "LockSelectLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2351d11a-9c3e-4ab0-b86a-b0646289830e",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "LockSelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "266d2f00-9b31-423a-a1d1-40472b771e41",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "LockSelectRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -129,6 +129,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LockSelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad9e83f2-5988-46aa-8e5e-0960f4a76fbb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockSelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cc8764b-16d2-478a-be89-95f53f264366"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""HookAim"",
                     ""type"": ""Button"",
                     ""id"": ""a2fe0363-c3fc-4f49-9ac8-e94bacea9c1c"",
@@ -192,7 +210,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""AttackL"",
                     ""type"": ""Button"",
                     ""id"": ""53aa96f2-d82f-402e-8f2b-0e09dddf6245"",
                     ""expectedControlType"": """",
@@ -201,7 +219,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Evade"",
+                    ""name"": ""AttackR"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ba7c3fe-1eae-4edf-9254-78d88e5cee7c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
                     ""type"": ""Button"",
                     ""id"": ""bfca6d0b-a3e3-4510-af44-9153b992299c"",
                     ""expectedControlType"": """",
@@ -240,15 +267,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Skip"",
                     ""type"": ""Button"",
                     ""id"": ""b6d0e86c-a413-4994-8c8c-cf814d8e63a0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AttackR"",
-                    ""type"": ""Button"",
-                    ""id"": ""2ba7c3fe-1eae-4edf-9254-78d88e5cee7c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -380,7 +398,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7322bd28-0e42-46b2-9f8d-9112bb03e398"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mando"",
@@ -413,7 +431,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c16ea6fe-eb8a-4fd4-bc8d-b25ac2babec6"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mando"",
@@ -428,18 +446,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Teclado"",
-                    ""action"": ""Attack"",
+                    ""action"": ""AttackL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""84d64a68-839b-47d7-bc7e-39a30c7fff6f"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mando"",
-                    ""action"": ""Attack"",
+                    ""action"": ""AttackL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -450,7 +468,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Teclado"",
-                    ""action"": ""Evade"",
+                    ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -461,7 +479,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mando"",
-                    ""action"": ""Evade"",
+                    ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -754,11 +772,55 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""76700024-4a6d-477f-aafd-99ccb0445693"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AttackR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85e157bf-7559-4ff6-823d-0cb3246c0615"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""LockSelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df85ed72-3f2b-4bcb-8169-a252757f3a2a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""LockSelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2351d11a-9c3e-4ab0-b86a-b0646289830e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Teclado"",
+                    ""action"": ""LockSelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""266d2f00-9b31-423a-a1d1-40472b771e41"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mando"",
+                    ""action"": ""LockSelectRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -789,6 +851,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Lock = m_Player.FindAction("Lock", throwIfNotFound: true);
+        m_Player_LockSelectLeft = m_Player.FindAction("LockSelectLeft", throwIfNotFound: true);
+        m_Player_LockSelectRight = m_Player.FindAction("LockSelectRight", throwIfNotFound: true);
         m_Player_HookAim = m_Player.FindAction("HookAim", throwIfNotFound: true);
         m_Player_HookConfirm = m_Player.FindAction("HookConfirm", throwIfNotFound: true);
         m_Player_HookDisconfirm = m_Player.FindAction("HookDisconfirm", throwIfNotFound: true);
@@ -796,13 +860,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_HookSelectRight = m_Player.FindAction("HookSelectRight", throwIfNotFound: true);
         m_Player_Hook_TP = m_Player.FindAction("Hook_TP", throwIfNotFound: true);
         m_Player_HookAttract = m_Player.FindAction("HookAttract", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Evade = m_Player.FindAction("Evade", throwIfNotFound: true);
+        m_Player_AttackL = m_Player.FindAction("AttackL", throwIfNotFound: true);
+        m_Player_AttackR = m_Player.FindAction("AttackR", throwIfNotFound: true);
+        m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_Evade_Left = m_Player.FindAction("Evade_Left", throwIfNotFound: true);
         m_Player_Evade_Right = m_Player.FindAction("Evade_Right", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_Skip = m_Player.FindAction("Skip", throwIfNotFound: true);
-        m_Player_AttackR = m_Player.FindAction("AttackR", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -887,6 +951,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Lock;
+    private readonly InputAction m_Player_LockSelectLeft;
+    private readonly InputAction m_Player_LockSelectRight;
     private readonly InputAction m_Player_HookAim;
     private readonly InputAction m_Player_HookConfirm;
     private readonly InputAction m_Player_HookDisconfirm;
@@ -894,13 +960,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_HookSelectRight;
     private readonly InputAction m_Player_Hook_TP;
     private readonly InputAction m_Player_HookAttract;
-    private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Evade;
+    private readonly InputAction m_Player_AttackL;
+    private readonly InputAction m_Player_AttackR;
+    private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_Evade_Left;
     private readonly InputAction m_Player_Evade_Right;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_Skip;
-    private readonly InputAction m_Player_AttackR;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -928,6 +994,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Lock".
         /// </summary>
         public InputAction @Lock => m_Wrapper.m_Player_Lock;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/LockSelectLeft".
+        /// </summary>
+        public InputAction @LockSelectLeft => m_Wrapper.m_Player_LockSelectLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/LockSelectRight".
+        /// </summary>
+        public InputAction @LockSelectRight => m_Wrapper.m_Player_LockSelectRight;
         /// <summary>
         /// Provides access to the underlying input action "Player/HookAim".
         /// </summary>
@@ -957,13 +1031,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @HookAttract => m_Wrapper.m_Player_HookAttract;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Attack".
+        /// Provides access to the underlying input action "Player/AttackL".
         /// </summary>
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @AttackL => m_Wrapper.m_Player_AttackL;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Evade".
+        /// Provides access to the underlying input action "Player/AttackR".
         /// </summary>
-        public InputAction @Evade => m_Wrapper.m_Player_Evade;
+        public InputAction @AttackR => m_Wrapper.m_Player_AttackR;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Block".
+        /// </summary>
+        public InputAction @Block => m_Wrapper.m_Player_Block;
         /// <summary>
         /// Provides access to the underlying input action "Player/Evade_Left".
         /// </summary>
@@ -980,10 +1058,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Skip".
         /// </summary>
         public InputAction @Skip => m_Wrapper.m_Player_Skip;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/AttackR".
-        /// </summary>
-        public InputAction @AttackR => m_Wrapper.m_Player_AttackR;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1022,6 +1096,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Lock.started += instance.OnLock;
             @Lock.performed += instance.OnLock;
             @Lock.canceled += instance.OnLock;
+            @LockSelectLeft.started += instance.OnLockSelectLeft;
+            @LockSelectLeft.performed += instance.OnLockSelectLeft;
+            @LockSelectLeft.canceled += instance.OnLockSelectLeft;
+            @LockSelectRight.started += instance.OnLockSelectRight;
+            @LockSelectRight.performed += instance.OnLockSelectRight;
+            @LockSelectRight.canceled += instance.OnLockSelectRight;
             @HookAim.started += instance.OnHookAim;
             @HookAim.performed += instance.OnHookAim;
             @HookAim.canceled += instance.OnHookAim;
@@ -1043,12 +1123,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HookAttract.started += instance.OnHookAttract;
             @HookAttract.performed += instance.OnHookAttract;
             @HookAttract.canceled += instance.OnHookAttract;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
-            @Evade.started += instance.OnEvade;
-            @Evade.performed += instance.OnEvade;
-            @Evade.canceled += instance.OnEvade;
+            @AttackL.started += instance.OnAttackL;
+            @AttackL.performed += instance.OnAttackL;
+            @AttackL.canceled += instance.OnAttackL;
+            @AttackR.started += instance.OnAttackR;
+            @AttackR.performed += instance.OnAttackR;
+            @AttackR.canceled += instance.OnAttackR;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
             @Evade_Left.started += instance.OnEvade_Left;
             @Evade_Left.performed += instance.OnEvade_Left;
             @Evade_Left.canceled += instance.OnEvade_Left;
@@ -1061,9 +1144,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Skip.started += instance.OnSkip;
             @Skip.performed += instance.OnSkip;
             @Skip.canceled += instance.OnSkip;
-            @AttackR.started += instance.OnAttackR;
-            @AttackR.performed += instance.OnAttackR;
-            @AttackR.canceled += instance.OnAttackR;
         }
 
         /// <summary>
@@ -1087,6 +1167,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Lock.started -= instance.OnLock;
             @Lock.performed -= instance.OnLock;
             @Lock.canceled -= instance.OnLock;
+            @LockSelectLeft.started -= instance.OnLockSelectLeft;
+            @LockSelectLeft.performed -= instance.OnLockSelectLeft;
+            @LockSelectLeft.canceled -= instance.OnLockSelectLeft;
+            @LockSelectRight.started -= instance.OnLockSelectRight;
+            @LockSelectRight.performed -= instance.OnLockSelectRight;
+            @LockSelectRight.canceled -= instance.OnLockSelectRight;
             @HookAim.started -= instance.OnHookAim;
             @HookAim.performed -= instance.OnHookAim;
             @HookAim.canceled -= instance.OnHookAim;
@@ -1108,12 +1194,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @HookAttract.started -= instance.OnHookAttract;
             @HookAttract.performed -= instance.OnHookAttract;
             @HookAttract.canceled -= instance.OnHookAttract;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
-            @Evade.started -= instance.OnEvade;
-            @Evade.performed -= instance.OnEvade;
-            @Evade.canceled -= instance.OnEvade;
+            @AttackL.started -= instance.OnAttackL;
+            @AttackL.performed -= instance.OnAttackL;
+            @AttackL.canceled -= instance.OnAttackL;
+            @AttackR.started -= instance.OnAttackR;
+            @AttackR.performed -= instance.OnAttackR;
+            @AttackR.canceled -= instance.OnAttackR;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
             @Evade_Left.started -= instance.OnEvade_Left;
             @Evade_Left.performed -= instance.OnEvade_Left;
             @Evade_Left.canceled -= instance.OnEvade_Left;
@@ -1126,9 +1215,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Skip.started -= instance.OnSkip;
             @Skip.performed -= instance.OnSkip;
             @Skip.canceled -= instance.OnSkip;
-            @AttackR.started -= instance.OnAttackR;
-            @AttackR.performed -= instance.OnAttackR;
-            @AttackR.canceled -= instance.OnAttackR;
         }
 
         /// <summary>
@@ -1237,6 +1323,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLock(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "LockSelectLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLockSelectLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LockSelectRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLockSelectRight(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "HookAim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1286,19 +1386,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHookAttract(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AttackL" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack(InputAction.CallbackContext context);
+        void OnAttackL(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Evade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AttackR" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEvade(InputAction.CallbackContext context);
+        void OnAttackR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Block" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBlock(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Evade_Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1327,12 +1434,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkip(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "AttackR" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttackR(InputAction.CallbackContext context);
     }
 }

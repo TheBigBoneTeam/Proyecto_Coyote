@@ -16,6 +16,8 @@ public class GameInput : MonoBehaviour
     public bool SprintHeld { get; private set; }
     public bool DashPressed { get; private set; }
     public bool LockPressed { get; private set; }
+    public bool LockSelectLeftPressed { get; private set; }
+    public bool LockSelectRightPressed { get; private set; }
     public bool HookAimPressed { get; private set; }
     public bool HookConfirmPressed { get; private set; }
     public bool Hook_SelectUp { get; private set; }
@@ -23,10 +25,9 @@ public class GameInput : MonoBehaviour
     public bool Hook_SelectLeft { get; private set; }
     public bool Hook_SelectRight { get; private set; }
     public bool HookAttractPressed { get; private set; }
-    public bool AttackPressed { get; private set; }
+    public bool AttackLeftPressed { get; private set; }
     public bool AttackRightPressed { get; private set; }
-
-    public bool EvadePressed { get; private set; }
+    public bool BlockPressed { get; private set; }
     public bool Evade_LeftPressed { get; private set; }
     public bool Evade_RightPressed { get; private set; }
     public bool EscapePressed { get; private set; }
@@ -71,10 +72,10 @@ public class GameInput : MonoBehaviour
         controls.Player.Dash.performed += ctx => { DashPressed = true; DetectDeviceFromContext(ctx); };
 
         // ATAQUE
-        controls.Player.Attack.performed += ctx => { AttackPressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.AttackL.performed += ctx => { AttackLeftPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.AttackR.performed += ctx => { AttackRightPressed = true; DetectDeviceFromContext(ctx); };
 
-        controls.Player.Evade.performed += ctx => { EvadePressed = true; DetectDeviceFromContext(ctx); };
+        controls.Player.Block.performed += ctx => { BlockPressed = true; DetectDeviceFromContext(ctx); };
 
         // ESQUIVES LATERALES
         /*
@@ -91,6 +92,21 @@ public class GameInput : MonoBehaviour
 
         // LOCKEO
         controls.Player.Lock.performed += ctx => { LockPressed = true; DetectDeviceFromContext(ctx); };
+
+        controls.Player.LockSelectLeft.performed += ctx =>
+        {
+            Debug.Log("Cambio de objetivo - IZQUIERDA");
+            LockSelectLeftPressed = true;
+            DetectDeviceFromContext(ctx);
+        };
+
+        controls.Player.LockSelectRight.performed += ctx =>
+        {
+            Debug.Log("Cambio de objetivo - DERECHA");
+            LockSelectRightPressed = true;
+            DetectDeviceFromContext(ctx);
+        };
+
 
         // GANCHO
         controls.Player.HookAim.performed += ctx => { HookAimPressed = true; DetectDeviceFromContext(ctx); };
@@ -135,11 +151,11 @@ public class GameInput : MonoBehaviour
     public void ResetOneFrameInputs()
     {
         DashPressed = false;
-        EvadePressed = false;
-                AttackRightPressed = false;
+        BlockPressed = false;
+        AttackRightPressed = false;
         Evade_LeftPressed = false;
         Evade_RightPressed = false;
-        AttackPressed = false;
+        AttackLeftPressed = false;
         //LockPressed = false;
         //HookAimPressed = false;
         //HookConfirmPressed = false;
@@ -163,6 +179,8 @@ public class GameInput : MonoBehaviour
       //  Evade_LeftPressed = false;
       //  Evade_RightPressed = false;
         LockPressed = false;
+        LockSelectLeftPressed = false;
+        LockSelectRightPressed = false;
         HookAimPressed = false;
         HookConfirmPressed = false;
         Hook_SelectUp = false;

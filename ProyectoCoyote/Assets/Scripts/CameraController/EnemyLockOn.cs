@@ -73,14 +73,15 @@ public class EnemyLockOn : MonoBehaviour
         }
         prevLockPressed = currentLock;
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (gameInput.LockSelectLeftPressed)
         {
             currentTarget = FindDirectionalTarget(false);
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (gameInput.LockSelectRightPressed)
         {
             currentTarget = FindDirectionalTarget(true);
         }
+
 
         if (enemyLocked)
         {

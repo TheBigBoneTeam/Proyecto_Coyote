@@ -109,7 +109,7 @@ public class Gancho : MonoBehaviour
                 ResetTarget();
         }
 
-        if (gameInput.AttackPressed && isInAttackWindow)
+        if (gameInput.AttackLeftPressed && isInAttackWindow)
         {
             hookAttackBuffer = true;
             Debug.Log("Input de ataque detectado");

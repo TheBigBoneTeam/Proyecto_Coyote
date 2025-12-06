@@ -250,11 +250,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Movement", movement);
         
       
-            if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
+            if (canAttack && lockMovement && (gameInput.AttackLeftPressed || gameInput.AttackRightPressed))
             {
                 string attackName = "";
 
-                if (gameInput.AttackPressed)
+                if (gameInput.AttackLeftPressed)
                 {
                     attackName += "Hit_L";
 
@@ -508,7 +508,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (lockMovement)
         {
-            if ((gameInput.Evade_LeftPressed || gameInput.EvadePressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f && canDodge)
+            if ((gameInput.Evade_LeftPressed || gameInput.BlockPressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f && canDodge)
             {
                 Dodge();
             }
@@ -559,7 +559,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (gameInput.Evade_LeftPressed) animator.CrossFade("Dodge_L", .1f);
         else if (gameInput.Evade_RightPressed) animator.CrossFade("Dodge_R", .1f);
-        else if (gameInput.EvadePressed) animator.CrossFade("BackBlock", .1f);
+        else if (gameInput.BlockPressed) animator.CrossFade("BackBlock", .1f);
         
         if (gameStateManager.getState() == GameState.SlowDown)
         {

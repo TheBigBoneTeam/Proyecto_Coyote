@@ -351,7 +351,7 @@ namespace tutorial
         public override void Update()
         {
             base.Update();
-            if (tutorial.gameInput.EvadePressed)
+            if (tutorial.gameInput.BlockPressed)
             {
                 Time.timeScale = 1;
             }
@@ -387,7 +387,7 @@ namespace tutorial
         public override void Update()
         {
             base.Update();
-            if (tutorial.gameInput.EvadePressed)
+            if (tutorial.gameInput.BlockPressed)
             {
                 Time.timeScale = 1;
             }

@@ -42,11 +42,16 @@ public class AudioProducer : MonoBehaviour
         audioSource.transform.position=pos;
         audioSource.clip = sound.audioClip;
         audioSource.volume = sound.volume;
-        if(pitch>=0){
-            audioSource.pitch = sound.pitch;
-        }else{
+
+        if (pitch >= 0f)
+        {
             audioSource.pitch = pitch;
         }
+        else
+        {
+            audioSource.pitch = sound.pitch;
+        }
+
         audioSource.loop = loop;
     }
 

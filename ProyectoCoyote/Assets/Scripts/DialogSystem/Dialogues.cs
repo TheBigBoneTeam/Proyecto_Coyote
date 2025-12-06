@@ -55,10 +55,10 @@ public class Dialogues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SkipLine();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    SkipLine();
+        //}
     }
 
 
@@ -66,7 +66,7 @@ public class Dialogues : MonoBehaviour
     public void StartDialogue(string startingLine, Action action, NPC npc, Transform npcTransform) 
     {
         LoadDialogues();
-        movement.StopMovement();
+       // movement.StopMovement();
         targetLocator.position = npcTransform.position;
         _npc = npc;
 
@@ -80,7 +80,7 @@ public class Dialogues : MonoBehaviour
     public void DialogueEnd()
     {
         if (_npc == null) return;
-        action1?.Invoke();
+       action1?.Invoke();
         CamControl.ActiveFollowCamera();
         _npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);

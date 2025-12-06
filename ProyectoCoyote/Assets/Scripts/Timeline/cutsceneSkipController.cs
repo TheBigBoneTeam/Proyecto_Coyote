@@ -32,6 +32,7 @@ public class cutsceneSkipController : MonoBehaviour
     {
         if (cutscenePlaying)
         {
+            print("SKIP"+gameInput.SkipPressed);
             if (!gameInput.SkipPressed)
             {
                 currrentSkipPressTime -= Time.deltaTime;

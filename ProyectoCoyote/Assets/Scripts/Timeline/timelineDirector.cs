@@ -2,6 +2,8 @@ using Services;
 using System;
 using System.Collections;
 using TMPro;
+using tutorial;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -14,9 +16,13 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     PlayableDirector director;
     public bool SkipingCutscene;
     public bool cutscenPlaying;
-    CanvasGroup canvasgroup;
+ [SerializeField]   CanvasGroup canvasgroup;
 
     cutsceneSkipController cutsceneSkip;
+
+  [SerializeField]  CinemachineBlenderSettings normalBlenderSettings;
+    [SerializeField] CinemachineBlenderSettings cutsceneBlenderSettings;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +49,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         currentData = data;
         director.playableAsset = timeline;
         endCutsceneAction = endAction;
+
         if (data.isEndLevel)
         {
             endCutsceneAction +=()=> ServiceLocator.Instance.Get<ILevelManager>().loadEscene(data.nextLevel);
@@ -50,6 +57,7 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         }
         if (/*!settingManager.Instance.skipCutscenes */true || !currentData.canBeSkipped)
         {
+           // Camera.main.GetComponent<CinemachineBrain>().CustomBlends = cutsceneBlenderSettings;
             canvasgroup.alpha = 1;
             SkipingCutscene = false;
             cutscenPlaying = true;
@@ -91,6 +99,8 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
                 item.SetActive(true);
             }
         }
+
+    //    Camera.main.GetComponent<CinemachineBrain>().blen = normalBlenderSettings;
         director.Stop();
         canvasgroup.alpha = 0;
         cutsceneSkip.endCutscene();

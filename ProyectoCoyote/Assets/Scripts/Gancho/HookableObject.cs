@@ -53,21 +53,31 @@ public class HookableObject : MonoBehaviour
     public void getHook()
     {
         print("getHookByPlayer");
-        enemy.PlayAnimationCut("GetHook");
-        enemyAssetBehaviourRunner.enabled = false;
-        enemyAI.getHit();
+        if (enemy != null)
+        {
+            enemy.PlayAnimationCut("GetHook");
+            enemyAssetBehaviourRunner.enabled = false;
+            enemyAI.getHit();
+        }
     }
     public void endHook()
     {
-        enemyAssetBehaviourRunner.enabled = true;
-        if (GetComponent<BossEnemy>() != null)
+        if (enemy != null)
         {
-            GetComponent<BossEnemy>().NextFase();
+            enemyAssetBehaviourRunner.enabled = true;
+
+            if (GetComponent<BossEnemy>() != null)
+            {
+                GetComponent<BossEnemy>().NextFase();
+            }
         }
 
     }
     public void dodgeHook()
     {
-        enemy.DodgeAttack(HitDirections.Outside);
+        if (enemy != null)
+        {
+            enemy.DodgeAttack(HitDirections.Outside);
+        }
     }
 }

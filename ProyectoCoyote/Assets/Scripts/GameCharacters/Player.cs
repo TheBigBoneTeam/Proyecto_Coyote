@@ -48,6 +48,9 @@ public class Player : AGameCharacter
     public void onParry()
     {
         getHealed(parryHeal);
+        playerMovement.setCanAttack(true);
+        playerMovement.setCanDodge(true);
+            
         storedDamage = 0;
     }
     public override void restart()

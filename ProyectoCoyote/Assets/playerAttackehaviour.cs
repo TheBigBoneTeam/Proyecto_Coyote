@@ -22,26 +22,31 @@ public class playerAttackehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.normalizedTime > 0.7f && !finished)
+        if (stateInfo.normalizedTime > 0.9f && !finished)
         {
-            finished = true; if (move != null)
+            finished = true; 
+            if (move != null)
             {
                 move.setCanMove(true);
                 move.setCanAttack(true);
                 move.setCanDodge(true);
             }
         }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (move != null)
+        if (!finished)
         {
-            move.setCanMove(true);
-            move.setCanAttack(true);
-            move.setCanDodge(true);
+            if (move != null)
+            {
+                move.setCanMove(true);
+                move.setCanAttack(true);
+                move.setCanDodge(true);
 
+            }
         }
     }
 

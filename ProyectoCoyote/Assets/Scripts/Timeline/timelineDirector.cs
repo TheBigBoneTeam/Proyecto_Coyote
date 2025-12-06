@@ -237,6 +237,10 @@ endStoryAction();
   
     public void endStoryAction()
     {
+        if(postStoryAction == null)
+        {
+            return;
+        }
         postStoryAction?.Invoke();
     }
 }

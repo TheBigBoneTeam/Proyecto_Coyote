@@ -14,6 +14,7 @@ public class CharacterColor
 public class Dialogues : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI dialogueText;
+    private GameInput gameInput;
     // Excel
     [Header("Documento de texto en .csv ")]
     [SerializeField] TextAsset[] textDialogues;
@@ -30,6 +31,7 @@ public class Dialogues : MonoBehaviour
     // [SerializeField] private UnityEngine.UI.Image dialogueImage;
     Action action1 = null;
     private bool isTyping = false;
+    private bool isInDialogue = false;
     private bool isWaitingAfterSkip = false;
 
     private string currentFullText = "";
@@ -42,7 +44,8 @@ public class Dialogues : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gameInput = FindAnyObjectByType<GameInput>();
+
         UIText = GameObject.Find("UIText").transform;
         dialogueText = UIText.Find("CuadroDeTexto").
             GetComponent<TextMeshProUGUI>();
@@ -55,10 +58,14 @@ public class Dialogues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    SkipLine();
-        //}
+        if (isInDialogue)
+        {
+            if (/*gameInput.SaltarDialogo*/Input.GetMouseButtonDown(0))
+            {
+                SkipLine();
+            }
+        }
+        
     }
 
 
@@ -75,7 +82,8 @@ public class Dialogues : MonoBehaviour
         currentPrefix = GetPrefix(startingLine);
         ShowText(dialogueKeys[currentKeyIndex]);
         UIText.gameObject.SetActive(true);
-        action1 = action;   
+        action1 = action;
+        isInDialogue = true;
     }
     public void DialogueEnd()
     {
@@ -85,6 +93,7 @@ public class Dialogues : MonoBehaviour
         _npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
         movement.RestartMovement();
+        isInDialogue = false;
         Debug.Log("Fin del Diálogo");
     }
 

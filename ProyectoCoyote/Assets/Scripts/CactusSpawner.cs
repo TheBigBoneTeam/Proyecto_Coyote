@@ -71,7 +71,10 @@ public class CactusSpawner : MonoBehaviour
     }
     private void restart()
     {
-        StopCoroutine(currentNumerator);
+        if (currentNumerator != null)
+        {
+            StopCoroutine(currentNumerator);
+        }
         currentNumerator = null;
         setSpawnTime(-1);
         cactusAttackEvent?.RemoveAllListeners();

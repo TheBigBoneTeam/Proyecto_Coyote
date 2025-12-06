@@ -64,7 +64,7 @@ Jimmy emprendió un viaje hacia el oasis, pero nunca más se volvió a saber de 
  
 ## 2.3. Personajes principales 
 
-### Protagonista
+### Coyote
 
 El protagonista de Coyote Requiem, Coyote, es un vaquero que se dirige al oasis de Pricklytown para enterrar las cenizas de su difunto marido. Se trata de un humano de 40 años, robusto, con una actitud ruda. En sus brazos posee unas ruedas de revolver que sirven para lanzar sus manos como si fueran un gancho. 
 
@@ -147,7 +147,7 @@ El personaje tiene un **gancho** que le ayuda con la movilidad y la gestión de 
 
 ## 3.2. Sistema de combate y vida
 ### **Estilo duelo** 
-El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto, el jugador realiza un parry bloqueando el ataque y stunneando al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. 
+El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esquivar sus ataques (se muestra por pantalla la dirección del ataque). Si esquivas el ataque en el momento perfecto, el jugador realiza un parry bloqueando el ataque y stunneando al enemigo durante un muy corto periodo de tiempo. Habrá enemigos con ataques especiales que no se podrán esquivar o parrear obligando al jugador a desfijarlo para no recibir el daño. Al estar dentro de este estilo el jugador no se podrá mover por el escenario.
 
 ### **Ataque** 
 El jugador puede atacar en varias direcciones.
@@ -193,7 +193,7 @@ El jugador contará con 7 puntos de vida los cuales de pueden recargar de dos ma
 
  * **Contraataque**. Cuando recibes un ataque de un enemigo ya sea en el estilo duelo o no, los corazones quedan quitados correspondiendo al daño inflijido. Si el jugador realiza un esquive perfecto durante un combate fijado podrá recuperar la vida que le fue quitada. Si el jugador vuelve a recibir un ataque y no ha podido recuperar los corazones quitados, esos corazones desaparecerán y los corazones quitados pasarán a ser los inflijidos por el último ataque. Si un enemigo realiza un ataque que tiene más daño que corazones porta el jugador este morirá automaticamente.
 
- * **Matamdo enemigos**: al matar a un enemigo, este suelta una bola que equivale a ciertos puntos de vida dependiendo del enemigo.
+ * **Matando enemigos**: al matar a un enemigo, este suelta una bola que equivale a ciertos puntos de vida dependiendo del enemigo.
 
   <img src="./Imagenes_README/DiagramaVida.png" alt="DiagramaVida" style="width: 70%"/>
 
@@ -222,7 +222,7 @@ IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq.
 ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq.
 LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
 ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
-ESQUIVE/PARRY         | a,d     | Botón esquive          |  Equis
+ESQUIVE/PARRY         | A,D     | Botón esquive          |  Equis
 DASH                  | ESPACIO     | Botón dash             |  Equis
 
 
@@ -234,11 +234,12 @@ Si se juega en movil los controles varían en función del modo de juego en el q
 ### Dummy
 Este no es un enemigo es sí. Se trata de un cactus que se utiliza en el tutorial, capaz de atacar y bloquear. Su uso es principalmente enseñar al jugador como combatir y jugar.
 
+<img src="./Imagenes_README/Dummy.png" alt="Dummy" style="width: 70%"/>
 
 ### Enemigos melee (Bandido Nopal)
 Los enemigos melee como su nombre indica atacan a corta distancia. Son resistentes a los ataques y no poseen armas a distancia con las que atacar. Este tipo de enemigo pega con sus puchos. Tiene un total de 3 variantes, cada una correspondiente a un bioma de aparición.
 
-<img src="./Imagenes_README/Capturas3D/Nopal.png" alt="DiagramaVida" style="width: 70%"/>
+<img src="./Imagenes_README/Capturas3D/Nopal.png" alt="Bandido Nopal" style="width: 70%"/>
 
 #### Melee Básico 
 Este enemigo sirbe de seudotutorial al ser un enemigo sin ningún tipo de combos. Su aparición será principalmente en el primer nivel y cuenta con ataques y bloqueos básicos.
@@ -276,29 +277,28 @@ Para poderse librar de este enemigo existen varias opciones:
 
   * Si el jugador lo ataca en el momento justo, este saldrá lanzado provocando su explosión.
 
+<img src="./Imagenes_README/sapobombo.jpg" alt="SapoBombo" style="width: 70%"/>
+
 ### Enemigo robusto (Espinotauro)
-El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará piedras hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva.En ocasiones podrá lanzar a los enemigos suicidas. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Este enemigo cuenta con los siguientes patrones de ataque:
+El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, contando de 7 puntos de vida. Cuando usas el gancho con este enemigo solo puedes ir hacia él, en el caso que quieras atraerlo hacia a ti el gancho volverá solo. Cuando está a cierta distancia del jugador el enemigo lanzará piedras hacia su dirección, que causarán aturdimiento y uno de daño si no se esquiva. En ocasiones podrá lanzar a los enemigos suicidas. Cuando el jugador está cerca o lo tiene enfocado realizará ataques más lentos de lo normal, pero hacen 2 de daño. Cuando realiza los ataques tiene un "super armor" que no vuelve inmune a los ataques del jugador. Este enemigo cuenta con los siguientes patrones de ataque:
  
-  1.	Ataque central.
-  2.	Ataque izquierdo y ataque derecho.
-  3.	Ataque derecho y central.
+  1. Ataque central.
+  2. Ataque izquierdo y ataque derecho.
+  3. Ataque derecho y central.
   4. Ataque derecho.
   5. Ataque izquierdo.
 
 
-  <img src="./Imagenes_README/Capturas3D/Heavy.png" alt="DiagramaVida" style="width: 70%"/>
+  <img src="./Imagenes_README/Capturas3D/Heavy.png" alt="Espinotauro" style="width: 70%"/>
 
 ### Francotirador (Buitre Saguaro)
-Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 5 patrones de defensa:
+Como su nombre indica este enemigo porta un arma con forma de francotirador, pudiendo detectar al jugador en un rango de 14 metros. Sus disparos tienen un daño de 2 corazones y tarda unos 3 segundo en poder volver a disparar.Para poder disparar se tendrá que cubrir por una cobertura. Este enemigo cuenta con 3 puntos de vida. Cuando el jugador enfoca a este enemigo adopta una postura defensiva cubriéndose por dos lados a la vez. Cuenta con 2 posibles posiciones de defensa:
   1. Defensa izquierda.
-  2. Defensa izquierda y defensa central.
-  3. Defensa central e izquierda a la vez.
-  4. Defensa derecha.
-  5. Defensa central e izquierda a la vez y defensa derecha.
+  2. Defensa derecha.
 
 Si el jugador golpea en la dirección donde defiende, este contratacará y si le da, huirá a la cobertura más cercana. En caso de que el jugador enfoque a otro enemigo o reciba el ataque de otro por detras este también huirá a la cobertura más cercana.
 
-<img src="./Imagenes_README/Capturas3D/Gunner.png" alt="DiagramaVida" style="width: 70%"/>
+<img src="./Imagenes_README/Capturas3D/Gunner.png" alt="Buitre Saguaro" style="width: 70%"/>
 
 ### Jefe final (Lince)
 El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es mayor al del protagonista y porta un arma que es una combianción de hacha y rifle. Al tratarse del jefe final cuenta con dos fases diferentes:
@@ -333,7 +333,7 @@ Además de en la mezcla de paletas, la combinación del juego de fantasía y rea
 
 ###  Personaje principal
 
-El diseño del protagonista de Proyecto Coyote ha pasado por varias iteraciones en su desarrollo. Fue el primer personaje diseñado y, por tanto, fue importante decidir para él unas proporciones y lenguaje visual que definirían a todos los demás personajes del proyecto. 
+El diseño del protagonista de Coyote Requiem ha pasado por varias iteraciones en su desarrollo. Fue el primer personaje diseñado y, por tanto, fue importante decidir para él unas proporciones y lenguaje visual que definirían a todos los demás personajes del proyecto. 
 
 <img src="./Imagenes_README/MainChar1.jpg" alt="Prota1" style="width: 70%"/>
 
@@ -347,7 +347,7 @@ Concept art a color. Diseño no final.
 
 Concept art con el diseño final del personaje
 
-<img src="./Imagenes_README/MainChar4.jpg" alt="Prota3" style="width: 70%"/>
+<img src="./Imagenes_README/MainChar4.jpg" alt="Prota Modelo" style="width: 70%"/>
 
 Modelo 3D finalizado del personaje principal
 
@@ -356,25 +356,26 @@ Modelo 3D finalizado del personaje principal
 #### Bandido Nopal
 
 #### Buitre Saguaro
-<img src="./Imagenes_README/GunnerConcept.png" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/GunnerConcept.png" alt="Boceto Buitre Saguaro" style="width: 100%"/>
 
 #### Espinotauro
-<img src="./Imagenes_README/HeavyConcept.png" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/HeavyConcept.png" alt="Boceto Espinotauro" style="width: 100%"/>
 
 #### Sapo Bombo
-<img src="./Imagenes_README/SapoConcept.png" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/SapoConcept.png" alt="Boceto Sapo Bombor" style="width: 100%"/>
 
 #### Lince
-<img src="./Imagenes_README/conceptboss.jpg" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/conceptboss.jpg" alt="Boceto Lince" style="width: 100%"/>
 
 ###  NPCs
 
-#### NPC 1
+#### Denebola
 
-#### NPC 2
+
+#### El carretero
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
 
-#### NPC 3
+#### Lider secta
 <img src="./Imagenes_README/DeerConcept.png" alt="Prota3" style="width: 100%"/>
 
 

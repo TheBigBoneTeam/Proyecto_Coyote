@@ -384,7 +384,7 @@ MonoBehaviour:
       graph:
         rid: 2751277248662732888
       nodes:
-      - name: 
+      - name: BaseSequece
         id: a3303eff-dfa5-44c6-ab00-06605d7e2641
         position: {x: -115.2, y: -271.2}
         node:
@@ -404,7 +404,7 @@ MonoBehaviour:
         - a3303eff-dfa5-44c6-ab00-06605d7e2641
         childIds:
         - dab6db57-21ce-42d8-ab15-b3f4eafa1c29
-      - name: 
+      - name: WholeSequence
         id: dab6db57-21ce-42d8-ab15-b3f4eafa1c29
         position: {x: 0, y: 200}
         node:
@@ -415,7 +415,7 @@ MonoBehaviour:
         childIds:
         - 648f58e8-bba0-4185-a89d-5b64e897f6d4
         - a5f0c57d-c02a-4024-8b83-5acec2fa4bff
-      - name: 
+      - name: Loop
         id: 648f58e8-bba0-4185-a89d-5b64e897f6d4
         position: {x: -150, y: 400}
         node:
@@ -424,8 +424,8 @@ MonoBehaviour:
         parentIds:
         - dab6db57-21ce-42d8-ab15-b3f4eafa1c29
         childIds:
-        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
-      - name: 
+        - 7a21a110-4aaf-4adf-a539-b41b624b9da4
+      - name: Shoot
         id: 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
         position: {x: 0, y: 800}
         node:
@@ -437,7 +437,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
+        - 7a21a110-4aaf-4adf-a539-b41b624b9da4
         childIds: []
       - name: RandomAnim
         id: a5f0c57d-c02a-4024-8b83-5acec2fa4bff
@@ -453,7 +453,7 @@ MonoBehaviour:
         parentIds:
         - dab6db57-21ce-42d8-ab15-b3f4eafa1c29
         childIds: []
-      - name: 
+      - name: lookAt
         id: e5e4bebe-6885-4ba2-8672-49146b05e8b3
         position: {x: -300, y: 800}
         node:
@@ -465,19 +465,8 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - e272e605-5e6e-4258-a5a4-f8625fc1f7be
+        - 7a21a110-4aaf-4adf-a539-b41b624b9da4
         childIds: []
-      - name: 
-        id: e272e605-5e6e-4258-a5a4-f8625fc1f7be
-        position: {x: -150, y: 600}
-        node:
-          rid: 2751277260353307359
-        references: []
-        parentIds:
-        - 648f58e8-bba0-4185-a89d-5b64e897f6d4
-        childIds:
-        - e5e4bebe-6885-4ba2-8672-49146b05e8b3
-        - 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
       - name: Reload
         id: 964b9bc3-31ac-4564-bf20-2c3fc1d5b66a
         position: {x: -412, y: 16}
@@ -492,6 +481,17 @@ MonoBehaviour:
         parentIds:
         - a3303eff-dfa5-44c6-ab00-06605d7e2641
         childIds: []
+      - name: 
+        id: 7a21a110-4aaf-4adf-a539-b41b624b9da4
+        position: {x: -194.4, y: 583.2}
+        node:
+          rid: 2751277307333967999
+        references: []
+        parentIds:
+        - 648f58e8-bba0-4185-a89d-5b64e897f6d4
+        childIds:
+        - e5e4bebe-6885-4ba2-8672-49146b05e8b3
+        - 58e5bb1c-404e-4a07-8ee6-965b8dc3c207
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds:
@@ -532,7 +532,7 @@ MonoBehaviour:
       data:
         attack: Shoot
         idle: 0
-        loops: 1
+        loops: 3
     - rid: 2751277248662732897
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -622,11 +622,8 @@ MonoBehaviour:
       data: 
     - rid: 2751277260353307358
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 2751277260353307359
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
-        IsRandomized: 0
+        infinite: 1
     - rid: 2751277305399083168
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -640,6 +637,12 @@ MonoBehaviour:
         attack: Aim
         idle: 0
         loops: 1
+    - rid: 2751277307333967999
+      type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+        finishOnSuccess: 1
+        finishOnFailure: 0
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -808,7 +811,8 @@ MonoBehaviour:
       data: 
     - rid: 8725330898659311742
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        infinite: 0
     - rid: 8725330898659311743
       type: {class: RandomActionAction, ns: , asm: Assembly-CSharp}
       data:

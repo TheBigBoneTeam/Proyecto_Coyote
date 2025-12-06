@@ -1,3 +1,4 @@
+using Services;
 using System;
 using UnityEngine;
 public class BossEnemy : Enemy
@@ -10,6 +11,7 @@ public class BossEnemy : Enemy
     [SerializeField] int baseCactusAttackTime;
 
     [SerializeField] CactusSpawner spawner;
+
     
     public bool NextFase()
     {
@@ -18,8 +20,16 @@ public class BossEnemy : Enemy
         {
             return false;
         }
+        ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop);
         startFase();
         return true;
+    }
+    public void finishHook()
+    {
+        if (bossEnemyAssetBehaviourRunner.bossState == BossState.Distance)
+        {
+            NextFase();
+        }
     }
     public void startFase()
     {

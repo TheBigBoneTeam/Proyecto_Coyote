@@ -32,7 +32,7 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         agent.enabled = false;
 
-        transform.position = groundTeleportPoint.transform.position;
+       // transform.position = groundTeleportPoint.transform.position;
         agent.enabled = true;
 
     }

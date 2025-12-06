@@ -47,8 +47,11 @@ public class CactusSpawner : MonoBehaviour
         {
             if (on)
             {
-                StopCoroutine(currentNumerator);
-                currentNumerator = null;
+                if (currentNumerator != null)
+                {
+                    StopCoroutine(currentNumerator);
+                    currentNumerator = null;
+                }
             }
         }
         on = val;
@@ -105,7 +108,7 @@ public class CactusSpawner : MonoBehaviour
         while (true)
         {
             SpawnCactus();
-            yield return new WaitForSeconds(currentSpawnTime + UnityEngine.Random.Range(0, extraRandom));
+            yield return new WaitForSeconds(currentSpawnTime + UnityEngine.Random.Range(-extraRandom, extraRandom));
         }
     }
     public void setSpawnTime(float time)

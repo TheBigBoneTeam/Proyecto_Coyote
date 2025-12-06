@@ -22,7 +22,7 @@ public class PlayAttackAction : UnityAction
         }
         if (!idle && enemyAI.endAction)
         {
-          //  Debug.Log("success");
+         Debug.Log("success");
             enemyAI.endActionNode();
             return Status.Success;
         }
@@ -45,6 +45,10 @@ public class PlayAttackAction : UnityAction
             }
         }
         enemyAI.LoadAction(attack,idle,loops,isBlock);
+    }
+    public override void Stop()
+    {
+        base.Stop();
     }
 
 

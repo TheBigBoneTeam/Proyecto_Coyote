@@ -111,11 +111,9 @@
             {
 
                 var child = m_children[currentChildId];
-                UnityEngine.Debug.Log(child.Status);
                 if (child.Status == Status.Running)
                 {
                     child.OnUpdated();
-                    UnityEngine.Debug.Log(child.Status);
                     currentChildStatus = child.Status;
                     if (currentChildStatus == Status.Running) anyChildRunning |= true;
 
@@ -135,7 +133,6 @@
 
                     currentChildId++;
             }
-            UnityEngine.Debug.Log(returnedStatus);
 
             if (!anyChildRunning && returnedStatus == Status.Running)
             {

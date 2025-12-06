@@ -562,19 +562,18 @@ Se trata de un tema sosegado que es acorde con el momento emocional del final de
 ## 6.1. Diagramas de flujo 
 
 ### Menú inicio
-<img src="./Imagenes_README/DiagramaflujoMenuPrincipal2.png" alt="BocetoMenuPincipal" style="width: 100%"/>
+<img src="./Imagenes_README/DiagramaflujoMenuPrincipal.drawio.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
 ### Menú opciones
 <img width="611" height="301" alt="DiagramaflujoMenuOpciones drawio" src="https://github.com/user-attachments/assets/f8e94939-37c0-43d9-bf1f-1a1998928cb2" />
 
 ### In game
 
-![alt text](DiagramaflujoInGame.drawio.png)
+<img src="./Imagenes_README/DiagramaflujoInGame.drawio.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
 
 ### Requisitos funcionales
 __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador cuando inicia el juego. En este menú se pueden observar los siguientes botones:
- 
  
 * __Nueva partida:__ El jugador comienza el juego desde 0.
 
@@ -584,7 +583,7 @@ __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador c
 
  * __Créditos:__  El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
 
- * __Contenido descargable:__ Hay unos desplegables con el contenido descargable pendiente de sacar, junto a un texto que describe el contenido del mismo.
+ * __Contenido descargable:__ El jugador puede acceder a una pantalla donde se mostrará el contenido descargable que dispone/dispondrá el juego.
 
  * __Salir:__  Con este botón el jugador saldrá del juego.
 
@@ -611,19 +610,19 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
  ## 6.2. Diseño de interfaces
  ### Interfaces combate
- ###  Menú principal
+ ### Menú principal
+ ### Menú opciones
+ <img src="./Imagenes_README/CapturasMenus/MenuOpciones.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
-<img src="./Imagenes_README/BocetoMenuPrincipal.png" alt="BocetoMenuPincipal" style="width: 70%"/>
+ ### Menú pausa
+<img src="./Imagenes_README/CapturasMenus/MenuPausa.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
-*Boceto menú principal*
+ ### Pantalla Créditos
+ <img src="./Imagenes_README/CapturasMenus/PantallaCreditos.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
-1.	Título del juego.
-
-2.	Botones con las distintas opciones siguiendo el estilo del título.
-
-3.	De fondo se ve el pueblo de Prinklytown.
-
-4. El protagonista está de espaldas a la cámara mirando hacia el pueblo mientras se le mueve el poncho.
+ ### Pantalla DLCs
+ ### Pantalla muerte
+ <img src="./Imagenes_README/CapturasMenus/PantallaMuerte.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
 # 7. Modelo de Negocio y Monetización
 
@@ -631,13 +630,16 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
 Al tratarse de un videojuego de acción frenética en tercera persona, el tipo de monetización que más encaja con nuestro tipo de juego es ***Buy to Play***, pues es lo normal en juegos de este estilo donde los jugadores realizan un pago único para disfrutar de la experiencia completa.
 
-Pese a ser de pago único, se pondrá a la venta un **early access** para los jugadores que quieran jugar el juego aunque no esté terminado, se habilitará la opción de hacer **pedidos anticipados** y se abre la puerta a la posibilidad de comercializar **DLCs** en función del éxito que tenga el juego. Por el momento se tiene plateados 2 DLCs para aquellos jugadores que más les haya gustado el videojuego: libro de arte y banda sonora. Estos DLCs, aunque no amplifican la experiencia de juego, permite a los jugadores tener en su poder el arte del juego y el soundtrack del mismo para disfrutarlo en cualquier momento, cosa que suelen hacer juegos de escala menor como el nuestro para sacar un beneficio extra.
+Por el momento se tiene plateados 2 DLCs  pequeños para aquellos jugadores que más les haya gustado el videojuego: libro de arte y banda sonora, ambos en formato digital. Estos DLCs, aunque no amplifican la experiencia de juego, permite a los jugadores tener en su poder el arte del juego y el soundtrack del mismo para disfrutarlo en cualquier momento, cosa que suelen hacer juegos de escala menor como el nuestro para sacar un beneficio extra.
+
+Aparte de los 2 DLCs pequeños, se tiene planteado hacer uno más grande llamado "Episodio Extra" que funcionará como precuela donde controlaras a Lince descubriendo quien es realmente, cual es su relación con Coyote y que fue lo que le sucedió en realidad. Este episodio extra contará con un nivel nuevo situado en las gélidas montañas de Hell Mountain, con nuevos enemigos y mecánicas.
 
 PRODUCTO              |  PRECIO
 --                    |  --     
-Juego base  |   15 €
-DLC: libro de arte |   5 €
-DLC: Banda sonora | 5 €
+Juego base  |   10 €
+DLC: libro de arte |   3 €
+DLC: Banda sonora | 3 €
+DLC: Episodio Extra | 5 €
 
 ## 7.2. Planificación y Costes
 ### El equipo humano
@@ -856,4 +858,34 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 
 #### Trabajo colectivo realizado
   Se ha estado en contacto con David, el game designer, para implementar el sistema de gancho conforme a las necesidades del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar.
-<!--## 9.3. Post Mortem - Gold-->
+
+## 9.3. Post Mortem - Gold
+### Eduardo Almarza Blasco
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Antonio Bernal de Celis
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### David del Castillo Enríquez
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Diego Fernández Manso
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Candela Jiménez González
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado
+
+### Andrea Luengo Zazo
+#### Lecciones aprendidas
+#### Trabajo individual realizado
+#### Trabajo colectivo realizado

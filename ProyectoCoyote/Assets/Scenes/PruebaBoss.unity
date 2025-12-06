@@ -5037,17 +5037,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193739258}
   m_Mesh: {fileID: 1451595551769182787, guid: 44d4a55e94c68274088029b20aca912f, type: 3}
---- !u!114 &198487448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2311556821209853738, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
-  m_PrefabInstance: {fileID: 1198754191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea129e16845a8a64493e269d194af161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &201781901
 GameObject:
   m_ObjectHideFlags: 0
@@ -8802,7 +8791,7 @@ PrefabInstance:
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 198487448}
+      objectReference: {fileID: 1782851402}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'startEnemies.Array.data[1]'
       value: 
@@ -28767,7 +28756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2720399610303996669, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2745420359944720783, guid: 0de0d45a3937e494eb10f49a85e970d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -43884,7 +43873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2547937317134907897, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2553762915380620761, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -43918,6 +43907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -79.373436
       objectReference: {fileID: 0}
+    - target: {fileID: 2655941386797297243, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 5594519558185043523}
     - target: {fileID: 2846021209591528604, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.026907481
@@ -44071,9 +44064,53 @@ PrefabInstance:
       value: 73.2826
       objectReference: {fileID: 0}
     - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 542216425}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: baseCactusAttackTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[1].life
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[2].life
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: bossEnemyAssetBehaviourRunner
       value: 
       objectReference: {fileID: 1782851405}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[1].state
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[2].state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[2].hasCactusAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[0].cactusAttackTime
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[1].cactusAttackTime
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919779615434427101, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+      propertyPath: bossFases.Array.data[2].cactusAttackTime
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6314996030971366563, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 1.3613404
@@ -44178,6 +44215,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2629283156661750131, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
   m_PrefabInstance: {fileID: 1782851400}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1782851402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7785142740099129453, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}
+  m_PrefabInstance: {fileID: 1782851400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a0074853fd3ef459ebc1d90fd78926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1782851405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2581277938799203006, guid: 816e38c0d968d7c46aac5ed3c06c7c90, type: 3}

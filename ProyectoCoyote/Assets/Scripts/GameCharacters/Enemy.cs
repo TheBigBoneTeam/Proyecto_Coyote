@@ -14,7 +14,7 @@ public class Enemy : AGameCharacter
     [SerializeField] GameObject HitParticles, blockParticles, critParticles, blockParticlesPosition;
     Transform initialParticleTransform;
     DamageReceiver damageReceiver;
-
+    [SerializeField] int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
     protected bool dead;
@@ -29,6 +29,7 @@ public class Enemy : AGameCharacter
     {
         if (!dead)
         {
+            ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop);
             dead = true;
             print("dieEnemy"+name);
             dieEvent?.Invoke(this);

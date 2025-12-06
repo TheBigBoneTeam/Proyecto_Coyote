@@ -29,6 +29,11 @@ namespace CombatEffect
         {
             effects.Add(new ShootOwnerGun());
         }
+        [ContextMenu("Add Heal")]
+        public void AddHeal()
+        {
+            effects.Add(new HealEffect(this,1));
+        }
         public virtual void addEffectsToChar(AGameCharacter charac)
         {
             foreach (var effect in effects) {

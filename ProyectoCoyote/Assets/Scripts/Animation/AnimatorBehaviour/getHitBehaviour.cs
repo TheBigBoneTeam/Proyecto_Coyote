@@ -41,7 +41,7 @@ public class getHitBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log($"{stateInfo.loop} {stateInfo.normalizedTime}");
-        if (stateInfo.normalizedTime > 0.9 && !finished)
+        if (stateInfo.normalizedTime > 0.7f && !finished)
         {
             finished = true;
             if (move != null)

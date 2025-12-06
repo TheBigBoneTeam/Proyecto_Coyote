@@ -52,7 +52,7 @@ public class EnemyLockOn : MonoBehaviour
         cam = Camera.main.transform;
 
         gameInput = GetComponent<GameInput>();
-        if (gameInput == null) gameInput = GetComponentInParent<GameInput>();
+        if (gameInput == null) gameInput = FindAnyObjectByType<GameInput>();
 
         lockOnCanvas.gameObject.SetActive(false); // UI de enemigo lockeado
     }

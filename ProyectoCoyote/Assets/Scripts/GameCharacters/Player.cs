@@ -92,8 +92,8 @@ public class Player : AGameCharacter
             case GameState.SlowDown:
                 onParry();
                 break;
-                default: break;
-                case GameState.Cutscene:
+            default: break;
+            case GameState.Cutscene:
                 playerMovement.setCanMove(false);
                 playerMovement.setCanAttack(false);
                 playerMovement.setCanDodge(false);

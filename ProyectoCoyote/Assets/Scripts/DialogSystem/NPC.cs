@@ -77,8 +77,9 @@ public class NPC : MonoBehaviour
     {
         Debug.Log("Comenzando Dialogo..");
         hover.gameObject.SetActive(false);
+      ServiceLocator.Instance.Get<IGameStateManager>().startDialog();
         playingDialogue = true;
-        dialogue.StartDialogue(startingLine, () => action.Execute(null), this, lookAtCamera);
+      dialogue.StartDialogue(startingLine, () => action.Execute(null), this, lookAtCamera);
 
     }
 

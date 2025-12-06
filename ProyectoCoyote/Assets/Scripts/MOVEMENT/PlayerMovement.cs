@@ -18,6 +18,17 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashSpeedChangeFactor;
 
+    [SerializeField] float _maxAttackBuffer;
+    float _currentAttackLeftBuffer;
+    float _currentAttackRigthBuffer;
+    float _currentAttackanyBuffer;
+
+    [SerializeField] float _maxDodgeBuffer;
+    float _currentDodgeLeftBuffer;
+    float _currentDodgeRightBuffer;
+    float _currentDodgeOutsideBuffer;
+    float _currentDodgeAnyBuffer;
+
     public float groundDrag;    // Deslizamiento
     /*
      cuanto mas valor tenga, menos desliza
@@ -159,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         animator = GetComponentInChildren<Animator>();
 
-        gameInput = GetComponentInParent<GameInput>();
+        gameInput = FindAnyObjectByType<GameInput>();
         if (gameInput == null)
             Debug.LogError("No se encontró el GameInput.");
     }
@@ -216,7 +227,63 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalInput = 0f; // Bloquea el movimiento lateral
         }
+        if (gameInput.AttackPressed || gameInput.AttackRightPressed)
+        {
+            _currentAttackanyBuffer = _maxAttackBuffer;
+        }
+        else
+        {
+            _currentAttackanyBuffer -= Time.deltaTime;
+        }
+        if (gameInput.AttackPressed)
+        {
+            _currentAttackLeftBuffer = _maxAttackBuffer;
+        }
+        else
+        {
+            _currentAttackLeftBuffer -= Time.deltaTime;
+        }
+        if (gameInput.AttackRightPressed)
+        {
+            _currentAttackRigthBuffer = _maxAttackBuffer;
+        }
+        else
+        {
+            _currentAttackRigthBuffer -= Time.deltaTime;
+        }
+        if (gameInput.Evade_LeftPressed)
+        {
+            _currentDodgeLeftBuffer = _maxDodgeBuffer;
+        }
+        else
+        {
+            _currentDodgeLeftBuffer -= Time.deltaTime;
+        }
+        if (gameInput.Evade_RightPressed)
+        {
+            _currentDodgeRightBuffer = _maxDodgeBuffer;
+        }
+        else
+        {
+            _currentAttackRigthBuffer -= Time.deltaTime;
+        }
+        if (gameInput.EvadePressed)
+        {
+            _currentDodgeOutsideBuffer = _maxDodgeBuffer;
+        }
+        else
+        {
+            _currentDodgeOutsideBuffer -= Time.deltaTime;
+        }
+        if(gameInput.EvadePressed || gameInput.Evade_LeftPressed || gameInput.Evade_RightPressed)
+        {
+            _currentDodgeAnyBuffer = _maxDodgeBuffer;
+        }
+        else
+        {
+            _currentDodgeAnyBuffer -= Time.deltaTime;
 
+        }
         // Direccion segun la camara
         Vector3 forward = cam.forward;
         Vector3 right = cam.right;
@@ -250,16 +317,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Movement", movement);
         
       
-            if (canAttack && lockMovement && (gameInput.AttackPressed || gameInput.AttackRightPressed))
+            if (canAttack && _currentAttackanyBuffer > 0 && lockMovement/* && (gameInput.AttackPressed || gameInput.AttackRightPressed)*/)
             {
                 string attackName = "";
 
-                if (gameInput.AttackPressed)
+                if (_currentAttackLeftBuffer > 0)
                 {
                     attackName += "Hit_L";
 
                 }
-                else if (gameInput.AttackRightPressed)
+                else if (_currentAttackRigthBuffer > 0)
                 {
                     attackName += "Hit_R";
                 }
@@ -268,8 +335,9 @@ public class PlayerMovement : MonoBehaviour
                     attackName += "_CRIT";
                     perfectDodgeManager.StopSlowdown();
                 }
+            _currentAttackanyBuffer= _currentAttackRigthBuffer = _currentAttackLeftBuffer = 0;
 
-                animator.CrossFade(attackName, .1f);
+            animator.CrossFade(attackName, .1f);
             
         }
 
@@ -508,7 +576,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (lockMovement)
         {
-            if ((gameInput.Evade_LeftPressed || gameInput.EvadePressed  || gameInput.Evade_RightPressed) && dodgeCdTimer <= 0f && canDodge)
+            if (_currentDodgeAnyBuffer > 0 && dodgeCdTimer <= 0f && canDodge)
             {
                 Dodge();
             }
@@ -552,15 +620,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dodge()
     {
-        if (dodgeCdTimer > 0 || !canDodge) return;
+        if (dodgeCdTimer > 0 || !canDodge || _currentDodgeAnyBuffer <= 0) return;
         else dodgeCdTimer = dodgeCd;
 
+        _currentDodgeAnyBuffer = 0;
         dashing = true;
 
-        if (gameInput.Evade_LeftPressed) animator.CrossFade("Dodge_L", .1f);
-        else if (gameInput.Evade_RightPressed) animator.CrossFade("Dodge_R", .1f);
-        else if (gameInput.EvadePressed) animator.CrossFade("BackBlock", .1f);
-        
+        if (_currentDodgeLeftBuffer > 0) animator.CrossFade("Dodge_L", .1f);
+        else if (_currentDodgeRightBuffer>0) animator.CrossFade("Dodge_R", .1f);
+        else if (_currentDodgeOutsideBuffer>0) animator.CrossFade("BackBlock", .1f);
+        _currentDodgeOutsideBuffer = _currentDodgeLeftBuffer = _currentDodgeAnyBuffer = _currentDodgeRightBuffer = 0;
         if (gameStateManager.getState() == GameState.SlowDown)
         {
             perfectDodgeManager.StopSlowdown();
@@ -661,6 +730,7 @@ public class PlayerMovement : MonoBehaviour
     // Escucha los cambios de estado del GameStateManager.
     private void OnGameStateChange(object sender, stateData stateInfo)
     {
+        print(stateInfo.currentState);
         switch (stateInfo.currentState)
         {
             case GameState.Cutscene:
@@ -672,6 +742,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case GameState.NonCombat:
+                UnfreezeMovement();
+                break;
             case GameState.Combat:
                 UnfreezeMovement();
                 break;

@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2444321574112974339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.58, z: -0.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,6 +158,7 @@ MonoBehaviour:
   blockParticles: {fileID: 75863163482658308}
   critParticles: {fileID: 6819688921660228571}
   blockParticlesPosition: {fileID: 2444321574112974339}
+  healthDrop: 1
 --- !u!54 &4038297873180172337
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -282,6 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 1
+  dodge: 0
+  canvasGroup: {fileID: 0}
 --- !u!95 &5120499399064668505
 Animator:
   serializedVersion: 7
@@ -661,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1028966232507041465, guid: 70d619f1462e58d418c691dd9b945096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 1028966232507041465, guid: 70d619f1462e58d418c691dd9b945096, type: 3}
       propertyPath: m_LocalPosition.z

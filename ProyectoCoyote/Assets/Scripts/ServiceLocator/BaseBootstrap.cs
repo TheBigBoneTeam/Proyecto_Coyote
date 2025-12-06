@@ -15,6 +15,7 @@ namespace Services
             ServiceLocator.Instance.Register<IcutsceneManager>(FindFirstObjectByType<timelineDirector>());
             ServiceLocator.Instance.Register<ISaveManager>(new SaveManager());
             ServiceLocator.Instance.Register<ILevelManager>(FindFirstObjectByType<LevelManager>());
+            ServiceLocator.Instance.Register<IHealthSpawner>(FindFirstObjectByType<HealthSpawner>());
 
 
         }

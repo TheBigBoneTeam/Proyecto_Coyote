@@ -96,6 +96,10 @@ public class AttacksAnimationEvent : MonoBehaviour
            setDodge(0);
         }
     }
+    public void setSetHookDodge(int hookDodgeOn)
+    {
+        GetComponentInParent<HookableObject>().Dodge = hookDodgeOn == 1 ? true : false;
+    }
     public void setCounterAnim(string anim)
     {
         Counter.setAnim(anim);

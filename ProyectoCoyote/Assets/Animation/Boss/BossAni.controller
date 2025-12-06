@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749e35de712bf20439a18786e884e2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7556564803196873899
+--- !u!114 &-7630400048540374417
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9933ab76e69b1cf43bf63edb1141d7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugName: 
+  DebugName: Scream
   lastAttackInAction: 1
 --- !u!1102 &-7177310986732207651
 AnimatorState:
@@ -513,33 +513,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &2151875349991595850
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours:
-  - {fileID: -7556564803196873899}
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cc886f2ae520dad49b196cb8bccc2998, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &2523055544111463966
 AnimatorState:
   serializedVersion: 6
@@ -631,32 +604,29 @@ AnimatorStateMachine:
     m_State: {fileID: -6006203020796488739}
     m_Position: {x: 849.26465, y: 37.819595, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 2151875349991595850}
-    m_Position: {x: 970, y: -130, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -8855685111009933952}
-    m_Position: {x: 624.9227, y: 483.32742, z: 0}
+    m_Position: {x: 360, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6536052539501605243}
-    m_Position: {x: 634.9227, y: 493.32742, z: 0}
+    m_Position: {x: 980, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7846462644942462647}
-    m_Position: {x: 644.9227, y: 503.32742, z: 0}
+    m_Position: {x: 650, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 12560347666072394}
-    m_Position: {x: 654.9227, y: 513.3274, z: 0}
+    m_Position: {x: 860, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7731008060685357073}
-    m_Position: {x: 664.9227, y: 523.3274, z: 0}
+    m_Position: {x: 590, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2300450016865070783}
-    m_Position: {x: 674.9227, y: 533.3274, z: 0}
+    m_Position: {x: 960, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2553915469566336661}
-    m_Position: {x: 684.9227, y: 543.3274, z: 0}
+    m_Position: {x: 460, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5606774349445894821}
-    m_Position: {x: 694.9227, y: 553.3274, z: 0}
+    m_Position: {x: 690, y: 550, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -674,11 +644,12 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature_Scream_01
+  m_Name: Scream
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -7630400048540374417}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -773,6 +744,20 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &4770363014932819051
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9933ab76e69b1cf43bf63edb1141d7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugName: Shooy
+  lastAttackInAction: 1
 --- !u!1102 &5111549617279507324
 AnimatorState:
   serializedVersion: 6
@@ -807,11 +792,12 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature_Shoot_01
+  m_Name: Shoot 0
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 4770363014932819051}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

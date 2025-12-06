@@ -5,9 +5,9 @@ namespace CombatEffect
     [System.Serializable]
     public class DamageEffect : ACombatEffect
     {
-    public int _damage;
+        public int _damage;
 
-        public DamageEffect(ACombatEffectSource source,int damage):base(source)
+        public DamageEffect(ACombatEffectSource source, int damage) : base(source)
         {
             this._damage = damage;
         }
@@ -22,9 +22,35 @@ namespace CombatEffect
 
         public override void End()
         {
-            throw new System.NotImplementedException();
+
         }
         public DamageEffect()
+        {
+
+        }
+    }
+    public class HealEffect : ACombatEffect
+    {
+        public int _heal;
+        public HealEffect(ACombatEffectSource source, int _heal) : base(source)
+        {
+            this._heal = _heal;
+        }
+        public override void Activate(AGameCharacter character)
+        {
+            this.objCharacter = character;
+            if (character)
+            {
+                character.getHealed(_heal);
+            }
+        }
+
+        public override void End()
+        {
+
+        }
+
+        public HealEffect()
         {
 
         }

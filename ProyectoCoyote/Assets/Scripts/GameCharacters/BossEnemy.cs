@@ -32,6 +32,9 @@ public class BossEnemy : Enemy
         {
             setHealthPoint(_maxHealthPoint);
         }
+        print(currentFase);
+        print(spawner == null);
+        print(bossFases[currentFase]);
         spawner.On = bossFases[currentFase].hasCactusAttack;
         if (bossFases[currentFase].cactusAttackTime != -1)
         {

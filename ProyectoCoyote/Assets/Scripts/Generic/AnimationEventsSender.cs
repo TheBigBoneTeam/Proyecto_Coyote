@@ -41,14 +41,14 @@ public class AnimationEventsSender : MonoBehaviour
 
     public void playParticle(string idx)
     {
-        //string[] parts = idx.Split('-');
-        //int i = int.Parse(parts[0], System.Globalization.CultureInfo.InvariantCulture);
-        //float scale = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture);
+        string[] parts = idx.Split('-');
+        int i = int.Parse(parts[0], System.Globalization.CultureInfo.InvariantCulture);
+        float scale = float.Parse(parts[1], System.Globalization.CultureInfo.InvariantCulture);
 
-        //if (particles != null)
-        //{
-        //    particles[i].transform.localScale = new Vector3(scale, scale, scale);
-        //    particles[i].Play();
-        //}
+        if (particles != null)
+        {
+            particles[i].transform.localScale = new Vector3(scale, scale, scale);
+            particles[i].Play();
+        }
     }
 }

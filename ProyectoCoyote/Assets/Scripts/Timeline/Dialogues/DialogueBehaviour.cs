@@ -100,14 +100,20 @@ public class DialogueBehaviour : PlayableBehaviour
 
                         if (AudioManager.Instance != null)
                         {
+                            if (Random.value > 0.5f)
+                                return;
+
                             switch (personaje)
                             {
+                                case VocesDialogo.Silencio:
+                                    break;
+
                                 case VocesDialogo.Coyote:
                                     AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
                                     break;
 
                                 case VocesDialogo.Perro:
-                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.2f);
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.1f);
                                     break;
 
                                 case VocesDialogo.Denebola:
@@ -157,5 +163,6 @@ public enum VocesDialogo
     Denebola,
     Lince,
     Carlos,
-    Cultista
+    Cultista,
+    Silencio
 }

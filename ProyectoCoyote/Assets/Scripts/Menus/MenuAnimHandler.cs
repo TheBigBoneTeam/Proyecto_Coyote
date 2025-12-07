@@ -28,7 +28,7 @@ public class MenuAnimHandler : MonoBehaviour
     public IEnumerator PlayRandomIdle()
     {
         Debug.Log("esperando");
-        yield return new WaitForSeconds(Random.Range(0,1));
+        yield return new WaitForSeconds(Random.Range(5,25));
         anim.Play(((int)Random.Range(1, 4)).ToString());
         
     }

@@ -17,6 +17,7 @@ public class EnemyLockOn : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
     [SerializeField] float noticeZone = 10;
+    [SerializeField] float enemyOutOfDistance = 11;
     [SerializeField] float lookAtSmoothing = 2;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 180;
     [SerializeField] float UI_Locked_Scale = 0.1f;
@@ -87,6 +88,8 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyLocked)
         {
             LookAtTarget();
+
+            if(EnemyOutOfDistance()) ResetTarget();
 
             // Volver a modo sin lockear si hay un obstáculo
             if (Blocked(GetTargetCenter(currentTarget), currentTarget))
@@ -161,6 +164,14 @@ public class EnemyLockOn : MonoBehaviour
         {
             MobileUIManager.Instance.SetNonCombatUI();
         }
+    }
+
+    public bool EnemyOutOfDistance() 
+    {
+        float distance = Vector3.Distance(currentTarget.position, transform.position);
+
+        if(distance >= enemyOutOfDistance) return true;
+        return false;
     }
 
     // Escanear alrededores en busca de enemigos

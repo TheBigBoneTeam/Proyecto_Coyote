@@ -461,7 +461,7 @@ public class Gancho : MonoBehaviour
         }
         else
         {
-            CamControl.StartShake();
+            // CamControl.StartShake();
             ResetTarget();
         }
 

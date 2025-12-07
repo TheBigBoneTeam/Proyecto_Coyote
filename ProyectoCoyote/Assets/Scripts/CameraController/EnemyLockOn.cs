@@ -291,7 +291,8 @@ public class EnemyLockOn : MonoBehaviour
             canBlock = 
                 !hit.transform.Equals(target) &&
                 !hit.transform.Equals(transform) && 
-                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy");
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy") &&
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Bullet");
             if (canBlock)
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");

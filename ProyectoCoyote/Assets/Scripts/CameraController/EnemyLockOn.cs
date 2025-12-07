@@ -2,6 +2,7 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -272,9 +273,15 @@ public class EnemyLockOn : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 origin = transform.position;
+        bool canBlock = false;
+
         if (Physics.Linecast(origin, t, out hit))
         {
-            if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
+            canBlock = 
+                !hit.transform.Equals(target) &&
+                !hit.transform.Equals(transform) && 
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy");
+            if (canBlock)
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;

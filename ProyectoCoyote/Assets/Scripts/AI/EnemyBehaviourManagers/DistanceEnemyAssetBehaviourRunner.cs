@@ -10,7 +10,7 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
   [SerializeField]  bool isUnsafe;
 
 
-    Cover currentCover;
+  public  Cover currentCover;
     int currentCoverHidePos;
 
     protected override void ModifyGraphs(Dictionary<string, BehaviourGraph> graphMap, Dictionary<string, PushPerception> pushPerceptionMap)

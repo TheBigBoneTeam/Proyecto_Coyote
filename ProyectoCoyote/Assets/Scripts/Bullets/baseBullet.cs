@@ -24,6 +24,8 @@ public class baseBullet : Attack, IBullet
  [SerializeField]   bool shouldNotBeDestroyed = false;
     Vector3 ogPosition;
 
+    Cover cover;
+
     [SerializeField] protected Animator anim;
 
  [SerializeField] protected  bool flying;
@@ -33,6 +35,7 @@ public class baseBullet : Attack, IBullet
     {
         print("BulletTrigger" + other.name);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
+        
         if (!flying)
         {
             return;
@@ -56,7 +59,7 @@ public class baseBullet : Attack, IBullet
                 destroyFunc();
 
             }
-        } else if (!other.isTrigger)
+        } else if (!other.isTrigger && !other.transform.Equals(cover.transform) && !other.transform.parent.Equals(cover.transform))
         {
             print("BulletTriggerWall" + other.name);
 
@@ -102,7 +105,15 @@ public class baseBullet : Attack, IBullet
    
     public virtual void StartBulletMovement(AGameCharacter shooter, Vector3 spawnPoint,Vector3 objective)
     {
-        setOwner(shooter);
+        if (shooter.GetComponent<DistanceEnemyAssetBehaviourRunner>())
+        {
+            cover = shooter.GetComponent<DistanceEnemyAssetBehaviourRunner>().currentCover;
+        }
+        else
+        {
+            cover = null;
+        }
+            setOwner(shooter);
         print("shooter"+ shooter);
         LoadData(_attackData);
        // setHitCheck(HittableTypes.onlyOtherTeam);

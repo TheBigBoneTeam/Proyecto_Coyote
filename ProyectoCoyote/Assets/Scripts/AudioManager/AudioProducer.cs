@@ -55,6 +55,26 @@ public class AudioProducer : MonoBehaviour
         audioSource.loop = loop;
     }
 
+    public void StartAudio3D(bool loop, bool onlyOne, Vector3 pos, float pitch = -1)
+    {
+        audioSource.maxDistance = sound.maxSoundDistance;
+        audioSource.transform.position = pos; // ahora 3D real
+        audioSource.clip = sound.audioClip;
+        audioSource.volume = sound.volume;
+        audioSource.loop = loop;
+
+        // 100% 3D
+        audioSource.spatialBlend = 1f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.minDistance = 1f;
+
+        if (pitch >= 0)
+            audioSource.pitch = pitch;
+        else
+            audioSource.pitch = sound.pitch;
+    }
+
+
     // Prepara el audio con volumen, tono y bucle (true o false)
     //public void StartAudio(bool loop, bool onlyOne, Vector2 pos, float pitch=-1){
     //    audioSource.maxDistance=sound.maxSoundDistance;
@@ -74,7 +94,7 @@ public class AudioProducer : MonoBehaviour
     //    audioSource.loop = loop;
     //}
 
-#region Reproduccion
+    #region Reproduccion
     public void Play(){
         audioSource.Play();
     }

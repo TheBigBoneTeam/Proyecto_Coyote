@@ -185,13 +185,14 @@ public class AudioManager : MonoBehaviour
                     musicSounds[1].audioSource.volume = 0f;
 
                 break;
-            case "Nivel2.1":
-                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
-                AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
-                if (musicSounds[1] != null)
-                    musicSounds[1].audioSource.volume = 0f;
 
-                break;
+            //case "Nivel2.1":
+            //    AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+            //    AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
+            //    if (musicSounds[1] != null)
+            //        musicSounds[1].audioSource.volume = 0f;
+
+            //    break;
 
             case "TesteoCInematicas":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true,0);
@@ -329,90 +330,58 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
-    #region Reproduce Sonido 3D
+    #region Reproduce Sonido 3D Real
     // POR NOMBRE
-    public virtual void Play3DSound(string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1, AudioRolloffMode mode = AudioRolloffMode.Linear)
+    public virtual void Play3DSound(string soundName, bool loop, Vector3 pos, bool onlyOne, bool isMusic, int musicAt = -1, string tag = "", float minPitch = -1, float maxPitch = -1, AudioRolloffMode mode = AudioRolloffMode.Linear)
     {
-        if (onlyOne && SearchSource(soundName))
-        {
-            return;
-        }
+        Sound sound = SoundGallery.Instance.FindSound(soundName);
+        if (sound == null) { Debug.Log("No se encontró el sonido"); return; }
 
-        Sound Sound = SoundGallery.Instance.FindSound(soundName);
-        
-        if (_player != null)
-        {
-            if (Vector2.Distance(pos, _player.position) > Sound.maxSoundDistance || Sound == null) { return; }
-        }
-
-        if (Sound != null)
-        {
-            AudioProducer ap = this.gameObject.AddComponent<AudioProducer>();
-            ap.SetAudioProducer(tag,Sound);
-            
-            if (!isMusic)
-            {
-                normalSounds.Add(ap);
-            }
-            else
-            {
-                AddToMusicArray(ap,musicAt);
-            }
-
-            float pitch=Sound.pitch;
-
-            if (Sound.pitchVariation.x>=0 && Sound.pitchVariation.y>=0)
-            {
-                pitch = Random.Range(Sound.pitchVariation.x,Sound.pitchVariation.y);
-            }
-
-            ap.StartAudio(loop,onlyOne,pos,pitch);
-            ap.audioSource.rolloffMode = mode;
-            ap.Play();
-        }
+        AudioProducer ap = this.gameObject.AddComponent<AudioProducer>();
+        ap.SetAudioProducer("", sound);
+        ap.StartAudio3D(false, false, pos, sound.pitch);
+        ap.audioSource.volume = 1f;
+        ap.audioSource.spatialBlend = 1f;
+        ap.audioSource.minDistance = 0.1f;
+        ap.audioSource.maxDistance = 100f;
+        ap.Play();
     }
 
     // ALEATORIO
-    public virtual void PlayCollected3DSound(string collectionName, bool even, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1, AudioRolloffMode mode = AudioRolloffMode.Linear){
-        Sound Sound = SoundGallery.Instance.FindSoundInCollectionRandom(collectionName,even);
-
-        if (onlyOne && SearchSource(Sound.name))
-        {
+    public virtual void PlayCollected3DSound(string collectionName, bool even, bool loop, Vector3 pos, bool onlyOne, bool isMusic, int musicAt = -1, string tag = "", float minPitch = -1, float maxPitch = -1, AudioRolloffMode mode = AudioRolloffMode.Linear)
+    {
+        Sound sound = SoundGallery.Instance.FindSoundInCollectionRandom(collectionName, even);
+        if (sound == null) return;
+        if (onlyOne && SearchSource(sound.name))
             return;
-        }
 
         if (_player != null)
         {
-            if (Vector2.Distance(pos, _player.position) > Sound.maxSoundDistance || Sound == null) { return; }
+            if (Vector3.Distance(pos, _player.position) > sound.maxSoundDistance)
+                return;
         }
 
-        if (Sound != null)
-        {
-            AudioProducer ap = this.gameObject.AddComponent<AudioProducer>();
-            ap.SetAudioProducer(tag,Sound);
+        AudioProducer ap = this.gameObject.AddComponent<AudioProducer>();
+        ap.SetAudioProducer(tag, sound);
 
-            if (!isMusic)
-            {
-                normalSounds.Add(ap);
-            }
-            else
-            {
-                AddToMusicArray(ap,musicAt);
-            }
+        if (!isMusic)
+            normalSounds.Add(ap);
+        else
+            AddToMusicArray(ap, musicAt);
 
-            float pitch=Sound.pitch;
+        float pitch = sound.pitch;
+        if (sound.pitchVariation.x >= 0 && sound.pitchVariation.y >= 0)
+            pitch = Random.Range(sound.pitchVariation.x, sound.pitchVariation.y);
 
-            if (Sound.pitchVariation.x>=0 && Sound.pitchVariation.y>=0)
-            {
-                pitch = Random.Range(Sound.pitchVariation.x,Sound.pitchVariation.y);
-            }
-
-            ap.StartAudio(loop,onlyOne,pos,pitch);
-            ap.audioSource.rolloffMode = mode;
-            ap.Play();
-        }
+        ap.StartAudio(loop, onlyOne, pos, pitch);
+        ap.audioSource.spatialBlend = 1f; // 100% 3D
+        ap.audioSource.rolloffMode = mode;
+        ap.audioSource.maxDistance = sound.maxSoundDistance;
+        ap.audioSource.minDistance = 1f; // Ajusta según necesites
+        ap.Play();
     }
     #endregion
+
 
     #region FADE IN / FADE OUT
     public virtual void PlaySimpleSoundFadeIn(float fadeTime, string soundName, bool loop, Vector2 pos, bool onlyOne, bool isMusic, int musicAt=-1, string tag="", float minPitch=-1, float maxPitch=-1){

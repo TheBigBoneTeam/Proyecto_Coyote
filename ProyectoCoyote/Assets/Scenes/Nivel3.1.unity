@@ -9834,7 +9834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "No quiero formar parte de la reencarnaci\xF3n de un ser como este."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47c1e8195e4b3ab43a84e0a501e7479b, type: 2}
   m_sharedMaterial: {fileID: 3050132450813179958, guid: 47c1e8195e4b3ab43a84e0a501e7479b, type: 2}
@@ -51113,35 +51113,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.08231
+      value: 3.1934018
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.83144164
+      value: 0.37662578
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 254.74759
+      value: -2.0268645
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.46862793
+      value: 0.98477453
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.03348004
+      value: 0.063976236
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8809409
+      value: -0.16129608
       objectReference: {fileID: 0}
     - target: {fileID: 3123348385747060490, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0566572
+      value: 0.010478661
       objectReference: {fileID: 0}
     - target: {fileID: 4245178220127102112, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: field of view
-      value: 59.6
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4814700123108741153, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: TargetOffset.y
@@ -64034,7 +64034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1760418153
 Transform:
   m_ObjectHideFlags: 0
@@ -81225,7 +81225,7 @@ PrefabInstance:
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: afterCombatStoryAction.cutsceneData.cutscene
       value: 
-      objectReference: {fileID: 11400000, guid: b5bdf4cec533392409a9f2492d90796d, type: 2}
+      objectReference: {fileID: 11400000, guid: 433f46163fe801b44bdac53b5454a882, type: 2}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: afterCombatStoryAction.cutsceneData.nextLevel
       value: Credits
@@ -81275,8 +81275,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: afterCombatStoryAction.cutsceneData.objectsToTurnOn.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: extraEnemyWaves.Array.data[0].beforeWavestoryAction.actionType
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: afterCombatStoryAction.cutsceneData.objectsToTurnOff.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: beforeCombatStoryAction.cutsceneData.objectsToTurnOn.Array.size
@@ -81286,6 +81294,14 @@ PrefabInstance:
       propertyPath: beforeCombatStoryAction.cutsceneData.objectsToTurnOff.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: 'afterCombatStoryAction.cutsceneData.objectsToTurnOn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5885558478740715660}
+    - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
+      propertyPath: 'afterCombatStoryAction.cutsceneData.objectsToTurnOff.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1760418152}
     - target: {fileID: 3261886882827213249, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: 'beforeCombatStoryAction.cutsceneData.objectsToTurnOn.Array.data[0]'
       value: 

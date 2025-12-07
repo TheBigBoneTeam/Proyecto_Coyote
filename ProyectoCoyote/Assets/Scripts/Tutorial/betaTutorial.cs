@@ -177,7 +177,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a va rios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivarAtras/. El punto central de la interfaz te avisará de ataques desde fuera.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivaratras/. El punto central de la interfaz te avisará de ataques desde fuera.");
             
         }
         public void esquive(HitDirections d)
@@ -755,7 +755,7 @@ namespace tutorial
                             _ => partes[i]
                         };
                         break;
-                    case "esquivarAtras":
+                    case "esquivaratras":
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>Espacio</b>",

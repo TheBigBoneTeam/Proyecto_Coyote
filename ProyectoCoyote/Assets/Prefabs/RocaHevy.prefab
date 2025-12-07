@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3352488532518205792}
   - component: {fileID: -6486440541788056571}
   - component: {fileID: 2278168921860554393}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RocaHevy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,10 @@ MonoBehaviour:
   <owner>k__BackingField: {fileID: 0}
   <Parreable>k__BackingField: 0
   <HitCheckType>k__BackingField: 2
-  <HitDirections>k__BackingField: 03000000
+  <HitDirectionsList>k__BackingField: 
+  attackStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   objective: {x: -22.96849, y: -1.2876977, z: 11.957662}
   speed: 30
   lifeTime: 10
@@ -111,9 +114,7 @@ MonoBehaviour:
   hit: 0
   hitParticle: {fileID: 0}
   impactParticle: {fileID: 0}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  shouldNotBeDestroyed: 1
   anim: {fileID: 0}
   flying: 0
   references:

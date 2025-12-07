@@ -18527,7 +18527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <HealthPoint>k__BackingField: 2
-  _maxHealthPoint: 0
+  <_maxHealthPoint>k__BackingField: 0
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
@@ -18535,6 +18535,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   shouldprint: 0
   renderers: []
+  <attack>k__BackingField: {fileID: 0}
   ActiveBeforeFight: 0
   HitParticles: {fileID: 0}
   blockParticles: {fileID: 0}
@@ -21127,6 +21128,10 @@ PrefabInstance:
       propertyPath: DefaultBlend.Style
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 562052852576944556, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
+      propertyPath: Priority.m_Value
+      value: -1382
+      objectReference: {fileID: 0}
     - target: {fileID: 1412777623473275390, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9949556
@@ -21249,7 +21254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5102430206663492992, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5310481726557343885, guid: 357fca40d6e149840b48270bae3ece3d, type: 3}
       propertyPath: m_Name

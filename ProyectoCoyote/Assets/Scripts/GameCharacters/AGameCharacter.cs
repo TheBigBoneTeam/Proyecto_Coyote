@@ -12,7 +12,7 @@ public abstract class AGameCharacter :MonoBehaviour
 {
     List<ATimedEffect> activeEffects;
    [field:SerializeField] public int HealthPoint { get; private set; }
-   [SerializeField] protected int _maxHealthPoint;
+   [field:SerializeField] public int _maxHealthPoint { get; private set; }
     [SerializeField] bool inmuneStun;
     [SerializeField] float invTimeAfterHit = 1;
   [SerializeField]  protected bool invincible;
@@ -25,7 +25,7 @@ public abstract class AGameCharacter :MonoBehaviour
   [SerializeField] protected Vector3 startPos;
 
     [SerializeField]  bool shouldprint;
-    [SerializeField] Renderer[] renderers;
+    [SerializeField] protected Renderer[] renderers;
   [field:SerializeField]  public Attack attack { get; private set; }
 
 
@@ -145,7 +145,6 @@ public abstract class AGameCharacter :MonoBehaviour
         }
         invincible = false;
     }
-
     public virtual void restart()
     {
         currentAnim = "";

@@ -48,6 +48,7 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
     }
     public void StartSlowdown()
     {
+        print("slowDow");
         if (!slowOn)
         {
             

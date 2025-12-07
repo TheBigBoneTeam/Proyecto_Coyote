@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
-        position: {x: 300, y: 0}
+        position: {x: 316, y: 15.200005}
         node:
           rid: 5634289356226429019
         references: []
@@ -30,7 +30,7 @@ MonoBehaviour:
         - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
       - name: AttackA
         id: 8cc4b342-4349-469c-a8f4-d37bcc974007
-        position: {x: -1050, y: 1600}
+        position: {x: -1035.2, y: 1616}
         node:
           rid: 5634289356226429025
         references:
@@ -109,48 +109,22 @@ MonoBehaviour:
         - 3af17fdf-20ee-443f-832d-a7acdcea34fb
         childIds:
         - 4416613e-eacb-4600-9809-873056a04543
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+        - cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
         - 5078b4b0-887b-4d17-8520-9126fd1a338f
         - 9bb2e63d-42d1-4d6f-859d-16eec6e04d3b
       - name: 
-        id: b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        position: {x: 150, y: 1400}
-        node:
-          rid: 5634289591621779552
-        references: []
-        parentIds:
-        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
-        childIds:
-        - cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
-        - 1392e30e-ed66-4334-ad28-f08284a534fa
-        - 290dd709-0257-4796-97a3-18adba3b4d61
-      - name: 
         id: cd9602a8-1fb7-4ef5-97e1-3612d1d7b5be
-        position: {x: -150, y: 1600}
+        position: {x: -127.2, y: 1616}
         node:
           rid: 5634289591621779553
         references:
         - fieldName: Action
           value:
-            rid: 5634289591621779554
+            rid: 2751277327072624761
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        childIds: []
-      - name: 
-        id: 1392e30e-ed66-4334-ad28-f08284a534fa
-        position: {x: 150, y: 1600}
-        node:
-          rid: 5634289591621779555
-        references:
-        - fieldName: Action
-          value:
-            rid: 5634289591621779556
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
+        - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         childIds: []
       - name: 
         id: 972897bf-c258-42ca-b90d-79770affc8f4
@@ -259,20 +233,6 @@ MonoBehaviour:
         parentIds:
         - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         childIds: []
-      - name: 
-        id: 290dd709-0257-4796-97a3-18adba3b4d61
-        position: {x: 450, y: 1600}
-        node:
-          rid: 8725331027605324022
-        references:
-        - fieldName: Action
-          value:
-            rid: 8725331027605324023
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b3738fe6-6ac8-4ffa-9b12-cca702bf7bca
-        childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds: []
@@ -283,6 +243,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2751277327072624761
+      type: {class: RandomActionAction, ns: , asm: Assembly-CSharp}
+      data:
+        BaseAction: Defense
+        FirstLetter: A
+        LastLetter: C
+        idle: 0
+        loops: 1
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -298,6 +266,7 @@ MonoBehaviour:
       data:
         action: 0
         idle: 0
+        loops: 1
     - rid: 5634289356226429027
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -310,6 +279,7 @@ MonoBehaviour:
       data:
         action: 1
         idle: 0
+        loops: 1
     - rid: 5634289451439489124
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -344,26 +314,9 @@ MonoBehaviour:
       data:
         componentName: enemigoTutorial
         methodName: checkTutorialMode
-    - rid: 5634289591621779552
-      type: {class: RandomBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 5634289591621779553
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289591621779554
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 3
-        idle: 0
-    - rid: 5634289591621779555
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 5634289591621779556
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 4
-        idle: 0
     - rid: 5634289591621779567
       type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -401,7 +354,8 @@ MonoBehaviour:
       data: 
     - rid: 5634289591621779585
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        infinite: 0
     - rid: 5634289591621779594
       type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -416,6 +370,7 @@ MonoBehaviour:
       data:
         action: 2
         idle: 0
+        loops: 1
     - rid: 8725330873693503860
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -424,6 +379,7 @@ MonoBehaviour:
       data:
         action: 10
         idle: 1
+        loops: 1
     - rid: 8725331027605323995
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -432,11 +388,4 @@ MonoBehaviour:
       data:
         action: 8
         idle: 0
-    - rid: 8725331027605324022
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 8725331027605324023
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 5
-        idle: 0
+        loops: 1

@@ -39,6 +39,7 @@ public class DamageReceiver:MonoBehaviour
             character.DodgeAttack(directions[0]);
             if (parrying && attack.Parreable)
             {
+                print("Parry");
                 if (!perfectDodgeManager.isSlowDown())
                 {
                     perfectDodgeManager.StartSlowdown();

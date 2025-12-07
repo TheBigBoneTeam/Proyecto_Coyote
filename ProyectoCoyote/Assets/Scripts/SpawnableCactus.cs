@@ -1,5 +1,4 @@
 using System;
-using TreeEditor;
 using UnityEngine;
 
 public class SpawnableCactus : AGameCharacter,IPoolObject

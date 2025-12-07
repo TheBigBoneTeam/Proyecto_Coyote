@@ -33,7 +33,8 @@ namespace tutorial
         }
         public void endTutorial()
         {
-            SceneManager.LoadScene(NextScene);
+            FindAnyObjectByType<ditherTransition>().goIn(NextScene);
+          //  SceneManager.LoadScene(NextScene);
             //if (restart)
             //{
             //    ServiceLocator.Instance.Get<ILevelController>().reStart();

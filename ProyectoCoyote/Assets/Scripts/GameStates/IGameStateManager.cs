@@ -18,6 +18,7 @@ public interface IGameStateManager : IService
     public void startNonCombatGameplay();
     public void startCombat(combatAreaManager combatArea,WaveData waveData);
 
+
     public void startCombatforTutorial();
 
 

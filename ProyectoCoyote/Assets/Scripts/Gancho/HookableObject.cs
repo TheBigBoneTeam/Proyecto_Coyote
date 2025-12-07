@@ -56,7 +56,10 @@ public class HookableObject : MonoBehaviour
         if (enemy != null)
         {
             enemy.PlayAnimationCut("GetHook");
-            enemyAssetBehaviourRunner.enabled = false;
+            if (enemyAssetBehaviourRunner != null)
+            {
+                enemyAssetBehaviourRunner.enabled = false;
+            }
             enemyAI.getHit();
         }
     }
@@ -65,6 +68,7 @@ public class HookableObject : MonoBehaviour
     {
         if (enemy != null)
         {
+            if(enemyAssetBehaviourRunner!=null)
             enemyAssetBehaviourRunner.enabled = true;
 
             if (GetComponent<BossEnemy>() != null)

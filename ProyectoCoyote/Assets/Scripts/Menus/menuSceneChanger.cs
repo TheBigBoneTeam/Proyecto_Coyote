@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class menuSceneChanger : MonoBehaviour
 {
-    [SerializeField] string primerNivel = "Nivel1";
+    [SerializeField] string primerNivel = "cinematicaIntro";
    [SerializeField] Button continueButton;
     string continueLvl;
     public void changeScene(string sceneName)

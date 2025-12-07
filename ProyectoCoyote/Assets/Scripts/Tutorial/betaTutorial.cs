@@ -76,7 +76,8 @@ namespace tutorial
              gamestateManager = ServiceLocator.Instance.Get<IGameStateManager>();
             gamestateManager.startCombatforTutorial();
             machine.AddTransition(start, controles, new FuncPredicate(() => true));
-            machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
+          machine.AddTransition(controles, camara, new FuncPredicate(() => controles.checkMovement()));
+            //machine.AddTransition(controles, esquiPerfP1, new FuncPredicate(() => controles.checkMovement()));
 
             machine.AddTransition(camara, lockear, new FuncPredicate(() => camara.checkMovement()));
             machine.AddTransition(lockear, esquivar, new FuncPredicate(() =>lockon.currentTarget == enemy.transform));
@@ -127,6 +128,8 @@ namespace tutorial
         {
             yield return new WaitForSeconds(2);
            enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
+            enemy.GetComponent<DamageReceiver>().setInvincible(false);
+
 
         }
     }
@@ -140,7 +143,7 @@ namespace tutorial
         public override void OnEnter()
         {
             
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ o /esquivar/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </color>. Solo podrás esquivar si estás fijando a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ o /esquivar/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </_linea_/color >. Solo podrás esquivar si estás fijando a un enemigo");
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -329,12 +332,14 @@ namespace tutorial
     public class EsquiPerfP2 : BaseTutorialState
     {
         new betaTutorial tutorial;
+        bool finish;
         public EsquiPerfP2(betaTutorial _tut)
         {
             tutorial = _tut;
         }
         public override void OnEnter()
         {
+            finish = false;
             Time.timeScale = 0;
             tutorial.currentEsqPerf = 0;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador que te permire recuperar la vida quitada en el último ataque recibido. Pulsa /esquivar/ para hacer el esquive perfecto");
@@ -351,9 +356,14 @@ namespace tutorial
         public override void Update()
         {
             base.Update();
-            if (tutorial.gameInput.BlockPressed)
+            if (tutorial.gameInput.Evade_LeftPressed || tutorial.gameInput.Evade_RightPressed)
             {
-                Time.timeScale = 1;
+                if (!finish)
+                {
+                    Time.timeScale = 1;
+
+                    finish = true;
+                }
             }
         }
         public override void OnExit()
@@ -575,7 +585,7 @@ namespace tutorial
         bool hasRun;
         new betaTutorial tutorial;
         float runTime;
-        float runTimeNeeded = 2;
+        float runTimeNeeded = 1.5f;
 
         public ControlesTutorial(betaTutorial _tut)
         {
@@ -583,7 +593,8 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-
+            tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
+            tutorial.enemy.GetComponent<DamageReceiver>().setInvincible(false);
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario y /correr/ a la vez para correr.");
             input = GameObject.FindAnyObjectByType<GameInput>();
 
@@ -621,7 +632,7 @@ namespace tutorial
     }
     public class CamaraTutorial : BaseTutorialState
     {
-        float mouseMovementNeeded = 2;
+        float mouseMovementNeeded = 1.5f;
       float  currentMouseMove;
         public CamaraTutorial(Tutorial _tut)
         {
@@ -702,6 +713,9 @@ namespace tutorial
                 string token = partes[i].ToLower();
                 switch (token)
                 {
+                    case "_linea_":
+                        resultado += "/";
+                        break;
                     case "movimiento":
                         resultado += device switch
                         {
@@ -735,8 +749,8 @@ namespace tutorial
                     case "esquivar":
                         resultado += device switch
                         {
-                            GameInput.DeviceType.KeyboardMouse => "<b>ESPACIO</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Botón A / X</b>",
+                            GameInput.DeviceType.KeyboardMouse => "<b>A o D</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Gatillo izquierdo a los lados</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
                             _ => partes[i]
                         };

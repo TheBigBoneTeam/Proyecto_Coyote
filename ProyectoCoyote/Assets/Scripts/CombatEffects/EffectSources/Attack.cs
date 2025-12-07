@@ -118,6 +118,8 @@ public class Attack : ATouchCombatEffectSource
     }
     void sendState()
     {
+        print("Invoke");
+
         attackStateEvent.Invoke(new AttackState(this, owner));
 
     }
@@ -139,6 +141,7 @@ public class Attack : ATouchCombatEffectSource
     }
     public void LoadData(AttackData data)
     {
+        print("LoadData");
         if (data == null)
         {
             HitDirectionsList.Clear();
@@ -163,7 +166,8 @@ public class Attack : ATouchCombatEffectSource
 
     public virtual void restart()
     {
-        attackStateEvent.RemoveAllListeners();
+        
+      attackStateEvent.RemoveAllListeners();
     }
 
     public class AttackState

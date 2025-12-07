@@ -37,7 +37,7 @@ public class tutorialLevelManager : MonoBehaviour, ILevelManager
     public void startTutorial(){
         ServiceLocator.Instance.Get<IGameStateManager>().Restart(); 
 
-        ServiceLocator.Instance.Get<IGameStateManager>().startNonCombatGameplay();
+        ServiceLocator.Instance.Get<IGameStateManager>().startCombatforTutorial();
         print("startTut");
         FindAnyObjectByType<TutorialDefenseAttackUIIndicator>().restartTut();
         FindAnyObjectByType<Tutorial>().startTutorial();

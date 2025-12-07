@@ -54,6 +54,7 @@ public class DamageReceiver:MonoBehaviour
     }
     protected bool checkListIntersect(List<HitDirections> hitDirections, List<HitDirections> directions)
     {
+        if(hitDirections.Count == 0) return false;
         if (directions.Contains(HitDirections.Back))
         {
             return true;

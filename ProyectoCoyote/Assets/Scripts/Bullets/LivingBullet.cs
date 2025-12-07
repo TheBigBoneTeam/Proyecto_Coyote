@@ -40,6 +40,7 @@ public class LivingBullet : baseBullet
         //rb.useGravity = true;
         print("DestroyBomb");
         gameObject.layer = LayerMask.NameToLayer("Enemy");
+
       //  rb.constraints = RigidbodyConstraints.FreezePosition;
         GetComponent<Enemy>().Die();
     }

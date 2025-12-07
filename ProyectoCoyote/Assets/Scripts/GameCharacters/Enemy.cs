@@ -17,7 +17,7 @@ public class Enemy : AGameCharacter
     [SerializeField] protected int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
-    protected bool dead;
+  [field:SerializeField]  public bool dead { get; private set; }
 
     protected override void Start()
     {

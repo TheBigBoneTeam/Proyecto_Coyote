@@ -304,6 +304,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   shouldprint: 0
   renderers: []
+  <attack>k__BackingField: {fileID: 0}
   ActiveBeforeFight: 0
   HitParticles: {fileID: 7073598018001875246}
   blockParticles: {fileID: 7674958976543173433}
@@ -318,6 +319,14 @@ MonoBehaviour:
     life: 10
   - state: 1
     hasCactusAttack: 0
+    cactusAttackTime: -1
+    life: 10
+  - state: 0
+    hasCactusAttack: 1
+    cactusAttackTime: -1
+    life: 10
+  - state: 1
+    hasCactusAttack: 1
     cactusAttackTime: -1
     life: 10
   - state: 0

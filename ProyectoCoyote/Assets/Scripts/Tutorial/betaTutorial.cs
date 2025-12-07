@@ -143,7 +143,7 @@ namespace tutorial
         public override void OnEnter()
         {
             
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/ o /esquivar/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </_linea_/color >. Solo podrás esquivar si estás fijando a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Mientras enfocas a un enemigo podrás esquivar pulsando /esquivar/. Las direcciones donde NO tienes que esquivar se mostrarán en <color=red> ROJO </_linea_/color >. Solo podrás esquivar si estás fijando a un enemigo");
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.player.subscribeToDodgeAttack(esquive);
 
@@ -177,7 +177,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivar/ sin ninguna dirección. El punto central de la interfaz te avisará de ataques desde fuera.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a va rios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivarAtras/. El punto central de la interfaz te avisará de ataques desde fuera.");
             
         }
         public void esquive(HitDirections d)
@@ -751,6 +751,15 @@ namespace tutorial
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>A o D</b>",
                             GameInput.DeviceType.Gamepad => "<b>Gatillo izquierdo a los lados</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
+                            _ => partes[i]
+                        };
+                        break;
+                    case "esquivarAtras":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>Espacio</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón B/X</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
                             _ => partes[i]
                         };

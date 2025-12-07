@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class menuSceneChanger : MonoBehaviour
 {
-    [SerializeField] string primerNivel = "cinematicaIntro";
+    public string primerNivel = "cinematicaIntro";
    [SerializeField] Button continueButton;
-    string continueLvl;
+    [SerializeField] MenuAnimHandler menuAnimHandler;
+    public string continueLvl;
     public void changeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -14,11 +15,15 @@ public class menuSceneChanger : MonoBehaviour
 
     public void newGame()
     {
-        SceneManager.LoadScene(primerNivel);
+        menuAnimHandler.isNewGame = true;
+        menuAnimHandler.StartWalk();
+        //SceneManager.LoadScene(primerNivel);
     }
     public void continueGame()
     {
-        SceneManager.LoadScene(continueLvl);
+        menuAnimHandler.isNewGame = false;
+        menuAnimHandler.StartWalk();
+        //SceneManager.LoadScene(continueLvl);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

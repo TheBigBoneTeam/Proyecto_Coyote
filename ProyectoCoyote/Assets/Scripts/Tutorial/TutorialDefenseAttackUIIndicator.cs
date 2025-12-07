@@ -1,11 +1,12 @@
+using Services;
 using UnityEngine;
 
 public class TutorialDefenseAttackUIIndicator:DefenseAttackUIIndicator
 {
     [SerializeField] Enemy[] tutorialEnemies;
-    protected override void Start()
+
+    public void restartTut()
     {
-        base.Start();
         middleDanger.SetActive(false);
         foreach (var enemy in tutorialEnemies)
         {
@@ -24,10 +25,15 @@ public class TutorialDefenseAttackUIIndicator:DefenseAttackUIIndicator
                 }
                 else
                 {
+                    print(enemy.name);
                     enemy.attack.subscribeToStateChange(AttackHappeneed);
                     enemy.subscribeToDie(enemyDie);
                 }
             }
         }
+    }
+    protected override void Start()
+    {
+        base.Start();
     }
 }

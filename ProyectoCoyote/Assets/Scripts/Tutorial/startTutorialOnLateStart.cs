@@ -9,7 +9,7 @@ public class startTutorialOnLateStart : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(waitEnd());
+     //   StartCoroutine(waitEnd());
     }
 
     // Update is called once per frame

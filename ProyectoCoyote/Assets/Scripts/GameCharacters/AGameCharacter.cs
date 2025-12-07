@@ -26,7 +26,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     [SerializeField]  bool shouldprint;
     [SerializeField] Renderer[] renderers;
-    public Attack attack { get; private set; }
+  [field:SerializeField]  public Attack attack { get; private set; }
 
 
     string currentAnim;

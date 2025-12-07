@@ -520,7 +520,7 @@ namespace tutorial
 
             tutorial.currentGanchos = 0;
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer a enemigo/ para terminar el tutorial");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer enemigo/ para terminar el tutorial");
         }
     }
     //public class Gancho4 : BaseTutorialState
@@ -572,14 +572,19 @@ namespace tutorial
     public class ControlesTutorial : BaseTutorialState
     {
         GameInput input;
-        public ControlesTutorial(Tutorial _tut)
+        bool hasRun;
+        new betaTutorial tutorial;
+        float runTime;
+        float runTimeNeeded = 2;
+
+        public ControlesTutorial(betaTutorial _tut)
         {
             tutorial = _tut;
         }
         public override void OnEnter()
         {
 
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario y /dash/ a la vez para correr.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Empecemos por lo esencial. Usa /movimiento/ para moverte por el escenario y /correr/ a la vez para correr.");
             input = GameObject.FindAnyObjectByType<GameInput>();
 
 
@@ -591,7 +596,23 @@ namespace tutorial
         }
         public bool checkMovement()
         {
-            if(input.Horizontal != 0 || input.Vertical != 0)
+            Debug.Log(runTime);
+
+            if (tutorial.gameInput.SprintHeld)
+            {
+                hasRun = true;
+            }
+            if (input.Horizontal != 0 || input.Vertical != 0)
+            {
+                runTime += Time.deltaTime;
+            }
+            else
+            {
+                runTime -= Time.deltaTime;
+                runTime = MathF.Max(runTime, 0);
+
+            }
+            if (hasRun && runTime > runTimeNeeded)
             {
                 return true;
             }
@@ -600,12 +621,16 @@ namespace tutorial
     }
     public class CamaraTutorial : BaseTutorialState
     {
+        float mouseMovementNeeded = 2;
+      float  currentMouseMove;
         public CamaraTutorial(Tutorial _tut)
         {
             tutorial = _tut;
+            
         }
         public override void OnEnter()
         {
+            currentMouseMove = 0;
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Genial parece que sabes cómo caminar, ahora usa /camara/ para ver lo que hay a tu alrededor.");
             
@@ -616,27 +641,23 @@ namespace tutorial
         }
         public bool checkMovement()
         {
-            if (Input.GetAxis("Mouse X") < 0)
+            Debug.Log(currentMouseMove);
+
+            if (Input.GetAxis("Mouse X") < 0 || Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse Y") >  0 || Input.GetAxis("Mouse X") > 0)
             {
                 //Code for action on mouse moving left
-                return true;
+                currentMouseMove += Time.deltaTime;
             }
-            if (Input.GetAxis("Mouse X") > 0)
+            else
             {
-                //Code for action on mouse moving right
-                return true;
+                currentMouseMove -= Time.deltaTime;
+                currentMouseMove = MathF.Max(currentMouseMove, 0);
             }
-            if (Input.GetAxis("Mouse Y") < 0)
+            if(currentMouseMove > mouseMovementNeeded)
             {
-                //Code for action on mouse moving left
                 return true;
             }
-            if (Input.GetAxis("Mouse Y") > 0)
-            {
-                //Code for action on mouse moving right
-                return true;
-            }
-            return false;
+                return false;
 
         }
     }
@@ -651,6 +672,7 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.enemy.gameObject.SetActive(true);
+
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Muy bien, me has demostrado que esos ojos no los tienes solo de decoración. Ahora presiona /lockeo/ para enfocar y desenfocar a un enemigo, en este caso prueba con este cactus.");
         }
         public override void OnExit()

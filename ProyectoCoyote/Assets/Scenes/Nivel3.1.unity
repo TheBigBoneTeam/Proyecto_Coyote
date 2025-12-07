@@ -19407,7 +19407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &609235938
 Transform:
   m_ObjectHideFlags: 0
@@ -20176,7 +20176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8751002346399949498, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -24020,7 +24020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &780539389
 Transform:
   m_ObjectHideFlags: 0
@@ -27501,7 +27501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &882123922
 Transform:
   m_ObjectHideFlags: 0
@@ -34678,7 +34678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &968863307
 Transform:
   m_ObjectHideFlags: 0
@@ -35459,6 +35459,10 @@ PrefabInstance:
     - target: {fileID: 3006294344817259422, guid: d36832ccbedb6b74989463950d2bc0e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522978570100904302, guid: d36832ccbedb6b74989463950d2bc0e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36910,7 +36914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8751002346399949498, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -45431,7 +45435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1220532389
 Transform:
   m_ObjectHideFlags: 0
@@ -48838,6 +48842,10 @@ PrefabInstance:
     - target: {fileID: 5109445936278067143, guid: 0283f3190fe37f345af7bacf81f18390, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167060336032273146, guid: 0283f3190fe37f345af7bacf81f18390, type: 3}
+      propertyPath: m_Alpha
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80637,7 +80645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8751002346399949498, guid: e0afdc43a2eb95d43b89712846aaf80f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -87570,16 +87578,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: playCutscene
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: cutsceneData.cutscene
       value: 
-      objectReference: {fileID: 11400000, guid: ce808a2faa18885418f3b9ce09003bfc, type: 2}
+      objectReference: {fileID: 11400000, guid: a880290908e3f8c408b1e5633f4ef94b, type: 2}
     - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: cutsceneData.canBeSkipped
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
+      propertyPath: cutsceneData.objectsToTurnOn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
+      propertyPath: cutsceneData.objectsToTurnOff.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
+      propertyPath: 'cutsceneData.objectsToTurnOn.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5885558478740715660}
+    - target: {fileID: 6532004040109033085, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
+      propertyPath: 'cutsceneData.objectsToTurnOff.Array.data[0]'
+      value: 
+      objectReference: {fileID: 216365349}
     - target: {fileID: 8034579978877027827, guid: 56e331d7440b2014c898e58bb5dbae5c, type: 3}
       propertyPath: m_Name
       value: Managers

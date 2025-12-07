@@ -60,7 +60,8 @@ public class HookableObject : MonoBehaviour
             enemyAI.getHit();
         }
     }
-    public void endHook()
+    
+    public virtual void endHook()
     {
         if (enemy != null)
         {

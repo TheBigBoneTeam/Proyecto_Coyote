@@ -3,14 +3,14 @@ using tutorial;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class cutsceneOnlyLevelManager :MonoBehaviour, ILevelManager
+public class tutorialLevelManager : MonoBehaviour, ILevelManager
 {
     [SerializeField] CutsceneData cutsceneData;
     ditherTransition dither;
     [SerializeField] bool playCutscene;
     public void Instantiate()
     {
-       
+
     }
 
     public void loadEscene(string sceneName)
@@ -25,13 +25,22 @@ public class cutsceneOnlyLevelManager :MonoBehaviour, ILevelManager
     {
         if (playCutscene && cutsceneData != null)
         {
-            ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, () => {dither.goIn(cutsceneData.nextLevel); },cutsceneData);
+            ServiceLocator.Instance.Get<IcutsceneManager>().startCutscene(cutsceneData.cutscene, () => { startTutorial(); }, cutsceneData);
 
         }
         else
         {
-            dither.goIn(cutsceneData.nextLevel);
+            startTutorial();
         }
         ServiceLocator.Instance.Get<ISaveManager>().saveGame(SceneManager.GetActiveScene().name);
+    }
+    public void startTutorial(){
+        ServiceLocator.Instance.Get<IGameStateManager>().Restart(); 
+
+        ServiceLocator.Instance.Get<IGameStateManager>().startNonCombatGameplay();
+        print("startTut");
+        FindAnyObjectByType<TutorialDefenseAttackUIIndicator>().restartTut();
+        FindAnyObjectByType<Tutorial>().startTutorial();
+
     }
 }

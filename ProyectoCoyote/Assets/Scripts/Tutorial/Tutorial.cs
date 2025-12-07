@@ -46,7 +46,7 @@ namespace tutorial
         }
         public void startTutorial()
         {
-          
+
                 machine.SetState(new startTutorialState(this));
         }
         public void waitTime(float time)

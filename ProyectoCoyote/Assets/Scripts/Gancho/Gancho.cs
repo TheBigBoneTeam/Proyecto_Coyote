@@ -461,7 +461,7 @@ public class Gancho : MonoBehaviour
         }
         else
         {
-            CamControl.StartShake();
+            // CamControl.StartShake();
             ResetTarget();
         }
 
@@ -681,12 +681,13 @@ public class Gancho : MonoBehaviour
             {
                 agent.enabled = true;
             }
+            GetHookableObject().endHook();
 
-            EnemyAssetBehaviourRunner behaviorRunner = target.gameObject.GetComponent<EnemyAssetBehaviourRunner>();
-            if (behaviorRunner != null)
-            {
-                behaviorRunner.enabled = true;
-            }
+            //EnemyAssetBehaviourRunner behaviorRunner = target.gameObject.GetComponent<EnemyAssetBehaviourRunner>();
+            //if (behaviorRunner != null)
+            //{
+            //    behaviorRunner.enabled = true;
+            //}
         }
 
         // Si es jugador

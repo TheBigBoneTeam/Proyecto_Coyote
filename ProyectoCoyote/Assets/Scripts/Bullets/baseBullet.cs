@@ -21,7 +21,7 @@ public class baseBullet : Attack, IBullet
 
     protected combatAreaManager areaManager;
 
-    bool shouldNotBeDestroyed = false;
+ [SerializeField]   bool shouldNotBeDestroyed = false;
     Vector3 ogPosition;
 
     [SerializeField] protected Animator anim;
@@ -49,8 +49,8 @@ public class baseBullet : Attack, IBullet
             {
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
                 flying = false;
-                if (GetComponentInChildren<MeshRenderer>())
-                GetComponentInChildren<MeshRenderer>().enabled = false;
+                //if (GetComponentInChildren<MeshRenderer>())
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
                 print("DestroyBul"+ other.name);
                 beDestroy?.Invoke(this);
                 destroyFunc();
@@ -163,12 +163,6 @@ public class baseBullet : Attack, IBullet
     protected override void Start()
     {
         anim = GetComponentInChildren<Animator>();
-      
-
-    }
-
-        private void OnDestroy()
-    {
       
 
     }

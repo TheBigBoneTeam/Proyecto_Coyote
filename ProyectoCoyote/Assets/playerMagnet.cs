@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class playerMagnet : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class playerMagnet : MonoBehaviour
   [SerializeField]  float speed;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Player>() != null)
+        Player player = other.GetComponent<Player>();
+        if (player && player.HealthPoint < player._maxHealthPoint)
         {
             goTowardPlayer = true;
         }

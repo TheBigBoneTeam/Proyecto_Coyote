@@ -34,6 +34,23 @@ public class AnimationEventsSender : MonoBehaviour
 
         AudioManager.Instance.PlaySimpleSound(soundName, false, Vector2.zero, true, false);
     }
+
+    public void Play3DSound(string soundName)
+    {
+        // Evitar duplicados de pasos si quieres
+        if (soundName.Contains("Paso1"))
+        {
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Walk_01")) return;
+            if (Time.time - lastStepTime < stepCooldown) return;
+            lastStepTime = Time.time;
+        }
+
+        // Reproducir sonido 3D en la posición del personaje
+        Vector3 pos = transform.position; // posición del GameObject que envía el evento
+        AudioManager.Instance.Play3DSound(soundName, false, pos, true, false);
+        Debug.Log("SONIDO 3D YUJU");
+    }
+
     public void changeTutWait()
     {
         FindAnyObjectByType<betaTutorial>().changeTutWait = true;

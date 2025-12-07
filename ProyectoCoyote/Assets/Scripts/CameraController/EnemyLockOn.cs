@@ -2,6 +2,7 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -16,6 +17,7 @@ public class EnemyLockOn : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
     [SerializeField] float noticeZone = 10;
+    [SerializeField] float enemyOutOfDistance = 11;
     [SerializeField] float lookAtSmoothing = 2;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 180;
     [SerializeField] float UI_Locked_Scale = 0.1f;
@@ -86,6 +88,8 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyLocked)
         {
             LookAtTarget();
+
+            if(EnemyOutOfDistance()) ResetTarget();
 
             // Volver a modo sin lockear si hay un obstáculo
             if (Blocked(GetTargetCenter(currentTarget), currentTarget))
@@ -160,6 +164,14 @@ public class EnemyLockOn : MonoBehaviour
         {
             MobileUIManager.Instance.SetNonCombatUI();
         }
+    }
+
+    public bool EnemyOutOfDistance() 
+    {
+        float distance = Vector3.Distance(currentTarget.position, transform.position);
+
+        if(distance >= enemyOutOfDistance) return true;
+        return false;
     }
 
     // Escanear alrededores en busca de enemigos
@@ -272,9 +284,15 @@ public class EnemyLockOn : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 origin = transform.position;
+        bool canBlock = false;
+
         if (Physics.Linecast(origin, t, out hit))
         {
-            if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
+            canBlock = 
+                !hit.transform.Equals(target) &&
+                !hit.transform.Equals(transform) && 
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy");
+            if (canBlock)
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;

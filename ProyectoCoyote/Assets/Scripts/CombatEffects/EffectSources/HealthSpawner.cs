@@ -1,4 +1,6 @@
 using CombatEffect;
+using Services;
+using System;
 using UnityEngine;
 
 public class HealthSpawner:MonoBehaviour,IHealthSpawner
@@ -14,6 +16,14 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
     {
 
         orbs = new ObjectPool<HealOrb>(orbPrefab, startingOrbs, true);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+    }
+
+    private void restart()
+    {
+        foreach (HealOrb orb in orbs.Pool) {
+            orbs.Return(orb);
+        }
     }
 
     public void returnOrb(HealOrb orb)

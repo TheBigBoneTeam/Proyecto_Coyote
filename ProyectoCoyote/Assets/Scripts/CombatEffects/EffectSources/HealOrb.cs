@@ -5,14 +5,15 @@ using UnityEngine;
 
     public class HealOrb : TouchCombatEffectSource, IPoolObject
     {
-
+    int health;
         IHealthSpawner spawner;
         protected override void OnTriggerEnter(Collider other)
         {
             AGameCharacter character = other.GetComponent<AGameCharacter>();
             if (character)
             {
-                if (!onlyToPlayer || character.GetComponent<Player>())
+            Player player = character.GetComponent<Player>();
+                if ( player && player.HealthPoint < player._maxHealthPoint )
                 {
                     addEffectsToChar(character);
                     spawner.returnOrb(this);
@@ -36,6 +37,7 @@ using UnityEngine;
         }
         public void setHeal(int heal)
         {
+        health = heal;
             effects.Clear();
             effects.Add(new HealEffect(this, heal));
         }

@@ -64,6 +64,7 @@ public class PauseMenu : MonoBehaviour
     public void reiniciarArea()
     {
         gameStateManager.Restart();
+        pauseMenuCanvas.gameObject.SetActive(false);
     }
     public void Reiniciar()
     {

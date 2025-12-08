@@ -227,7 +227,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725331027605323996
+            rid: 2751277356129189992
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -249,6 +249,12 @@ MonoBehaviour:
         BaseAction: Defense
         FirstLetter: A
         LastLetter: C
+        idle: 0
+        loops: 1
+    - rid: 2751277356129189992
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: AttackParry
         idle: 0
         loops: 1
     - rid: 5634289337929826421
@@ -383,9 +389,3 @@ MonoBehaviour:
     - rid: 8725331027605323995
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725331027605323996
-      type: {class: PlayBasicAttackAction, ns: , asm: Assembly-CSharp}
-      data:
-        action: 8
-        idle: 0
-        loops: 1

@@ -3,7 +3,7 @@ using UnityEngine.TextCore.Text;
 
 public class playerMagnet : MonoBehaviour
 {
-    [SerializeField] bool goTowardPlayer;
+    [SerializeField] public bool goTowardPlayer;
     Player player;
     [SerializeField] float minspeed;
     [SerializeField] float maxspeed;

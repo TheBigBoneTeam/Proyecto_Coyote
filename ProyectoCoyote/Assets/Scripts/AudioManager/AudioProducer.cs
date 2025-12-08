@@ -43,7 +43,7 @@ public class AudioProducer : MonoBehaviour
         audioSource.clip = sound.audioClip;
         audioSource.volume = sound.volume;
 
-        if (pitch >= 0f)
+        if (pitch > 0f)
             audioSource.pitch = pitch;
         else
             audioSource.pitch = sound.pitch;
@@ -63,7 +63,7 @@ public class AudioProducer : MonoBehaviour
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.minDistance = 1f;
 
-        if (pitch >= 0)
+        if (pitch > 0)
             audioSource.pitch = pitch;
         else
             audioSource.pitch = sound.pitch;

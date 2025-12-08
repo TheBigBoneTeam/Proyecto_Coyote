@@ -19,7 +19,7 @@ MonoBehaviour:
       graph:
         rid: 5634289337929826421
       nodes:
-      - name: 
+      - name: loop
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
         position: {x: 316, y: 15.200005}
         node:
@@ -93,7 +93,7 @@ MonoBehaviour:
         - 61bdc9e2-3d4f-43d1-b802-ca727904a05b
         childIds:
         - 972897bf-c258-42ca-b90d-79770affc8f4
-      - name: 
+      - name: choosebrnch
         id: fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         position: {x: 0, y: 1200}
         node:
@@ -141,7 +141,7 @@ MonoBehaviour:
         - c53c25b2-4124-46a7-8582-d159a873827d
         childIds:
         - 3af17fdf-20ee-443f-832d-a7acdcea34fb
-      - name: 
+      - name: sequence
         id: 3af17fdf-20ee-443f-832d-a7acdcea34fb
         position: {x: 150, y: 1000}
         node:
@@ -152,7 +152,7 @@ MonoBehaviour:
         childIds:
         - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         - a7a8418c-fc40-412a-a292-b8e2e79d326b
-      - name: 
+      - name: wait
         id: a7a8418c-fc40-412a-a292-b8e2e79d326b
         position: {x: 300, y: 1200}
         node:
@@ -166,7 +166,7 @@ MonoBehaviour:
         parentIds:
         - 3af17fdf-20ee-443f-832d-a7acdcea34fb
         childIds: []
-      - name: 
+      - name: lookat
         id: 74715d2b-6936-465d-bcb9-c97cd360c96f
         position: {x: 450, y: 400}
         node:
@@ -180,7 +180,7 @@ MonoBehaviour:
         parentIds:
         - 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
         childIds: []
-      - name: 
+      - name: paralell
         id: 5ebb1f0d-feb3-42a3-a1f0-432f6ab2d7a1
         position: {x: 300, y: 200}
         node:
@@ -205,9 +205,9 @@ MonoBehaviour:
         parentIds:
         - 4416613e-eacb-4600-9809-873056a04543
         childIds: []
-      - name: 
+      - name: idle
         id: 5078b4b0-887b-4d17-8520-9126fd1a338f
-        position: {x: 450, y: 1400}
+        position: {x: 423.2, y: 1616}
         node:
           rid: 8725330873693503860
         references:
@@ -219,7 +219,7 @@ MonoBehaviour:
         parentIds:
         - fb13f1ef-6f26-4b2b-9ccf-c8875a3bfe28
         childIds: []
-      - name: 
+      - name: AttackParry
         id: 9bb2e63d-42d1-4d6f-859d-16eec6e04d3b
         position: {x: 750, y: 1400}
         node:
@@ -361,13 +361,13 @@ MonoBehaviour:
     - rid: 5634289591621779585
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
       data:
-        infinite: 0
+        infinite: 1
     - rid: 5634289591621779594
       type: {class: ParallelCompositeNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-        finishOnSuccess: 0
-        finishOnFailure: 0
+        finishOnSuccess: 1
+        finishOnFailure: 1
     - rid: 5634289679145893986
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

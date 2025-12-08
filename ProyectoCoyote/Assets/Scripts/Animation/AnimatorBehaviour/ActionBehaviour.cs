@@ -43,7 +43,7 @@ public class ActionBehaviour : StateMachineBehaviour
             finished = true;
             if (!isIdle)
             {
-                //  Debug.Log("EndAction"+DebugName);
+                Debug.Log("EndAction"+DebugName);
                 if (lastAttackInAction)
                 {
                     enemyAI.endCurrentAction(actionValue);

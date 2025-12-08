@@ -1,7 +1,7 @@
 public class TutorialHookableObject : HookableObject
 {
-    public override void endHook()
+    public override void endHookGo()
     {
-gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

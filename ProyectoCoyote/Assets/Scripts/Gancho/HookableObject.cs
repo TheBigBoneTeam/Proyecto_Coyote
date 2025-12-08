@@ -73,12 +73,16 @@ public class HookableObject : MonoBehaviour
         }
 
     }
-    public void endHookPull()
+    public virtual void endHookPull()
     {
         if (GetComponent<BossEnemy>() != null)
         {
             StartCoroutine(waitEndHookPull());
         }
+    }
+    public virtual void endHookGo()
+    {
+       
     }
     IEnumerator waitEndHook()
     {

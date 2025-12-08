@@ -2,7 +2,6 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -151,7 +150,6 @@ public class EnemyLockOn : MonoBehaviour
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
         enemyLocked = false;
-
         CamControl.ActiveFollowCamera();
         defenseAttackUIIndicator.setEnemy(null);
         if (enemyDefenseAttackUIIndicator != null)

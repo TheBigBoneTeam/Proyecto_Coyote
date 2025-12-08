@@ -50,7 +50,7 @@ public class HitStopComponent : AHitstopBase
     {
         if (_rigidbody != null)
         {
-            _rigidbody.isKinematic = false;
+            //_rigidbody.isKinematic = false;
             _rigidbody.angularVelocity = _storedAngVelocity;
             _rigidbody.linearVelocity = _storedVelocity;
             // gameObject.GetComponent<Renderer>().material.color = Color.gray;

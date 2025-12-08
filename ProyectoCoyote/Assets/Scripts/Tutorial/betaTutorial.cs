@@ -183,7 +183,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques externos pulsando /esquivaratras/ mientras fijas a un enemigo. El punto central de la interfaz te avisará de estos ataques.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques externos pulsando /esquivaratras/ mientras fijas a un enemigo. El punto central de la interfaz te avisará de estos ataques.");
             
         }
         public void esquive(HitDirections d)
@@ -214,7 +214,7 @@ namespace tutorial
             tutorial.tutorialGun.startShooting();
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = $"Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/.";
+            tutorial.TutorialText.text = $"Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .";
 
         }
         public void esquive(HitDirections d)
@@ -246,7 +246,7 @@ namespace tutorial
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora vamos a lo importante. Tienes 2 direcciones de ataque: izquierda y derecha. Para atacar presione /pegar/ o /pegar/. Solo podrás atacar mientras fijas a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora vamos a lo importante. Tienes 2 direcciones de ataque: izquierda ( /pegar1/ )y derecha ( /pegar2/ ). Solo podrás atacar mientras fijas a un enemigo");
         }
         public void enemyHit(int currentLife)
         {
@@ -300,7 +300,7 @@ namespace tutorial
         {
             tutorial.enemy.GetComponent<enemigoTutorial>().canBeParry = true;
             tutorial.currentHits = -1;
-            tutorial.TutorialText.text = $"Los enemigos pueden bloquear, si atacas en la dirección en la que bloquean el enemigo no sufren daño y en ocasiones pueden realizarar un contraataque. Fijate en sus movimientos y golpeale correctamente"; 
+            tutorial.TutorialText.text = $"Los enemigos pueden bloquear y si atacas en la dirección en la que bloquean no sufrirán daño. Fijate en sus movimientos y golpeale correctamente"; 
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(1);
 
@@ -349,7 +349,7 @@ namespace tutorial
             finish = false;
             Time.timeScale = 0;
             tutorial.currentEsqPerf = 0;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Cuando realizas un esquive en el momento justo podrás realizar un esquive perfecto, lo que ralentizará el tiempo y te permitirá hacer un contraataque devastador que te permire recuperar la vida quitada en el último ataque recibido. Pulsa /esquivar/ para hacer el esquive perfecto");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Si pulsas /esquivar/ en el momento justo podrás realizar un esquive perfecto, permitiendote hacer un contraataque devastador recuperando la vida quitada en el último ataque recibido.");
           //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
         }
@@ -783,10 +783,19 @@ namespace tutorial
                         };
                         break;
 
-                    case "pegar":
+                    case "pegar1":
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>CLICK IZQUIERDO</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón X / Cuadrado</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Ataque</b>",
+                            _ => partes[i]
+                        };
+                        break;
+                    case "pegar2":
+                        resultado += device switch
+                        {
+                            GameInput.DeviceType.KeyboardMouse => "<b>CLICK DERECHO</b>",
                             GameInput.DeviceType.Gamepad => "<b>Botón X / Cuadrado</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Ataque</b>",
                             _ => partes[i]

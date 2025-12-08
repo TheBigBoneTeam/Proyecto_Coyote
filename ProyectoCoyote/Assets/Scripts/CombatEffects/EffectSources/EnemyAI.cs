@@ -285,6 +285,8 @@ public class EnemyAI : MonoBehaviour,IMutex
     }
     public void startCounter()
     {
+        Vector3 lookTarget = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.LookAt(lookTarget);
         currentActionIsIdle = false;
         currentActionLoops = 1;
         currentActionTime = 0.9f;

@@ -31,6 +31,21 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
         canvasgroup = GetComponentInChildren<CanvasGroup>();
         cutsceneSkip = GetComponentInChildren<cutsceneSkipController>();
         director.timeUpdateMode = DirectorUpdateMode.DSPClock;
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(statechange);
+
+    }
+
+    private void statechange(object sender, stateData e)
+    {
+        print("stateChangeTimelineDirector");
+        if(e.currentState == GameState.Paused && cutscenPlaying == true)
+        {
+            director.Pause();
+        }
+        if (e.oldState == GameState.Paused && cutscenPlaying == true)
+        {
+            director.Play();
+        }
     }
 
     // Update is called once per frame

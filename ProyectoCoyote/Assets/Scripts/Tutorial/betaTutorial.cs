@@ -224,7 +224,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.TutorialText.text = $"Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .";
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .");
             tutorial.tutorialStateNum = 2;
             tutorial.secondEnemy.gameObject.SetActive(false);
             tutorial.currentEsquives = 0;
@@ -240,7 +240,7 @@ namespace tutorial
             base.Update();
             if (Time.frameCount % 60 == 0)
             {
-                tutorial.TutorialText.text = $"Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .";
+                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .");
 
             }
 
@@ -271,7 +271,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(false);
             tutorial.enemy.GetComponent<DamageReceiver>().setDodge(false);
             tutorial.enemy.GetComponent<DamageReceiver>().clearDirection();
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora vamos a lo importante. Tienes 2 direcciones de ataque: izquierda ( /pegar1/ )y derecha ( /pegar2/ ). Solo podrás atacar mientras fijas a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora vamos a lo importante. Tienes 2 direcciones de ataque: izquierda (/pegar1/)y derecha (/pegar2/). Solo podrás atacar mientras fijas a un enemigo");
 
             tutorial.currentHits = -1;
             tutorial.enemy.subscribeToLifeChange(enemyHit);
@@ -537,7 +537,7 @@ namespace tutorial
             tutorial.enemigoGancho.GetComponent<HookableObject>().canBeHooked = false;
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora pulsa /pegar/ para enganchar al enemigo.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora pulsa /pegar1/ para enganchar al enemigo.");
         }
         public override void Update()
         {
@@ -613,14 +613,14 @@ namespace tutorial
 
             tutorial.currentGanchos = 0;
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer enemigo/ para terminar el tutorial");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer enemigo/.");
         }
         public override void Update()
         {
             base.Update();
             if (Time.frameCount % 60 == 0)
             {
-                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer enemigo/ para terminar el tutorial");
+                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Por último, atrae hacia a ti al enemigo usando /atraer enemigo/.");
             }
         }
     }

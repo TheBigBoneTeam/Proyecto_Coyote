@@ -123,7 +123,7 @@ namespace tutorial
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = "Ahora que ya posees los conocimientos necesarios, déjame pedirte un favor. Más adelante se encuentra el pueblo de Pricklytown asediado por un grupo de infectados, libéralo y a cambio mi amigo el carretero te podrá llevar rápidamente a donde quieras ir en su carro, dile que vas de mi parte, Denébola.";
-            tutorial.waitTime(5);
+            tutorial.waitTime(15);
         }
     }
 

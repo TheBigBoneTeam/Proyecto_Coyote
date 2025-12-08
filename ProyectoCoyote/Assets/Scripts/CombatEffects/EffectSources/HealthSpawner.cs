@@ -18,6 +18,20 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
 
         orbs = new ObjectPool<HealOrb>(orbPrefab, startingOrbs, true);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(restart);
+        ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(stateChange);
+
+    }
+
+    private void stateChange(object sender, stateData e)
+    {
+
+        if (e.currentState == GameState.NonCombat || e.currentState == GameState.Cutscene)
+        {
+            foreach (HealOrb orb in orbs.Pool)
+            {
+                orbs.Return(orb);
+            }
+        }
     }
 
     private void restart()

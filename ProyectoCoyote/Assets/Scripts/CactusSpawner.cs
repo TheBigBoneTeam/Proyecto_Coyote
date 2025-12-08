@@ -74,13 +74,13 @@ public class CactusSpawner : MonoBehaviour
     }
     private void restart()
     {
-        if (currentNumerator != null)
-        {
-            StopCoroutine(currentNumerator);
-        }
-        currentNumerator = null;
+    setPause(false);
         setSpawnTime(-1);
         cactusAttackEvent?.RemoveAllListeners();
+        foreach (SpawnableCactus cactus in _cactusPool.Pool)
+        {
+            _cactusPool.Return(cactus);
+        }
     }
 
     private void stateChange(object sender, stateData e)

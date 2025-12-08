@@ -155,12 +155,14 @@ MonoBehaviour:
   shouldprint: 0
   renderers: []
   <attack>k__BackingField: {fileID: 0}
+  healparticles: {fileID: 0}
   ActiveBeforeFight: 0
   HitParticles: {fileID: 3085089631601763146}
   blockParticles: {fileID: 75863163482658308}
   critParticles: {fileID: 6819688921660228571}
   blockParticlesPosition: {fileID: 2444321574112974339}
   healthDrop: 1
+  spawnParticles: {fileID: 2092835940275475200}
   <dead>k__BackingField: 0
 --- !u!54 &4038297873180172337
 Rigidbody:
@@ -777,6 +779,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfacfa714f7a573449ec59ca5d01ae52, type: 3}
+--- !u!198 &2092835940275475200 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3174957234034030456, guid: dfacfa714f7a573449ec59ca5d01ae52, type: 3}
+  m_PrefabInstance: {fileID: 3532099720353539192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3205650718397031735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2123530389080899919, guid: dfacfa714f7a573449ec59ca5d01ae52, type: 3}

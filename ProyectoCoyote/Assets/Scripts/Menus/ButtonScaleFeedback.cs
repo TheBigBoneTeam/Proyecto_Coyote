@@ -10,7 +10,7 @@ public class ButtonScaleFeedback : MonoBehaviour,
     [SerializeField] Transform target;
     Vector3 normalScale;
     Vector3 highlightedScale;
-    [SerializeField] float scaleFactor = 1.2f;
+    float scaleFactor = 1.2f;
     public float scaleSpeed = 0.15f;
 
     bool isHighlighted = false;

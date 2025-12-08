@@ -7,12 +7,14 @@ public class CameraController : MonoBehaviour
     public float shakeDuration = 0.5f;
     public float shakeMagnitude = 0.1f;
     private Vector3 originalPos;
+    private CameraFollow camFollow;
 
     [Tooltip("Controlador Cámaras")]
     Animator cinemachineAnimator;
 
     void Start()
     {
+        camFollow = FindAnyObjectByType<CameraFollow>();
         cinemachineAnimator = GameObject.Find("State-Driven Camera").GetComponent<Animator>();
         cinemachineAnimator.Play("FollowCamera");
     }
@@ -30,6 +32,9 @@ public class CameraController : MonoBehaviour
     public void ActiveFollowCamera()
     {
         cinemachineAnimator.Play("FollowCamera");
+        
+        if (camFollow != null)
+            camFollow.AlignFreeCameraBehindPlayer();
     }
     public void ActiveHookCamera()
     {

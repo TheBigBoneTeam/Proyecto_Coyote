@@ -672,6 +672,10 @@ public class Gancho : MonoBehaviour
         {
             col.enabled = true;
         }
+        if (GetHookableObject() != null)
+        {
+            GetHookableObject().endHook();
+        }
 
         // Si es enemigo
         if (enemy)
@@ -681,7 +685,6 @@ public class Gancho : MonoBehaviour
             {
                 agent.enabled = true;
             }
-            GetHookableObject().endHook();
 
             //EnemyAssetBehaviourRunner behaviorRunner = target.gameObject.GetComponent<EnemyAssetBehaviourRunner>();
             //if (behaviorRunner != null)

@@ -59,7 +59,7 @@ public class baseBullet : Attack, IBullet
                 destroyFunc();
 
             }
-        } else if (!other.isTrigger && !other.transform.Equals(cover.transform) && !other.transform.parent.Equals(cover.transform))
+        } else if (!other.isTrigger && isThisNotCover(other.transform))
         {
             print("BulletTriggerWall" + other.name);
 
@@ -74,6 +74,24 @@ public class baseBullet : Attack, IBullet
         }
         print("??");
 
+    }
+    public bool isThisNotCover(Transform obj)
+    {
+        if (cover == null)
+            return true;
+        if (obj.transform.Equals(cover.transform))
+        {
+            return false;
+        }
+        if(obj.transform.parent == null)
+        {
+            return true;
+        }
+        if(obj.transform.parent.Equals(cover.transform))
+        {
+            return false;
+        }
+        return true;
     }
     public virtual void destroyFunc()
     {

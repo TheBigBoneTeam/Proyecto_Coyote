@@ -7,13 +7,14 @@ using UnityEngine;
     {
     int health;
         IHealthSpawner spawner;
+ public   bool careAboutMaxHealth;
         protected override void OnTriggerEnter(Collider other)
         {
             AGameCharacter character = other.GetComponent<AGameCharacter>();
             if (character)
             {
             Player player = character.GetComponent<Player>();
-                if ( player && player.HealthPoint < player._maxHealthPoint )
+                if ( player && (player.HealthPoint < player._maxHealthPoint || !careAboutMaxHealth) )
                 {
                     addEffectsToChar(character);
                     spawner.returnOrb(this);

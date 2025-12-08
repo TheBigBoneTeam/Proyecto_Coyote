@@ -20,7 +20,7 @@ public class BossEnemy : Enemy
         {
             return false;
         }
-        ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop);
+        ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop,false);
         startFase();
         return true;
     }

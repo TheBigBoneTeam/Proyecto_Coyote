@@ -8,12 +8,13 @@ public class playerMagnet : MonoBehaviour
     [SerializeField] float minspeed;
     [SerializeField] float maxspeed;
   [SerializeField]  float speed;
+    [SerializeField] HealOrb orb;
     private void OnTriggerEnter(Collider other)
     {
         if (goTowardPlayer)
             return;
         Player player = other.GetComponent<Player>();
-        if (player && player.HealthPoint < player._maxHealthPoint)
+        if (player && (player.HealthPoint < player._maxHealthPoint || !orb.careAboutMaxHealth))
         {
             goTowardPlayer = true;
             speed = Random.Range(minspeed, maxspeed);

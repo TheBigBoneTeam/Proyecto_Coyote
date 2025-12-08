@@ -32,7 +32,7 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
         orbs.Return(orb);
     }
 
-    public void spawnOrb(Vector3 pos,int health)
+    public void spawnOrb(Vector3 pos,int health,bool careAboutHealth = true)
     {
         if (health == 0)
         {
@@ -43,7 +43,9 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
             HealOrb orb = orbs.Get();
             orb.setHeal(1);
             orb.transform.position = pos +  new Vector3(UnityEngine.Random.Range(-distance, distance),0, UnityEngine.Random.Range(-distance, distance));
+            orb.careAboutMaxHealth = careAboutHealth;
             orb.Active = true;
+            
         }
 
     }

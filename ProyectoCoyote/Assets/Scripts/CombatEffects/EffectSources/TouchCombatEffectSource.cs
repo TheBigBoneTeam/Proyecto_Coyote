@@ -26,6 +26,6 @@ namespace CombatEffect
 }
 public interface IHealthSpawner:IService
 {
-    public void spawnOrb(Vector3 pos,int health);
+    public void spawnOrb(Vector3 pos, int health, bool careAboutHealth = true);
     public void returnOrb(HealOrb orb);
 }

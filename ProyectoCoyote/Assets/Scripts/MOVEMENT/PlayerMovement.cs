@@ -586,7 +586,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (gameInput.DashPressed && dashCdTimer <= 0f)
+            if (gameInput.DashPressed && dashCdTimer <= 0f && grounded)
             {
                 Dash();
             }

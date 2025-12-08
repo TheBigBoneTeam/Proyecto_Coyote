@@ -18,6 +18,7 @@ public class playerMagnet : MonoBehaviour
         {
             goTowardPlayer = true;
             speed = Random.Range(minspeed, maxspeed);
+            AudioManager.Instance.PlaySimpleSound("SFX - Vida", false, Vector2.zero, true, false);
             
         }
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 [System.Serializable]
 public class CharacterColor
 {
@@ -60,7 +60,7 @@ public class Dialogues : MonoBehaviour
     {
         if (isInDialogue)
         {
-            if (gameInput.SkipTapPressed)
+            if (/*gameInput.SaltarDialogo*/Input.GetMouseButtonDown(0))
             {
                 SkipLine();
             }
@@ -145,10 +145,9 @@ public class Dialogues : MonoBehaviour
                 StopCoroutine(typingCoroutine);
             }
 
-            typingCoroutine = StartCoroutine(TypeText(currentFullText, dialogue));
+            typingCoroutine = StartCoroutine(TypeText(currentFullText));
             // ShowImageForCharacter(dialogue.character);
             ShowColorForCharacter(dialogue.character);
-            
         }
         else
         {
@@ -188,7 +187,7 @@ public class Dialogues : MonoBehaviour
                     AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
                     break;
 
-                case "Perro":
+                case "perro":
                     AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.1f);
                     break;
 
@@ -210,6 +209,7 @@ public class Dialogues : MonoBehaviour
             }
         }
     }
+
 
     private void ShowColorForCharacter(string character)
     {
@@ -278,7 +278,7 @@ public class Dialogues : MonoBehaviour
 
     #endregion
     #region Enumerators
-    private IEnumerator TypeText(string fullText, DialogueLine dialogue)
+    private IEnumerator TypeText(string fullText)
     {
         isTyping = true;
         isWaitingAfterSkip = false;
@@ -286,7 +286,6 @@ public class Dialogues : MonoBehaviour
         foreach (char c in fullText)
         {
             dialogueText.text += c;
-            PlayCharacterTalking(dialogue.character);
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -294,22 +293,15 @@ public class Dialogues : MonoBehaviour
 
         isWaitingAfterSkip = true;
         yield return new WaitForSeconds(WaitSpeed);
-        if (gameInput.SkipTapPressed)
-        {
-            isWaitingAfterSkip = false;
-            ShowNextLine();
-        }
+        isWaitingAfterSkip = false;
+        ShowNextLine();
 
     }
     private IEnumerator SkipAndWait()
     {
         yield return new WaitForSeconds(WaitSpeed);
-        if (gameInput.SkipTapPressed) 
-        {
-            isWaitingAfterSkip = false;
-            ShowNextLine();
-        }
-        
+        isWaitingAfterSkip = false;
+        ShowNextLine();
     }
     private void ForceSkipWait()
     {

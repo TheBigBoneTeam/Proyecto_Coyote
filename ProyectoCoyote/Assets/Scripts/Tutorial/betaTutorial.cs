@@ -746,8 +746,8 @@ namespace tutorial
         public bool checkMovement()
         {
             Debug.Log(currentMouseMove);
-        //    tutorial.gameInput.CameraInput
-            if (tutorial.gameInput.Horizontal < 0 || tutorial.gameInput.Horizontal > 0 || tutorial.gameInput.Vertical >  0 || tutorial.gameInput.Vertical < 0)
+            //    tutorial.gameInput.CameraInput
+            if (Input.GetAxis("Mouse X") < 0 || Input.GetAxis("Mouse X") > 0 || Input.GetAxis("Mouse Y") > 0 || Input.GetAxis("Mouse X") > 0 || tutorial.gameInput.CameraInput.x != 0 || tutorial.gameInput.CameraInput.y != 0)
             {
                 //Code for action on mouse moving left
                 currentMouseMove += Time.deltaTime;

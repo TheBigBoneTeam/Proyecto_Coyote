@@ -69,6 +69,7 @@ namespace tutorial
 
             Gancho2 gancho2 = new Gancho2 (this);
             Gancho3 gancho3 = new Gancho3 (this);
+            Vida vida = new Vida(this);
             tutorialStateNum = 0;
             //TrueGancho truegancho = new TrueGancho (this);
             secondEnemy.gameObject.SetActive (false);
@@ -98,7 +99,8 @@ namespace tutorial
             machine.AddTransition(esquiPerfP2, esquiPerf2_1, new FuncPredicate(() => currentEsqPerf == 1));
 
             machine.AddTransition(esquiPerf2_1, trueEsquivePerf, new FuncPredicate(() => changeTutWait == true));
-            machine.AddTransition(trueEsquivePerf, gancho1, new FuncPredicate(() => currentEsqPerf >= objectiveEsqPerf));
+            machine.AddTransition(trueEsquivePerf, vida, new FuncPredicate(() => currentEsqPerf >= objectiveEsqPerf));
+            machine.AddTransition(vida, gancho1, new FuncPredicate(() => changeTutWait == true));
             machine.AddTransition(gancho1, gancho1_1, new FuncPredicate(() => changeTutWait == true));
             machine.AddTransition(gancho1_1, gancho1_2, new FuncPredicate(() => changeTutWait == true));
 
@@ -782,6 +784,22 @@ namespace tutorial
         public override void OnExit()
         {
             tutorial.enemy.GetComponent<AssetBehaviourRunner>().enabled = true;
+        }
+    }
+    public class Vida : BaseTutorialState
+    {
+        new betaTutorial tutorial;
+        public Vida(betaTutorial _tut)
+        {
+            tutorial = _tut;
+        }
+        public override void OnEnter()
+        {
+            Debug.Log("vida");
+            tutorial.enemy.gameObject.SetActive(false);
+            tutorial.changeTutWait = false;
+            tutorial.TutorialText.text = "Cuando mates a un enemigo, estos soltarán una bola de vida. Si tienes la vida al máximo no te curarás.";
+            tutorial.waitTime(5);
         }
     }
 

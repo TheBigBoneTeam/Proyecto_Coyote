@@ -170,6 +170,49 @@ public class Dialogues : MonoBehaviour
     //        dialogueImage.enabled = false;
     //    }
     //}
+<<<<<<< Updated upstream
+=======
+
+    private void PlayCharacterTalking(string character) 
+    {
+        if (AudioManager.Instance != null)
+        {
+            if (UnityEngine.Random.value > 0.5f)
+                return;
+
+            switch (character)
+            {
+                case "":
+                    break;
+
+                case "Coyote":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
+                    break;
+
+                case "perro":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.1f);
+                    break;
+
+                case "Denebola":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Denebola", 0.2f);
+                    break;
+
+                case "Lince":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Lince", 0.2f);
+                    break;
+
+                case "Cultista":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultista", 0.2f);
+                    break;
+
+                case "Carlos":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Carlos", 0.2f);
+                    break;
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
     private void ShowColorForCharacter(string character)
     {
         CharacterColor config = characterColors.Find(c => c.characterName == character);

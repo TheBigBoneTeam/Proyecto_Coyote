@@ -110,11 +110,20 @@ public class EnemyLockOn : MonoBehaviour
         }
 
         if (currentTarget = ScanNearBy())
+        {
+            currentTarget.gameObject.GetComponent<Enemy>().subscribeToDie(EnemyDie);
             FoundTarget();
+
+        }
         else
             ResetTarget();
         Debug.Log("Modo Lock activado");
         AudioManager.Instance.PlaySimpleSound("SFX - Select Hookable Object", false, Vector2.zero, true, false);
+    }
+
+    private void EnemyDie(AGameCharacter arg0)
+    {
+        ActivateLockMode();
     }
 
     // Se ha encontrado un enemigo válido
@@ -147,6 +156,9 @@ public class EnemyLockOn : MonoBehaviour
     // Resetear el lock
     public void ResetTarget()
     {
+        if (currentTarget)
+            currentTarget.gameObject.GetComponent<Enemy>().unSubscribeToDie(EnemyDie);
+
         lockOnCanvas.gameObject.SetActive(false);
         defenseAttackUIIndicator.setEnable(false);
         currentTarget = null;
@@ -191,7 +203,7 @@ public class EnemyLockOn : MonoBehaviour
         }
 
         for (int i = 0; i < nearbyTargets.Length; i++)
-        {
+        {                
             Vector3 dir = nearbyTargets[i].transform.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
@@ -306,11 +318,7 @@ public class EnemyLockOn : MonoBehaviour
     // Mirar al enemigo
     private void LookAtTarget()
     {
-        if (currentTarget == null)
-        {
-            ActivateLockMode();
-            return;
-        }
+        
 
         pos = currentTarget.position;
         lockOnCanvas.position = pos;

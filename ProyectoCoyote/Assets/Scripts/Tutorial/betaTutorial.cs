@@ -132,6 +132,12 @@ namespace tutorial
 
 
         }
+
+        internal void resetTarget()
+        {
+
+            lockon.ResetTarget();
+        }
     }
     public class EsquivarTutorial : BaseTutorialState
     {
@@ -292,6 +298,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
+            tutorial.enemy.GetComponent<enemigoTutorial>().canBeParry = true;
             tutorial.currentHits = -1;
             tutorial.TutorialText.text = $"Los enemigos pueden bloquear, si atacas en la dirección en la que bloquean el enemigo no sufren daño y en ocasiones pueden realizarar un contraataque. Fijate en sus movimientos y golpeale correctamente"; 
             tutorial.enemy.subscribeToLifeChange(enemyHit);
@@ -445,7 +452,7 @@ namespace tutorial
         {
             tutorial.secondEnemy.Die();
             tutorial.enemy.Die();
-
+            tutorial.resetTarget();
             tutorial.zonaGancho1.SetActive(true);
             tutorial.zonaGancho2.SetActive(false);
             tutorial.enemigoGancho.gameObject.SetActive(true);
@@ -513,6 +520,7 @@ namespace tutorial
         {
             tutorial.zonaGancho2.SetActive(true);
             tutorial.currentGanchos = 0;
+            tutorial.resetTarget();
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Recorre todos los objetivos.");
         }

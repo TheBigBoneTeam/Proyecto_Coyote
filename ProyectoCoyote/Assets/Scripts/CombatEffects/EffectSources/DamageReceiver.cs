@@ -17,7 +17,7 @@ public class DamageReceiver:MonoBehaviour
     [SerializeField] bool parrying;
 
     UnityEvent<ReceiverState> receiverStateEvent;
-    IPerfectDodgeManager perfectDodgeManager;
+   public IPerfectDodgeManager perfectDodgeManager;
  [SerializeField]   EnemyAI enemyAI;
     List<string> currentBlockShaderParts;
 

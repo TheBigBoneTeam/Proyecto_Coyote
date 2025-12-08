@@ -3,10 +3,12 @@ using UnityEngine;
 public class enemigoTutorial : MonoBehaviour
 {
     [SerializeField] int tutorialMode;
+    public bool canBeParry;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        canBeParry = false;
     }
 
     // Update is called once per frame

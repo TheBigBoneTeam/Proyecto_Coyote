@@ -2,6 +2,7 @@ using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Clase que se encarga de lockear al enemigo
 public class EnemyLockOn : MonoBehaviour
@@ -16,6 +17,7 @@ public class EnemyLockOn : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool zeroVert_Look;
     [SerializeField] float noticeZone = 10;
+    [SerializeField] float enemyOutOfDistance = 11;
     [SerializeField] float lookAtSmoothing = 2;
     [Tooltip("Angle_Degree")][SerializeField] float maxNoticeAngle = 180;
     [SerializeField] float UI_Locked_Scale = 0.1f;
@@ -86,6 +88,8 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyLocked)
         {
             LookAtTarget();
+
+            if(EnemyOutOfDistance()) ResetTarget();
 
             // Volver a modo sin lockear si hay un obstáculo
             if (Blocked(GetTargetCenter(currentTarget), currentTarget))
@@ -162,8 +166,16 @@ public class EnemyLockOn : MonoBehaviour
         }
     }
 
+    public bool EnemyOutOfDistance() 
+    {
+        float distance = Vector3.Distance(currentTarget.position, transform.position);
+
+        if(distance >= enemyOutOfDistance) return true;
+        return false;
+    }
+
     // Escanear alrededores en busca de enemigos
-    private Transform ScanNearBy()
+    private Transform ScanNearBy(Transform exclude = null)
     {
         Debug.Log("Buscando enemigos...");
 
@@ -180,13 +192,18 @@ public class EnemyLockOn : MonoBehaviour
 
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
-            Vector3 dir = nearbyTargets[i].transform.position - cam.position;
+            Transform candidate = nearbyTargets[i].transform;
+
+            
+            if (exclude != null && candidate == exclude) continue;
+
+            Vector3 dir = candidate.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
 
             if (_angle < closestAngle)
             {
-                closestTarget = nearbyTargets[i].transform;
+                closestTarget = candidate;
                 closestAngle = _angle;
             }
         }
@@ -197,22 +214,9 @@ public class EnemyLockOn : MonoBehaviour
             return null;
         }
 
-        float h1 = closestTarget.GetComponent<CapsuleCollider>().height;
-        float h2 = closestTarget.localScale.y;
-        float h = h1 * h2;
-        float half_h = (h / 2) / 2;
-        currentYOffset = h - half_h;
-
-        Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
-
-        if (Blocked(tarPos, closestTarget))
-        {
-            Debug.Log("Hay algo bloqueando el enemigo");
-            return null;
-        }
-
         return closestTarget;
     }
+
     private Transform FindDirectionalTarget(bool toRight)
     {
         if (currentTarget == null) return null;
@@ -272,9 +276,16 @@ public class EnemyLockOn : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 origin = transform.position;
+        bool canBlock = false;
+
         if (Physics.Linecast(origin, t, out hit))
         {
-            if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
+            canBlock = 
+                !hit.transform.Equals(target) &&
+                !hit.transform.Equals(transform) && 
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy") &&
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Bullet");
+            if (canBlock)
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
                 return true;
@@ -309,6 +320,24 @@ public class EnemyLockOn : MonoBehaviour
     public void resetWhenDie(Transform deadTarget)
     {
         if (currentTarget == deadTarget)
-            ResetTarget();
+        {
+            Transform newTarget = ScanNearBy(deadTarget);
+
+            if (newTarget != null)
+            {
+                currentTarget = newTarget;
+                FoundTarget();
+                Debug.Log("El enemigo murió, fijando al más cercano automáticamente.");
+            }
+            else
+            {
+                ResetTarget();
+                Debug.Log("El enemigo murió, no hay más cerca. Reseteando lock.");
+            }
+        }
     }
+
+
+
+
 }

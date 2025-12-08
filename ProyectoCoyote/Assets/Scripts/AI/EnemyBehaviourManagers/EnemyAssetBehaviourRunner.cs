@@ -46,6 +46,11 @@ public class EnemyAssetBehaviourRunner : AssetBehaviourRunner
             player = FindAnyObjectByType<Player>();
         }
     }
-  
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        print("EnableCharacter");
+    }
+
 }
 

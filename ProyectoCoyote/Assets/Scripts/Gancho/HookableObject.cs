@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class HookableObject : MonoBehaviour
@@ -68,15 +69,35 @@ public class HookableObject : MonoBehaviour
     {
         if (enemy != null)
         {
-            if(enemyAssetBehaviourRunner!=null)
-            enemyAssetBehaviourRunner.enabled = true;
-
-            if (GetComponent<BossEnemy>() != null)
-            {
-                GetComponent<BossEnemy>().finishHook();
-            }
+            StartCoroutine(waitEndHook());
         }
 
+    }
+    public void endHookPull()
+    {
+        if (GetComponent<BossEnemy>() != null)
+        {
+            StartCoroutine(waitEndHookPull());
+        }
+    }
+    IEnumerator waitEndHook()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (enemyAssetBehaviourRunner != null)
+            enemyAssetBehaviourRunner.enabled = true;
+
+        //if (GetComponent<BossEnemy>() != null)
+        //{
+        //    GetComponent<BossEnemy>().finishHook();
+        //}
+    }
+    IEnumerator waitEndHookPull()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (GetComponent<BossEnemy>() != null)
+        {
+            GetComponent<BossEnemy>().finishHook();
+        }
     }
     public void dodgeHook()
     {

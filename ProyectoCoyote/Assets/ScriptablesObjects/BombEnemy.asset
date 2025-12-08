@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: CombatBT
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 1015.3039, y: 298.90808}
+        position: {x: 1026.4, y: 319.19998}
         node:
           rid: 5634289709124943963
         references:
@@ -38,6 +38,7 @@ MonoBehaviour:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         - 9487638a-f6b2-4b49-a222-ac5ef59b2e20
+        - 56b16f18-2c95-4ba5-b309-22cf40133c9b
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
         position: {x: 1137.6654, y: 963.0591}
@@ -225,20 +226,51 @@ MonoBehaviour:
         - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: Die
+        id: 56b16f18-2c95-4ba5-b309-22cf40133c9b
+        position: {x: 1520.3461, y: 263.44202}
+        node:
+          rid: 2751277335337763063
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds: []
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
         rid: 5634289337929826421
       nodes:
-      - name: Loop
-        id: 0c87ccc8-af40-4e16-944a-ea081b271210
-        position: {x: 243.75, y: 0}
+      - name: 
+        id: 9142a11b-35bb-4f90-8b29-df26b1552395
+        position: {x: 224.8, y: 202.4}
         node:
-          rid: 5634289356226429019
+          rid: 8725330803746931430
         references: []
         parentIds: []
         childIds:
-        - 9142a11b-35bb-4f90-8b29-df26b1552395
+        - a0e233ef-b556-4140-932f-9bed26f5ae1b
+        - d4248560-6076-4a3a-905e-0009695860c6
+        - e854279a-cdaa-48de-b51b-6f7bf6f130e6
+      - name: CheckMutex
+        id: d21d7469-a224-4f63-89c2-a74c5f8d9965
+        position: {x: 975, y: 600}
+        node:
+          rid: 5634289537243152472
+        references: []
+        parentIds: []
+        childIds:
+        - 0c525003-1308-4130-96b1-d813967e58c5
+        - 8493d51c-cd68-4807-a7df-bec4561c1ff5
       - name: AttackA
         id: 8cc4b342-4349-469c-a8f4-d37bcc974007
         position: {x: 450, y: 1800}
@@ -322,16 +354,6 @@ MonoBehaviour:
         - d21d7469-a224-4f63-89c2-a74c5f8d9965
         childIds:
         - 79061932-755c-4921-a0f5-52ce3929df0d
-      - name: CheckMutex
-        id: d21d7469-a224-4f63-89c2-a74c5f8d9965
-        position: {x: 975, y: 600}
-        node:
-          rid: 5634289537243152472
-        references: []
-        parentIds: []
-        childIds:
-        - 0c525003-1308-4130-96b1-d813967e58c5
-        - 8493d51c-cd68-4807-a7df-bec4561c1ff5
       - name: WaitForPriority
         id: 8493d51c-cd68-4807-a7df-bec4561c1ff5
         position: {x: 1125, y: 800}
@@ -477,19 +499,6 @@ MonoBehaviour:
         parentIds:
         - 97cd8b96-c1b6-4729-89c8-b5787570767e
         childIds: []
-      - name: 
-        id: 9142a11b-35bb-4f90-8b29-df26b1552395
-        position: {x: 224.8, y: 202.4}
-        node:
-          rid: 8725330803746931430
-        references: []
-        parentIds:
-        - 0c87ccc8-af40-4e16-944a-ea081b271210
-        childIds:
-        - a0e233ef-b556-4140-932f-9bed26f5ae1b
-        - d4248560-6076-4a3a-905e-0009695860c6
-        - e854279a-cdaa-48de-b51b-6f7bf6f130e6
-        - 00ee2d10-8053-451e-9691-d7843ae20d02
       - name: returnattackpriority
         id: 5326e9ac-6a22-4c62-bd15-ef2db67b6a53
         position: {x: -150, y: 800}
@@ -544,7 +553,7 @@ MonoBehaviour:
         childIds: []
       - name: Explode
         id: e854279a-cdaa-48de-b51b-6f7bf6f130e6
-        position: {x: 645.8067, y: 470.01404}
+        position: {x: 670.4, y: 486.4}
         node:
           rid: 8725330901017559130
         references:
@@ -570,20 +579,6 @@ MonoBehaviour:
         parentIds:
         - 9142a11b-35bb-4f90-8b29-df26b1552395
         childIds: []
-      - name: Die
-        id: 00ee2d10-8053-451e-9691-d7843ae20d02
-        position: {x: 724.96, y: 276.92}
-        node:
-          rid: 8725330903869685760
-        references:
-        - fieldName: Action
-          value:
-            rid: 8725330903869685761
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 9142a11b-35bb-4f90-8b29-df26b1552395
-        childIds: []
     pushPerceptions:
     - name: PlayerAttackPerception
       targetNodeIds: []
@@ -604,13 +599,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2751277335337763063
+      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 2
+        ExitStatus: 8
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5634289356226429019
-      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        Iterations: -1
     - rid: 5634289356226429025
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -757,7 +753,7 @@ MonoBehaviour:
     - rid: 5634289709124943964
       type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
-        ExecuteOnLoop: 1
+        ExecuteOnLoop: 0
         InterruptOptions: 2
         subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
     - rid: 5634289709124943965
@@ -863,7 +859,8 @@ MonoBehaviour:
       data: 
     - rid: 8725330859197727673
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        infinite: 0
     - rid: 8725330879351619668
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -892,15 +889,6 @@ MonoBehaviour:
     - rid: 8725330901017559512
       type: {class: RunToHeavyAction, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 8725330903869685760
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 8725330903869685761
-      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        method:
-          componentName: Enemy
-          methodName: Die
     - rid: 8725330922265903460
       type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data:

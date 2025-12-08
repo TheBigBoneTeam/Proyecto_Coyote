@@ -1,6 +1,7 @@
 using BehaviourAPI.UnityToolkit;
 using Services;
 using System;
+using tutorial;
 using UnityEngine;
 
 public class GameStateManager : MonoBehaviour, IGameStateManager
@@ -130,7 +131,15 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         if (currentState == GameState.DeathScreen)
         {
             restartArea?.Invoke();
-            SetState(GameState.NonCombat);
+            if (FindAnyObjectByType<Tutorial>() == null)
+            {
+                SetState(GameState.NonCombat);
+            }
+            else
+            {
+                SetState(GameState.Combat);
+
+            }
         }
     }
 

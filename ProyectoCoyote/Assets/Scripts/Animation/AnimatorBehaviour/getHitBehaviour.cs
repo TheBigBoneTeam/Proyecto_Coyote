@@ -64,7 +64,24 @@ public class getHitBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        if (!finished)
+        {
+            finished = true;
+            if (move != null)
+            {
+                move.setCanMove(true);
+                move.setCanAttack(true);
+                move.setCanDodge(true);
+            }
+            if (enemyAssetRunner != null)
+            {
+                enemyAssetRunner.enabled = true;
+                EnemyAI enemyAI = animator.gameObject.GetComponentInParent<EnemyAI>();
+                enemyAI.getHit();
+
+
+            }
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

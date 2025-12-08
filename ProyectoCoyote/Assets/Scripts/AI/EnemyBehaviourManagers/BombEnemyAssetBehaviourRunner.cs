@@ -79,6 +79,10 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     protected override void OnDisable()
     {
         print("ondisable");
+        //if (!enemy.dead)
+        //{
+        //    enemy.Die();
+        //}
         if (charging)
         {
             chargeAction?.Invoke(this, false);
@@ -91,7 +95,7 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
                 _currentHeavy = null;
             }
         }
-       // base.OnDisable();
+        base.OnDisable();
 
     }
     public void hitByPlayer()

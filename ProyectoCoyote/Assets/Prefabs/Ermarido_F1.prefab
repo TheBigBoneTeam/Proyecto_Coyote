@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <HealthPoint>k__BackingField: 10
-  _maxHealthPoint: 10
+  <_maxHealthPoint>k__BackingField: 10
   inmuneStun: 0
   invTimeAfterHit: 1
   invincible: 0
@@ -305,12 +305,14 @@ MonoBehaviour:
   shouldprint: 0
   renderers: []
   <attack>k__BackingField: {fileID: 0}
+  healparticles: {fileID: 0}
   ActiveBeforeFight: 0
   HitParticles: {fileID: 7073598018001875246}
   blockParticles: {fileID: 7674958976543173433}
   critParticles: {fileID: 920307490134245014}
   blockParticlesPosition: {fileID: 3779911189042628931}
-  healthDrop: 0
+  healthDrop: 3
+  <dead>k__BackingField: 0
   currentFase: 0
   bossFases:
   - state: 0
@@ -327,12 +329,12 @@ MonoBehaviour:
     life: 10
   - state: 1
     hasCactusAttack: 1
-    cactusAttackTime: -1
+    cactusAttackTime: 1
     life: 10
   - state: 0
     hasCactusAttack: 1
     cactusAttackTime: -1
-    life: 10
+    life: 13
   bossEnemyAssetBehaviourRunner: {fileID: 2581277938799203006}
   baseCactusAttackTime: 3
   spawner: {fileID: 0}
@@ -902,6 +904,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4084431529716820018}
     m_Modifications:
+    - target: {fileID: 4446260435891555638, guid: d20b63413cf244940a9c1f20bf74d047, type: 3}
+      propertyPath: lengthInSec
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8603115515248541643, guid: d20b63413cf244940a9c1f20bf74d047, type: 3}
       propertyPath: m_Name
       value: ScreamParticles

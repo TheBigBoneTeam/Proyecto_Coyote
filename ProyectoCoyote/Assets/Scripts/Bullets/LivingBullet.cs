@@ -40,8 +40,16 @@ public class LivingBullet : baseBullet
         //rb.useGravity = true;
         print("DestroyBomb");
         gameObject.layer = LayerMask.NameToLayer("Enemy");
-      //  rb.constraints = RigidbodyConstraints.FreezePosition;
-        GetComponent<Enemy>().Die();
+        if (lifeTime > 0)
+        {
+            //  rb.constraints = RigidbodyConstraints.FreezePosition;
+            GetComponent<Enemy>().Die();
+        }
+        else
+        {
+            GetComponent<Enemy>().PlayAnimation("Explosion");
+
+        }
     }
     public override void restart()
     {

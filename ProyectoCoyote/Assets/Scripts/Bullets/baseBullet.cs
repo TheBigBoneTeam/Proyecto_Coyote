@@ -21,8 +21,10 @@ public class baseBullet : Attack, IBullet
 
     protected combatAreaManager areaManager;
 
-    bool shouldNotBeDestroyed = false;
+ [SerializeField]   bool shouldNotBeDestroyed = false;
     Vector3 ogPosition;
+
+    Cover cover;
 
     [SerializeField] protected Animator anim;
 
@@ -33,6 +35,7 @@ public class baseBullet : Attack, IBullet
     {
         print("BulletTrigger" + other.name);
         AGameCharacter character = other.GetComponent<AGameCharacter>();
+        
         if (!flying)
         {
             return;
@@ -49,14 +52,14 @@ public class baseBullet : Attack, IBullet
             {
                 character.GetComponent<DamageReceiver>().checkEffectSource(this);
                 flying = false;
-                if (GetComponentInChildren<MeshRenderer>())
-                GetComponentInChildren<MeshRenderer>().enabled = false;
+                //if (GetComponentInChildren<MeshRenderer>())
+                //GetComponentInChildren<MeshRenderer>().enabled = false;
                 print("DestroyBul"+ other.name);
                 beDestroy?.Invoke(this);
                 destroyFunc();
 
             }
-        } else if (!other.isTrigger)
+        } else if (!other.isTrigger && isThisNotCover(other.transform))
         {
             print("BulletTriggerWall" + other.name);
 
@@ -71,6 +74,24 @@ public class baseBullet : Attack, IBullet
         }
         print("??");
 
+    }
+    public bool isThisNotCover(Transform obj)
+    {
+        if (cover == null)
+            return true;
+        if (obj.transform.Equals(cover.transform))
+        {
+            return false;
+        }
+        if(obj.transform.parent == null)
+        {
+            return true;
+        }
+        if(obj.transform.parent.Equals(cover.transform))
+        {
+            return false;
+        }
+        return true;
     }
     public virtual void destroyFunc()
     {
@@ -102,7 +123,15 @@ public class baseBullet : Attack, IBullet
    
     public virtual void StartBulletMovement(AGameCharacter shooter, Vector3 spawnPoint,Vector3 objective)
     {
-        setOwner(shooter);
+        if (shooter.GetComponent<DistanceEnemyAssetBehaviourRunner>())
+        {
+            cover = shooter.GetComponent<DistanceEnemyAssetBehaviourRunner>().currentCover;
+        }
+        else
+        {
+            cover = null;
+        }
+            setOwner(shooter);
         print("shooter"+ shooter);
         LoadData(_attackData);
        // setHitCheck(HittableTypes.onlyOtherTeam);
@@ -163,12 +192,6 @@ public class baseBullet : Attack, IBullet
     protected override void Start()
     {
         anim = GetComponentInChildren<Animator>();
-      
-
-    }
-
-        private void OnDestroy()
-    {
       
 
     }

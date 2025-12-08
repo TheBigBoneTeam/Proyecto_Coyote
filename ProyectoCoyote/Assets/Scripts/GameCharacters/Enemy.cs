@@ -17,7 +17,7 @@ public class Enemy : AGameCharacter
     [SerializeField] protected int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
-    protected bool dead;
+  [field:SerializeField]  public bool dead { get; private set; }
 
     protected override void Start()
     {
@@ -29,15 +29,42 @@ public class Enemy : AGameCharacter
     {
         if (!dead)
         {
-            ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop);
             dead = true;
             print("dieEnemy"+name);
             dieEvent?.Invoke(this);
             GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-            gameObject.SetActive(false);
+          //  PlayAnimation("Die");
+            FinishDie();
+          //  gameObject.SetActive(false);
         }
     }
-   
+    public virtual void FinishDie()
+    {
+        gameObject.SetActive(false);
+        ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop);
+    }
+    IEnumerator DieAnim(float time)
+    {
+        float timepass = 0;
+
+        while ((timepass < time))
+        {
+            yield return new WaitForSeconds(0.1f);
+            foreach (Renderer mesh in renderers)
+            {
+
+                mesh.enabled = !mesh.enabled;
+            }
+            timepass += 0.1f;
+
+        }
+        foreach (Renderer mesh in renderers)
+        {
+
+            mesh.enabled = true;
+        }
+        FinishDie();
+    }
     public override bool isOtherTeam(AGameCharacter character)
     {
         print(character.name);

@@ -194,8 +194,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (gameStateManager.getState() == GameState.Paused)
+                return;
+
             rb.linearDamping = 0;
-            rb.AddForce(Vector3.down * gravity, ForceMode.Force);
+            rb.AddForce(Vector3.down * gravity*Time.deltaTime, ForceMode.Force);
         }
     }
 

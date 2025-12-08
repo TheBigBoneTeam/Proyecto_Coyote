@@ -42,15 +42,11 @@ public class AudioProducer : MonoBehaviour
         audioSource.transform.position = pos;
         audioSource.clip = sound.audioClip;
         audioSource.volume = sound.volume;
-        
-        if (pitch >= 0)
-        {
-            audioSource.pitch = sound.pitch;
-        }
-        else
-        {
+
+        if (pitch >= 0f)
             audioSource.pitch = pitch;
-        }
+        else
+            audioSource.pitch = sound.pitch;
 
         audioSource.loop = loop;
     }
@@ -58,12 +54,11 @@ public class AudioProducer : MonoBehaviour
     public void StartAudio3D(bool loop, bool onlyOne, Vector3 pos, float pitch = -1)
     {
         audioSource.maxDistance = sound.maxSoundDistance;
-        audioSource.transform.position = pos; // ahora 3D real
+        audioSource.transform.position = pos;
         audioSource.clip = sound.audioClip;
         audioSource.volume = sound.volume;
         audioSource.loop = loop;
 
-        // 100% 3D
         audioSource.spatialBlend = 1f;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.minDistance = 1f;

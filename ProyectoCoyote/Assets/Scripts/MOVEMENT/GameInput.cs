@@ -8,6 +8,8 @@ public class GameInput : MonoBehaviour
 
     private PlayerControls controls;
 
+    public Vector2 CameraInput { get; private set; }
+
     // Movimiento
     public float Horizontal { get; private set; }
     public float Vertical { get; private set; }
@@ -54,6 +56,19 @@ public class GameInput : MonoBehaviour
 
             DetectDeviceFromContext(ctx);
         };
+
+        // CAMARA
+        controls.Player.Camera.performed += ctx =>
+        {
+            CameraInput = ctx.ReadValue<Vector2>();
+            DetectDeviceFromContext(ctx);
+        };
+
+        controls.Player.Camera.canceled += ctx =>
+        {
+            CameraInput = Vector2.zero;
+        };
+
 
         controls.Player.Walk.canceled += ctx =>
         {

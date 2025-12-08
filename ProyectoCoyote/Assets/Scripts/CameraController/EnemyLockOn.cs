@@ -284,6 +284,7 @@ public class EnemyLockOn : MonoBehaviour
                 !hit.transform.Equals(target) &&
                 !hit.transform.Equals(transform) && 
                 hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy") &&
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("TutorialSecondEnemy") &&
                 hit.transform.gameObject.layer != LayerMask.NameToLayer("Bullet");
             if (canBlock)
             {

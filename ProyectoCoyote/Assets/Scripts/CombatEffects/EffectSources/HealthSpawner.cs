@@ -8,6 +8,7 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
     ObjectPool<HealOrb> orbs;
     [SerializeField] HealOrb orbPrefab;
     [SerializeField] int startingOrbs;
+    [SerializeField] float distance;
     public void Instantiate()
     {
 
@@ -37,10 +38,13 @@ public class HealthSpawner:MonoBehaviour,IHealthSpawner
         {
             return;
         }
-        HealOrb orb = orbs.Get();
-        orb.setHeal(health);
-        orb.transform.position = pos;
-        orb.Active = true;
+        for (int i = 0; i < health; i++)
+        {
+            HealOrb orb = orbs.Get();
+            orb.setHeal(1);
+            orb.transform.position = pos +  new Vector3(UnityEngine.Random.Range(-distance, distance),0, UnityEngine.Random.Range(-distance, distance));
+            orb.Active = true;
+        }
 
     }
 }

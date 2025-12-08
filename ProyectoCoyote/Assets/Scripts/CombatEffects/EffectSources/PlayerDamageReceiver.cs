@@ -17,6 +17,7 @@ public class PlayerDamageReceiver: DamageReceiver
     {
         if (e.currentState == GameState.SlowDown)
         {
+
             Invincible = true;
         }
         else

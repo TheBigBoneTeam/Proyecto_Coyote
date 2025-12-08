@@ -99,7 +99,6 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         {
             SetState(GameState.SlowDown);
             // SFX SlowDown
-            AudioManager.Instance.PlaySimpleSound("SFX - SlowDown", false, Vector2.zero, true, true);
         }
     }
 
@@ -128,9 +127,10 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
 
     public void Restart()
     {
-        if (currentState == GameState.DeathScreen)
+        if (currentState == GameState.DeathScreen || currentState == GameState.Paused)
         {
             restartArea?.Invoke();
+            Time.timeScale = 1;
             if (FindAnyObjectByType<Tutorial>() == null)
             {
                 SetState(GameState.NonCombat);

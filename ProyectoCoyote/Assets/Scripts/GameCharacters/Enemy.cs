@@ -17,6 +17,8 @@ public class Enemy : AGameCharacter
     [SerializeField] protected int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
+
+ [SerializeField]   ParticleSystem spawnParticles;
   [field:SerializeField]  public bool dead { get; private set; }
 
     protected override void Start()
@@ -143,6 +145,7 @@ public class Enemy : AGameCharacter
         GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
         if (active)
         {
+            spawnParticles.Play();
             GetComponent<EnemyAssetBehaviourRunner>().restart();
         }
     }

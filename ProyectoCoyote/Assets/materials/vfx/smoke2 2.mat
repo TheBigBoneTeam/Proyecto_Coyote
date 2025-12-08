@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ditherTransition
-  m_Shader: {fileID: -6465566751694194690, guid: 37a5ba2a4cca336459c3fc4b8220b35d, type: 3}
+  m_Name: smoke2 2
+  m_Shader: {fileID: -6465566751694194690, guid: 688e6ea51e95d2b4986d62a7e532cf71, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -18,13 +18,14 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ae4227cd7071dc346b774622b4cc2698, type: 3}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 25bd97ca80da9fb4baa56ebc92b49ba3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -41,12 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _dither: 1
+    - _Alpha: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6724505630790064023
+--- !u!114 &7641073405868041148
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

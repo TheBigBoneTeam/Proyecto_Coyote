@@ -213,4 +213,9 @@ public class Attack : ATouchCombatEffectSource
             return HitDirections.Back;
         }
     }
+
+    internal void setParry(object canParry)
+    {
+        throw new NotImplementedException();
+    }
 }

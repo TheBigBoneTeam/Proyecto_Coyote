@@ -7,16 +7,27 @@ public class ButtonScaleFeedback : MonoBehaviour,
     ISelectHandler, IDeselectHandler
 {
     [Header("Scale Settings")]
-    public Vector3 normalScale = Vector3.one;
-    public Vector3 highlightedScale = new Vector3(1.1f, 1.1f, 1.1f);
+    [SerializeField] Transform target;
+    Vector3 normalScale;
+    Vector3 highlightedScale;
+    [SerializeField] float scaleFactor = 1.2f;
     public float scaleSpeed = 0.15f;
 
     bool isHighlighted = false;
 
+    void Start()
+    {
+        if (target == null)
+        {
+            target = transform;
+        }
+        normalScale = target.localScale;
+        highlightedScale = target.localScale * scaleFactor;
+    }
     void Update()
     {
-        transform.localScale = Vector3.Lerp(
-            transform.localScale,
+        target.localScale = Vector3.Lerp(
+            target.localScale,
             isHighlighted ? highlightedScale : normalScale,
             Time.deltaTime * (1f / scaleSpeed)
         );

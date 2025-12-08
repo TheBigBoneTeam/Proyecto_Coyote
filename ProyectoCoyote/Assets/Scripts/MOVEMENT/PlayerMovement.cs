@@ -633,10 +633,10 @@ public class PlayerMovement : MonoBehaviour
         else if (_currentDodgeRightBuffer>0) animator.CrossFade("Dodge_R", .1f);
         else if (_currentDodgeOutsideBuffer>0) animator.CrossFade("BackBlock", .1f);
         _currentDodgeOutsideBuffer = _currentDodgeLeftBuffer = _currentDodgeAnyBuffer = _currentDodgeRightBuffer = 0;
-        if (gameStateManager.getState() == GameState.SlowDown)
-        {
-            perfectDodgeManager.StopSlowdown();
-        }
+        //if (gameStateManager.getState() == GameState.SlowDown)
+        //{
+        //    perfectDodgeManager.StopSlowdown();
+        //}
 
         Invoke(nameof(ResetDash), dashDuration);
     }
@@ -750,7 +750,12 @@ public class PlayerMovement : MonoBehaviour
             case GameState.Combat:
                 UnfreezeMovement();
                 break;
+            case GameState.SlowDown:
+                canMove = false;
 
+                canAttack = true;
+                canDodge = false;
+                break;
             case GameState.DeathScreen:
                 HandleDeathState();
                 break;

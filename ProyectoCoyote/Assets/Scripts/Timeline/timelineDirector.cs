@@ -165,6 +165,13 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     {
         currentData = null;
     }
+    public void changeScene()
+    {
+        if (currentData != null)
+        {
+            ServiceLocator.Instance.Get<ILevelManager>().loadEscene(currentData.nextLevel);
+        }
+    }
 }
 public interface IcutsceneManager : IService
 {
@@ -249,7 +256,7 @@ endStoryAction();
                 break;
         }
     }
-  
+
     public void endStoryAction()
     {
         if(postStoryAction == null)

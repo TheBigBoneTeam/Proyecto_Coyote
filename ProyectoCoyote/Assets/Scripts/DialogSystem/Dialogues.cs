@@ -33,6 +33,9 @@ public class Dialogues : MonoBehaviour
     private bool isTyping = false;
     private bool isInDialogue = false;
     private bool isWaitingAfterSkip = false;
+    private bool ignoreFirstSkip = false;
+    private bool allowTalkingSound = false;
+
 
     private string currentFullText = "";
     private string currentPrefix = "";
@@ -60,26 +63,37 @@ public class Dialogues : MonoBehaviour
     {
         if (isInDialogue)
         {
-            if (/*gameInput.SaltarDialogo*/Input.GetMouseButtonDown(0))
+            if (ignoreFirstSkip)
+            {
+                ignoreFirstSkip = false;
+                return;
+            }
+
+            if (gameInput.SkipTapPressed)
             {
                 SkipLine();
             }
         }
-        
     }
 
 
+
     #region Funciones Accesibles de DialogueSystem
-    public void StartDialogue(string startingLine, Action action, NPC npc, Transform npcTransform) 
+    public void StartDialogue(string startingLine, Action action, NPC npc, Transform npcTransform)
     {
         LoadDialogues();
-       // movement.StopMovement();
         targetLocator.position = npcTransform.position;
         _npc = npc;
 
         CamControl.ActiveHookCamera();
         currentKeyIndex = dialogueKeys.IndexOf(startingLine);
         currentPrefix = GetPrefix(startingLine);
+
+        ignoreFirstSkip = true;
+        isTyping = false;
+        isWaitingAfterSkip = false;
+        allowTalkingSound = true;
+
         ShowText(dialogueKeys[currentKeyIndex]);
         UIText.gameObject.SetActive(true);
         action1 = action;
@@ -88,14 +102,29 @@ public class Dialogues : MonoBehaviour
     public void DialogueEnd()
     {
         if (_npc == null) return;
-       action1?.Invoke();
+        action1?.Invoke();
         CamControl.ActiveFollowCamera();
         _npc.playingDialogue = false;
         UIText.gameObject.SetActive(false);
         movement.RestartMovement();
+
+        // Resetear todo
         isInDialogue = false;
+        isTyping = false;
+        isWaitingAfterSkip = false;
+        allowTalkingSound = false;
+
+        //Cortar cualquier coroutina pendiente
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+        StopAllCoroutines();
+
         Debug.Log("Fin del Diálogo");
     }
+
 
     #endregion
 
@@ -145,7 +174,7 @@ public class Dialogues : MonoBehaviour
                 StopCoroutine(typingCoroutine);
             }
 
-            typingCoroutine = StartCoroutine(TypeText(currentFullText));
+            typingCoroutine = StartCoroutine(TypeText(currentFullText, dialogue));
             // ShowImageForCharacter(dialogue.character);
             ShowColorForCharacter(dialogue.character);
         }
@@ -259,11 +288,14 @@ public class Dialogues : MonoBehaviour
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
+                typingCoroutine = null;
             }
 
             dialogueText.text = currentFullText;
             isTyping = false;
+            allowTalkingSound = false;
             isWaitingAfterSkip = true;
+
             StartCoroutine(SkipAndWait());
         }
         else if (isWaitingAfterSkip)
@@ -276,32 +308,47 @@ public class Dialogues : MonoBehaviour
         }
     }
 
+
     #endregion
     #region Enumerators
-    private IEnumerator TypeText(string fullText)
+    private IEnumerator TypeText(string fullText, DialogueLine dialogue)
     {
         isTyping = true;
         isWaitingAfterSkip = false;
+        allowTalkingSound = true;
         dialogueText.text = "";
         foreach (char c in fullText)
         {
             dialogueText.text += c;
+            if (allowTalkingSound)
+            {
+                PlayCharacterTalking(dialogue.character);
+            }
             yield return new WaitForSeconds(typingSpeed);
+            if (!isTyping) yield break;
         }
 
         isTyping = false;
-
+        allowTalkingSound = false;
         isWaitingAfterSkip = true;
         yield return new WaitForSeconds(WaitSpeed);
         isWaitingAfterSkip = false;
         ShowNextLine();
+        if (gameInput.SkipTapPressed)
+        {
+            isWaitingAfterSkip = false;
+            ShowNextLine();
+        }
 
     }
     private IEnumerator SkipAndWait()
     {
         yield return new WaitForSeconds(WaitSpeed);
-        isWaitingAfterSkip = false;
-        ShowNextLine();
+        if (gameInput.SkipTapPressed)
+        {
+            isWaitingAfterSkip = false;
+            ShowNextLine();
+        }
     }
     private void ForceSkipWait()
     {

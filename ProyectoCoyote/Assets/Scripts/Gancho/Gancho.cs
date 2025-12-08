@@ -239,7 +239,7 @@ public class Gancho : MonoBehaviour
     }
     public bool EnemyOutOfDistance()
     {
-        float distance = Vector3.Distance(currentTarget.position, transform.position);
+        float distance = Vector3.Distance(currentTarget.transform.position, transform.position);
 
         if (distance <= minNoticeZone) return true;
         return false;

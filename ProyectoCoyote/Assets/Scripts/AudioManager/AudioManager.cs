@@ -185,13 +185,13 @@ public class AudioManager : MonoBehaviour
 
                 break;
 
-            //case "Nivel2.1":
-            //    AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
-            //    AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
-            //    if (musicSounds[1] != null)
-            //        musicSounds[1].audioSource.volume = 0f;
+            case "Nivel2.1":
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(0f, "OST Cañon - Pelea", true, Vector2.zero, true, true, 1);
+                if (musicSounds[1] != null)
+                    musicSounds[1].audioSource.volume = 0f;
 
-            //    break;
+                break;
 
             case "TesteoCInematicas":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Cañon - Base", true, Vector2.zero, true, true,0);

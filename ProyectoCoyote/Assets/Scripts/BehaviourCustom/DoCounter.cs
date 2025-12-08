@@ -8,6 +8,7 @@ public class DoCounter : UnityAction
 
     public override void Start()
     {
+       
         enemyAI = context.GameObject.GetComponent<EnemyAI>();
         enemyAI.startCounter();
     }

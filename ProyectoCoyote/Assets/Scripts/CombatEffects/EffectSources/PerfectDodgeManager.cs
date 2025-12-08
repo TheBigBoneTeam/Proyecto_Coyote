@@ -27,6 +27,7 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
     {
         if(stateData.currentState == GameState.SlowDown)
         {
+            AudioManager.Instance.PlaySimpleSound("SFX - SlowDown", false, Vector2.zero, true, true);
             slowOn = true;
             Time.timeScale = slowdownFactor;
             StartCoroutine(restartTime(slowdownDuration));

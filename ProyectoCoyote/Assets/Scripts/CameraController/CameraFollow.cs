@@ -89,7 +89,7 @@ public class CameraFollow : MonoBehaviour
         if (enemy == null || cam == null) return;
         
         // Rotar el jugador hacia el enemigo
-        Vector3 lookToEnemy = enemy.position - playerObj.position;
+        Vector3 lookToEnemy = enemy.transform.position - playerObj.transform.position;
         lookToEnemy.y = 0f;
         if (lookToEnemy.sqrMagnitude > 0.01f)
         {
@@ -100,7 +100,6 @@ public class CameraFollow : MonoBehaviour
             playerObj.rotation = Quaternion.Slerp(playerObj.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         cameraTarget.position = playerObj.position + Vector3.up * 2f;
-
         // Alinea la rotación base del pivot con la espalda del jugador
         cameraTarget.rotation = Quaternion.Euler(0f, playerObj.eulerAngles.y, 0f);
 

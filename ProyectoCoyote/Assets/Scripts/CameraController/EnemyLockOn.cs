@@ -119,9 +119,10 @@ public class EnemyLockOn : MonoBehaviour
     // Se ha encontrado un enemigo válido
     public void FoundTarget()
     {
-        if (!currentTarget)
+        if (currentTarget == null)
         {
             Debug.Log("Enemigo no válido");
+            ResetTarget();
             return;
         }
 
@@ -131,7 +132,12 @@ public class EnemyLockOn : MonoBehaviour
         if (enemyDefenseAttackUIIndicator != null)
             enemyDefenseAttackUIIndicator.setCharacter(currentTarget.GetComponent<AGameCharacter>());
 
-        CamControl.ActiveTargetLookingCamera();
+        if (currentTarget != null && !EnemyOutOfDistance())
+        {
+            CamControl.ActiveTargetLookingCamera();
+            Debug.Log("Camara lockita " + currentTarget);
+        }
+
         enemyLocked = true;
 
         Debug.Log("Enemigo encontrado");
@@ -299,7 +305,6 @@ public class EnemyLockOn : MonoBehaviour
     {
         if (currentTarget == null)
         {
-            ActivateLockMode();
             return;
         }
 
@@ -322,7 +327,7 @@ public class EnemyLockOn : MonoBehaviour
         {
             Transform newTarget = ScanNearBy(deadTarget);
 
-            if (newTarget != null)
+            if (newTarget != null && newTarget.GetComponent<Enemy>().HealthPoint > 0)
             {
                 currentTarget = newTarget;
                 FoundTarget();

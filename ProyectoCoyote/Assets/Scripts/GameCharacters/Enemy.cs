@@ -44,6 +44,7 @@ public class Enemy : AGameCharacter
             }
             else
             {
+                dieParticles.Play();
                 PlayAnimation("Die");
             }
           //  gameObject.SetActive(false);

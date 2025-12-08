@@ -175,7 +175,7 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     // Escanear alrededores en busca de enemigos
-    private Transform ScanNearBy()
+    private Transform ScanNearBy(Transform exclude = null)
     {
         Debug.Log("Buscando enemigos...");
 
@@ -192,13 +192,18 @@ public class EnemyLockOn : MonoBehaviour
 
         for (int i = 0; i < nearbyTargets.Length; i++)
         {
-            Vector3 dir = nearbyTargets[i].transform.position - cam.position;
+            Transform candidate = nearbyTargets[i].transform;
+
+            
+            if (exclude != null && candidate == exclude) continue;
+
+            Vector3 dir = candidate.position - cam.position;
             dir.y = 0;
             float _angle = Vector3.Angle(cam.forward, dir);
 
             if (_angle < closestAngle)
             {
-                closestTarget = nearbyTargets[i].transform;
+                closestTarget = candidate;
                 closestAngle = _angle;
             }
         }
@@ -209,22 +214,9 @@ public class EnemyLockOn : MonoBehaviour
             return null;
         }
 
-        float h1 = closestTarget.GetComponent<CapsuleCollider>().height;
-        float h2 = closestTarget.localScale.y;
-        float h = h1 * h2;
-        float half_h = (h / 2) / 2;
-        currentYOffset = h - half_h;
-
-        Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
-
-        if (Blocked(tarPos, closestTarget))
-        {
-            Debug.Log("Hay algo bloqueando el enemigo");
-            return null;
-        }
-
         return closestTarget;
     }
+
     private Transform FindDirectionalTarget(bool toRight)
     {
         if (currentTarget == null) return null;
@@ -291,7 +283,8 @@ public class EnemyLockOn : MonoBehaviour
             canBlock = 
                 !hit.transform.Equals(target) &&
                 !hit.transform.Equals(transform) && 
-                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy");
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy") &&
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Bullet");
             if (canBlock)
             {
                 Debug.Log($"Hay algo bloqueando al enemigo: {hit.transform}");
@@ -327,6 +320,24 @@ public class EnemyLockOn : MonoBehaviour
     public void resetWhenDie(Transform deadTarget)
     {
         if (currentTarget == deadTarget)
-            ResetTarget();
+        {
+            Transform newTarget = ScanNearBy(deadTarget);
+
+            if (newTarget != null)
+            {
+                currentTarget = newTarget;
+                FoundTarget();
+                Debug.Log("El enemigo murió, fijando al más cercano automáticamente.");
+            }
+            else
+            {
+                ResetTarget();
+                Debug.Log("El enemigo murió, no hay más cerca. Reseteando lock.");
+            }
+        }
     }
+
+
+
+
 }

@@ -294,15 +294,22 @@ public class Dialogues : MonoBehaviour
 
         isWaitingAfterSkip = true;
         yield return new WaitForSeconds(WaitSpeed);
-        isWaitingAfterSkip = false;
-        ShowNextLine();
+        if (gameInput.SkipTapPressed)
+        {
+            isWaitingAfterSkip = false;
+            ShowNextLine();
+        }
 
     }
     private IEnumerator SkipAndWait()
     {
         yield return new WaitForSeconds(WaitSpeed);
-        isWaitingAfterSkip = false;
-        ShowNextLine();
+        if (gameInput.SkipTapPressed) 
+        {
+            isWaitingAfterSkip = false;
+            ShowNextLine();
+        }
+        
     }
     private void ForceSkipWait()
     {

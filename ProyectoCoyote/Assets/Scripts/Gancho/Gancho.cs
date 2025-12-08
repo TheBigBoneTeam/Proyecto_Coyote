@@ -107,6 +107,8 @@ public class Gancho : MonoBehaviour
 
             if (!isRetracting && Blocked(currentTarget.position, currentTarget))
                 ResetTarget();
+
+            if (EnemyOutOfDistance() && !isRetracting) ResetTarget();
         }
 
         if (gameInput.AttackLeftPressed && isInAttackWindow)
@@ -234,6 +236,13 @@ public class Gancho : MonoBehaviour
         {
             MobileUIManager.Instance.SetNonCombatUI();
         }
+    }
+    public bool EnemyOutOfDistance()
+    {
+        float distance = Vector3.Distance(currentTarget.position, transform.position);
+
+        if (distance <= minNoticeZone) return true;
+        return false;
     }
 
     #region Calcular Objetos Enganchables

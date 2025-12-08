@@ -221,6 +221,20 @@ public class AudioManager : MonoBehaviour
 
                 break;
 
+            case "Nivel3.1 - Luces":
+                //AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final - Loopeo", true, Vector2.zero, true, true);
+
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Base", true, Vector2.zero, true, true, 0);
+                AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Oasis - Pelea", true, Vector2.zero, true, true, 1);
+
+                if (musicSounds[1] != null)
+                    musicSounds[1].audioSource.volume = 0f;
+
+                if (musicSounds[2] != null)
+                    musicSounds[2].audioSource.volume = 0f;
+
+                break;
+
             case "GameplayBeta_PruebaCombate":
                 AudioManager.Instance.PlaySimpleSoundFadeIn(2f, "OST Boss Final", true, Vector2.zero, true, true);
                 break;

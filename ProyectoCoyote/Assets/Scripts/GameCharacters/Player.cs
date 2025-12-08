@@ -33,12 +33,14 @@ public class Player : AGameCharacter
     }
     public override void getHit(int damage,HitDirections directions, bool crit = false)
     {
-        base.getHit(damage,directions);
-       
         if (PerfectDodgeManager.isSlowDown())
         {
-            PerfectDodgeManager.StopSlowdown();
+            return;
+           // PerfectDodgeManager.StopSlowdown();
         }
+        base.getHit(damage,directions);
+       
+      
         if (HealthPoint > 0)
         {
             storedDamage = damage;

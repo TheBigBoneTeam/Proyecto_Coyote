@@ -28,6 +28,8 @@ public abstract class AGameCharacter :MonoBehaviour
     [SerializeField] protected Renderer[] renderers;
   [field:SerializeField]  public Attack attack { get; private set; }
 
+    [SerializeField] ParticleSystem healparticles;
+
 
     string currentAnim;
     private void Awake()
@@ -116,6 +118,7 @@ public abstract class AGameCharacter :MonoBehaviour
 
     public virtual void getHealed(int points)
     {
+        healparticles.Play();
         HealthPoint = Mathf.Min( HealthPoint + points,_maxHealthPoint);
         lifeUpdate.Invoke(HealthPoint);
     }

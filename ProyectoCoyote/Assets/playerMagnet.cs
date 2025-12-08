@@ -5,13 +5,19 @@ public class playerMagnet : MonoBehaviour
 {
     [SerializeField] bool goTowardPlayer;
     Player player;
+    [SerializeField] float minspeed;
+    [SerializeField] float maxspeed;
   [SerializeField]  float speed;
     private void OnTriggerEnter(Collider other)
     {
+        if (goTowardPlayer)
+            return;
         Player player = other.GetComponent<Player>();
         if (player && player.HealthPoint < player._maxHealthPoint)
         {
             goTowardPlayer = true;
+            speed = Random.Range(minspeed, maxspeed);
+            
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

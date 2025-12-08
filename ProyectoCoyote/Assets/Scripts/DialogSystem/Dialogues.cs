@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 [System.Serializable]
 public class CharacterColor
 {
@@ -60,7 +60,7 @@ public class Dialogues : MonoBehaviour
     {
         if (isInDialogue)
         {
-            if (/*gameInput.SaltarDialogo*/Input.GetMouseButtonDown(0))
+            if (gameInput.SkipTapPressed)
             {
                 SkipLine();
             }
@@ -145,9 +145,10 @@ public class Dialogues : MonoBehaviour
                 StopCoroutine(typingCoroutine);
             }
 
-            typingCoroutine = StartCoroutine(TypeText(currentFullText));
+            typingCoroutine = StartCoroutine(TypeText(currentFullText, dialogue));
             // ShowImageForCharacter(dialogue.character);
             ShowColorForCharacter(dialogue.character);
+            
         }
         else
         {
@@ -170,6 +171,46 @@ public class Dialogues : MonoBehaviour
     //        dialogueImage.enabled = false;
     //    }
     //}
+
+    private void PlayCharacterTalking(string character) 
+    {
+        if (AudioManager.Instance != null)
+        {
+            if (UnityEngine.Random.value > 0.5f)
+                return;
+
+            switch (character)
+            {
+                case "":
+                    break;
+
+                case "Coyote":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Coyote", 0.2f);
+                    break;
+
+                case "Perro":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Perro", 0.1f);
+                    break;
+
+                case "Denebola":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Denebola", 0.2f);
+                    break;
+
+                case "Lince":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Lince", 0.2f);
+                    break;
+
+                case "Cultista":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultista", 0.2f);
+                    break;
+
+                case "Carlos":
+                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Carlos", 0.2f);
+                    break;
+            }
+        }
+    }
+
     private void ShowColorForCharacter(string character)
     {
         CharacterColor config = characterColors.Find(c => c.characterName == character);
@@ -237,7 +278,7 @@ public class Dialogues : MonoBehaviour
 
     #endregion
     #region Enumerators
-    private IEnumerator TypeText(string fullText)
+    private IEnumerator TypeText(string fullText, DialogueLine dialogue)
     {
         isTyping = true;
         isWaitingAfterSkip = false;
@@ -245,6 +286,7 @@ public class Dialogues : MonoBehaviour
         foreach (char c in fullText)
         {
             dialogueText.text += c;
+            PlayCharacterTalking(dialogue.character);
             yield return new WaitForSeconds(typingSpeed);
         }
 

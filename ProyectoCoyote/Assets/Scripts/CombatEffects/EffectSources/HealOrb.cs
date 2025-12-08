@@ -63,7 +63,7 @@ public class HealOrb : TouchCombatEffectSource, IPoolObject
     IEnumerator waitToDie()
     {
         yield return new WaitForSeconds(livingTime);
-        selfReturn();
+        //selfReturn();
         animator.Play("healOrb_despawn", 0, 0);
     }
     public void selfReturn()

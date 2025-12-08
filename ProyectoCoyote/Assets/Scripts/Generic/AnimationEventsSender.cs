@@ -68,4 +68,9 @@ public class AnimationEventsSender : MonoBehaviour
             particles[i].Play();
         }
     }
+
+    public void orbDespawn()
+    {
+        GetComponentInParent<HealOrb>().selfReturn();
+    }
 }

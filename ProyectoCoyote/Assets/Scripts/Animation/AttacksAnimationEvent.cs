@@ -158,9 +158,14 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         this.actionValue = actionValue;
     }
+
     public void Die()
     {
         print("eventDie"+name);
         GetComponentInParent<AGameCharacter>().Die();
+    }
+    public void endDeathAnim()
+    {
+        GetComponentInParent<Enemy>().endDeathAnim();
     }
 }

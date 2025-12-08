@@ -17,7 +17,11 @@ public class Enemy : AGameCharacter
     [SerializeField] protected int healthDrop;
     public combatAreaManager CombatArea { get; private set; }
     bool setredUp;
-  [field:SerializeField]  public bool dead { get; private set; }
+
+ [SerializeField]   ParticleSystem spawnParticles;
+    [SerializeField] ParticleSystem dieParticles;
+
+    [field:SerializeField]  public bool dead { get; private set; }
 
     protected override void Start()
     {
@@ -33,10 +37,21 @@ public class Enemy : AGameCharacter
             print("dieEnemy"+name);
             dieEvent?.Invoke(this);
             GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-          //  PlayAnimation("Die");
-            FinishDie();
+            if (GetComponent<BossEnemy>() != null|| GetComponent<BombEnemy>() != null)
+            {
+                FinishDie();
+
+            }
+            else
+            {
+                PlayAnimation("Die");
+            }
           //  gameObject.SetActive(false);
         }
+    }
+    public void endDeathAnim()
+    {
+        StartCoroutine(DieAnim(1));
     }
     public virtual void FinishDie()
     {
@@ -143,6 +158,7 @@ public class Enemy : AGameCharacter
         GetComponent<EnemyAssetBehaviourRunner>().enabled = active;
         if (active)
         {
+            spawnParticles.Play();
             GetComponent<EnemyAssetBehaviourRunner>().restart();
         }
     }

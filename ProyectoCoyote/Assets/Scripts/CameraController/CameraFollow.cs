@@ -151,6 +151,22 @@ public class CameraFollow : MonoBehaviour
         }
 
     }
+    public void AlignFreeCameraBehindPlayer()
+    {
+        var orbitalFollow = freeCamera.GetComponent<CinemachineOrbitalFollow>();
+        if (orbitalFollow != null)
+        {
+            // Yaw del jugador
+            float targetYaw = playerObj.eulerAngles.y;
+
+            // En vez de forzar, asigna el valor del eje
+            orbitalFollow.HorizontalAxis.Value = targetYaw;
+        }
+
+        // Posición del target de cámara
+        cameraTarget.position = playerObj.position + Vector3.up * 2f;
+    }
+
     public void setInitialCameraDirection(Vector3 initialCameraDirection)
     {
         this.initialFacingDirection = initialCameraDirection;

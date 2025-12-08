@@ -32,6 +32,7 @@ public class GameInput : MonoBehaviour
     public bool Evade_RightPressed { get; private set; }
     public bool EscapePressed { get; private set; }
     public bool SkipPressed { get; private set; }
+    public bool SkipTapPressed { get; private set; }
 
     private void Awake()
     {
@@ -123,6 +124,14 @@ public class GameInput : MonoBehaviour
         // SALTAR DIALOGOS
         controls.Player.Skip.performed += ctx => { SkipPressed = true; DetectDeviceFromContext(ctx); };
         controls.Player.Skip.canceled += ctx => { SkipPressed = false; };
+
+        // SALTAR DIALOGOS (PULSACIÓN ÚNICA)
+        controls.Player.SkipTap.performed += ctx =>
+        {
+            SkipTapPressed = true;
+            DetectDeviceFromContext(ctx);
+        };
+
     }
 
     private void DetectDeviceFromContext(InputAction.CallbackContext ctx)
@@ -189,6 +198,8 @@ public class GameInput : MonoBehaviour
         Hook_SelectRight = false;
         HookAttractPressed = false;
         EscapePressed = false;
+        SkipTapPressed = false;
+
         // // GANCHO
         // HookAimPressed = false;
         //  HookConfirmPressed = false;

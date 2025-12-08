@@ -185,6 +185,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SkipTap",
+                    "type": "Button",
+                    "id": "9fe1d09f-4c9d-4983-ab2e-a753ff9d1dc1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -433,7 +442,7 @@
                 {
                     "name": "",
                     "id": "41c30174-5673-4ab6-8361-05f1767c2e81",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
@@ -455,7 +464,7 @@
                 {
                     "name": "",
                     "id": "06a14963-9bb8-405c-860c-dea745dad2cc",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
@@ -477,7 +486,7 @@
                 {
                     "name": "",
                     "id": "c22ba8bb-a758-4793-8b02-7c55ed2daf6b",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
@@ -564,6 +573,28 @@
                 },
                 {
                     "name": "",
+                    "id": "9ddf7253-3b3c-4cad-8e70-e322eeafdf93",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "793df4b8-d66e-4991-9657-26b8acdc558a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d3bc28bb-6658-4eba-a23e-b8d49fdd03b5",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -602,28 +633,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mando",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9ddf7253-3b3c-4cad-8e70-e322eeafdf93",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Teclado",
-                    "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "793df4b8-d66e-4991-9657-26b8acdc558a",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Teclado",
                     "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -746,6 +755,83 @@
                     "processors": "",
                     "groups": ";Mando",
                     "action": "LockSelectRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c0ebb85e-143e-4ab8-a354-afd0b5d096b2",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3e8fb2c-2779-4a28-9bc4-f121cbb4ad0c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed417857-cb7d-454f-910b-4a5ccaadb395",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Teclado",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ab2d8c8-fb9d-4eb5-accf-a39a68f88618",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b10db6c-85ca-4f72-8c64-f42289b03325",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f917535-e373-4022-a58b-d1ad675a170f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "SkipTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70ed7c04-9c1e-45df-ad70-c00958cfb732",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mando",
+                    "action": "SkipTap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -183,7 +183,7 @@ namespace tutorial
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques de enemigos no enfocados pulsando  /esquivaratras/. El punto central de la interfaz te avisará de ataques desde fuera.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Buenos reflejos campeón. A veces te enfrentarás a varios enemigos. Puedes bloquear los ataques externos pulsando /esquivaratras/ mientras fijas a un enemigo. El punto central de la interfaz te avisará de estos ataques.");
             
         }
         public void esquive(HitDirections d)
@@ -214,7 +214,7 @@ namespace tutorial
             tutorial.tutorialGun.startShooting();
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = $"Algunos enemigos te dispararán desde la distancia. Normalmente querrás ir a por ellos los más rápido posible. Para esquivar los disparos practica con el enemigo fijado y esquiva por detrás.";
+            tutorial.TutorialText.text = $"Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/.";
 
         }
         public void esquive(HitDirections d)
@@ -246,7 +246,7 @@ namespace tutorial
             tutorial.enemy.subscribeToLifeChange(enemyHit);
             tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(2);
 
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora que sabes esquivar vamos a lo importante. Tienes 2 direcciones de ataque: izquierda y derecha. Para atacar presione /pegar/ o /pegar/. Solo podrás atacar mientras fijas a un enemigo");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora vamos a lo importante. Tienes 2 direcciones de ataque: izquierda y derecha. Para atacar presione /pegar/ o /pegar/. Solo podrás atacar mientras fijas a un enemigo");
         }
         public void enemyHit(int currentLife)
         {

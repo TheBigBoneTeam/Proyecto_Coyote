@@ -170,8 +170,6 @@ public class Dialogues : MonoBehaviour
     //        dialogueImage.enabled = false;
     //    }
     //}
-<<<<<<< Updated upstream
-=======
 
     private void PlayCharacterTalking(string character) 
     {
@@ -212,7 +210,7 @@ public class Dialogues : MonoBehaviour
         }
     }
 
->>>>>>> Stashed changes
+
     private void ShowColorForCharacter(string character)
     {
         CharacterColor config = characterColors.Find(c => c.characterName == character);

@@ -376,8 +376,8 @@ Denébola es una habitante de Pricklytown, y es el primer encuentro que tiene Co
  
 <img src="./Imagenes_README/CapturasPersonajes/Denebola1.png" alt="Denebola" style="width: 100%"/>
 <img src="./Imagenes_README/CapturasPersonajes/Denebola2.png" alt="Denebola" style="width: 100%"/>
-<img src="./Imagenes_README/DenebolaConcept.jpg" alt="Denebola" style="width: 50%"/>
-<img src="./Imagenes_README/DenebolaRender.png" alt="Denebola" style="width: 50%"/>
+<img src="./Imagenes_README/DenebolaConcept.jpg" alt="Denebola" style="width: 49%"/>
+<img src="./Imagenes_README/DenebolaRender.png" alt="Denebola" style="width: 49%"/>
 
 #### El carretero
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>

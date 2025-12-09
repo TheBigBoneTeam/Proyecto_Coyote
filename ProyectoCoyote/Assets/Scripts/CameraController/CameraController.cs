@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public float shakeMagnitude = 0.1f;
     private Vector3 originalPos;
     private CameraFollow camFollow;
+    private EnemyLockOn enemyLockOn;
 
     [Tooltip("Controlador Cámaras")]
     Animator cinemachineAnimator;
@@ -15,6 +16,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         camFollow = FindAnyObjectByType<CameraFollow>();
+        enemyLockOn = GameObject.FindAnyObjectByType<EnemyLockOn>();
         cinemachineAnimator = GameObject.Find("State-Driven Camera").GetComponent<Animator>();
         cinemachineAnimator.Play("FollowCamera");
     }
@@ -26,7 +28,8 @@ public class CameraController : MonoBehaviour
     #region State Driven Camera controller
     public void ActiveTargetLookingCamera() 
     {
-        cinemachineAnimator.Play("TargetLooking_Camera");
+        if(enemyLockOn.currentTarget != null)
+            cinemachineAnimator.Play("TargetLooking_Camera");
     }
 
     public void ActiveFollowCamera()

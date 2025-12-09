@@ -44,9 +44,22 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         base.restart();
         agent = GetComponent<NavMeshAgent>();
     }
-
+    public void turnOffAgent()
+    {
+        if (agent != null) {
+            agent.enabled = false;
+        }
+    }
+    public void turnOnAgent()
+    {
+        if (agent != null)
+        {
+            agent.enabled = true;
+        }
+    }
     public Status fly()
     {
+        
         transform.Translate(Vector3.up * Time.deltaTime*flyspeed);
 
         if(transform.position.y >= flyObjective.position.y)
@@ -61,9 +74,15 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 
         if (transform.position.y <= rockTeleportPoint.transform.position.y)
         {
+            transform.position = rockTeleportPoint.transform.position;
             return Status.Success;
         }
         return Status.Running;
+    }
+
+    public void prepareDown()
+    {
+        transform.position = new Vector3(rockTeleportPoint.transform.position.x,this.transform.position.y, rockTeleportPoint.transform.position.z);
     }
 }
 public enum BossState

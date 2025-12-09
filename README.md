@@ -152,9 +152,9 @@ El jugador puede fijar a un enemigo cuando está a cierta distancia pudiendo esq
 ### **Ataque** 
 El jugador puede atacar en varias direcciones.
 
-  * Izquierda: input de ataque izquierdo (click izquierdo/...).
+  * Izquierda: input de ataque izquierdo (click izquierdo/LT/L2).
 
-  * Derecha: input de ataque derecho (click derecho/...).
+  * Derecha: input de ataque derecho (click derecho/RT/R2).
 
 Si un jugador ataca en la misma dirección en la que un enemigo está bloqueando, esté podrá realizará un contratrataque al jugador poniendolo en un aprieto.
 
@@ -165,11 +165,11 @@ El jugador tendrá que esquivar los ataques de los enemigos para no sufrir demas
 
   - **Esquive**: dentro de una ventana de frames, el jugador puede esquivar en la dirección indicada por la interfaz para no sufrir daño observando 3 posibles direcciones:
     
-    * Izquierda: input de dirección izquierda (A/....).
+    * Izquierda: input de dirección izquierda (A/Joystick izq. mover izq.).
 
-    * Derecha: input de dirección derecha (D/....).
+    * Derecha: input de dirección derecha (D/Joystick izq. mover der.).
 
-    * Detrás: input de esquive trasero(espacio/....)
+    * Detrás: input de esquive trasero(espacio/B/X)
 
     La dirección en la que el jugador tiene que esquivar viene indicada tanto en la interfaz como en la dirección física de la animación de ataque del enemigo. En caso de esquivar en una dirección contraria a la indicada el jugador recibirá daño. Así mismo, los enemigos también bloquearán los ataques del jugador bajo las mismas normas.
 
@@ -214,16 +214,18 @@ MECÁNICA              | TECLADO     | Dispositivos táctiles  |  Mando
 --                    | --          | --                     |  --
 MOVIMIENTO DE CÁMARA  | RATÓN       | Joystick tactil der.   |  Joystick der. 
 MOVIMIENTO            | W,A,S,D     | Joystick tactil izq.   |  Joystick izq.
-ENFOCAR               | Q           | Joystick tactil der.   |  L2
-CORRER                | SHIFT       | Botón correr           |  R2
-ACTIVAR GANCHO        | E           | Joystick tactil izq.   |  Joystick izq.
-CAMBIAR OBJETIVO GAN. | W,A,S,D     | Botón activar gancho   |  R1
-IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq.
-ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq.
-LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  Cuadrado
-ATAQUE PRINCIPAL      | CLICK IZQ.  | Botón ataque           |  Cuadrado
-ESQUIVE/PARRY         | A,D     | Botón esquive          |  Equis
-DASH                  | ESPACIO     | Botón dash             |  Equis
+ENFOCAR               | Q           | Botón Lockear   |  RB/R1/Presionar joystick der.
+CORRER                | SHIFT       | Botón correr           |  RT/R2
+ACTIVAR GANCHO        | E           | Joystick tactil izq.   |  B/Círculo/Presionar joystick izq.
+CAMBIAR OBJETIVO GAN. | A,D  | Botón activar gancho   |  Joystick izq. mover izq. y der.
+IR GANCHO             | W           | Joystick tactil izq.   |  Joystick izq. arriba
+ATRAER GANCHO         | S           | Joystick tactil izq.   |  Joystick izq. abajo
+LANZAR GANCHO         | CLICK IZQ.  | Botón lanzar gancho    |  RT/R2
+ATAQUE IZQUIERDO     | CLICK IZQ.   | Botón ataque izq.          |  LT/L2
+ATAQUE DERECHO     | CLICK DER.   | Botón ataque der.          |  RT/R2
+ESQUIVE/PARRY         | A,D     | Joystick tactil izq.         |  Joystick izq.
+BLOQUEO        | ESPACIO     | Botón bloqueo         |  B/X
+DASH                  | ESPACIO     | Botón dash             | B/X
 
 
 Si se juega en movil los controles varían en función del modo de juego en el que estés:
@@ -287,8 +289,7 @@ El enemigo robusto es un tipo de enemigo con mucha resistencia a los golpes, con
   1. Ataque central.
   2. Ataque izquierdo y ataque derecho.
   3. Ataque derecho y central.
-  4. Ataque derecho.
-  5. Ataque izquierdo.
+  4. Ataque izquierdo.
 
 
   <img src="./Imagenes_README/Capturas3D/Heavy.png" alt="Espinotauro" style="width: 70%"/>
@@ -304,14 +305,17 @@ Si el jugador golpea en la dirección donde defiende, este contratacará y si le
 
 ### Jefe final (Lince)
 El jefe final es la versión cactuctificada del marido (Lince). Su tamaño es mayor al del protagonista y porta un arma que es una combianción de hacha y rifle. Al tratarse del jefe final cuenta con dos fases diferentes:
-  * **Fase 1**: Esta fase cuenta con 12 puntos de vida y se centra solo en ataques melee. Sus ataques son muy rapidos, realizando 1 de daño por lo general. Cuenta con los siguientes patrones de ataque:
+  * **Fase 1**: Esta fase cuenta con 10 puntos de vida y se centra solo en ataques melee. Sus ataques son muy rapidos y hacen 1 de daño. Cuenta con los siguientes patrones de ataque:
     1. Ataque derecha, ataque izquierda y ataque central.
     2. Defensa izquierda y centra, ataque central, defensa derecha y central, y ataque derecha.
-    3. Defensa total y ataque total (solo se esquiva para atrás y hace 2 de daño).
-    4. Defensa total, ataque derecho y ataque izquierdo.
-    5. Defensa derecha y central, ataque izquierdo y ataque derecho.
+    3. Defensa total, ataque derecho y ataque izquierdo.
+    4. Defensa derecha y central, ataque izquierdo y ataque derecho.
   
-  * **Fase 2**: La fase 2 del jefe todavía está en desarrollo. Se tiene pensado implememtar ataques a distancia e invocar enemigos, además de nuevos ataques melee.
+  * **Fase 2**: Cuando termine la primera fase el jefe se subirá al meteorito y te empezará a disparar. Durante los disparos será inmune. Solo se podrá poner bajar cuando hace un grito que lo hace vulnerable.
+
+  Una vez abajo volverá a una fase melee con los mismos ataques pero 12 de vida.
+
+  * **Fase3**: Esta fase es igual que la 2, solo que ahora se le añade un nuevo obstaculo, el "cactus látigo". Este cactus aparecerá de forma aleatoria y realiza un ataque en la zona de 1 de daño. Estos ataque si estás fijando al jefe se podrá esquivar por detrás. En esta última fase el jefe tendrá 10 de vida.
 
 
 # 4. Arte 
@@ -356,17 +360,26 @@ Modelo 3D finalizado del personaje principal
 ###  Enemigos
 
 #### Bandido Nopal
+Es la fase final de la infección. Su cabeza ahora es un cactus y realiza ataques erraticos propios de su falta de raziocinio.
 
 #### Buitre Saguaro
+Anteriormente era un buen pistolero que, debido al consumo del higo, las protuberancias del higo hicieron que su querida pistola se fusionara con su brazo izquierdo. De lejos parece muy intimidante, pero si te acercas a él muestra su verdadera cara mostrando su cobardía.
+
 <img src="./Imagenes_README/GunnerConcept.png" alt="Boceto Buitre Saguaro" style="width: 100%"/>
 
 #### Espinotauro
+Este toro musculoso formaba parte un grupo de herreros que vivían en el cañón. Tras el consumo del higo chumbo perdió el control. Ahora usa su querido martillo de herrero como un arma letal capaz de lanzar objetos y hacer ataques devastadores.
+
 <img src="./Imagenes_README/HeavyConcept.png" alt="Boceto Espinotauro" style="width: 100%"/>
 
 #### Sapo Bombo
+Antiguo minero, su uso con la pólvora le otorgó la habilidad explosiva creando un gran daño en área. Su determinación hace que se lance hacia el jugador sin pensarlo dos veces.
+
 <img src="./Imagenes_README/SapoConcept.png" alt="Boceto Sapo Bombor" style="width: 100%"/>
 
 #### Lince
+Aunque a simple vista pueda parecer Lince, en realizad es una forma física juvenil del Dios que adora el culto del higo. Su parecido a Lince de debe a que Coyote, sin saberlo, le ofreció un cuerpo físico a través de las cenizas de su amado. En esta forma no posee todo su verdadero poder por lo que es mortal y en su interior parece que el alma de Lince lucha por el control del cuerpo. 
+
 <img src="./Imagenes_README/conceptboss.jpg" alt="Boceto Lince" style="width: 100%"/>
 
 ###  NPCs
@@ -380,11 +393,17 @@ Denébola es una habitante de Pricklytown, y es el primer encuentro que tiene Co
 <img src="./Imagenes_README/DenebolaRender.png" alt="Denebola" style="width: 49%"/>
 
 #### El carretero
+El carretero es un perro mayor que es considerado el sabio del pueblo. Ayuda a Coyote a llegar al cañón no sin antes advertirle del peligro que le acecha.
+
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
 
 #### Lider secta
+Se trata de uno de los expedicionistas supervivientes que acabó sumiendo el liderazgo del nuevo culto a los cactus. Se trata de un ciervo humanoide infectado que intenta de forma “pacífica” atraer a la gente al oasis.
+
 <img src="./Imagenes_README/DeerConcept.png" alt="Prota3" style="width: 100%"/>
 
+#### Carlos
+Antiguo ayudante de un noble sheriff, acabó convirtiéndose en un cactus tras comerse un higo durante una guardia porque le entró hambre. Ahora habita en el cañón, huyendo de los sectarios y teniendo recuerdos difuminados de su vida antes de convertirse. 
 
 
 ## 4.3. Escenarios
@@ -406,18 +425,6 @@ El segundo nivel se sitúa en un oásis. En el mapa se puede observar que es un 
 <img src="./Imagenes_README/Nivel3 Con elementos del nivel.png" alt="Nivel3" style="width: 100%"/>
 
 El último nivel se desarrolla en el oasis donde se encuentra tanto el huevo cosmico como la iglesia de la secta. Este nivel es más corto de los demás dividiendolo en 3 áreas de combate. Las 2 primeras son áreas que se dividen en 2 oleadas y la última zona es donde se desarrolla la batalla contra el jefe final.
-
-###  Enemigos
-<img src="./Imagenes_README/ConceptZombie.JPG" alt="zombi1" style="width: 36%"/>
-<img src="./Imagenes_README/ConceptEsqueleto.jpg" alt="zombi1" style="width: 59%"/>
-
-Arte conceptual inicial de algunos enemigos
-
-<img src="./Imagenes_README/ZombieNopalAttackFront.JPG" alt="zombi1" style="width: 30%"/>
-<img src="./Imagenes_README/ZombieNopalIdle.JPG" alt="zombi2" style="width: 31%"/>
-<img src="./Imagenes_README/ZombieNopalWalk.JPG" alt="zombi3" style="width: 24%"/>
-
-Modelado de el Zombi Nopal
 
 ## 4.4. Arte 2D - Interfaces
 Diseño inicial de interfaces - vida e indicador de direcciones de ataque o bloqueo.
@@ -523,10 +530,20 @@ En esta canción de combate sí hay percusión. Unos tambores militares marcan e
 
 #### Tema Oasis
 ##### Base
-Aún por definir.
+Este tema suena durante el tercer nivel, el cual consiste en un oasis poblado de vegetación. La iluminación se torna más oscura. En este nivel se encuentra una iglesia abandonada, donde hay una “secta” que realiza rituales y cultos.  
+
+Con esta ambientación se construye la música para este entorno, la cual tiene más carga de referencias sacras que el resto de las composiciones del juego. Los instrumentos de viento-madera tienen más importancia los metales, enfatizando así la música religiosa como la de capilla la cual se compone de un trio de vientos-madera (oboe, clarinete y fagot), pero dando un toque más orquestal para el videojuego. 
+
+La canción comienza con una cadencia (I-VI-IV-V) precediendo al primer tema: una aria. Las flautas y oboes toman la voz cantante, mientras que los clarinetes y los fagots realizan el acompañamiento, con algunos adornos de un arpa. Esta primera sección de la canción tiene un toque más misterioso (ni puta idea de qué modo estoy usando lol). 
+
+En la siguiente sección se hace referencia al culto que realiza ritos en las ruinas de la iglesia. Para ello, la canción se convierte en música de capilla a cinco voces: flauta, oboe, clarinete(s), clarinete bajo y fagot. Se introduce levemente la melodía de la siguiente sección, para dar paso a ella con un crescendo. 
+
+La última parte de la canción se vuelve más épica, recalcando la lucha y misión del protagonista. Se hace referencia a la música de Semana Santa. Suena una melodía mucho más pegadiza. 
 
 ##### Combate
-Aún por definir.
+Como en el resto de las canciones de combate, es aquí donde entran los vientos-metales (trompas, trompeta, bombardino y tuba) y la percusión. 
+
+Al inicio de la canción, la tuba repite la voz del fagot, el bombardino hace un contrapunto y las trompas realizan un ritmo armónico repitiendo la cadencia ya mencionada. En el resto de la canción, los metales se limitan a rellenar el cuerpo armónico de la canción, realizando las trompas el motivo de los villanos y la trompeta el del héroe en el último fuerte de la canción.
 
 ##### Boss Final
 Este es el tema que suena al enfrentarte al jefe final. Es el más complejo de todos y hace uso de todos los instrumentos mencionados anteriormente, añadiendo algunos nuevos. Su compás es 4/4.
@@ -553,15 +570,11 @@ El primer tema de esta sección lo realiza la guitarra eléctrica, para luego se
 
 
 #### Créditos
-El tema de créditos tiene un compás 4/4.
+El tema de créditos del videojuego tiene un sonido western, con un bajo acústico realizando una escala descendente y un banjo arpegiando esta cadencia. 
 
-La percusión consiste en castañuelas y maracas, haciendo ritmos sincopados.
+Luego entra la percusión, que consiste en unas maracas y unas castañuelas haciendo ritmos de tresillos. 
 
-La armonía de la canción la lleva un bajo acústico, dando la tónica, y un banjo, arpegiando los acordes. 
-
-Las melodías las interpretan una flauta y una armónica.
-
-Se trata de un tema sosegado que es acorde con el momento emocional del final del juego.
+Aparece una flauta de pan y una armónica que se responden mutuamente con la misma melodía.
 
 
 
@@ -587,6 +600,7 @@ __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador c
 * __Continuar:__ El jugador continua la partida desde el punto donde lo había dejado en caso de tener una partida guardada, si no la tiene no pasará nada.
 
  * __Opciones:__ El jugador accederá al menú de opciones donde podrá ajustar los niveles de audio general, música y efectos sonoros.
+ * __Selección de capítulo:__ Permite al jugador seleccionar el nivel que quiera para jugar.
 
  * __Créditos:__  El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
 
@@ -600,11 +614,13 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
    
     1. __Salir:__ permite al jugador volver al menú inicial.
        
-    2. __Reintentar:__ resetea el nivel volviendo a iniciar desde la cinemática.
+    2. __Reiniciar Nivel:__ resetea el nivel volviendo a iniciar desde la cinemática.
        
-    3. __Reanudar:__ vuelve al nivel en el momento que lo pausó.
+    3. __Continuar:__ vuelve al nivel en el momento que lo pausó.
 
     4. __Opciones:__ te lleva al menú de opciones.
+
+    5. __Reiniciar Área:__ Reinicia antes del área del último combate jugado.
 
 
  * __Muere:__ Cuando el personaje muere se presenta ante él una pantalla de Game Over con dos opciones:
@@ -869,8 +885,13 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 ## 9.3. Post Mortem - Gold
 ### Eduardo Almarza Blasco
 #### Lecciones aprendidas
+  Abarcar un proyecto tan ambicioso en un periodo de tiempo como este ha sido (además de muy agotador) una de las cosas que mas me han hecho aprender desde que empecé a hacer videojuegos. Aunque, por el tipo de juego y la magnitud que tiene es imposible darle un gran nivel de pulido, ha sido un acierto motivarnos a hacer un juego tan ambicioso. En el proceso he aprendido técnicas y herramientas que sé que usaré en desarrollos más grandes cuando trabaje en la industria, (rigging, animación, diseño...), además de sobre gestión de proyectos en grupo y división del trabajo.
+
 #### Trabajo individual realizado
+  Mi trabajo principal ha sido el de animar en 3D los enemigos y personajes . Desde la beta, me he centrado en dos aspectos principalmente; implementar las cinematicas en el juego y crear efectos de partículas y vfx para mejorar el feedback y el gamefeel. Además he mejorado la decoración de los escenarios y otros detalles visuales como la iluminación. Además, la batalla final con el boss cuenta con muchos assets nuevos, y casi todos los enemigos del juego tienen animaciones nuevas.
+
 #### Trabajo colectivo realizado
+  He colaborado con Candela en la realización de arte, pero nuestras tareas no se han solapado apenas. La persona con la que he tenido que coordinarme más ha sido David, quien ha realizado los story boards de las cinematicas que he tenido que realizar dentro del juego. Aunque me he tomado alguna licencia artística, su trabajo como storyboarder me ha facilitado mucho la tarea. Por otro lado, Andrea y Diego me comentaban las necesidades de gameplay para añdir mas animaciones y efectos. Con Antonio hemos pensado el sonido de las cinematicas y animaciones del juego.
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
@@ -894,5 +915,11 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
+Se ha comprendido la importancia de dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión. Por otro lado, se ha aprendido a desarrollar sistemas sólidos para que no haya problemas futuros y a testear y arreglar bugs inesperados. 
+
 #### Trabajo individual realizado
+Se ha adaptado el sistema de lock y cámaras al nuevo sistema de combate. Además, se han ido corrigiendo bugs los bugs que iban surgiendo relacionados con los sistemas de lockeo, gancho, diálogos y cámaras.
+Se han añadido colliders cámaras y ajustado sus ángulos para que el jugador pueda ver el escenario de forma cómoda y dinámica. También se han corregido y hecho persistentes los menús y configuración de sonido.
+
 #### Trabajo colectivo realizado
+Se han estado detectando y corrigiendo bugs con los miembros del equipo. También se ha estado en contacto con David, el game designer, para implementar los sistemas de cámaras, lock y gancho conforme a las necesidades que han ido surgiendo del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar. Finalmente se ha implementado una configuración de sonido persistente junto con Antonio.

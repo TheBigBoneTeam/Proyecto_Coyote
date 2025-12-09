@@ -55,20 +55,21 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        gameStateManager.UnPause();
+        gameStateManager.PauseUnpause();
         pauseMenuCanvas.gameObject.SetActive(false);
         Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Locked;
 
     }
-    public void reiniciarArea()
+    public void ReiniciarArea()
     {
+        gameStateManager.PauseUnpause();
         gameStateManager.Restart();
         pauseMenuCanvas.gameObject.SetActive(false);
     }
     public void Reiniciar()
     {
-        gameStateManager.UnPause();
+        gameStateManager.PauseUnpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         pauseMenuCanvas.gameObject.SetActive(false);
@@ -77,6 +78,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ExitGame()
     {
+        gameStateManager.PauseUnpause();
         SceneManager.LoadScene(0);
     }
 }

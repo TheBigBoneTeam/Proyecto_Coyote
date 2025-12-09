@@ -327,7 +327,7 @@ public class EnemyLockOn : MonoBehaviour
         {
             Transform newTarget = ScanNearBy(deadTarget);
 
-            if (newTarget != null)
+            if (newTarget != null && newTarget.GetComponent<Enemy>().HealthPoint > 0)
             {
                 currentTarget = newTarget;
                 FoundTarget();

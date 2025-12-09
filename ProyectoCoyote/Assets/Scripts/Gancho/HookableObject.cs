@@ -5,6 +5,7 @@ using UnityEngine;
 public class HookableObject : MonoBehaviour
 {
     public bool canBeHooked;
+    public bool canGoToTarget = true;
     [SerializeField] bool dodge;
   [SerializeField]  CanvasGroup canvasGroup;
     EnemyAI enemyAI;

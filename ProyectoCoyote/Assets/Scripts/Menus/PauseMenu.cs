@@ -63,7 +63,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void ReiniciarArea()
     {
-        gameStateManager.PauseUnpause();
+        //  gameStateManager.PauseUnpause();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         gameStateManager.Restart();
         pauseMenuCanvas.gameObject.SetActive(false);
     }

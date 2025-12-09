@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     [Tooltip("Max 5 canales de música")] [SerializeField] protected AudioProducer[] musicSounds = new AudioProducer[5];
     protected List<AudioSource> pausedSounds = new List<AudioSource>();
     Player player;
-
+    private SafeConfig config;
     IGameStateManager gameStateManager;
 
     private void Awake()
@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         CheckScene();
         if(ServiceLocator.Instance != null)
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
+        config = FindAnyObjectByType<SafeConfig>();
 
         if (gameStateManager != null)
         {
@@ -55,6 +56,10 @@ public class AudioManager : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         if(player != null)
         player.subscribeToDodgeAttack(DodgeAttack);
+
+        SetSFXVolume(config.sfxValue);
+        SetMusicVolume(config.musicValue);
+        SetGeneralVolume(config.generalValue);
     }
     public void SceneChange()
     {
@@ -742,6 +747,26 @@ public class AudioManager : MonoBehaviour
             if (ap != null && ap.audioSource != null)
             {
                 ap.audioSource.volume = volume * ap.sound.volume; 
+            }
+        }
+    }
+    public virtual void SetGeneralVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+
+        foreach (AudioProducer ap in normalSounds)
+        {
+            if (ap != null && ap.audioSource != null)
+            {
+                ap.audioSource.volume = volume * ap.sound.volume;
+            }
+        }
+
+        foreach (AudioProducer ap in musicSounds)
+        {
+            if (ap != null && ap.audioSource != null)
+            {
+                ap.audioSource.volume = volume * ap.sound.volume;
             }
         }
     }

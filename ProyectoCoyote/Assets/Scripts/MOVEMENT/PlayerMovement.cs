@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     private bool exitingSlope;
 
     public float airSensitity;
+
+    Player player;
     #endregion
 
     #region Variables para el dash
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         initialPosition = transform.position;
         initialRotation = transform.rotation;
         initialPositionSaved = true;
+        player = GetComponent<Player>();
         Debug.Log($"[PlayerMovement] Posición inicial guardada (Awake): {initialPosition}");
     }
 
@@ -729,6 +732,13 @@ public class PlayerMovement : MonoBehaviour
             gameStateManager.unSubscribeToRestart(OnRestart);
         }
     }
+    private void OnEnable()
+    {
+        if (gameStateManager != null)
+        {
+            gameStateManager.subscribeToRestart(OnRestart);
+        }
+    }
 
     // Escucha los cambios de estado del GameStateManager.
     private void OnGameStateChange(object sender, stateData stateInfo)
@@ -843,7 +853,7 @@ public class PlayerMovement : MonoBehaviour
         // Reinicio físico
         if (rb != null)
         {
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
@@ -871,6 +881,7 @@ public class PlayerMovement : MonoBehaviour
             animator.Rebind();
             animator.Update(0f);
         }
+        transform.position = player.startPos;
     }
     #endregion
 }

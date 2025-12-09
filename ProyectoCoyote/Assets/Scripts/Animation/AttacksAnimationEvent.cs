@@ -11,7 +11,7 @@ public class AttacksAnimationEvent : MonoBehaviour
     Gun gun;
     [SerializeField] private int actionValue;
 
-
+    [SerializeField] AGameCharacter character;
     public void changeAttackDirections(HitDirections[] direction)
     {
         attack.setHitDirections(direction);
@@ -162,7 +162,8 @@ public class AttacksAnimationEvent : MonoBehaviour
     public void Die()
     {
         print("eventDie"+name);
-        GetComponentInParent<AGameCharacter>().Die();
+        character ??= GetComponentInParent<AGameCharacter>();
+      character.Die();
     }
     public void endDeathAnim()
     {

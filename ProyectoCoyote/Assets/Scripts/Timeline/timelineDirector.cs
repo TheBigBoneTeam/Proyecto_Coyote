@@ -133,7 +133,10 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
     {
         print("SKIP");
         SkipingCutscene = true;
-
+        if (currentData.nextLevel == "CINEMATICADELBOSS")
+        {
+            AudioManager.Instance.PlayBossMusic();
+        }
         //if (currentData.objectsToTurnOff != null && currentData.objectsToTurnOff.Length > 0)
         //{
         //    foreach (var item in currentData.objectsToTurnOff)
@@ -233,6 +236,10 @@ public class StoryAction
             case StoryActionType.startCutscene:
                 if (!playOnRestart && played)
                 {
+                    if (cutsceneData.nextLevel == "CINEMATICADELBOSS")
+                    {
+                        AudioManager.Instance.PlayBossMusic();
+                    }
                     endStoryAction();
                     return;
                 }

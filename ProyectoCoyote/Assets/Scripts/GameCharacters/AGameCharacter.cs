@@ -22,7 +22,7 @@ public abstract class AGameCharacter :MonoBehaviour
    protected UnityEvent<AGameCharacter> dieEvent;
     UnityEvent<HitDirections> dodgeAttackEvent;
 
-  [SerializeField] protected Vector3 startPos;
+  [SerializeField] public Vector3 startPos;
 
     [SerializeField]  bool shouldprint;
     [SerializeField] protected Renderer[] renderers;

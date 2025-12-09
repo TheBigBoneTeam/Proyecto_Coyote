@@ -869,16 +869,17 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>A o D</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Gatillo izquierdo a los lados</b>",
-                            GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Joystick izquierdo a los lados</b>",
+                            GameInput.DeviceType.Mobile => "<b>Joystick izquierdo a los lados</b>",
                             _ => partes[i]
                         };
                         break;
+
                     case "esquivaratras":
                         resultado += device switch
                         {
-                            GameInput.DeviceType.KeyboardMouse => "<b>Espacio</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Botón B/X</b>",
+                            GameInput.DeviceType.KeyboardMouse => "<b>ESPACIO</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón B / X</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Esquivar</b>",
                             _ => partes[i]
                         };
@@ -888,7 +889,7 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>ESPACIO</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Botón A / X</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón B / X</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Dash</b>",
                             _ => partes[i]
                         };
@@ -898,8 +899,8 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>CLICK IZQUIERDO</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Botón X / Cuadrado</b>",
-                            GameInput.DeviceType.Mobile => "<b>Botón Ataque</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón LT / L2</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Ataque IZquierdo</b>",
                             _ => partes[i]
                         };
                         break;
@@ -907,8 +908,8 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>CLICK DERECHO</b>",
-                            GameInput.DeviceType.Gamepad => "<b>Botón X / Cuadrado</b>",
-                            GameInput.DeviceType.Mobile => "<b>Botón Ataque</b>",
+                            GameInput.DeviceType.Gamepad => "<b>Botón RT / R2</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Ataque Derecho</b>",
                             _ => partes[i]
                         };
                         break;
@@ -917,7 +918,7 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>E</b>",
-                            GameInput.DeviceType.Gamepad => "<b>RB / R1</b>",
+                            GameInput.DeviceType.Gamepad => "<b>B / Círculo o presionando el Joystick izquierdo</b>",
                             GameInput.DeviceType.Mobile => "<b>Botón Gancho</b>",
                             _ => partes[i]
                         };
@@ -927,8 +928,8 @@ namespace tutorial
                         resultado += device switch
                         {
                             GameInput.DeviceType.KeyboardMouse => "<b>Q</b>",
-                            GameInput.DeviceType.Gamepad => "<b>LT / L2</b>",
-                            GameInput.DeviceType.Mobile => "<b>Botón Gancho</b>",
+                            GameInput.DeviceType.Gamepad => "<b>LB / L1 o presionando el Joystick derecho</b>",
+                            GameInput.DeviceType.Mobile => "<b>Botón Lockeo</b>",
                             _ => partes[i]
                         };
                         break;

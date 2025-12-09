@@ -66343,7 +66343,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: setInvincible
+    functionName: setSuperArmor
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -66356,6 +66356,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.16666667
+    functionName: setSuperArmor
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.375
     functionName: Play3DSound
     data: SFX - Golpe al aire
@@ -66363,21 +66370,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.45833334
-    functionName: setInvincible
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 1.1666666
-    functionName: setInvincible
+    functionName: setDodge
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 1.6666666
+  - time: 1.1666666
+    functionName: setDodgeDirection
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: setShaderBlockConfiguration
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5833334
+    functionName: setDodge
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.875
     functionName: setAttackData
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: 103a7b4438e1ec046966ea5660f24a23, type: 2}
@@ -66387,13 +66408,6 @@ AnimationClip:
   - time: 2.0416667
     functionName: Play3DSound
     data: SFX - Golpe al aire
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.125
-    functionName: setInvincible
-    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

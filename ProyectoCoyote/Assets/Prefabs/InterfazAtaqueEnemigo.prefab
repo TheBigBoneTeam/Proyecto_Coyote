@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d4759334ce10747be94f80f145da5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 0.1
+  dist: 0.2
 --- !u!114 &-2190171716847731492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +202,14 @@ MonoBehaviour:
   - {fileID: 7648569020703248408}
   - {fileID: 1058666257884295904}
   middleDanger: {fileID: 0}
+  directionIndicator: {fileID: 0}
+  directionIndicatorFather: {fileID: 0}
   middleDangerAnimator: {fileID: 0}
   paddingPosition: {x: 0, y: 0, z: 0}
   lockOn: {fileID: 0}
+  minScale: 1
+  maxScale: 4
+  maxDistance: 10
 --- !u!1 &4613176170959622107
 GameObject:
   m_ObjectHideFlags: 0

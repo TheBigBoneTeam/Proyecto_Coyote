@@ -53,7 +53,7 @@ public class BossEnemy : Enemy
         print(spawner == null);
         print(bossFases[currentFase]);
         spawner.On = bossFases[currentFase].hasCactusAttack;
-        if (bossFases[currentFase].cactusAttackTime != -1)
+        if (bossFases[currentFase].cactusAttackTime == -1)
         {
             spawner.setSpawnTime(baseCactusAttackTime);
         }

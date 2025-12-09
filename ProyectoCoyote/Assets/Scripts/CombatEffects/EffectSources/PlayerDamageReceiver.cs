@@ -20,11 +20,6 @@ public class PlayerDamageReceiver: DamageReceiver
             setParry(false);
             Invincible = true;
         }
-        else
-        {
-            Invincible = false;
-
-        }
     }
 
     protected override bool canBeDodged(Attack attack)

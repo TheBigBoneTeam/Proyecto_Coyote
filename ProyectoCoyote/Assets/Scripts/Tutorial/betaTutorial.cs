@@ -597,6 +597,7 @@ namespace tutorial
             tutorial.zonaGancho2.SetActive(true);
             tutorial.currentGanchos = 0;
             tutorial.resetTarget();
+            tutorial.enemigoGancho.GetComponent<HookableObject>().canGoToTarget = false;
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay cactus que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Ve a todos los objetivos.");
         }

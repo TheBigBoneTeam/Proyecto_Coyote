@@ -332,8 +332,7 @@ public class Dialogues : MonoBehaviour
         allowTalkingSound = false;
         isWaitingAfterSkip = true;
         yield return new WaitForSeconds(WaitSpeed);
-        isWaitingAfterSkip = false;
-        ShowNextLine();
+
         if (gameInput.SkipTapPressed)
         {
             isWaitingAfterSkip = false;

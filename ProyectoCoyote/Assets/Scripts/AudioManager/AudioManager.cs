@@ -80,6 +80,11 @@ public class AudioManager : MonoBehaviour
         {
             HandleNonCombatState();
         }
+
+        if (stateInfo.currentState == GameState.Cutscene)
+        {
+            HandleCutsceneState();
+        }
     }
 
     private void HandleCombatState()
@@ -98,6 +103,16 @@ public class AudioManager : MonoBehaviour
     }
 
     private void HandleNonCombatState()
+    {
+        Debug.Log("[AudioManager] → Volviendo a NO COMBATE");
+
+        if (musicSounds[0] != null && musicSounds[1] != null)
+        {
+            StartCoroutine(CrossFadeVolumes(musicSounds[1], musicSounds[0], 2f));
+        }
+    }
+
+    private void HandleCutsceneState()
     {
         Debug.Log("[AudioManager] → Volviendo a NO COMBATE");
 

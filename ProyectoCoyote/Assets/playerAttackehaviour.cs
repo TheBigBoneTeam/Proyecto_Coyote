@@ -3,13 +3,13 @@ using UnityEngine;
 public class playerAttackehaviour : StateMachineBehaviour
 {
     PlayerMovement move;
-    PlayerDamageReceiver damageReceiver;
+    DamageReceiver damageReceiver;
     bool finished = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        damageReceiver = animator.gameObject.GetComponent<PlayerDamageReceiver>();
+        damageReceiver = animator.gameObject.GetComponentInParent<DamageReceiver>();
 
         move = animator.gameObject.GetComponentInParent<PlayerMovement>();
         finished = false;

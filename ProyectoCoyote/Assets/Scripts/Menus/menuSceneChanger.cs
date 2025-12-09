@@ -32,12 +32,12 @@ public class menuSceneChanger : MonoBehaviour
        string scene = saveManager.getSavedScene();
         if(scene != null)
         {
-            continueButton.enabled = true;
+            continueButton.interactable = true;
             continueLvl = scene;
         }
         else
         {
-            continueButton.enabled = false;
+            continueButton.interactable = false;
             continueLvl = primerNivel;
         }
     }

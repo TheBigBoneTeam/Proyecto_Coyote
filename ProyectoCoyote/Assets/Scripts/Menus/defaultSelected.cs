@@ -10,4 +10,9 @@ public class SelectDefaultButton : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(this.gameObject.GetComponent<Selectable>().gameObject);
     }
+
+    public void SelectButton()
+    {
+        EventSystem.current.SetSelectedGameObject(this.gameObject.GetComponent<Selectable>().gameObject);
+    }
 }

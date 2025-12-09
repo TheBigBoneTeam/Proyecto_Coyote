@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour
     public CinemachineCamera hookCamera;
     public Transform cameraTarget;
     public Transform HookableObjectLocator;
+    public GameInput gameInput;
 
     Transform player;
     Transform playerObj;
@@ -38,6 +39,7 @@ public class CameraFollow : MonoBehaviour
         handleOcclusions = GameObject.FindAnyObjectByType<HandleOcclusions>();
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeToRestart(InitialCameraDirection);
         ServiceLocator.Instance.Get<IGameStateManager>().subscribeCombatAreaChange(AreaChange);
+        gameInput = FindAnyObjectByType<GameInput>();
 
         InitialCameraDirection();
 
@@ -70,8 +72,10 @@ public class CameraFollow : MonoBehaviour
         Vector3 forward = viewDir.normalized;
 
         // Input del jugador
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        Vector2 move = gameInput.GetMovementPlayer();
+        float h = move.x;
+        float v = move.y;
+
         Vector3 inputDir = forward * v + Camera.main.transform.right * h;
 
         // Rotar el jugador si hay input

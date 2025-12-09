@@ -69,13 +69,14 @@ public class RunForCoverAction : UnityAction
             if (agent.SetDestination(hidePosition))
             {
                 isReachable = true;
-
+                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().isOnCoverDebug = false;
                 context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().setCover(coverObj, coverIndex);
                 UnityEngine.Debug.Log(hidePosition);
                 enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
             }
             else
             {
+                context.GameObject.GetComponent<DistanceEnemyAssetBehaviourRunner>().isOnCoverDebug = false;
                 isReachable = false;
 
             }

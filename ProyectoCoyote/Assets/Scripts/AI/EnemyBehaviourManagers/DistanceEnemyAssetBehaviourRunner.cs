@@ -9,6 +9,8 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     LayerMask layer;
   [SerializeField]  bool isUnsafe;
 
+    [SerializeField] public bool isOnCoverDebug;
+
 
   public  Cover currentCover;
     int currentCoverHidePos;
@@ -22,8 +24,9 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
 
     public void reachCover()
     {
+        isOnCoverDebug = true;
         print("reachCover");
-        ReachCover.Fire();  
+        //ReachCover.Fire();  
     }
     public void reachUnsafe()
     {
@@ -32,12 +35,18 @@ public class DistanceEnemyAssetBehaviourRunner: EnemyAssetBehaviourRunner{
     }
     public bool checkUnsafe()
     {
+        if (isUnsafe)
+        {
+            isOnCoverDebug = false;
+
+        }
         return isUnsafe;
     }
     public bool CanShootPlayer()
     {
         if (currentCover == null)
         {
+            isOnCoverDebug = false;
             return false;
         }
         return currentCover.canShootPlayer(player.transform,currentCoverHidePos);

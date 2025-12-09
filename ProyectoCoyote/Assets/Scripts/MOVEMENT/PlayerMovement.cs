@@ -84,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    private bool inputsEnabled = true;
+
     // Hola GameInput
     [SerializeField] private GameInput gameInput;
 
@@ -180,6 +182,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!inputsEnabled)
+        {
+            gameInput.ResetOneFrameInputs();
+            return;
+        }
+
+
         // Check del suelo
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
 
@@ -224,6 +233,24 @@ public class PlayerMovement : MonoBehaviour
     #region Input
     private void MyInput()
     {
+        if (!inputsEnabled || gameInput == null)
+        {
+            // Limpia inputs y buffers para evitar residuos
+            horizontalInput = 0f;
+            verticalInput = 0f;
+            moveDirection = Vector3.zero;
+
+            _currentAttackLeftBuffer = 0;
+            _currentAttackRigthBuffer = 0;
+            _currentAttackanyBuffer = 0;
+            _currentDodgeLeftBuffer = 0;
+            _currentDodgeRightBuffer = 0;
+            _currentDodgeOutsideBuffer = 0;
+            _currentDodgeAnyBuffer = 0;
+
+            return;
+        }
+
         if (gameInput == null) return;
 
         horizontalInput = gameInput.Horizontal;
@@ -342,10 +369,8 @@ public class PlayerMovement : MonoBehaviour
                     perfectDodgeManager.StopSlowdown();
                 }
             _currentAttackanyBuffer= _currentAttackRigthBuffer = _currentAttackLeftBuffer = 0;
-
             animator.CrossFade(attackName, .1f);
-            
-        }
+            }
 
         //if (gameInput.AttackPressed && canAttack && lockMovement)
         //{
@@ -782,6 +807,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FreezeMovement()
     {
+        inputsEnabled = false;
+
         canMove = false;
         canAttack = false;
         canDodge = false;
@@ -799,12 +826,13 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.speed = 0f;
         }
-
-        Debug.Log("[PlayerMovement] Movimiento congelado por GameState");
     }
+
 
     private void UnfreezeMovement()
     {
+        inputsEnabled = true;
+
         canMove = true;
         canAttack = true;
         canDodge = true;
@@ -812,7 +840,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.linearVelocity = Vector3.zero;  // Solo se puede dejar o quitar según prefieras
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 
@@ -820,10 +848,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.speed = 1f;
         }
-
-        // NO tocar moveSpeed ni desiredMoveSpeed
-        Debug.Log("[PlayerMovement] Movimiento restaurado por GameState");
     }
+
 
     // Desactiva movimiento, animaciones y resetea físicas.
     private void HandleDeathState()

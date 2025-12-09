@@ -3,11 +3,14 @@ using UnityEngine;
 public class playerAttackehaviour : StateMachineBehaviour
 {
     PlayerMovement move;
+    PlayerDamageReceiver damageReceiver;
     bool finished = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        damageReceiver = animator.gameObject.GetComponent<PlayerDamageReceiver>();
+
         move = animator.gameObject.GetComponentInParent<PlayerMovement>();
         finished = false;
         if (move != null)
@@ -27,6 +30,7 @@ public class playerAttackehaviour : StateMachineBehaviour
             finished = true; 
             if (move != null)
             {
+                damageReceiver.setInvincible(false);
                 move.setCanMove(true);
                 move.setCanAttack(true);
                 move.setCanDodge(true);
@@ -42,6 +46,7 @@ public class playerAttackehaviour : StateMachineBehaviour
         {
             if (move != null)
             {
+                damageReceiver.setInvincible(false);
                 move.setCanMove(true);
                 move.setCanAttack(true);
                 move.setCanDodge(true);

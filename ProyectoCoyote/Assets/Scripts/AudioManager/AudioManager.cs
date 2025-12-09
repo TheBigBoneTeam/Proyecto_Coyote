@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     [Tooltip("Max 5 canales de música")] [SerializeField] protected AudioProducer[] musicSounds = new AudioProducer[5];
     protected List<AudioSource> pausedSounds = new List<AudioSource>();
     Player player;
-    private SafeConfig config;
+  //  private SafeConfig config;
     IGameStateManager gameStateManager;
 
     private void Awake()
@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         CheckScene();
         if(ServiceLocator.Instance != null)
         gameStateManager = ServiceLocator.Instance.Get<IGameStateManager>();
-        config = FindAnyObjectByType<SafeConfig>();
+     //   config = FindAnyObjectByType<SafeConfig>();
 
         if (gameStateManager != null)
         {
@@ -57,9 +57,9 @@ public class AudioManager : MonoBehaviour
         if(player != null)
         player.subscribeToDodgeAttack(DodgeAttack);
 
-        SetSFXVolume(config.sfxValue);
-        SetMusicVolume(config.musicValue);
-        SetGeneralVolume(config.generalValue);
+        //SetSFXVolume(config.sfxValue);
+        //SetMusicVolume(config.musicValue);
+        //SetGeneralVolume(config.generalValue);
     }
     public void SceneChange()
     {

@@ -24,14 +24,14 @@ public class OptionsMenu : MonoBehaviour
         sfxValue = PlayerPrefs.GetFloat("SFXVolume", 1f);
         musicValue = PlayerPrefs.GetFloat("MusicVolume", 1f);
 
-        sliderGeneral.value = generalValue;
-        sliderSFX.value = sfxValue;
-        sliderMusica.value = musicValue;
+        //sliderGeneral.value = generalValue;
+        //sliderSFX.value = sfxValue;
+        //sliderMusica.value = musicValue;
 
-        // Aplicar al AudioManager
-        SetGeneralVolume();
-        SetSFXVolume();
-        SetMusicVolume();
+        //// Aplicar al AudioManager
+        //SetGeneralVolume();
+        //SetSFXVolume();
+        //SetMusicVolume();
     }
 
     public void SetGeneralVolume()

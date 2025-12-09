@@ -135,10 +135,15 @@ namespace tutorial
 
         }
 
-        internal void resetTarget()
+        internal void resetTargetDie()
         {
 
             lockon.resetWhenDie(enemy.transform);
+        }
+        internal void resetTarget()
+        {
+
+            lockon.ResetTarget();
         }
     }
     public class EsquivarTutorial : BaseTutorialState
@@ -805,7 +810,7 @@ namespace tutorial
             tutorial.secondEnemy.Die();
             tutorial.enemy.Die();
 
-            tutorial.resetTarget();
+            tutorial.resetTargetDie();
             Debug.Log("vida");
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.changeTutWait = false;

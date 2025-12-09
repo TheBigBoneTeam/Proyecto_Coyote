@@ -3,6 +3,7 @@ using Services;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public GameObject[] attackUISignalers;
     public GameObject[] dodgeUISignalers;
     public GameObject middleDanger;
+    public GameObject directionIndicator;
+
     public Animator middleDangerAnimator;
 
     Dictionary<AGameCharacter, Attack> currentAttacksDictionary;
@@ -30,8 +33,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     Player player;
   [SerializeField]  EnemyLockOn lockOn;
 
+    public float minScale = 1f;
+    public float maxScale = 4f;
+    public float maxDistance = 10f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-   protected virtual void Start()
+    protected virtual void Start()
     {
         currentBullets = new List<baseBullet>();
         CanvasGroup = GetComponentInChildren<CanvasGroup>();
@@ -148,6 +155,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             print("Current Attack Dictionary End.");
 
         }
+        if (currentBullets.Count > 0)
+        {
+            float angle = getAngle(currentBullets[0].transform.position);
+            print(angle);
+            middleDanger.transform.localEulerAngles = new Vector3(0, 0, -angle);
+        }
     }
     public void DodgeStateChange(DamageReceiver.ReceiverState state)
     {
@@ -206,6 +219,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         bool anyLocked = false;
         AGameCharacter locked = lockOn.currentTarget?.GetComponent<AGameCharacter>();
         bool anyOutsideAttack = false;
+        bool anyDistanceAttack = false;
         foreach (KeyValuePair<AGameCharacter,Attack> value in currentAttacksDictionary)
         {
             if (value.Key.Equals(locked))
@@ -224,6 +238,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         foreach(baseBullet bullet in currentBullets)
         {
             anyOutsideAttack = true;
+            anyDistanceAttack = true;
             //Cambiar algo dependiendo de la cercania y tal
         }
         foreach (BombEnemyAssetBehaviourRunner bomb in currentExplosions)
@@ -234,8 +249,28 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         if (middleDanger)
         {
             middleDanger.SetActive(anyOutsideAttack);
-            if(anyOutsideAttack) 
-            middleDangerAnimator.Play("Danger");
+            directionIndicator.SetActive(anyDistanceAttack);
+            if (anyOutsideAttack)
+            {
+
+                middleDangerAnimator.Play("Danger");
+            }
+            if (anyDistanceAttack && Time.frameCount % 10 == 0)
+            {
+                float angle = getAngle(currentBullets[0].transform.position);
+                print(angle);
+                middleDanger.transform.localEulerAngles = new Vector3(0,0, -angle);
+                float dist = Vector3.Distance(currentBullets[0].transform.position,transform.position);
+
+                // Normalizar la distancia (0 = cerca, 1 = lejos)
+                float t = Mathf.Clamp01(dist / maxDistance);
+
+                // Interpolación del tamaño entre min y max
+                float scale = Mathf.Lerp(minScale, maxScale, t);
+
+                directionIndicator.transform.localScale = new Vector3(scale, scale, scale);
+                //  directionIndicator.transform.localScale 
+            }
         }
 
         if (!anyLocked)
@@ -295,7 +330,12 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
 
     }
+    public float getAngle(Vector3 pos)
+    {
+        Vector3 toTarget = pos - transform.position;
 
+        return Vector3.SignedAngle(Camera.main.transform.forward, toTarget, Camera.main.transform.up);
+    }
     public void setEnemy(AGameCharacter character)
     {
         //if(attack != null) 

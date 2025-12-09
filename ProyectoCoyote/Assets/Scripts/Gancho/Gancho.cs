@@ -447,10 +447,23 @@ public class Gancho : MonoBehaviour
     }
     private void GoToTarget()
     {
-        StartAttackWindow();
-        DisableCollisions(transform);
-        if (currentTarget == null) return;
-        isRetracting = true;
+        if (hookableObject.canGoToTarget)
+        {
+            StartAttackWindow();
+            DisableCollisions(transform);
+            if (currentTarget == null) return;
+            isRetracting = true;
+
+            visualHook.RetractHookGoToTarget();
+            movement.animator.CrossFade("Grapple_04", 0.2f);
+        }
+        else
+        {
+            // CamControl.StartShake();
+            ResetTarget();
+        }
+
+
         //// Dirección desde el objeto hacia la cámara
         //Vector3 directionToCamera = (cam.transform.position - currentTarget.position).normalized;
         //// POSICIÓN FINAL
@@ -459,11 +472,6 @@ public class Gancho : MonoBehaviour
         //// Mover el Rigidbody del jugador
         //var rb = player.GetComponent<Rigidbody>();
         //rb.MovePosition(targetPosition);
-
-
-        visualHook.RetractHookGoToTarget();
-        movement.animator.CrossFade("Grapple_04", 0.2f);
-
     }
     private void AtractTarget()
     {

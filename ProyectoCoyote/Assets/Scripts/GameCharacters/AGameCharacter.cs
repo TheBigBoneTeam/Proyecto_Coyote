@@ -121,6 +121,17 @@ public abstract class AGameCharacter :MonoBehaviour
         healparticles.Play();
         HealthPoint = Mathf.Min( HealthPoint + points,_maxHealthPoint);
         lifeUpdate.Invoke(HealthPoint);
+
+        if (points == 1) AudioManager.Instance.PlaySimpleSound("SFX - Vida 1", false, Vector2.zero, true, false);
+        if (points == 2) AudioManager.Instance.PlaySimpleSound("SFX - Vida 2", false, Vector2.zero, true, false);
+        if (points == 3) AudioManager.Instance.PlaySimpleSound("SFX - Vida 3", false, Vector2.zero, true, false);
+        if (points == 4) AudioManager.Instance.PlaySimpleSound("SFX - Vida 4", false, Vector2.zero, true, false);
+        if (points == 5) AudioManager.Instance.PlaySimpleSound("SFX - Vida 5", false, Vector2.zero, true, false);
+        if (points == 6) AudioManager.Instance.PlaySimpleSound("SFX - Vida 6", false, Vector2.zero, true, false);
+        if (points == 7) AudioManager.Instance.PlaySimpleSound("SFX - Vida 7", false, Vector2.zero, true, false);
+        if (points == 8) AudioManager.Instance.PlaySimpleSound("SFX - Vida 8", false, Vector2.zero, true, false);
+        if (points == 9) AudioManager.Instance.PlaySimpleSound("SFX - Vida 9", false, Vector2.zero, true, false);
+        if (points == 10) AudioManager.Instance.PlaySimpleSound("SFX - Vida 10", false, Vector2.zero, true, false);
     }
     public void setHealthPoint(int points)
     {

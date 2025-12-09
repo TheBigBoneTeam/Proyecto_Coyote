@@ -900,8 +900,13 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
+En el transcurso de esta etapa, he reforzado lo aprendido en la Beta, la importancia de la comunicación con los miembros del equipo. Nos ha venido muy bien hacer reuniones físicas para trabajar en conjunto.
+
 #### Trabajo individual realizado
+Durante esta última etapa del trabajo he rediseñado los niveles 2 y 3, montado el jefe, reajustando y balanceando a los enemigos, encontrando errores y haciendo las animaticas de las cinemáticas. En general, comprobar que el juego funcione correctamente.
+
 #### Trabajo colectivo realizado
+Mi trabajo colectivo ha sido principalmente con el equipo de programación, en especial con Diego, comunicando los errores que iban surgiendo a lo largo de esta etapa. En cuanto al equipo de arte mi comunicación principal ha sido con Eduardo debido a que él se ha encargado de hacer las cinemáticas con los modelos en base a mis animaticas.
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
@@ -910,12 +915,21 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 
 ### Candela Jiménez González
 #### Lecciones aprendidas
+En la fase final de desarrollo del proyecto he continuado ampliando mis conocimientos de Unity y Blender, relacionados en específico con la animación, texturizado, iluminación y shaders. 
+
 #### Trabajo individual realizado
+En este tramo del proyecto he modelado, animado y texturizado más enemigos y personajes no jugables de Coyote Requiem, así como props adicionales y decoración. Por otra parte, he continuado con el desarrollo de la página web y he participado en el montaje, sobre todo a nivel de decoración e iluminación de los niveles del juego.
+
 #### Trabajo colectivo realizado
+A nivel colectivo he continuado mi trabajo con Edu, recibiendo y aportando realimentación sobre diseño, colores u otros aspectos artísticos de modelado, texturizado y animación. Junto con el resto del equipo he trabajado en la decoración e iluminación de niveles y cinemáticas, así como en el desarrollo de este documento.
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
+<<<<<<< Updated upstream
 Se ha comprendido la importancia de dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión. Por otro lado, se ha aprendido a desarrollar sistemas sólidos para que no haya problemas futuros y a testear y arreglar bugs inesperados. 
+=======
+
+>>>>>>> Stashed changes
 
 #### Trabajo individual realizado
 Se ha adaptado el sistema de lock y cámaras al nuevo sistema de combate. Además, se han ido corrigiendo bugs los bugs que iban surgiendo relacionados con los sistemas de lockeo, gancho, diálogos y cámaras.

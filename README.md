@@ -355,32 +355,44 @@ Concept art con el diseño final del personaje
 
 <img src="./Imagenes_README/MainChar4.jpg" alt="Prota Modelo" style="width: 70%"/>
 
+<img src="./Imagenes_README/renderCoyote.png" alt="Prota Modelo" style="width: 70%"/>
+
 Modelo 3D finalizado del personaje principal
 
 ###  Enemigos
 
 #### Bandido Nopal
 Es la fase final de la infección. Su cabeza ahora es un cactus y realiza ataques erraticos propios de su falta de raziocinio.
+<img src="./Imagenes_README/renderNopal.png" alt="Prota Modelo" style="width: 100%"/>
 
 #### Buitre Saguaro
 Anteriormente era un buen pistolero que, debido al consumo del higo, las protuberancias del higo hicieron que su querida pistola se fusionara con su brazo izquierdo. De lejos parece muy intimidante, pero si te acercas a él muestra su verdadera cara mostrando su cobardía.
 
 <img src="./Imagenes_README/GunnerConcept.png" alt="Boceto Buitre Saguaro" style="width: 100%"/>
 
+<img src="./Imagenes_README/renderPollo.png" alt="Prota Modelo" style="width: 100%"/>
+
 #### Espinotauro
 Este toro musculoso formaba parte un grupo de herreros que vivían en el cañón. Tras el consumo del higo chumbo perdió el control. Ahora usa su querido martillo de herrero como un arma letal capaz de lanzar objetos y hacer ataques devastadores.
 
 <img src="./Imagenes_README/HeavyConcept.png" alt="Boceto Espinotauro" style="width: 100%"/>
+
+<img src="./Imagenes_README/renderHeavy.png" alt="Prota Modelo" style="width: 100%"/>
 
 #### Sapo Bombo
 Antiguo minero, su uso con la pólvora le otorgó la habilidad explosiva creando un gran daño en área. Su determinación hace que se lance hacia el jugador sin pensarlo dos veces.
 
 <img src="./Imagenes_README/SapoConcept.png" alt="Boceto Sapo Bombor" style="width: 100%"/>
 
+<img src="./Imagenes_README/renderSapo.png" alt="Prota Modelo" style="width: 100%"/>
+
 #### Lince
 Aunque a simple vista pueda parecer Lince, en realizad es una forma física juvenil del Dios que adora el culto del higo. Su parecido a Lince de debe a que Coyote, sin saberlo, le ofreció un cuerpo físico a través de las cenizas de su amado. En esta forma no posee todo su verdadero poder por lo que es mortal y en su interior parece que el alma de Lince lucha por el control del cuerpo. 
 
 <img src="./Imagenes_README/conceptboss.jpg" alt="Boceto Lince" style="width: 100%"/>
+
+<img src="./Imagenes_README/renderLince.png" alt="Boceto Lince" style="width: 100%"/>
+
 
 ###  NPCs
 

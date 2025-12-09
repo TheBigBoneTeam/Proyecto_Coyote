@@ -195,14 +195,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearDamping = groundDrag;
         }
-        else
+        else if (state == MovementState.air)
         {
-            if (gameStateManager.getState() == GameState.Paused)
-                return;
-
             rb.linearDamping = 0;
-            rb.AddForce(Vector3.down * gravity*Time.deltaTime, ForceMode.Force);
+
+            float fallMultiplier = 2f;
+            rb.AddForce(Vector3.down * gravity * fallMultiplier * Time.deltaTime, ForceMode.Force);
         }
+
     }
 
     private void FixedUpdate()
@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (lockMovement)
         {
-            horizontalInput = 0f; // Bloquea el movimiento lateral
+            horizontalInput = 0f;
         }
         if (gameInput.AttackLeftPressed || gameInput.AttackRightPressed)
         {
@@ -496,11 +496,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (OnSlope() && !exitingSlope)
             {
-                // Calcular el ángulo de la pendiente
+                // Calcular el angulo de la rampa
                 float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
 
-                // Escalar la fuerza según el ángulo (más empinada = menos fuerza hacia arriba)
-                // Pendientes suaves ≈ 1, empinadas ≈ 0.3
+                // Escalar la fuerza segun el ángulo (mas empinada = menos fuerza hacia arriba)
                 float slopeMultiplier = Mathf.Lerp(1f, 0.3f, slopeAngle / maxSlopeAngle);
 
                 // Aplica fuerza ajustada por pendiente
@@ -517,6 +516,15 @@ public class PlayerMovement : MonoBehaviour
             else if (!grounded)
             {
                 rb.AddForce(moveDirection.normalized * modeSpeed * 10f * airSensitity, ForceMode.Force);
+
+                if (rb.linearVelocity.y > 0f)
+                {
+                    rb.linearVelocity = new Vector3(
+                        rb.linearVelocity.x,
+                        rb.linearVelocity.y * 0.5f, // ajusta: 0.3–0.6
+                        rb.linearVelocity.z
+                    );
+                }
             }
         }
     }

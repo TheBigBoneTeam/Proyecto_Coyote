@@ -514,7 +514,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: fc1e8517-de9e-43a9-a4a6-d40a2084b1ad
-        position: {x: 395.2, y: 126.4}
+        position: {x: 441.6, y: 151.20001}
         node:
           rid: 2751277377875345592
         references: []
@@ -527,6 +527,8 @@ MonoBehaviour:
         - 6d26ca3d-e3e3-4e8c-a7df-b9f04dc20213
         - 0ca2afa0-14cf-400f-9650-0b60c633aadd
         - fd21415e-6c10-4aef-a2d1-a4c9f3db01f0
+        - d5fcabcb-450f-42c1-bf76-b9f2d098778e
+        - 97c6a24e-087d-492e-9bec-4b44ca70a6df
       - name: AnimacionSaltar
         id: c3162548-1390-46c5-bf47-7323989fef3b
         position: {x: 105.6, y: 406.4}
@@ -585,7 +587,7 @@ MonoBehaviour:
         childIds: []
       - name: turnOffAgent
         id: 5cef78d3-130b-4bd0-b078-167078f7a8f4
-        position: {x: -229.6, y: 436}
+        position: {x: -550.4, y: 400.8}
         node:
           rid: 2751277377875345648
         references:
@@ -620,6 +622,34 @@ MonoBehaviour:
         - fieldName: Action
           value:
             rid: 2751277377875345770
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fc1e8517-de9e-43a9-a4a6-d40a2084b1ad
+        childIds: []
+      - name: 
+        id: d5fcabcb-450f-42c1-bf76-b9f2d098778e
+        position: {x: -241.6, y: 408.8}
+        node:
+          rid: 2751277377875345887
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277377875345888
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fc1e8517-de9e-43a9-a4a6-d40a2084b1ad
+        childIds: []
+      - name: 
+        id: 97c6a24e-087d-492e-9bec-4b44ca70a6df
+        position: {x: 1613.6, y: 384.8}
+        node:
+          rid: 2751277377875345889
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277377875345890
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -871,6 +901,24 @@ MonoBehaviour:
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
       data:
         infinite: 0
+    - rid: 2751277377875345887
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2751277377875345888
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: BossEnemyAssetBehaviourRunner
+          methodName: turnOffHookable
+    - rid: 2751277377875345889
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2751277377875345890
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: BossEnemyAssetBehaviourRunner
+          methodName: turnOnHookable
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

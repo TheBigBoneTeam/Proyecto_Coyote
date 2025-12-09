@@ -50,6 +50,17 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             agent.enabled = false;
         }
     }
+    public void turnOffHookable()
+    {
+       gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        //  GetComponent<Collider>().enabled = false;
+    }
+    public void turnOnHookable()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Enemy");
+
+        //  GetComponent<Collider>().enabled = true;
+    }
     public void turnOnAgent()
     {
         if (agent != null)

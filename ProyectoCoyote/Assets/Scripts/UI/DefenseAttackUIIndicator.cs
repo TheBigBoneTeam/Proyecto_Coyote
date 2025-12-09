@@ -19,6 +19,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
     public GameObject[] dodgeUISignalers;
     public GameObject middleDanger;
     public GameObject directionIndicator;
+    public GameObject directionIndicatorFather;
 
     public Animator middleDangerAnimator;
 
@@ -143,7 +144,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
     }
     // Update is called once per frame
- protected virtual   void Update()
+ protected virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -157,9 +158,22 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         }
         if (currentBullets.Count > 0)
         {
-            float angle = getAngle(currentBullets[0].transform.position);
-            print(angle);
-            middleDanger.transform.localEulerAngles = new Vector3(0, 0, -angle);
+            if (Time.frameCount % 5 == 0)
+            {
+                float angle = getAngle(currentBullets[0].transform.position);
+                print(angle);
+                directionIndicatorFather.transform.localEulerAngles = new Vector3(0, 0, -angle);
+                float dist = Vector3.Distance(currentBullets[0].transform.position, transform.position);
+
+                // Normalizar la distancia (0 = cerca, 1 = lejos)
+                float t = Mathf.Clamp01(dist / maxDistance);
+
+                // Interpolación del tamaño entre min y max
+                float scale = Mathf.Lerp(maxScale, minScale, t);
+
+                directionIndicator.transform.localScale = new Vector3(scale, scale, scale);
+                //  directionIndicator.transform.localScale 
+            }
         }
     }
     public void DodgeStateChange(DamageReceiver.ReceiverState state)
@@ -254,23 +268,24 @@ public class DefenseAttackUIIndicator : MonoBehaviour
             {
 
                 middleDangerAnimator.Play("Danger");
+
             }
-            if (anyDistanceAttack && Time.frameCount % 10 == 0)
+            if (anyDistanceAttack)
             {
                 float angle = getAngle(currentBullets[0].transform.position);
                 print(angle);
-                middleDanger.transform.localEulerAngles = new Vector3(0,0, -angle);
-                float dist = Vector3.Distance(currentBullets[0].transform.position,transform.position);
+                directionIndicatorFather.transform.localEulerAngles = new Vector3(0, 0, -angle);
+                float dist = Vector3.Distance(currentBullets[0].transform.position, transform.position);
 
                 // Normalizar la distancia (0 = cerca, 1 = lejos)
                 float t = Mathf.Clamp01(dist / maxDistance);
 
                 // Interpolación del tamaño entre min y max
-                float scale = Mathf.Lerp(minScale, maxScale, t);
+                float scale = Mathf.Lerp(maxScale, minScale, t);
 
                 directionIndicator.transform.localScale = new Vector3(scale, scale, scale);
-                //  directionIndicator.transform.localScale 
             }
+           
         }
 
         if (!anyLocked)
@@ -291,6 +306,7 @@ public class DefenseAttackUIIndicator : MonoBehaviour
         currentAttacksDictionary.Clear();
         currentBullets.Clear();
         currentExplosions.Clear();
+        AttackStateChange();
     }
     public void OutsideAttackChange(Attack.AttackState state)
     {

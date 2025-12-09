@@ -37,7 +37,10 @@ public class Enemy : AGameCharacter
             print("dieEnemy"+name);
             dieEvent?.Invoke(this);
             GetComponent<EnemyAssetBehaviourRunner>().enabled = false;
-            if (GetComponent<BossEnemy>() != null|| GetComponent<BombEnemy>() != null)
+            GetComponent<Collider>().enabled = false;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            
+            if (GetComponent<BossEnemy>() != null|| GetComponent<BombEnemy>() != null || GetComponent<enemigoTutorial>() != null)
             {
                 FinishDie();
 
@@ -138,9 +141,12 @@ public class Enemy : AGameCharacter
         }
         dead = false;
         dieEvent?.RemoveAllListeners();
+        GetComponent<Collider>().enabled = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         base.restart();
         gameObject.SetActive(ActiveBeforeFight);
         GetComponent<EnemyAI>().restart();
+
         if (GetComponent<HookableObject>() != null)
         {
             GetComponent<HookableObject>().restart();

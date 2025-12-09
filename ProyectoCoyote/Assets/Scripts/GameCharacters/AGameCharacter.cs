@@ -10,6 +10,8 @@ using UnityEngine.Playables;
 using UnityEngine.Events;
 public abstract class AGameCharacter :MonoBehaviour
 {
+ protected   Rigidbody rb;
+
     List<ATimedEffect> activeEffects;
    [field:SerializeField] public int HealthPoint { get; private set; }
    [field:SerializeField] public int _maxHealthPoint { get; private set; }
@@ -34,6 +36,7 @@ public abstract class AGameCharacter :MonoBehaviour
     string currentAnim;
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         lifeUpdate = new UnityEvent<int>();
         activeEffects = new List<ATimedEffect>();
         //anim = GetComponentInChildren<Animator>();

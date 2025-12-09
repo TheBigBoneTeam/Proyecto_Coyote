@@ -1948,6 +1948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 0
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!1 &485859018
@@ -3340,6 +3341,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb3694b7640b3c49ac517f9ee2962ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &880028934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 68776486476156025, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
+  m_PrefabInstance: {fileID: 1410577852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896205851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 171637570341686559, guid: ad4c83315692e0640a51a2623519fc4c, type: 3}
@@ -3370,12 +3376,13 @@ MonoBehaviour:
   - {fileID: 1691338492}
   middleDanger: {fileID: 1792737998}
   directionIndicator: {fileID: 1410577854}
+  directionIndicatorFather: {fileID: 880028934}
   middleDangerAnimator: {fileID: 1792737999}
   paddingPosition: {x: 0, y: 0, z: 0}
   lockOn: {fileID: 0}
-  minScale: 1
-  maxScale: 4
-  maxDistance: 10
+  minScale: 0.5
+  maxScale: 1.4
+  maxDistance: 20
   tutorialEnemies:
   - {fileID: 1363849010}
   - {fileID: 319751758}
@@ -6505,6 +6512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 0
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!1 &1691338492 stripped
@@ -7296,6 +7304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 0
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!4 &1950617336 stripped
@@ -7477,6 +7486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 0
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!1001 &2056532147

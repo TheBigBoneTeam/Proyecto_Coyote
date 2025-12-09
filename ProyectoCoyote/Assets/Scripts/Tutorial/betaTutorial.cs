@@ -193,6 +193,13 @@ namespace tutorial
             Vector3 dir = tutorial.player.transform.position - tutorial.enemy.transform.position;
             dir.y = 0;
             dir = Vector3.Normalize(dir);
+            Quaternion rotation = Quaternion.AngleAxis(40, Vector3.up);
+            // Or for world axes: Quaternion rotation = Quaternion.Euler(0, degrees, 0);
+
+            // Rotate the starting vector
+            dir = rotation * dir;
+            dir = Vector3.Normalize(dir);
+
             tutorial.secondEnemy.transform.position = tutorial.enemy.transform.position + (dir * dist);
             tutorial.secondEnemy.gameObject.SetActive(true);
             tutorial.secondEnemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
@@ -228,7 +235,7 @@ namespace tutorial
         {
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Algunos enemigos te podrán disparar. Para bloquear los disparos mantén al enemigo fijado y bloquea usando /esquivaratras/ .");
             tutorial.tutorialStateNum = 2;
-            tutorial.secondEnemy.gameObject.SetActive(false);
+            tutorial.secondEnemy.Die();
             tutorial.currentEsquives = 0;
             tutorial.player.subscribeToDodgeAttack(esquive);
             tutorial.tutorialGun.gameObject.SetActive(true);
@@ -590,6 +597,7 @@ namespace tutorial
             tutorial.zonaGancho2.SetActive(true);
             tutorial.currentGanchos = 0;
             tutorial.resetTarget();
+            tutorial.enemigoGancho.GetComponent<HookableObject>().canGoToTarget = false;
             tutorial.changeTutWait = false;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay cactus que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Ve a todos los objetivos.");
         }

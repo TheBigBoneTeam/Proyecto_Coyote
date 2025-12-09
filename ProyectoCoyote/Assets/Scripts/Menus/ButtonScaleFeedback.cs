@@ -26,6 +26,7 @@ public class ButtonScaleFeedback : MonoBehaviour,
     }
     void Update()
     {
+        
         target.localScale = Vector3.Lerp(
             target.localScale,
             isHighlighted ? highlightedScale : normalScale,

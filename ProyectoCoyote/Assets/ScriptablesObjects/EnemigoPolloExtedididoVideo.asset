@@ -376,7 +376,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725331012510548631
+            rid: 2751277377875345498
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -720,6 +720,13 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2751277377875345498
+      type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: 
+        random: 0
+        FirstLetter: 
+        LastLetter: 
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -909,13 +916,6 @@ MonoBehaviour:
         method:
           componentName: EnemyAI
           methodName: forcedReturnAttackPriority
-    - rid: 8725331012510548631
-      type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
-      data:
-        attack: 
-        random: 0
-        FirstLetter: 
-        LastLetter: 
     - rid: 8725331092473380949
       type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 

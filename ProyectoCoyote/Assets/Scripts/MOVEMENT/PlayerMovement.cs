@@ -795,6 +795,11 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
 
+        if (animator != null)
+        {
+            animator.speed = 0f;
+        }
+
         Debug.Log("[PlayerMovement] Movimiento congelado por GameState");
     }
 
@@ -809,6 +814,11 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.linearVelocity = Vector3.zero;  // Solo se puede dejar o quitar según prefieras
             rb.angularVelocity = Vector3.zero;
+        }
+
+        if (animator != null)
+        {
+            animator.speed = 1f;
         }
 
         // NO tocar moveSpeed ni desiredMoveSpeed

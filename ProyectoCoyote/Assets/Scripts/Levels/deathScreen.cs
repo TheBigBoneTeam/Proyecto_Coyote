@@ -29,6 +29,6 @@ public class deathScreen : MonoBehaviour
     }
     public void menu()
     {
-        ServiceLocator.Instance.Get<ILevelManager>().loadEscene("MainMenu");
+        ServiceLocator.Instance.Get<ILevelManager>().loadEscene("menuGold");
     }
 }

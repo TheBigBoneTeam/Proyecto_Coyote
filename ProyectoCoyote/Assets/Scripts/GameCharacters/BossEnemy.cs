@@ -86,6 +86,7 @@ public class BossEnemy : Enemy
 
         if (active)
         {
+          //  AudioManager.Instance.PlayBossMusic();
             GetComponent<EnemyAssetBehaviourRunner>().restart();
         }
     }

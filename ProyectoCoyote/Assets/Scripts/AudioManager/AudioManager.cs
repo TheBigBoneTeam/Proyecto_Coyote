@@ -257,6 +257,7 @@ public class AudioManager : MonoBehaviour
     {
         if(onlyOne && SearchSource(soundName))
         {
+            print("OnlyOneAllowed");
             return;
         }
         
@@ -327,6 +328,7 @@ public class AudioManager : MonoBehaviour
 
     public void SilenceMusicChannels(float fadeTime = 2f)
     {
+        print("silenceMusic");
         for (int i = 0; i <= 1; i++)
         {
             if (musicSounds[i] != null)
@@ -361,7 +363,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBossMusic()
     {
-        AudioManager.Instance.PlaySimpleSound("OST Boss Final - Loopeo", true, Vector2.zero, true, true, 2);
+        print("playBossMusic");
+        PlaySimpleSound("OST Boss Final - Loopeo", true, Vector2.zero, true, true, 1);
     }
 
     // VOCES DE DIALOGOS

@@ -11,7 +11,7 @@ public class BossEnemy : Enemy
     [SerializeField] int baseCactusAttackTime;
 
     [SerializeField] CactusSpawner spawner;
-
+    [SerializeField] int healthDropDistance = 0;
     
     public bool NextFase()
     {
@@ -20,7 +20,14 @@ public class BossEnemy : Enemy
         {
             return false;
         }
-        ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop,false);
+        if (bossEnemyAssetBehaviourRunner.bossState == BossState.Melee)
+        {
+            ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDrop, false);
+        }
+        else
+        {
+            ServiceLocator.Instance.Get<IHealthSpawner>().spawnOrb(transform.position, healthDropDistance, false);
+        }
         startFase();
         return true;
     }

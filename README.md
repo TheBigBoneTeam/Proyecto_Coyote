@@ -230,7 +230,9 @@ Si se juega en movil los controles varían en función del modo de juego en el q
 * **Modo duelo**: al entrar en un combate se mostrará solo el joystick de movimiento, el botón de desfijado, el de ataque y el de esquivar.
 * **Modo libre**: en este modo el jugador tendrá el joystick para moverse, el joystick para la cámara, el botón de fijado y el de usar el gancho.
 
-## 3.4. Tipos de enemigos 
+## 3.4. Mecánicas de los enemigos 
+En Coyote Requiem existen varios enemigos distintos que supondrán una amenaza para el jugador. Todos estos tienen comportamientos y mecánicas distintivas, haciendo el enfrentamiento con cada uno de ellos diferente.
+
 ### Dummy
 Este no es un enemigo es sí. Se trata de un cactus que se utiliza en el tutorial, capaz de atacar y bloquear. Su uso es principalmente enseñar al jugador como combatir y jugar.
 

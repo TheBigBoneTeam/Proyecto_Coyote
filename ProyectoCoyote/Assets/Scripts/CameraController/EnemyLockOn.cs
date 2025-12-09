@@ -1,3 +1,4 @@
+using Services;
 using System;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -163,6 +164,10 @@ public class EnemyLockOn : MonoBehaviour
 
         Debug.Log("Volviendo a modo SIN lockear");
 
+        if (ServiceLocator.Instance.Get<IPerfectDodgeManager>().isSlowDown()) 
+        {
+            ServiceLocator.Instance.Get<IPerfectDodgeManager>().StopSlowdown();
+        }
         // Se activa la interfaz de movil de combate
         if (MobileUIManager.Instance != null)
         {

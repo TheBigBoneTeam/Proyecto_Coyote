@@ -364,7 +364,7 @@ public class Gancho : MonoBehaviour
         Vector3 origin = transform.position + Vector3.up * 1.5f;
 
         if (target.GetComponent<DistanceEnemyAssetBehaviourRunner>() != null
-            && target.GetComponent<DistanceEnemyAssetBehaviourRunner>().isOnCoverDebug) 
+            && target.GetComponent<DistanceEnemyAssetBehaviourRunner>().isOnCoverDebug)
         {
             if (Physics.Linecast(origin, targetPosition, out hit))
             {
@@ -374,7 +374,7 @@ public class Gancho : MonoBehaviour
                     return true;
                 }
             }
-            return false; 
+            return false;
         }
 
         if (Physics.Linecast(origin, targetPosition, out hit, targetLayersWithoutCover))

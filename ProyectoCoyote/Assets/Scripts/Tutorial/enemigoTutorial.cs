@@ -21,4 +21,5 @@ public class enemigoTutorial : MonoBehaviour
         tutorialMode = mode;
     }
     public int checkTutorialMode()=> tutorialMode;
+
 }

@@ -135,6 +135,11 @@ namespace tutorial
 
         }
 
+        internal void resetTargetDie()
+        {
+
+            lockon.resetWhenDie(enemy.transform);
+        }
         internal void resetTarget()
         {
 
@@ -510,9 +515,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.secondEnemy.Die();
-            tutorial.enemy.Die();
-            tutorial.resetTarget();
+       
             tutorial.zonaGancho1.SetActive(true);
             tutorial.zonaGancho2.SetActive(false);
             tutorial.enemigoGancho.gameObject.SetActive(true);
@@ -544,6 +547,7 @@ namespace tutorial
         { 
             tutorial.enemigoGancho.gameObject.SetActive(true);
             tutorial.enemigoGancho.GetComponent<HookableObject>().canBeHooked = false;
+
             tutorial.changeTutWait = false;
             tutorial.currentGanchos = 0;
             tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora, pulsa /pegar1/ para enganchar al enemigo.");
@@ -803,6 +807,10 @@ namespace tutorial
         }
         public override void OnEnter()
         {
+            tutorial.secondEnemy.Die();
+            tutorial.enemy.Die();
+
+            tutorial.resetTargetDie();
             Debug.Log("vida");
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.changeTutWait = false;

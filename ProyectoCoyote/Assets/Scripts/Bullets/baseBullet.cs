@@ -148,6 +148,7 @@ public class baseBullet : Attack, IBullet
         
         if (anim)
         {
+            print("PlayAnimFly");
             anim.enabled = true;
             anim.Play("fly",0,0);
         }

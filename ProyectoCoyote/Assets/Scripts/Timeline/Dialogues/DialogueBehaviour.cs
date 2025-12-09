@@ -125,7 +125,7 @@ public class DialogueBehaviour : PlayableBehaviour
                                     break;
 
                                 case VocesDialogo.Cultista:
-                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultista", 0.2f);
+                                    AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultist", 0.2f);
                                     break;
 
                                 case VocesDialogo.Carlos:

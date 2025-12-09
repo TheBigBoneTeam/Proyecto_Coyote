@@ -13,6 +13,7 @@ public class Gancho : MonoBehaviour
 {
     private GameInput gameInput;
     [SerializeField] LayerMask targetLayers;
+    [SerializeField] LayerMask targetLayersWithoutCover;
     Transform HookableObjectLocator;
     Transform cam;
     public Transform currentTarget;
@@ -361,7 +362,22 @@ public class Gancho : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 origin = transform.position + Vector3.up * 1.5f;
-        if (Physics.Linecast(origin, targetPosition, out hit))
+
+        if (target.GetComponent<DistanceEnemyAssetBehaviourRunner>() != null
+            && target.GetComponent<DistanceEnemyAssetBehaviourRunner>().isOnCoverDebug) 
+        {
+            if (Physics.Linecast(origin, targetPosition, out hit))
+            {
+                if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
+                {
+                    Debug.Log($"Hay algo bloqueando al objeto: {hit.transform}");
+                    return true;
+                }
+            }
+            return false; 
+        }
+
+        if (Physics.Linecast(origin, targetPosition, out hit, targetLayersWithoutCover))
         {
             if (!hit.transform.Equals(target) && !hit.transform.Equals(transform))
             {

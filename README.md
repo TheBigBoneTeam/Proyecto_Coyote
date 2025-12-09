@@ -371,8 +371,13 @@ Modelo 3D finalizado del personaje principal
 
 ###  NPCs
 
-#### Denebola
-<img src="./Imagenes_README/Denebola.png" alt="Denebola" style="width: 60%"/>
+#### Denébola
+Denébola es una habitante de Pricklytown, y es el primer encuentro que tiene Coyote. Ella le avisa de los peligros de la zona y le explica cómo combatirlos en un tutorial.
+ 
+<img src="./Imagenes_README/CapturasPersonajes/Denebola1.png" alt="Denebola" style="width: 100%"/>
+<img src="./Imagenes_README/CapturasPersonajes/Denebola2.png" alt="Denebola" style="width: 100%"/>
+<img src="./Imagenes_README/DenebolaConcept.jpg" alt="Denebola" style="width: 50%"/>
+<img src="./Imagenes_README/DenebolaRender.png" alt="Denebola" style="width: 50%"/>
 
 #### El carretero
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>

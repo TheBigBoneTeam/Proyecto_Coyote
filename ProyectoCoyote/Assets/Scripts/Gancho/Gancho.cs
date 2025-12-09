@@ -48,8 +48,9 @@ public class Gancho : MonoBehaviour
     HookController hookController;
     private Image _hookImageUI;
     HookObserver hookObserver;
-    public bool isRetracting = false; 
 
+    public bool isRetracting = false;
+    public bool isInHookMode = false;
 
     public bool selectingHook;
     public bool isHooked;
@@ -195,6 +196,7 @@ public class Gancho : MonoBehaviour
         currentTarget = ScanNearBy();
         if (currentTarget != null)
         {
+            isInHookMode = true;
             movement.StopMovement();
             _hookImageUI.gameObject.SetActive(true);
             CamControl.ActiveHookCamera();
@@ -229,7 +231,11 @@ public class Gancho : MonoBehaviour
 
         StopAttackWindow();
 
-        if (!lockOn.enemyLocked) CamControl.ActiveFollowCamera();
+        
+
+        if (!lockOn.enemyLocked && isInHookMode) CamControl.ActiveFollowCamera();
+
+        isInHookMode = false;
         Debug.Log("Se ha desactivado el gancho. Volviendo a modo libre");
 
         // Si se detecta el modo movil, se desactiva la interfaz del gancho

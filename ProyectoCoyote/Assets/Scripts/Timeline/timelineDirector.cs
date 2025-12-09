@@ -84,6 +84,10 @@ public class timelineDirector : MonoBehaviour, IcutsceneManager
             cutscenPlaying = false;
             SkipingCutscene = true;
             print("SALTANDO CINEMATICA");
+            if(currentData.nextLevel == "CINEMATICADELBOSS")
+            {
+                AudioManager.Instance.PlayBossMusic();
+            }
             endCutscene();
             //if (!currentData.isEndLevel)
             //{

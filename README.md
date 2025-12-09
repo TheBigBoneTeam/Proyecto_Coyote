@@ -408,15 +408,18 @@ Denébola es una habitante de Pricklytown, y es el primer encuentro que tiene Co
 El carretero es un perro mayor que es considerado el sabio del pueblo. Ayuda a Coyote a llegar al cañón no sin antes advertirle del peligro que le acecha.
 
 <img src="./Imagenes_README/perroconcept.jpg" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/Perso/CapPerro.png" alt="Prota3" style="width: 100%"/>
 
 #### Lider secta
 Se trata de uno de los expedicionistas supervivientes que acabó sumiendo el liderazgo del nuevo culto a los cactus. Se trata de un ciervo humanoide infectado que intenta de forma “pacífica” atraer a la gente al oasis.
 
 <img src="./Imagenes_README/DeerConcept.png" alt="Prota3" style="width: 100%"/>
+<img src="./Imagenes_README/Perso/CapLider.png" alt="Prota3" style="width: 100%"/>
 
 #### Carlos
 Antiguo ayudante de un noble sheriff, acabó convirtiéndose en un cactus tras comerse un higo durante una guardia porque le entró hambre. Ahora habita en el cañón, huyendo de los sectarios y teniendo recuerdos difuminados de su vida antes de convertirse. 
 
+<img src="./Imagenes_README/Perso/CapCarlos.png" alt="Prota3" style="width: 100%"/>
 
 ## 4.3. Escenarios
 
@@ -424,25 +427,31 @@ Como se ha mencionado anteriormente, Coyote Requiem cuenta con tres zonas princi
 
 ### Pueblo
 
+<img src="./Imagenes_README/CapturaNivel1.png" alt="Nivel1" style="width: 100%"/>
+
 <img src="./Imagenes_README/Nivel1Con elementos del nivel.png" alt="Nivel1" style="width: 100%"/>
 
 Este es el mapa del primer nivel del juego que se desarrolla en el pueblo de Pricklytown. El nivel esta dividido en 5 subáreas de combate donde también podrá encontrarse con distintos Npcs que le pondrá en contexto sobre que son esos seres con forma de cactus.
 ### Cañón
+
+<img src="./Imagenes_README/CapturaNivel2.png" alt="Nivel1" style="width: 100%"/>
 
 <img src="./Imagenes_README/Nivel2Con elementos del nivel.png" alt="Nivel2" style="width: 100%"/>
 
 El segundo nivel se sitúa en un oásis. En el mapa se puede observar que es un nivel alargado y dividido en 4 subáreas de combate.
 ### Oasis
 
+<img src="./Imagenes_README/CapturaNivel3.png" alt="Nivel1" style="width: 100%"/>
+
 <img src="./Imagenes_README/Nivel3 Con elementos del nivel.png" alt="Nivel3" style="width: 100%"/>
 
 El último nivel se desarrolla en el oasis donde se encuentra tanto el huevo cosmico como la iglesia de la secta. Este nivel es más corto de los demás dividiendolo en 3 áreas de combate. Las 2 primeras son áreas que se dividen en 2 oleadas y la última zona es donde se desarrolla la batalla contra el jefe final.
 
 ## 4.4. Arte 2D - Interfaces
-Diseño inicial de interfaces - vida e indicador de direcciones de ataque o bloqueo.
-
-<img src="./Imagenes_README/Interfaz_vida.jpeg" alt="zombi3" style="width: 50%"/>
-<img src="./Imagenes_README/Interfaz_ataque.jpeg" alt="zombi3" style="width: 41%"/>
+Diseño final de interfaces - vida, indicador de direcciones de ataque o bloqueo y defensa enemigo.
+<img src="./Imagenes_README/CapVida.png" alt="zombi3" style="width: 30%"/>
+<img src="./Imagenes_README/CapInPer.png" alt="zombi3" style="width: 50%"/>
+<img src="./Imagenes_README/CapInEne.png" alt="zombi3" style="width: 41%"/>
 
 
 # 5. Sonido y música 
@@ -596,9 +605,6 @@ Aparece una flauta de pan y una armónica que se responden mutuamente con la mis
 ### Menú inicio
 <img src="./Imagenes_README/DiagramaflujoMenuPrincipal.drawio.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
-### Menú opciones
-<img width="611" height="301" alt="DiagramaflujoMenuOpciones drawio" src="https://github.com/user-attachments/assets/f8e94939-37c0-43d9-bf1f-1a1998928cb2" />
-
 ### In game
 
 <img src="./Imagenes_README/DiagramaflujoInGame.drawio.png" alt="BocetoMenuPincipal" style="width: 100%"/>
@@ -610,8 +616,6 @@ __Menú inicio:__ El menú de inicio es lo primero que se encuentra el jugador c
 * __Nueva partida:__ El jugador comienza el juego desde 0.
 
 * __Continuar:__ El jugador continua la partida desde el punto donde lo había dejado en caso de tener una partida guardada, si no la tiene no pasará nada.
-
- * __Opciones:__ El jugador accederá al menú de opciones donde podrá ajustar los niveles de audio general, música y efectos sonoros.
  * __Selección de capítulo:__ Permite al jugador seleccionar el nivel que quiera para jugar.
 
  * __Créditos:__  El jugador accede a la pantalla de créditos donde aparecerá los miembros que conforman el equipo y su trabajo realizado.
@@ -630,8 +634,6 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
        
     3. __Continuar:__ vuelve al nivel en el momento que lo pausó.
 
-    4. __Opciones:__ te lleva al menú de opciones.
-
     5. __Reiniciar Área:__ Reinicia antes del área del último combate jugado.
 
 
@@ -645,9 +647,10 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
 
  ## 6.2. Diseño de interfaces
  ### Interfaces combate
+  <img src="./Imagenes_README/CapturasMenus/InterfazCombate.png" alt="InterfazCombate" style="width: 100%"/>
+
  ### Menú principal
- ### Menú opciones
- <img src="./Imagenes_README/CapturasMenus/MenuOpciones.png" alt="BocetoMenuPincipal" style="width: 100%"/>
+ <img src="./Imagenes_README/CapturasMenus/MenuInicio.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
  ### Menú pausa
 <img src="./Imagenes_README/CapturasMenus/MenuPausa.png" alt="BocetoMenuPincipal" style="width: 100%"/>
@@ -656,6 +659,8 @@ __In game:__ Para acceder al menú de pausa es tendrá que pulsar la tecla "esc"
  <img src="./Imagenes_README/CapturasMenus/PantallaCreditos.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
  ### Pantalla DLCs
+  <img src="./Imagenes_README/CapturasMenus/ContenidoDescargable.png" alt="BocetoMenuPincipal" style="width: 100%"/>
+
  ### Pantalla muerte
  <img src="./Imagenes_README/CapturasMenus/PantallaMuerte.png" alt="BocetoMenuPincipal" style="width: 100%"/>
 
@@ -701,6 +706,11 @@ Durante estas versiones cada semana se pondrán metas a alcanzar para el final d
 # 8. Marketing y Redes Sociales
 
 Para publicitar el juego se han creado distintas redes sociales como Instagram, Youtube, X, ... El uso de estas redes sociales serán para presentar los distintos integrantes del equipo y los pequeños avances que se hagan conforme avanza el tiempo.
+
+La estrategia a seguir ha sido la siguiente:
+ 1. Se ha preparado un teaser del juego y publicaciones de presentación de cada uno de los integrantes de forma individual.
+ 2. Días antes de la entrega se preparará un trailer final del juego.
+ 3. Se irás subiendo videos al estilo "shorts" días antes, durante y después del lanzamiento del juego para mantener el interes del mismo tanto para gente nueva como para los que ya lo han jugado.
 
 El público objetivo de este proyecto son personas adolescentes mayores de 16 años con interés y algo de experiencia en videojuegos de combate frenético en tercera persona, que sientan atracción por los mundos de fantasía, el viejo oeste o por la estética lovecraftiana, por lo que habrá que enfocar el marketing hacia dicho público.
 
@@ -907,45 +917,61 @@ Además he trabajado con Antonio y Edu en las redes sociales.
 
 ### Antonio Bernal de Celis
 #### Lecciones aprendidas
+La importancia de la organización y comunicación a la hora de hacer un proyecto de esta magnitud. Es muy importante planificar las cosas con antelación y ser realistas con el scope. He aprendido como funcionan sonidos, música y trabajar sobre animaciones.
+
 #### Trabajo individual realizado
+Sistema de movimiento 3D del personaje, con parámetros como gravedad, deslizamiento, velocidad, dash, sprint...
+Su tratamiento con sistemas de rampas y estados en el aire.
+
+Composición de la música del juego en su totalidad y su implementación como música dinámica: colocar las canciones en pistas de audio simultáneas (una canción ambiental y otra de pelea, idénticas en base y estructura, añadiendo más instrumentos) que transicionan según estados de combate y no-combate.
+La banda sonora se compone de Menú, Nivel 1 (Base y Pelea), Nivel 2 (Base y Pelea), Nivel 3 (Base y Pelea), Boss Final, Créditos y canciones para cinématicas como la Intro y Cinemática de transición entre niveles.
+También existen diferentes leitmotifs que representan a los personajes del juego (Enemigos, Coyote, Lince...).
+
+Implementación de SFX: algunos creados de "motu propio", y otros obtenidos mediante bibliotecas de sonido o YouTube, para posteriormente aplicar efectos de post-producción y adaptarlos a la estética del juego.
+
+Sistema de inputs para teclado y ratón, mando o móvil, con diferentes bindings para cada dispostivo.
+
 #### Trabajo colectivo realizado
+He trabajado en conjunto con Andrea, para el tema de inputs de gancho, cámara, etc. Y especialmente con Diego, trabajando simultáneamente en los conceptos de la IA de los enemigos. Con David también he trabajado para representar en los leitmotifs parte de la historia del juego.
 
 ### David del Castillo Enríquez
 #### Lecciones aprendidas
-En el transcurso de esta etapa, he reforzado lo aprendido en la Beta, la importancia de la comunicación con los miembros del equipo. Nos ha venido muy bien hacer reuniones físicas para trabajar en conjunto.
+  En el transcurso de esta etapa, he reforzado lo aprendido en la Beta, la importancia de la comunicación con los miembros del equipo. Nos ha venido muy bien hacer reuniones físicas para trabajar en conjunto.
 
 #### Trabajo individual realizado
-Durante esta última etapa del trabajo he rediseñado los niveles 2 y 3, montado el jefe, reajustando y balanceando a los enemigos, encontrando errores y haciendo las animaticas de las cinemáticas. En general, comprobar que el juego funcione correctamente.
+  Durante esta última etapa del trabajo he rediseñado los niveles 2 y 3, montado el jefe, reajustando y balanceando a los enemigos, encontrando errores y haciendo las animaticas de las cinemáticas. En general, comprobar que el juego funcione correctamente.
 
 #### Trabajo colectivo realizado
-Mi trabajo colectivo ha sido principalmente con el equipo de programación, en especial con Diego, comunicando los errores que iban surgiendo a lo largo de esta etapa. En cuanto al equipo de arte mi comunicación principal ha sido con Eduardo debido a que él se ha encargado de hacer las cinemáticas con los modelos en base a mis animaticas.
+  Mi trabajo colectivo ha sido principalmente con el equipo de programación, en especial con Diego, comunicando los errores que iban surgiendo a lo largo de esta etapa. En cuanto al equipo de arte mi comunicación principal ha sido con Eduardo debido a que él se ha encargado de hacer las cinemáticas con los modelos en base a mis animaticas.
 
 ### Diego Fernández Manso
 #### Lecciones aprendidas
+  Como programador principal de un proyecto tan grande, he tenido que pulir mucho mis habilidades de ingeniería de videojuegos y diseño de scripts. Ha sido un enorme reto desde el inicio, teniendo que estructurar cuidadosamente el código desde antes incluso de empezar a programar, hasta el final, donde la magnitud del proyecto a puesto ha prueba la escalabilidad del código. Además, ha sido la primera vez que trabajo una IA de personajes similar, asi que he aprendido mucho en ese aspecto.
+
 #### Trabajo individual realizado
+  He sido el programador principal del proyecto, encargado principalmente de construir los sistemas y del comportamiento de los personajes. 
+
 #### Trabajo colectivo realizado
+  Como jefe de programación y creador de los sistemas troncales del código, mi trabajo articula el del resto de mis compañeros en la programación, ya que mucho de su trabajo ha dependido del mío (y viceversa). Además, he trabajado con David, quien me ha transmitido las necesidades de diseño para poderlas programar. Además, era el encargado de comunicar assets que necesita el proyecto al equipo de arte.
 
 ### Candela Jiménez González
 #### Lecciones aprendidas
-En la fase final de desarrollo del proyecto he continuado ampliando mis conocimientos de Unity y Blender, relacionados en específico con la animación, texturizado, iluminación y shaders. 
+  En la fase final de desarrollo del proyecto he continuado ampliando mis conocimientos de Unity y Blender, relacionados en específico con la animación, texturizado, iluminación y shaders. 
 
 #### Trabajo individual realizado
-En este tramo del proyecto he modelado, animado y texturizado más enemigos y personajes no jugables de Coyote Requiem, así como props adicionales y decoración. Por otra parte, he continuado con el desarrollo de la página web y he participado en el montaje, sobre todo a nivel de decoración e iluminación de los niveles del juego.
+  En este tramo del proyecto he modelado, animado y texturizado más enemigos y personajes no jugables de Coyote Requiem, así como props adicionales y decoración. Por otra parte, he continuado con el desarrollo de la página web y he participado en el montaje, sobre todo a nivel de decoración e iluminación de los niveles del juego.
 
 #### Trabajo colectivo realizado
-A nivel colectivo he continuado mi trabajo con Edu, recibiendo y aportando realimentación sobre diseño, colores u otros aspectos artísticos de modelado, texturizado y animación. Junto con el resto del equipo he trabajado en la decoración e iluminación de niveles y cinemáticas, así como en el desarrollo de este documento.
+  A nivel colectivo he continuado mi trabajo con Edu, recibiendo y aportando realimentación sobre diseño, colores u otros aspectos artísticos de modelado, texturizado y animación. Junto con el resto del equipo he trabajado en la decoración e iluminación de niveles y cinemáticas, así como en el desarrollo de este documento.
 
 ### Andrea Luengo Zazo
 #### Lecciones aprendidas
-<<<<<<< Updated upstream
-Se ha comprendido la importancia de dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión. Por otro lado, se ha aprendido a desarrollar sistemas sólidos para que no haya problemas futuros y a testear y arreglar bugs inesperados. 
-=======
 
->>>>>>> Stashed changes
+  Se ha comprendido la importancia de dejar claro como funcionan los sistemas desarrollados por uno mismo para que los demás miembros del equipo puedan utilizarlos sin mucho problema. También darle valor a entender qué es exactamente lo que se espera de un sistema para poder implementarlo con mayor precisión. Por otro lado, se ha aprendido a desarrollar sistemas sólidos para que no haya problemas futuros y a testear y arreglar bugs inesperados. 
 
 #### Trabajo individual realizado
-Se ha adaptado el sistema de lock y cámaras al nuevo sistema de combate. Además, se han ido corrigiendo bugs los bugs que iban surgiendo relacionados con los sistemas de lockeo, gancho, diálogos y cámaras.
-Se han añadido colliders cámaras y ajustado sus ángulos para que el jugador pueda ver el escenario de forma cómoda y dinámica. También se han corregido y hecho persistentes los menús y configuración de sonido.
+  Se ha adaptado el sistema de lock y cámaras al nuevo sistema de combate. Además, se han ido corrigiendo bugs los bugs que iban surgiendo relacionados con los sistemas de lockeo, gancho, diálogos y cámaras.
+  Se han añadido colliders cámaras y ajustado sus ángulos para que el jugador pueda ver el escenario de forma cómoda y dinámica. 
 
 #### Trabajo colectivo realizado
-Se han estado detectando y corrigiendo bugs con los miembros del equipo. También se ha estado en contacto con David, el game designer, para implementar los sistemas de cámaras, lock y gancho conforme a las necesidades que han ido surgiendo del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar. Finalmente se ha implementado una configuración de sonido persistente junto con Antonio.
+  Se han estado detectando y corrigiendo bugs con los miembros del equipo. También se ha estado en contacto con David, el game designer, para implementar los sistemas de cámaras, lock y gancho conforme a las necesidades que han ido surgiendo del juego. Por otro lado también se ha mantenido el contacto con el resto de miembros del equipo de programación para el desarrollo de las partes colindantes con ellos y se ha consultado a Diego las dudas que surgían a la hora de programar. 

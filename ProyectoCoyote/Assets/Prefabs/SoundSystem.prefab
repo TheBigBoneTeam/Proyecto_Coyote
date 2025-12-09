@@ -541,7 +541,7 @@ MonoBehaviour:
     maxSoundDistance: 100
   - name: SFX - Dash
     audioClip: {fileID: 8300000, guid: 4382cf8bc9d45514881b51f22020c163, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1.3
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 100
@@ -551,6 +551,12 @@ MonoBehaviour:
     pitch: 1
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 100
+  - name: SFX - Golpe al aire Enemigo
+    audioClip: {fileID: 8300000, guid: bf37f189620caa74d999e0161b7d45aa, type: 3}
+    volume: 0.3
+    pitch: 0.7
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 30
   - name: SFX - Paso1
     audioClip: {fileID: 8300000, guid: e48a9ca74e2651f4687952e5645a8185, type: 3}
     volume: 0.25
@@ -671,6 +677,12 @@ MonoBehaviour:
     pitch: 1
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 100
+  - name: SFX - Paso Shooter
+    audioClip: {fileID: 8300000, guid: 74f00e566b97927469e693202c749730, type: 3}
+    volume: 0.5
+    pitch: 1.4
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 70
   - name: SFX - Shoot
     audioClip: {fileID: 8300000, guid: 4d35b4b1442a072439af618ba6422b42, type: 3}
     volume: 0.4
@@ -875,22 +887,22 @@ MonoBehaviour:
     pitch: 1
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 100
-  - name: SFX - Paso Shooter
-    audioClip: {fileID: 8300000, guid: 74f00e566b97927469e693202c749730, type: 3}
-    volume: 0.846
-    pitch: 1
-    pitchVariation: {x: 0, y: 0}
-    maxSoundDistance: 70
   - name: SFX - Paso Zombie VAR1
     audioClip: {fileID: 8300000, guid: 74f00e566b97927469e693202c749730, type: 3}
     volume: 0.5
-    pitch: 1
+    pitch: 0.78
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 60
   - name: SFX - Paso Bomba
     audioClip: {fileID: 8300000, guid: cd6934aba5624894ab6baaef54456aac, type: 3}
     volume: 0.576
     pitch: 1
+    pitchVariation: {x: 0, y: 0}
+    maxSoundDistance: 30
+  - name: SFX - Caer muerte
+    audioClip: {fileID: 8300000, guid: 95844107bbd0d7f479e2e611185a6ed5, type: 3}
+    volume: 0.576
+    pitch: 0.8
     pitchVariation: {x: 0, y: 0}
     maxSoundDistance: 30
   _soundCollecions: []

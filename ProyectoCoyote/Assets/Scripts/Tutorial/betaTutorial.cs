@@ -226,7 +226,7 @@ namespace tutorial
         }
         public override void OnEnter()
         {
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Algunos enemigos te podrán disparar. Para esquivar los disparos practica con el enemigo fijado y esquiva usando /esquivaratras/ .");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Algunos enemigos te podrán disparar. Para bloquear los disparos practica con el enemigo fijado y bloquea usando /esquivaratras/ .");
             tutorial.tutorialStateNum = 2;
             tutorial.secondEnemy.gameObject.SetActive(false);
             tutorial.currentEsquives = 0;
@@ -437,7 +437,7 @@ namespace tutorial
         public override void OnEnter()
         {
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /pegar/ ahora para hacer un daño devastador");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /pegar1/ o /pegar2/ ahora para hacer un daño devastador");
 
             //  tutorial.enemy.GetComponent<enemigoTutorial>().setTutorialMode(0);
             ServiceLocator.Instance.Get<IGameStateManager>().subscribeToStateChange(Parry);
@@ -455,7 +455,7 @@ namespace tutorial
 
             if (Time.frameCount % 60 == 0)
             {
-                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /pegar/ ahora para hacer un daño devastador");
+                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Pulsa /pegar1/ o /pegar2/ ahora para hacer un daño devastador");
             }
             if (tutorial.gameInput.BlockPressed)
             {
@@ -546,7 +546,7 @@ namespace tutorial
             base.Update();
             if (Time.frameCount % 60 == 0)
             {
-                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora pulsa /pegar/ para enganchar al enemigo.");
+                tutorial.TutorialText.text = InputTextFormatter.Cambiar("Ahora pulsa /pegar1/ para enganchar al enemigo.");
             }
             if (tutorial.gameInput.HookConfirmPressed)
             {
@@ -591,7 +591,7 @@ namespace tutorial
             tutorial.currentGanchos = 0;
             tutorial.resetTarget();
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Recorre todos los objetivos.");
+            tutorial.TutorialText.text = InputTextFormatter.Cambiar("Detrás de ti hay objetos enganchables que podrás enganchar para moverte por el mapa. Puedes seleccionar tu objetivo con /movimiento/. Ve a todos los objetivos.");
         }
         public override void Update()
         {
@@ -798,7 +798,7 @@ namespace tutorial
             Debug.Log("vida");
             tutorial.enemy.gameObject.SetActive(false);
             tutorial.changeTutWait = false;
-            tutorial.TutorialText.text = "Cuando mates a un enemigo, estos soltarán una bola de vida. Si tienes la vida al máximo no te curarás.";
+            tutorial.TutorialText.text = "Cuando mates a un enemigo, estos soltarán una bola de vida. Tu vida máxima es 10.";
             tutorial.waitTime(5);
         }
     }

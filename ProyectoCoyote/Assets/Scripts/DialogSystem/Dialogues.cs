@@ -228,7 +228,7 @@ public class Dialogues : MonoBehaviour
                     AudioManager.Instance.PlayDialogue("Cinematicas - Voz Lince", 0.2f);
                     break;
 
-                case "Cultista":
+                case "Lider":
                     AudioManager.Instance.PlayDialogue("Cinematicas - Voz Cultista", 0.2f);
                     break;
 

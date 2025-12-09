@@ -12,9 +12,12 @@ public class OptionsMenu : MonoBehaviour
     private float sfxValue;
     private float musicValue;
 
+    private SafeConfig config;
+
     void Start()
     {
         audioManager = FindAnyObjectByType<AudioManager>();
+        config = FindAnyObjectByType<SafeConfig>();
 
         // Cargar valores guardados
         generalValue = PlayerPrefs.GetFloat("GeneralVolume", 1f);
@@ -34,8 +37,8 @@ public class OptionsMenu : MonoBehaviour
     public void SetGeneralVolume()
     {
         generalValue = sliderGeneral.value;
-        audioManager.SetMusicVolume(generalValue);
-        audioManager.SetSFXVolume(generalValue);
+        audioManager.SetGeneralVolume(generalValue);
+        config.generalValue = generalValue;
         PlayerPrefs.SetFloat("GeneralVolume", generalValue);
     }
 
@@ -43,6 +46,7 @@ public class OptionsMenu : MonoBehaviour
     {
         sfxValue = sliderSFX.value;
         audioManager.SetSFXVolume(sfxValue);
+        config.sfxValue = sfxValue;
         PlayerPrefs.SetFloat("SFXVolume", sfxValue);
     }
 
@@ -50,6 +54,7 @@ public class OptionsMenu : MonoBehaviour
     {
         musicValue = sliderMusica.value;
         audioManager.SetMusicVolume(musicValue);
+        config.musicValue = musicValue;
         PlayerPrefs.SetFloat("MusicVolume", musicValue);
     }
 }

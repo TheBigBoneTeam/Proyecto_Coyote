@@ -47,7 +47,6 @@ public class PlayWaitAction : UnityAction
             int min = firstletter - 'A';
             char letter = (char)('A' + UnityEngine.Random.Range(min, nums + 1));
             enemyAI.LoadAction(attack+letter,false,-1,isBlock);
-
         }
         else
         {

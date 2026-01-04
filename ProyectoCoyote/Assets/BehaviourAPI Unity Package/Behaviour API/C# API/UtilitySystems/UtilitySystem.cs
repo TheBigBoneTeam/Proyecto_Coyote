@@ -6,6 +6,7 @@ namespace BehaviourAPI.UtilitySystems
 {
     using Core;
     using Core.Actions;
+    using System.Diagnostics;
 
     /// <summary>
     /// Behaviour graph that choose between diferent <see cref="UtilitySelectableNode"/> items and executes.
@@ -429,7 +430,7 @@ namespace BehaviourAPI.UtilitySystems
         protected override void OnUpdated()
         {
             foreach (UtilityNode node in _utilityNodes) node.MarkUtilityAsDirty();
-
+            UnityEngine.Debug.LogWarning("UpdateUtilitySystem");
             var newBestAction = ComputeCurrentBestAction();
             // If the best action changes:
             if (newBestAction != _currentBestElement)

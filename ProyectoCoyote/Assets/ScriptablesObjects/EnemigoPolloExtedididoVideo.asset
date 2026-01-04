@@ -14,6 +14,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     graphs:
+    - name: BaseStateMachine
+      id: 959a0f34-2e01-4e48-ba4f-1e9ce3b0ecc1
+      graph:
+        rid: 8725331092473380949
+      nodes:
+      - name: Combat
+        id: ed67d957-8350-494c-8cfa-96950bee1768
+        position: {x: 437.6, y: 648.80005}
+        node:
+          rid: 8725331092473380950
+        references:
+        - fieldName: Action
+          value:
+            rid: 8725331095404937473
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - db250645-4794-40e0-83f3-2afc672279dd
+        childIds:
+        - b6b67a11-9aa1-4df7-bb59-d7b01366e645
+      - name: RunFromBomb
+        id: 5c875e77-6368-4178-8fc2-324c5b5222f1
+        position: {x: 608.8, y: 168.79999}
+        node:
+          rid: 2590371407877898324
+        references:
+        - fieldName: Action
+          value:
+            rid: 2590371407877898325
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - b6b67a11-9aa1-4df7-bb59-d7b01366e645
+        childIds:
+        - db250645-4794-40e0-83f3-2afc672279dd
+      - name: BombStopCharging
+        id: db250645-4794-40e0-83f3-2afc672279dd
+        position: {x: 338.4, y: 324.8}
+        node:
+          rid: 2590371407877898326
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5c875e77-6368-4178-8fc2-324c5b5222f1
+        childIds:
+        - ed67d957-8350-494c-8cfa-96950bee1768
+      - name: BombStartCharging
+        id: b6b67a11-9aa1-4df7-bb59-d7b01366e645
+        position: {x: 728.8, y: 375.19998}
+        node:
+          rid: 2590371407877898327
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ed67d957-8350-494c-8cfa-96950bee1768
+        childIds:
+        - 5c875e77-6368-4178-8fc2-324c5b5222f1
     - name: CombatFSM
       id: 5b4afe39-d4dc-4f10-bd35-4fc11be59257
       graph:
@@ -207,7 +282,7 @@ MonoBehaviour:
         - c8b7781b-ec4b-4317-a8f2-aa5359e341c1
       - name: CoverUnsafe
         id: f72d011e-4bd7-4730-905e-dec34a5c682d
-        position: {x: 2059.2, y: 11.200005}
+        position: {x: 1952, y: 20}
         node:
           rid: 8725330856855208084
         references:
@@ -225,79 +300,6 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
         childIds:
         - 2081fe08-f1ff-4bd0-94b9-66166d333581
-    - name: BaseStateMachine
-      id: 959a0f34-2e01-4e48-ba4f-1e9ce3b0ecc1
-      graph:
-        rid: 8725331092473380949
-      nodes:
-      - name: Wander
-        id: 97b4684a-7951-4fb3-ad32-33bec488422c
-        position: {x: 1105.6, y: 474.4}
-        node:
-          rid: 8725331092473380951
-        references:
-        - fieldName: Action
-          value:
-            rid: 8725331143199555584
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds: []
-        childIds:
-        - 40647a54-2b31-4070-baae-c4897e73e411
-        - 2d626d85-3cbf-4eae-8716-c917a2d1d89d
-      - name: Combat
-        id: ed67d957-8350-494c-8cfa-96950bee1768
-        position: {x: 461.6, y: 511.19998}
-        node:
-          rid: 8725331092473380950
-        references:
-        - fieldName: Action
-          value:
-            rid: 8725331095404937473
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 40647a54-2b31-4070-baae-c4897e73e411
-        childIds: []
-      - name: FarFromPlayer
-        id: 40647a54-2b31-4070-baae-c4897e73e411
-        position: {x: 827.2, y: 651.2}
-        node:
-          rid: 8725331092473380955
-        references:
-        - fieldName: Perception
-          value:
-            rid: 8725331144205926601
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 97b4684a-7951-4fb3-ad32-33bec488422c
-        childIds:
-        - ed67d957-8350-494c-8cfa-96950bee1768
-      - name: Sucess
-        id: 2d626d85-3cbf-4eae-8716-c917a2d1d89d
-        position: {x: 1084.8, y: 274.4}
-        node:
-          rid: 8725331146838638592
-        references:
-        - fieldName: Perception
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 97b4684a-7951-4fb3-ad32-33bec488422c
-        childIds: []
     - name: ShootBT
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -715,11 +717,32 @@ MonoBehaviour:
       targetNodeIds: []
     - name: CoverUnsafe
       targetNodeIds: []
+    - name: BombChargingPerception
+      targetNodeIds:
+      - b6b67a11-9aa1-4df7-bb59-d7b01366e645
+    - name: BombStopChargingPerception
+      targetNodeIds:
+      - db250645-4794-40e0-83f3-2afc672279dd
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2590371407877898324
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 2590371407877898325
+      type: {class: RunFromBomb, ns: , asm: Assembly-CSharp}
+      data:
+        runDistance: 10
+    - rid: 2590371407877898326
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 2590371407877898327
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
     - rid: 2751277377875345498
       type: {class: PlayWaitAction, ns: , asm: Assembly-CSharp}
       data:
@@ -922,13 +945,6 @@ MonoBehaviour:
     - rid: 8725331092473380950
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
-    - rid: 8725331092473380951
-      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data: 
-    - rid: 8725331092473380955
-      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: -1
     - rid: 8725331095404937459
       type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
@@ -1123,9 +1139,6 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 8725331143199555584
-      type: {class: WanderAroundAction, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 8725331143199555665
       type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
@@ -1135,24 +1148,6 @@ MonoBehaviour:
         check:
           componentName: DistanceEnemyAssetBehaviourRunner
           methodName: setCheckUnsafe
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 8725331144205926601
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: EnemyAI
-          methodName: seePlayer
         reset:
           componentName: 
           methodName: 
@@ -1214,11 +1209,6 @@ MonoBehaviour:
       data:
         TargetStatus: 2
         MaxIterations: -1
-    - rid: 8725331146838638592
-      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: 2
-        ExitStatus: 2
     - rid: 8725331147771609088
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

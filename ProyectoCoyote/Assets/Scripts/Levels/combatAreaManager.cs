@@ -3,6 +3,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -55,9 +56,9 @@ public class combatAreaManager : MonoBehaviour
     EnemyLockOn lockOn;
 
     IGameStateManager gameStateManager;
+ [SerializeField]   private NavMeshSurface updatableSurface;
+    [SerializeField] private int updatableSurfaceInterval = 60;
 
-
-    
     private void OnTriggerEnter(Collider other)
     {
       
@@ -122,7 +123,7 @@ public class combatAreaManager : MonoBehaviour
         deadEnemies = new List<Enemy>();
         
         functionalWaveDataList = new List<WaveData>();
-        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint,cactusSpawner, initCameraDirection));
+        functionalWaveDataList.Add(new WaveData(startEnemies,null,true,null,initCovers,initAmmo, respawnPoint,cactusSpawner, initCameraDirection,updatableSurface));
         functionalWaveDataList.AddRange(extraEnemyWaves);
         lockOn = FindAnyObjectByType<EnemyLockOn>();
     }
@@ -133,6 +134,11 @@ public class combatAreaManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U) && started && !finished)
         {
             ServiceLocator.Instance.Get<IEnemyManager>().DebugPositions();
+        }
+        if (currentWaveData != null && currentWaveData.updatableSurface != null && Time.frameCount % updatableSurfaceInterval == 0)
+        {
+          
+            currentWaveData.updatableSurface.UpdateNavMesh(currentWaveData.updatableSurface.navMeshData);
         }
     }
 
@@ -456,8 +462,10 @@ public class WaveData
    public bool waveFinished;
     public CactusSpawner spawner;
     public Vector3 initCameraDirection;
-   public WaveData(Enemy[] enemies, StoryAction storyAction, bool autoStart, GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint, CactusSpawner spawner = null, Vector3 initCameraDirection = default)
+    public NavMeshSurface updatableSurface;
+    public WaveData(Enemy[] enemies, StoryAction storyAction, bool autoStart, GameObject colliderTurnOffBefore, Cover[] covers, baseBullet[] ammo, Transform spawnpoint, CactusSpawner spawner = null, Vector3 initCameraDirection = default, NavMeshSurface updatableSurface = null)
     {
+
         this.enemies = enemies;
         this.beforeWavestoryAction = storyAction;
         this.autoStart = autoStart;
@@ -468,5 +476,6 @@ public class WaveData
         waveFinished = false;
         this.spawner = spawner;
         this.initCameraDirection = initCameraDirection;
+        this.updatableSurface = updatableSurface;
     }
 }

@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,7 +32,7 @@ public class RunToAmmo : UnityAction
         }
         if (isBomb)
         {
-            if (Time.frameCount % 5 == 0)
+            if (Time.frameCount % 10 == 0)
             {
                 agent.SetDestination(enemyRunner.currentAmmo.transform.position);
             }
@@ -81,37 +82,47 @@ public class RunToAmmo : UnityAction
         enemyRunner = enemyAI.GetComponent<BullEnemyAssetBehaviourRunner>();
         enemyRunner.currentAmmo = null;
         currentDist = int.MaxValue;
-        baseBullet bestAmmo = null;
-        baseBullet[] allBullets = enemy.CombatArea.getAllBullets();
-        if (allBullets != null)
+        if (enemyRunner._closestAmmo == null)
         {
-            foreach (baseBullet bul in allBullets)
-            {
-                if (bul.owner != null && bul.owner != enemy)
-                {
-                    continue;
-                }
-                float newDist = Vector3.Distance(bul.transform.position, enemyAI.transform.position);
-                if (bestAmmo == null || currentDist > newDist)
-                {
-                    currentDist = newDist;
-                    bestAmmo = bul;
-
-                }
-            }
+            enemyRunner.findClosestRock();
         }
-        if (bestAmmo == null)
+        if (enemyRunner._closestAmmo == null)
         {
             enemyRunner.hasAmmo = false;
             isReachable = false;
             return;
         }
-        if (agent.SetDestination(bestAmmo.transform.position))
+            //baseBullet bestAmmo = null;
+            //baseBullet[] allBullets = enemy.CombatArea.getAllBullets();
+            //if (allBullets != null)
+            //{
+            //    foreach (baseBullet bul in allBullets)
+            //    {
+            //        if (bul.owner != null && bul.owner != enemy)
+            //        {
+            //            continue;
+            //        }
+            //        float newDist = Vector3.Distance(bul.transform.position, enemyAI.transform.position);
+            //        if (bestAmmo == null || currentDist > newDist)
+            //        {
+            //            currentDist = newDist;
+            //            bestAmmo = bul;
+
+            //        }
+            //    }
+            //}
+            //if (bestAmmo == null)
+            //{
+            //    enemyRunner.hasAmmo = false;
+            //    isReachable = false;
+            //    return;
+            //}
+            if (agent.SetDestination(enemyRunner._closestAmmo.transform.position))
         {
             agent.updateRotation = true;
             isReachable = true;
             enemyRunner.hasAmmo = true;
-            enemyRunner.currentAmmo = bestAmmo;
+            enemyRunner.currentAmmo = enemyRunner._closestAmmo;
             enemyRunner.currentAmmo.setOwner(enemy);
 
             enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
@@ -124,6 +135,7 @@ public class RunToAmmo : UnityAction
         {
             isReachable = false;
             enemyRunner.hasAmmo = false;
+            enemyRunner.currentAmmo = null;
         }
 
     }

@@ -176,7 +176,7 @@ public abstract class AGameCharacter :MonoBehaviour
     }
 
     public abstract void Die();
-    private void Update()
+    protected virtual void Update()
     {
         foreach (var effect in activeEffects.ToArray())
         {
@@ -234,7 +234,7 @@ public abstract class AGameCharacter :MonoBehaviour
     }
     public void PlayAnimation(string stateName, bool idle = false)
     {
-
+        Debug.Log($"{name} playing animation: {stateName}");
         //if (stateName == "CombatIdle"&& "CombatIdle" == currentAnim)
         //{
         //   //anim.CrossFade(stateName,.1f);

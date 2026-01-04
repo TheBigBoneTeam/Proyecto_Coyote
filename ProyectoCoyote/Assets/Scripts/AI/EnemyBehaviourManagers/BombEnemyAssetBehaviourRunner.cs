@@ -12,7 +12,12 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 
 
     UnityEvent<BombEnemyAssetBehaviourRunner, bool> chargeAction;
-    
+
+    [SerializeField] float _chargingAdviseDistance;
+
+    [SerializeField] LayerMask _enemyMask;
+
+
     public BullEnemyAssetBehaviourRunner currentHeavy
     {
         get
@@ -64,6 +69,16 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         charging = true;
         chargeAction?.Invoke(this,true);
+        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, _chargingAdviseDistance, _enemyMask);
+        foreach (Collider target in nearbyTargets)
+        {
+        EnemyAssetBehaviourRunner enemyAsset = target.GetComponent<EnemyAssetBehaviourRunner>();
+            if (enemyAsset)
+            {
+                enemyAsset.BombCharging(this);
+            }
+        }
+
     }
     public override void restart()
     {

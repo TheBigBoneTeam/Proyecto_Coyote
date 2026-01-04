@@ -21,7 +21,7 @@ MonoBehaviour:
       nodes:
       - name: CombatBT
         id: 94fabb78-1297-46cb-9109-6e3ef00ab138
-        position: {x: 548, y: 190.4}
+        position: {x: 933.67676, y: 298.83783}
         node:
           rid: 5634289709124943963
         references:
@@ -33,12 +33,14 @@ MonoBehaviour:
         parentIds:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
         - 26e026ad-0dcf-4735-b858-e695e4aee4ec
+        - 393bd7f0-e43e-4e17-b04c-9e260fb213b9
         childIds:
         - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 872dd027-603a-4bd4-94ea-190430fb21c3
+        - 14537f94-a926-47ae-b02e-c668a7f33316
       - name: Reaction
         id: bef6d524-a7cc-43ac-93e1-9026c3e180af
-        position: {x: 829.8502, y: 708.4846}
+        position: {x: 488.84323, y: 860.65906}
         node:
           rid: 5634289709124943965
         references:
@@ -53,7 +55,7 @@ MonoBehaviour:
         - 952d107d-ad5f-4496-b6a6-0f45781bf631
       - name: ToReactionTransition (PUSH)
         id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 566.4413, y: 555.1788}
+        position: {x: 571.4351, y: 546.9955}
         node:
           rid: 5634289709124943967
         references:
@@ -73,7 +75,7 @@ MonoBehaviour:
         - bef6d524-a7cc-43ac-93e1-9026c3e180af
       - name: EndReaction
         id: 952d107d-ad5f-4496-b6a6-0f45781bf631
-        position: {x: 834.7851, y: 403.8116}
+        position: {x: 774.60675, y: 707.0697}
         node:
           rid: 8725330695958036570
         references:
@@ -93,7 +95,7 @@ MonoBehaviour:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
       - name: Counter
         id: 4045bf14-b074-48cd-857d-1ab4820ff453
-        position: {x: 229.94942, y: -352.24933}
+        position: {x: 671.82043, y: -367.50528}
         node:
           rid: 2751277282843951855
         references:
@@ -108,7 +110,7 @@ MonoBehaviour:
         - 26e026ad-0dcf-4735-b858-e695e4aee4ec
       - name: TCounterTransition(PUSH)
         id: 872dd027-603a-4bd4-94ea-190430fb21c3
-        position: {x: 225.14381, y: -46.839424}
+        position: {x: 900.7218, y: -138.85555}
         node:
           rid: 2751277282843951857
         references:
@@ -128,7 +130,7 @@ MonoBehaviour:
         - 4045bf14-b074-48cd-857d-1ab4820ff453
       - name: EndCounter
         id: 26e026ad-0dcf-4735-b858-e695e4aee4ec
-        position: {x: 508, y: -184}
+        position: {x: 659.31836, y: -44.564125}
         node:
           rid: 2751277282843951859
         references:
@@ -146,6 +148,61 @@ MonoBehaviour:
         - 4045bf14-b074-48cd-857d-1ab4820ff453
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: DefendFromBomb
+        id: 7fad8e05-1c08-43da-9d21-fb6046b75430
+        position: {x: 1829.6, y: 417.6}
+        node:
+          rid: 2590371397284135037
+        references:
+        - fieldName: Action
+          value:
+            rid: 2590371397284135044
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 14537f94-a926-47ae-b02e-c668a7f33316
+        childIds:
+        - 393bd7f0-e43e-4e17-b04c-9e260fb213b9
+      - name: BombStopCharge
+        id: 393bd7f0-e43e-4e17-b04c-9e260fb213b9
+        position: {x: 1393.6, y: 479.19998}
+        node:
+          rid: 2590371397284135041
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 7fad8e05-1c08-43da-9d21-fb6046b75430
+        childIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+      - name: BombStartCharge
+        id: 14537f94-a926-47ae-b02e-c668a7f33316
+        position: {x: 1401.6, y: 286.4}
+        node:
+          rid: 2590371397284135043
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 94fabb78-1297-46cb-9109-6e3ef00ab138
+        childIds:
+        - 7fad8e05-1c08-43da-9d21-fb6046b75430
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -414,11 +471,31 @@ MonoBehaviour:
     - name: EndQueue
       targetNodeIds:
       - 8493d51c-cd68-4807-a7df-bec4561c1ff5
+    - name: BombStopChargingPerception
+      targetNodeIds:
+      - 393bd7f0-e43e-4e17-b04c-9e260fb213b9
+    - name: BombChargingPerception
+      targetNodeIds:
+      - 14537f94-a926-47ae-b02e-c668a7f33316
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2590371397284135037
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 2590371397284135041
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 2590371397284135043
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 2590371397284135044
+      type: {class: DefendFromBomb, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 2751277282843951855
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -635,7 +712,8 @@ MonoBehaviour:
       data: 
     - rid: 8725330898659311742
       type: {class: LookAtPlayerAction, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        infinite: 0
     - rid: 8725330898659311743
       type: {class: RandomActionAction, ns: , asm: Assembly-CSharp}
       data:

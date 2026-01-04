@@ -10,12 +10,19 @@ public class Player : AGameCharacter
     EnemyLockOn lockOn;
     Gancho hook;
     [SerializeField] int parryHeal = 1;
+    [SerializeField] int _closeEnemies = 0;
+    [SerializeField] float CloseEnemyCalculationIntervalThreshold = 2;
+    [SerializeField] float _currentCloseEnemyCalculationInterval;
+
+    [SerializeField] float _closeEnemyDistance;
+    [SerializeField] LayerMask _enemyMask;
+
 
     public override void Die()
     {
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-
+        _currentCloseEnemyCalculationInterval = _closeEnemies = 0;
         // gameObject.SetActive(false);
         dieEvent.Invoke(this);
         playerMovement.setCanAttack(false);
@@ -60,6 +67,7 @@ public class Player : AGameCharacter
     {
         gameObject.SetActive(true);
         base.restart();
+        _currentCloseEnemyCalculationInterval= _closeEnemies = 0;
         GetComponent<Rigidbody>().isKinematic = false;
         playerMovement.setCanAttack(true);
         playerMovement.setCanMove(true);
@@ -115,5 +123,29 @@ public class Player : AGameCharacter
     {
         print("setSpawnPoint");
         startPos = respawnPoint;
+    }
+
+    internal int GetCloseEnemies()
+    {
+        if (_currentCloseEnemyCalculationInterval <= 0)
+        {
+            CalculateCloseEnemies();
+            _currentCloseEnemyCalculationInterval = CloseEnemyCalculationIntervalThreshold;
+        }
+        return _closeEnemies;
+    }
+
+    private void CalculateCloseEnemies()
+    {
+        print("CalculateCloseEnemies");
+        Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, _closeEnemyDistance, _enemyMask);
+        _closeEnemies = nearbyTargets.Length;
+
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        _currentCloseEnemyCalculationInterval = Mathf.Max(0, _currentCloseEnemyCalculationInterval-=Time.deltaTime);
     }
 }

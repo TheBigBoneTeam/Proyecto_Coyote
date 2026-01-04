@@ -1,14 +1,26 @@
 using BehaviourAPI.Core;
+using System.ComponentModel;
+using Unity.Mathematics.Geometry;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements.Experimental;
 
 public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
 {
-  [SerializeField]  int ammo;
+    [SerializeField] int ammo;
 
-   [SerializeField] baseBullet _currentAmmo;
-  public baseBullet currentAmmo
+    [SerializeField] baseBullet _currentAmmo;
+
+    [field:SerializeField] public baseBullet _closestAmmo { get; private set; }
+    [SerializeField] float _closestAmmoDistance;
+    [SerializeField] float _distanceToPlayer;
+
+    [SerializeField] LayerMask environmentLayer;
+
+    [SerializeField] int frameIntervalForDistanceCalculation;
+
+    public baseBullet currentAmmo
     {
         get
         {
@@ -44,6 +56,8 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     public override void restart()
     {
         base.restart();
+        _closestAmmoDistance = float.MaxValue;
+        _closestAmmo = null;
         enemy.CombatArea.subscribeToAmmoChange(checkAmmoVoid);
     }
     protected override void OnDisable()
@@ -67,7 +81,21 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         }
         base.OnDisable();
     }
+    protected override void OnUpdated()
+    {
+        base.OnUpdated();
 
+        if(gameStateManager.getState() != GameState.Combat)
+        {
+            return;
+        }
+        if (Time.frameCount % frameIntervalForDistanceCalculation == 0)
+        {
+            findClosestRock();
+            _distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        }
+    }
     void checkAmmoVoid()
     {
         checkAmmo();
@@ -83,18 +111,102 @@ public class BullEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         hasAmmo = true;
         return Status.Success;
     }
+    public float DistanceToPlayer() {
+        float f = _distanceToPlayer;
+        return f;
+    
+    }
+    public float DistanceToClosestRock()
+    {
+        if (_closestAmmo != null)
+        {
+            return _closestAmmoDistance;
+        }
+        else
+        {
+            return int.MaxValue;
+        }
+    }
 
     public bool closeToPlayer()
     {
-      return  Vector3.Distance(player.transform.position, transform.position) <=meleeDistance;
+      return _distanceToPlayer <= meleeDistance;
     }
     public bool awayFromPlayer()
     {
-        return Vector3.Distance(player.transform.position, transform.position) > meleeDistance;
+        return _distanceToPlayer > meleeDistance;
     }
     public bool hasAnyAmmo()
     {
         return hasAmmo;
+    }
+    public float EnemyNum()
+    {
+        print("EnemyNum");
+
+      return  player.GetCloseEnemies();
+    }
+ public   void findClosestRock()
+    {
+        print("FindRock");
+        float currentDist = float.MaxValue;
+        baseBullet bestAmmo = null;
+        RaycastHit hit;
+        Vector3 dir;
+        //Primero se calcula el ammo actual por si es la mejor opcion
+        if (currentAmmo != null)
+        {
+            dir = _currentAmmo.transform.position - player.transform.position;
+            if (Physics.Raycast(player.transform.position, dir, out hit, dir.magnitude, environmentLayer))
+            {
+
+                if (hit.transform == player.transform)
+                {
+                    currentDist = Vector3.SqrMagnitude(_currentAmmo.transform.position - transform.position);
+                    bestAmmo = _currentAmmo;
+                }
+            }
+        }
+        baseBullet[] allBullets = enemy.CombatArea.getAllBullets();
+        if (allBullets != null)
+        {
+            foreach (baseBullet bul in allBullets)
+            {
+                if (bul.owner != null && bul.owner != enemy)
+                {
+                    continue;
+                }
+                dir = player.transform.position - bul.transform.position;
+                float newDist = Vector3.SqrMagnitude(bul.transform.position - transform.position);
+                Debug.DrawRay(player.transform.position, dir, Color.magenta, 2);
+
+                print($"newDist{newDist}");
+                if (bestAmmo == null || currentDist > newDist)
+                {
+                    print("TRYHIT");
+                    if (Physics.Raycast(bul.transform.position, dir, out hit, dir.magnitude, environmentLayer))
+                    {
+                        print($"hit{hit.transform.name}");
+
+                        if (hit.transform == player.transform)
+                        {
+                            currentDist = newDist;
+                            bestAmmo = bul;
+                        }
+                    }
+                }
+            }
+        }
+        if (bestAmmo == null)
+        {
+            hasAmmo = false;
+            _closestAmmoDistance = float.MaxValue;
+            _closestAmmo = null;
+            return;
+        }
+        hasAmmo = true;
+        _closestAmmoDistance = Mathf.Sqrt(currentDist);
+        _closestAmmo = bestAmmo;
     }
 
     void BombEnemyDie(AGameCharacter bombEnemy)

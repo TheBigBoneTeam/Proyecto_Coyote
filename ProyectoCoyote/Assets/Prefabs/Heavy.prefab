@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 0
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!114 &1637597938719529342
@@ -310,6 +311,12 @@ MonoBehaviour:
   System: {fileID: 11400000, guid: 67d5602f04d394a4abab56359ca9b063, type: 2}
   ammo: 0
   _currentAmmo: {fileID: 0}
+  _closestAmmo: {fileID: 0}
+  _closestAmmoDistance: 0
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 1032
+  frameIntervalForDistanceCalculation: 30
   hasAmmo: 0
   meleeDistance: 5.3
 --- !u!114 &7775954666045194740
@@ -1211,6 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionValue: 0
+  character: {fileID: 0}
 --- !u!114 &177913068287561466
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -192,6 +192,7 @@ MonoBehaviour:
   blockParticlesPosition: {fileID: 0}
   healthDrop: 0
   spawnParticles: {fileID: 8942432110973142088}
+  dieParticles: {fileID: 0}
   <dead>k__BackingField: 0
 --- !u!114 &7063492848833669818
 MonoBehaviour:
@@ -238,7 +239,12 @@ MonoBehaviour:
     debugStatusChanges: 0
     identifier: 
   System: {fileID: 11400000, guid: c7ae1267cf1840f43b9bd222f9b69b1b, type: 2}
+  _currenteBomb: {fileID: 0}
   _currentHeavy: {fileID: 0}
+  _chargingAdviseDistance: 8
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 16777216
   <charging>k__BackingField: 0
 --- !u!195 &8885091992248565310
 NavMeshAgent:
@@ -275,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHooked: 1
+  canGoToTarget: 1
   dodge: 0
   canvasGroup: {fileID: 0}
 --- !u!114 &4351521750099394436
@@ -1044,6 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionValue: 0
+  character: {fileID: 0}
 --- !u!95 &610226567119405151
 Animator:
   serializedVersion: 7

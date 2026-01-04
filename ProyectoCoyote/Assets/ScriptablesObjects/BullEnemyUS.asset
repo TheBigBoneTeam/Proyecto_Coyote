@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db249917b7c50574eaa600c74aff1437, type: 3}
-  m_Name: BullEnemy
+  m_Name: BullEnemyUS
   m_EditorClassIdentifier: 
   data:
     graphs:
@@ -304,6 +304,137 @@ MonoBehaviour:
         - 95c47532-35fc-48d9-95f9-3d5227a129d8
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
+    - name: utilitySystem
+      id: 4761a5d0-ff22-4756-9648-719c4355f7ef
+      graph:
+        rid: 2751277851448967171
+      nodes:
+      - name: DistanceToPlayer
+        id: 2535004c-0902-4b2b-9e5f-d0238c5026ae
+        position: {x: 0, y: 0}
+        node:
+          rid: 2751277851448967178
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2751277851448967179
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+        - 258aa461-c9e9-4a69-897b-fc7bbcada343
+        childIds: []
+      - name: 
+        id: 421b2904-116c-4f26-926e-bf19ad7bd46b
+        position: {x: 1241.6, y: 196}
+        node:
+          rid: 2751277851448967273
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277851448967275
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds: []
+        childIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+      - name: 
+        id: b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
+        position: {x: 1249.6, y: -94.399994}
+        node:
+          rid: 2751277851448967353
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277851448967356
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds: []
+        childIds:
+        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+      - name: DistanceToClosestRock
+        id: 43b74fb1-cf37-4106-acba-26b0d0b281ba
+        position: {x: 16, y: 241.6}
+        node:
+          rid: 2751277851448967448
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2751277851448967449
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - af5473d4-3b9f-41a9-8870-9683d4d691c1
+        childIds: []
+      - name: 
+        id: af5473d4-3b9f-41a9-8870-9683d4d691c1
+        position: {x: 286.4, y: 242.4}
+        node:
+          rid: 2751277851448967455
+        references: []
+        parentIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        childIds:
+        - 43b74fb1-cf37-4106-acba-26b0d0b281ba
+      - name: 
+        id: ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        position: {x: 602.4, y: 412}
+        node:
+          rid: 2751277851448967456
+        references: []
+        parentIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+        childIds:
+        - af5473d4-3b9f-41a9-8870-9683d4d691c1
+        - af7f24b6-90b4-4410-8d3f-6ff6ae67750d
+      - name: EnemiesCloseTo
+        id: af7f24b6-90b4-4410-8d3f-6ff6ae67750d
+        position: {x: 16, y: 503.99997}
+        node:
+          rid: 2590371369833463808
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2590371369833463809
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        childIds: []
+      - name: 
+        id: 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+        position: {x: 586.4, y: -102.399994}
+        node:
+          rid: 2590371393397063683
+        references: []
+        parentIds:
+        - b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
+        childIds:
+        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
+      - name: 
+        id: 443dc067-0817-4a86-aa96-b490c7d48a2c
+        position: {x: 909.6, y: 208}
+        node:
+          rid: 2590371397284135024
+        references: []
+        parentIds:
+        - 421b2904-116c-4f26-926e-bf19ad7bd46b
+        childIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        - 258aa461-c9e9-4a69-897b-fc7bbcada343
+      - name: 
+        id: 258aa461-c9e9-4a69-897b-fc7bbcada343
+        position: {x: 578.4, y: 52.800003}
+        node:
+          rid: 2590371397284135026
+        references: []
+        parentIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+        childIds:
+        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -401,7 +532,7 @@ MonoBehaviour:
         - e17af590-7b99-4a7a-a966-e2e0374970a6
         childIds:
         - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-      - name: 
+      - name: OutsideAttack
         id: c6754b3b-9110-43dd-93e9-b4e935245bea
         position: {x: 616, y: 1416}
         node:
@@ -415,7 +546,7 @@ MonoBehaviour:
         parentIds:
         - e17af590-7b99-4a7a-a966-e2e0374970a6
         childIds: []
-      - name: 
+      - name: CombatIdle
         id: 46adc75b-30e6-417a-9567-dd896a544bd3
         position: {x: 932, y: 1324}
         node:
@@ -548,7 +679,7 @@ MonoBehaviour:
         parentIds:
         - cea96dd3-11bb-42f6-ab59-1b77eb9a8c98
         childIds: []
-      - name: 
+      - name: ReturnEverything
         id: 009ba439-8114-4002-8009-42dd1ffdf278
         position: {x: 1320.1195, y: 1110.847}
         node:
@@ -556,7 +687,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 2751277265555030105
+            rid: 2590371436845596761
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -589,7 +720,7 @@ MonoBehaviour:
         - 43320e76-dc10-4450-89e7-3e7583e7f40a
       - name: 
         id: 4995586a-af47-4234-a8f3-90ea95114519
-        position: {x: 437.6, y: 529.60004}
+        position: {x: 378.4, y: 555.2}
         node:
           rid: 8725330871884447830
         references:
@@ -634,27 +765,135 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2590371369833463808
+      type: {class: VariableFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        min: 0
+        max: 2
+    - rid: 2590371369833463809
+      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        componentName: BullEnemyAssetBehaviourRunner
+        methodName: EnemyNum
+    - rid: 2590371393397063683
+      type: {class: UnityCurveFactor, ns: BehaviourAPI.UnityToolkit, asm: BehaviourAPI.UnityToolkit}
+      data:
+        PullingEnabled: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: -0.053333282
+            value: 0.99713135
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.3130732
+            value: 0.84652305
+            inSlope: -0.46124086
+            outSlope: -0.46124086
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.99563825
+            value: 0.006660819
+            inSlope: -1.9526062
+            outSlope: -1.9526062
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 2590371397284135024
+      type: {class: MinFusionFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+    - rid: 2590371397284135026
+      type: {class: ThresholdCurveFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        Threshold: 0.1
+        Inverted: 0
+    - rid: 2590371436845596761
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
     - rid: 2751277265555030104
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 2751277265555030105
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+    - rid: 2751277851448967171
+      type: {class: UtilitySystem, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
       data:
-        start:
-          componentName: EnemyAI
-          methodName: forcedReturnAttackPriority
-        update:
-          componentName: EnemyAI
-          methodName: forceSuccess
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
+        Inertia: 1.1
+    - rid: 2751277851448967178
+      type: {class: VariableFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        min: 0
+        max: 50
+    - rid: 2751277851448967179
+      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        componentName: BullEnemyAssetBehaviourRunner
+        methodName: DistanceToPlayer
+    - rid: 2751277851448967273
+      type: {class: UtilityAction, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        FinishSystemOnComplete: 0
+    - rid: 2751277851448967275
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 1
+        InterruptOptions: 2
+        subgraphId: 4299ebf5-f9aa-4d2b-a825-fae94f436950
+    - rid: 2751277851448967353
+      type: {class: UtilityAction, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        FinishSystemOnComplete: 0
+    - rid: 2751277851448967356
+      type: {class: SubgraphAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        ExecuteOnLoop: 1
+        InterruptOptions: 2
+        subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
+    - rid: 2751277851448967448
+      type: {class: VariableFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        min: 0
+        max: 30
+    - rid: 2751277851448967449
+      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        componentName: BullEnemyAssetBehaviourRunner
+        methodName: DistanceClosestRock
+    - rid: 2751277851448967455
+      type: {class: ExponentialCurveFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        Exponent: -2.57
+        DespX: -1.02
+        DespY: 0
+    - rid: 2751277851448967456
+      type: {class: WeightedFusionFactor, ns: BehaviourAPI.UtilitySystems, asm: BehaviourAPI.UtilitySystems}
+      data:
+        PullingEnabled: 1
+        Weights:
+        - 0.8
+        - 0.2
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

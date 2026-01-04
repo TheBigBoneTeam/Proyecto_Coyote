@@ -1,5 +1,6 @@
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +10,7 @@ public class RunToAmmo : UnityAction
     NavMeshAgent agent;
     EnemyAI enemyAI;
     bool stopped;
+    
     BullEnemyAssetBehaviourRunner enemyRunner;
     float currentDist;
     bool isReachable;
@@ -22,7 +24,7 @@ public class RunToAmmo : UnityAction
         //{
         //    return Status.None;
         //}
-        if (!isReachable || enemyRunner.currentAmmo == null)
+        if (!isReachable || enemyRunner.currentAmmo == null || enemyRunner._closestAmmo == null)
         {
             return Status.Failure;
         }
@@ -37,6 +39,23 @@ public class RunToAmmo : UnityAction
                 agent.SetDestination(enemyRunner.currentAmmo.transform.position);
             }
         }
+        else
+        {
+            if (enemyRunner._closestAmmo != enemyRunner.currentAmmo)
+            {
+                NavMeshPath path = new NavMeshPath();
+                if (agent.CalculatePath(enemyRunner._closestAmmo.transform.position, path) &&
+                      path.status == NavMeshPathStatus.PathComplete)
+                {
+                    agent.SetDestination(enemyRunner._closestAmmo.transform.position);
+                    enemyRunner.currentAmmo.setOwner(null);
+                    enemyRunner.currentAmmo = enemyRunner._closestAmmo;
+                    enemyRunner.currentAmmo.setOwner(enemy);
+                    enemy.CombatArea.changeInAmmoOwnership();
+                }
+            }
+        }
+           
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)

@@ -14,6 +14,137 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     graphs:
+    - name: utilitySystem
+      id: 4761a5d0-ff22-4756-9648-719c4355f7ef
+      graph:
+        rid: 2751277851448967171
+      nodes:
+      - name: DistanceToPlayer
+        id: 2535004c-0902-4b2b-9e5f-d0238c5026ae
+        position: {x: 0, y: 0}
+        node:
+          rid: 2751277851448967178
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2751277851448967179
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+        - 258aa461-c9e9-4a69-897b-fc7bbcada343
+        childIds: []
+      - name: 
+        id: 421b2904-116c-4f26-926e-bf19ad7bd46b
+        position: {x: 1241.6, y: 196}
+        node:
+          rid: 2751277851448967273
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277851448967275
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds: []
+        childIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+      - name: 
+        id: b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
+        position: {x: 1249.6, y: -94.399994}
+        node:
+          rid: 2751277851448967353
+        references:
+        - fieldName: Action
+          value:
+            rid: 2751277851448967356
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds: []
+        childIds:
+        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+      - name: DistanceToClosestRock
+        id: 43b74fb1-cf37-4106-acba-26b0d0b281ba
+        position: {x: 16, y: 241.6}
+        node:
+          rid: 2751277851448967448
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2751277851448967449
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - af5473d4-3b9f-41a9-8870-9683d4d691c1
+        childIds: []
+      - name: 
+        id: af5473d4-3b9f-41a9-8870-9683d4d691c1
+        position: {x: 286.4, y: 242.4}
+        node:
+          rid: 2751277851448967455
+        references: []
+        parentIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        childIds:
+        - 43b74fb1-cf37-4106-acba-26b0d0b281ba
+      - name: 
+        id: ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        position: {x: 602.4, y: 412}
+        node:
+          rid: 2751277851448967456
+        references: []
+        parentIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+        childIds:
+        - af5473d4-3b9f-41a9-8870-9683d4d691c1
+        - af7f24b6-90b4-4410-8d3f-6ff6ae67750d
+      - name: EnemiesCloseTo
+        id: af7f24b6-90b4-4410-8d3f-6ff6ae67750d
+        position: {x: 16, y: 503.99997}
+        node:
+          rid: 2590371369833463808
+        references:
+        - fieldName: Variable
+          value:
+            rid: 2590371369833463809
+          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        childIds: []
+      - name: 
+        id: 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
+        position: {x: 586.4, y: -102.399994}
+        node:
+          rid: 2590371393397063683
+        references: []
+        parentIds:
+        - b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
+        childIds:
+        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
+      - name: 
+        id: 443dc067-0817-4a86-aa96-b490c7d48a2c
+        position: {x: 909.6, y: 208}
+        node:
+          rid: 2590371397284135024
+        references: []
+        parentIds:
+        - 421b2904-116c-4f26-926e-bf19ad7bd46b
+        childIds:
+        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
+        - 258aa461-c9e9-4a69-897b-fc7bbcada343
+      - name: 
+        id: 258aa461-c9e9-4a69-897b-fc7bbcada343
+        position: {x: 578.4, y: 52.800003}
+        node:
+          rid: 2590371397284135026
+        references: []
+        parentIds:
+        - 443dc067-0817-4a86-aa96-b490c7d48a2c
+        childIds:
+        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
     - name: CombatFSM
       id: 5b4afe39-d4dc-4f10-bd35-4fc11be59257
       graph:
@@ -304,143 +435,12 @@ MonoBehaviour:
         - 95c47532-35fc-48d9-95f9-3d5227a129d8
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
-    - name: utilitySystem
-      id: 4761a5d0-ff22-4756-9648-719c4355f7ef
-      graph:
-        rid: 2751277851448967171
-      nodes:
-      - name: DistanceToPlayer
-        id: 2535004c-0902-4b2b-9e5f-d0238c5026ae
-        position: {x: 0, y: 0}
-        node:
-          rid: 2751277851448967178
-        references:
-        - fieldName: Variable
-          value:
-            rid: 2751277851448967179
-          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        parentIds:
-        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
-        - 258aa461-c9e9-4a69-897b-fc7bbcada343
-        childIds: []
-      - name: 
-        id: 421b2904-116c-4f26-926e-bf19ad7bd46b
-        position: {x: 1241.6, y: 196}
-        node:
-          rid: 2751277851448967273
-        references:
-        - fieldName: Action
-          value:
-            rid: 2751277851448967275
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds: []
-        childIds:
-        - 443dc067-0817-4a86-aa96-b490c7d48a2c
-      - name: 
-        id: b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
-        position: {x: 1249.6, y: -94.399994}
-        node:
-          rid: 2751277851448967353
-        references:
-        - fieldName: Action
-          value:
-            rid: 2751277851448967356
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds: []
-        childIds:
-        - 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
-      - name: DistanceToClosestRock
-        id: 43b74fb1-cf37-4106-acba-26b0d0b281ba
-        position: {x: 16, y: 241.6}
-        node:
-          rid: 2751277851448967448
-        references:
-        - fieldName: Variable
-          value:
-            rid: 2751277851448967449
-          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        parentIds:
-        - af5473d4-3b9f-41a9-8870-9683d4d691c1
-        childIds: []
-      - name: 
-        id: af5473d4-3b9f-41a9-8870-9683d4d691c1
-        position: {x: 286.4, y: 242.4}
-        node:
-          rid: 2751277851448967455
-        references: []
-        parentIds:
-        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
-        childIds:
-        - 43b74fb1-cf37-4106-acba-26b0d0b281ba
-      - name: 
-        id: ee2e773a-db10-4d98-8af5-1f44d1aaf23a
-        position: {x: 602.4, y: 412}
-        node:
-          rid: 2751277851448967456
-        references: []
-        parentIds:
-        - 443dc067-0817-4a86-aa96-b490c7d48a2c
-        childIds:
-        - af5473d4-3b9f-41a9-8870-9683d4d691c1
-        - af7f24b6-90b4-4410-8d3f-6ff6ae67750d
-      - name: EnemiesCloseTo
-        id: af7f24b6-90b4-4410-8d3f-6ff6ae67750d
-        position: {x: 16, y: 503.99997}
-        node:
-          rid: 2590371369833463808
-        references:
-        - fieldName: Variable
-          value:
-            rid: 2590371369833463809
-          fieldType: System.Func`1[[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        parentIds:
-        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
-        childIds: []
-      - name: 
-        id: 51fce57e-bdd0-4265-9abc-a3f2e52f4a31
-        position: {x: 586.4, y: -102.399994}
-        node:
-          rid: 2590371393397063683
-        references: []
-        parentIds:
-        - b7f51bc7-6a99-4b5a-8f91-e959c3dbeaec
-        childIds:
-        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
-      - name: 
-        id: 443dc067-0817-4a86-aa96-b490c7d48a2c
-        position: {x: 909.6, y: 208}
-        node:
-          rid: 2590371397284135024
-        references: []
-        parentIds:
-        - 421b2904-116c-4f26-926e-bf19ad7bd46b
-        childIds:
-        - ee2e773a-db10-4d98-8af5-1f44d1aaf23a
-        - 258aa461-c9e9-4a69-897b-fc7bbcada343
-      - name: 
-        id: 258aa461-c9e9-4a69-897b-fc7bbcada343
-        position: {x: 578.4, y: 52.800003}
-        node:
-          rid: 2590371397284135026
-        references: []
-        parentIds:
-        - 443dc067-0817-4a86-aa96-b490c7d48a2c
-        childIds:
-        - 2535004c-0902-4b2b-9e5f-d0238c5026ae
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
         rid: 5634289337929826421
       nodes:
-      - name: 
+      - name: Loop
         id: 0c87ccc8-af40-4e16-944a-ea081b271210
         position: {x: 187.5, y: 0}
         node:
@@ -517,7 +517,7 @@ MonoBehaviour:
         childIds:
         - 7d66ccd3-ba12-450c-b7f5-2cc610d69996
         - c6754b3b-9110-43dd-93e9-b4e935245bea
-      - name: 
+      - name: CheckAttack
         id: 7d66ccd3-ba12-450c-b7f5-2cc610d69996
         position: {x: 300, y: 1400}
         node:
@@ -560,7 +560,7 @@ MonoBehaviour:
         parentIds:
         - cdabab6c-c10c-4cc8-bc6b-56a1b4eb156b
         childIds: []
-      - name: 
+      - name: Sequence
         id: 6ba5aca3-5ba1-4151-b5d3-1eef56d24cee
         position: {x: 187.5, y: 200}
         node:
@@ -571,7 +571,7 @@ MonoBehaviour:
         childIds:
         - a0e233ef-b556-4140-932f-9bed26f5ae1b
         - c8fd6ac1-897a-4952-9311-3b687ee8e9b7
-      - name: 
+      - name: TrueFalseranchNode
         id: c8fd6ac1-897a-4952-9311-3b687ee8e9b7
         position: {x: 385.6, y: 416}
         node:
@@ -587,7 +587,7 @@ MonoBehaviour:
         childIds:
         - cea96dd3-11bb-42f6-ab59-1b77eb9a8c98
         - 227f0383-bd0f-4690-9ec1-19a7099c15ce
-      - name: 
+      - name: waitforendaction
         id: f937cb05-dc02-43e4-a47e-0f8aeb3d7cad
         position: {x: -150, y: 800}
         node:
@@ -613,7 +613,7 @@ MonoBehaviour:
         - f937cb05-dc02-43e4-a47e-0f8aeb3d7cad
         - 420a3c76-e58e-4154-a841-fca6c32b3be5
         - ab1b0ff4-6d0c-4c58-a140-0002d5fc357d
-      - name: 
+      - name: forcereturnattackpri
         id: 420a3c76-e58e-4154-a841-fca6c32b3be5
         position: {x: 107.2, y: 805.60004}
         node:
@@ -621,7 +621,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330877414900093
+            rid: 2590371436845596803
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -638,7 +638,7 @@ MonoBehaviour:
         childIds:
         - 0c525003-1308-4130-96b1-d813967e58c5
         - 8493d51c-cd68-4807-a7df-bec4561c1ff5
-      - name: 
+      - name: AttackSequence
         id: cdabab6c-c10c-4cc8-bc6b-56a1b4eb156b
         position: {x: 600, y: 1000}
         node:
@@ -665,7 +665,7 @@ MonoBehaviour:
         parentIds:
         - cdabab6c-c10c-4cc8-bc6b-56a1b4eb156b
         childIds: []
-      - name: 
+      - name: returnKungFuPoint
         id: ab1b0ff4-6d0c-4c58-a140-0002d5fc357d
         position: {x: 353.6, y: 804.80005}
         node:
@@ -824,6 +824,12 @@ MonoBehaviour:
         Threshold: 0.1
         Inverted: 0
     - rid: 2590371436845596761
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
+    - rid: 2590371436845596803
       type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
         method:
@@ -1137,24 +1143,6 @@ MonoBehaviour:
     - rid: 8725330877414900092
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725330877414900093
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: EnemyAI
-          methodName: forcedReturnAttackPriority
-        update:
-          componentName: EnemyAI
-          methodName: forceSuccess
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330877414900094
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:

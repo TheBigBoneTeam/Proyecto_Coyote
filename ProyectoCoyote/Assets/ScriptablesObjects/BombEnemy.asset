@@ -31,69 +31,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 952d107d-ad5f-4496-b6a6-0f45781bf631
         - a90778d2-d71d-4454-b5be-43c1f0a50e4c
         - 8daa27b6-cbfa-42d8-aa3f-2f4fc9f73d53
         childIds:
-        - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
         - 100bad72-ba66-4ab8-ba1e-b678305f9d8c
         - 9487638a-f6b2-4b49-a222-ac5ef59b2e20
-        - 56b16f18-2c95-4ba5-b309-22cf40133c9b
-      - name: Reaction
-        id: bef6d524-a7cc-43ac-93e1-9026c3e180af
-        position: {x: 1137.6654, y: 963.0591}
-        node:
-          rid: 5634289709124943965
-        references:
-        - fieldName: Action
-          value:
-            rid: 8725330696293843030
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        childIds:
-        - 952d107d-ad5f-4496-b6a6-0f45781bf631
-      - name: ToReactionTransition (PUSH)
-        id: 39df9dc3-e35c-4caa-a50f-8caf3d067aa3
-        position: {x: 949.29224, y: 708.01874}
-        node:
-          rid: 5634289709124943967
-        references:
-        - fieldName: Perception
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 94fabb78-1297-46cb-9109-6e3ef00ab138
-        childIds:
-        - bef6d524-a7cc-43ac-93e1-9026c3e180af
-      - name: EndReaction
-        id: 952d107d-ad5f-4496-b6a6-0f45781bf631
-        position: {x: 1222.1157, y: 661.1536}
-        node:
-          rid: 8725330695958036570
-        references:
-        - fieldName: Perception
-          value:
-            rid: 8725330696293843330
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - bef6d524-a7cc-43ac-93e1-9026c3e180af
-        childIds:
-        - 94fabb78-1297-46cb-9109-6e3ef00ab138
       - name: GoTowardHeavy
         id: ee188053-6bca-4f67-ac7f-db640ded7a7f
         position: {x: 575.88416, y: -309.71844}
@@ -170,7 +112,7 @@ MonoBehaviour:
         - ee188053-6bca-4f67-ac7f-db640ded7a7f
         childIds:
         - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
-      - name: End
+      - name: Fluying
         id: cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
         position: {x: 1026.4, y: -583.19995}
         node:
@@ -208,7 +150,7 @@ MonoBehaviour:
         - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
       - name: 
         id: 8daa27b6-cbfa-42d8-aa3f-2f4fc9f73d53
-        position: {x: 1058.4, y: -278.4}
+        position: {x: 1076, y: -256.8}
         node:
           rid: 8725331017162032317
         references:
@@ -226,25 +168,6 @@ MonoBehaviour:
         - cb62d0a4-0cf3-4bb6-8bb8-45449885b29b
         childIds:
         - 94fabb78-1297-46cb-9109-6e3ef00ab138
-      - name: Die
-        id: 56b16f18-2c95-4ba5-b309-22cf40133c9b
-        position: {x: 1520.3461, y: 263.44202}
-        node:
-          rid: 2751277335337763063
-        references:
-        - fieldName: Perception
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 94fabb78-1297-46cb-9109-6e3ef00ab138
-        childIds: []
     - name: newbehaviourgraph
       id: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
       graph:
@@ -326,11 +249,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2751277335337763063
-      type: {class: ExitTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: 2
-        ExitStatus: 8
     - rid: 5634289337929826421
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -349,38 +267,6 @@ MonoBehaviour:
         ExecuteOnLoop: 0
         InterruptOptions: 2
         subgraphId: 1c46cee5-8765-498a-83f7-eb14c8bfedf8
-    - rid: 5634289709124943965
-      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data: 
-    - rid: 5634289709124943967
-      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: 0
-    - rid: 8725330695958036570
-      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
-      data:
-        StatusFlags: -1
-    - rid: 8725330696293843030
-      type: {class: DoReactionAction, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 8725330696293843330
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: EnemyAI
-          methodName: notDuringReactCounter
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330803746931430
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:

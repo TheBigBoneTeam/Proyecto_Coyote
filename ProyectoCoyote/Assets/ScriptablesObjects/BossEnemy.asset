@@ -160,9 +160,9 @@ MonoBehaviour:
         parentIds: []
         childIds:
         - 9142a11b-35bb-4f90-8b29-df26b1552395
-      - name: AttackB
+      - name: RandomAttack+Learn
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
-        position: {x: 516, y: 1256.8}
+        position: {x: 328, y: 1608}
         node:
           rid: 5634289356226429027
         references:
@@ -172,7 +172,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 79061932-755c-4921-a0f5-52ce3929df0d
+        - ff059b24-2ba4-4324-9e8c-f46233f00872
         childIds: []
       - name: walkToPlayerCircle
         id: a0e233ef-b556-4140-932f-9bed26f5ae1b
@@ -238,10 +238,10 @@ MonoBehaviour:
         - 0c525003-1308-4130-96b1-d813967e58c5
         childIds:
         - ba17d699-bd12-4c32-bbbd-155b04fe45b3
-        - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
         - 3bc457a9-232f-4a46-b166-2707b38af398
         - bbc38f68-6c51-4e06-b40b-4f4265a05ce9
         - 437c38bf-f55a-4bf6-bcdd-f4c5af197169
+        - c737f6d8-30e0-431f-a5d6-72d82299f1de
       - name: 
         id: 9142a11b-35bb-4f90-8b29-df26b1552395
         position: {x: 187.5, y: 200}
@@ -378,6 +378,102 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 79061932-755c-4921-a0f5-52ce3929df0d
+        childIds: []
+      - name: 
+        id: c737f6d8-30e0-431f-a5d6-72d82299f1de
+        position: {x: 516, y: 1248}
+        node:
+          rid: 2590371475715260551
+        references: []
+        parentIds:
+        - 79061932-755c-4921-a0f5-52ce3929df0d
+        childIds:
+        - ff059b24-2ba4-4324-9e8c-f46233f00872
+        - 48d778a7-b5e7-471b-b164-0ea291746dfc
+      - name: learningDodgesOn
+        id: ff059b24-2ba4-4324-9e8c-f46233f00872
+        position: {x: 400.8, y: 1412.8}
+        node:
+          rid: 2590371475715260552
+        references:
+        - fieldName: Perception
+          value:
+            rid: 2590371475715260572
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - c737f6d8-30e0-431f-a5d6-72d82299f1de
+        childIds:
+        - 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
+      - name: 
+        id: 48d778a7-b5e7-471b-b164-0ea291746dfc
+        position: {x: 712.8, y: 1451.2001}
+        node:
+          rid: 2590371475715260553
+        references: []
+        parentIds:
+        - c737f6d8-30e0-431f-a5d6-72d82299f1de
+        childIds:
+        - 63c8294f-131a-4268-9b48-c5d8ff8a17e3
+        - 1542da30-7e3f-4ecc-a25e-35314bb79d04
+      - name: RandomAttack
+        id: 63c8294f-131a-4268-9b48-c5d8ff8a17e3
+        position: {x: 648, y: 1678.4}
+        node:
+          rid: 2590371475715260554
+        references:
+        - fieldName: Action
+          value:
+            rid: 2590371475715260555
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 48d778a7-b5e7-471b-b164-0ea291746dfc
+        childIds: []
+      - name: ChooseBestDirection
+        id: 1542da30-7e3f-4ecc-a25e-35314bb79d04
+        position: {x: 1000.8, y: 1589.6}
+        node:
+          rid: 2590371475715260557
+        references:
+        - fieldName: nodeIndexFunction
+          value:
+            rid: 2590371475715260558
+          fieldType: System.Func`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        parentIds:
+        - 48d778a7-b5e7-471b-b164-0ea291746dfc
+        childIds:
+        - 3a542739-0cfa-437c-85e0-94e08b1b4f7a
+        - 12a6c2a1-a443-447c-9624-c19e1fd82240
+      - name: AttackLeft
+        id: 3a542739-0cfa-437c-85e0-94e08b1b4f7a
+        position: {x: 926.4, y: 1877.6}
+        node:
+          rid: 2590371475715260559
+        references:
+        - fieldName: Action
+          value:
+            rid: 2590371475715260560
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1542da30-7e3f-4ecc-a25e-35314bb79d04
+        childIds: []
+      - name: AttackRight
+        id: 12a6c2a1-a443-447c-9624-c19e1fd82240
+        position: {x: 1148, y: 1869.6}
+        node:
+          rid: 2590371475715260561
+        references:
+        - fieldName: Action
+          value:
+            rid: 2590371475715260562
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1542da30-7e3f-4ecc-a25e-35314bb79d04
         childIds: []
     - name: shootState
       id: 8d955a09-5f22-4e04-bdaa-0eaeeb7a1a00
@@ -673,6 +769,76 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2590371475715260551
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 2590371475715260552
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2590371475715260553
+      type: {class: ProbabilityBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+        probabilities:
+        - 0.5
+        - 0.5
+    - rid: 2590371475715260554
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2590371475715260555
+      type: {class: RandomActionAction, ns: , asm: Assembly-CSharp}
+      data:
+        BaseAction: Attack
+        FirstLetter: A
+        LastLetter: C
+        idle: 0
+        loops: 1
+    - rid: 2590371475715260557
+      type: {class: FunctionBranchNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 2590371475715260558
+      type: {class: SerializedContextMethod, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        componentName: BossEnemyAssetBehaviourRunner
+        methodName: ChooseBestDirection
+    - rid: 2590371475715260559
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2590371475715260560
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: AttackE
+        idle: 0
+        loops: 1
+    - rid: 2590371475715260561
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 2590371475715260562
+      type: {class: PlayAttackAction, ns: , asm: Assembly-CSharp}
+      data:
+        attack: AttackF
+        idle: 0
+        loops: 1
+    - rid: 2590371475715260572
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: BossEnemy
+          methodName: learningPhase
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
     - rid: 2751277248662732800
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 

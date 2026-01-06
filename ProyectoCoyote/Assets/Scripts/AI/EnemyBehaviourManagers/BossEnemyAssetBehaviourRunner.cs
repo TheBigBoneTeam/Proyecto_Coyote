@@ -12,6 +12,9 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     [SerializeField] Transform flyObjective;
     [SerializeField] float flyspeed;
 
+  [SerializeField]  int leftDodges,rightDodges;
+    [SerializeField] bool learningFromPlayerDodges;
+
     public bool checkBossStateDistance()
     {
         return bossState.Equals(BossState.Distance);
@@ -41,6 +44,10 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     }
     public override void restart()
     {
+        if (player == null)
+        {
+            FindAnyObjectByType<Player>().subscribeToDodgeAttack(DodgeAttack);
+        }
         base.restart();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -50,6 +57,26 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
             agent.enabled = false;
         }
     }
+    protected override void Init()
+    {
+        base.Init();
+    }
+
+    private void DodgeAttack(HitDirections arg0)
+    {
+        if (!learningFromPlayerDodges)
+            return;
+        print("playerDodgeAttack");
+        if (arg0 == HitDirections.Left)
+        {
+            leftDodges++;
+        }
+        if (arg0 == HitDirections.Rigth)
+        {
+            rightDodges++;
+        }
+    }
+
     public void turnOffHookable()
     {
        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -90,7 +117,20 @@ public class BossEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
         }
         return Status.Running;
     }
-
+    public int ChooseBestDirection()
+    {
+        int allDodges = leftDodges + rightDodges;
+        int random = UnityEngine.Random.Range(0, allDodges);
+        if(random < leftDodges)
+        {
+            return 0;
+        }
+        return 1;
+    }
+    public void setLearning(bool learning)
+    {
+        learningFromPlayerDodges = learning;
+    }
     public void prepareDown()
     {
         transform.position = new Vector3(rockTeleportPoint.transform.position.x,this.transform.position.y, rockTeleportPoint.transform.position.z);

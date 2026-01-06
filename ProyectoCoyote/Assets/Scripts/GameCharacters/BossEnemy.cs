@@ -12,7 +12,8 @@ public class BossEnemy : Enemy
 
     [SerializeField] CactusSpawner spawner;
     [SerializeField] int healthDropDistance = 0;
-    
+
+    [SerializeField] bool learningCurrentFase;
     public bool NextFase()
     {
         currentFase++;
@@ -52,6 +53,7 @@ public class BossEnemy : Enemy
         print(currentFase);
         print(spawner == null);
         print(bossFases[currentFase]);
+        learningCurrentFase = bossFases[currentFase].learningPhase;
         spawner.On = bossFases[currentFase].hasCactusAttack;
         if (bossFases[currentFase].cactusAttackTime == -1)
         {
@@ -77,6 +79,7 @@ public class BossEnemy : Enemy
         startFase();
 
     }
+    public bool learningPhase() => learningCurrentFase;
     public override void activateEnemy(bool active)
     {
         print($"activateEnemy{name} {active}");
@@ -104,11 +107,13 @@ class BossFaseData
     public bool hasCactusAttack;
     public int cactusAttackTime;
     public int life;
-    public BossFaseData(BossState state, bool hasCactusAttack, int life, int cactusAttackTime)
+    public bool learningPhase = true;
+    public BossFaseData(BossState state, bool hasCactusAttack, int life, int cactusAttackTime, bool learningPhase = true)
     {
         this.state = state;
         this.hasCactusAttack = hasCactusAttack;
         this.life = life;
         this.cactusAttackTime = cactusAttackTime;
+        this.learningPhase = learningPhase;
     }
 }

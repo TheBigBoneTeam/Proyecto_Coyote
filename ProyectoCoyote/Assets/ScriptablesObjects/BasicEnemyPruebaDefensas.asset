@@ -217,7 +217,7 @@ MonoBehaviour:
         parentIds: []
         childIds:
         - 9142a11b-35bb-4f90-8b29-df26b1552395
-      - name: AttackB
+      - name: RandomAttack
         id: 6cd3bdff-ec5f-4bd1-b180-6ba94035bfed
         position: {x: 316, y: 1617.6}
         node:
@@ -399,7 +399,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330810325434494
+            rid: 2590371457802174464
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -413,7 +413,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 8725330810325435324
+            rid: 2590371457802174465
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -496,6 +496,18 @@ MonoBehaviour:
     - rid: 2590371397284135044
       type: {class: DefendFromBomb, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 2590371457802174464
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
+    - rid: 2590371457802174465
+      type: {class: SimpleAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        method:
+          componentName: EnemyAI
+          methodName: forcedReturnAttackPriority
     - rid: 2751277282843951855
       type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
       data: 
@@ -668,45 +680,9 @@ MonoBehaviour:
     - rid: 8725330810325434493
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725330810325434494
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: EnemyAI
-          methodName: forcedReturnAttackPriority
-        update:
-          componentName: EnemyAI
-          methodName: forceSuccess
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330810325435323
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 8725330810325435324
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: EnemyAI
-          methodName: forcedReturnAttackPriority
-        update:
-          componentName: EnemyAI
-          methodName: forceSuccess
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 8725330859197727672
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

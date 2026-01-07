@@ -169,4 +169,9 @@ public class AttacksAnimationEvent : MonoBehaviour
     {
         GetComponentInParent<Enemy>().endDeathAnim();
     }
+    public void warnBomb()
+    {
+        GetComponentInParent<BombEnemyAssetBehaviourRunner>().chargeWarning();
+
+    }
 }

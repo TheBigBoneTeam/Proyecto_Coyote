@@ -69,16 +69,20 @@ public class BombEnemyAssetBehaviourRunner : EnemyAssetBehaviourRunner
     {
         charging = true;
         chargeAction?.Invoke(this,true);
+        
+
+    }
+    public void chargeWarning()
+    {
         Collider[] nearbyTargets = Physics.OverlapSphere(transform.position, _chargingAdviseDistance, _enemyMask);
         foreach (Collider target in nearbyTargets)
         {
-        EnemyAssetBehaviourRunner enemyAsset = target.GetComponent<EnemyAssetBehaviourRunner>();
+            EnemyAssetBehaviourRunner enemyAsset = target.GetComponent<EnemyAssetBehaviourRunner>();
             if (enemyAsset)
             {
                 enemyAsset.BombCharging(this);
             }
         }
-
     }
     public override void restart()
     {

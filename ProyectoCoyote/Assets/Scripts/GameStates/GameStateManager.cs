@@ -29,9 +29,9 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
     {
     }
     //Cambia el estado directamente (privado)
-    private void SetState(GameState state)
+    private void SetState(GameState state,bool timeout = false)
     {
-        stateData stData = new stateData(currentState, state);
+        stateData stData = new stateData(currentState, state, timeout);
         onStateChange?.Invoke(this, stData);
         currentState = state;
 
@@ -102,14 +102,14 @@ public class GameStateManager : MonoBehaviour, IGameStateManager
         }
     }
 
-    public void slowDownOff()
+    public void slowDownOff(bool timeout =false)
     {
         print("slowdownoff");
         if (currentState == GameState.SlowDown)
         {
             print("slowdownoffconfirmed");
 
-            SetState(GameState.Combat);
+            SetState(GameState.Combat,timeout);
         }
     }
 

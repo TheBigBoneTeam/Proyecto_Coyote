@@ -20,6 +20,10 @@ public class PlayerDamageReceiver: DamageReceiver
             setParry(false);
             Invincible = true;
         }
+        if (e.oldState == GameState.SlowDown && e.timeout)
+        {
+            Invincible = false;
+        }
     }
 
     protected override bool canBeDodged(Attack attack)

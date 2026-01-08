@@ -7,7 +7,7 @@ public interface IGameStateManager : IService
     public void PauseUnpause();
     public void UnPause();
     public void slowDown();
-    public void slowDownOff();
+    public void slowDownOff(bool timeout = false);
 
     public void Die();
     public void Restart();

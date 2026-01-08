@@ -47,6 +47,15 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
 
         }
     }
+    public void StopSlowdownTime()
+    {
+        print("stop");
+        if (slowOn)
+        {
+            gameStateManager.slowDownOff(true);
+
+        }
+    }
     public void StartSlowdown()
     {
         print("slowDow");
@@ -68,7 +77,7 @@ public class PerfectDodgeManager:MonoBehaviour,IPerfectDodgeManager
             }
             yield return new WaitForSeconds(usedDuration / 10);
         }
-        StopSlowdown();
+        StopSlowdownTime();
     }
 
     public bool isSlowDown() => slowOn;

@@ -40,6 +40,7 @@ public class WalkToPlayerActionCircle : UnityAction
                 CirclePoint = CirclePointTest;
             }
         }
+       
         //Debug.Log(player == null);
         //Debug.Log(player.transform.position);
         //Debug.Log(player.name);
@@ -57,6 +58,11 @@ public class WalkToPlayerActionCircle : UnityAction
                 Debug.Log("reachPlayer");
                 return Status.Success;
             }
+        }
+        if (correctingPos && Vector3.Distance(agent.transform.position, CirclePoint.transform.position) > (agent.stoppingDistance + 1f))
+        {
+            correctingPos = false;
+            enemyAI.LoadBasicAction(EnemyAI.BasicActions.Walk, true);
         }
         return Status.Running;
 

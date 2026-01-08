@@ -86,6 +86,56 @@ public class Cover : MonoBehaviour
         objPosition = null;
         return -1;
     }
+    public int getBestPointSecondRound(Enemy enemy, Transform playerPos, out Transform objPosition)
+    {
+        if (Owner != null && Owner != enemy)
+        {
+            print("Not Safe Spot");
+            objPosition = null;
+            return -1;
+        }
+        for (int i = 0; i < HidePoints.Length; i++)
+        {
+
+            objPosition = HidePoints[i];
+            RaycastHit hit;
+            Vector3 dir = objPosition.position - playerPos.position;
+            print(objPosition.position);
+            print(playerPos.position);
+            Debug.DrawRay(playerPos.position, dir, Color.green, 2);
+            if (Physics.Raycast(playerPos.position, dir, out hit, dir.magnitude, environmentLayer))
+            {
+                print($"Cover Found {name} : {hit.transform.name}");
+                Vector3 shootPos = HidePoints[i].position + heightVector;
+                dir = playerPos.position - shootPos;
+                Debug.DrawRay(playerPos.position, dir, Color.blue, 2);
+                print("Safe Spot");
+                Owner = enemy;
+                return i;
+                //if (Physics.Raycast(shootPos, dir, out hit, dir.magnitude, fullLayer))
+                //{
+                //    if (hit.transform == playerPos)
+                //    {
+                       
+                //    }
+                //}
+                //if (hit.transform.IsChildOf(transform) || hit.transform == transform)
+                //{
+                //    /*coverList[i].*/
+                //    Owner = enemy;
+                //    print("Safe Spot");
+                //    return i;
+                //}
+                //else
+                //{
+                //    print("Hit another thing");
+                //}
+            }
+        }
+        print("Not Safe Spot");
+        objPosition = null;
+        return -1;
+    }
     public bool checkSafe(Transform enemyPos, Transform playerPos, int index)
     {
         RaycastHit hit;

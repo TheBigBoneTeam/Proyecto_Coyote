@@ -18,6 +18,7 @@ MonoBehaviour:
   <HitDirections>k__BackingField: 0000000001000000
   effects:
   - rid: 108327563945312339
+  - rid: 2590371510543450208
   references:
     version: 2
     RefIds:
@@ -25,3 +26,7 @@ MonoBehaviour:
       type: {class: DamageEffect, ns: CombatEffect, asm: Assembly-CSharp}
       data:
         _damage: 1
+    - rid: 2590371510543450208
+      type: {class: StunEffect, ns: CombatEffect, asm: Assembly-CSharp}
+      data:
+        stunDuration: 2

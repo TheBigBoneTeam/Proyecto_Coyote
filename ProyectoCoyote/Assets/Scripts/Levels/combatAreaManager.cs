@@ -409,6 +409,21 @@ public class combatAreaManager : MonoBehaviour
 
             }
         }
+        foreach (var cover in orderedCovers)
+        {
+            print(cover.name);
+            coverIndex = cover.getBestPointSecondRound(enemy, _player.transform, out objPos);
+            print(coverIndex);
+            if (coverIndex >= 0)
+            {
+
+
+                hidePosition = objPos.position;
+                return cover;
+
+
+            }
+        }
         hidePosition = Vector3.zero;
         coverIndex = -1;
         return null;
